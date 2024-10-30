@@ -1,3 +1,4 @@
+import React from 'react';
 import PricingTable from "../componenets/PricingTable";
 import Benefits from "../componenets/Benefits";
 

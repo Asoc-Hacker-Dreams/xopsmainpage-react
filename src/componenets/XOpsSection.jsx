@@ -1,3 +1,4 @@
+import React from 'react';
 import AnimationWrapper from "./AnimationWrapper";
 import XopsImg from "../assets/xops-img.jpg";
 

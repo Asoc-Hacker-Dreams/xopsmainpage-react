@@ -1,3 +1,4 @@
+import React from 'react';
 import agaB from "../assets/speakers/agaB.png";  
 import alejandroA from "../assets/speakers/alejandroA.png";
 import alvaroR from "../assets/speakers/alvaroR.png"; 
