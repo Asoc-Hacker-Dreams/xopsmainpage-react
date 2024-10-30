@@ -23,12 +23,16 @@ const Collaborators = () => {
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={seguridadS} alt="Logo de Seguridad S" style={{ height: '180px', width: '200px' }} />
+                  <a href="https://www.seguridadsi.com/" target="_blank" rel="noopener noreferrer">
+                    <img src={seguridadS} alt="Logo de Seguridad S" style={{ height: '180px', width: '200px' }} />
+                  </a>
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={amaxop} alt="Logo de Amaxop" style={{ height: '180px', width: '200px' }} />
+                  <a href="https://www.amaxop.com/" target="_blank" rel="noopener noreferrer">
+                    <img src={amaxop} alt="Logo de Amaxop" style={{ height: '180px', width: '200px' }} />
+                  </a>
                 </AnimationWrapper>
               </div>
             </div>
