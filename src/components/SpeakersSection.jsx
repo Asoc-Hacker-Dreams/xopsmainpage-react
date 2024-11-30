@@ -1,3 +1,4 @@
+import React from 'react';
 import agaB from "../assets/speakers/agaB.png";  
 import alejandroA from "../assets/speakers/alejandroA.png";
 import alvaroR from "../assets/speakers/alvaroR.png"; 
@@ -38,10 +39,10 @@ const SpeakersSection = () => {
                     <strong>Google - Especialista técnico en soluciones en la nube.</strong> 
                   </p>
                   <p>
-                  Aga es un experto en la nube y Kubernetes con 7 años de experiencia. Nominada como Mejor Mujer en Computación en la Nube en Polonia en 2023, se dedica a romper barreras e inspirar a jóvenes talentos en TI.
+                    Aga es un experto en la nube y Kubernetes con 7 años de experiencia. Nominada como Mejor Mujer en Computación en la Nube en Polonia en 2023, se dedica a romper barreras e inspirar a jóvenes talentos en TI.
                   </p>
                   <p>
-                  <strong>Ampliar las cargas de trabajo de IA con Kubernetes: orquestar el éxito.</strong>
+                    <strong>Scaling AI Workloads with Kubernetes: Orchestrating Success.</strong>
                   </p>
                 </AnimationWrapper>
               </div>
