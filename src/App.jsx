@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react
 import { Navbar, Nav } from 'react-bootstrap';
 import ScrollHandler from './ScrollHandler';
 import Home from './pages/Home';
-import Organizer from './pages/Organizer';   
+import Organizer from './pages/Organizer';
 import Sponsor from './pages/Sponsor';
-import './styles/Custom.css'; 
-import './styles/PricingTable.css'; 
+import './styles/Custom.css';
+import './styles/PricingTable.css';
 function App() {
 
 
@@ -33,7 +33,7 @@ function App() {
         <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="button menu-btn" style={{ textDecoration: 'none' }}>
             TICKETS
         </a>
-        
+
         </Navbar.Collapse>
     </Navbar>
 

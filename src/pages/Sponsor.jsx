@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 const Sponsor = () => {
 
-  const location = useLocation(); 
+  const location = useLocation();
   useEffect(() => {
       if (location.hash === '#patrocinio') {
           const element = document.getElementById('patrocinio');

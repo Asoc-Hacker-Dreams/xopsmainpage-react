@@ -83,9 +83,9 @@ const EventSchedule = () => {
 
                 <button onClick={tercerShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={tercerS} 
-                    onHide={tercerHid} 
+                <Modal
+                    show={tercerS}
+                    onHide={tercerHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Scaling AI Workloads with Kubernetes: Orchestrating Success.</Modal.Title>
@@ -121,9 +121,9 @@ const EventSchedule = () => {
 
                 <button onClick={sestoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={sestoS} 
-                    onHide={sestoHid} 
+                <Modal
+                    show={sestoS}
+                    onHide={sestoHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Navegando por el caos: un enfoque holístico para la gestión de incidentes</Modal.Title>
@@ -183,9 +183,9 @@ const EventSchedule = () => {
 
                 <button onClick={doceShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={doceS} 
-                    onHide={doceHid} 
+                <Modal
+                    show={doceS}
+                    onHide={doceHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Instalación de Whonix en QEMU/KVM</Modal.Title>
@@ -209,7 +209,7 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          {/* Natalie G. Evento */} 
+          {/* Natalie G. Evento */}
           <div className="col-md-6 mb-4">
             <div className="card cardmanzanaresD">
               <div className="overlay"></div>
@@ -221,9 +221,9 @@ const EventSchedule = () => {
 
                 <button onClick={septShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={septS} 
-                    onHide={septHid} 
+                <Modal
+                    show={septS}
+                    onHide={septHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Creación de una plataforma de datos nativa de la nube teniendo en cuenta la seguridad.</Modal.Title>
@@ -245,8 +245,7 @@ const EventSchedule = () => {
 
               </div>
             </div>
-          </div>  
-          
+          </div>
 
           {/* Alejandro A. Evento */}
           <div className="col-md-6 mb-4">
@@ -260,9 +259,9 @@ const EventSchedule = () => {
 
                 <button onClick={octavoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={octavoS} 
-                    onHide={octavoHid} 
+                <Modal
+                    show={octavoS}
+                    onHide={octavoHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Descubre y aplica la estrategia que utilizan xOPS para mejorar de trabajo.</Modal.Title>
@@ -286,31 +285,31 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          {/* Joaquin M. Evento */}
+          {/* David S. Evento */}
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroTD">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón Actos</h5>
                 <p className="card-text">15:40 h - 50 min</p>
-                <p>AzureDevOps y la Ciberseguridad.</p>
-                <p>Joaquin Molina</p>
+                <p>Adopting Linked Open Data in Product Security: a Modular Knowledge Graph.</p>
+                <p>David Sastre</p>
 
                 <button onClick={octavoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={octavoS} 
-                    onHide={octavoHid} 
+                <Modal
+                    show={octavoS}
+                    onHide={octavoHid}
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>AzureDevOps y la ciberseguridad.</Modal.Title>
+                        <Modal.Title>Adopting Linked Open Data in Product Security: a Modular Knowledge Graph.</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    En la charla veremos varios aspectos de la ciberseguridad de este entorno, tanto ataque como detección.
+                    El tema aborda la implementación de Linked Open Data (LOD) en el ámbito de la seguridad de productos mediante el uso de un grafo de conocimiento modular. Este enfoque busca estructurar y enlazar datos relevantes para mejorar la gestión, análisis y comunicación de riesgos de seguridad en productos tecnológicos.
                     </Modal.Body>
                     <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                         <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Joaquin Molina</p>
+                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>David Sastre</p>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                             <p className="card-text" style={{ margin: '0', padding: '0' }}>
@@ -338,44 +337,6 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          {/* Jon R. Evento */}
-          <div className="col-md-6 mb-4">
-            <div className="card cardministerios">
-              <div className="overlay"></div>
-              <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón Actos</h5>
-                <p className="card-text">17:30 h - 50 min</p>
-                <p>Cilium: Seguridad y Observabilidad en Redes con EBPF.</p>
-                <p>Jon Rodriguez Aranguren.</p>
-
-                <button onClick={diezShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal 
-                    show={diezS} 
-                    onHide={diezHid} 
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Cilium: Seguridad y Observabilidad en Redes con EBPF</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Descubre cómo Cilium, con la potencia de eBPF, está cambiando las reglas del juego en la seguridad y el monitoreo de redes modernas. Esta charla te mostrará ejemplos reales de cómo Cilium permite controlar el tráfico de red de forma precisa y proteger tus sistemas frente a amenazas sin afectar el rendimiento. También aprenderás a implementar políticas de seguridad flexibles y a obtener una visibilidad completa del tráfico en entornos de microservicios.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Jon Rodriguez A.</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            17:30 h - 50 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
-                </Modal>
-
-              </div>
-            </div>
-          </div>
-
           {/* Alvaro R. Evento */}
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroT">
@@ -388,9 +349,9 @@ const EventSchedule = () => {
 
                 <button onClick={diezShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={diezS} 
-                    onHide={diezHid} 
+                <Modal
+                    show={diezS}
+                    onHide={diezHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Proteger las cargas de trabajo de Kubernetes: del código al clúster</Modal.Title>
@@ -429,9 +390,9 @@ const EventSchedule = () => {
 
                 <button onClick={onceShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={onceS} 
-                    onHide={onceHid} 
+                <Modal
+                    show={onceS}
+                    onHide={onceHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Istio Ambient Mesh: Sidecar vs Sidecar-less como si tuviera 10 años</Modal.Title>
@@ -492,9 +453,9 @@ const EventSchedule = () => {
 
                 <button onClick={quartoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={quartoS} 
-                    onHide={quartoHid} 
+                <Modal
+                    show={quartoS}
+                    onHide={quartoHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Navegando por el caos: un enfoque holístico para la gestión de incidentes</Modal.Title>

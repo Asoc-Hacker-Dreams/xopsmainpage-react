@@ -27,8 +27,8 @@ const App = () => {
     <div style={{ textAlign: 'center'}}>
       <h2 className="text-center margin-top">Horario del Evento</h2>
       <div>
-        
-        
+
+
         <button onClick={mostrarTexto1} className="date-btn">Viernes 22/11/2024</button>
         <button onClick={mostrarTexto2} className="date-btn">Sábado 23/11/2024</button>
       </div>

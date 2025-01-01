@@ -20,7 +20,7 @@ const EventSchedule = () => {
     <section id="events" className="event-schedule-section">
 
       <AnimationWrapper animation="fade-up" duration={1500}>
-      <h2 className="text-center margin-top">Madrid; Sábado 23 de Noviembre de 2024</h2>
+      <h2 className="text-center margin-top">Sábado 23 de noviembre de 2024</h2>
       <div className="container mt-5">
         <div className="row">
 
@@ -29,9 +29,11 @@ const EventSchedule = () => {
             <div className="card cardBernabeuD">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Inicio:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Inicio: </span>Salón de Actos</h5>
                 <p className="card-text">10:00 h - 30 min</p>
-                <p>Establecer el tono del evento y dar la bienvenida a los asistentes.</p>
+                <p>Dar la bienvenida a los asistentes al segundo día del evento, reconociendo su entusiasmo y compromiso continuo con los objetivos de esta experiencia.</p>
+                <br></br>
+                <p>Retomar los aprendizajes y logros del primer día para establecer el tono de una jornada aún más productiva e inspiradora.</p>
               </div>
             </div>
           </div>
@@ -41,16 +43,16 @@ const EventSchedule = () => {
             <div className="card cardcuatroT">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">10:30 h - 50 min</p>
                 <p>El Futuro de las Operaciones con Agentes de IA: De la Automatización a la Autonomía.</p>
                 <p>Santiago Castro Vilabella</p>
 
                 <button onClick={tercerShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={tercerS} 
-                    onHide={tercerHid} 
+                <Modal
+                    show={tercerS}
+                    onHide={tercerHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>El Futuro de las Operaciones con Agentes de IA: De la Automatización a la Autonomía.</Modal.Title>
@@ -74,21 +76,21 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          {/* Natalie G. Evento */} 
+          {/* Natalie G. Evento */}
           <div className="col-md-6 mb-4">
             <div className="card cardmanzanaresD">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">11:20 h - 50 min</p>
                 <p>Balancing tight security with fluid devex, powered by GKE.</p>
                 <p>Natalie Godec</p>
 
                 <button onClick={septShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={septS} 
-                    onHide={septHid} 
+                <Modal
+                    show={septS}
+                    onHide={septHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Balancing tight security with fluid devex, powered by GKE.</Modal.Title>
@@ -116,23 +118,23 @@ const EventSchedule = () => {
 
               </div>
             </div>
-          </div>  
+          </div>
 
           {/* Raquel Olesia Evento */}
           <div className="col-md-6 mb-4">
             <div className="card cardmetropolitano">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">12:10 h - 50 min</p>
                 <p>The Rise of MLSecOps: Securing Machine Learning in the DevSecOps Era.</p>
                 <p>Raquel Guzman y Olesia Proskurnia</p>
 
                 <button onClick={sestoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={sestoS} 
-                    onHide={sestoHid} 
+                <Modal
+                    show={sestoS}
+                    onHide={sestoHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>The Rise of MLSecOps: Securing Machine Learning in the DevSecOps Era.</Modal.Title>
@@ -171,7 +173,7 @@ const EventSchedule = () => {
             <div className="card cardpuertaA">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">13:00 h</p>
                 <p>Cierre y despedida.</p>
                 <p>Fin...</p>

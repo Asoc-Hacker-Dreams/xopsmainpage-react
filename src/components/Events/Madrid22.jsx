@@ -53,7 +53,7 @@ const EventSchedule = () => {
     <section id="events" className="event-schedule-section">
 
       <AnimationWrapper animation="fade-up" duration={1500}>
-      <h2 className="text-center margin-top">Madrid; Viernes 22 de Noviembre de 2024</h2>
+      <h2 className="text-center margin-top">Viernes 22 de noviembre de 2024</h2>
       <div className="container mt-5">
         <div className="row">
 
@@ -62,7 +62,7 @@ const EventSchedule = () => {
             <div className="card cardBernabeu">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Registro:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Registro: </span>Salón de Actos</h5>
                 <p className="card-text">9:00 h - 60 min</p>
                 <p>Registro de asistentes.</p>
               </div>
@@ -74,7 +74,7 @@ const EventSchedule = () => {
             <div className="card cardBernabeuD">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Inicio:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Inicio: </span>Salón de Actos</h5>
                 <p className="card-text">10:00 h - 30 min</p>
                 <p>Dar la bienvenida a los asistentes y keynote del evento.</p>
               </div>
@@ -86,14 +86,14 @@ const EventSchedule = () => {
             <div className="card cardcuatroT">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">10:30 h - 30 min</p>
                 <p>Scaling AI Workloads with Kubernetes: Orchestrating Success.</p>
                 <p>Aga Bielak</p>
                 <button onClick={tercerShow} className="button menu-btn">Más Detalles</button>
-                <Modal 
-                    show={tercerS} 
-                    onHide={tercerHid} 
+                <Modal
+                    show={tercerS}
+                    onHide={tercerHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Scaling AI Workloads with Kubernetes: Orchestrating Success.</Modal.Title>
@@ -121,16 +121,16 @@ const EventSchedule = () => {
             <div className="card cardmanzanares">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">11:00 h - 30 min</p>
                 <p>Un puente entre MLOps y DevOps con OpenShift AI.</p>
                 <p>Juan Vicente Herrera Ruiz de Alejo</p>
 
                 <button onClick={sestoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={sestoS} 
-                    onHide={sestoHid} 
+                <Modal
+                    show={sestoS}
+                    onHide={sestoHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Un puente entre MLOps y DevOps con OpenShift AI.</Modal.Title>
@@ -172,21 +172,21 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          {/* Natalie G. Evento */} 
+          {/* Natalie G. Evento */}
           <div className="col-md-6 mb-4">
             <div className="card cardmanzanaresD">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">11:30 h - 50 min</p>
                 <p>Building a cloud-native data platform with security in mind.</p>
                 <p>Natalie Godec</p>
 
                 <button onClick={quartoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={quartoS} 
-                    onHide={quartoHid} 
+                <Modal
+                    show={quartoS}
+                    onHide={quartoHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Building a cloud-native data platform with security in mind.</Modal.Title>
@@ -215,7 +215,7 @@ const EventSchedule = () => {
             <div className="card cardgranV">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Pasillo principal</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Pasillo principal</h5>
                 <p className="card-text">12:20 h - 40 min</p>
                 <p>Pausa para café.</p>
                 <br />
@@ -229,16 +229,16 @@ const EventSchedule = () => {
             <div className="card cardplazaM">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">13:00 h - 60 min</p>
                 <p>Ambientes efímeros con Serverless y Custom Resources.</p>
                 <p>Oscar Cortes Bracho</p>
 
                 <button onClick={doceShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={doceS} 
-                    onHide={doceHid} 
+                <Modal
+                    show={doceS}
+                    onHide={doceHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Ambientes efímeros con Serverless y Custom Resources</Modal.Title>
@@ -272,49 +272,12 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          {/* Jon R. Evento */}
-          <div className="col-md-6 mb-4">
-            <div className="card cardmanzanaresD">
-              <div className="overlay"></div>
-              <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
-                <p className="card-text">14:00 h - 50 min</p>
-                <p>Cilium: Seguridad y Observabilidad en Redes con EBPF.</p>
-                <p>Jon Rodriguez Aranguren.</p>
-
-                <button onClick={septShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal 
-                    show={septS} 
-                    onHide={septHid} 
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Cilium: Seguridad y Observabilidad en Redes con EBPF</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Descubre cómo Cilium, con la potencia de eBPF, está cambiando las reglas del juego en la seguridad y el monitoreo de redes modernas. Esta charla te mostrará ejemplos reales de cómo Cilium permite controlar el tráfico de red de forma precisa y proteger tus sistemas frente a amenazas sin afectar el rendimiento. También aprenderás a implementar políticas de seguridad flexibles y a obtener una visibilidad completa del tráfico en entornos de microservicios.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Jon Rodriguez Aranguren.</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            14:00 h - 50 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
-                </Modal>
-
-              </div>
-            </div>
-          </div>  
         {/* Break Evento */}
         <div className="col-md-6 mb-4">
             <div className="card cardgranV">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Pasillo principal</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Pasillo principal</h5>
                 <p className="card-text">14:50 h - 70 min</p>
                 <p>Pausa para comer.</p>
                 <br />
@@ -329,16 +292,16 @@ const EventSchedule = () => {
             <div className="card cardmanzanares">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">16:00 h - 50 min</p>
                 <p>SDLC con OWASP.</p>
                 <p>Gabriela García</p>
 
                 <button onClick={treceShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={treceS} 
-                    onHide={treceHid} 
+                <Modal
+                    show={treceS}
+                    onHide={treceHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>SDLC con OWASP</Modal.Title>
@@ -368,16 +331,16 @@ const EventSchedule = () => {
             <div className="card cardmetropolitano">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">16:50 h - 50 min</p>
                 <p>Descubre y aplica la estrategia que utilizan XOPS para mejorar de trabajo.</p>
                 <p>Alejandro Acosta</p>
 
                 <button onClick={octavoShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={octavoS} 
-                    onHide={octavoHid} 
+                <Modal
+                    show={octavoS}
+                    onHide={octavoHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Descubre y aplica la estrategia que utilizan XOPS para mejorar de trabajo.</Modal.Title>
@@ -401,32 +364,32 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          
-          {/* Joaquin M. Evento */}
+
+          {/* David S. Evento */}
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroTD">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">17:40 h - 40 min</p>
-                <p>AzureDevOps y la Ciberseguridad.</p>
-                <p>Joaquin Molina</p>
+                <p>Adopting Linked Open Data in Product Security: a Modular Knowledge Graph.</p>
+                <p>David Sastre</p>
 
                 <button onClick={nuevShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={nuevS} 
-                    onHide={nuevHid} 
+                <Modal
+                    show={nuevS}
+                    onHide={nuevHid}
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>AzureDevOps y la ciberseguridad.</Modal.Title>
+                        <Modal.Title>Adopting Linked Open Data in Product Security: a Modular Knowledge Graph.</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    En la charla veremos varios aspectos de la ciberseguridad de este entorno, tanto ataque como detección.
+                    El tema aborda la implementación de Linked Open Data (LOD) en el ámbito de la seguridad de productos mediante el uso de un grafo de conocimiento modular. Este enfoque busca estructurar y enlazar datos relevantes para mejorar la gestión, análisis y comunicación de riesgos de seguridad en productos tecnológicos.
                     </Modal.Body>
                     <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                         <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Joaquin Molina</p>
+                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>David Sastre</p>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                             <p className="card-text" style={{ margin: '0', padding: '0' }}>
@@ -445,16 +408,16 @@ const EventSchedule = () => {
             <div className="card cardcuatroT">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">18:20 h - 50 min</p>
                 <p>Securing Kubernetes Workloads: From Code to Cluster.</p>
                 <p>Álvaro Revuelta M.</p>
 
                 <button onClick={diezShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={diezS} 
-                    onHide={diezHid} 
+                <Modal
+                    show={diezS}
+                    onHide={diezHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Securing Kubernetes Workloads: From Code to Cluster</Modal.Title>
@@ -486,16 +449,16 @@ const EventSchedule = () => {
             <div className="card cardministeriosD">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">19:10 h - 50 min</p>
                 <p>Istio Ambient Mesh: Sidecar vs Sidecar-less like if I am 10 years old.</p>
                 <p>Antonio Berben</p>
 
                 <button onClick={onceShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={onceS} 
-                    onHide={onceHid} 
+                <Modal
+                    show={onceS}
+                    onHide={onceHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Istio Ambient Mesh: Sidecar vs Sidecar-less like if I am 10 years old</Modal.Title>
@@ -549,16 +512,16 @@ const EventSchedule = () => {
             <div className="card cardplazaM">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">20:00 h - 60 min</p>
                 <p>Instalación de Whonix en QEMU/KVM.</p>
                 <p>Pablo Gómez - Caldito</p>
 
                 <button onClick={catorceShow} className="button menu-btn">Más Detalles</button>
 
-                <Modal 
-                    show={catorceS} 
-                    onHide={catorceHid} 
+                <Modal
+                    show={catorceS}
+                    onHide={catorceHid}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Instalación de Whonix en QEMU/KVM</Modal.Title>
@@ -587,7 +550,7 @@ const EventSchedule = () => {
             <div className="card cardpuertaA">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar:</span>Salón de Actos</h5>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
                 <p className="card-text">21:00 h</p>
                 <p>Cierre.</p>
               </div>

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 
 const Organizer = () => {
-  const location = useLocation(); 
+  const location = useLocation();
 
 
   useEffect(() => {
