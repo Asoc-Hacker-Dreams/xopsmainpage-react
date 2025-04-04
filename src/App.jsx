@@ -59,8 +59,7 @@ function App() {
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Organizer" element={<Organizer />} />
-        <Route path="/Sponsor" element={<Sponsor />} />
-        <Route path="/Organizer2024" element={<Organizer2024 />} />
+        <Route path="/Sponsor" element={<Sponsor />} />        
       </Routes>
 
 
