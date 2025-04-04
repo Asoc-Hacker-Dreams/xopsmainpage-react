@@ -7,6 +7,7 @@ import ScrollHandler from './ScrollHandler';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';
 import Sponsor from './pages/Sponsor';
+import Organizer2024 from './pages/Organizer';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -59,7 +60,8 @@ function App() {
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Organizer" element={<Organizer />} />
-        <Route path="/Sponsor" element={<Sponsor />} />        
+        <Route path="/Sponsor" element={<Sponsor />} />    
+        <Route path="/Organizer2024" element={<Organizer2024 />} />    
       </Routes>
 
 
