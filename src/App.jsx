@@ -4,10 +4,9 @@ import logo from "./assets/xops.png";
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import ScrollHandler from './ScrollHandler';
-
+import Home from './pages/Home';
+import Organizer from './pages/Organizer';
 import Sponsor from './pages/Sponsor';
-import Organizer2024 from './pages/archive/2024/Organizer2024';
-import Home2024 from './pages/archive/2024/Home2024';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
