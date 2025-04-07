@@ -7,7 +7,7 @@ import ScrollHandler from './ScrollHandler';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';
 import Sponsor from './pages/Sponsor';
-import Organizer from './archive/Organizer';
+import Organizer2024 from './archive/Organizer2024';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -30,7 +30,7 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/Organizer#Organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTOS ANTERIORES</Link>                                                   '
+                <Link className='links px-4 font-weight-bold text-white' to="/Organizer2024#Organizr2024" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTOS ANTERIORES</Link>                                                   '
             </Nav>
         <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="button menu-btn" style={{ textDecoration: 'none' }}>
             TICKETS
@@ -61,7 +61,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Organizer" element={<Organizer />} />
         <Route path="/Sponsor" element={<Sponsor />} />    
-           
+        <Route path="/Organizer2024" element={<Organizer2024 />} />    
       </Routes>
 
 
