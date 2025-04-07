@@ -3,14 +3,13 @@ import Organizers from "../components/Organizers";
 import { useLocation } from 'react-router-dom';
 
 
-
 const Organizer2024 = () => {
   const location = useLocation();
 
 
   useEffect(() => {
-      if (location.hash === '#Organizer2024') {
-          const element = document.getElementById('Organizer2024');
+      if (location.hash === '#organizr') {
+          const element = document.getElementById('organizr');
           if (element) {
               element.scrollIntoView({ behavior: 'smooth' });
           }
@@ -18,10 +17,11 @@ const Organizer2024 = () => {
   }, [location]);
 
   return (
-      <div id="Organizer2024">
+      <div id="organizr">
           <Organizers />
       </div>
   );
 };
 
 export default Organizer2024;
+
