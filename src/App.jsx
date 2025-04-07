@@ -7,7 +7,7 @@ import ScrollHandler from './ScrollHandler';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';
 import Sponsor from './pages/Sponsor';
-import Organizer2024 from './pages/Organizer';
+import Organizer from './archive/Organizer';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
