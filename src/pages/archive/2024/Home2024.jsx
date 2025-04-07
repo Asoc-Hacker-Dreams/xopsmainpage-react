@@ -5,10 +5,10 @@ import SpeakersSection from "../components/SpeakersSection";
 import Events from "../components/Events/Events";
 import Ubication from "../components/Ubication";
 import Collaborators from "../components/Collaborators";
-import Events2024 from "../components/Events/Events";
 
 
-const Home = () => {
+
+const Home2024 = () => {
 
   return (
     <>

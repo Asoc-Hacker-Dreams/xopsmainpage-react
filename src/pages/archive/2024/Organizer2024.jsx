@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Organizers from "../components/Organizers";
 import { useLocation } from 'react-router-dom';
-import Organizers2024 from "../components/Organizers2024";
+import Organizer2024 from "../components/Organizer2024";
 
 
 const Organizer2024 = () => {
@@ -9,8 +9,8 @@ const Organizer2024 = () => {
 
 
   useEffect(() => {
-      if (location.hash === '#organizer2024') {
-          const element = document.getElementById('organizer2024');
+      if (location.hash === '#Organizer2024') {
+          const element = document.getElementById('Organizer2024');
           if (element) {
               element.scrollIntoView({ behavior: 'smooth' });
           }
@@ -18,8 +18,8 @@ const Organizer2024 = () => {
   }, [location]);
 
   return (
-      <div id="organizer2024">
-          <Organizers2024 />
+      <div id="Organizer2024">
+          <Organizer2024 />
       </div>
   );
 };
