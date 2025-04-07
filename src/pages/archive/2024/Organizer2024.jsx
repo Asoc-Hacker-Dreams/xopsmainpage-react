@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Organizers from "../components/Organizers";
+import Organizers from "../../components/Organizers";
 import { useLocation } from 'react-router-dom';
 
 
