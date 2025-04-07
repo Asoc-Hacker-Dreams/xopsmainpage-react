@@ -58,13 +58,12 @@ function App() {
       </div>
 
 
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Organizer" element={<Organizer />} />
-        <Route path="/Sponsor" element={<Sponsor />} />    
-        <Route path="/Organizer2024" element={<Organizer2024 />} />    
-        <Route path="/Home2024" element={<Home2024 />} />
-      </Routes>
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Organizer2024" element={<Organizer2024 />} />  {/* Aquí cambiamos a Organizer2024 */}
+          <Route path="/Sponsor" element={<Sponsor />} />
+          <Route path="/Home2024" element={<Home2024 />} />
+        </Routes>
 
 
     <footer className="bg-black text-white footer">
