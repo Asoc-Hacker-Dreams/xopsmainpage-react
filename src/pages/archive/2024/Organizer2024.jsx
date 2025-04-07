@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Organizers from "../components/Organizers";
 import { useLocation } from 'react-router-dom';
-import Organizer2024 from "../components/Organizer2024";
+import Organizers2024 from "../components/Organizers2024";
 
 
 const Organizer2024 = () => {
@@ -19,7 +19,7 @@ const Organizer2024 = () => {
 
   return (
       <div id="Organizer2024">
-          <Organizer2024 />
+          <Organizers2024 />
       </div>
   );
 };
