@@ -5,7 +5,7 @@ import SpeakersSection from "../../../components/SpeakersSection";
 import Events from "../../../components/Events/Events";
 import Ubication from "../../../components/Ubication";
 import Collaborators from "../../../components/Collaborators";
-
+import { Link } from 'react-router-dom'; // Importa Link
 
 
 
@@ -20,6 +20,10 @@ const Home2024 = () => {
       <Ubication />
       <Collaborators />
       <SpeakersSection />
+ {/* Agrego el enlace hacia la página de eventos anteriores */}
+ <div className="text-center">
+        <Link to="/Organizer2024" className="btn btn-primary">Eventos Anteriores</Link>
+      </div>
 
     </>
   );
