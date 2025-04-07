@@ -1,14 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
-import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import ScrollHandler from './ScrollHandler';
 import Home from './pages/Home';
-import Organizer from './pages/Organizer';
+import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
 import Home2024 from './pages/archive/2024/Home2024';
-import Organizer from './pages/archive/2024/Organizer2024';
+import Organizer2024 from './pages/archive/2024/Organizer2024';  // Este es el Organizer2024
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -60,9 +60,10 @@ function App() {
 
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Organizer2024" element={<Organizer2024 />} />  {/* Aquí cambiamos a Organizer2024 */}
+          <Route path="/Organizer" element={<Organizer />} /> {/* Organizador principal */}
           <Route path="/Sponsor" element={<Sponsor />} />
           <Route path="/Home2024" element={<Home2024 />} />
+          <Route path="/Organizer2024" element={<Organizer2024 />} /> {/* Organizador 2024 */}
         </Routes>
 
 
