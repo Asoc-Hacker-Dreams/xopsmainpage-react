@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import Organizers from "../components/Organizers";
+import Organizers from "../components/Events/Organizers";
 import { useLocation } from 'react-router-dom';
-import Organizers2024 from "../components/Organizers2024";
+import Organizers2024 from "../components/Events/Organizers2024";
 
 
 const Organizer2024 = () => {
