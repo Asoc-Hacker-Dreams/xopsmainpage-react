@@ -411,17 +411,21 @@ margin-block: 1rem;
 }
 }
 
-/* Aplica estilo blanco igual al resto de enlaces */
+/* Estilo base: blanco, igual que los otros */
 .custom-white-dropdown .dropdown-toggle {
   color: white !important;
   font-weight: bold;
   padding-left: 1rem;
   padding-right: 1rem;
   text-decoration: none;
+  background-color: transparent !important;
+  border: none;
+  font-size: 1rem;
 }
 
-/* Igual que los demás enlaces al hacer hover */
-.custom-white-dropdown .dropdown-toggle:hover {
-  color: white !important;
+/* Al pasar el ratón: rojo */
+.custom-white-dropdown .dropdown-toggle:hover,
+.custom-white-dropdown .dropdown-toggle:focus {
+  color: #ff0000 !important; /* Rojo */
   background-color: transparent !important;
 }
