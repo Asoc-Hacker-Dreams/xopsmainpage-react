@@ -44,22 +44,14 @@ function App() {
   style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none'}}>
 
   {/* Submenú XOPS 2024 */}
-  <NavDropdown.Item as={Link} to="/archive/2024/Events2024">
-    Eventos 2024
-  </NavDropdown.Item>
-  <NavDropdown.Item as={Link} to="/archive/2024/Organizer2024">
-    Organizadores 2024
-  </NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Eventos 2024</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2024/Organizer2024">Organizadores 2024</NavDropdown.Item>
 
   <NavDropdown.Divider /> {/* Divisor entre 2024 y 2023 */}
 
   {/* Submenú XOPS 2023 */}
-  <NavDropdown.Item as={Link} to="/archive/2023/Events2023">
-    Eventos 2023
-  </NavDropdown.Item>
-  <NavDropdown.Item as={Link} to="/archive/2023/Organizer2023">
-    Organizadores 2023
-  </NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2023/Events2023">Eventos 2023</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2023/Organizer2023">Organizadores 2023</NavDropdown.Item>
 </NavDropdown>     
 
             </Nav>
