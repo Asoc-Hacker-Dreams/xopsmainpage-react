@@ -421,7 +421,7 @@ margin-block: 1rem;
   height: auto; /* Aseguramos que no haya desajustes de altura */
   display: flex;
   align-items: center; /* Centra el texto verticalmente */
-  margin-top: -5px;
+  margin-top: -10px;
 }
 
 /* Hover color rojo */
