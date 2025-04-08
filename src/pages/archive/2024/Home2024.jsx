@@ -2,7 +2,7 @@ import React from 'react';
 import XOpsSection from "../../..//components/XOpsSection";
 import Themes from "../../../components/Themes";
 import SpeakersSection from "../../../components/SpeakersSection";
-import Events2024 from "./pages/archive/2024/Events2024";
+import Events2024 from "./Events2024";
 import Ubication from "../../../components/Ubication";
 import Collaborators from "../../../components/Collaborators";
 import { Link } from 'react-router-dom'; // Importa Link
@@ -16,7 +16,7 @@ const Home2024 = () => {
 
       <XOpsSection />
       <Themes />
-      <Events />
+      <Events2024 />
       <Ubication />
       <Collaborators />
       <SpeakersSection />
