@@ -414,22 +414,34 @@ margin-block: 1rem;
 /* Estilo base: blanco, igual que los otros */
 .custom-white-dropdown .dropdown-toggle {
   display: flex;
-  align-items: center;       /* Centra verticalmente */
-  height: 100%;              /* O fuerza altura para igualar */
+  align-items: center; /* Centra verticalmente */
+  height: 100%; /* Fuerza altura para igualar */
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 0;
   margin-bottom: 0;
   font-weight: bold;
-  color: white !important;
+  color: white !important; /* Color blanco */
   background-color: transparent !important;
   border: none;
-  font-size: 1rem;
+  font-size: 1rem; /* Asegura que el tamaño sea igual al de los otros */
+  text-decoration: none; /* Elimina el subrayado por defecto */
 }
 
-/* Al pasar el ratón: rojo */
+/* Asegura que el NavDropdown tenga el mismo tamaño y alineación que los otros enlaces */
+.navbar .dropdown-toggle.links {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1rem; /* Asegura el mismo tamaño que los links */
+  line-height: 1.5;
+  display: flex;
+  align-items: center; /* Centra verticalmente el texto */
+  text-decoration: none; /* Elimina el subrayado por defecto */
+}
+
+/* Al pasar el ratón: cambia a rojo */
 .custom-white-dropdown .dropdown-toggle:hover,
 .custom-white-dropdown .dropdown-toggle:focus {
-  color: #ff0000 !important; /* Rojo */
-  background-color: transparent !important;
+  color: #d90845 !important; /* Rojo */
+  background-color: transparent !important; /* Asegura que el fondo siga transparente */
 }
