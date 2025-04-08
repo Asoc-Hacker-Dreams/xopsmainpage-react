@@ -36,7 +36,7 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
                 <NavDropdown title="EVENTOS ANTERIORES" id="basic-nav-dropdown" className="px-4 font-weight-bold text-white">
-                  <NavDropdown.Item as={Link} to="/archive/2023/Events2024">XOPS 2024</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/archive/2024/Events2024">XOPS 2024</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/archive/2023/Events2023">XOPS 2023</NavDropdown.Item>
                 </NavDropdown>       
                 {/*Añado el menú EVENTOS ANTERIORES Y LOS SUBMENÚS XOPS 2034 Y 2023 */}                                             
