@@ -40,7 +40,7 @@ function App() {
                 <NavDropdown
   title="EVENTOS ANTERIORES"
   className='links px-4 font-weight-bold text-white'
-  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none', color: 'white'}}>
+  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none'}}>
 
   {/* Submenú XOPS 2024 */}
   <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Eventos 2024</NavDropdown.Item>
