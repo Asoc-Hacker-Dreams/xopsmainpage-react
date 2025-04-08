@@ -411,33 +411,24 @@ margin-block: 1rem;
 }
 }
 
+/* Menú "EVENTOS ANTERIORES" */
 .custom-white-dropdown .dropdown-toggle {
-  display: flex;
-  align-items: center; /* Centra verticalmente el texto */
-  height: 40px; /* Asegura que la altura sea consistente con otros menús */
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-weight: bold; /* Asegura que el peso de la fuente sea consistente */
-  color: white !important;
-  background-color: transparent !important; /* Fondo transparente */
+  font-size: 1rem;  /* Igualar tamaño de fuente */
+  font-weight: bold;  /* Asegura que el texto esté en negrita */
+  color: white !important; /* Color blanco para el texto */
+  background-color: transparent !important;
   border: none;
-  font-size: 1rem; /* Asegura el mismo tamaño que los links */
-  line-height: 1.5; /* Alineación correcta del texto */
-  text-decoration: none; /* Elimina el subrayado */
-  font-family: inherit; /* Usa la misma fuente que el resto del menú */
+  padding: 10px 15px; /* Añadir un poco de espacio en los laterales */
+  height: auto; /* Aseguramos que no haya desajustes de altura */
+  display: flex;
+  align-items: center; /* Centra el texto verticalmente */
 }
 
-/* Asegura que el NavDropdown tenga el mismo tamaño y alineación que los otros enlaces */
-.navbar .dropdown-toggle.links {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 1rem; /* Asegura el mismo tamaño que los links */
-  line-height: 1.5;
-  display: flex;
-  align-items: center; /* Centra verticalmente el texto */
-  text-decoration: none; /* Elimina el subrayado por defecto */
+/* Hover color rojo */
+.custom-white-dropdown .dropdown-toggle:hover,
+.custom-white-dropdown .dropdown-toggle:focus {
+  color: #d90845 !important; /* Rojo al pasar el ratón */
+  background-color: transparent !important;
 }
 
 /* Al pasar el ratón: cambia a rojo */
