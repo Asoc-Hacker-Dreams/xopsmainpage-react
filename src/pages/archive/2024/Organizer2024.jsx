@@ -24,4 +24,3 @@ const Organizer2024 = () => {
 };
 
 export default Organizer2024;
-
