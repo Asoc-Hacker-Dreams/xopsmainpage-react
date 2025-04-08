@@ -12,7 +12,7 @@ const TextoComponente2 = () => {
   return <div>Este es el segundo texto en un componente.</div>;
 };
 
-const Events2023 = () => {
+const App = () => {
   const [textoVisible, setTextoVisible] = useState('componente1');
 
   const mostrarTexto1 = () => {
@@ -39,4 +39,4 @@ const Events2023 = () => {
   );
 };
 
-export default Events2023;
+export default App;
