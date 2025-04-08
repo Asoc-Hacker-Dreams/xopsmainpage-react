@@ -35,7 +35,7 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
-                <NavDropdown title="EVENTOS ANTERIORES" id="basic-nav-dropdown" className='links px-4 font-weight-bold text-white' style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none'}}>EVENTOS ANTERIORES</NavDropdown>
+                <NavDropdown title="EVENTOS ANTERIORES" id="basic-nav-dropdown" className='links px-4 font-weight-bold text-white' style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none'}}>EVENTOS ANTERIORES
   {/* Submenú XOPS 2024 */}
                   <NavDropdown title="XOPS 2024" id="basic-nav-dropdown-2024">
                     <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Eventos 2024</NavDropdown.Item>
