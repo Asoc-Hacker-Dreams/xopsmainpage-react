@@ -37,7 +37,6 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
                 <NavDropdown title="EVENTOS ANTERIORES" id="basic-nav-dropdown" className="px-4 font-weight-bold text-white">
                   <NavDropdown.Item as={Link} to="/archive/2023/Events2024">XOPS 2024</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/archive/2023/Organizer2024">XOPS 2024</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/archive/2023/Events2023">XOPS 2023</NavDropdown.Item>
                 </NavDropdown>       
                 {/*Añado el menú EVENTOS ANTERIORES Y LOS SUBMENÚS XOPS 2034 Y 2023 */}                                             
@@ -71,12 +70,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Organizer" element={<Organizer />} /> {/* Organizador principal */}
           <Route path="/Sponsor" element={<Sponsor />} />
-          <Route path="/Home2024" element={<Home2024 />} />
-          <Route path="/Organizer2024" element={<Organizer2024 />} /> {/* Organizador 2024 */}
-          <Route path="/Home2023" element={<Home2023 />} />
-          <Route path="/Organizer2023" element={<Organizer2023 />} /> {/* Organizador 2023 */}
+          <Route path="archive/2024//Home2024" element={<Home2024 />} />
+          <Route path="archive/2024//Organizer2024" element={<Organizer2024 />} /> {/* Organizador 2024 */}
+          <Route path="archive/2023//Home2023" element={<Home2023 />} />
+          <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} /> {/* Organizador 2023 */}
           <Route path="/archive/2023/Events2023" element={<Events2023 />} /> {/* Eventos 2023 */}
-          <Route path="/archive/2023/Events2023" element={<Events2024 />} /> {/* Eventos 2023 */}
+          <Route path="/archive/2024/Events2024" element={<Events2024 />} /> {/* Eventos 2023 */}
         </Routes>
 
 
