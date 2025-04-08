@@ -11,6 +11,7 @@ import Home2024 from './pages/archive/2024/Home2024';
 import Organizer2024 from './pages/archive/2024/Organizer2024';  // Este es el Organizer2024
 import Home2023 from './pages/archive/2023/Home2023';
 import Organizer2023 from './pages/archive/2023/Organizer2023';    // Este es el Organizer2023
+import Events2023 from './pages/archive/2023/Events2023';    // Este es el Events2023
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -72,6 +73,7 @@ function App() {
           <Route path="/Organizer2024" element={<Organizer2024 />} /> {/* Organizador 2024 */}
           <Route path="/Home2023" element={<Home2023 />} />
           <Route path="/Organizer2023" element={<Organizer2023 />} /> {/* Organizador 2023 */}
+          <Route path="/Events2023" element={<Events2023 />} /> {/* Eventos 2023 */}
         </Routes>
 
 

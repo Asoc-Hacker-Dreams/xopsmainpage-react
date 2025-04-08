@@ -2,7 +2,7 @@ import React from 'react';
 import XOpsSection from "../../..//components/XOpsSection";
 import Themes from "../../../components/Themes";
 import SpeakersSection from "../../../components/SpeakersSection";
-import Events from "../../../components/Events/Events";
+import Events2023 from "./pages/archive/2023/Events2023";
 import Ubication from "../../../components/Ubication";
 import Collaborators from "../../../components/Collaborators";
 import { Link } from 'react-router-dom'; // Importa Link
