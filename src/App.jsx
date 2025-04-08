@@ -41,8 +41,8 @@ function App() {
   title="EVENTOS ANTERIORES"
   id="basic-nav-dropdown"
   className="px-4 font-weight-bold text-white"
-  style={{ marginTop: '10px', marginBottom: '10px' }}
->
+  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none'}}>
+
   {/* Submenú XOPS 2024 */}
   <NavDropdown.Item as={Link} to="/archive/2024/Events2024">
     Eventos 2024
@@ -61,7 +61,7 @@ function App() {
     Organizadores 2023
   </NavDropdown.Item>
 </NavDropdown>     
-                                     
+
             </Nav>
         <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="button menu-btn" style={{ textDecoration: 'none' }}>
             TICKETS
