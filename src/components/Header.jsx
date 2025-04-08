@@ -54,7 +54,7 @@ const Header = () => {
                 <Nav.Link className='links px-4 font-weight-bold text-white' href="#tickets"></Nav.Link>
                 
                 {/* Agrego el NavDropdown para "Eventos Anteriores" */}
-                <NavDropdown onClick={scrollToEventosAnteriores} className='links px-4 font-weight-bold text-white ' href="#vuélvete-patrocinador">EVENTOS ANTERIORES</NavDropdown>
+                <NavDropdown onClick={scrollToEventosAnteriores} className='links px-4 font-weight-bold text-white ' href="#inicio">EVENTOS ANTERIORES</NavDropdown>
   
             </Nav>
         <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" class="button menu-btn">
