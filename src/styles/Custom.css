@@ -419,35 +419,28 @@ margin-block: 1rem;
   padding-bottom: 0px;
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: 600; /* Establece el mismo peso de fuente */
+  font-weight: bold; /* Asegura que el peso de la fuente sea consistente */
   color: white !important;
-  background-color: transparent !important;
+  background-color: transparent !important; /* Fondo transparente */
   border: none;
-  font-size: 1rem; /* Asegura que el tamaño sea igual al de los otros menús */
+  font-size: 1rem; /* Asegura el mismo tamaño que los links */
+  line-height: 1.5; /* Alineación correcta del texto */
   text-decoration: none; /* Elimina el subrayado */
-  line-height: 1.5; /* Igualando la línea de altura con otros elementos */
-}
-
-/* Estilo para los ítems dentro del dropdown */
-.custom-white-dropdown .dropdown-menu {
-  background-color: #333; /* Fondo oscuro para el menú */
-  border-radius: 0; /* Sin bordes redondeados */
-  padding: 0.5rem 0; /* Espaciado uniforme en el menú */
+  font-family: inherit; /* Usa la misma fuente que el resto del menú */
 }
 
 /* Asegura que el NavDropdown tenga el mismo tamaño y alineación que los otros enlaces */
 .navbar .dropdown-toggle.links {
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 1rem; /* Asegura que el tamaño sea igual al de los otros enlaces */
-  line-height: 1.5; /* Igualando la altura de la línea */
+  font-size: 1rem; /* Asegura el mismo tamaño que los links */
+  line-height: 1.5;
   display: flex;
-  align-items: center; /* Centra verticalmente */
-  text-decoration: none; /* Elimina el subrayado */
-  height: 40px; /* La misma altura que los otros enlaces */
+  align-items: center; /* Centra verticalmente el texto */
+  text-decoration: none; /* Elimina el subrayado por defecto */
 }
 
-/* Al pasar el ratón: cambio a rojo */
+/* Al pasar el ratón: cambia a rojo */
 .custom-white-dropdown .dropdown-toggle:hover,
 .custom-white-dropdown .dropdown-toggle:focus {
   color: #d90845 !important; /* Rojo */
