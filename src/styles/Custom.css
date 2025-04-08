@@ -413,7 +413,7 @@ margin-block: 1rem;
 
 /* Menú "EVENTOS ANTERIORES" */
 .custom-white-dropdown .dropdown-toggle {
-  font-size: 1rem;  /* Igualar tamaño de fuente */
+  font-size: 0.9rem;  /* tamaño de fuente */
   color: white !important; /* Color blanco para el texto */
   background-color: transparent !important;
   border: none;
