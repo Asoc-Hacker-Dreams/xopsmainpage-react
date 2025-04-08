@@ -12,7 +12,7 @@ import Organizer2024 from './pages/archive/2024/Organizer2024';  // Este es el O
 import Home2023 from './pages/archive/2023/Home2023';
 import Organizer2023 from './pages/archive/2023/Organizer2023';    // Este es el Organizer2023
 import Events2023 from './pages/archive/2023/Events2023';    // Este es el Events2023
-import Events2024 from './pages/archive/2023/Events2024'; 
+import Events2024 from './pages/archive/2024/Events2024'; 
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
