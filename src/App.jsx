@@ -12,6 +12,7 @@ import Organizer2024 from './pages/archive/2024/Organizer2024';  // Este es el O
 import Home2023 from './pages/archive/2023/Home2023';
 import Organizer2023 from './pages/archive/2023/Organizer2023';    // Este es el Organizer2023
 import Events2023 from './pages/archive/2023/Events2023';    // Este es el Events2023
+import Events2024 from './pages/archive/2023/Events2024'; 
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -35,8 +36,8 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
                 <NavDropdown title="EVENTOS ANTERIORES" id="basic-nav-dropdown" className="px-4 font-weight-bold text-white">
-                  <NavDropdown.Item as={Link} to="/Home2024">XOPS 2024</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/Home2023">XOPS 2023</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/Events2024">XOPS 2024</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/Events2023">XOPS 2023</NavDropdown.Item>
                 </NavDropdown>       
                 {/*Añado el menú EVENTOS ANTERIORES Y LOS SUBMENÚS XOPS 2034 Y 2023 */}                                             
             </Nav>
@@ -74,6 +75,7 @@ function App() {
           <Route path="/Home2023" element={<Home2023 />} />
           <Route path="/Organizer2023" element={<Organizer2023 />} /> {/* Organizador 2023 */}
           <Route path="/Events2023" element={<Events2023 />} /> {/* Eventos 2023 */}
+          <Route path="/Events2024" element={<Events2024 />} /> {/* Eventos 2023 */}
         </Routes>
 
 
