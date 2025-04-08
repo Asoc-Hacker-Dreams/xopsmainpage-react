@@ -40,7 +40,7 @@ function App() {
                 <NavDropdown
   title="EVENTOS ANTERIORES"
   id="basic-nav-dropdown"
-  
+  className='links px-4 font-weight-bold text-white'
   style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none'}}>
 
   {/* Submenú XOPS 2024 */}
