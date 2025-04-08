@@ -1,6 +1,6 @@
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrigo NavDropdown
+import { Navbar, Nav } from 'react-bootstrap';
 import logo from "../assets/xops.png";
-import { Link } from 'react-router-dom'; //agrego este import
+
 
 const Header = () => {
 
@@ -31,14 +31,6 @@ const Header = () => {
         }
     };
 
-//defino la constante de Eventos Anteriores
-    const scrollToEventosAnteriores = () => {
-        const element = document.getElementById('eventos-anteriores');  // ID de la sección de eventos anteriores
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      };
-
 
     return (
         <Router>
@@ -53,9 +45,6 @@ const Header = () => {
                 <Nav.Link onClick={scrollToPatrocinio} className='links px-4 font-weight-bold text-white ' href="#vuélvete-patrocinador">CONVIERTETE EN PATROCINADOR</Nav.Link>
                 <Nav.Link className='links px-4 font-weight-bold text-white' href="#tickets"></Nav.Link>
                 
-                {/* Agrego el NavDropdown para "Eventos Anteriores" */}
-                <NavDropdown onClick={scrollToEventosAnteriores} className='links px-4 font-weight-bold text-white ' href="#eventos-anteriores">EVENTOS ANTERIORES</NavDropdown>
-  
             </Nav>
         <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" class="button menu-btn">
             Tickets
