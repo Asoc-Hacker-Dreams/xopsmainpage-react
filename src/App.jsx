@@ -37,10 +37,10 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
           {/* Menú EVENTOS ANTERIORES */}  
-                <NavDropdown
+          <NavDropdown
   title="EVENTOS ANTERIORES"
-  className='links px-4 font-weight-bold text-white'
-  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none'}}>
+  className='links px-4 font-weight-bold custom-white-dropdown'
+  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>
 
   {/* Submenú XOPS 2024 */}
   <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Eventos 2024</NavDropdown.Item>

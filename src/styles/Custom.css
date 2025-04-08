@@ -410,3 +410,18 @@ margin-block: 1rem;
   width: auto;
 }
 }
+
+/* Aplica estilo blanco igual al resto de enlaces */
+.custom-white-dropdown .dropdown-toggle {
+  color: white !important;
+  font-weight: bold;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-decoration: none;
+}
+
+/* Igual que los demás enlaces al hacer hover */
+.custom-white-dropdown .dropdown-toggle:hover {
+  color: white !important;
+  background-color: transparent !important;
+}
