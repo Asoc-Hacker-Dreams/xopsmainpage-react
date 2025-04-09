@@ -1,4 +1,4 @@
-import AnimationWrapper from './AnimationWrapper';
+import AnimationWrapper from "../../../components/AnimationWrapper";
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
