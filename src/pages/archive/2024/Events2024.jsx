@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Madrid22 from '../../../components/Events/Madrid22';
-import Madrid23 from '../../../components/Events/Madrid23';
+import Madrid22 from './pages/archive/2024/Madrid22';
+import Madrid23 from './pages/archive/2024/Madrid23';
 
 
 const TextoComponente1 = () => {
