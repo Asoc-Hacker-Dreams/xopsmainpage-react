@@ -9,7 +9,7 @@ import oscarC from "../../../assets/speakers/oscarC.png";
 import pabloG from "../../../assets/speakers/pabloG.jpg";
 import santiagoC from "../../../assets/speakers/santiagoC.jpg";
 import davidS from "../../../assets/speakers/davidS.png";   
-import oszi from "../../../assets/speakers/oszi.png";   /*agrego las fotos del 2023*/
+import oszi from "../../../assets/speakers/oszi.jpg";   /*agrego las fotos del 2023*/
 import gomezSantos from "../../../assets/speakers/gomezSantos.png"; 
 import faria from "../../../assets/speakers/faria.jpeg"; 
 import chorenRuiz from "../../../assets/speakers/chorenRuiz.jpeg";
@@ -301,6 +301,30 @@ const SpeakersSection2023 = () => {
                 </AnimationWrapper>
               </div>
             </div>
+{{/*agrego ponentes 2023*/}}
+
+<div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={agaB} alt="joseLuis" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>José Luis Navarro Adam</h3>
+                  <p>
+                    <strong>Wazuh como estrategia de ciberseguridad</strong> 
+                  </p>
+                  <p>
+                  Esta es la charla sobre WAZUH, Qué es, para qué sirve, qué funciones tiene, y sobre todo, cómo puede salvarnos ante un posible ataque cibernético detectando y neutralizando posibles intrusiones en nuestra red. Si quieres saber cómo proteger tu empresa, esta es tu sesión de la World Party 2023!
+                  </p>
+                  <p>
+                    <strong></strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
 
           </div>
         </div>
