@@ -13,6 +13,7 @@ import Home2023 from './pages/archive/2023/Home2023';
 import Organizer2023 from './pages/archive/2023/Organizer2023';    // Este es el Organizer2023
 import Events2023 from './pages/archive/2023/Events2023';    // Este es el Events2023
 import Events2024 from './pages/archive/2024/Events2024'; 
+import SpeakersSection2023 from './pages/archive/2023/SpeakersSection2023';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -49,7 +50,7 @@ function App() {
   <NavDropdown.Divider /> {/* Divisor entre 2024 y 2023 */}
 
   {/* Submenú XOPS 2023 */}
-  <NavDropdown.Item as={Link} to="/archive/2023/Organizer2023">Evento 2023</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Evento 2023</NavDropdown.Item>
   
 </NavDropdown>     
 
@@ -89,6 +90,7 @@ function App() {
           <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} /> {/* Organizador 2023 */}
           <Route path="/archive/2023/Events2023" element={<Events2023 />} /> {/* Eventos 2023 */}
           <Route path="/archive/2024/Events2024" element={<Events2024 />} /> {/* Eventos 2023 */}
+          <Route path="/archive/2023/SpeakersSection2023" element={<SpeakersSection2023 />} /> {/* Ponentes 2023 */}
         </Routes>
 
 
