@@ -446,6 +446,6 @@ margin-block: 1rem;
 .navbar .dropdown-toggle,
 .links {
   font-family: 'Poppins', sans-serif !important;
-  font-weight: 650 !important; /* Negrita */
-  font-size: 1,5rem !important;
+  font-weight: 700 !important; /* Negrita */
+  font-size: 2rem !important;
 }
