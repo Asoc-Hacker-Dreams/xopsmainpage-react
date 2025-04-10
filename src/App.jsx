@@ -54,7 +54,7 @@ function App() {
 </NavDropdown>     
 
             </Nav>
-        <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="button menu-btn" style={{ textDecoration: 'none' }}>
+        <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none' }}>
             TICKETS
         </a>
 
@@ -68,7 +68,7 @@ function App() {
             <p className="lead">El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.        </p>
             <p className="lead">Fecha: Noviembre 2025 </p>
             <div className="mt-4 mx-4">
-            <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
+            <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
                 <Link className="btn mx-2  my-2 btn-outline-light btn-lg" to="/#events">Ver agenda</Link>
             </div>
         </div>
