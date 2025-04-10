@@ -49,7 +49,7 @@ function App() {
   <NavDropdown.Divider /> {/* Divisor entre 2024 y 2023 */}
 
   {/* Submenú XOPS 2023 */}
-  <NavDropdown.Item as={Link} to="/archive/2023/Events2023">Evento 2023</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2023/Organizer2023">Evento 2023</NavDropdown.Item>
   
 </NavDropdown>     
 
