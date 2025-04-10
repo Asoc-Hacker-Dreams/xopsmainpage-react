@@ -301,7 +301,7 @@ const SpeakersSection2023 = () => {
                 </AnimationWrapper>
               </div>
             </div>
-{{/*agrego ponentes 2023*/}}
+{/*agrego ponentes 2023*/}
 
 <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
