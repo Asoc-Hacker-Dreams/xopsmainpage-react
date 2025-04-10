@@ -306,7 +306,7 @@ const SpeakersSection2023 = () => {
 <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={agaB} alt="joseLuis" style={{ height: '250px', width: '280px' }} />
+                  <img src={joseLuis} alt="joseLuis" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -319,12 +319,246 @@ const SpeakersSection2023 = () => {
                   Esta es la charla sobre WAZUH, Qué es, para qué sirve, qué funciones tiene, y sobre todo, cómo puede salvarnos ante un posible ataque cibernético detectando y neutralizando posibles intrusiones en nuestra red. Si quieres saber cómo proteger tu empresa, esta es tu sesión de la World Party 2023!
                   </p>
                   <p>
-                    <strong></strong>
+                    <strong>El taller de WAZUH, paso a paso</strong>
+                  </p>
+                  <p>
+                  Este es el taller de mi charla sobre WAZUH. Un auténtico HOWTO paso a paso.  Si quieres saber cómo proteger tu empresa, esta es tu sesión de la World Party 2023!
                   </p>
                 </AnimationWrapper>
               </div>
             </div>
 
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={reynaldo} alt="reynaldo" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Reynaldo Cordero</h3>
+                  <p>
+                    <strong>Instalación de HaskellKatas</strong> 
+                  </p>
+                  <p>
+                  Se realizará la instalación de un entorno de katas de programación con HASKELL mediante un script de BASH en un sistema 100% software libre y completamente hackeable.
+                  </p>
+                  <p>
+                    <strong>El lenguaje de programación Haskell en la educación</strong>
+                  </p>
+                  <p>
+                  Se explicará cómo se puede utilizar el lenguaje de programación Haskell con fines educativos  de calidad, para manejar elementos de programación, de matemáticas, de lógica y de expresión de ideas mediante el propio lenguaje hablado y de cómo realizar experimentos sobre la marcha que resulten atractivos y estimulantes y fáciles de relacionar, algo que denominaremos como HaskellKatas.
+                 </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={davidC} alt="davidC" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>David Carrasco</h3>
+                  <p>
+                    <strong>The easy game for IoT, esphome with salt</strong> 
+                  </p>
+                  <p>
+                  La charla se mostrara una solución sencilla hecha en Python para interactuar mediante protocolo MQTT con un dispositivo esp32 y un xiaomi Mi Plant.
+                  </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={gabrielaG} alt="gabrielaG" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Gabriela García</h3>
+                  <p>
+                    <strong>Katana Coding: protección y ofuscación de código</strong> 
+                  </p>
+                  <p>
+                  'Katana Coding': la seguridad y ofuscación de código cobran vida al estilo Kill Bill. Adéntrate en técnicas letales de protección y desvela secretos de código al ritmo de espadas samurái. ¡Sé el guerrero digital que domina el arte del código seguro!
+                  </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
+           
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={eun} alt="eun" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Eun Young Cho</h3>
+                  <p>
+                    <strong>Blockchain IRL: la cara AMAble</strong> 
+                  </p>
+                  <p>
+                  Actualmente Blockchain es más conocido por la especulación, las estafas y el hype de los medios que el potencial que tiene esta tecnología. Esto es porque está muy ligado a los criptoactivos y que con ello ha surgido otra forma de economía.
+                  </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div> 
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={rafael} alt="rafael" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Rafael Hernampérez</h3>
+                  <p>
+                    <strong>Introducción al Desarrollo Seguro</strong> 
+                  </p>
+                  <p>
+                  "Nadie está a salvo de ataques, pero prepararse anticipadamente contra ellos reducirá considerablemente las sorpresas y los costes derivados de sus consecuencias. 
+                  </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div> 
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={juanV} alt="juanV" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Juán Vicente Herrera</h3>
+                  <p>
+                    <strong>Practical Threat Modeling</strong> 
+                  </p>
+                  <p>
+                  David Sastre y Juan Vicente Herrera de Red Hat, nos van a hablar de como empezar en el mundo del "Threat Modelling".
+                  </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={rodriguezBerzosa} alt="rodriguezBerzosa" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Luis Rodriguez</h3>
+                  <p>
+                    <strong>The Dream of Secure CI/CD Pipelines</strong> 
+                  </p>
+                  <p>
+                  In a world where automation and the cloud reign supreme, modern Continuous Integration/Continuous Deployment and build systems have become the crown jewels of software development. But, as with any valuable treasure, they also attract unwanted attention from cyber adversaries. The potential vulnerabilities in CI/CD pipelines are no secret; they include excessive privileges, leaked secrets, vulnerable plugins and pipeline code, weak authentication, and a distinct lack of auditing. These weaknesses have been exploited in the past and the present, leading to data breaches and security nightmares. The session will show the latest techniques and principles to make resilient and secure your entire Software Development Lifecycle.
+                   </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={chorenRuiz} alt="chorenRuiz" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Matias Choren</h3>
+                  <p>
+                    <strong>Lo que no es Windows es Unix</strong> 
+                  </p>
+                  <p>
+                  En esta charla vamos a hablar de que es Unix, cómo nació el proyecto GNU, cómo define Software Libre la GPL, qué diferencia hay con el Software de Código Abierto, el concepto de CopyLeft (izquierdo de copia), algunas otras licencias libres y su impacto en el mundo actual de la tecnología
+                  </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={faria} alt="faria" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Daniel Faria</h3>
+                  <p>
+                    <strong>Entendiendo la proeza: Conociendo el PS4JB Como funciona el HACK de PS4</strong> 
+                  </p>
+                  <p>
+                  - Una definicion propia de Hacker, alguien que sabe mucho de un tema que lo domina bien y puede hacer cosas impresionante.
+- HACK = Proeza
+- El PS4JB: Como funciona (se meciona el origen, el error  CVE-2018-4386)
+- sleirsgoevy; Quien unio la piezas
+- TheFlow: quien consiguio el exploit (Sony le pago por el trabajo)
+- El cambio de vision de Sony despues del caso de Geohot
+</p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={gomezSantos} alt="gomezSantos" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Javier Gómez</h3>
+                  <p>
+                    <strong>There is a wormhole in my Kafka</strong> 
+                  </p>
+                  <p>
+                  Seguro que te ha tocado pegarte con Kafka en alguna ocasión, y si eres de los pocos que no, estoy más que convencido de que en algún momento lo has oído mencionar. Quizás un escalofrío recorrió tu cuerpo al oír ese nombre, o te parecía que lo susurraban los sauces de un cementerio cuando pasabas por ahí cerca.
+Pues tranquilo, porque Kafka puede dar miedo, pero nosotros te traemos un par de anécdotas para que deje de asustarte tanto.
+¿Y qué es lo que traemos? Pues dos situaciones bastante distintas en las que tuvimos que exprimir Kafka al máximo para avanzar.
+La primera fue realizar la migración de todos los nodos de Kafka a nodos nuevos… ¡¡sin pérdida de servicio!!, y la segunda cómo nos organizamos cuando nos vimos obligados a abrir un agujero de seguridad… de la forma menos peligrosa posible. Pues tanto si conoces bien a Kafka como si apenas sabes que existe, apúntate, que vas a disfrutar de lo que traemos.
+</p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={oszi} alt="oszi" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <h3>Agustín Osorio</h3>
+                  <p>
+                    <strong></strong> 
+                  </p>
+                  <p>
+                  </p>
+                    
+                </AnimationWrapper>
+              </div>
+            </div>
 
           </div>
         </div>
