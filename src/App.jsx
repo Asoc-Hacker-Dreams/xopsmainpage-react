@@ -38,7 +38,7 @@ function App() {
           
           {/* Menú EVENTOS ANTERIORES */}  
           <NavDropdown
-  title="EVENTOS ANTERIORES"
+  title={<span>EVENTOS<br />ANTERIORES</span>}
   className='links px-4 font-weight-bold custom-white-dropdown'
   style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>
 
