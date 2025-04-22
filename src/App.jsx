@@ -37,22 +37,32 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
-          {/* Menú EVENTOS ANTERIORES */}  
-          <NavDropdown
+        {/* Menú EVENTOS ANTERIORES */}  
+<NavDropdown
   title={<span>EVENTOS<br />ANTERIORES</span>}
   className='links px-4 font-weight-bold custom-white-dropdown'
-  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>
+  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
+>
 
-  {/* Submenú XOPS 2024 */}
-  <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Evento 2024</NavDropdown.Item>
-  
+  {/* Submenú para XOPS 2024 */}
+  <NavDropdown title="XOPS 2024" drop="end" className="ps-3">
+    <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Horarios</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y Colaboradores</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2024/Organizer2024">Organizadores</NavDropdown.Item>
+  </NavDropdown>
 
   <NavDropdown.Divider /> {/* Divisor entre 2024 y 2023 */}
 
-  {/* Submenú XOPS 2023 */}
-  <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Evento 2023</NavDropdown.Item>
-  
-</NavDropdown>     
+  {/* Submenú para XOPS 2023 */}
+  <NavDropdown title="XOPS 2023" drop="end" className="ps-3">
+    <NavDropdown.Item as={Link} to="/archive/2023/Events2023">Horarios</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y Colaboradores</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2023/Organizer2023">Organizadores</NavDropdown.Item>
+  </NavDropdown>
+
+</NavDropdown>   
 
             </Nav>
         <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none' }}>
@@ -84,14 +94,22 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Organizer" element={<Organizer />} /> {/* Organizador principal */}
           <Route path="/Sponsor" element={<Sponsor />} />
-          <Route path="archive/2024/Home2024" element={<Home2024 />} />
-          <Route path="archive/2024/Organizer2024" element={<Organizer2024 />} /> {/* Organizador 2024 */}
+                        
+          {/* 2024 */}
+          <Route path="archive/2024/Home2024" element={<Home2024 />} /> 
+          <Route path="/archive/2024/Events2024" element={<Events2024 />} />
+          <Route path="/archive/2023/SpeakersSection2024" element={<SpeakersSection2024 />} />
+          <Route path="/archive/2024/Sponsors2024" element={<Sponsors2024 />} />
+          <Route path="archive/2024/Organizer2024" element={<Organizer2024 />} />
+
+          {/* 2023 */}
           <Route path="archive/2023/Home2023" element={<Home2023 />} />
-          <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} /> {/* Organizador 2023 */}
-          <Route path="/archive/2023/Events2023" element={<Events2023 />} /> {/* Eventos 2023 */}
-          <Route path="/archive/2024/Events2024" element={<Events2024 />} /> {/* Eventos 2023 */}
-          <Route path="/archive/2023/SpeakersSection2023" element={<SpeakersSection2023 />} /> {/* Ponentes 2023 */}
-        </Routes>
+          <Route path="/archive/2023/Events2023" element={<Events2023 />} />
+          <Route path="/archive/2023/SpeakersSection2023" element={<SpeakersSection2023 />} />
+          <Route path="/archive/2023/Sponsors2023" element={<Sponsors2023 />} />
+          <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} />
+
+      </Routes>
 
 
     <footer className="bg-black text-white footer">
