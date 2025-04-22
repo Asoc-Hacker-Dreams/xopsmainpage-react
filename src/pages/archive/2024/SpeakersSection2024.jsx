@@ -10,8 +10,8 @@ import oscarC from "../../../assets/speakers/oscarC.png";
 import pabloG from "../../../assets/speakers/pabloG.jpg";
 import santiagoC from "../../../assets/speakers/santiagoC.jpg";
 import davidS from "../../../assets/speakers/davidS.png";   // New speaker image.
+import AnimationWrapper from "../../../components/AnimationWrapper";
 
-import AnimationWrapper from "../../../AnimationWrapper";
 
 const SpeakersSection2024 = () => {
   return (
