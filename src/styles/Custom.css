@@ -449,3 +449,9 @@ margin-block: 1rem;
   font-weight: 800 !important; /* Negrita */
   font-size: 1.1rem !important;
 }
+
+/* Evita que los dropdown se abran/cambien con pasar el ratón */
+.dropdown:hover > .dropdown-menu,
+.dropend:hover > .dropdown-menu {
+  display: none;
+}
