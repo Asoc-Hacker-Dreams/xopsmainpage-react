@@ -14,6 +14,7 @@ import Organizer2023 from './pages/archive/2023/Organizer2023';    // Este es el
 import Events2023 from './pages/archive/2023/Events2023';    // Este es el Events2023
 import Events2024 from './pages/archive/2024/Events2024'; 
 import SpeakersSection2023 from './pages/archive/2023/SpeakersSection2023';
+import SpeakersSection2024 from './pages/archive/2024/SpeakersSection2024';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
