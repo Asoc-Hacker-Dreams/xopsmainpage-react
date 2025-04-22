@@ -15,8 +15,8 @@ import Events2023 from './pages/archive/2023/Events2023';    // Este es el Event
 import Events2024 from './pages/archive/2024/Events2024'; 
 import SpeakersSection2023 from './pages/archive/2023/SpeakersSection2023';
 import SpeakersSection2024 from './pages/archive/2024/SpeakersSection2024';
-import Sponsors2024 from './pages/archive/2024/Sponsors2024';
-import Sponsors2023 from './pages/archive/2024/Sponsors2023';
+import Sponsor2024 from './pages/archive/2024/Sponsor2024';
+import Sponsor2023 from './pages/archive/2024/Sponsor2023';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -102,14 +102,14 @@ function App() {
           <Route path="archive/2024/Home2024" element={<Home2024 />} /> 
           <Route path="/archive/2024/Events2024" element={<Events2024 />} />
           <Route path="/archive/2024/SpeakersSection2024" element={<SpeakersSection2024 />} />
-          <Route path="/archive/2024/Sponsors2024" element={<Sponsors2024 />} />
+          <Route path="/archive/2024/Sponsor2024" element={<Sponsor2024 />} />
           <Route path="archive/2024/Organizer2024" element={<Organizer2024 />} />
 
           {/* 2023 */}
           <Route path="archive/2023/Home2023" element={<Home2023 />} />
           <Route path="/archive/2023/Events2023" element={<Events2023 />} />
           <Route path="/archive/2023/SpeakersSection2023" element={<SpeakersSection2023 />} />
-          <Route path="/archive/2023/Sponsors2023" element={<Sponsors2023 />} />
+          <Route path="/archive/2023/Sponsor2023" element={<Sponsor2023 />} />
           <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} />
 
       </Routes>
