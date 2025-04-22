@@ -49,6 +49,13 @@ function App() {
   show  // Esto hace que se mantenga abierto siempre
 >
 
+   {/* Menú EVENTOS ANTERIORES */}  
+<NavDropdown
+  title={<span>EVENTOS<br />ANTERIORES</span>}
+  className='links px-4 font-weight-bold custom-white-dropdown'
+  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
+>
+
   {/* Submenú para XOPS 2024 */}
   <NavDropdown title="XOPS 2024" drop="end" className="ps-3">
     <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Horarios</NavDropdown.Item>
