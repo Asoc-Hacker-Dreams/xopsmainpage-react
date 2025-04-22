@@ -16,7 +16,7 @@ import Events2024 from './pages/archive/2024/Events2024';
 import SpeakersSection2023 from './pages/archive/2023/SpeakersSection2023';
 import SpeakersSection2024 from './pages/archive/2024/SpeakersSection2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
-import Sponsor2023 from './pages/archive/2024/Sponsor2023';
+import Sponsor2023 from './pages/archive/2023/Sponsor2023';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
