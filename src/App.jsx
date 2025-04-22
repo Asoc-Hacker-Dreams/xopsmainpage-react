@@ -40,11 +40,13 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
-        {/* Menú EVENTOS ANTERIORES */}  
+       {/* Menú EVENTOS ANTERIORES */}
 <NavDropdown
   title={<span>EVENTOS<br />ANTERIORES</span>}
-  className='links px-4 font-weight-bold custom-white-dropdown'
+  className="links px-4 font-weight-bold custom-white-dropdown"
   style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
+  id="nav-dropdown"
+  show  // Esto hace que se mantenga abierto siempre
 >
 
   {/* Submenú para XOPS 2024 */}
