@@ -40,29 +40,22 @@ function App() {
           
        
       {/* Menú EVENTOS ANTERIORES */}  
-<NavDropdown
+      <NavDropdown
   title={<span>EVENTOS<br />ANTERIORES</span>}
   className='links px-4 font-weight-bold custom-white-dropdown'
   style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
 >
+  {/* Título X-OPS 2024 */}
+  <div className="submenu-title">X-OPS 2024</div>
+  <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
 
-  {/* Submenú para XOPS 2024 */}
-  <NavDropdown title="X-OPS 2024" drop="end" className="ps-3">
-    
-    <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
-    <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
-    
-  </NavDropdown>
+  <NavDropdown.Divider />
 
-  <NavDropdown.Divider /> {/* Divisor entre 2024 y 2023 */}
-
-  {/* Submenú para XOPS 2023 Aldea DevSecOps */}
-  <NavDropdown title="Aldea DevSecOps" drop="end" className="ps-3">
-    
-    <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
-    <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y<br />Colaboradores</NavDropdown.Item>
-    
-  </NavDropdown>
+  {/* Título Aldea DevSecOps 2023 */}
+  <div className="submenu-title">Aldea DevSecOps 2023</div>
+  <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y<br />Colaboradores</NavDropdown.Item>
 </NavDropdown>
 
             </Nav>

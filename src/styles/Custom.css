@@ -425,12 +425,7 @@ margin-block: 1rem;
   margin-top: -10px;
 }
 
-/* Hover color rojo */
-.custom-white-dropdown .dropdown-toggle:hover,
-.custom-white-dropdown .dropdown-toggle:focus {
-  color: #d90845 !important; /* Rojo al pasar el ratón */
-  background-color: transparent !important;
-}
+
 
 /* Al pasar el ratón: cambia a rojo */
 .custom-white-dropdown .dropdown-toggle:hover,
@@ -450,5 +445,10 @@ margin-block: 1rem;
   font-size: 1.1rem !important;
 }
 
-
-
+/* Rojo para los títulos de submenús */
+.submenu-title {
+  font-weight: bold;
+  color: #d90845; /* rojo */
+  padding: 8px 16px;
+  font-size: 1rem;
+}
