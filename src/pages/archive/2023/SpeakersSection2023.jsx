@@ -153,9 +153,7 @@ Interesado en Haskell, programación funcional, zettelkasten, logseq.
                     <strong>Software Engineer</strong> 
                   </p>
                   <p>
-                  Fricazo.
-Python and Rust lover.
-Desarrollador trabajando en el sector de la ciberseguridad.
+                  Fricazo. Python and Rust lover. Desarrollador trabajando en el sector de la ciberseguridad.
 
  </p>
                     
@@ -246,7 +244,7 @@ Siempre curioso y abierto a nuevas posibilidades.
                     <strong></strong> 
                   </p>
                   <p>
-                  Apasionado por la Seguridad Informática, el Software Libre, Unix y la historia de la informática. Speaker en varias charlas relacionadas a la Seguridad y concientización y organizador de FLISOL en Caseros, Argentina
+                  Apasionado por la Seguridad Informática, el Software Libre, Unix y la historia de la informática. Speaker en varias charlas relacionadas a la Seguridad y concientización y organizador de FLISOL en Caseros, Argentina.
                  </p>
                     
                 </AnimationWrapper>
@@ -303,7 +301,7 @@ Durante su tiempo libre lleva un Coderdojo donde realizan proyectos de divulgaci
                     <strong></strong> 
                   </p>
                   <p>
-                  Arquitecto y consultor de seguridad en la nube con un historial probado de trabajo con líderes mundiales del sector, como Netflix, Meta, Snapchat, Toyota, Nestlé y Google, para mejorar sus normas de seguridad y cumplir los objetivos de arquitectura.  Participa activamente en las comunidades de ciberseguridad y TI, y es ponente en respetadas conferencias sobre seguridad, como Ekoparty, B-Sides, Tandilsec y SASO Conf.  Entusiasta de las redes, los protocolos de cifrado y las innovaciones de blue-team. Coordinador de iniciativas y workshops galardonados, como Wardriving y FollowTheR00ts
+                  Arquitecto y consultor de seguridad en la nube con un historial probado de trabajo con líderes mundiales del sector, como Netflix, Meta, Snapchat, Toyota, Nestlé y Google, para mejorar sus normas de seguridad y cumplir los objetivos de arquitectura.  Participa activamente en las comunidades de ciberseguridad y TI, y es ponente en respetadas conferencias sobre seguridad, como Ekoparty, B-Sides, Tandilsec y SASO Conf.  Entusiasta de las redes, los protocolos de cifrado y las innovaciones de blue-team. Coordinador de iniciativas y workshops galardonados, como Wardriving y FollowTheR00ts.
                   </p>
                     
                 </AnimationWrapper>
