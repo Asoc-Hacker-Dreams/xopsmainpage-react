@@ -30,7 +30,7 @@ function App() {
 <ScrollHandler />
 <div className="root home-main-section">
         <Navbar bg="light" expand="lg" className='header'>
-        <Navbar.Brand className='text-white font-weight-bold'>XOPS CONFERENCE</Navbar.Brand>
+        <Navbar.Brand className='text-white font-weight-bold'>X-OPS CONFERENCE</Navbar.Brand>
         <img src={logo} alt="Jane Doe" style={{ height: '51px', width: '56px' }} />
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='toggle'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
@@ -48,7 +48,7 @@ function App() {
 >
 
   {/* Submenú para XOPS 2024 */}
-  <NavDropdown title="XOPS 2024" drop="end" className="ps-3">
+  <NavDropdown title="X-OPS 2024" drop="end" className="ps-3">
     
     <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
