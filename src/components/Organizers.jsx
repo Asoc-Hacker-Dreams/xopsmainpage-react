@@ -130,9 +130,14 @@ const Organizers = () => {
 
             
             <div className="speaker1 d-flex justify-around margin-top">
-              <div className="speaker-content">
+              <div className="speaker-img">
                 <AnimationWrapper animation="fade-right" duration={1500}>
-                <h3>Juan Vicente Herrera Ruiz de Alejo</h3>
+                  <img src={juanV} alt="Juan Vicente" style={{ height: '331px', width: '346px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>                 
+               <h3>Juan Vicente Herrera Ruiz de Alejo</h3>
                   <p>
                     <strong>Cloud Architect.</strong>
                   </p>
@@ -142,11 +147,6 @@ const Organizers = () => {
                   <p>
                     <strong>Un puente entre MLOps y DevOps con OpenShift AI.</strong><br/>
                   </p>
-                </AnimationWrapper>
-              </div>
-              <div className="speaker-img">
-                <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={juanV} alt="Juan Vicente" style={{ height: '331px', width: '346px' }} />
                 </AnimationWrapper>
               </div>
             </div>
@@ -160,10 +160,10 @@ const Organizers = () => {
                     <strong>Arquitecto en la nube.</strong>
                   </p>
                   <p>
-                    Ingeniero Electronico, Cloud / Software Architect.
+                    Ingeniero Electronico, Cloud / Software Architect.  
                     <br />
                     <br />
-                    AWSCommunityBuilder - serverless.
+                    AWSCommunityBuilder - serverless. 
                   </p>
                   <p>
                     <strong>Ambientes efímeros con Serverless y Custom Resources.</strong>
