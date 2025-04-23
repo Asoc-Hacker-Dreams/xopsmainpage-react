@@ -51,7 +51,7 @@ function App() {
   <NavDropdown title="XOPS 2024" drop="end" className="ps-3">
     <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Horarios</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
-    <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y Colaboradores</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
     
   </NavDropdown>
 
@@ -61,7 +61,7 @@ function App() {
   <NavDropdown title="XOPS 2023" drop="end" className="ps-3">
     <NavDropdown.Item as={Link} to="/archive/2023/Events2023">Horarios</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
-    <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y Colaboradores</NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y<br />Colaboradores</NavDropdown.Item>
     
   </NavDropdown>
 
