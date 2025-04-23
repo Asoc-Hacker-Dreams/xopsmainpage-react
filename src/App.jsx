@@ -52,7 +52,7 @@ function App() {
     <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Horarios</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y Colaboradores</NavDropdown.Item>
-    <NavDropdown.Item as={Link} to="/archive/2024/Organizer2024">Organizadores</NavDropdown.Item>
+    
   </NavDropdown>
 
   <NavDropdown.Divider /> {/* Divisor entre 2024 y 2023 */}
@@ -62,7 +62,7 @@ function App() {
     <NavDropdown.Item as={Link} to="/archive/2023/Events2023">Horarios</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y Colaboradores</NavDropdown.Item>
-    <NavDropdown.Item as={Link} to="/archive/2023/Organizer2023">Organizadores</NavDropdown.Item>
+    
   </NavDropdown>
 
 </NavDropdown>   
