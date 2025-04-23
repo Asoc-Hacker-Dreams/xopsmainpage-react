@@ -144,9 +144,7 @@ const Organizers = () => {
                   <p>
                     Cloud Architect en Red Hat, co-organizador de Madrid Devops y Devopsdays Madrid y profesor asociado de Cloud Computing en la Universidad Pontificia de Comillas.
                   </p>
-                  <p>
-                    <strong>Un puente entre MLOps y DevOps con OpenShift AI.</strong><br/>
-                  </p>
+                  
                 </AnimationWrapper>
               </div>
             </div>
@@ -165,9 +163,7 @@ const Organizers = () => {
                     <br />
                     AWSCommunityBuilder - serverless. 
                   </p>
-                  <p>
-                    <strong>Ambientes efímeros con Serverless y Custom Resources.</strong>
-                  </p>
+                  
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">

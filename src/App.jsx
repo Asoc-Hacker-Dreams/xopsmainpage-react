@@ -57,8 +57,8 @@ function App() {
 
   <NavDropdown.Divider /> {/* Divisor entre 2024 y 2023 */}
 
-  {/* Submenú para XOPS 2023 */}
-  <NavDropdown title="XOPS 2023" drop="end" className="ps-3">
+  {/* Submenú para XOPS 2023 Aldea DevSecOps */}
+  <NavDropdown title="Aldea DevSecOps" drop="end" className="ps-3">
     
     <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y<br />Colaboradores</NavDropdown.Item>
