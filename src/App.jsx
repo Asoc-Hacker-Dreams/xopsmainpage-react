@@ -22,9 +22,7 @@ import './styles/PricingTable.css';
 function App() {
 
 
-
-
-  return (
+   return (
     <>
 <Router basename="/">
 <ScrollHandler />
@@ -40,7 +38,8 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
-        {/* Menú EVENTOS ANTERIORES */}  
+       
+      {/* Menú EVENTOS ANTERIORES */}  
 <NavDropdown
   title={<span>EVENTOS<br />ANTERIORES</span>}
   className='links px-4 font-weight-bold custom-white-dropdown'
@@ -64,8 +63,7 @@ function App() {
     <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y<br />Colaboradores</NavDropdown.Item>
     
   </NavDropdown>
-
-</NavDropdown>   
+</NavDropdown>
 
             </Nav>
         <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none' }}>
