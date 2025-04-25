@@ -2,59 +2,67 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown para hacer submenús
+import ScrollHandler from './ScrollHandler';
 import Home from './pages/Home';
-import Organizers from './componenets/Organizers';   
+import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
-import './styles/Custom.css'; 
-import './styles/PricingTable.css'; 
+import Home2024 from './pages/archive/2024/Home2024';
+import Organizer2024 from './pages/archive/2024/Organizer2024';  // Este es el Organizer2024
+import Home2023 from './pages/archive/2023/Home2023';
+import Organizer2023 from './pages/archive/2023/Organizer2023';    // Este es el Organizer2023
+import Events2023 from './pages/archive/2023/Events2023';    // Este es el Events2023
+import Events2024 from './pages/archive/2024/Events2024'; 
+import SpeakersSection2023 from './pages/archive/2023/SpeakersSection2023';
+import SpeakersSection2024 from './pages/archive/2024/SpeakersSection2024';
+import Sponsor2024 from './pages/archive/2024/Sponsor2024';
+import Sponsor2023 from './pages/archive/2023/Sponsor2023';
+import './styles/Custom.css';
+import './styles/PricingTable.css';
 function App() {
-  
 
-  const scrollToEvents = () => {
-    const element = document.getElementById('events');
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-};
 
-  const scrollToPatrocinio = () => {
-    const element = document.getElementById('patrocinio');
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-};
-
-const scrollToPonentes = () => {
-
-    ponentes
-    
-    const element = document.getElementById('ponentes');
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-};
-
-  return (
+   return (
     <>
-<Router basename="/xops">
+<Router basename="/">
+<ScrollHandler />
 <div className="root home-main-section">
         <Navbar bg="light" expand="lg" className='header'>
-        <Navbar.Brand href="#home" className='text-white font-weight-bold'>XOPS CONFERENCE</Navbar.Brand>
+        <Navbar.Brand className='text-white font-weight-bold'>X-OPS CONFERENCE</Navbar.Brand>
         <img src={logo} alt="Jane Doe" style={{ height: '51px', width: '56px' }} />
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className='toggle'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto ">
-            <Link onClick={scrollToEvents} className='links px-4 font-weight-bold text-white' to="/" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
-                <Link onClick={scrollToPonentes} className='links px-4 font-weight-bold text-white' to="/" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
-                <Link onClick={scrollToPatrocinio} className='links px-4 font-weight-bold text-white' to="Sponsor" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTE PATROCINADOR</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="Organizers" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
-                <Nav.Link className='links px-4 font-weight-bold text-white' href="#tickets"></Nav.Link>
+            <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
+          
+       
+      {/* Menú EVENTOS ANTERIORES */}  
+      <NavDropdown
+  title={<span>EVENTOS<br />ANTERIORES</span>}
+  className='links px-4 font-weight-bold custom-white-dropdown'
+  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
+>
+  {/* Título X-OPS 2024 */}
+  <div className="submenu-title">X-OPS 2024</div>
+  <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
+
+  <NavDropdown.Divider />
+
+  {/* Título Aldea DevSecOps 2023 */}
+  <div className="submenu-title">Aldea DevSecOps 2023</div>
+  <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y<br />Colaboradores</NavDropdown.Item>
+</NavDropdown>
+
             </Nav>
-        <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="button menu-btn" style={{ textDecoration: 'none' }}>
+        <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none' }}>
             TICKETS
         </a>
-        
+
         </Navbar.Collapse>
     </Navbar>
 
@@ -63,10 +71,10 @@ const scrollToPonentes = () => {
         <div className="container">
             <h1 className="display-4 font-weight-bold">¡ÚNETE A LA REVOLUCIÓN X-OPS!</h1>
             <p className="lead">El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.        </p>
-            <p className="lead">Fecha: Noviembre 2024 </p>
+            <p className="lead">Fecha: Noviembre 2025 </p>
             <div className="mt-4 mx-4">
-            <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
-                <a onClick={scrollToEvents} className="btn mx-2  my-2 btn-outline-light btn-lg">Descubre más</a>
+            <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
+                <Link className="btn mx-2  my-2 btn-outline-light btn-lg" to="/#events">Ver agenda</Link>
             </div>
         </div>
     </div>
@@ -76,10 +84,25 @@ const scrollToPonentes = () => {
       </div>
 
 
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Organizers" element={<Organizers />} />
-        <Route path="/Sponsor" element={<Sponsor />} />
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Organizer" element={<Organizer />} /> {/* Organizador principal */}
+          <Route path="/Sponsor" element={<Sponsor />} />
+                        
+          {/* 2024 */}
+          <Route path="archive/2024/Home2024" element={<Home2024 />} /> 
+          <Route path="/archive/2024/Events2024" element={<Events2024 />} />
+          <Route path="/archive/2024/SpeakersSection2024" element={<SpeakersSection2024 />} />
+          <Route path="/archive/2024/Sponsor2024" element={<Sponsor2024 />} />
+          <Route path="archive/2024/Organizer2024" element={<Organizer2024 />} />
+
+          {/* 2023 */}
+          <Route path="archive/2023/Home2023" element={<Home2023 />} />
+          <Route path="/archive/2023/Events2023" element={<Events2023 />} />
+          <Route path="/archive/2023/SpeakersSection2023" element={<SpeakersSection2023 />} />
+          <Route path="/archive/2023/Sponsor2023" element={<Sponsor2023 />} />
+          <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} />
+
       </Routes>
 
 
@@ -88,7 +111,7 @@ const scrollToPonentes = () => {
         <div className="row">
           <div className="col-md-4 mb-3">
             <h5 className='heading'>Dirección</h5>
-            <p>Universidad Politecnica de Madrid</p>
+            <p>Universidad Politécnica de Madrid</p>
             <p>M-40, Puente de Vallecas, 28031 Madrid.</p>
           </div>
           <div className="col-md-4 mb-3">
@@ -98,14 +121,17 @@ const scrollToPonentes = () => {
           <div className="col-md-4 mb-3">
             <h5 className='heading'>Enlaces</h5>
             <ul className="list-unstyled">
-              <li onClick={scrollToEvents} className="text-white">Evento</li>
+
+            <Nav className="mx-auto ">
+            <Link className="text-white" to="/#events" style={{textDecoration: 'none' }}>Evento</Link>
+            </Nav>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div className="text-center py-3">
-        <p>&copy; 2024 - X-Ops Conference Madrid</p>
+        <p>&copy; 2025 - X-Ops Conference Madrid</p>
         <p>Teléfono: <a href="tel:+34744644873" className="text-white">+34744644873</a> / <a href="tel:+34693814098" className="text-white">+34693814098</a></p>
       </div>
     </footer>

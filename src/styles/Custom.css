@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); /*agrego fuente para menú*/
 
 body{
   overflow-x: hidden;
@@ -8,7 +9,7 @@ body{
   padding: 0 1px;   /* Espaciado lateral para evitar que el contenido toque los bordes */
   width: 100%;       /* Asegura que ocupe el 100% del ancho disponible */
   box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
-  overflow-x: hidden; 
+  overflow-x: hidden;
     --bg:#d90845;
 }
 .header{
@@ -74,29 +75,29 @@ background-position: center;
 .Hero-section{
     height: 100vh ;
        min-width: 100%;
-    
-} 
+
+}
 .xops-section {
     padding: 50px 0;
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
   }
-  
+
   .xops-section h2 {
     font-size: 2rem;
     margin-bottom: 20px;
   }
-  
+
   .xops-section ul {
     list-style-type: none;
     padding: 0;
   }
-  
+
   .xops-section ul li {
     margin: 10px 0;
   }
-  
+
   .xops-section img {
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
   }
   .img-fluid{
@@ -104,28 +105,28 @@ background-position: center;
     border-radius: 10px;
   }
   .text-justify {
-    text-align: justify; 
+    text-align: justify;
 }
 .xops-section p {
-    margin-top: 0; 
-    margin-bottom: 0; 
-    padding: 0; 
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 }
 .key-themes-section , .speakers-section{
     margin-top: 5rem;
 }
 .key-themes-section {
-    padding: 2rem 0; 
+    padding: 2rem 0;
   }
-  
+
   .card {
-    transition: transform 0.2s; 
+    transition: transform 0.2s;
   }
-  
+
   .card:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
   }
-  
+
 .card-img-top{
     height: 200px;
     width: auto;
@@ -214,7 +215,7 @@ position: relative;
         background-repeat: no-repeat;
         position: relative;
         }
-        
+
 .event-schedule-section .cardmanzanares{
         background-image: url(../assets/landscapes/manzanares.jpeg);
         background-size: cover;
@@ -293,7 +294,7 @@ background: rgba(22, 1, 1, 0.5);
 
 
 /*============================
- Gallery section 
+ Gallery section
  =============================*/
 .gallery {
   text-align: center;
@@ -301,7 +302,7 @@ background: rgba(22, 1, 1, 0.5);
 
 .gallery h2 {
   margin-bottom: 30px;
-  color: #d90845; 
+  color: #d90845;
 }
 
 .gallery-grid {
@@ -409,4 +410,45 @@ margin-block: 1rem;
 .speaker-img img {
   width: auto;
 }
+}
+
+/* Menú "EVENTOS ANTERIORES" */
+.custom-white-dropdown .dropdown-toggle {
+  font-size: 1rem;  /* Igualar tamaño de fuente */
+  color: white !important; /* Color blanco para el texto */
+  background-color: transparent !important;
+  border: none;
+  padding: 10px 15px; /* Añadir un poco de espacio en los laterales */
+  height: auto; /* Aseguramos que no haya desajustes de altura */
+  display: flex;
+  align-items: center; /* Centra el texto verticalmente */
+  margin-top: -10px;
+}
+
+
+
+/* Al pasar el ratón: cambia a rojo */
+.custom-white-dropdown .dropdown-toggle:hover,
+.custom-white-dropdown .dropdown-toggle:focus {
+  color: #d90845 !important; /* Rojo */
+  background-color: transparent !important; /* Asegura que el fondo siga transparente */
+}
+
+/* Fuente solo para el menú */
+.navbar,
+.navbar .nav-link,
+.navbar-brand,
+.navbar .dropdown-toggle,
+.links {
+  font-family: 'Poppins', sans-serif !important; 
+  font-weight: 800 !important; /* Negrita */
+  font-size: 1.1rem !important;
+}
+
+/* Rojo para los títulos de submenús */
+.submenu-title {
+  font-weight: bold;
+  color: #d90845; /* rojo */
+  padding: 8px 16px;
+  font-size: 1rem;
 }
