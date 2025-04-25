@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import logo from "../assets/xops.png";
 
+
 const Header = () => {
 
     const scrollToPatrocinio = () => {
@@ -42,8 +43,9 @@ const Header = () => {
             <Nav className="mx-auto ">
             <Nav.Link onClick={scrollToEvents} className='links px-4 font-weight-bold text-white' href="#inicio">EVENTO</Nav.Link>
                 <Nav.Link onClick={scrollToPonentes} className='links px-4 font-weight-bold text-white' href="#inicio">PONENTES</Nav.Link>
-                <Nav.Link onClick={scrollToPatrocinio} className='links px-4 font-weight-bold text-white ' href="#vuélvete-patrocinador">CONVIERTE PATROCINADOR</Nav.Link>
+                <Nav.Link onClick={scrollToPatrocinio} className='links px-4 font-weight-bold text-white ' href="#vuélvete-patrocinador">CONVIERTETE EN PATROCINADOR</Nav.Link>
                 <Nav.Link className='links px-4 font-weight-bold text-white' href="#tickets"></Nav.Link>
+                
             </Nav>
         <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" class="button menu-btn">
             Tickets
