@@ -37,7 +37,7 @@ const Themes = () => {
                 <div className="card-body">
                   <h5 className="card-title">¿Dónde y Cuándo?</h5>
                   <p className="card-text">
-                    La X-Ops Conference Madrid se llevará a cabo los días 22 y 23 de noviembre en el Auditorio del ETSISI en el Campus Sur de la Universidad Politécnica de Madrid, en Vallecas. La agenda de la conferencia cubrirá temas como automatización de pruebas de seguridad, integración continua, entrega continua, monitoreo y arquitecturas seguras. Será un entorno ideal para aprender e implementar prácticas de X-Ops en sus organizaciones.
+                    La X-Ops Conference Madrid se llevará a cabo los días 21 y 22 de Noviembre en el Auditorio del ETSISI en el Campus Sur de la Universidad Politécnica de Madrid, en Vallecas. La agenda de la conferencia cubrirá temas como automatización de pruebas de seguridad, integración continua, entrega continua, monitoreo y arquitecturas seguras. Será un entorno ideal para aprender e implementar prácticas de X-Ops en sus organizaciones.
                   </p>
                 </div>
               </div>

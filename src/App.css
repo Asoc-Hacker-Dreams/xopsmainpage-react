@@ -5,7 +5,7 @@
   text-align: center; /* Centra el texto */
   width: 100%;       /* Asegura que ocupe el 100% del ancho disponible */
   box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
 .logo {
@@ -43,3 +43,4 @@
 .read-the-docs {
   color: #888;
 }
+
