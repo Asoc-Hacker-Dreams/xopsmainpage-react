@@ -1,4 +1,3 @@
-import cloud2sec from "../assets/collaborators/cloud2sec.jpeg"; 
 import seguridadS from "../assets/collaborators/seguridad.si.jpg";
 import hackerD from "../assets/collaborators/hackerD.png";
 import hackB from "../assets/collaborators/hackB.png";

@@ -1,6 +1,6 @@
 import React from 'react';      
 import seguridadS from "../assets/collaborators/seguridad.si.jpg";
-import amaxop from "../assets/collaborators/amaxop.jpeg";
+import amaxop from "../assets/collaborators/amaxop.png";
 import hackerD from "../assets/collaborators/hackerD.png";
 import hackB from "../assets/collaborators/hackB.png";
 import CNCFlogo from "../assets/collaborators/CNCF_MADRID.png";
