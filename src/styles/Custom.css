@@ -64,7 +64,7 @@ color: #d90845  !important;
 }
 
 .home-main-section{
-height: 60vh;
+height: 65vh;
 min-width: 100%;
 background: #000;
 background-image: url(../assets/landscapes/madrid.jpeg);
@@ -73,7 +73,7 @@ background-repeat: no-repeat;
 background-position: center;
 }
 .Hero-section{
-    height: 45vh ;
+    height: 50vh ;
        min-width: 100%;
 
 }
