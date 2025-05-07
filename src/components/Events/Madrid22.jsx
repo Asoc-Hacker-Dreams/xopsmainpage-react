@@ -48,7 +48,7 @@ const EventSchedule = () => {
   const [catorceS, setcatorceS] = useState(false);
   const catorceHid = () => setcatorceS(false);
   const catorceShow = () => setcatorceS(true);
-
+  {/*
   return (
     <section id="events" className="event-schedule-section">
 
@@ -56,8 +56,9 @@ const EventSchedule = () => {
       <h2 className="text-center margin-top">Viernes 21 de noviembre de 2025</h2>
       <div className="container mt-5">
         <div className="row">
-
+*/}
           {/* Register Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardBernabeu">
               <div className="overlay"></div>
@@ -68,8 +69,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Openint Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardBernabeuD">
               <div className="overlay"></div>
@@ -80,8 +82,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Aga B. Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroT">
               <div className="overlay"></div>
@@ -115,8 +118,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Juan V. Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardmanzanares">
               <div className="overlay"></div>
@@ -171,8 +175,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Natalie G. Evento */}
+{/* 
           <div className="col-md-6 mb-4">
             <div className="card cardmanzanaresD">
               <div className="overlay"></div>
@@ -209,8 +214,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Break Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardgranV">
               <div className="overlay"></div>
@@ -223,8 +229,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Oscar C. Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardplazaM">
               <div className="overlay"></div>
@@ -271,8 +278,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
         {/* Break Evento */}
+ {/*
         <div className="col-md-6 mb-4">
             <div className="card cardgranV">
               <div className="overlay"></div>
@@ -285,9 +293,10 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
 
           {/* Gabriela G. Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardmanzanares">
               <div className="overlay"></div>
@@ -325,8 +334,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Alejandro A. Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardmetropolitano">
               <div className="overlay"></div>
@@ -363,9 +373,10 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
 
           {/* David S. Evento */}
+{/* 
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroTD">
               <div className="overlay"></div>
@@ -402,8 +413,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Alvaro R. Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroT">
               <div className="overlay"></div>
@@ -443,8 +455,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Antonio B. Evento */}
+{/*
           <div className="col-md-6 mb-4">
             <div className="card cardministeriosD">
               <div className="overlay"></div>
@@ -506,8 +519,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* Pablo G. Evento */}
+ {/*
           <div className="col-md-6 mb-4">
             <div className="card cardplazaM">
               <div className="overlay"></div>
@@ -544,8 +558,9 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-
+*/}
           {/* End Evento */}
+{/*
          <div className="col-md-6 mb-4">
             <div className="card cardpuertaA">
               <div className="overlay"></div>
@@ -559,10 +574,14 @@ const EventSchedule = () => {
 
         </div>
       </div>
-      </AnimationWrapper>
-    </section>
-  );
-};
+      </AnimationWrapper>  
+    </section>    
+
+  );   
+  
+*/}
+
+};   
 
 export default EventSchedule;
 

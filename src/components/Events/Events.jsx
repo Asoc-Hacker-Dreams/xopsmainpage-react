@@ -23,6 +23,8 @@ const App = () => {
     setTextoVisible('componente2');
   };
 
+{/*
+
   return (
     <div style={{ textAlign: 'center'}}>
       <h2 className="text-center margin-top">Horario del Evento</h2>
@@ -36,7 +38,11 @@ const App = () => {
         {textoVisible === 'componente1' ? <Madrid22 /> : <Madrid23 />}
         </div>
     </div>
+
   );
+
+*/}
+
 };
 
 export default App;
