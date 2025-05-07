@@ -1,6 +1,8 @@
 import robertoG from "../assets/organizers/robertoG.jpeg";
 import franciscoA from "../assets/organizers/franciscoA.jpg";
 import juanillaA from "../assets/organizers/juanillaA.jpg";
+import juanV from "../assets/organizers/juanV.jpg";
+import oscarC from "../assets/organizers/oscarC.png";
 
 import AnimationWrapper from "./AnimationWrapper";
 
@@ -125,6 +127,53 @@ const Organizers = () => {
                 </AnimationWrapper>
               </div>
             </div>
+
+            
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <img src={juanV} alt="Juan Vicente" style={{ height: '331px', width: '346px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>                 
+               <h3>Juan Vicente Herrera Ruiz de Alejo</h3>
+                  <p>
+                    <strong>Cloud Architect.</strong>
+                  </p>
+                  <p>
+                    Cloud Architect en Red Hat, co-organizador de Madrid Devops y Devopsdays Madrid y profesor asociado de Cloud Computing en la Universidad Pontificia de Comillas.
+                  </p>
+                  
+                </AnimationWrapper>
+              </div>
+            </div>
+                
+            
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                <h3>Oscar Cortes Bracho</h3>
+                  <p>
+                    <strong>Arquitecto en la nube.</strong>
+                  </p>
+                  <p>
+                    Ingeniero Electronico, Cloud / Software Architect.  
+                    <br />
+                    <br />
+                    AWSCommunityBuilder - serverless. 
+                  </p>
+                  
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={oscarC} alt="oscar Cortes" style={{ height: '331px', width: '346px' }} />
+                </AnimationWrapper>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </section>

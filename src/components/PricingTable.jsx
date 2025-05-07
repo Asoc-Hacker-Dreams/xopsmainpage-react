@@ -1,4 +1,4 @@
-
+import React from 'react';
 import AnimationWrapper from './AnimationWrapper';
 
 const PricingTable = () => {

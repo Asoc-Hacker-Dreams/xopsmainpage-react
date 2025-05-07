@@ -20,7 +20,7 @@ const EventSchedule = () => {
     <section id="events" className="event-schedule-section">
 
       <AnimationWrapper animation="fade-up" duration={1500}>
-      <h2 className="text-center margin-top">Sábado 23 de noviembre de 2024</h2>
+      <h2 className="text-center margin-top">Sábado 22 de noviembre de 2025</h2>
       <div className="container mt-5">
         <div className="row">
 

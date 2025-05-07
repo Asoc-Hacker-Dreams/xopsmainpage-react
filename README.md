@@ -13,4 +13,4 @@ Currently, two official plugins are available:
 Add badges from somewhere like: [shields.io](https://shields.io/)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
-href= https://github.com/jvrDvos/jvrDvos
+[GitHub Repository](https://github.com/jvrDvos/jvrDvos)
