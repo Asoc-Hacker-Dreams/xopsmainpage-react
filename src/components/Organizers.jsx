@@ -3,6 +3,7 @@ import franciscoA from "../assets/organizers/franciscoA.jpg";
 import juanillaA from "../assets/organizers/juanillaA.jpg";
 import juanV from "../assets/organizers/juanV.jpg";
 import oscarC from "../assets/organizers/oscarC.png";
+import claraC from "../assets/organizers/claraC.jpg"
 
 import AnimationWrapper from "./AnimationWrapper";
 
