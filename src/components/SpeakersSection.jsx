@@ -44,6 +44,7 @@ const SpeakersSection = () => {
               </div>
             </div>
 
+            {/*
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <img src={alejandroA} alt="Alejandro Acosta" style={{ height: '250px', width: '280px' }} />
@@ -71,7 +72,8 @@ const SpeakersSection = () => {
                 </AnimationWrapper>
               </div>
             </div>
-
+  */}
+{/*
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
@@ -96,6 +98,8 @@ const SpeakersSection = () => {
                 </AnimationWrapper>
               </div>
             </div>
+*/}
+
 
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
@@ -169,6 +173,7 @@ const SpeakersSection = () => {
               </div>
             </div>
 
+{/*
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
@@ -198,6 +203,7 @@ const SpeakersSection = () => {
                 </AnimationWrapper>
               </div>
             </div>
+*/}
 
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
@@ -224,6 +230,8 @@ const SpeakersSection = () => {
               </div>
             </div>
 
+{/*
+
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
@@ -245,7 +253,9 @@ const SpeakersSection = () => {
                 </AnimationWrapper>
               </div>
             </div>
+*/}
 
+{/*
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
@@ -267,6 +277,8 @@ const SpeakersSection = () => {
                 </AnimationWrapper>
               </div>
             </div>
+*/}
+
 
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">

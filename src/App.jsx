@@ -111,8 +111,8 @@ function App() {
         <div className="row">
           <div className="col-md-4 mb-3">
             <h5 className='heading'>Dirección</h5>
-            <p>Universidad Politécnica de Madrid</p>
-            <p>M-40, Puente de Vallecas, 28031 Madrid.</p>
+            <p>Universidad Rey Juan Carlos campus Móstoles</p>
+            <p>Calle Tulipán s/n. 28933 - Móstoles - Madrid</p>
           </div>
           <div className="col-md-4 mb-3">
             <h5 className='heading'>Contactos</h5>
