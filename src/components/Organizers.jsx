@@ -174,6 +174,30 @@ const Organizers = () => {
             </div>
 
 
+
+
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <img src={claraC} alt="Clara Contreras" style={{ height: '331px', width: '346px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-left" duration={1500}>                 
+               <h3>Clara Contreras</h3>
+                  <p>
+                    <strong>Ingeniera de Ciberseguridad</strong>
+                  </p>
+                  <p>
+                  Ingeniera de Ciberseguridad | Líder Valkyrias | Mentora STEM
+                  </p>
+                  
+                </AnimationWrapper>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </section>
