@@ -9,7 +9,7 @@ function Ubication () {
           <div className="col-md-8">
             <div className="map-container">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.882198458713!2d-3.6293443!3d40.389303399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4225a4623324d7%3A0x55062a088f78765e!2sUniversidad%20Polit%C3%A9cnica%20de%20Madrid%20(UPM)%20-%20Campus%20Sur!5e0!3m2!1ses-419!2sve!4v1729742316704!5m2!1ses-419!2sve"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3040.8060719427917!2d-3.8460590999999997!3d40.3466478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418eb8a773ffe7%3A0x5c6be77d8f2cc8cc!2sUniversidad%20Rey%20Juan%20Carlos%20Campus%20de%20Alcorc%C3%B3n!5e0!3m2!1ses!2ses!4v1746785413756!5m2!1ses!2ses" 
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
