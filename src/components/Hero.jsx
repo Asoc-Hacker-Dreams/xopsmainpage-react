@@ -1,7 +1,24 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';  // añado despues de instalar react helmet
 
-function Hero() {
-  return (
+ function Hero() {
+          return (
+            <>
+            <Helmet>
+                <title>X-Ops Conference Madrid 2025 | DevOps, DevSecOps, AIOps, MLOps</title>
+                <meta name="description" content="Únete a la X-Ops Conference en Madrid, el evento líder para profesionales de DevOps, DevSecOps, AIOps y MLOps. Descubre las últimas tendencias y conecta con expertos." />
+                <meta name="keywords" content="X-Ops, DevOps, DevSecOps, AIOps, MLOps, Conferencia Tecnología Madrid, GitOps, SecOps" />
+                {/* También puedes añadir otras metaetiquetas aquí, como las de Open Graph para redes sociales */}
+                <meta property="og:title" content="X-Ops Conference Madrid 2025 | DevOps, DevSecOps, AIOps, MLOps" />
+                <meta property="og:description" content="Únete a la X-Ops Conference en Madrid..." />
+                {/* <meta property="og:image" content="URL_A_UNA_IMAGEN_REPRESENTATIVA" /> */}
+                <meta property="og:url" content="https://xopsconference.com/" />
+                <meta name="twitter:card" content="summary_large_image" />
+              </Helmet>
+{/* Hasta aqui añado despues de intalar react helmet */}
+
+{/* function Hero() {
+  return (   */}
     <div className='Hero-section d-flex align-items-center justify-content-center text-center'>
       <div className="d-flex align-items-center justify-content-center text-center text-white py-5">
     <div className="container">
@@ -16,7 +33,8 @@ function Hero() {
 </div>
 
     </div>
-  )
-}
+   </> // añadido
+);
+  }
 
 export default Hero

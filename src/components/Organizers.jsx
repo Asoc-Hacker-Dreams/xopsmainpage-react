@@ -4,12 +4,26 @@ import juanillaA from "../assets/organizers/juanillaA.jpg";
 import juanV from "../assets/organizers/juanV.jpg";
 import oscarC from "../assets/organizers/oscarC.png";
 import claraC from "../assets/organizers/claraC.jpg"
+import { Helmet } from 'react-helmet-async';  // añado despues de instalar react helmet
 
 import AnimationWrapper from "./AnimationWrapper";
 
 const Organizers = () => {
   return (
     <>
+    {/* añadido despues de la instalacion de react helmet */}
+                  <Helmet>
+                    <title>Organizadores | X-Ops Conference Madrid 2025 | DevOps, DevSecOps, AIOps, MLOps</title>
+                    <meta name="description" content="Conoce a los organizadores de la X-Ops Conference Madrid 2025, expertos en DevOps, DevSecOps, AIOps y MLOps, comprometidos con la innovación en la tecnología y la ciberseguridad."/>
+                    <meta name="keywords" content="X-Ops, DevOps, DevSecOps, AIOps, MLOps, Organizadores, Conferencia, Madrid, Ciberseguridad, Hackers, Tecnologías"/>
+                    {/* También puedes añadir otras metaetiquetas aquí, como las de Open Graph para redes sociales */}
+                    <meta property="og:title" content="Conoce a los Organizadores de X-Ops Conference Madrid 2025 | DevOps, DevSecOps, AIOps, MLOps"/>
+                    <meta property="og:description" content="Descubre a los organizadores de la X-Ops Conference Madrid 2025, líderes en la tecnología y la ciberseguridad. Aprende de los mejores profesionales del sector."/>
+                    {/* <meta property="og:image" content="URL_A_UNA_IMAGEN_REPRESENTATIVA" /> */}
+                    <meta property="og:url" content="https://xopsconference.com/Organizer#organizr"/>
+                    <meta name="twitter:card" content="summary_large_image" />
+                  </Helmet>
+    {/*  hasta aqui añadido despues de la instalacion de react helmet */}
       <section id="organizrs" className="speaker-section ">
         <div className="container margin-top">
           <h2 className="text-center">Organizadores</h2>
