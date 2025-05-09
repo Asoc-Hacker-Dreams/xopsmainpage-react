@@ -24,7 +24,7 @@ function App() {
 
    return (
     <>
-<Router basename="/">
+
 <ScrollHandler />
 <div className="root home-main-section">
         <Navbar bg="light" expand="lg" className='header'>
@@ -112,7 +112,7 @@ function App() {
           <div className="col-md-4 mb-3">
             <h5 className='heading'>Dirección</h5>
             <p>Universidad Rey Juan Carlos campus Móstoles</p>
-            <p>Calle Tulipán s/n. 28933 - Móstoles - Madrid</p>
+            <p>Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid</p>
           </div>
           <div className="col-md-4 mb-3">
             <h5 className='heading'>Contactos</h5>
@@ -135,7 +135,7 @@ function App() {
         <p>Teléfono: <a href="tel:+34744644873" className="text-white">+34744644873</a> / <a href="tel:+34693814098" className="text-white">+34693814098</a></p>
       </div>
     </footer>
-    </Router>
+   
     </>
   )
 }
