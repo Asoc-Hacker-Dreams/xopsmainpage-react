@@ -13,8 +13,13 @@ body{
     --bg:#d90845;
 }
 .header{
-    margin-inline: 2rem;
-    background: transparent !important;
+    margin-inline: 0rem;
+    background: black !important;
+    margin: 5;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 85px;     /* largo fondo negro menu cabecera */
 }
 .heading{
 color: var(--bg);
@@ -410,6 +415,48 @@ margin-block: 1rem;
 .speaker-img img {
   width: auto;
 }
+/* ajuste para dispositivos moviles del menú */
+.Hero-section {
+    background-position: center top;
+    background-size: cover;
+    padding-top: 320px; /* Ajusta la altura de la navbar */
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el navbar esté por encima de otros elementos */
+}
+
+.navbar-collapse {
+    background-color: black; 
+    padding-bottom: 7%;
+}
+
+.navbar-toggler {
+    margin-right: 1rem;
+}
+.custom-white-dropdown .dropdown-toggle {
+    margin-left: -15px; /*desplaza el menú EVENTOS ANTERIORES */
+}
+.menu-btn {
+  margin-left: 20px;  /* desplaza el boton ENTRADAS */
+  padding-right: 1%;  /*desplaza el texto dentro del boton ENTRADAS */
+}
+
+.xops-section {
+  margin-top: 0px; /* desplaza hacia abajo la seccion */
+  padding-top: 100px; /*desplaza hacia abajo el texto */
+}
+.navbar-toggler {
+  border-color: white; /* color icono hamburguesa dispositivos moviles */
+  background-color: white;
+  margin-top: -30px;
+}
+.header img {
+    margin-left: -320px; /* Ajusta el icono x-ops hacia el texto */
+  }
+
 }
 
 /* Menú "EVENTOS ANTERIORES" */
@@ -452,3 +499,4 @@ margin-block: 1rem;
   padding: 8px 16px;
   font-size: 1rem;
 }
+

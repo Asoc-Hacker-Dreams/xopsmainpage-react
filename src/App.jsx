@@ -28,14 +28,14 @@ function App() {
 <ScrollHandler />
 <div className="root home-main-section">
         <Navbar bg="light" expand="lg" className='header'>
-        <Navbar.Brand className='text-white font-weight-bold'>X-OPS CONFERENCE</Navbar.Brand>
-        <img src={logo} alt="Jane Doe" style={{ height: '51px', width: '56px' }} />
+        <Navbar.Brand style={{ marginTop: '-35px'}} className='text-white font-weight-bold'>X-OPS CONFERENCE</Navbar.Brand>
+        <img src={logo} alt="Jane Doe" style={{ height: '51px', width: '56px', marginTop: '-35px'}} />
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='toggle'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto ">
-            <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
+             <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>CONVIERTETE EN PATROCINADOR</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PATROCINADORES</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
        
@@ -59,8 +59,8 @@ function App() {
 </NavDropdown>
 
             </Nav>
-        <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none' }}>
-            TICKETS
+        <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none', width: "110px", paddingLeft: "1%", marginTop: "-2%" }}>
+            ENTRADAS
         </a>
 
         </Navbar.Collapse>
@@ -74,7 +74,9 @@ function App() {
             <p className="lead">Fecha: Noviembre 2025 </p>
             <div className="mt-4 mx-4">
             <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
-                <Link className="btn mx-2  my-2 btn-outline-light btn-lg" to="/#events">Ver agenda</Link>
+                <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/#events">Ver agenda</Link>
+             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true"className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Hazte voluntario</a> 
+             <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">CFP</a>
             </div>
         </div>
     </div>

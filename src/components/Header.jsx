@@ -36,7 +36,7 @@ const Header = () => {
     return (
         <Router>
         <Navbar bg="light" expand="lg" className='header'>
-        <Navbar.Brand href="#home" className='text-white font-weight-bold'>XOPS CONFERENCE</Navbar.Brand>
+        <Navbar.Brand href="#home" className='text-white font-weight-bold'>X-OPS CONFERENCE</Navbar.Brand>
         <img src={logo} alt="Jane Doe" style={{ height: '51px', width: '56px' }} />
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
