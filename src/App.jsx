@@ -4,6 +4,7 @@ import logo from "./assets/xops.png";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown para hacer submenús
 import ScrollHandler from './ScrollHandler';
+import AddToHomeScreen from './components/AddToHomeScreen';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
@@ -137,6 +138,9 @@ function App() {
         <p>Teléfono: <a href="tel:+34744644873" className="text-white">+34744644873</a> / <a href="tel:+34693814098" className="text-white">+34693814098</a></p>
       </div>
     </footer>
+   
+    {/* Add to Home Screen Component */}
+    <AddToHomeScreen />
    
     </>
   )
