@@ -4,6 +4,14 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # Xops Main Page - React + Vite
 
+## Service Worker Configuration
+
+### DATA_URLS
+The `DATA_URLS` constant defined in `src/serviceWorker.ts` contains the list of API endpoints that the Service Worker will intercept and cache for offline functionality. This enables users to access the agenda and speakers list even when they don't have an internet connection.
+
+Currently configured URLs:
+- `/api/agenda` - Event schedule data
+- `/api/ponentes` - Speakers information
 
 ## Badges
 
