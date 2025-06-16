@@ -4,7 +4,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown para hacer submenús
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
-import PWAInstallBanner from './components/PWAInstallBanner';
+import AddToHomeScreen from './components/AddToHomeScreen';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
@@ -150,8 +150,8 @@ function App() {
       </div>
     </footer>
    
-    {/* PWA Install Banner */}
-    <PWAInstallBanner />
+    {/* Add to Home Screen Banner */}
+    <AddToHomeScreen />
     
     </>
   )
