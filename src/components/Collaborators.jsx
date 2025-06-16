@@ -1,5 +1,4 @@
 import React from 'react';      
-import seguridadS from "../assets/collaborators/seguridad.si.jpg";
 import amaxop from "../assets/collaborators/amaxop.png";
 import hackerD from "../assets/collaborators/hackerD.png";
 import hackB from "../assets/collaborators/hackB.png";
@@ -8,7 +7,7 @@ import hackBcn from "../assets/collaborators/hackBcn.png";
 import asturC from "../assets/collaborators/asturC.jpeg";
 import madridD from "../assets/collaborators/madridD.png";
 import morterueloC from "../assets/collaborators/morterueloC.png";
-import upmLogo from "../assets/collaborators/upm.png";
+//import upmLogo from "../assets/collaborators/upm.png";
 import devsecconLogo from "../assets/collaborators/devseccon.png";
 import secadminlogo from "../assets/collaborators/secadmin.png"
 import engineerlogo from "../assets/collaborators/engineergame.jpeg"
@@ -38,14 +37,6 @@ const Collaborators = () => {
           <h2 className="text-center">PLATA</h2>
           <div className="speaker-cards margin-top">
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
-
-              <div className="speaker-img">
-                  <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://seguridadsi.com" target="_blank" rel="noopener noreferrer">
-                      <img src={seguridadS} alt="Logo de seguridadsi" style={{ height: '150px', width: '150px' }} />
-                    </a>
-                  </AnimationWrapper>
-              </div>
               <div className="speaker-img">
                   <AnimationWrapper animation="fade-left" duration={1500}>
                     <a href="https://www.amaxop.com/" target="_blank" rel="noopener noreferrer">
@@ -123,13 +114,13 @@ const Collaborators = () => {
                   </a>
                 </AnimationWrapper>
               </div>
-              <div className="speaker-img">
+              {/* <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://www.upm.es/" target="_blank" rel="noopener noreferrer">
                     <img src={upmLogo} alt="Logo de la UPM" style={{width: '120px' }} />
                   </a>
                 </AnimationWrapper>
-              </div>
+              </div> */}
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://snyk.io/community/" target="_blank" rel="noopener noreferrer">
