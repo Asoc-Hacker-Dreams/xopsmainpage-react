@@ -152,7 +152,6 @@ function App() {
    
     {/* Add to Home Screen Banner */}
     <AddToHomeScreen />
-    
     </>
   )
 }
