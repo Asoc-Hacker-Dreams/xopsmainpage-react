@@ -1,9 +1,10 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown para hacer submenús
 import ScrollHandler from './ScrollHandler';
+import { usePWA } from './hooks/usePWA';
+import AddToHomeScreen from './components/AddToHomeScreen';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
@@ -20,6 +21,12 @@ import Sponsor2023 from './pages/archive/2023/Sponsor2023';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
+  const { canPrompt, promptInstall } = usePWA();
+
+  const handleInstallClick = async () => {
+    const result = await promptInstall();
+    console.log('Install prompt result:', result);
+  };
 
 
    return (
@@ -77,6 +84,11 @@ function App() {
                 <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/#events">Ver agenda</Link>
              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true"className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Hazte voluntario</a> 
              <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">CFP</a>
+             {canPrompt && (
+               <button onClick={handleInstallClick} className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">
+                 📱 Instalar App
+               </button>
+             )}
             </div>
         </div>
     </div>
@@ -138,6 +150,8 @@ function App() {
       </div>
     </footer>
    
+    {/* Add to Home Screen Banner */}
+    <AddToHomeScreen />
     </>
   )
 }
