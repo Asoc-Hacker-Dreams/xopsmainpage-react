@@ -9,7 +9,7 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "es",
-  "categories": ["technology", "conference", "devops", "security"],
+  "categories": ["technology", "conference", "devops", "security","cloud", "xops", "madrid", "event", "networking"],
   "icons": [
     {
       "src": "icon-512x512.png",
