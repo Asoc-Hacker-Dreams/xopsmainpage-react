@@ -74,14 +74,7 @@ const LastEditionData = () => {
             <AnimationWrapper animation="fade-up" duration={1500}>
               <h4 className="text-center mb-4">Distribución de Contenidos por Área</h4>
               <div className="pie-chart-container">
-                <div className="pie-chart">
-                  <div className="pie-chart-slice slice-1" data-value="25"></div>
-                  <div className="pie-chart-slice slice-2" data-value="15"></div>
-                  <div className="pie-chart-slice slice-3" data-value="15"></div>
-                  <div className="pie-chart-slice slice-4" data-value="15"></div>
-                  <div className="pie-chart-slice slice-5" data-value="15"></div>
-                  <div className="pie-chart-slice slice-6" data-value="15"></div>
-                </div>
+                <div className="pie-chart"></div>
                 <div className="chart-legend">
                   {chartData.map((item, index) => (
                     <div key={index} className="legend-item">
