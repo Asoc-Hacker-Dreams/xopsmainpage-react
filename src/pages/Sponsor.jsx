@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PricingTable from "../components/PricingTable";
 import Benefits from "../components/Benefits";
+import LastEditionData from "../components/LastEditionData";
 import { useLocation } from 'react-router-dom';
 
 
@@ -20,6 +21,7 @@ const Sponsor = () => {
   return (
     <>
     <div id="patrocinio">
+    <LastEditionData/>
     <Benefits/>
     <PricingTable />
     </div>

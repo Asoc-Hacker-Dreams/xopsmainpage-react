@@ -500,3 +500,127 @@ margin-block: 1rem;
   font-size: 1rem;
 }
 
+/* Last Edition Data Section Styles */
+.last-edition-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.stat-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+  margin-bottom: 20px;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.stat-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0;
+}
+
+/* Pie Chart Styles */
+.pie-chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.pie-chart {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  position: relative;
+  background: conic-gradient(
+    #d90845 0deg 90deg,
+    #007bff 90deg 144deg,
+    #28a745 144deg 198deg,
+    #ffc107 198deg 252deg,
+    #6f42c1 252deg 306deg,
+    #fd7e14 306deg 360deg
+  );
+  margin: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.pie-chart:hover {
+  transform: scale(1.05);
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 200px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.legend-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pie-chart-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .pie-chart {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .chart-legend {
+    max-width: 100%;
+    align-items: center;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .last-edition-section {
+    padding: 40px 0;
+  }
+}
+
