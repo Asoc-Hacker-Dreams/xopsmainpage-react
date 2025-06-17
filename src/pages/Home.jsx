@@ -5,6 +5,7 @@ import SpeakersSection from "../components/SpeakersSection";
 import Events from "../components/Events/Events";
 import Ubication from "../components/Ubication";
 import Collaborators from "../components/Collaborators";
+import LastEditionData from "../components/LastEditionData";
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <Themes />
       <Events />
       <Ubication />
+      <LastEditionData/>
       <Collaborators />
       <SpeakersSection />
 

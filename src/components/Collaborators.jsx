@@ -10,7 +10,7 @@ import morterueloC from "../assets/collaborators/morterueloC.png";
 //import upmLogo from "../assets/collaborators/upm.png";
 import devsecconLogo from "../assets/collaborators/devseccon.png";
 import secadminlogo from "../assets/collaborators/secadmin.png"
-import engineerlogo from "../assets/collaborators/engineergame.jpeg"
+//import engineerlogo from "../assets/collaborators/engineergame.jpeg"
 import crackersgameslogo from "../assets/collaborators/crackersgames.png"
 import cybershieldlogo from "../assets/collaborators/cybershield.png"
 import AnimationWrapper from "./AnimationWrapper";
@@ -44,13 +44,13 @@ const Collaborators = () => {
                     </a>
                   </AnimationWrapper>
               </div>
-              <div className="speaker-img">
+              {/* <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://engineergame.com" target="_blank" rel="noopener noreferrer">
                     <img src={engineerlogo} alt="Logo de EngineerGames" style={{ height: '90px', width: '180px' }} />
                   </a>
                 </AnimationWrapper>
-              </div>
+              </div> */}
             </div>
           </div>
 
