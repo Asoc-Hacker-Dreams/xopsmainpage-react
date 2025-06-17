@@ -1,0 +1,67 @@
+title = "Configuración GitLeaks para OSDO Compliance"
+
+[extend]
+# Usar reglas base de GitLeaks
+useDefault = true
+
+[[rules]]
+description = "AWS Access Key"
+regex = '''AKIA[0-9A-Z]{16}'''
+tags = ["key", "AWS"]
+
+[[rules]]
+description = "AWS Secret Key"
+regex = '''[0-9a-zA-Z/+]{40}'''
+tags = ["secret", "AWS"]
+
+[[rules]]
+description = "GitHub Token"
+regex = '''ghp_[0-9a-zA-Z]{36}'''
+tags = ["key", "GitHub"]
+
+[[rules]]
+description = "Private Key"
+regex = '''-----BEGIN PRIVATE KEY-----'''
+tags = ["key", "private"]
+
+[[rules]]
+description = "API Key Pattern"
+regex = '''(?i)(api[_-]?key|apikey)[[:space:]]*[:=][[:space:]]*["\']?[0-9a-zA-Z_-]{10,}["\']?'''
+tags = ["key", "API"]
+
+[[rules]]
+description = "JWT Token"
+regex = '''eyJ[A-Za-z0-9_-]*\.eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*'''
+tags = ["jwt", "token"]
+
+[[rules]]
+description = "Google API Key"
+regex = '''AIza[0-9A-Za-z_-]{35}'''
+tags = ["key", "Google"]
+
+[[rules]]
+description = "Google OAuth"
+regex = '''[0-9]+-[0-9A-Za-z_]{32}\.apps\.googleusercontent\.com'''
+tags = ["oauth", "Google"]
+
+# Allowlist para archivos que no deben ser escaneados
+[allowlist]
+description = "Archivos permitidos que no contienen secretos"
+paths = [
+    '''node_modules/''',
+    '''dist/''',
+    '''.git/''',
+    '''package-lock.json''',
+    '''*.md''',
+    '''*.txt''',
+    '''*.log'''
+]
+
+# Reglas específicas para archivos de configuración
+[allowlist]
+description = "Variables de entorno de ejemplo"
+regexes = [
+    '''VITE_APP_''',
+    '''NODE_ENV''',
+    '''PORT'''
+]
