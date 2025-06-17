@@ -2,7 +2,7 @@ name: OSDO Compliance Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, feature/* ]
   pull_request:
     branches: [ main ]
   schedule:
@@ -26,19 +26,22 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: package-lock.json
 
-      - name: Restore npm cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
+    #   - name: Restore npm cache
+    #     uses: actions/cache@v3
+    #     with:
+    #       path: ~/.npm
+    #       key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+    #       restore-keys: |
+    #         ${{ runner.os }}-npm-
 
       - name: Install dependencies
         run: |
-          npm config set cache ~/.npm
-          npm ci
+            # Limpiar caché si es necesario
+            npm cache verify
+            # Instalar dependencias
+            npm ci --prefer-offline --no-audit
 
       - name: Install OSDO testing tools
         run: |
