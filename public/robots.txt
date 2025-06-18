@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
 Sitemap: https://xopsconference.com/sitemap.xml
+
+# Bloquear rutas de desarrollo
+Disallow: /.osdo/
+Disallow: /node_modules/
