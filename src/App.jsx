@@ -18,6 +18,7 @@ import SpeakersSection2023 from './pages/archive/2023/SpeakersSection2023';
 import SpeakersSection2024 from './pages/archive/2024/SpeakersSection2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
 import Sponsor2023 from './pages/archive/2023/Sponsor2023';
+import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 function App() {
@@ -116,6 +117,7 @@ function App() {
           <Route path="/archive/2023/SpeakersSection2023" element={<SpeakersSection2023 />} />
           <Route path="/archive/2023/Sponsor2023" element={<Sponsor2023 />} />
           <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} />
+          <Route path="*" element={<NotFound />} /> {/* Ruta por defecto para manejar 404 */}
 
       </Routes>
 

@@ -217,7 +217,7 @@ generate_report() {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OSDO SCA Report - TriskelGate</title>
+    <title>OSDO SCA Report - X-Ops Main Page</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         .header { background: #4CAF50; color: white; padding: 20px; border-radius: 5px; }
@@ -232,7 +232,7 @@ generate_report() {
 <body>
     <div class="header">
         <h1>📦 OSDO SCA Report</h1>
-        <p>TriskelGate Payment Platform - Software Composition Analysis</p>
+        <p>X-Ops Main Page - Software Composition Analysis</p>
         <p class="timestamp">Generated: $(date)</p>
     </div>
     
@@ -290,8 +290,8 @@ EOF
     cat > "$RESULTS_DIR/sca-summary.json" << EOF
 {
     "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-    "project": "TriskelGate Payment Platform",
-    "version": "2.0.0",
+    "project": "X-Ops Main Page",
+    "version": "1.0.0",
     "sca_tools": [
         "npm-audit",
         "snyk",
@@ -310,7 +310,7 @@ EOF
 # Función principal
 main() {
     log_info "📦 Iniciando OSDO SCA Analysis..."
-    log_info "Proyecto: TriskelGate Payment Platform"
+    log_info "Proyecto: X-Ops Main Page"
     log_info "Directorio: $PROJECT_ROOT"
     
     mkdir -p "$RESULTS_DIR"

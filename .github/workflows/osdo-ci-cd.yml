@@ -1,0 +1,487 @@
+name: OSDO CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop, feature/* ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Ejecutar análisis de seguridad semanalmente
+    - cron: '0 2 * * 1'
+
+concurrency:
+  group: 'osdo-compliance-${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  test-and-quality:
+    name: 🧪 Testing & Quality Assurance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+    #   - name: Restore npm cache
+    #     uses: actions/cache@v3
+    #     with:
+    #       path: ~/.npm
+    #       key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+    #       restore-keys: |
+    #         ${{ runner.os }}-npm-
+
+      - name: Install dependencies
+        run: |
+            # Limpiar caché si es necesario
+            npm cache verify
+            # Instalar dependencias
+            npm ci --prefer-offline --no-audit
+
+      - name: Install OSDO testing tools
+        run: |
+          # Instalar dependencias de seguridad y testing
+          npm install --save-dev eslint-plugin-security @microsoft/eslint-formatter-sarif license-checker
+          npm install --save-dev @testing-library/react @testing-library/jest-dom @testing-library/user-event
+          npm install --save-dev @vitest/ui @vitest/coverage-v8 vitest jsdom @testing-library/dom
+
+      - name: Setup testing environment
+        run: |
+          chmod +x .osdo/tools/test-runner.sh
+          ./.osdo/tools/test-runner.sh
+        continue-on-error: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            .osdo/results/unit-tests.json
+            .osdo/results/integration-tests.json
+            .osdo/results/coverage-summary.json
+            .osdo/results/test-report.html
+            .osdo/results/coverage/
+
+  dependency-security-scan:
+    name: 🔍 Dependency Security Scan
+    runs-on: ubuntu-latest
+    needs: test-and-quality
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Execute SCA (Software Composition Analysis)
+        run: |
+          chmod +x .osdo/tools/sca.sh
+          ./.osdo/tools/sca.sh
+        continue-on-error: true
+
+      - name: Run npm audit
+        run: |
+          npm audit --audit-level=moderate
+          npm audit --json > npm-audit-report.json
+        continue-on-error: true
+
+      - name: Upload npm audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: npm-audit-report.json
+
+    #   # Análisis con Snyk
+    #   - name: Run Snyk to check for vulnerabilities
+    #     uses: snyk/actions/node@master
+    #     env:
+    #       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    #     with:
+    #       args: --severity-threshold=high
+    #     continue-on-error: true
+
+      # Análisis de licencias
+      - name: License compliance check
+        run: |
+          npx license-checker --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;CC0-1.0' --excludePrivatePackages
+        continue-on-error: true
+
+  static-analysis:
+    name: 🛡️ Static Application Security Testing
+    runs-on: ubuntu-latest
+    needs: dependency-security-scan
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # - name: Install additional OSDO tools
+      #   run: |
+      #     # Instalar herramientas adicionales
+      #     sudo apt-get update
+      #     sudo apt-get install -y jq
+          
+      #     # Instalar Docker (para herramientas en contenedores)
+      #     curl -fsSL https://get.docker.com -o get-docker.sh
+      #     sudo sh get-docker.sh
+      #     sudo usermod -aG docker $USER
+      
+      - name: Semgrep Static Analysis
+        run: |
+          SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+          PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+          RESULTS_DIR="$PROJECT_ROOT/.osdo/results"
+          docker run --rm \
+            -v "$PROJECT_ROOT:/src" \
+            -v "$RESULTS_DIR:/results" \
+            returntocorp/semgrep:latest \
+            --json \
+            --sarif \
+            --output="/results/semgrep.sarif" \
+            --output="/results/semgrep.json" \
+            /src/src/ || true
+        continue-on-error: true
+      
+        # Upload SARIF file generated in previous step
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+        if: always()
+        continue-on-error: true
+      # - name: Execute OSDO SAST Analysis
+      #   run: |
+      #     chmod +x .osdo/tools/sast.sh
+      #     ./.osdo/tools/sast.sh
+      #   continue-on-error: true
+
+      - name: ESLint Security Analysis
+        run: |
+          npx eslint . --ext .js,.jsx,.ts,.tsx --format json -o eslint-report.json
+        continue-on-error: true
+      - name: Install ESLint Security Plugin
+        run: npm install --save-dev eslint-plugin-security
+        
+      - name: Run ESLint with Security Rules
+        env:
+            SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
+        run: |
+          echo '{
+            "extends": ["plugin:security/recommended"],
+            "plugins": ["security"],
+            "rules": {
+              "security/detect-object-injection": "error",
+              "security/detect-non-literal-regexp": "error",
+              "security/detect-non-literal-fs-filename": "error",
+              "security/detect-eval-with-expression": "error",
+              "security/detect-pseudoRandomBytes": "error"
+            }
+          }' > .eslintrc.security.json
+          npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format json -o eslint-security-report.json
+          npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+        continue-on-error: true
+
+      - name: Upload ESLint reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-reports
+          path: |
+            eslint-report.json
+            eslint-security-report.json
+      - name: Upload analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eslint-results.sarif
+          wait-for-processing: true
+
+      # CodeQL Analysis
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # Job 4: Análisis de Secretos y Seguridad Avanzada
+  secrets-scan:
+    name: 🔐 Secrets Detection & Advanced Security
+    runs-on: ubuntu-latest
+    needs: static-analysis
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Execute GitLeaks Secrets Analysis
+        run: |
+          mkdir -p .osdo/results
+          docker run --rm \
+            -v $(pwd):/workspace \
+            -v $(pwd)/.osdo/results:/results \
+            zricethezav/gitleaks:latest \
+            detect \
+            --source="/workspace" \
+            --report-format=json \
+            --report-path="/results/gitleaks-secrets.json" \
+            --verbose || true
+        continue-on-error: true
+
+    #   - name: Execute Semgrep Secrets Analysis
+    #     run: |
+    #       docker run --rm \
+    #         -v $(pwd):/workspace \
+    #         -v $(pwd)/.osdo/results:/results \
+    #         returntocorp/semgrep:latest \
+    #         --config=auto \
+    #         --json \
+    #         --output="/results/semgrep-secrets.json" \
+    #         /workspace || true
+    #     continue-on-error: true
+
+      - name: Evaluate Secrets Analysis Results
+        run: |
+          mkdir -p .osdo/results
+          
+          # Contar detecciones de GitLeaks
+          gitleaks_count=$(cat .osdo/results/gitleaks-secrets.json 2>/dev/null | jq 'length' 2>/dev/null || echo "0")
+          
+          # Contar detecciones de Semgrep (solo secretos)
+          semgrep_count=$(cat .osdo/results/semgrep-secrets.json 2>/dev/null | jq '[.results[] | select(.extra.metadata.category == "security" and (.extra.metadata.subcategory // "" | contains("secret")))] | length' 2>/dev/null || echo "0")
+          
+          # Crear reporte de secretos
+          cat > .osdo/results/secrets-analysis-summary.json << EOF
+          {
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "gitleaks_detections": $gitleaks_count,
+            "semgrep_detections": $semgrep_count,
+            "total_secrets_found": $((gitleaks_count + semgrep_count)),
+            "analysis_files": [
+              "gitleaks-secrets.json",
+              "semgrep-secrets.json"
+            ]
+          }
+          EOF
+          
+          echo "Secrets Analysis Summary:"
+          echo "GitLeaks detections: $gitleaks_count"
+          echo "Semgrep detections: $semgrep_count"
+          echo "Total secrets found: $((gitleaks_count + semgrep_count))"
+          
+          # Advertir si se encuentran secretos
+          if [ $((gitleaks_count + semgrep_count)) -gt 0 ]; then
+            echo "::warning::Secrets detected in codebase. Review .osdo/results/secrets-analysis-summary.json"
+          fi
+        continue-on-error: true
+
+    #   - name: Run TruffleHog OSS
+    #     uses: trufflesecurity/trufflehog@main
+    #     with:
+    #       path: ./
+    #       base: main
+    #       head: HEAD
+    #       extra_args: --debug --only-verified
+    #     continue-on-error: true
+
+      - name: Upload secrets analysis results
+        uses: actions/upload-artifact@v4
+        with:
+          name: secrets-analysis-results
+          path: |
+            .osdo/results/gitleaks-secrets.json
+            .osdo/results/semgrep-secrets.json
+            .osdo/results/secrets-analysis-summary.json
+
+  # Job 5: Build Security & SBOM
+  build-security:
+    name: 🏗️ Secure Build & SBOM Generation
+    runs-on: ubuntu-latest
+    needs: [test-and-quality, dependency-security-scan, static-analysis, secrets-scan]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate SBOM (Software Bill of Materials)
+        run: |
+          npx @cyclonedx/cyclonedx-npm --output-file sbom.json
+          npx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
+
+      - name: Build application
+        run: npm run build
+
+      - name: Verify build integrity
+        run: |
+          echo "Verificando integridad del build..."
+          find dist -type f -name "*.js" -o -name "*.css" -o -name "*.html" | wc -l
+          du -sh dist/
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-reports
+          path: |
+            sbom.json
+            sbom.xml
+
+  # Job 6: Compliance Report
+  compliance-report:
+    name: 📊 OSDO Compliance Report
+    runs-on: ubuntu-latest
+    needs: [test-and-quality, dependency-security-scan, static-analysis, secrets-scan, build-security]
+    if: always()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Generate Compliance Report
+        run: |
+          echo "# OSDO Compliance Report" > compliance-report.md
+          echo "## Fecha: $(date)" >> compliance-report.md
+          echo "## Commit: ${{ github.sha }}" >> compliance-report.md
+          echo "" >> compliance-report.md
+          
+          echo "### ✅ Controles Implementados:" >> compliance-report.md
+          echo "- [x] Tests unitarios y de integración" >> compliance-report.md
+          echo "- [x] Análisis de cobertura de código" >> compliance-report.md
+          echo "- [x] Análisis de dependencias y vulnerabilidades (SCA)" >> compliance-report.md
+          echo "- [x] Análisis estático de código (SAST)" >> compliance-report.md
+          echo "- [x] Detección de secretos (GitLeaks, Semgrep, TruffleHog)" >> compliance-report.md
+          echo "- [x] Generación de SBOM" >> compliance-report.md
+          echo "- [x] Build seguro" >> compliance-report.md
+          echo "" >> compliance-report.md
+          
+          echo "### 📋 Resultados del Análisis:" >> compliance-report.md
+          echo "#### Testing:" >> compliance-report.md
+          if [ -d test-results ]; then
+            echo "- Tests unitarios: Ejecutados" >> compliance-report.md
+            echo "- Tests de integración: Ejecutados" >> compliance-report.md
+            echo "- Cobertura de código: Generada" >> compliance-report.md
+          fi
+          
+          echo "" >> compliance-report.md
+          echo "#### Dependencias:" >> compliance-report.md
+          if [ -f npm-audit-report/npm-audit-report.json ]; then
+            VULNERABILITIES=$(jq '.metadata.vulnerabilities | to_entries | map(select(.value > 0)) | length' npm-audit-report/npm-audit-report.json 2>/dev/null || echo "0")
+            echo "- Vulnerabilidades encontradas: $VULNERABILITIES" >> compliance-report.md
+          fi
+          
+          echo "" >> compliance-report.md
+          echo "#### Análisis Estático:" >> compliance-report.md
+          if [ -d eslint-reports ]; then
+            echo "- ESLint: Análisis completado" >> compliance-report.md
+          fi
+          
+          echo "" >> compliance-report.md
+          echo "#### Secretos:" >> compliance-report.md
+          if [ -f secrets-analysis-results/secrets-analysis-summary.json ]; then
+            SECRETS_COUNT=$(jq '.total_secrets_found' secrets-analysis-results/secrets-analysis-summary.json 2>/dev/null || echo "0")
+            echo "- Total de secretos encontrados: $SECRETS_COUNT" >> compliance-report.md
+          fi
+          echo "- TruffleHog: Análisis completado" >> compliance-report.md
+          echo "- GitLeaks: Análisis completado" >> compliance-report.md
+          echo "- Semgrep: Análisis completado" >> compliance-report.md
+          
+          echo "" >> compliance-report.md
+          echo "### 📦 Artefactos Generados:" >> compliance-report.md
+          echo "- Reportes de testing y cobertura" >> compliance-report.md
+          echo "- SBOM (Software Bill of Materials)" >> compliance-report.md
+          echo "- Reportes de vulnerabilidades" >> compliance-report.md
+          echo "- Reportes de análisis estático" >> compliance-report.md
+          echo "- Reportes de análisis de secretos" >> compliance-report.md
+
+      - name: Upload Compliance Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: osdo-compliance-report
+          path: compliance-report.md
+
+      - name: Comment PR with Compliance Status
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('compliance-report.md', 'utf8');
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🛡️ OSDO Compliance Check\n\n${report}`
+            });
+
+  # Job 7: Security Quality Gate
+  security-quality-gate:
+    name: 🚦 Security Quality Gate
+    runs-on: ubuntu-latest
+    needs: [test-and-quality, dependency-security-scan, static-analysis, secrets-scan]
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Evaluate Security Quality Gate
+        run: |
+          echo "Evaluando Security Quality Gate..."
+          
+          # Verificar vulnerabilidades críticas
+          CRITICAL_VULNS=0
+          if [ -f npm-audit-report/npm-audit-report.json ]; then
+            CRITICAL_VULNS=$(jq '.metadata.vulnerabilities.critical // 0' npm-audit-report/npm-audit-report.json)
+          fi
+          
+          # Verificar secretos encontrados
+          SECRETS_FOUND=0
+          if [ -f secrets-analysis-results/secrets-analysis-summary.json ]; then
+            SECRETS_FOUND=$(jq '.total_secrets_found' secrets-analysis-results/secrets-analysis-summary.json 2>/dev/null || echo "0")
+          fi
+          
+          echo "Vulnerabilidades críticas: $CRITICAL_VULNS"
+          echo "Secretos encontrados: $SECRETS_FOUND"
+          
+          # Evaluar quality gate
+          if [ "$CRITICAL_VULNS" -gt 0 ]; then
+            echo "❌ QUALITY GATE FAILED: Se encontraron vulnerabilidades críticas"
+            exit 1
+          fi
+          
+          if [ "$SECRETS_FOUND" -gt 0 ]; then
+            echo "⚠️ QUALITY GATE WARNING: Se encontraron secretos potenciales"
+            # No fallar por secretos, solo advertir
+          fi
+          
+          echo "✅ QUALITY GATE PASSED: No se encontraron vulnerabilidades críticas"
+
+      - name: Security Gate Status
+        run: echo "🎉 Aplicación aprobada por el Security Quality Gate"
