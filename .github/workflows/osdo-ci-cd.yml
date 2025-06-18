@@ -144,44 +144,67 @@ jobs:
           curl -fsSL https://get.docker.com -o get-docker.sh
           sudo sh get-docker.sh
           sudo usermod -aG docker $USER
-
-      - name: Execute OSDO SAST Analysis
+      
+      - name: Semgrep Static Analysis
         run: |
-          chmod +x .osdo/tools/sast.sh
-          ./.osdo/tools/sast.sh
+          docker run --rm \
+            -v "$PROJECT_ROOT:/src" \
+            -v "$RESULTS_DIR:/results" \
+            returntocorp/semgrep:latest \
+            --config=auto \
+            --json \
+            --sarif \
+            --output="/results/semgrep.sarif" \
+            --output="/results/semgrep.json" \
+            /src/src/ || true
+        continue-on-error: true
+      
+        # Upload SARIF file generated in previous step
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+        if: always()
+      # - name: Execute OSDO SAST Analysis
+      #   run: |
+      #     chmod +x .osdo/tools/sast.sh
+      #     ./.osdo/tools/sast.sh
+      #   continue-on-error: true
+
+      - name: Install ESLint Security Plugin
+        run: npm install --save-dev eslint-plugin-security
+        
+      - name: Run ESLint with Security Rules
+        env:
+            SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
+        run: |
+          echo '{
+            "extends": ["plugin:security/recommended"],
+            "plugins": ["security"],
+            "rules": {
+              "security/detect-object-injection": "error",
+              "security/detect-non-literal-regexp": "error",
+              "security/detect-non-literal-fs-filename": "error",
+              "security/detect-eval-with-expression": "error",
+              "security/detect-pseudoRandomBytes": "error"
+            }
+          }' > .eslintrc.security.json
+          npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format json -o eslint-security-report.json
+          npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
         continue-on-error: true
 
-    #   - name: ESLint Security Analysis
-    #     run: |
-    #       npx eslint . --ext .js,.jsx,.ts,.tsx --format json -o eslint-report.json
-    #     continue-on-error: true
-
-    #   - name: Install ESLint Security Plugin
-    #     run: npm install --save-dev eslint-plugin-security
-        
-    #   - name: Run ESLint with Security Rules
-    #     run: |
-    #       echo '{
-    #         "extends": ["plugin:security/recommended"],
-    #         "plugins": ["security"],
-    #         "rules": {
-    #           "security/detect-object-injection": "error",
-    #           "security/detect-non-literal-regexp": "error",
-    #           "security/detect-non-literal-fs-filename": "error",
-    #           "security/detect-eval-with-expression": "error",
-    #           "security/detect-pseudoRandomBytes": "error"
-    #         }
-    #       }' > .eslintrc.security.json
-    #       npx eslint . --config .eslintrc.security.json --format json -o eslint-security-report.json
-    #     continue-on-error: true
-
-    #   - name: Upload ESLint reports
-    #     uses: actions/upload-artifact@v4
-    #     with:
-    #       name: eslint-reports
-    #       path: |
-    #         eslint-report.json
-    #         eslint-security-report.json
+      - name: Upload ESLint reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-reports
+          path: |
+            eslint-report.json
+            eslint-security-report.json
+      - name: Upload analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eslint-results.sarif
+          wait-for-processing: true
 
       # CodeQL Analysis
       - name: Initialize CodeQL

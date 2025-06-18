@@ -39,59 +39,6 @@ create_results_dir() {
     mkdir -p "$RESULTS_DIR"
 }
 
-# ESLint Security Analysis
-run_eslint_security() {
-    log_info "Ejecutando ESLint Security Rules..."
-    
-    cd "$PROJECT_ROOT"
-    
-    # Instalar eslint-plugin-security si no está instalado
-    if ! npm list eslint-plugin-security >/dev/null 2>&1; then
-        log_info "Instalando eslint-plugin-security..."
-        npm install --save-dev eslint-plugin-security
-    fi
-    
-    # Ejecutar ESLint con reglas de seguridad
-    npx eslint src/ \
-        --ext .js,.mjs \
-        --format json \
-        --output-file "$RESULTS_DIR/eslint-security.json" \
-        --config .eslintrc.security.json || true
-    
-    # Convertir a SARIF format
-    npx @microsoft/eslint-formatter-sarif \
-        "$RESULTS_DIR/eslint-security.json" \
-        --output "$RESULTS_DIR/eslint-security.sarif" || true
-    
-    log_success "ESLint Security análisis completado"
-}
-
-# Semgrep Static Analysis
-run_semgrep() {
-    log_info "Ejecutando Semgrep SAST..."
-    
-    # Usar Docker para ejecutar Semgrep
-    docker run --rm \
-        -v "$PROJECT_ROOT:/src" \
-        -v "$RESULTS_DIR:/results" \
-        returntocorp/semgrep:latest \
-        --config=auto \
-        --json \
-        --output=/results/semgrep.json \
-        /src/src/ || true
-    
-    # Convertir a SARIF
-    docker run --rm \
-        -v "$RESULTS_DIR:/results" \
-        returntocorp/semgrep:latest \
-        --config=auto \
-        --sarif \
-        --output=/results/semgrep.sarif \
-        /src/src/ || true
-    
-    log_success "Semgrep análisis completado"
-}
-
 # Análisis de secretos con truffleHog
 run_secret_scan() {
     log_info "Ejecutando escaneo de secretos con TruffleHog..."
@@ -131,7 +78,7 @@ generate_report() {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OSDO SAST Report - TriskelGate</title>
+    <title>OSDO SAST Report - X-Ops Main Page</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         .header { background: #2196F3; color: white; padding: 20px; border-radius: 5px; }
@@ -145,7 +92,7 @@ generate_report() {
 <body>
     <div class="header">
         <h1>🔒 OSDO SAST Report</h1>
-        <p>TriskelGate Payment Platform - Security Analysis</p>
+        <p>X-Ops Main Page - Security Analysis</p>
         <p class="timestamp">Generated: $(date)</p>
     </div>
     
@@ -188,8 +135,8 @@ EOF
     cat > "$RESULTS_DIR/summary.json" << EOF
 {
     "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-    "project": "TriskelGate Payment Platform",
-    "version": "2.0.0",
+    "project": "X-Ops Main Page",
+    "version": "1.0.0",
     "sast_tools": [
         "eslint-security",
         "semgrep",
@@ -212,7 +159,7 @@ EOF
 # Función principal
 main() {
     log_info "🔒 Iniciando OSDO SAST Analysis..."
-    log_info "Proyecto: TriskelGate Payment Platform"
+    log_info "Proyecto: X-Ops Main Page"
     log_info "Directorio: $PROJECT_ROOT"
     
     create_results_dir
