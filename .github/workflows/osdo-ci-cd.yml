@@ -1,4 +1,4 @@
-name: OSDO Compliance Pipeline
+name: OSDO CI/CD Pipeline
 
 on:
   push:
