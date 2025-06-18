@@ -134,19 +134,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install additional OSDO tools
-        run: |
-          # Instalar herramientas adicionales
-          sudo apt-get update
-          sudo apt-get install -y jq
+      # - name: Install additional OSDO tools
+      #   run: |
+      #     # Instalar herramientas adicionales
+      #     sudo apt-get update
+      #     sudo apt-get install -y jq
           
-          # Instalar Docker (para herramientas en contenedores)
-          curl -fsSL https://get.docker.com -o get-docker.sh
-          sudo sh get-docker.sh
-          sudo usermod -aG docker $USER
+      #     # Instalar Docker (para herramientas en contenedores)
+      #     curl -fsSL https://get.docker.com -o get-docker.sh
+      #     sudo sh get-docker.sh
+      #     sudo usermod -aG docker $USER
       
       - name: Semgrep Static Analysis
         run: |
+          SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+          PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+          RESULTS_DIR="$PROJECT_ROOT/.osdo/results"
           docker run --rm \
             -v "$PROJECT_ROOT:/src" \
             -v "$RESULTS_DIR:/results" \
