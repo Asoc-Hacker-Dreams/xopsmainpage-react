@@ -1,4 +1,3 @@
-Repos/XOps/xopsmainpage-react/vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import sitemap from 'vite-plugin-sitemap'

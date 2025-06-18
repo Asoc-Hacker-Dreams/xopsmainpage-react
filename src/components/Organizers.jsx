@@ -41,7 +41,7 @@ const Organizers = () => {
                     <br /> 
                     Co-Fundador y General Manager de Osintomático Conference y OsintomátiCOPS Conference. 
                     <br />
-                    Co-Fundador y CMO de XOps Conference. 
+                    Co-Fundador y CMO de X-Ops Conference. 
                     <br />
                     Fundador, Coordinador General y miembro de Hack%27BuenosAires.
                     <br />
@@ -88,7 +88,7 @@ const Organizers = () => {
                     <br />
                     Docker, Kubernetes, Ansible, y Terraform. 
                     <br />
-                    Co-Fundador y COO de XOps Conference.
+                    Co-Fundador y COO de X-Ops Conference.
                     <br />
                     Organizador y miembro de HackMadrid%27.
                     <br />
@@ -117,13 +117,13 @@ const Organizers = () => {
                   <p>
                     Docente. Escritor. Investigador.
                     <br />
-                    Co-Fundador y CEO de XOps Conference.
+                    Co-Fundador y CEO de X-Ops Conference.
                     <br />
-                    Organizador y miembro de HackMadrid%27.
+                    Fundador, Organizador y miembro de HackerDreams%27.
                     <br />
                     Fundador, Coordinador General y miembro de HackBarcelona%27.
                     <br />
-                    Chapter Leader de DevSecCon Spain.
+                    Chapter Leader de DevSecCon Spain y UAE.
                     <br />
                     Ponente en Congresos Internacionales como: BlackHatEU(UK), RootedCon (Esp), DragonJar Con (Col), Pacific Hackers Conference (USA), HackMiami Conference (USA), Ekoparty (Arg), CICC2023 (Bol) y WorldParty(ESP). 
                     <br />
