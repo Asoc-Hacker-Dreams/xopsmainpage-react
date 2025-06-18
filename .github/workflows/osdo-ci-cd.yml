@@ -167,12 +167,17 @@ jobs:
         with:
           sarif_file: semgrep.sarif
         if: always()
+        continue-on-error: true
       # - name: Execute OSDO SAST Analysis
       #   run: |
       #     chmod +x .osdo/tools/sast.sh
       #     ./.osdo/tools/sast.sh
       #   continue-on-error: true
 
+      - name: ESLint Security Analysis
+        run: |
+          npx eslint . --ext .js,.jsx,.ts,.tsx --format json -o eslint-report.json
+        continue-on-error: true
       - name: Install ESLint Security Plugin
         run: npm install --save-dev eslint-plugin-security
         
