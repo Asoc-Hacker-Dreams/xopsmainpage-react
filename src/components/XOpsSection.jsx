@@ -4,25 +4,6 @@ import XopsImg from "../assets/xops-img.jpg";
 
 const XOpsSection = () => {
   return (
-    <>
-    {/* Meta tags para SEO */}
-    <Helmet>
-      <title>Conoce la X-Ops Conference Madrid 2025</title>
-      <meta name="description" content="Descubre que es X-Ops y cómo compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025." />
-      <meta name="keywords" content="X-Ops, DevOps, DevSecOps, AIOps, MLOps, Conferencia Tecnología Madrid, Ponentes, GitOps, SecOps" />
-      {/* También puedes añadir otras metaetiquetas aquí, como las de Open Graph para redes sociales */}
-      <meta property="og:title" content="Conoce la X-Ops Conference Madrid 2025" />
-      <meta property="og:description" content="Descubre que es X-Ops y cómo compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025." />
-      {/* <meta property="og:image" content="URL_A_UNA_IMAGEN_REPRESENTATIVA" /> */}
-      <meta property="og:url" content="https://xopsconference.com/#events" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Conoce la X-Ops Conference Madrid 2025" />
-      <meta name="twitter:description" content="Descubre que es X-Ops y cómo compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025." />
-      {/* <meta name="twitter:image" content="URL_A_UNA_IMAGEN_REPRESENTATIVA" /> */}
-      <link rel="canonical" href="https://xopsconference.com/#events" />
-      
-    </Helmet>
-
     <section id="inicio" className="xops-section">
       <div className="container">
         <div>
@@ -82,7 +63,6 @@ const XOpsSection = () => {
         </div>
       </div>
     </section>
-    </>
   );
 };
 
