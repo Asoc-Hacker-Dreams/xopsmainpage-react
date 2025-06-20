@@ -36,9 +36,11 @@ function App() {
 <ScrollHandler />
 <div className="root home-main-section">
         <Navbar bg="light" expand="lg" className='header'>
-        <Navbar.Brand style={{ marginTop: '-35px'}} className='text-white font-weight-bold'>X-OPS CONFERENCE</Navbar.Brand>
-        <img src={logo} alt="x-ops" style={{ height: '51px', width: '56px', marginTop: '-35px'}} />
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" className='toggle'/>
+        <div className="d-flex align-items-center">
+          <img src={logo} alt="X-Ops Logo" style={{ height: '51px', width: '56px', marginRight: '15px' }} />
+          <Navbar.Brand className='text-white font-weight-bold navbar-brand-text'>X-OPS CONFERENCE</Navbar.Brand>
+        </div>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto ">
              <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
