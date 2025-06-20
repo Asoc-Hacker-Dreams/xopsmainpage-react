@@ -21,6 +21,31 @@ body{
     padding-right: 40px;
     height: 85px;     /* largo fondo negro menu cabecera */
 }
+
+/* Mejores estilos para el logo y brand en desktop */
+.header .d-flex {
+    align-items: center;
+}
+
+.navbar-brand-text {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Estilos para el botón toggle personalizado */
+.navbar-toggler-custom {
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+.navbar-toggler-custom:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.navbar-toggler-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
 .heading{
 color: var(--bg);
 }
@@ -419,13 +444,13 @@ margin-block: 1rem;
 .Hero-section {
     background-position: center top;
     background-size: cover;
-    padding-top: 320px; /* Ajusta la altura de la navbar */
+    padding-top: 120px; /* Reducido para mejor espaciado */
 }
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Asegura que el navbar esté por encima de otros elementos */
+    z-index: 1000;
 }
 
 .navbar-collapse {
@@ -433,29 +458,41 @@ margin-block: 1rem;
     padding-bottom: 7%;
 }
 
-.navbar-toggler {
-    margin-right: 1rem;
+.navbar-toggler-custom {
+    border-color: white;
+    background-color: white;
+    border: 2px solid white;
 }
+
 .custom-white-dropdown .dropdown-toggle {
-    margin-left: -15px; /*desplaza el menú EVENTOS ANTERIORES */
+    margin-left: -15px;
 }
+
 .menu-btn {
-  margin-left: 20px;  /* desplaza el boton ENTRADAS */
-  padding-right: 1%;  /*desplaza el texto dentro del boton ENTRADAS */
+  margin-left: 20px;
+  padding-right: 1%;
 }
 
 .xops-section {
-  margin-top: 0px; /* desplaza hacia abajo la seccion */
-  padding-top: 100px; /*desplaza hacia abajo el texto */
+  margin-top: 0px;
+  padding-top: 100px;
 }
-.navbar-toggler {
-  border-color: white; /* color icono hamburguesa dispositivos moviles */
-  background-color: white;
-  margin-top: -30px;
+
+/* Mejor alineación para el logo y texto en móvil */
+.header .d-flex {
+    align-items: center;
 }
-.header img {
-    margin-left: -320px; /* Ajusta el icono x-ops hacia el texto */
-  }
+
+.navbar-brand-text {
+    font-size: 1rem !important;
+    line-height: 1.2;
+}
+
+/* Ajuste del botón toggle */
+.navbar-toggler-custom {
+    padding: 4px 8px;
+    font-size: 1rem;
+}
 
 }
 
@@ -621,6 +658,48 @@ margin-block: 1rem;
   
   .last-edition-section {
     padding: 40px 0;
+  }
+
+  /* Mejores estilos para móvil del header */
+  .header {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: auto;
+    min-height: 70px;
+  }
+
+  .navbar-brand-text {
+    font-size: 0.9rem !important;
+  }
+
+  /* Mejores márgenes para elementos del menú en móvil */
+  .menu-btn {
+    margin-left: 10px;
+    width: auto;
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+/* Mejoras adicionales para móviles pequeños */
+@media (max-width: 576px) {
+  .header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .navbar-brand-text {
+    font-size: 0.8rem !important;
+  }
+
+  .header img {
+    height: 40px;
+    width: 44px;
+  }
+
+  .Hero-section {
+    padding-top: 90px;
   }
 }
 
