@@ -153,18 +153,15 @@ jobs:
       
       - name: Semgrep Static Analysis
         run: |
-          SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-          PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-          RESULTS_DIR="$PROJECT_ROOT/.osdo/results"
+          RESULTS_DIR="$(pwd)/.osdo/results"
           docker run --rm \
-            -v "$PROJECT_ROOT:/src" \
+            -v "$(pwd):/src" \
             -v "$RESULTS_DIR:/results" \
             returntocorp/semgrep:latest \
-            --json \
             --sarif \
+            --config=auto \
             --output="/results/semgrep.sarif" \
-            --output="/results/semgrep.json" \
-            /src/src/ || true
+            /src > semgrep.sarif || true
         continue-on-error: true
       
         # Upload SARIF file generated in previous step
@@ -174,11 +171,6 @@ jobs:
           sarif_file: semgrep.sarif
         if: always()
         continue-on-error: true
-      # - name: Execute OSDO SAST Analysis
-      #   run: |
-      #     chmod +x .osdo/tools/sast.sh
-      #     ./.osdo/tools/sast.sh
-      #   continue-on-error: true
 
       - name: ESLint Security Analysis
         run: |
@@ -191,17 +183,6 @@ jobs:
         env:
             SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          echo '{
-            "extends": ["plugin:security/recommended"],
-            "plugins": ["security"],
-            "rules": {
-              "security/detect-object-injection": "error",
-              "security/detect-non-literal-regexp": "error",
-              "security/detect-non-literal-fs-filename": "error",
-              "security/detect-eval-with-expression": "error",
-              "security/detect-pseudoRandomBytes": "error"
-            }
-          }' > .eslintrc.security.json
           npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format json -o eslint-security-report.json
           npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
         continue-on-error: true
