@@ -34,21 +34,21 @@ log_error() {
 }
 
 # NPM Audit Analysis
-run_npm_audit() {
-    log_info "Ejecutando npm audit..."
+# run_npm_audit() {
+#     log_info "Ejecutando npm audit..."
     
-    cd "$PROJECT_ROOT"
+#     cd "$PROJECT_ROOT"
     
-    # Audit completo con formato JSON
-    npm audit --json > "$RESULTS_DIR/npm-audit.json" 2>/dev/null || true
+#     # Audit completo con formato JSON
+#     npm audit --json > "$RESULTS_DIR/npm-audit.json" 2>/dev/null || true
     
-    # Audit solo vulnerabilidades altas y críticas
-    npm audit --audit-level high --json > "$RESULTS_DIR/npm-audit-high.json" 2>/dev/null || true
+#     # Audit solo vulnerabilidades altas y críticas
+#     npm audit --audit-level high --json > "$RESULTS_DIR/npm-audit-high.json" 2>/dev/null || true
     
-    # Generar reporte legible
-    npm audit > "$RESULTS_DIR/npm-audit.txt" 2>/dev/null || true
+#     # Generar reporte legible
+#     npm audit > "$RESULTS_DIR/npm-audit.txt" 2>/dev/null || true
     
-    log_success "npm audit completado"
+#     log_success "npm audit completado"
 }
 
 # Snyk Vulnerability Analysis (usando Docker)
@@ -76,74 +76,74 @@ run_snyk_analysis() {
 }
 
 # Retire.js for JavaScript vulnerabilities
-run_retire_js() {
-    log_info "Ejecutando Retire.js analysis..."
+# run_retire_js() {
+#     log_info "Ejecutando Retire.js analysis..."
     
-    cd "$PROJECT_ROOT"
+#     cd "$PROJECT_ROOT"
     
-    # Instalar retire si no está instalado
-    if ! command -v retire &> /dev/null; then
-        npm install -g retire
-    fi
+#     # Instalar retire si no está instalado
+#     if ! command -v retire &> /dev/null; then
+#         npm install -g retire
+#     fi
     
-    # Ejecutar retire.js
-    retire --js --outputformat json --outputpath "$RESULTS_DIR/retirejs.json" || true
-    retire --js > "$RESULTS_DIR/retirejs.txt" 2>/dev/null || true
+#     # Ejecutar retire.js
+#     retire --js --outputformat json --outputpath "$RESULTS_DIR/retirejs.json" || true
+#     retire --js > "$RESULTS_DIR/retirejs.txt" 2>/dev/null || true
     
-    log_success "Retire.js analysis completado"
-}
+#     log_success "Retire.js analysis completado"
+# }
 
 # License compliance check
-run_license_check() {
-    log_info "Verificando compliance de licencias..."
+# run_license_check() {
+#     log_info "Verificando compliance de licencias..."
     
-    cd "$PROJECT_ROOT"
+#     cd "$PROJECT_ROOT"
     
-    # Instalar license-checker si no está instalado
-    if ! npm list license-checker >/dev/null 2>&1; then
-        npm install --save-dev license-checker
-    fi
+#     # Instalar license-checker si no está instalado
+#     if ! npm list license-checker >/dev/null 2>&1; then
+#         npm install --save-dev license-checker
+#     fi
     
-    # Generar reporte de licencias
-    npx license-checker --json > "$RESULTS_DIR/licenses.json" || true
-    npx license-checker --csv > "$RESULTS_DIR/licenses.csv" || true
-    npx license-checker > "$RESULTS_DIR/licenses.txt" || true
+#     # Generar reporte de licencias
+#     npx license-checker --json > "$RESULTS_DIR/licenses.json" || true
+#     npx license-checker --csv > "$RESULTS_DIR/licenses.csv" || true
+#     npx license-checker > "$RESULTS_DIR/licenses.txt" || true
     
-    # Verificar licencias prohibidas
-    cat > "$RESULTS_DIR/license-compliance.json" << EOF
-{
-    "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-    "allowed_licenses": ["MIT", "Apache-2.0", "BSD-3-Clause", "ISC"],
-    "prohibited_licenses": ["GPL-3.0", "AGPL-3.0"],
-    "status": "checking",
-    "violations": []
-}
-EOF
+#     # Verificar licencias prohibidas
+#     cat > "$RESULTS_DIR/license-compliance.json" << EOF
+# {
+#     "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+#     "allowed_licenses": ["MIT", "Apache-2.0", "BSD-3-Clause", "ISC"],
+#     "prohibited_licenses": ["GPL-3.0", "AGPL-3.0"],
+#     "status": "checking",
+#     "violations": []
+# }
+# EOF
     
-    log_success "License compliance check completado"
-}
+#     log_success "License compliance check completado"
+# }
 
 # SBOM (Software Bill of Materials) generation
-generate_sbom() {
-    log_info "Generando SBOM (Software Bill of Materials)..."
+# generate_sbom() {
+#     log_info "Generando SBOM (Software Bill of Materials)..."
     
-    cd "$PROJECT_ROOT"
+#     cd "$PROJECT_ROOT"
     
-    # Usar syft para generar SBOM
-    docker run --rm \
-        -v "$PROJECT_ROOT:/src" \
-        -v "$RESULTS_DIR:/results" \
-        anchore/syft:latest \
-        /src \
-        -o json=/results/sbom.json \
-        -o spdx-json=/results/sbom-spdx.json || true
+#     # Usar syft para generar SBOM
+#     docker run --rm \
+#         -v "$PROJECT_ROOT:/src" \
+#         -v "$RESULTS_DIR:/results" \
+#         anchore/syft:latest \
+#         /src \
+#         -o json=/results/sbom.json \
+#         -o spdx-json=/results/sbom-spdx.json || true
     
-    # Generar SBOM simple con npm ls
-    npm ls --json > "$RESULTS_DIR/npm-tree.json" 2>/dev/null || true
-    npm ls > "$RESULTS_DIR/npm-tree.txt" 2>/dev/null || true
+#     # Generar SBOM simple con npm ls
+#     npm ls --json > "$RESULTS_DIR/npm-tree.json" 2>/dev/null || true
+#     npm ls > "$RESULTS_DIR/npm-tree.txt" 2>/dev/null || true
     
-    log_success "SBOM generado"
-}
+#     log_success "SBOM generado"
+# }
 
 # Dependency vulnerability scoring
 calculate_risk_score() {

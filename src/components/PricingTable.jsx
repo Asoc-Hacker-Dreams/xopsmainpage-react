@@ -4,13 +4,29 @@ import AnimationWrapper from './AnimationWrapper';
 const PricingTable = () => {
     const plans = [
         {
+            name: "TITANIO",
+            price: 5000,
+            features: [
+                "Logo Grande",
+                "Stand Promocion",
+                "Stand virtual en la web",
+                "Workshop Exclusivo",
+                "20 entradas",
+                "Track a nombre de la empresa",
+                "Logo en todas las promociones"
+            ],
+            active: false
+        },
+        {
             name: "DIAMANTE",
             price: 3500,
             features: [
                 "Logo Grande",
                 "Stand Promocion",
+                "Stand virtual en la web",
                 "Workshop Exclusivo",
-                "15 entradas"
+                "15 entradas",
+                "Logo en todas las promociones"
             ],
             active: false
         },
