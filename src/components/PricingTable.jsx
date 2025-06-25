@@ -41,7 +41,7 @@ const PricingTable = () => {
                 "Stand Virtual Mejorado con vídeo y formulario",
                 "10 Entradas completas"
             ],
-            active: true
+            active: false
         },
         {
             name: "TRACK SPONSOR",
