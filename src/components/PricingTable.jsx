@@ -4,37 +4,71 @@ import AnimationWrapper from './AnimationWrapper';
 const PricingTable = () => {
     const plans = [
         {
-            name: "DIAMANTE",
-            price: 3500,
-            features: [
-                "Logo Grande",
-                "Stand Promocion",
-                "Workshop Exclusivo",
-                "15 entradas"
-            ],
-            active: false
-        },
-        {
-            name: "ORO",
-            price: 2500,
-            features: [
-                "Logo Mediano",
-                "Posible Stand Promocion",
-                "No Workshop",
-                "10 entradas"
-            ],
-            active: false
-        },
-        {
-            name: "PLATA",
+            name: "VIRTUAL-ONLY",
             price: 1000,
             features: [
-                "Logo Pequeño",
-                "No Stand Promocion",
-                "No Workshop",
-                "5 entradas"
-            ]
-            ,
+                "Stand Virtual Premium",
+                "Perfil completo en la aplicación web",
+                "Logo, descripción y enlaces a redes sociales",
+                "Vídeo promocional incrustado",
+                "Chat en tiempo real con asistentes",
+                "Formulario integrado para captura de leads",
+                "Logo en sección 'Virtual Sponsors' de la web"
+            ],
+            active: false
+        },
+        {
+            name: "SILVER",
+            price: 1500,
+            features: [
+                "Stand Físico de 2x2m con mesa y sillas",
+                "Stand Virtual Básico",
+                "Logo, descripción y enlace web",
+                "Logo en sección 'Silver Sponsors'",
+                "Mención en publicación conjunta en redes sociales",
+                "5 Entradas completas"
+            ],
+            active: false
+        },
+        {
+            name: "GOLD",
+            price: 2500,
+            features: [
+                "Todos los beneficios del paquete Silver",
+                "Charla técnica de 45 minutos",
+                "Logo destacado en posición superior",
+                "Publicación dedicada en redes sociales",
+                "Stand Virtual Mejorado con vídeo y formulario",
+                "10 Entradas completas"
+            ],
+            active: false
+        },
+        {
+            name: "TRACK SPONSOR",
+            price: 6000,
+            features: [
+                "Todos los beneficios del paquete Gold",
+                "Derechos de Nomenclatura del Track",
+                "Branding exclusivo en la sala física",
+                "Logo en cabecera de la agenda del track",
+                "Mención especial al inicio de cada jornada",
+                "Stand Virtual Premium en posición destacada",
+                "15 Entradas completas",
+                "EXCLUSIVO - Solo 2 disponibles"
+            ],
+            active: false
+        },
+        {
+            name: "PLATINUM",
+            price: 10000,
+            features: [
+                "Todos los beneficios del Track Sponsor",
+                "Charla Principal (Keynote) de 30 minutos",
+                "Stand Físico grande (3x2m) en posición estratégica",
+                "Logo en email de bienvenida a asistentes",
+                "Agradecimiento en ceremonia de apertura y clausura",
+                "15 Entradas completas"
+            ],
             active: false
         },
     ];
@@ -56,7 +90,7 @@ const PricingTable = () => {
                     <div className="container">
                         <div className="row">
                             {plans.map((plan, index) => (
-                                <div className="col-lg-4 col-md-6 col-sm-12" key={index}>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
                                     <div className={`generic_content ${plan.active ? 'active' : ''} clearfix`}>
                                         <div className="generic_head_price clearfix">
                                             <div className="generic_head_content clearfix">
