@@ -1,5 +1,15 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
-    ]
+    ],
+    "chat.mcp.serverSampling": {
+        "xopsmainpage-react/.vscode/mcp.json: msdocs": {
+            "allowedModels": [
+                "github.copilot-chat/gpt-4.1",
+                "github.copilot-chat/claude-opus-4",
+                "github.copilot-chat/claude-sonnet-4",
+                "github.copilot-chat/gpt-4o"
+            ]
+        }
+    }
 }
