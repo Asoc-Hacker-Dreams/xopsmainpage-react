@@ -1,5 +1,8 @@
 // Service Worker for X-Ops Conference PWA
 const CACHE_NAME = 'xops-conference-v1';
+const SHELL_CACHE_NAME = 'xops-shell-v1';
+const WHITELISTED_CACHES = [CACHE_NAME, SHELL_CACHE_NAME];
+
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
@@ -10,15 +13,19 @@ const urlsToCache = [
 
 // Install Service Worker
 self.addEventListener('install', (event) => {
+  const appShellFiles = [
+    '/',
+    '/index.html',
+    '/manifest.json',
+    // Add paths to your main JS/CSS bundles here
+  ];
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(SHELL_CACHE_NAME)
       .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        console.log('Opened shell cache');
+        return cache.addAll(appShellFiles);
       })
-      .catch((error) => {
-        console.log('Cache installation failed:', error);
-      })
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -45,13 +52,13 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (!WHITELISTED_CACHES.includes(cacheName)) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
