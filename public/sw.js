@@ -1,6 +1,9 @@
 // Service Worker for X-Ops Conference PWA
-const CACHE_NAME = 'xops-conference-v1';
-const urlsToCache = [
+const SHELL_CACHE_NAME = 'xops-shell-v1';
+const CONTENT_CACHE_NAME = 'xops-content-v1';
+const WHITELISTED_CACHES = [SHELL_CACHE_NAME, CONTENT_CACHE_NAME];
+
+const shellUrlsToCache = [
   '/',
   '/static/js/bundle.js',
   '/static/css/main.css',
@@ -11,13 +14,13 @@ const urlsToCache = [
 // Install Service Worker
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(SHELL_CACHE_NAME)
       .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        console.log('Opened shell cache');
+        return cache.addAll(shellUrlsToCache);
       })
       .catch((error) => {
-        console.log('Cache installation failed:', error);
+        console.log('Shell cache installation failed:', error);
       })
   );
 });
@@ -27,8 +30,34 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
+        // If found in cache, return it
+        if (response) {
+          return response;
+        }
+
+        // Clone the request for fetch
+        const fetchRequest = event.request.clone();
+
+        return fetch(fetchRequest).then((response) => {
+          // Check if we received a valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+
+          // Clone the response for cache
+          const responseToCache = response.clone();
+
+          // Determine which cache to use based on request
+          const isAPIRequest = event.request.url.includes('/api/');
+          const cacheName = isAPIRequest ? CONTENT_CACHE_NAME : SHELL_CACHE_NAME;
+
+          caches.open(cacheName)
+            .then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+
+          return response;
+        });
       })
       .catch(() => {
         // Return offline page if available
@@ -45,7 +74,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (!WHITELISTED_CACHES.includes(cacheName)) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
