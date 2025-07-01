@@ -11,17 +11,43 @@ const shellUrlsToCache = [
   '/icon-512x512.png'
 ];
 
+// Dynamic API URLs to cache for offline functionality
+const contentUrlsToCache = [
+  '/api/agenda',
+  '/api/ponentes'
+];
+
 // Install Service Worker
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(SHELL_CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened shell cache');
-        return cache.addAll(shellUrlsToCache);
-      })
-      .catch((error) => {
-        console.log('Shell cache installation failed:', error);
-      })
+    Promise.all([
+      // Cache shell resources
+      caches.open(SHELL_CACHE_NAME)
+        .then((cache) => {
+          console.log('Opened shell cache');
+          return cache.addAll(shellUrlsToCache);
+        }),
+      // Cache content/API resources (if available)
+      caches.open(CONTENT_CACHE_NAME)
+        .then((cache) => {
+          console.log('Opened content cache');
+          // Try to cache content URLs, but don't fail if they're not available
+          return Promise.allSettled(
+            contentUrlsToCache.map(url => 
+              fetch(url).then(response => {
+                if (response.ok) {
+                  return cache.put(url, response);
+                }
+              }).catch(() => {
+                // Ignore network errors during install
+                console.log('Content URL not available during install:', url);
+              })
+            )
+          );
+        })
+    ]).catch((error) => {
+      console.log('Cache installation failed:', error);
+    })
   );
 });
 
