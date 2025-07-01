@@ -1,5 +1,6 @@
 // Service Worker for X-Ops Conference PWA
 const CACHE_NAME = 'xops-conference-v1';
+const CONTENT_CACHE_NAME = 'xops-content-v1';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
@@ -22,20 +23,49 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Fetch event - serve from cache when offline
+// Fetch event - implement advanced cache strategies
 self.addEventListener('fetch', (event) => {
+  const { request } = event;
+
+  // Ignore non-GET requests
+  if (request.method !== 'GET') {
+    return;
+  }
+
+  // Strategy: Stale-While-Revalidate for content.json
+  if (request.url.includes('content.json')) {
+    event.respondWith(
+      caches.open(CONTENT_CACHE_NAME).then((cache) => {
+        return cache.match(request).then((cachedResponse) => {
+          const fetchPromise = fetch(request).then((networkResponse) => {
+            cache.put(request, networkResponse.clone());
+            return networkResponse;
+          });
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+    return;
+  }
+
+  // Strategy: Cache First for App Shell and other assets
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      })
-      .catch(() => {
-        // Return offline page if available
-        if (event.request.destination === 'document') {
-          return caches.match('/');
+    caches.match(request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(request).then((networkResponse) => {
+        // Optional: Cache other assets dynamically
+        if (networkResponse.status === 200 && (request.url.match(/\.(png|jpg|jpeg|gif)$/))) {
+           const cacheCopy = networkResponse.clone();
+           caches.open(CONTENT_CACHE_NAME).then(cache => cache.put(request, cacheCopy));
         }
-      })
+        return networkResponse;
+      });
+    }).catch(() => {
+      // Optional: Return a fallback offline page if everything fails
+      // return caches.match('/offline.html');
+    })
   );
 });
 
@@ -45,7 +75,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName !== CACHE_NAME && cacheName !== CONTENT_CACHE_NAME) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
