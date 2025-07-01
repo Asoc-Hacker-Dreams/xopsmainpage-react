@@ -1,0 +1,28 @@
+{
+  "servers": {
+    // Servidor MCP remoto de GitHub
+    "github": {
+      "type": "http",
+      "url": "https://mcp.github.com"
+    },
+    // Ejemplo de servidor MCP usando Playwright por stdio
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "markitdown": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-m", "markitdown_mcp_server"]
+    },
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev"
+    },
+    "msdocs": {
+      "type": "http",
+      "url": "https://mcp.microsoftdocs.com"
+    }
+  }
+}

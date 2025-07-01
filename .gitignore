@@ -2,7 +2,6 @@
 node_modules
 dist
 .npm
-.vscode
 
 # OSDO Compliance Reports
 reports/
@@ -58,3 +57,4 @@ typings/
 # OSDO results directory
 .osdo/results
 .osdo/test-results
+.vscode/settings.json
