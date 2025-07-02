@@ -1,11 +1,18 @@
 // Service Worker for X-Ops Conference PWA
 const CACHE_NAME = 'xops-conference-v1';
+const DATA_CACHE = 'data-cache-v1';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
   '/static/css/main.css',
   '/manifest.json',
   '/icon-512x512.png'
+];
+
+// Definir URLs dinámicas a cachear para uso offline:
+const DATA_URLS = [
+  '/api/agenda',
+  '/api/ponentes'
 ];
 
 // Install Service Worker
@@ -24,19 +31,37 @@ self.addEventListener('install', (event) => {
 
 // Fetch event - serve from cache when offline
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      })
-      .catch(() => {
-        // Return offline page if available
-        if (event.request.destination === 'document') {
-          return caches.match('/');
-        }
-      })
-  );
+  const requestUrl = new URL(event.request.url);
+  
+  // Check if the request is for dynamic data URLs
+  if (DATA_URLS.some(path => requestUrl.pathname.startsWith(path))) {
+    event.respondWith(
+      caches.open(DATA_CACHE).then(cache =>
+        cache.match(event.request).then(cachedResponse =>
+          cachedResponse ||
+          fetch(event.request).then(networkResponse => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          })
+        )
+      )
+    );
+  } else {
+    // Default cache strategy for static assets
+    event.respondWith(
+      caches.match(event.request)
+        .then((response) => {
+          // Return cached version or fetch from network
+          return response || fetch(event.request);
+        })
+        .catch(() => {
+          // Return offline page if available
+          if (event.request.destination === 'document') {
+            return caches.match('/');
+          }
+        })
+    );
+  }
 });
 
 // Activate Service Worker
@@ -45,7 +70,8 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          // Keep current caches, delete only old/unknown ones
+          if (cacheName !== CACHE_NAME && cacheName !== DATA_CACHE) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
