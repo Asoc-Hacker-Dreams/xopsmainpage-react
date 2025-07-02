@@ -36,15 +36,24 @@ self.addEventListener('fetch', (event) => {
   // Check if the request is for dynamic data URLs
   if (DATA_URLS.some(path => requestUrl.pathname.startsWith(path))) {
     event.respondWith(
-      caches.open(DATA_CACHE).then(cache =>
-        cache.match(event.request).then(cachedResponse =>
-          cachedResponse ||
-          fetch(event.request).then(networkResponse => {
-            cache.put(event.request, networkResponse.clone());
+      caches.open(DATA_CACHE).then(cache => {
+        return cache.match(event.request).then(cachedResponse => {
+          // Always try to fetch fresh data first
+          const fetchPromise = fetch(event.request).then(networkResponse => {
+            // Cache the fresh response
+            if (networkResponse.ok) {
+              cache.put(event.request, networkResponse.clone());
+            }
             return networkResponse;
-          })
-        )
-      )
+          }).catch(() => {
+            // Network failed, return cached version if available
+            return cachedResponse;
+          });
+          
+          // Return cached response immediately if available, otherwise wait for network
+          return cachedResponse || fetchPromise;
+        });
+      })
     );
   } else {
     // Default cache strategy for static assets
@@ -66,12 +75,12 @@ self.addEventListener('fetch', (event) => {
 
 // Activate Service Worker
 self.addEventListener('activate', (event) => {
+  const validCaches = [CACHE_NAME, DATA_CACHE];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          // Keep current caches, delete only old/unknown ones
-          if (cacheName !== CACHE_NAME && cacheName !== DATA_CACHE) {
+          if (!validCaches.includes(cacheName)) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
