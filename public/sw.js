@@ -11,7 +11,7 @@ const shellUrlsToCache = [
   '/icon-512x512.png'
 ];
 
-// Dynamic API URLs to cache for offline functionality
+// Definir URLs dinámicas a cachear para uso offline:
 const contentUrlsToCache = [
   '/api/agenda',
   '/api/ponentes'
@@ -53,45 +53,69 @@ self.addEventListener('install', (event) => {
 
 // Fetch event - serve from cache when offline
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // If found in cache, return it
-        if (response) {
-          return response;
-        }
-
-        // Clone the request for fetch
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then((response) => {
-          // Check if we received a valid response
-          if (!response || response.status !== 200 || response.type !== 'basic') {
+  const requestUrl = new URL(event.request.url);
+  
+  // Check if the request is for dynamic content URLs (API endpoints)
+  if (contentUrlsToCache.some(path => requestUrl.pathname.startsWith(path))) {
+    event.respondWith(
+      caches.open(CONTENT_CACHE_NAME).then(cache => {
+        return cache.match(event.request).then(cachedResponse => {
+          // Always try to fetch fresh data first
+          const fetchPromise = fetch(event.request).then(networkResponse => {
+            // Cache the fresh response
+            if (networkResponse.ok) {
+              cache.put(event.request, networkResponse.clone());
+            }
+            return networkResponse;
+          }).catch(() => {
+            // Network failed, return cached version if available
+            return cachedResponse;
+          });
+          
+          // Return cached response immediately if available, otherwise wait for network
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+  } else {
+    // Default cache strategy for static shell assets
+    event.respondWith(
+      caches.match(event.request)
+        .then((response) => {
+          // If found in cache, return it
+          if (response) {
             return response;
           }
 
-          // Clone the response for cache
-          const responseToCache = response.clone();
+          // Clone the request for fetch
+          const fetchRequest = event.request.clone();
 
-          // Determine which cache to use based on request
-          const isAPIRequest = event.request.url.includes('/api/');
-          const cacheName = isAPIRequest ? CONTENT_CACHE_NAME : SHELL_CACHE_NAME;
+          return fetch(fetchRequest).then((response) => {
+            // Check if we received a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
 
-          caches.open(cacheName)
-            .then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
+            // Clone the response for cache
+            const responseToCache = response.clone();
 
-          return response;
-        });
-      })
-      .catch(() => {
-        // Return offline page if available
-        if (event.request.destination === 'document') {
-          return caches.match('/');
-        }
-      })
-  );
+            // Use shell cache for static assets
+            caches.open(SHELL_CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
+          });
+        })
+        .catch(() => {
+          // Return offline page if available
+          if (event.request.destination === 'document') {
+            return caches.match('/');
+          }
+        })
+    );
+  }
 });
 
 // Activate Service Worker

@@ -26,7 +26,7 @@ import { Helmet } from 'react-helmet-async';  // añado despues de instalar reac
         <p className="lead">El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.        </p>
         <p className="lead">Fecha: 21 y 22 de Noviembre 2025 </p>
         <div className="mt-4 mx-4">
-        <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" class="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
+        <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
             <a href="#learn-more" className="btn mx-2  my-2 btn-outline-light btn-lg">Ver agenda</a>
             
         </div>

@@ -13,9 +13,6 @@ const Header = () => {
     };
 
     const scrollToPonentes = () => {
-
-        ponentes
-        
         const element = document.getElementById('ponentes');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -23,9 +20,6 @@ const Header = () => {
     };
 
     const scrollToEvents = () => {
-
-        ponentes
-        
         const element = document.getElementById('events');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -34,11 +28,12 @@ const Header = () => {
 
 
     return (
-        <Router>
         <Navbar bg="light" expand="lg" className='header'>
-        <Navbar.Brand href="#home" className='text-white font-weight-bold'>X-OPS CONFERENCE</Navbar.Brand>
-        <img src={logo} alt="Jane Doe" style={{ height: '51px', width: '56px' }} />
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <div className="d-flex align-items-center">
+            <img src={logo} alt="X-OPS Conference Logo" style={{ height: '51px', width: '56px', marginRight: '15px' }} />
+            <Navbar.Brand href="#home" className='text-white font-weight-bold navbar-brand-text'>X-OPS CONFERENCE</Navbar.Brand>
+        </div>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="navbar-toggler-custom" />
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto ">
             <Nav.Link onClick={scrollToEvents} className='links px-4 font-weight-bold text-white' href="#inicio">EVENTO</Nav.Link>
@@ -47,12 +42,11 @@ const Header = () => {
                 <Nav.Link className='links px-4 font-weight-bold text-white' href="#tickets"></Nav.Link>
                 
             </Nav>
-        <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" class="button menu-btn">
+        <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="button menu-btn">
             Tickets
         </a>
         </Navbar.Collapse>
     </Navbar>
-    </Router>
     );
 };
 
