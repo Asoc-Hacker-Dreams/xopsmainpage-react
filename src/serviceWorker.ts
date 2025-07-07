@@ -4,5 +4,8 @@ const DATA_URLS = [
   '/api/ponentes'
 ];
 
-// Exportar DATA_URLS para uso en el scope del SW
-export { DATA_URLS };
+// Definir nombre de la cache de datos
+const DATA_CACHE = 'data-cache-v1';
+
+// Exportar DATA_URLS y DATA_CACHE para uso en el scope del SW
+export { DATA_URLS, DATA_CACHE };
