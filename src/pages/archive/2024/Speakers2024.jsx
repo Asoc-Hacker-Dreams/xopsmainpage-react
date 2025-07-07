@@ -11,6 +11,7 @@ import pabloG from "../../../assets/speakers/pabloG.jpg";
 import santiagoC from "../../../assets/speakers/santiagoC.jpg";
 import davidS from "../../../assets/speakers/davidS.png";   // New speaker image.
 import AnimationWrapper from "../../../components/AnimationWrapper";
+import SEO from "../../../components/SEO";
 
 
 const Speakers2024 = () => {
@@ -322,4 +323,4 @@ const Speakers2024 = () => {
   );
 };
 
-export default SpeakersSection2024;
+export default Speakers2024;

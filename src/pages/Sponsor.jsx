@@ -3,6 +3,7 @@ import PricingTable from "../components/PricingTable";
 import Benefits from "../components/Benefits";
 import LastEditionData from "../components/LastEditionData";
 import { useLocation } from 'react-router-dom';
+import SEO from "../components/SEO";
 
 
 const Sponsor = () => {

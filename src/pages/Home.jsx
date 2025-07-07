@@ -6,6 +6,7 @@ import Events from "../components/Events/Events";
 import Ubication from "../components/Ubication";
 import Collaborators from "../components/Collaborators";
 import LastEditionData from "../components/LastEditionData";
+import SEO from "../components/SEO";
 
 
 const Home = () => {
