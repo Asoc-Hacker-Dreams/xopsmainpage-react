@@ -102,7 +102,7 @@ function App() {
           <Route path="/Equipo" element={<Organizer />} />
 
           <Route path="/Sponsor" element={<Sponsor />} />
-          <Route path="/Patrocinadores" element={<Sponsor />} />
+          <Route path="/Patrocina" element={<Sponsor />} />
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 
