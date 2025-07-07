@@ -17,19 +17,17 @@ import AnimationWrapper from "./AnimationWrapper";
 const SpeakersSection = () => {
   return (
     <>
-{/* añadido despues de la instalacion de react helmet */}
-              <Helmet>
-                <title>Conoce a los Ponentes de la X-Ops Conference Madrid 2025</title>
-                <meta name="description" content="Descubre a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025. Conoce sus perfiles y temas destacados." />
-                <meta name="keywords" content="X-Ops, DevOps, DevSecOps, AIOps, MLOps, Conferencia Tecnología Madrid, Ponentes, GitOps, SecOps" />
-                {/* También puedes añadir otras metaetiquetas aquí, como las de Open Graph para redes sociales */}
-                <meta property="og:title" content="Ponentes de la X-Ops Conference Madrid 2025" />
-                <meta property="og:description" content="Conoce a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025." />
-                {/* <meta property="og:image" content="URL_A_UNA_IMAGEN_REPRESENTATIVA" /> */}
-                <meta property="og:url" content="https://xopsconference.com/#ponentes" />
-                <meta name="twitter:card" content="summary_large_image" />
-              </Helmet>
-{/*  hasta aqui añadido despues de la instalacion de react helmet */}
+      <Helmet>
+        <title>Conoce a los Ponentes de la X-Ops Conference Madrid 2025</title>
+        <meta name="description" content="Descubre a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025. Conoce sus perfiles y temas destacados." />
+        <meta name="keywords" content="X-Ops, DevOps, DevSecOps, AIOps, MLOps, Conferencia Tecnología Madrid, Ponentes, GitOps, SecOps" />
+        {/* También puedes añadir otras metaetiquetas aquí, como las de Open Graph para redes sociales */}
+        <meta property="og:title" content="Ponentes de la X-Ops Conference Madrid 2025" />
+        <meta property="og:description" content="Conoce a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025." />
+        {/* <meta property="og:image" content="URL_A_UNA_IMAGEN_REPRESENTATIVA" /> */}
+        <meta property="og:url" content="https://xopsconference.com/#ponentes" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
 
       <section id="ponentes" className="speaker-section ">
         <div className="container margin-top">

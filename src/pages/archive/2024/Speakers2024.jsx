@@ -13,9 +13,31 @@ import davidS from "../../../assets/speakers/davidS.png";   // New speaker image
 import AnimationWrapper from "../../../components/AnimationWrapper";
 
 
-const SpeakersSection2024 = () => {
+const Speakers2024 = () => {
   return (
     <>
+      <SEO
+        title="Ponentes | X-Ops Conference Madrid 2024"
+        description="Conoce a los expertos de X-Ops Conference Madrid 2024."
+        path="/Speakers2024"
+        image="https://xopsconference.com/assets/speakers-og.jpg"
+        lang="es"
+        alternates={[
+          { hrefLang: 'es', href: 'https://xopsconference.com/ponentes2024' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/speakers2024' },
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "X-Ops Conference Madrid 2024",
+          "startDate": "2024-11-22",
+          "location": {
+            "@type": "Place",
+            "name": "Madrid",
+            "address": "Madrid, España"
+          }
+        }}
+      />
       <section id="ponentes" className="speaker-section ">
         <div className="container margin-top">
           <h2 className="text-center">Conoce a Nuestros Ponentes</h2>

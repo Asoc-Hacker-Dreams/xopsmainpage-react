@@ -17,17 +17,10 @@ export default defineConfig({
         '/Organizer',
         '/Sponsor',
         // Rutas de archivo para 2024
-        '/archive/2024/Home2024',
-        '/archive/2024/Events2024',
-        '/archive/2024/SpeakersSection2024',
+        '/archive/2024/Speakers2024',
         '/archive/2024/Sponsor2024',
-        '/archive/2024/Organizer2024',
         // Rutas de archivo para 2023
-        '/archive/2023/Home2023',
-        '/archive/2023/Events2023',
-        '/archive/2023/SpeakersSection2023',
-        '/archive/2023/Sponsor2023',
-        '/archive/2023/Organizer2023',
+        '/archive/2023/Speakers2023',
 
         // Añade todas tus rutas aquí
       ],

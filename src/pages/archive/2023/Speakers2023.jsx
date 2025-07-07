@@ -14,7 +14,7 @@ import davidC from "../../../assets/speakers/davidC.jpg";
 
 import AnimationWrapper from "../../../components/AnimationWrapper";
 
-const SpeakersSection2023 = () => {
+const Speakers2023 = () => {
   return (
     <>
       <section id="ponentes" className="speaker-section ">
@@ -315,4 +315,4 @@ Durante su tiempo libre lleva un Coderdojo donde realizan proyectos de divulgaci
   );
 };
 
-export default SpeakersSection2023;
+export default Speakers2023;

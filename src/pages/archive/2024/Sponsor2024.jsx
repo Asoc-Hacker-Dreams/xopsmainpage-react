@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import PricingTable from '../../../components/PricingTable';
-import Benefits from '../../../components/Benefits';
 import { useLocation } from 'react-router-dom';
+import Collaborators from "../components/Collaborators2024";
 
 
 const Sponsor2024 = () => {
@@ -19,9 +18,8 @@ const Sponsor2024 = () => {
 
   return (
     <>
-    <div id="patrocinio">
-    <Benefits/>
-    <PricingTable />
+    <div id="patrocinio2024">
+    <Collaborators />
     </div>
     </>
   );

@@ -18,7 +18,29 @@ const Organizer = () => {
 
   return (
       <div id="organizr">
-          <Organizers />
+        <SEO
+            title="Organizadores - X-Ops Conference"
+            description="X-Ops Conference la mejor conferencia de tecnologia en Madrid."
+            path="/Organizer"
+            image="https://xopsconference.com/assets/speakers-og.jpg"
+            lang="es"
+            alternates={[
+            { hrefLang: 'es', href: 'https://xopsconference.com/organizadores' },
+            { hrefLang: 'en', href: 'https://xopsconference.com/organizers' },
+            ]}
+            structuredData={{
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "X-Ops Conference Madrid 2025",
+            "startDate": "2025-11-21",
+            "location": {
+                "@type": "Place",
+                "name": "Madrid",
+                "address": "Madrid, España"
+            }
+            }}
+        />
+        <Organizers />
       </div>
   );
 };
