@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Collaborators from "../components/Collaborators2024";
+import Collaborators from "../../../components/Collaborators2024";
 
 
 const Sponsor2024 = () => {
 
   const location = useLocation();
   useEffect(() => {
-      if (location.hash === '#patrocinio') {
-          const element = document.getElementById('patrocinio');
+      if (location.hash === '#patrocinio2024') {
+          const element = document.getElementById('patrocinio2024');
           if (element) {
               element.scrollIntoView({ behavior: 'smooth' });
           }
