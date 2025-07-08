@@ -444,7 +444,7 @@ margin-block: 1rem;
 .Hero-section {
     background-position: center top;
     background-size: cover;
-    padding-top: 120px; /* Reducido para mejor espaciado */
+    padding-top: 140px; /* Increased to prevent text cutoff */
 }
 .navbar {
     position: fixed;
@@ -470,7 +470,8 @@ margin-block: 1rem;
 
 .menu-btn {
   margin-left: 20px;
-  padding-right: 1%;
+  margin-right: 20px; /* Add right margin to prevent clipping */
+  padding: 0.5rem 2rem;
 }
 
 .xops-section {
@@ -676,6 +677,7 @@ margin-block: 1rem;
   /* Mejores márgenes para elementos del menú en móvil */
   .menu-btn {
     margin-left: 10px;
+    margin-right: 10px; /* Ensure right margin in mobile */
     width: auto;
     font-size: 0.8rem;
     padding: 0.4rem 1rem;
@@ -699,7 +701,7 @@ margin-block: 1rem;
   }
 
   .Hero-section {
-    padding-top: 90px;
+    padding-top: 110px; /* Increased for small devices too */
   }
 }
 
