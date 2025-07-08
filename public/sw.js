@@ -1,7 +1,9 @@
 // Service Worker for X-Ops Conference PWA
-const CACHE_NAME = 'xops-conference-v1';
-const DATA_CACHE = 'data-cache-v1';
-const urlsToCache = [
+const SHELL_CACHE_NAME = 'xops-shell-v1';
+const CONTENT_CACHE_NAME = 'xops-content-v1';
+const WHITELISTED_CACHES = [SHELL_CACHE_NAME, CONTENT_CACHE_NAME];
+
+const shellUrlsToCache = [
   '/',
   '/static/js/bundle.js',
   '/static/css/main.css',
@@ -10,7 +12,7 @@ const urlsToCache = [
 ];
 
 // Definir URLs dinámicas a cachear para uso offline:
-const DATA_URLS = [
+const contentUrlsToCache = [
   '/api/agenda',
   '/api/ponentes'
 ];
@@ -18,14 +20,34 @@ const DATA_URLS = [
 // Install Service Worker
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-      .catch((error) => {
-        console.log('Cache installation failed:', error);
-      })
+    Promise.all([
+      // Cache shell resources
+      caches.open(SHELL_CACHE_NAME)
+        .then((cache) => {
+          console.log('Opened shell cache');
+          return cache.addAll(shellUrlsToCache);
+        }),
+      // Cache content/API resources (if available)
+      caches.open(CONTENT_CACHE_NAME)
+        .then((cache) => {
+          console.log('Opened content cache');
+          // Try to cache content URLs, but don't fail if they're not available
+          return Promise.allSettled(
+            contentUrlsToCache.map(url => 
+              fetch(url).then(response => {
+                if (response.ok) {
+                  return cache.put(url, response);
+                }
+              }).catch(() => {
+                // Ignore network errors during install
+                console.log('Content URL not available during install:', url);
+              })
+            )
+          );
+        })
+    ]).catch((error) => {
+      console.log('Cache installation failed:', error);
+    })
   );
 });
 
@@ -33,10 +55,10 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);
   
-  // Check if the request is for dynamic data URLs
-  if (DATA_URLS.some(path => requestUrl.pathname.startsWith(path))) {
+  // Check if the request is for dynamic content URLs (API endpoints)
+  if (contentUrlsToCache.some(path => requestUrl.pathname.startsWith(path))) {
     event.respondWith(
-      caches.open(DATA_CACHE).then(cache => {
+      caches.open(CONTENT_CACHE_NAME).then(cache => {
         return cache.match(event.request).then(cachedResponse => {
           // Always try to fetch fresh data first
           const fetchPromise = fetch(event.request).then(networkResponse => {
@@ -56,12 +78,35 @@ self.addEventListener('fetch', (event) => {
       })
     );
   } else {
-    // Default cache strategy for static assets
+    // Default cache strategy for static shell assets
     event.respondWith(
       caches.match(event.request)
         .then((response) => {
-          // Return cached version or fetch from network
-          return response || fetch(event.request);
+          // If found in cache, return it
+          if (response) {
+            return response;
+          }
+
+          // Clone the request for fetch
+          const fetchRequest = event.request.clone();
+
+          return fetch(fetchRequest).then((response) => {
+            // Check if we received a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+
+            // Clone the response for cache
+            const responseToCache = response.clone();
+
+            // Use shell cache for static assets
+            caches.open(SHELL_CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
+          });
         })
         .catch(() => {
           // Return offline page if available
@@ -75,12 +120,11 @@ self.addEventListener('fetch', (event) => {
 
 // Activate Service Worker
 self.addEventListener('activate', (event) => {
-  const validCaches = [CACHE_NAME, DATA_CACHE];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (!validCaches.includes(cacheName)) {
+          if (!WHITELISTED_CACHES.includes(cacheName)) {
             console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
