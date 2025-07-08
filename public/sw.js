@@ -45,7 +45,7 @@ self.addEventListener('install', (event) => {
             )
           );
         })
-    ]).catch((error) => {
+    ]).then(() => self.skipWaiting()).catch((error) => {
       console.log('Cache installation failed:', error);
     })
   );
@@ -130,7 +130,7 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
