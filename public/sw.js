@@ -51,11 +51,38 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Fetch event - serve from cache when offline
+// Fetch event - implement advanced cache strategies
 self.addEventListener('fetch', (event) => {
+  const { request } = event;
   const requestUrl = new URL(event.request.url);
-  
-  // Check if the request is for dynamic content URLs (API endpoints)
+
+  // Ignore non-GET requests
+  if (request.method !== 'GET') {
+    return;
+  }
+
+  // Strategy: Stale-While-Revalidate for content.json files
+  if (request.url.includes('content.json')) {
+    event.respondWith(
+      caches.open(CONTENT_CACHE_NAME).then((cache) => {
+        return cache.match(request).then((cachedResponse) => {
+          const fetchPromise = fetch(request).then((networkResponse) => {
+            if (networkResponse.ok) {
+              cache.put(request, networkResponse.clone());
+            }
+            return networkResponse;
+          }).catch(() => {
+            // Network failed, return cached version if available
+            return cachedResponse;
+          });
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+    return;
+  }
+
+  // Strategy: Network First for dynamic content URLs (API endpoints)
   if (contentUrlsToCache.some(path => requestUrl.pathname.startsWith(path))) {
     event.respondWith(
       caches.open(CONTENT_CACHE_NAME).then(cache => {
@@ -77,45 +104,48 @@ self.addEventListener('fetch', (event) => {
         });
       })
     );
-  } else {
-    // Default cache strategy for static shell assets
-    event.respondWith(
-      caches.match(event.request)
-        .then((response) => {
-          // If found in cache, return it
-          if (response) {
-            return response;
-          }
-
-          // Clone the request for fetch
-          const fetchRequest = event.request.clone();
-
-          return fetch(fetchRequest).then((response) => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response for cache
-            const responseToCache = response.clone();
-
-            // Use shell cache for static assets
-            caches.open(SHELL_CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          });
-        })
-        .catch(() => {
-          // Return offline page if available
-          if (event.request.destination === 'document') {
-            return caches.match('/');
-          }
-        })
-    );
+    return;
   }
+
+  // Strategy: Cache First for App Shell and other assets with dynamic image caching
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        // If found in cache, return it
+        if (response) {
+          return response;
+        }
+
+        // Clone the request for fetch
+        const fetchRequest = event.request.clone();
+
+        return fetch(fetchRequest).then((response) => {
+          // Check if we received a valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+
+          // Clone the response for cache
+          const responseToCache = response.clone();
+
+          // Dynamic caching for images
+          if (request.url.match(/\.(png|jpg|jpeg|gif)$/)) {
+            caches.open(CONTENT_CACHE_NAME).then(cache => cache.put(event.request, responseToCache.clone()));
+          } else {
+            // Use shell cache for static assets
+            caches.open(SHELL_CACHE_NAME).then(cache => cache.put(event.request, responseToCache));
+          }
+
+          return response;
+        });
+      })
+      .catch(() => {
+        // Return offline page if available
+        if (event.request.destination === 'document') {
+          return caches.match('/');
+        }
+      })
+  );
 });
 
 // Activate Service Worker
