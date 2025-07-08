@@ -1,9 +1,9 @@
 // Service Worker for X-Ops Conference PWA
-const CACHE_NAME = 'xops-conference-v1';
 const SHELL_CACHE_NAME = 'xops-shell-v1';
-const WHITELISTED_CACHES = [CACHE_NAME, SHELL_CACHE_NAME];
+const CONTENT_CACHE_NAME = 'xops-content-v1';
+const WHITELISTED_CACHES = [SHELL_CACHE_NAME, CONTENT_CACHE_NAME];
 
-const urlsToCache = [
+const shellUrlsToCache = [
   '/',
   '/static/js/bundle.js',
   '/static/css/main.css',
@@ -11,39 +11,111 @@ const urlsToCache = [
   '/icon-512x512.png'
 ];
 
+// Definir URLs dinámicas a cachear para uso offline:
+const contentUrlsToCache = [
+  '/api/agenda',
+  '/api/ponentes'
+];
+
 // Install Service Worker
 self.addEventListener('install', (event) => {
-  const appShellFiles = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    // Add paths to your main JS/CSS bundles here
-  ];
   event.waitUntil(
-    caches.open(SHELL_CACHE_NAME)
-      .then((cache) => {
-        console.log('Opened shell cache');
-        return cache.addAll(appShellFiles);
-      })
-      .then(() => self.skipWaiting())
+    Promise.all([
+      // Cache shell resources
+      caches.open(SHELL_CACHE_NAME)
+        .then((cache) => {
+          console.log('Opened shell cache');
+          return cache.addAll(shellUrlsToCache);
+        }),
+      // Cache content/API resources (if available)
+      caches.open(CONTENT_CACHE_NAME)
+        .then((cache) => {
+          console.log('Opened content cache');
+          // Try to cache content URLs, but don't fail if they're not available
+          return Promise.allSettled(
+            contentUrlsToCache.map(url => 
+              fetch(url).then(response => {
+                if (response.ok) {
+                  return cache.put(url, response);
+                }
+              }).catch(() => {
+                // Ignore network errors during install
+                console.log('Content URL not available during install:', url);
+              })
+            )
+          );
+        })
+    ]).then(() => self.skipWaiting()).catch((error) => {
+      console.log('Cache installation failed:', error);
+    })
   );
 });
 
 // Fetch event - serve from cache when offline
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
+  const requestUrl = new URL(event.request.url);
+  
+  // Check if the request is for dynamic content URLs (API endpoints)
+  if (contentUrlsToCache.some(path => requestUrl.pathname.startsWith(path))) {
+    event.respondWith(
+      caches.open(CONTENT_CACHE_NAME).then(cache => {
+        return cache.match(event.request).then(cachedResponse => {
+          // Always try to fetch fresh data first
+          const fetchPromise = fetch(event.request).then(networkResponse => {
+            // Cache the fresh response
+            if (networkResponse.ok) {
+              cache.put(event.request, networkResponse.clone());
+            }
+            return networkResponse;
+          }).catch(() => {
+            // Network failed, return cached version if available
+            return cachedResponse;
+          });
+          
+          // Return cached response immediately if available, otherwise wait for network
+          return cachedResponse || fetchPromise;
+        });
       })
-      .catch(() => {
-        // Return offline page if available
-        if (event.request.destination === 'document') {
-          return caches.match('/');
-        }
-      })
-  );
+    );
+  } else {
+    // Default cache strategy for static shell assets
+    event.respondWith(
+      caches.match(event.request)
+        .then((response) => {
+          // If found in cache, return it
+          if (response) {
+            return response;
+          }
+
+          // Clone the request for fetch
+          const fetchRequest = event.request.clone();
+
+          return fetch(fetchRequest).then((response) => {
+            // Check if we received a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+
+            // Clone the response for cache
+            const responseToCache = response.clone();
+
+            // Use shell cache for static assets
+            caches.open(SHELL_CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              });
+
+            return response;
+          });
+        })
+        .catch(() => {
+          // Return offline page if available
+          if (event.request.destination === 'document') {
+            return caches.match('/');
+          }
+        })
+    );
+  }
 });
 
 // Activate Service Worker
