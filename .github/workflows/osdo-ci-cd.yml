@@ -107,15 +107,63 @@ jobs:
         with:
           name: npm-audit-report
           path: npm-audit-report.json
-
-    #   # Análisis con Snyk
-    #   - name: Run Snyk to check for vulnerabilities
-    #     uses: snyk/actions/node@master
-    #     env:
-    #       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-    #     with:
-    #       args: --severity-threshold=high
-    #     continue-on-error: true
+      
+      - name: Run Retire.js
+        run: |
+          npx retire --outputformat json --outputfile retire-report.json
+          npx retire --outputformat html --outputfile retire-report.html
+        continue-on-error: true
+      - name: Upload Retire.js report
+        uses: actions/upload-artifact@v4
+        with:
+          name: retirejs-report
+          path: |
+            retire-report.json
+            retire-report.html
+      - name: Run Dependency-Check
+        run: |
+          npx dependency-check --failOnCVSS 7 --format JSON --out dependency-check-report.json .
+        continue-on-error: true
+      - name: Upload Dependency-Check report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path: dependency-check-report.json
+      - name: SBOM Generation cyclonedx
+        run: |
+          npx @cyclonedx/cyclonedx-npm --output-file sbom.json
+          npx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-reports
+          path: |
+            sbom.json
+            sbom.xml
+      - name: Snyk Security Scan
+        run: |
+          RESULTS_DIR="$(pwd)/.osdo/results"
+          docker run --rm \
+          -v "$(pwd):/project" \
+          -v "$RESULTS_DIR:/results" \
+          snyk/snyk:node \
+          test /project \
+          --json > "$RESULTS_DIR/snyk.json" 2>/dev/null || true
+      
+          docker run --rm \
+          -v "$(pwd):/project" \
+          -v "$RESULTS_DIR:/results" \
+          snyk/snyk:node \
+          test /project \
+          --json \
+          --severity-threshold=high > "$RESULTS_DIR/snyk-licenses.json" 2>/dev/null || true
+      - name: Upload Snyk reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: snyk-reports
+          path: |
+            snyk.json
+            snyk-licenses.json
 
       # Análisis de licencias
       - name: License compliance check
@@ -139,32 +187,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      # - name: Install additional OSDO tools
-      #   run: |
-      #     # Instalar herramientas adicionales
-      #     sudo apt-get update
-      #     sudo apt-get install -y jq
-          
-      #     # Instalar Docker (para herramientas en contenedores)
-      #     curl -fsSL https://get.docker.com -o get-docker.sh
-      #     sudo sh get-docker.sh
-      #     sudo usermod -aG docker $USER
       
       - name: Semgrep Static Analysis
         run: |
-          SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-          PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-          RESULTS_DIR="$PROJECT_ROOT/.osdo/results"
+          RESULTS_DIR="$(pwd)/.osdo/results"
           docker run --rm \
-            -v "$PROJECT_ROOT:/src" \
+            -v "$(pwd):/src" \
             -v "$RESULTS_DIR:/results" \
             returntocorp/semgrep:latest \
-            --json \
-            --sarif \
             --output="/results/semgrep.sarif" \
-            --output="/results/semgrep.json" \
-            /src/src/ || true
+            /src > semgrep.sarif || true
         continue-on-error: true
       
         # Upload SARIF file generated in previous step
@@ -174,36 +206,15 @@ jobs:
           sarif_file: semgrep.sarif
         if: always()
         continue-on-error: true
-      # - name: Execute OSDO SAST Analysis
-      #   run: |
-      #     chmod +x .osdo/tools/sast.sh
-      #     ./.osdo/tools/sast.sh
-      #   continue-on-error: true
-
-      - name: ESLint Security Analysis
-        run: |
-          npx eslint . --ext .js,.jsx,.ts,.tsx --format json -o eslint-report.json
-        continue-on-error: true
       - name: Install ESLint Security Plugin
-        run: npm install --save-dev eslint-plugin-security
+        run: npm install eslint @microsoft/eslint-formatter-sarif eslint-plugin-security eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh --save-dev
         
       - name: Run ESLint with Security Rules
         env:
             SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          echo '{
-            "extends": ["plugin:security/recommended"],
-            "plugins": ["security"],
-            "rules": {
-              "security/detect-object-injection": "error",
-              "security/detect-non-literal-regexp": "error",
-              "security/detect-non-literal-fs-filename": "error",
-              "security/detect-eval-with-expression": "error",
-              "security/detect-pseudoRandomBytes": "error"
-            }
-          }' > .eslintrc.security.json
-          npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format json -o eslint-security-report.json
-          npx eslint . --config .eslintrc.security.json --ext .js,.jsx,.ts,.tsx --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+          npx eslint . --format json -o eslint-security-report.json
+          npx eslint . --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
         continue-on-error: true
 
       - name: Upload ESLint reports
@@ -211,7 +222,6 @@ jobs:
         with:
           name: eslint-reports
           path: |
-            eslint-report.json
             eslint-security-report.json
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
@@ -453,6 +463,8 @@ jobs:
     name: 🚦 Security Quality Gate
     runs-on: ubuntu-latest
     needs: [test-and-quality, dependency-security-scan, static-analysis, secrets-scan]
+    permissions:
+      contents: read
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4

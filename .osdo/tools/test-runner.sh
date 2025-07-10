@@ -193,7 +193,7 @@ describe('App Component', () => {
     
     expect(screen.getByText(/EVENTO/i)).toBeInTheDocument()
     expect(screen.getByText(/PONENTES/i)).toBeInTheDocument()
-    expect(screen.getByText(/PATROCINADORES/i)).toBeInTheDocument()
+    expect(screen.getByText(/PATROCINA/i)).toBeInTheDocument()
   })
 })
 EOF

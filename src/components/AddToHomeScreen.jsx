@@ -87,7 +87,7 @@ const AddToHomeScreen = () => {
           Instalar X-Ops Conference
         </div>
         <div style={{ fontSize: '14px', opacity: 0.9 }}>
-          Instala la app para acceso rápido y offline
+          Instala la app para acceso rápido y offline a la agenda, speakers y más.
         </div>
       </div>
       <div style={{ display: 'flex', gap: '10px' }}>
