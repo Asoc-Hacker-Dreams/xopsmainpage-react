@@ -32,7 +32,7 @@ const PricingTable = () => {
         },
         {
             name: "GOLD",
-            price: 2500,
+            price: 3000,
             features: [
                 "Todos los beneficios del paquete Silver",
                 "Charla técnica de 45 minutos",

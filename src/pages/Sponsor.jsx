@@ -3,6 +3,7 @@ import PricingTable from "../components/PricingTable";
 import Benefits from "../components/Benefits";
 import LastEditionData from "../components/LastEditionData";
 import { useLocation } from 'react-router-dom';
+import SEO from "../components/SEO";
 
 
 const Sponsor = () => {
@@ -21,6 +22,28 @@ const Sponsor = () => {
   return (
     <>
     <div id="patrocinio">
+    <SEO
+            title="Patrocina - X-Ops Conference"
+            description="Patrocina a X-Ops Conference la mejor conferencia de tecnologia en Madrid."
+            path="/Organizer"
+            image="https://xopsconference.com/assets/speakers-og.jpg"
+            lang="es"
+            alternates={[
+            { hrefLang: 'es', href: 'https://xopsconference.com/patrocina' },
+            { hrefLang: 'en', href: 'https://xopsconference.com/sponsorship' },
+            ]}
+            structuredData={{
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "X-Ops Conference Madrid 2025",
+            "startDate": "2025-11-21",
+            "location": {
+                "@type": "Place",
+                "name": "Madrid",
+                "address": "Madrid, España"
+            }
+            }}
+        />
     <LastEditionData/>
     <Benefits/>
     <PricingTable />

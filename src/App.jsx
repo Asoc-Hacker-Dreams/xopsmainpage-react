@@ -8,19 +8,13 @@ import AddToHomeScreen from './components/AddToHomeScreen';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
-import Home2024 from './pages/archive/2024/Home2024';
-import Organizer2024 from './pages/archive/2024/Organizer2024';  // Este es el Organizer2024
-import Home2023 from './pages/archive/2023/Home2023';
-import Organizer2023 from './pages/archive/2023/Organizer2023';    // Este es el Organizer2023
-import Events2023 from './pages/archive/2023/Events2023';    // Este es el Events2023
-import Events2024 from './pages/archive/2024/Events2024'; 
-import SpeakersSection2023 from './pages/archive/2023/SpeakersSection2023';
-import SpeakersSection2024 from './pages/archive/2024/SpeakersSection2024';
+import Speakers2023 from './pages/archive/2023/Speakers2023';
+import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
-import Sponsor2023 from './pages/archive/2023/Sponsor2023';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
+import { HelmetProvider } from 'react-helmet-async';
 function App() {
   const { canPrompt, promptInstall } = usePWA();
 
@@ -31,6 +25,7 @@ function App() {
 
 
    return (
+  <HelmetProvider>
     <>
 
 <ScrollHandler />
@@ -43,31 +38,29 @@ function App() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto ">
-             <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
+              <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PATROCINADORES</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PATROCINA</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
-       
+        
       {/* Menú EVENTOS ANTERIORES */}  
       <NavDropdown
-  title={<span>EVENTOS<br />ANTERIORES</span>}
-  className='links px-4 font-weight-bold custom-white-dropdown'
-  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
->
-  {/* Título X-OPS 2024 */}
-  <div className="submenu-title">X-OPS 2024</div>
-  <NavDropdown.Item as={Link} to="/archive/2024/SpeakersSection2024">Ponentes</NavDropdown.Item>
-  <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
+        title={<span>EVENTOS<br />ANTERIORES</span>}
+        className='links px-4 font-weight-bold custom-white-dropdown'
+        style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
+      >
+        {/* Título X-OPS 2024 */}
+        <div className="submenu-title">X-Ops Conference Madrid 2024</div>
+        <NavDropdown.Item as={Link} to="/archive/2024/Speakers2024">Ponentes</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
 
-  <NavDropdown.Divider />
+        <NavDropdown.Divider />
 
-  {/* Título Aldea DevSecOps 2023 */}
-  <div className="submenu-title">Aldea DevSecOps 2023</div>
-  <NavDropdown.Item as={Link} to="/archive/2023/SpeakersSection2023">Ponentes</NavDropdown.Item>
-  <NavDropdown.Item as={Link} to="/archive/2023/Sponsor2023">Patrocinio y<br />Colaboradores</NavDropdown.Item>
-</NavDropdown>
-
+        {/* Título Aldea DevSecOps 2023 */}
+        <div className="submenu-title">Aldea DevSecOps 2023</div>
+        <NavDropdown.Item as={Link} to="/archive/2023/Speakers2023">Ponentes</NavDropdown.Item>
+      </NavDropdown>
             </Nav>
         <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none', width: "110px", paddingLeft: "1%", marginTop: "-2%" }}>
             ENTRADAS
@@ -103,23 +96,22 @@ function App() {
 
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Organizer" element={<Organizer />} /> {/* Organizador principal */}
+          <Route path="/Organizer" element={<Organizer />} />
+          <Route path="/Organizadores" element={<Organizer />} />
+          <Route path="/Team" element={<Organizer />} />
+          <Route path="/Equipo" element={<Organizer />} />
+
           <Route path="/Sponsor" element={<Sponsor />} />
+          <Route path="/Patrocina" element={<Sponsor />} />
+
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 
           {/* 2024 */}
-          <Route path="archive/2024/Home2024" element={<Home2024 />} /> 
-          <Route path="/archive/2024/Events2024" element={<Events2024 />} />
-          <Route path="/archive/2024/SpeakersSection2024" element={<SpeakersSection2024 />} />
+          <Route path="/archive/2024/Speakers2024" element={<Speakers2024 />} />
           <Route path="/archive/2024/Sponsor2024" element={<Sponsor2024 />} />
-          <Route path="archive/2024/Organizer2024" element={<Organizer2024 />} />
 
           {/* 2023 */}
-          <Route path="archive/2023/Home2023" element={<Home2023 />} />
-          <Route path="/archive/2023/Events2023" element={<Events2023 />} />
-          <Route path="/archive/2023/SpeakersSection2023" element={<SpeakersSection2023 />} />
-          <Route path="/archive/2023/Sponsor2023" element={<Sponsor2023 />} />
-          <Route path="archive/2023/Organizer2023" element={<Organizer2023 />} />
+          <Route path="/archive/2023/Speakers2023" element={<Speakers2023 />} />
           <Route path="*" element={<NotFound />} /> {/* Ruta por defecto para manejar 404 */}
 
       </Routes>
@@ -150,7 +142,7 @@ function App() {
         </div>
       </div>
       <div className="text-center py-3">
-        <p>&copy; 2025 - X-Ops Conference Madrid</p>
+        <p>&copy; 2025 - X-Ops Conference</p>
         <p>Teléfono: <a href="tel:+34744644873" className="text-white">+34744644873</a> / <a href="tel:+34693814098" className="text-white">+34693814098</a></p>
       </div>
     </footer>
@@ -158,6 +150,7 @@ function App() {
     {/* Add to Home Screen Banner */}
     <AddToHomeScreen />
     </>
+  </HelmetProvider>
   )
 }
 
