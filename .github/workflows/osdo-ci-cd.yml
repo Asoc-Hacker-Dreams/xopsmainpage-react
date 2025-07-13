@@ -163,17 +163,16 @@ jobs:
           name: dependency-check-report
           path: .osdo/results/dependency-check-report.json
       - name: CycloneDX SBOM Generation
-        uses: CycloneDX/gh-node-module-generatebom@v2
+        uses: CycloneDX/gh-node-module-generatebom@v1.0.3
         with:
-          output: .osdo/results
-          format: all
+          path: .osdo/results
+          output: sbom.json
       - name: Upload SBOM
         uses: actions/upload-artifact@v4
         with:
           name: sbom-reports
           path: |
             .osdo/results/sbom.json
-            .osdo/results/sbom.xml
       # Análisis de licencias
       - name: License compliance check
         run: |
