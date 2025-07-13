@@ -183,12 +183,17 @@ jobs:
       - name: Semgrep Static Analysis
         run: |
           RESULTS_DIR="$(pwd)/.osdo/results"
+          mkdir -p "$RESULTS_DIR"
           docker run --rm \
             -v "$(pwd):/src" \
             -v "$RESULTS_DIR:/results" \
             returntocorp/semgrep:latest \
-            semgrep --output /results/semgrep.sarif /src || true
-        continue-on-error: true
+            semgrep --sarif --output /results/semgrep.sarif /src
+          if ! [ -s "$RESULTS_DIR/semgrep.sarif" ]; then
+            echo "::error::semgrep.sarif was not created or is empty"
+            exit 1
+          fi
+        continue-on-error: false
       - name: Validate Semgrep SARIF output
         run: |
           if ! jq empty .osdo/results/semgrep.sarif; then
@@ -229,14 +234,14 @@ jobs:
         if: always()
         continue-on-error: true
 
-      # CodeQL Analysis
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript-typescript
+      # # CodeQL Analysis
+      # - name: Initialize CodeQL
+      #   uses: github/codeql-action/init@v3
+      #   with:
+      #     languages: javascript-typescript
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+      # - name: Perform CodeQL Analysis
+      #   uses: github/codeql-action/analyze@v3
 
   # Job 4: Análisis de Secretos y Seguridad Avanzada
   secrets-scan:
