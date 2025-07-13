@@ -189,7 +189,13 @@ jobs:
             returntocorp/semgrep:latest \
             semgrep --output /results/semgrep.sarif /src || true
         continue-on-error: true
-      
+      - name: Validate Semgrep SARIF output
+        run: |
+          if ! jq empty .osdo/results/semgrep.sarif; then
+            echo "::error::semgrep.sarif is invalid JSON"
+            exit 1
+          fi
+        continue-on-error: true
       - name: Upload Semgrep SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:
@@ -203,38 +209,8 @@ jobs:
         env:
             SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          # Crear directorio para resultados si no existe
-          mkdir -p .osdo/results
-          
-          # Ejecutar ESLint con formato JSON (usando configuración por defecto)
           npx eslint . --format json -o .osdo/results/eslint-security-report.json || true
-          
-          # Ejecutar ESLint con formato SARIF (usando configuración por defecto)
           npx eslint . --format @microsoft/eslint-formatter-sarif --output-file .osdo/results/eslint-results.sarif || true
-          
-          # Verificar que los archivos se generaron
-          echo "Verificando archivos generados:"
-          ls -la .osdo/results/
-          
-          # Mostrar contenido del archivo SARIF para depuración
-          if [ -f .osdo/results/eslint-results.sarif ]; then
-            echo "✅ Archivo SARIF generado exitosamente"
-            echo "Tamaño del archivo: $(wc -c < .osdo/results/eslint-results.sarif) bytes"
-            echo "Validando formato SARIF:"
-            head -5 .osdo/results/eslint-results.sarif | grep -q "version.*2.1.0" && echo "✅ Formato SARIF válido" || echo "❌ Formato SARIF inválido"
-          else
-            echo "❌ Archivo SARIF no se generó"
-            echo "Contenido del directorio .osdo/results/:"
-            ls -la .osdo/results/ || echo "Directorio no existe"
-          fi
-          
-          # Verificar archivo JSON también
-          if [ -f .osdo/results/eslint-security-report.json ]; then
-            echo "✅ Archivo JSON generado exitosamente"
-            echo "Tamaño del archivo: $(wc -c < .osdo/results/eslint-security-report.json) bytes"
-          else
-            echo "❌ Archivo JSON no se generó"
-          fi
         continue-on-error: true
 
       - name: Upload ESLint reports
@@ -258,7 +234,6 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: javascript-typescript
-          tools: node
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
