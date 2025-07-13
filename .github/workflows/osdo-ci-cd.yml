@@ -137,22 +137,20 @@ jobs:
       - name: Run Retire.js
         run: |
           npx retire --outputformat json --outputpath .osdo/results/retire-report.json
-          npx retire --outputformat html --outputpath .osdo/results/retire-report.html
         continue-on-error: true
       - name: Upload Retire.js report
         uses: actions/upload-artifact@v4
         with:
           name: retirejs-report
           path: |
-            retire-report.json
-            retire-report.html
+            .osdo/results/retire-report.json
       - name: Download OWASP Dependency-Check
         run: |
           wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.2.0/dependency-check-9.2.0-release.zip
           unzip dependency-check-9.2.0-release.zip -d dependency-check
       - name: Run OWASP Dependency-Check
         run: |
-          ./dependency-check/bin/dependency-check.sh --project "xopsmainpage-react" \
+          ./dependency-check/dependency-check/bin/dependency-check.sh --project "xopsmainpage-react" \
             --scan . \
             --format JSON \
             --out .osdo/results/dependency-check-report.json \
@@ -280,7 +278,8 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: javascript
+          languages: javascript-typescript
+          tools: node
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
@@ -313,18 +312,6 @@ jobs:
             --report-path="/results/gitleaks-secrets.json" \
             --verbose || true
         continue-on-error: true
-
-    #   - name: Execute Semgrep Secrets Analysis
-    #     run: |
-    #       docker run --rm \
-    #         -v $(pwd):/workspace \
-    #         -v $(pwd)/.osdo/results:/results \
-    #         returntocorp/semgrep:latest \
-    #         --config=auto \
-    #         --json \
-    #         --output="/results/semgrep-secrets.json" \
-    #         /workspace || true
-    #     continue-on-error: true
 
       - name: Evaluate Secrets Analysis Results
         run: |
