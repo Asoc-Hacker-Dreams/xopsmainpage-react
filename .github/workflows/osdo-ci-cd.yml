@@ -92,28 +92,52 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Execute SCA (Software Composition Analysis)
+      - name: Create results directory
+        run: mkdir -p .osdo/results
+
+      - name: Snyk Vulnerability Analysis
         run: |
-          chmod +x .osdo/tools/sca.sh
-          ./.osdo/tools/sca.sh
-        continue-on-error: true
+          docker run --rm \
+            -v "$(pwd):/project" \
+            -v "$(pwd)/.osdo/results:/results" \
+            snyk/snyk:node \
+            test /project \
+            --json > .osdo/results/snyk.json 2>/dev/null || true
+
+      - name: Snyk License Analysis (high severity)
+        run: |
+          docker run --rm \
+            -v "$(pwd):/project" \
+            -v "$(pwd)/.osdo/results:/results" \
+            snyk/snyk:node \
+            test /project \
+            --json \
+            --severity-threshold=high > .osdo/results/snyk-licenses.json 2>/dev/null || true
+
+      - name: Upload Snyk reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: snyk-reports
+          path: |
+            .osdo/results/snyk.json
+            .osdo/results/snyk-licenses.json
 
       - name: Run npm audit
         run: |
           npm audit --audit-level=moderate
-          npm audit --json > npm-audit-report.json
+          npm audit --json > .osdo/results/npm-audit-report.json
         continue-on-error: true
 
       - name: Upload npm audit report
         uses: actions/upload-artifact@v4
         with:
           name: npm-audit-report
-          path: npm-audit-report.json
-      
+          path: .osdo/results/npm-audit-report.json
+
       - name: Run Retire.js
         run: |
-          npx retire --outputformat json --outputfile retire-report.json
-          npx retire --outputformat html --outputfile retire-report.html
+          npx retire --outputformat json --outputfile .osdo/results/retire-report.json
+          npx retire --outputformat html --outputfile .osdo/results/retire-report.html
         continue-on-error: true
       - name: Upload Retire.js report
         uses: actions/upload-artifact@v4
@@ -124,24 +148,24 @@ jobs:
             retire-report.html
       - name: Run Dependency-Check
         run: |
-          npx dependency-check --failOnCVSS 7 --format JSON --out dependency-check-report.json .
+          npx dependency-check --failOnCVSS 7 --format JSON --out .osdo/results/dependency-check-report.json .
         continue-on-error: true
       - name: Upload Dependency-Check report
         uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
-          path: dependency-check-report.json
+          path: .osdo/results/dependency-check-report.json
       - name: SBOM Generation cyclonedx
         run: |
-          npx @cyclonedx/cyclonedx-npm --output-file sbom.json
-          npx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
+          npx @cyclonedx/cyclonedx-npm --output-file .osdo/results/sbom.json
+          npx @cyclonedx/cyclonedx-npm --output-format xml --output-file .osdo/results/sbom.xml
       - name: Upload SBOM
         uses: actions/upload-artifact@v4
         with:
           name: sbom-reports
           path: |
-            sbom.json
-            sbom.xml
+            .osdo/results/sbom.json
+            .osdo/results/sbom.xml
       - name: Snyk Security Scan
         run: |
           RESULTS_DIR="$(pwd)/.osdo/results"
@@ -164,8 +188,8 @@ jobs:
         with:
           name: snyk-reports
           path: |
-            snyk.json
-            snyk-licenses.json
+            .osdo/results/snyk.json
+            .osdo/results/snyk-licenses.json
 
       # Análisis de licencias
       - name: License compliance check
