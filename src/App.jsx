@@ -5,6 +5,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
 import AddToHomeScreen from './components/AddToHomeScreen';
+import ServiceWorkerManager from './components/ServiceWorkerManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
@@ -149,6 +150,9 @@ function App() {
    
     {/* Add to Home Screen Banner */}
     <AddToHomeScreen />
+    
+    {/* Service Worker Manager for PWA updates */}
+    <ServiceWorkerManager />
     </>
   </HelmetProvider>
   )

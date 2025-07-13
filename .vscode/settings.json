@@ -3,12 +3,13 @@
         "main"
     ],
     "chat.mcp.serverSampling": {
-        "xopsmainpage-react/.vscode/mcp.json: msdocs": {
+        "xopsmainpage-react/.vscode/mcp.json: MCP_DOCKER": {
             "allowedModels": [
                 "github.copilot-chat/gpt-4.1",
-                "github.copilot-chat/claude-opus-4",
                 "github.copilot-chat/claude-sonnet-4",
-                "github.copilot-chat/gpt-4o"
+                "github.copilot-chat/gemini-2.5-pro",
+                "github.copilot-chat/gpt-4o",
+                "github.copilot-chat/o3"
             ]
         }
     }

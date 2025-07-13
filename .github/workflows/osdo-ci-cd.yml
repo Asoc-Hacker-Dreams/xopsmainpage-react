@@ -188,6 +188,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Create results directory
+        run: mkdir -p .osdo/results
+
       - name: Semgrep Static Analysis
         run: |
           RESULTS_DIR="$(pwd)/.osdo/results"
@@ -195,15 +198,13 @@ jobs:
             -v "$(pwd):/src" \
             -v "$RESULTS_DIR:/results" \
             returntocorp/semgrep:latest \
-            --output="/results/semgrep.sarif" \
-            /src > semgrep.sarif || true
+            semgrep --output /results/semgrep.sarif /src || true
         continue-on-error: true
       
-        # Upload SARIF file generated in previous step
-      - name: Upload SARIF file
+      - name: Upload Semgrep SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: semgrep.sarif
+          sarif_file: .osdo/results/semgrep.sarif
         if: always()
         continue-on-error: true
       - name: Install ESLint Security Plugin
@@ -213,8 +214,38 @@ jobs:
         env:
             SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          npx eslint . --format json -o eslint-security-report.json
-          npx eslint . --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+          # Crear directorio para resultados si no existe
+          mkdir -p .osdo/results
+          
+          # Ejecutar ESLint con formato JSON (usando configuración por defecto)
+          npx eslint . --format json -o .osdo/results/eslint-security-report.json || true
+          
+          # Ejecutar ESLint con formato SARIF (usando configuración por defecto)
+          npx eslint . --format @microsoft/eslint-formatter-sarif --output-file .osdo/results/eslint-results.sarif || true
+          
+          # Verificar que los archivos se generaron
+          echo "Verificando archivos generados:"
+          ls -la .osdo/results/
+          
+          # Mostrar contenido del archivo SARIF para depuración
+          if [ -f .osdo/results/eslint-results.sarif ]; then
+            echo "✅ Archivo SARIF generado exitosamente"
+            echo "Tamaño del archivo: $(wc -c < .osdo/results/eslint-results.sarif) bytes"
+            echo "Validando formato SARIF:"
+            head -5 .osdo/results/eslint-results.sarif | grep -q "version.*2.1.0" && echo "✅ Formato SARIF válido" || echo "❌ Formato SARIF inválido"
+          else
+            echo "❌ Archivo SARIF no se generó"
+            echo "Contenido del directorio .osdo/results/:"
+            ls -la .osdo/results/ || echo "Directorio no existe"
+          fi
+          
+          # Verificar archivo JSON también
+          if [ -f .osdo/results/eslint-security-report.json ]; then
+            echo "✅ Archivo JSON generado exitosamente"
+            echo "Tamaño del archivo: $(wc -c < .osdo/results/eslint-security-report.json) bytes"
+          else
+            echo "❌ Archivo JSON no se generó"
+          fi
         continue-on-error: true
 
       - name: Upload ESLint reports
@@ -222,12 +253,16 @@ jobs:
         with:
           name: eslint-reports
           path: |
-            eslint-security-report.json
+            .osdo/results/eslint-security-report.json
+        if: always()
+        
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: eslint-results.sarif
+          sarif_file: .osdo/results/eslint-results.sarif
           wait-for-processing: true
+        if: always()
+        continue-on-error: true
 
       # CodeQL Analysis
       - name: Initialize CodeQL
