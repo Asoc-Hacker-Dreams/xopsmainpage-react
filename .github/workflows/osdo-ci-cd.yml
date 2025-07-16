@@ -1,6 +1,33 @@
 name: OSDO CI/CD Pipeline
 
 on:
+  workflow_dispatch:
+    inputs:
+      run_tests:
+        description: 'Run tests and quality checks'
+        required: true
+        default: true
+        type: boolean
+      run_security_scan:
+        description: 'Run security scans'
+        required: true
+        default: true
+        type: boolean
+      run_static_analysis:
+        description: 'Run static analysis'
+        required: true
+        default: true
+        type: boolean
+      run_secrets_scan:
+        description: 'Run secrets detection'
+        required: true
+        default: true
+        type: boolean
+      run_build_security:
+        description: 'Run secure build and SBOM generation'
+        required: true
+        default: true
+        type: boolean
   push:
     branches: [ main, develop, feature/* ]
   pull_request:
@@ -134,11 +161,6 @@ jobs:
             --format JSON \
             --out .osdo/results/dependency-check-report.json \
             --failOnCVSS 7 || true
-      - name: CycloneDX SBOM Generation
-        uses: CycloneDX/gh-node-module-generatebom@v1.0.3
-        with:
-          path: .osdo/results
-          output: sbom.json
       - name: Upload Dependency Reports
         uses: actions/upload-artifact@v4
         with:
@@ -149,7 +171,6 @@ jobs:
             .osdo/results/npm-audit-report.json
             .osdo/results/retire-report.json
             .osdo/results/dependency-check-report.json
-            .osdo/results/sbom.json
       # Análisis de licencias
       - name: License compliance check
         run: |
@@ -307,14 +328,14 @@ jobs:
           fi
         continue-on-error: true
 
-    #   - name: Run TruffleHog OSS
-    #     uses: trufflesecurity/trufflehog@main
-    #     with:
-    #       path: ./
-    #       base: main
-    #       head: HEAD
-    #       extra_args: --debug --only-verified
-    #     continue-on-error: true
+      - name: Run TruffleHog OSS
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: main
+          head: HEAD
+          extra_args: --results=verified,unknown --json
+        continue-on-error: true
 
       - name: Upload secrets analysis results
         uses: actions/upload-artifact@v4
