@@ -11,6 +11,7 @@ import Sponsor from './pages/Sponsor';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
@@ -112,6 +113,10 @@ function App() {
 
           {/* 2023 */}
           <Route path="/archive/2023/Speakers2023" element={<Speakers2023 />} />
+          
+          {/* Privacy Policy */}
+          <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
+          
           <Route path="*" element={<NotFound />} /> {/* Ruta por defecto para manejar 404 */}
 
       </Routes>
@@ -137,6 +142,7 @@ function App() {
             <Link className="text-white" to="/#events" style={{textDecoration: 'none' }}>Evento</Link>
             </Nav>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
+              <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>Política de Privacidad</Link></li>
             </ul>
           </div>
         </div>
