@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Accordion } from 'react-bootstrap';
 import AnimationWrapper from './AnimationWrapper';
+import SEO from './SEO';
 import { BsQuestionCircle, BsInfoCircle } from 'react-icons/bs';
 
 const FAQ = () => {
@@ -66,7 +67,27 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="faq-section py-5 bg-light">
+    <>
+      <SEO 
+        title="Preguntas Frecuentes para Patrocinadores"
+        description="Encuentra respuestas sobre patrocinio, stands, charlas técnicas, canales de comunicación y beneficios de la X-Ops Conference 2025 en Madrid."
+        path="/faq"
+        keywords="FAQ, preguntas frecuentes, patrocinio X-Ops, sponsorship, DevOps conference, stands Madrid, charlas técnicas"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqData.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": typeof faq.answer === 'string' ? faq.answer : 
+                "Utilizamos múltiples canales de comunicación para amplificar la visibilidad de patrocinadores."
+            }
+          }))
+        }}
+      />
+      <section id="faq" className="faq-section py-5 bg-light">
       <Container>
         <AnimationWrapper animation="fade-up" duration={1000}>
           <div className="text-center mb-5">
@@ -133,6 +154,7 @@ const FAQ = () => {
         </AnimationWrapper>
       </Container>
     </section>
+    </>
   );
 };
 

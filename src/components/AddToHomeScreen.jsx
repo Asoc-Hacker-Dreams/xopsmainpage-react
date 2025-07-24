@@ -12,6 +12,11 @@ const AddToHomeScreen = () => {
       setDeferredPrompt(e);
       // Show the install prompt
       setShowInstallPrompt(true);
+      
+      // Auto-hide after 10 seconds if not interacted with
+      setTimeout(() => {
+        setShowInstallPrompt(false);
+      }, 10000);
     };
 
     const handleAppInstalled = () => {
@@ -51,6 +56,7 @@ const AddToHomeScreen = () => {
 
   const handleDismiss = () => {
     setShowInstallPrompt(false);
+    setDeferredPrompt(null);
     // Hide for this session
     sessionStorage.setItem('installPromptDismissed', 'true');
   };
