@@ -10,28 +10,24 @@ export default defineConfig({
       hostname: 'https://xopsconference.com',
       dynamicRoutes: [
         '/',
-        '/about',
-        '/speakers',
         '/ponentes',
-        '/schedule',
-        '/agenda',
-        '/contact',
-        '/contacto',
-        '/organizer',
+        '/agenda', 
+        '/organizers',
         '/organizadores',
-        '/team',
-        '/equipo',
-        '/sponsor',
-        '/patrocina',
-        // Rutas de archivo para 2024
+        '/patrocinadores',
+        '/faq',
+        '/colaboradores',
+        '/ubicacion',
+        '/Sponsor',
+        '/Patrocina',
+        '/Organizer',
+        '/Team',
+        '/Equipo',
+        // Rutas de archivo
         '/archive/2024/Speakers2024',
         '/archive/2024/Sponsor2024',
-        // Rutas de archivo para 2023
         '/archive/2023/Speakers2023',
-
-        // Añade todas tus rutas aquí
       ],
-      // Generar sitemap.xml automáticamente
       outDir: 'dist',
     })
   ],
@@ -43,8 +39,20 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           bootstrap: ['bootstrap', 'react-bootstrap'],
+          icons: ['react-icons']
         }
       }
-    }
+    },
+    // Optimizaciones para Core Web Vitals
+    minify: 'esbuild',
+    target: 'esnext',
+    cssMinify: true
+  },
+  server: {
+    port: 3000,
+    open: true
+  },
+  preview: {
+    port: 3000
   }
 })

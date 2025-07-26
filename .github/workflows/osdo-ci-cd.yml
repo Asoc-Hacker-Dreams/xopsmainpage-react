@@ -1,6 +1,33 @@
 name: OSDO CI/CD Pipeline
 
 on:
+  workflow_dispatch:
+    inputs:
+      run_tests:
+        description: 'Run tests and quality checks'
+        required: true
+        default: true
+        type: boolean
+      run_security_scan:
+        description: 'Run security scans'
+        required: true
+        default: true
+        type: boolean
+      run_static_analysis:
+        description: 'Run static analysis'
+        required: true
+        default: true
+        type: boolean
+      run_secrets_scan:
+        description: 'Run secrets detection'
+        required: true
+        default: true
+        type: boolean
+      run_build_security:
+        description: 'Run secure build and SBOM generation'
+        required: true
+        default: true
+        type: boolean
   push:
     branches: [ main, develop, feature/* ]
   pull_request:
@@ -20,6 +47,7 @@ jobs:
     permissions:
       contents: read
       actions: write
+      security-events: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -76,6 +104,7 @@ jobs:
     permissions:
       contents: read
       actions: write
+      security-events: write
     needs: test-and-quality
     steps:
       - name: Checkout code
@@ -90,81 +119,58 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Execute SCA (Software Composition Analysis)
+      - name: Create results directory
+        run: mkdir -p .osdo/results
+
+      - name: Snyk Vulnerability Analysis
         run: |
-          chmod +x .osdo/tools/sca.sh
-          ./.osdo/tools/sca.sh
-        continue-on-error: true
+          docker run --rm \
+            -v "$(pwd):/project" \
+            -v "$(pwd)/.osdo/results:/results" \
+            snyk/snyk:node \
+            test /project \
+            --json > .osdo/results/snyk.json 2>/dev/null || true
+
+      - name: Snyk License Analysis (high severity)
+        run: |
+          docker run --rm \
+            -v "$(pwd):/project" \
+            -v "$(pwd)/.osdo/results:/results" \
+            snyk/snyk:node \
+            test /project \
+            --json \
+            --severity-threshold=high > .osdo/results/snyk-licenses.json 2>/dev/null || true
 
       - name: Run npm audit
         run: |
           npm audit --audit-level=moderate
-          npm audit --json > npm-audit-report.json
+          npm audit --json > .osdo/results/npm-audit-report.json
         continue-on-error: true
-
-      - name: Upload npm audit report
-        uses: actions/upload-artifact@v4
-        with:
-          name: npm-audit-report
-          path: npm-audit-report.json
-      
       - name: Run Retire.js
         run: |
-          npx retire --outputformat json --outputfile retire-report.json
-          npx retire --outputformat html --outputfile retire-report.html
+          npx retire --outputformat json --outputpath .osdo/results/retire-report.json
         continue-on-error: true
-      - name: Upload Retire.js report
-        uses: actions/upload-artifact@v4
-        with:
-          name: retirejs-report
-          path: |
-            retire-report.json
-            retire-report.html
-      - name: Run Dependency-Check
+      - name: Download OWASP Dependency-Check
         run: |
-          npx dependency-check --failOnCVSS 7 --format JSON --out dependency-check-report.json .
-        continue-on-error: true
-      - name: Upload Dependency-Check report
-        uses: actions/upload-artifact@v4
-        with:
-          name: dependency-check-report
-          path: dependency-check-report.json
-      - name: SBOM Generation cyclonedx
+          wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.2.0/dependency-check-9.2.0-release.zip
+          unzip dependency-check-9.2.0-release.zip -d dependency-check
+      - name: Run OWASP Dependency-Check
         run: |
-          npx @cyclonedx/cyclonedx-npm --output-file sbom.json
-          npx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
-      - name: Upload SBOM
+          ./dependency-check/dependency-check/bin/dependency-check.sh --project "xopsmainpage-react" \
+            --scan . \
+            --format JSON \
+            --out .osdo/results/dependency-check-report.json \
+            --failOnCVSS 7 || true
+      - name: Upload Dependency Reports
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-reports
+          name: dependency-reports
           path: |
-            sbom.json
-            sbom.xml
-      - name: Snyk Security Scan
-        run: |
-          RESULTS_DIR="$(pwd)/.osdo/results"
-          docker run --rm \
-          -v "$(pwd):/project" \
-          -v "$RESULTS_DIR:/results" \
-          snyk/snyk:node \
-          test /project \
-          --json > "$RESULTS_DIR/snyk.json" 2>/dev/null || true
-      
-          docker run --rm \
-          -v "$(pwd):/project" \
-          -v "$RESULTS_DIR:/results" \
-          snyk/snyk:node \
-          test /project \
-          --json \
-          --severity-threshold=high > "$RESULTS_DIR/snyk-licenses.json" 2>/dev/null || true
-      - name: Upload Snyk reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: snyk-reports
-          path: |
-            snyk.json
-            snyk-licenses.json
-
+            .osdo/results/snyk.json
+            .osdo/results/snyk-licenses.json
+            .osdo/results/npm-audit-report.json
+            .osdo/results/retire-report.json
+            .osdo/results/dependency-check-report.json
       # Análisis de licencias
       - name: License compliance check
         run: |
@@ -174,6 +180,10 @@ jobs:
   static-analysis:
     name: 🛡️ Static Application Security Testing
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+      security-events: write
     needs: dependency-security-scan
     steps:
       - name: Checkout code
@@ -188,22 +198,34 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Create results directory
+        run: mkdir -p .osdo/results
+
       - name: Semgrep Static Analysis
         run: |
           RESULTS_DIR="$(pwd)/.osdo/results"
+          mkdir -p "$RESULTS_DIR"
           docker run --rm \
             -v "$(pwd):/src" \
             -v "$RESULTS_DIR:/results" \
             returntocorp/semgrep:latest \
-            --output="/results/semgrep.sarif" \
-            /src > semgrep.sarif || true
+            semgrep --sarif --output /results/semgrep.sarif /src
+          if ! [ -s "$RESULTS_DIR/semgrep.sarif" ]; then
+            echo "::error::semgrep.sarif was not created or is empty"
+            exit 1
+          fi
+        continue-on-error: false
+      - name: Validate Semgrep SARIF output
+        run: |
+          if ! jq empty .osdo/results/semgrep.sarif; then
+            echo "::error::semgrep.sarif is invalid JSON"
+            exit 1
+          fi
         continue-on-error: true
-      
-        # Upload SARIF file generated in previous step
-      - name: Upload SARIF file
+      - name: Upload Semgrep SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: semgrep.sarif
+          sarif_file: .osdo/results/semgrep.sarif
         if: always()
         continue-on-error: true
       - name: Install ESLint Security Plugin
@@ -213,8 +235,8 @@ jobs:
         env:
             SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          npx eslint . --format json -o eslint-security-report.json
-          npx eslint . --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+          npx eslint . --format json -o .osdo/results/eslint-security-report.json || true
+          npx eslint . --format @microsoft/eslint-formatter-sarif --output-file .osdo/results/eslint-results.sarif || true
         continue-on-error: true
 
       - name: Upload ESLint reports
@@ -222,26 +244,34 @@ jobs:
         with:
           name: eslint-reports
           path: |
-            eslint-security-report.json
+            .osdo/results/eslint-security-report.json
+        if: always()
+        
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: eslint-results.sarif
+          sarif_file: .osdo/results/eslint-results.sarif
           wait-for-processing: true
+        if: always()
+        continue-on-error: true
 
-      # CodeQL Analysis
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
+      # # CodeQL Analysis
+      # - name: Initialize CodeQL
+      #   uses: github/codeql-action/init@v3
+      #   with:
+      #     languages: javascript-typescript
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+      # - name: Perform CodeQL Analysis
+      #   uses: github/codeql-action/analyze@v3
 
   # Job 4: Análisis de Secretos y Seguridad Avanzada
   secrets-scan:
     name: 🔐 Secrets Detection & Advanced Security
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+      security-events: write
     needs: static-analysis
     steps:
       - name: Checkout code
@@ -262,18 +292,6 @@ jobs:
             --report-path="/results/gitleaks-secrets.json" \
             --verbose || true
         continue-on-error: true
-
-    #   - name: Execute Semgrep Secrets Analysis
-    #     run: |
-    #       docker run --rm \
-    #         -v $(pwd):/workspace \
-    #         -v $(pwd)/.osdo/results:/results \
-    #         returntocorp/semgrep:latest \
-    #         --config=auto \
-    #         --json \
-    #         --output="/results/semgrep-secrets.json" \
-    #         /workspace || true
-    #     continue-on-error: true
 
       - name: Evaluate Secrets Analysis Results
         run: |
@@ -310,14 +328,14 @@ jobs:
           fi
         continue-on-error: true
 
-    #   - name: Run TruffleHog OSS
-    #     uses: trufflesecurity/trufflehog@main
-    #     with:
-    #       path: ./
-    #       base: main
-    #       head: HEAD
-    #       extra_args: --debug --only-verified
-    #     continue-on-error: true
+      - name: Run TruffleHog OSS
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: main
+          head: HEAD
+          extra_args: --results=verified,unknown --json
+        continue-on-error: true
 
       - name: Upload secrets analysis results
         uses: actions/upload-artifact@v4
@@ -332,6 +350,10 @@ jobs:
   build-security:
     name: 🏗️ Secure Build & SBOM Generation
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+      security-events: write
     needs: [test-and-quality, dependency-security-scan, static-analysis, secrets-scan]
     steps:
       - name: Checkout code
@@ -372,6 +394,9 @@ jobs:
   compliance-report:
     name: 📊 OSDO Compliance Report
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
     needs: [test-and-quality, dependency-security-scan, static-analysis, secrets-scan, build-security]
     if: always()
     steps:

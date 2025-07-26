@@ -1,0 +1,37 @@
+# .copilotignore
+# Ignorar directorios de build y dependencias
+dist/
+node_modules/
+.next/
+.nuxt/
+.out/
+build/
+
+# Ignorar resultados de análisis y cobertura para no contaminar las sugerencias
+.osdo/results/
+coverage/
+.nyc_output/
+reports/
+
+# Ignorar archivos de configuración de CI/CD
+.github/workflows/
+.github/actions/
+
+# Ignorar archivos de logs
+*.log
+logs/
+
+# Ignorar archivos temporales
+.tmp/
+temp/
+.cache/
+
+# Ignorar archivos de respaldo
+*.bak
+*.backup
+*~
+
+# Ignorar archivos de entorno con secrets
+.env.local
+.env.production
+.env.staging

@@ -10,7 +10,11 @@ const SEO = ({
   lang = 'es',
   author = 'X-Ops Conference Team',
   robots = 'index, follow',
-  alternates = [],
+  alternates = [
+    { hrefLang: 'es', href: 'https://xopsconference.com' },
+    { hrefLang: 'en', href: 'https://en.xopsconference.com' },
+    { hrefLang: 'x-default', href: 'https://xopsconference.com' }
+  ],
   structuredData = null,
 }) => {
   const baseUrl = 'https://xopsconference.com';

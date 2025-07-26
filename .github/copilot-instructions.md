@@ -12,6 +12,9 @@ This is the main website for X-Ops Conference, built with React, Vite, and Boots
 - **Security**: ESLint Security Plugin, Snyk, GitLeaks, Semgrep
 - **CI/CD**: GitHub Actions with OSDO compliance pipeline
 - **Deployment**: Netlify (primary), AWS Amplify (secondary)
+- **PWA**: Service Worker, `react-helmet-async`, Install prompts
+- **Animation**: AOS (Animate On Scroll) with custom `AnimationWrapper`
+- **Optimization**: Lazy loading, code splitting, bundle optimization
 
 ## 📋 Code Generation Guidelines
 
@@ -43,30 +46,74 @@ ComponentName.propTypes = {
 export default ComponentName;
 ```
 
-### 2. Testing Requirements
+### 2. SEO and PWA Integration
+All pages should include the `SEO` component with proper structured data:
+
+```jsx
+import SEO from '../components/SEO';
+
+const Page = () => {
+  return (
+    <>
+      <SEO 
+        title="Page Title"
+        description="Page description"
+        keywords="conference, xops, security"
+        canonicalUrl="https://xopsconference.com/page"
+        lang="es"
+        structuredData={{
+          "@type": "Event",
+          "name": "X-Ops Conference",
+          "location": { 
+            "@type": "Place", 
+            "name": "Madrid, España" 
+          }
+        }}
+      />
+      {/* Page content */}
+    </>
+  );
+};
+```
+
+### 3. PWA and Service Worker Patterns
+- App root includes `HelmetProvider`, `usePWA` hook, and `ServiceWorkerManager`
+- Use `usePWA` hook for install prompts: `const { canPrompt, promptInstall } = usePWA();`
+- Service worker updates are handled automatically via `ServiceWorkerManager`
+### 4. Testing Requirements
 Always create tests for new components:
 
 ```jsx
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { HelmetProvider } from 'react-helmet-async';
 import ComponentName from './ComponentName';
 
 describe('ComponentName', () => {
   it('renders without crashing', () => {
-    render(<ComponentName />);
+    render(
+      <HelmetProvider>
+        <ComponentName />
+      </HelmetProvider>
+    );
     expect(screen.getByText(/expected text/i)).toBeInTheDocument();
   });
 });
 ```
 
-### 3. Security Best Practices
+### 5. Routing and Navigation
+- Multi-language support: Routes include `/es/*` prefix for Spanish content
+- Use `React Router DOM` for navigation with proper SEO meta tags per route
+- Language parameter must be handled in routing logic
+- 404 handling via `NotFound` component
+### 6. Security Best Practices
 - **Never hardcode sensitive data** (API keys, secrets, tokens)
 - **Sanitize all user inputs** before rendering
 - **Use environment variables** for configuration
 - **Implement CSP headers** for production deployments
 - **Follow OWASP guidelines** for web application security
 
-### 4. Styling Guidelines
+### 7. Styling Guidelines
 - Use Bootstrap utility classes when possible
 - Custom CSS should be minimal and component-scoped
 - Maintain responsive design (mobile-first approach)
@@ -80,7 +127,7 @@ describe('ComponentName', () => {
   }
   ```
 
-### 5. File Organization
+### 8. File Organization
 ```
 src/
 ├── components/         # React components
@@ -146,6 +193,39 @@ npm run lint
 # Run tests with coverage
 npm run test:coverage
 ```
+
+## 🔄 CI/CD Pipeline and OSDO Workflow
+
+### Pipeline Overview
+The project uses GitHub Actions with comprehensive OSDO compliance:
+- **Testing**: Unit tests, integration tests, coverage reporting
+- **Security**: Dependency scanning (npm audit, Snyk), SAST (Semgrep), secrets detection (GitLeaks)
+- **Quality**: ESLint, code coverage validation (70% threshold)
+- **Build**: Vite production build with optimization
+- **Deployment**: Automated deployment to Netlify and AWS Amplify
+
+### OSDO Commands for Development
+```bash
+# Complete OSDO compliance check
+npm run osdo:test     # Run all tests with coverage
+npm run osdo:sca      # Software Composition Analysis
+npm run osdo:sast     # Static Application Security Testing
+
+# Security-specific commands
+npm run security:audit           # Audit dependencies
+npm run security:eslint         # Security-focused linting
+npm run security:license-check  # Verify license compatibility
+npm run sbom:generate           # Generate Software Bill of Materials
+
+# ESLint commands for CI/CD
+npx eslint . --format json -o .osdo/results/eslint-security-report.json
+npx eslint . --format @microsoft/eslint-formatter-sarif --output-file .osdo/results/eslint-results.sarif
+```
+
+### CI/CD Workflow Triggers
+- **Pull Requests**: Full pipeline runs on any PR to main
+- **Main Branch**: Complete pipeline + deployment
+- **Manual**: Workflow can be triggered manually via GitHub Actions
 
 ## 📝 Commit Message Convention
 
@@ -310,6 +390,26 @@ VITE_GA_TRACKING_ID=    # Google Analytics ID
 VITE_ENVIRONMENT=       # development|staging|production
 ```
 
+### Important File Locations
+```
+.github/
+├── workflows/osdo-ci-cd.yml    # Main CI/CD pipeline
+├── copilot-instructions.md     # This file
+└── SECURITY.md                 # Security policies
+
+.osdo/
+├── README.md                   # OSDO compliance documentation
+├── CHECKLIST.md               # Testing checklist
+└── tools/                     # OSDO compliance scripts
+
+src/
+├── App.jsx                    # Root component with PWA/routing
+├── components/SEO.jsx         # SEO and structured data
+├── components/ServiceWorkerManager.jsx
+├── hooks/usePWA.js           # PWA installation hook
+└── test/integration.test.jsx  # Integration tests
+```
+
 ### Git Workflow
 ```bash
 git checkout -b feature/description
@@ -323,3 +423,43 @@ git push origin feature/description
 ---
 
 **Remember**: Security and code quality are paramount. When in doubt, consult the OSDO compliance guidelines or ask for a security review.
+
+## 🏗️ Architecture Patterns and Integration Points
+
+### Core Application Structure
+```jsx
+// App.jsx - Root component architecture
+import { HelmetProvider } from 'react-helmet-async';
+import { usePWA } from './hooks/usePWA';
+import ServiceWorkerManager from './components/ServiceWorkerManager';
+
+function App() {
+  const { canPrompt, promptInstall } = usePWA();
+  
+  return (
+    <HelmetProvider>
+      {/* Router and component tree */}
+      <ServiceWorkerManager />
+    </HelmetProvider>
+  );
+}
+```
+
+### Key Integration Points
+1. **SEO Component**: Uses `react-helmet-async` for meta tags and structured data
+2. **PWA Management**: `usePWA` hook handles installation prompts
+3. **Service Worker**: `ServiceWorkerManager` handles updates automatically
+4. **Animation System**: `AnimationWrapper` provides consistent AOS integration
+5. **Routing**: Multi-language support with `/es/*` prefix structure
+
+### Custom Hooks and Utilities
+- `usePWA`: PWA installation prompt management
+- `AnimationWrapper`: Consistent animation implementation
+- `SEO`: Comprehensive meta tag and structured data component
+- `ServiceWorkerManager`: Service worker lifecycle management
+
+### State Management Philosophy
+- Minimal state management using React built-ins
+- Context for theme/language preferences (when needed)
+- Local state for component-specific data
+- No external state management library required for current scope
