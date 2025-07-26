@@ -444,7 +444,7 @@ margin-block: 1rem;
 .Hero-section {
     background-position: center top;
     background-size: cover;
-    padding-top: 160px; /* Increased to give more space */
+    padding-top: 180px; /* Increased from 160px to ensure text is not blocked */
 }
 .navbar {
     position: fixed;
@@ -454,8 +454,13 @@ margin-block: 1rem;
 }
 
 .navbar-collapse {
-    background-color: black; 
+    background-color: black !important; 
     padding-bottom: 7%;
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    z-index: 1001;
 }
 
 .navbar-toggler-custom {
@@ -500,6 +505,23 @@ margin-block: 1rem;
 .navbar-toggler-custom {
     padding: 4px 8px;
     font-size: 1rem;
+}
+
+/* Disable problematic animations on mobile devices to improve VR compatibility */
+.card {
+  transition: none !important;
+}
+
+.card:hover {
+  transform: none !important;
+}
+
+.image-container img {
+  transition: none !important;
+}
+
+.image-container:hover img {
+  transform: none !important;
 }
 
 }
@@ -653,6 +675,12 @@ margin-block: 1rem;
   .pie-chart {
     width: 220px;
     height: 220px;
+    /* Disable animation on mobile for VR compatibility */
+    transition: none !important;
+  }
+  
+  .pie-chart:hover {
+    transform: none !important;
   }
   
   .chart-legend {
@@ -662,6 +690,14 @@ margin-block: 1rem;
   
   .stat-number {
     font-size: 2.5rem;
+  }
+  
+  .stat-card {
+    transition: none !important;
+  }
+  
+  .stat-card:hover {
+    transform: none !important;
   }
   
   .last-edition-section {
@@ -714,7 +750,7 @@ margin-block: 1rem;
   }
 
   .Hero-section {
-    padding-top: 130px; /* Adjusted for very small screens */
+    padding-top: 150px; /* Increased from 130px for better spacing */
   }
 
   /* Ensure XOps section has proper spacing on small devices */
@@ -732,7 +768,7 @@ margin-block: 1rem;
 @media (display-mode: immersive-vr), (display-mode: immersive-ar) {
   body {
     /* Ensure content loads completely in spatial browsers */
-    overflow: auto;
+    overflow: auto !important;
     scroll-behavior: smooth;
   }
   
@@ -753,14 +789,42 @@ margin-block: 1rem;
     min-height: 50vh;
   }
   
-  /* Ensure all sections are fully visible */
+  /* Ensure all sections are fully visible and disable problematic animations */
   .xops-section, 
   .key-themes-section, 
   .speakers-section,
-  .event-schedule-section {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .event-schedule-section,
+  .gallery,
+  .last-edition-section,
+  .footer {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  /* Disable hover effects and transitions that can interfere with VR */
+  .card:hover,
+  .image-container:hover img,
+  .pie-chart:hover,
+  .stat-card:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Ensure all images and content are loaded */
+  .img-fluid,
+  .card-img-top,
+  .speaker-img img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* Remove backdrop filters that can cause issues in VR */
+  .navbar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 
@@ -772,12 +836,25 @@ margin-block: 1rem;
   }
   
   .navbar {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
   
   .home-main-section {
     background-attachment: scroll; /* Better performance in spatial */
+  }
+  
+  /* Disable problematic animations in Vision Pro */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .card:hover,
+  .image-container:hover img,
+  .pie-chart:hover,
+  .stat-card:hover {
+    transform: none !important;
   }
 }
 
@@ -791,6 +868,36 @@ margin-block: 1rem;
   .Hero-section {
     background-size: contain;
     background-position: center;
+  }
+  
+  /* Ensure all content is visible and accessible in spatial browsing */
+  body, .root, .home-main-section {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+  
+  /* Force all sections to be rendered */
+  .xops-section, 
+  .key-themes-section, 
+  .speakers-section,
+  .event-schedule-section,
+  .gallery,
+  .last-edition-section,
+  .footer {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Disable animations globally in spatial browsing */
+  *, *::before, *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
   }
 }
 
