@@ -15,6 +15,7 @@ import Sponsor from './pages/Sponsor';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
@@ -129,6 +130,10 @@ function App() {
 
           {/* 2023 */}
           <Route path="/archive/2023/Speakers2023" element={<Speakers2023 />} />
+          
+          {/* Privacy Policy */}
+          <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
+          
           <Route path="*" element={<NotFound />} /> {/* Ruta por defecto para manejar 404 */}
 
       </Routes>
