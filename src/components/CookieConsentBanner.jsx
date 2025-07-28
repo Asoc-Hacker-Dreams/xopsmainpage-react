@@ -92,7 +92,7 @@ const CookieConsentBanner = () => {
                   variant="success" 
                   size="sm" 
                   onClick={acceptAll}
-                  className="me-2 mb-2"
+                  className="me-2"
                 >
                   Aceptar Todo
                 </Button>
@@ -100,7 +100,7 @@ const CookieConsentBanner = () => {
                   variant="outline-secondary" 
                   size="sm" 
                   onClick={rejectAll}
-                  className="me-2 mb-2"
+                  className="me-2"
                 >
                   Rechazar Todo
                 </Button>
@@ -108,7 +108,6 @@ const CookieConsentBanner = () => {
                   variant="primary" 
                   size="sm" 
                   onClick={handleCustomizeClick}
-                  className="mb-2"
                 >
                   Personalizar
                 </Button>
