@@ -444,7 +444,13 @@ margin-block: 1rem;
 .Hero-section {
     background-position: center top;
     background-size: cover;
-    padding-top: 180px; /* Increased from 160px to ensure text is not blocked */
+    padding-top: 200px; /* Increased from 180px to ensure text is not blocked */
+}
+
+/* Reduce font size on mobile to prevent text from being cut off */
+.Hero-section h1 {
+    font-size: 2.5rem !important; /* Smaller than default display-4 */
+    line-height: 1.1;
 }
 .navbar {
     position: fixed;
@@ -750,7 +756,13 @@ margin-block: 1rem;
   }
 
   .Hero-section {
-    padding-top: 150px; /* Increased from 130px for better spacing */
+    padding-top: 170px; /* Increased from 150px for better spacing */
+  }
+
+  /* Further reduce font size on very small screens */
+  .Hero-section h1 {
+    font-size: 2.2rem !important; /* Even smaller for very small screens */
+    line-height: 1.1;
   }
 
   /* Ensure XOps section has proper spacing on small devices */
