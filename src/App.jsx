@@ -5,6 +5,10 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
 import AddToHomeScreen from './components/AddToHomeScreen';
+import { ConsentProvider } from './contexts/ConsentContext';
+import CookieConsentBanner from './components/CookieConsentBanner';
+import CookiePreferencesManager from './components/CookiePreferencesManager';
+import ScriptManager from './components/ScriptManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
@@ -16,18 +20,31 @@ import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 import { HelmetProvider } from 'react-helmet-async';
+import { useState } from 'react';
+
 function App() {
   const { canPrompt, promptInstall } = usePWA();
+  const [showCookiePreferences, setShowCookiePreferences] = useState(false);
 
   const handleInstallClick = async () => {
     const result = await promptInstall();
     console.log('Install prompt result:', result);
   };
 
+  const handleShowCookiePreferences = () => {
+    setShowCookiePreferences(true);
+  };
+
+  const handleCloseCookiePreferences = () => {
+    setShowCookiePreferences(false);
+  };
 
    return (
   <HelmetProvider>
-    <>
+    <ConsentProvider>
+      <>
+      <ScriptManager />
+      <CookieConsentBanner />
 
 <ScrollHandler />
 <div className="root home-main-section">
@@ -142,7 +159,15 @@ function App() {
             <Link className="text-white" to="/#events" style={{textDecoration: 'none' }}>Evento</Link>
             </Nav>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
-              <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>Política de Privacidad</Link></li>
+              <li>
+                <button 
+                  onClick={handleShowCookiePreferences}
+                  className="btn btn-link text-white p-0"
+                  style={{ textDecoration: 'none', fontSize: 'inherit' }}
+                >
+                  🍪 Gestión de Cookies
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -155,7 +180,14 @@ function App() {
    
     {/* Add to Home Screen Banner */}
     <AddToHomeScreen />
+    
+    {/* Cookie Preferences Manager */}
+    <CookiePreferencesManager 
+      show={showCookiePreferences} 
+      onHide={handleCloseCookiePreferences} 
+    />
     </>
+   </ConsentProvider>
   </HelmetProvider>
   )
 }
