@@ -104,10 +104,13 @@ background-position: center;
 }
 .Hero-section{
     min-height: 100vh;
+    min-height: -webkit-fill-available; /* Safari */
+    height: 100vh; /* Fallback for Firefox */
     background-image: url(../assets/landscapes/madrid.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: scroll; /* Better Firefox compatibility */
     display: flex;
     align-items: center;
     justify-content: center;
