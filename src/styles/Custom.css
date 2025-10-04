@@ -462,6 +462,12 @@ margin-block: 1rem;
 .Hero-section {
     background-position: center top;
     background-size: cover;
+    min-height: 100vh;
+    background-image: url(../assets/landscapes/madrid.jpeg);
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 160px; /* Increased padding */
 }
 .Hero-section h1 {
@@ -726,6 +732,14 @@ margin-block: 1rem;
   }
 
   .Hero-section {
+    min-height: 100vh;
+    background-image: url(../assets/landscapes/madrid.jpeg);
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 130px; /* Increased padding */
   }
   .Hero-section h1 {
