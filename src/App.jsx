@@ -14,6 +14,7 @@ import Sponsor2024 from './pages/archive/2024/Sponsor2024';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
+import './styles/Firefox-fixes.css';
 import { HelmetProvider } from 'react-helmet-async';
 function App() {
   const { canPrompt, promptInstall } = usePWA();
