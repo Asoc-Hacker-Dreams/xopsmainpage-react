@@ -1,0 +1,207 @@
+/* Firefox specific fixes for X-Ops Conference website */
+
+/* Fix for conic-gradient not supported in older Firefox versions */
+@-moz-document url-prefix() {
+  .pie-chart {
+    background: radial-gradient(circle, 
+      #d90845 0% 25%, 
+      #007bff 25% 40%, 
+      #28a745 40% 55%, 
+      #ffc107 55% 70%, 
+      #6f42c1 70% 85%, 
+      #fd7e14 85% 100%
+    ) !important;
+  }
+}
+
+/* Firefox specific background fixes */
+@-moz-document url-prefix() {
+  .Hero-section {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+  
+  .gallery {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* Firefox flexbox fixes */
+@-moz-document url-prefix() {
+  .Hero-section {
+    display: -moz-flex !important;
+    display: flex !important;
+    -moz-align-items: center !important;
+    align-items: center !important;
+    -moz-justify-content: center !important;
+    justify-content: center !important;
+  }
+  
+  .pie-chart-container {
+    display: -moz-flex !important;
+    display: flex !important;
+    -moz-align-items: center !important;
+    align-items: center !important;
+    -moz-justify-content: center !important;
+    justify-content: center !important;
+    -moz-flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
+  }
+  
+  .event-cards {
+    display: -moz-flex !important;
+    display: flex !important;
+    -moz-justify-content: space-around !important;
+    justify-content: space-around !important;
+  }
+}
+
+/* Firefox transform fixes */
+@-moz-document url-prefix() {
+  .card:hover {
+    -moz-transform: scale(1.05) !important;
+    transform: scale(1.05) !important;
+  }
+  
+  .image-container:hover img {
+    -moz-transform: scale(1.05) !important;
+    transform: scale(1.05) !important;
+  }
+  
+  .stat-card:hover {
+    -moz-transform: translateY(-5px) !important;
+    transform: translateY(-5px) !important;
+  }
+  
+  .pie-chart:hover {
+    -moz-transform: scale(1.05) !important;
+    transform: scale(1.05) !important;
+  }
+}
+
+/* Firefox transition fixes */
+@-moz-document url-prefix() {
+  .card {
+    -moz-transition: -moz-transform 0.2s !important;
+    transition: transform 0.2s !important;
+  }
+  
+  .image-container img {
+    -moz-transition: -moz-transform 0.3s ease !important;
+    transition: transform 0.3s ease !important;
+  }
+  
+  .stat-card {
+    -moz-transition: -moz-transform 0.3s ease, box-shadow 0.3s ease !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  }
+  
+  .pie-chart {
+    -moz-transition: -moz-transform 0.3s ease !important;
+    transition: transform 0.3s ease !important;
+  }
+}
+
+/* Firefox box-shadow fixes */
+@-moz-document url-prefix() {
+  .navbar-toggler-custom:focus {
+    -moz-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+  }
+  
+  .stat-card {
+    -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .stat-card:hover {
+    -moz-box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .pie-chart {
+    -moz-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+/* Firefox border-radius fixes */
+@-moz-document url-prefix() {
+  .navbar-toggler-custom {
+    -moz-border-radius: 4px !important;
+    border-radius: 4px !important;
+  }
+  
+  .button {
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+  }
+  
+  .date-btn {
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+  }
+  
+  .img-fluid {
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+  }
+  
+  .speaker-img img {
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+  }
+  
+  .stat-card {
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+  }
+  
+  .pie-chart {
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+  }
+  
+  .gallery-item {
+    -moz-border-radius: 8px !important;
+    border-radius: 8px !important;
+  }
+  
+  .legend-color {
+    -moz-border-radius: 4px !important;
+    border-radius: 4px !important;
+  }
+}
+
+/* Firefox viewport height fixes */
+@-moz-document url-prefix() {
+  .Hero-section {
+    min-height: 100vh !important;
+    height: 100vh !important;
+  }
+  
+  .home-main-section {
+    height: 65vh !important;
+  }
+}
+
+/* Firefox font rendering improvements */
+@-moz-document url-prefix() {
+  body {
+    -moz-osx-font-smoothing: grayscale !important;
+    -moz-font-feature-settings: "liga" 1 !important;
+  }
+  
+  .navbar,
+  .navbar .nav-link,
+  .navbar-brand,
+  .navbar .dropdown-toggle,
+  .links {
+    -moz-font-feature-settings: "liga" 1 !important;
+  }
+}
