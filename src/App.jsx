@@ -159,6 +159,7 @@ function App() {
             <Link className="text-white" to="/#events" style={{textDecoration: 'none' }}>Evento</Link>
             </Nav>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
+              <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>Política de Privacidad</Link></li>
               <li>
                 <button 
                   onClick={handleShowCookiePreferences}
@@ -189,7 +190,7 @@ function App() {
     </>
    </ConsentProvider>
   </HelmetProvider>
-  )
+  );
 }
 
-export default App
+export default App;
