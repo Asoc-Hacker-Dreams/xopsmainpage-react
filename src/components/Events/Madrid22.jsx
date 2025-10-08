@@ -4,61 +4,58 @@ import { Modal, Button } from 'react-bootstrap';
 
 const EventSchedule = () => {
 
-  const [tercerS, settercerS] = useState(false);
-  const tercerHid = () => settercerS(false);
-  const tercerShow = () => settercerS(true);
+  const [modal1, setModal1] = useState(false);
+  const modal1Hid = () => setModal1(false);
+  const modal1Show = () => setModal1(true);
 
+  const [modal2, setModal2] = useState(false);
+  const modal2Hid = () => setModal2(false);
+  const modal2Show = () => setModal2(true);
 
-  const [quartoS, setquartoS] = useState(false);
-  const quartoHid = () => setquartoS(false);
-  const quartoShow = () => setquartoS(true);
+  const [modal3, setModal3] = useState(false);
+  const modal3Hid = () => setModal3(false);
+  const modal3Show = () => setModal3(true);
 
-  const [sestoS, setsestoS] = useState(false);
-  const sestoHid = () => setsestoS(false);
-  const sestoShow = () => setsestoS(true);
+  const [modal4, setModal4] = useState(false);
+  const modal4Hid = () => setModal4(false);
+  const modal4Show = () => setModal4(true);
 
-  const [septS, setseptS] = useState(false);
-  const septHid = () => setseptS(false);
-  const septShow = () => setseptS(true);
+  const [modal5, setModal5] = useState(false);
+  const modal5Hid = () => setModal5(false);
+  const modal5Show = () => setModal5(true);
 
-  const [octavoS, setoctavoS] = useState(false);
-  const octavoHid = () => setoctavoS(false);
-  const octavoShow = () => setoctavoS(true);
+  const [modal6, setModal6] = useState(false);
+  const modal6Hid = () => setModal6(false);
+  const modal6Show = () => setModal6(true);
 
-  const [nuevS, setnuevS] = useState(false);
-  const nuevHid = () => setnuevS(false);
-  const nuevShow = () => setnuevS(true);
+  const [modal7, setModal7] = useState(false);
+  const modal7Hid = () => setModal7(false);
+  const modal7Show = () => setModal7(true);
 
-  const [diezS, setdiezS] = useState(false);
-  const diezHid = () => setdiezS(false);
-  const diezShow = () => setdiezS(true);
+  const [modal8, setModal8] = useState(false);
+  const modal8Hid = () => setModal8(false);
+  const modal8Show = () => setModal8(true);
 
-  const [onceS, setonceS] = useState(false);
-  const onceHid = () => setonceS(false);
-  const onceShow = () => setonceS(true);
+  const [modal9, setModal9] = useState(false);
+  const modal9Hid = () => setModal9(false);
+  const modal9Show = () => setModal9(true);
 
-  const [doceS, setdoceS] = useState(false);
-  const doceHid = () => setdoceS(false);
-  const doceShow = () => setdoceS(true);
+  const [modal10, setModal10] = useState(false);
+  const modal10Hid = () => setModal10(false);
+  const modal10Show = () => setModal10(true);
 
-  const [treceS, settreceS] = useState(false);
-  const treceHid = () => settreceS(false);
-  const treceShow = () => settreceS(true);
+  const [modal11, setModal11] = useState(false);
+  const modal11Hid = () => setModal11(false);
+  const modal11Show = () => setModal11(true);
 
-  const [catorceS, setcatorceS] = useState(false);
-  const catorceHid = () => setcatorceS(false);
-  const catorceShow = () => setcatorceS(true);
-  {/*
   return (
     <section id="events" className="event-schedule-section">
-
       <AnimationWrapper animation="fade-up" duration={1500}>
       <h2 className="text-center margin-top">Viernes 21 de noviembre de 2025</h2>
       <div className="container mt-5">
         <div className="row">
-*/}
-          {/* Register Evento */}
-{/*
+
+          {/* Registro */}
           <div className="col-md-6 mb-4">
             <div className="card cardBernabeu">
               <div className="overlay"></div>
@@ -69,519 +66,334 @@ const EventSchedule = () => {
               </div>
             </div>
           </div>
-*/}
-          {/* Openint Evento */}
-{/*
+
+          {/* Apertura */}
           <div className="col-md-6 mb-4">
             <div className="card cardBernabeuD">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Inicio: </span>Salón de Actos</h5>
                 <p className="card-text">10:00 h - 30 min</p>
-                <p>Dar la bienvenida a los asistentes y keynote del evento.</p>
+                <p>Bienvenida y keynote del evento.</p>
               </div>
             </div>
           </div>
-*/}
-          {/* Aga B. Evento */}
-{/*
+
+          {/* Shani Adadi Kazaz */}
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroT">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">10:30 h - 30 min</p>
-                <p>Scaling AI Workloads with Kubernetes: Orchestrating Success.</p>
-                <p>Aga Bielak</p>
-                <button onClick={tercerShow} className="button menu-btn">Más Detalles</button>
-                <Modal
-                    show={tercerS}
-                    onHide={tercerHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Scaling AI Workloads with Kubernetes: Orchestrating Success.</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Discover proven strategies to successfully deploy and scale AI workloads within Google Kubernetes Engine (GKE). This session will provide a practical guide to optimizing resource allocation, maximizing GPU utilization, and streamlining distributed training processes. Delve into best practices, specialized tools, and GCP features to ensure your AI projects achieve optimal performance and scalability on Kubernetes. Leave with actionable insights to enhance your AI cloud implementations.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Aga Bielak</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                                10:30 h - 30 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
+                <p className="card-text">10:00 h - 50 min</p>
+                <p>Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure</p>
+                <p>Shani Adadi Kazaz</p>
+                <button onClick={modal1Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal1} onHide={modal1Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Kubernetes as a Platform</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Shani Adadi Kazaz</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>10:00 h - 50 min</p></div>
+                  </Modal.Footer>
                 </Modal>
               </div>
             </div>
           </div>
-*/}
-          {/* Juan V. Evento */}
-{/*
+
+          {/* Verónica Rivas + Toni Granell */}
           <div className="col-md-6 mb-4">
             <div className="card cardmanzanares">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">11:00 h - 30 min</p>
-                <p>Un puente entre MLOps y DevOps con OpenShift AI.</p>
-                <p>Juan Vicente Herrera Ruiz de Alejo</p>
-
-                <button onClick={sestoShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={sestoS}
-                    onHide={sestoHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Un puente entre MLOps y DevOps con OpenShift AI.</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Red Hat OpenShift AI (RHOAI) es una plataforma para que científicos de datos, profesionales de IA, desarrolladores, ingenieros de aprendizaje automático y equipos de operaciones prototipen, construyan, implementen y monitoreen modelos de IA. Mostraremos como usarla en una demo en vivo.
-                    <br />
-                    <br />
-                    Una de las principales dificultades a las que se enfrentan los proyectos de IA es la brecha entre la ciencia de datos y la ingeniería. Los equipos de ingeniería y operaciones no siempre están familiarizados con las complejidades de la inteligencia artificial, la ciencia de datos y el aprendizaje automático. Del mismo modo, los científicos de datos a veces carecen de los recursos de ingeniería y la experiencia para crear, implementar y monitorear modelos en entornos de nube modernos.
-                    <br />
-                    <br />
-                    Las operaciones de aprendizaje automático (MLOps) ayudan a las organizaciones a resolver este desafío. MLOps se inspira en los principios de DevOps y aporta muchos de los beneficios de DevOps a los proyectos de IA, optimizando todo el ciclo de vida de los modelos de ML.
-                    <br />
-                    <br />
-                    Operacionalizar el ciclo de vida del ML: Muchas organizaciones luchan por llevar sus modelos de IA más allá de las etapas de capacitación porque los equipos que entrenan estos modelos carecen de las herramientas para implementar, entregar y mantener sistemas basados ​​en IA en producción. Para resolver este problema, RHOAI proporciona herramientas como entornos de trabajo estables, canales de integración y despliegue continuos (CI/CD) y marcos de servicio de modelos.
-                    <br />
-                    <br />
-                    Con estas herramientas, los usuarios pueden poner en funcionamiento sus flujos de trabajo de aprendizaje automático y lograr reproducibilidad, impulsar la automatización, una mejor colaboración, ahorro de costos y una mejor gobernanza y cumplimiento.
-                    <br />
-                    <br />
-                    Entornos de trabajo de aprendizaje automático complejos: Los profesionales de la IA a menudo luchan por integrar y mantener la gran cantidad de herramientas, bibliotecas y versiones necesarias para la ciencia de datos y el aprendizaje automático, incluido el importante esfuerzo necesario para configurar el soporte y los controladores de GPU y mantenerlos actualizados. RHOAI proporciona a los científicos de datos entornos de trabajo listos para usar que están preconfigurados con bibliotecas y herramientas estándar de IA/ML.
-                    <br />
-                    <br />
-                    Se mostrará como ejecutar en la plataforma trainings y tests de sencillos modelos (LLMs) en una demo en tiempo real.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Juan Vicente Herrera Ruiz de Alejo</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            11:00 h - 30 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
+                <p className="card-text">10:50 h - 50 min</p>
+                <p>Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps</p>
+                <p>Verónica Rivas Remiseiro, Toni Granell</p>
+                <button onClick={modal2Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal2} onHide={modal2Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Análisis Predictivo con Copilot</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Verónica Rivas Remiseiro, Toni Granell</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>10:50 h - 50 min</p></div>
+                  </Modal.Footer>
                 </Modal>
-
               </div>
             </div>
           </div>
-*/}
-          {/* Natalie G. Evento */}
-{/* 
+
+          {/* Gisela Torres */}
           <div className="col-md-6 mb-4">
-            <div className="card cardmanzanaresD">
+            <div className="card cardcuatroT">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">11:30 h - 50 min</p>
-                <p>Building a cloud-native data platform with security in mind.</p>
-                <p>Natalie Godec</p>
-
-                <button onClick={quartoShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={quartoS}
-                    onHide={quartoHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Building a cloud-native data platform with security in mind.</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      In today's world data is king. It is everywhere, collected seemingly by everyone, yet many industries lack a good data platform. Cloud technologies enable us to build robust, scalable, and easy-to-use platforms quickly, but one might wonder whether storing sensitive data in the cloud is safe. In this talk, we will explore the technical principles of securing a cloud data platform, look at examples in AWS and GCP, and discuss regulatory and compliance requirements.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Natalie Godec</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            11:30 h - 50 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
+                <p className="card-text">11:00 h - 50 min</p>
+                <p>Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering</p>
+                <p>Gisela Torres</p>
+                <button onClick={modal3Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal3} onHide={modal3Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Platform Engineering</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Gisela Torres</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>11:00 h - 50 min</p></div>
+                  </Modal.Footer>
                 </Modal>
-
               </div>
             </div>
           </div>
-*/}
-          {/* Break Evento */}
-{/*
+
+          {/* Juan Vicente Herrera */}
           <div className="col-md-6 mb-4">
-            <div className="card cardgranV">
+            <div className="card cardmanzanares">
               <div className="overlay"></div>
               <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar: </span>Pasillo principal</h5>
-                <p className="card-text">12:20 h - 40 min</p>
-                <p>Pausa para café.</p>
-                <br />
-                <p>Break.</p>
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
+                <p className="card-text">11:50 h - 50 min</p>
+                <p>Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI</p>
+                <p>Juan Vicente Herrera Ruiz de Alejo</p>
+                <button onClick={modal4Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal4} onHide={modal4Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Secure by Design</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Juan Vicente Herrera Ruiz de Alejo</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>11:50 h - 50 min</p></div>
+                  </Modal.Footer>
+                </Modal>
               </div>
             </div>
           </div>
-*/}
-          {/* Oscar C. Evento */}
-{/*
+
+          {/* Carlos Villanúa */}
           <div className="col-md-6 mb-4">
             <div className="card cardplazaM">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">13:00 h - 60 min</p>
-                <p>Ambientes efímeros con Serverless y Custom Resources.</p>
-                <p>Oscar Cortes Bracho</p>
-
-                <button onClick={doceShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={doceS}
-                    onHide={doceHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Ambientes efímeros con Serverless y Custom Resources</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Uno de los principales problemas que encontramos cuando trabajamos con Serverless a nivel arquitectura, es el paso de los ambientes de desarrollo y testing a los ambientes productivos, la misma naturaleza del Serverless hace que sea complejo la validación de manera local delas nuevas funcionalidades, esto conlleva tener que validar las features en el Cloud provider directamente que dependiendo de distintos factores puede ser un cuello de botella.
-                    <br />
-                    <br />
-                    Aquí es donde aparecen los ambientes de desarrollo efímeros que puedan vivir lo que la funcionalidad demore desarrollándose; sin embargo, esto no es tan simple de implementar en la práctica
-                    <br />
-                    <br />
-                    Por otro lado, tenemos la dificultad de que necesitamos hidratar con datos los ambientes de Test y Desarrollo para validar nuestras funcionalidades, y además en ocasiones la necesidad de personalizarlos, para esto herramientas como Custom Resources con CloudFormation pueden ser de mucha utilizar
-                    <br />
-                    <br />
-                    El objetivo de esta charla será mostrar como construir ambientes efímeros en GitLab CI/CD
-                    que acompañen el ciclo de vida de una funcionalidad, desplegar en AWS ante la creación de la rama y destruirlos ante la propuesta del un Merge Request, customizando recursos como las bases de datos en estos ambientes, hidratando con datos específicos.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Oscar Cortes Bracho</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            13:00 h - 60 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
+                <p className="card-text">12:00 h - 50 min</p>
+                <p>$Git It Done: API Management as Code (The DevOps &amp; Platform Team Dream)</p>
+                <p>Carlos Villanúa</p>
+                <button onClick={modal5Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal5} onHide={modal5Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>$Git It Done</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    $Git It Done: API Management as Code (The DevOps &amp; Platform Team Dream)
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Carlos Villanúa</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>12:00 h - 50 min</p></div>
+                  </Modal.Footer>
                 </Modal>
-
               </div>
             </div>
           </div>
-*/}
-        {/* Break Evento */}
- {/*
-        <div className="col-md-6 mb-4">
-            <div className="card cardgranV">
-              <div className="overlay"></div>
-              <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar: </span>Pasillo principal</h5>
-                <p className="card-text">14:50 h - 70 min</p>
-                <p>Pausa para comer.</p>
-                <br />
-                <p>Comida.</p>
-              </div>
-            </div>
-          </div>
-*/}
 
-          {/* Gabriela G. Evento */}
-{/*
-          <div className="col-md-6 mb-4">
-            <div className="card cardmanzanares">
-              <div className="overlay"></div>
-              <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">16:00 h - 50 min</p>
-                <p>SDLC con OWASP.</p>
-                <p>Gabriela García</p>
-
-                <button onClick={treceShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={treceS}
-                    onHide={treceHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>SDLC con OWASP</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Discutimos cómo integrar la seguridad en cada etapa del SDLC, desde la planificación hasta el mantenimiento, para crear aplicaciones robustas y seguras utilizando las directrices, elementos y software de OWASP para crear un "framework" propio de seguridad para desarrolladores.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Gabriela García
-                            </p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            16:00 h - 50 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
-                </Modal>
-
-              </div>
-            </div>
-          </div>
-*/}
-          {/* Alejandro A. Evento */}
-{/*
+          {/* Patricia + Almudena */}
           <div className="col-md-6 mb-4">
             <div className="card cardmetropolitano">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">16:50 h - 50 min</p>
-                <p>Descubre y aplica la estrategia que utilizan XOPS para mejorar de trabajo.</p>
-                <p>Alejandro Acosta</p>
-
-                <button onClick={octavoShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={octavoS}
-                    onHide={octavoHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Descubre y aplica la estrategia que utilizan XOPS para mejorar de trabajo.</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Hablaremos de estrategias que te permitirán mejorar de trabajo y conseguir mejores oportunidades para que puedas tener entrevistas en empresas que te gustaría trabajar y poder pasar esas entrevistas en el mercado de Cloud Ops.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Alejandro Acosta</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            16:50 h - 50 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
+                <p className="card-text">12:50 h - 50 min</p>
+                <p>Microsoft Fabric meets AI: Building real-world business solutions</p>
+                <p>Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López</p>
+                <button onClick={modal6Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal6} onHide={modal6Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Microsoft Fabric meets AI</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Microsoft Fabric meets AI: Building real-world business solutions
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>12:50 h - 50 min</p></div>
+                  </Modal.Footer>
                 </Modal>
-
               </div>
             </div>
           </div>
-*/}
 
-          {/* David S. Evento */}
-{/* 
+          {/* Comida */}
+          <div className="col-md-6 mb-4">
+            <div className="card cardgranV">
+              <div className="overlay"></div>
+              <div className="card-body text-white">
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Pasillo principal</h5>
+                <p className="card-text">13:40 h - 70 min</p>
+                <p>Pausa para comer.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Jeff Fan */}
           <div className="col-md-6 mb-4">
             <div className="card cardcuatroTD">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">17:40 h - 40 min</p>
-                <p>Adopting Linked Open Data in Product Security: a Modular Knowledge Graph.</p>
-                <p>David Sastre</p>
-
-                <button onClick={nuevShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={nuevS}
-                    onHide={nuevHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Adopting Linked Open Data in Product Security: a Modular Knowledge Graph.</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    El tema aborda la implementación de Linked Open Data (LOD) en el ámbito de la seguridad de productos mediante el uso de un grafo de conocimiento modular. Este enfoque busca estructurar y enlazar datos relevantes para mejorar la gestión, análisis y comunicación de riesgos de seguridad en productos tecnológicos.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>David Sastre</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            17:40 h - 40 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
+                <p className="card-text">13:50 h - 50 min</p>
+                <p>Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards</p>
+                <p>Jeff Fan</p>
+                <button onClick={modal7Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal7} onHide={modal7Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Make Rival GPUs Play Nice</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Jeff Fan</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>13:50 h - 50 min</p></div>
+                  </Modal.Footer>
                 </Modal>
-
               </div>
             </div>
           </div>
-*/}
-          {/* Alvaro R. Evento */}
-{/*
-          <div className="col-md-6 mb-4">
-            <div className="card cardcuatroT">
-              <div className="overlay"></div>
-              <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">18:20 h - 50 min</p>
-                <p>Securing Kubernetes Workloads: From Code to Cluster.</p>
-                <p>Álvaro Revuelta M.</p>
 
-                <button onClick={diezShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={diezS}
-                    onHide={diezHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Securing Kubernetes Workloads: From Code to Cluster</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    This talk focuses on securing Kubernetes workloads, walking through the whole process; from coding to deployment. It covers securing container images, setting up policies, and ensuring secure communication between microservices. As well as continuously scanning in the hunt for recently discovered vulnerabilities.
-                    <br />
-                    <br />
-                    Attendees will learn how to use tools like Kube-hunter and Trivy to manage vulnerabilities and ensure their clusters remain secure over time.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Álvaro Revuelta M.</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            18:20 h - 50 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
-                </Modal>
-
-              </div>
-            </div>
-          </div>
-*/}
-          {/* Antonio B. Evento */}
-{/*
-          <div className="col-md-6 mb-4">
-            <div className="card cardministeriosD">
-              <div className="overlay"></div>
-              <div className="card-body text-white">
-                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">19:10 h - 50 min</p>
-                <p>Istio Ambient Mesh: Sidecar vs Sidecar-less like if I am 10 years old.</p>
-                <p>Antonio Berben</p>
-
-                <button onClick={onceShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={onceS}
-                    onHide={onceHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Istio Ambient Mesh: Sidecar vs Sidecar-less like if I am 10 years old</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    In this talk, we will explain in plain English with no buzzwords the difference between the Sidecar model and the Sidecar-less model.
-                    <br />
-                    <br />
-                    For Service Meshes, the sidecar model was the only viable way to ensure that the mesh could take control of the application network.
-                    <br />
-                    <br />
-                    With the evolution of Kubernetes, that assertion has become outdated.
-                    <br />
-                    <br />
-                    Today, Istio Service Mesh has brought the alternative. A model which reduces the number of resources needed to make the mesh possible as well as removes the feeling that Istio is in there.
-                    <br />
-                    <br />
-                    With Istio Ambient Mesh, the user who deploys a workload in Kubernetes does not notice that the application is part of a mesh. It is totally transparent.
-                    <br />
-                    <br />
-                    Key Takeaways:
-                    <br />
-                    - Concept of service mesh
-                    <br />
-                    - Concept of Sidecar
-                    <br />
-                    - Concept of Sidecar-less
-                    <br />
-                    - Challenges solved by Sidecar-less mode compared to Sidecar mode
-                    <br />
-                    - Istio Ambient Mesh and its components
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Antonio Berben</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            19:10 h - 50 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
-                </Modal>
-
-              </div>
-            </div>
-          </div>
-*/}
-          {/* Pablo G. Evento */}
- {/*
+          {/* Alberto Morgante */}
           <div className="col-md-6 mb-4">
             <div className="card cardplazaM">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">20:00 h - 60 min</p>
-                <p>Instalación de Whonix en QEMU/KVM.</p>
-                <p>Pablo Gómez - Caldito</p>
-
-                <button onClick={catorceShow} className="button menu-btn">Más Detalles</button>
-
-                <Modal
-                    show={catorceS}
-                    onHide={catorceHid}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Instalación de Whonix en QEMU/KVM</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    Después de asistir a este taller, habrá instalado Whonix en su computadora portátil sobre QEMU/KVM. También mostrará cómo funciona QEMU/KVM como una mejor alternativa a los hipervisores propietarios.
-                    </Modal.Body>
-                    <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                        <div>
-                            <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Pablo Gómez - Caldito</p>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                            20:00 h - 60 min
-                            </p>
-                        </div>
-                    </Modal.Footer>
+                <p className="card-text">14:00 h - 50 min</p>
+                <p>Automated Baremetal deployment with CAPI + ClusterClass</p>
+                <p>Alberto Morgante</p>
+                <button onClick={modal8Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal8} onHide={modal8Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Automated Baremetal deployment</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Automated Baremetal deployment with CAPI + ClusterClass
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Alberto Morgante</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>14:00 h - 50 min</p></div>
+                  </Modal.Footer>
                 </Modal>
-
               </div>
             </div>
           </div>
-*/}
-          {/* End Evento */}
-{/*
-         <div className="col-md-6 mb-4">
+
+          {/* Juarez Junior */}
+          <div className="col-md-6 mb-4">
+            <div className="card cardcuatroT">
+              <div className="overlay"></div>
+              <div className="card-body text-white">
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
+                <p className="card-text">14:50 h - 50 min</p>
+                <p>Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase</p>
+                <p>Juarez Junior</p>
+                <button onClick={modal9Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal9} onHide={modal9Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Automating Database CI/CD</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Juarez Junior</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>14:50 h - 50 min</p></div>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+            </div>
+          </div>
+
+          {/* Ignacio Dominguez */}
+          <div className="col-md-6 mb-4">
+            <div className="card cardmanzanares">
+              <div className="overlay"></div>
+              <div className="card-body text-white">
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
+                <p className="card-text">15:00 h - 50 min</p>
+                <p>Hacking CI/CD Pipelines</p>
+                <p>Ignacio Dominguez</p>
+                <button onClick={modal10Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal10} onHide={modal10Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Hacking CI/CD Pipelines</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Hacking CI/CD Pipelines
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Ignacio Dominguez</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>15:00 h - 50 min</p></div>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+            </div>
+          </div>
+
+          {/* Dachi Gogotchuri */}
+          <div className="col-md-6 mb-4">
+            <div className="card cardmetropolitanoD">
+              <div className="overlay"></div>
+              <div className="card-body text-white">
+                <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
+                <p className="card-text">15:50 h - 50 min</p>
+                <p>IA generativa en DevSecOps: automatización inteligente de pipelines</p>
+                <p>Dachi Gogotchuri</p>
+                <button onClick={modal11Show} className="button menu-btn">Más Detalles</button>
+                <Modal show={modal11} onHide={modal11Hid}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>IA generativa en DevSecOps</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    IA generativa en DevSecOps: automatización inteligente de pipelines
+                  </Modal.Body>
+                  <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div><p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>Dachi Gogotchuri</p></div>
+                    <div style={{ textAlign: 'right' }}><p className="card-text" style={{ margin: '0', padding: '0' }}>15:50 h - 50 min</p></div>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+            </div>
+          </div>
+
+          {/* Cierre */}
+          <div className="col-md-6 mb-4">
             <div className="card cardpuertaA">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                <p className="card-text">21:00 h</p>
-                <p>Cierre.</p>
+                <p className="card-text">16:40 h</p>
+                <p>Cierre del primer día.</p>
               </div>
             </div>
           </div>
 
         </div>
       </div>
-      </AnimationWrapper>  
-    </section>    
-
-  );   
-  
-*/}
-
-};   
+      </AnimationWrapper>
+    </section>
+  );
+};
 
 export default EventSchedule;
-
