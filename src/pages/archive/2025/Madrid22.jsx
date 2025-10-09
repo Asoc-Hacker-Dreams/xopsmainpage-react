@@ -10,8 +10,9 @@ const Madrid22 = () => {
 
   // Format time from ISO to display format (HH:MM h)
   const formatTime = (timeISO) => {
-    const date = new Date(timeISO);
-    return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')} h`;
+    // Parse the time from format "2025-11-21T10:00"
+    const [, time] = timeISO.split('T');
+    return `${time} h`;
   };
 
   return (
