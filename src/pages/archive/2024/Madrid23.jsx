@@ -1,8 +1,8 @@
-import AnimationWrapper from "../../../components/AnimationWrapper";
+import AnimationWrapper from '../../../components/AnimationWrapper';
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
-const EventSchedule = () => {
+const Madrid23 = () => {
 
   const [tercerS, settercerS] = useState(false);
   const tercerHid = () => settercerS(false);
@@ -24,23 +24,21 @@ const EventSchedule = () => {
       <div className="container mt-5">
         <div className="row">
 
-          {/* Openint Evento */}
+          {/* Opening Event */}
           <div className="col-md-6 mb-4">
             <div className="card cardBernabeuD">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Inicio: </span>Salón de Actos</h5>
                 <p className="card-text">10:00 h - 30 min</p>
-                <p>Dar la bienvenida a los asistentes al segundo día del evento, reconociendo su entusiasmo y compromiso continuo con los objetivos de esta experiencia.</p>
-                <br></br>
-                <p>Retomar los aprendizajes y logros del primer día para establecer el tono de una jornada aún más productiva e inspiradora.</p>
+                <p>Dar la bienvenida a los asistentes al segundo día del evento.</p>
               </div>
             </div>
           </div>
 
           {/* Santiago C. Evento */}
           <div className="col-md-6 mb-4">
-            <div className="card cardcuatroT">
+            <div className="card cardgranV">
               <div className="overlay"></div>
               <div className="card-body text-white">
                 <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
@@ -168,7 +166,7 @@ const EventSchedule = () => {
             </div>
           </div>
 
-          {/* Fin del Evento */}
+          {/* Closing Event */}
          <div className="col-md-6 mb-4">
             <div className="card cardpuertaA">
               <div className="overlay"></div>
@@ -188,5 +186,4 @@ const EventSchedule = () => {
   );
 };
 
-export default EventSchedule;
-
+export default Madrid23;
