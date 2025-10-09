@@ -15,6 +15,9 @@ import Sponsor from './pages/Sponsor';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
+import Events2024 from './pages/archive/2024/Events2024';
+import Speakers2025 from './pages/archive/2025/Speakers2025';
+import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
@@ -71,6 +74,7 @@ function App() {
         {/* Título X-OPS 2024 */}
         <div className="submenu-title">X-Ops Conference Madrid 2024</div>
         <NavDropdown.Item as={Link} to="/archive/2024/Speakers2024">Ponentes</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Agenda</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
 
         <NavDropdown.Divider />
@@ -124,8 +128,13 @@ function App() {
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 
+          {/* 2025 */}
+          <Route path="/archive/2025/Speakers2025" element={<Speakers2025 />} />
+          <Route path="/archive/2025/Events2025" element={<Events2025 />} />
+
           {/* 2024 */}
           <Route path="/archive/2024/Speakers2024" element={<Speakers2024 />} />
+          <Route path="/archive/2024/Events2024" element={<Events2024 />} />
           <Route path="/archive/2024/Sponsor2024" element={<Sponsor2024 />} />
 
           {/* 2023 */}
