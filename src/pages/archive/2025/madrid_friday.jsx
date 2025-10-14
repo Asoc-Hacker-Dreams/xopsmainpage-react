@@ -57,7 +57,7 @@ const MadridFriday = () => {
                 <div className="card cardcuatroT">
                   <div className="overlay"></div>
                   <div className="card-body text-white">
-                    <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
+                    <h5 className="card-title"><span className='heading'>Lugar: </span>{event.room}</h5>
                     <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
                     <p>{event.talk}</p>
                     <p><strong>{event.speaker}</strong></p>

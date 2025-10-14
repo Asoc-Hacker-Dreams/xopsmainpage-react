@@ -1,15 +1,5 @@
 [
   {
-    "speaker": "Shani Adadi Kazaz",
-    "talk": "Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure",
-    "description": "Discover how leveraging Kubernetes for platform engineering can dramatically increase development efficiency, streamline operations, and enable unprecedented scale through Kubernetes-native GitOps. This session explores how the Kubernetes API becomes the cornerstone of GitOps practices, solving key challenges in managing cloud resources and infrastructure at scale. Learn how this Kubernetes-centric approach transforms traditional workflows, allowing teams to declaratively manage thousands of resources across complex environments using familiar Kubernetes objects and methodologies. We'll demonstrate how platform abstractions help overcome complex challenges, and how automation aligns with Kubernetes controllers principles using open-source tools. Explore how the powerful combination of Kro, ArgoCD, and ACK extends the Kubernetes API to drive GitOps for both applications and infrastructure, revolutionizing platform engineering on EKS through a truly Kubernetes-native GitOps approach.",
-    "timeRaw": "2025-11-21 11:00:00",
-    "timeISO": "2025-11-21T11:00",
-    "durationMinutes": 45,
-    "durationHuman": "45m",
-    "room": "Hyperscalers"
-  },
-  {
     "speaker": "Gisela Torres",
     "talk": "Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering",
     "description": "¿Y si te dijera que hay una forma de liberar a los equipos del caos operativo y además self-service?\n\nEn esta charla exploraremos qué es Platform Engineering, por qué está transformando la forma en que trabajamos con la infraestructura, templates, repos, configuraciones, etc. y cómo puede ser el cambio que tu organización necesita. Te mostraré un caso práctico que ilustra cómo sería nuestro día a día si adoptáramos esta práctica: más foco en el producto, menos fricción y una colaboración mucho más fluida entre equipos. Spoiler: después de esto, no querrás volver atrás.",
@@ -17,7 +7,17 @@
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
+  },
+  {
+    "speaker": "Shani Adadi Kazaz",
+    "talk": "Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure",
+    "description": "Discover how leveraging Kubernetes for platform engineering can dramatically increase development efficiency, streamline operations, and enable unprecedented scale through Kubernetes-native GitOps. This session explores how the Kubernetes API becomes the cornerstone of GitOps practices, solving key challenges in managing cloud resources and infrastructure at scale. Learn how this Kubernetes-centric approach transforms traditional workflows, allowing teams to declaratively manage thousands of resources across complex environments using familiar Kubernetes objects and methodologies. We'll demonstrate how platform abstractions help overcome complex challenges, and how automation aligns with Kubernetes controllers principles using open-source tools. Explore how the powerful combination of Kro, ArgoCD, and ACK extends the Kubernetes API to drive GitOps for both applications and infrastructure, revolutionizing platform engineering on EKS through a truly Kubernetes-native GitOps approach.",
+    "timeRaw": "2025-11-21 11:00:00",
+    "timeISO": "2025-11-21T11:00",
+    "durationMinutes": 45,
+    "durationHuman": "45m",
+    "room": "Sala A"
   },
   {
     "speaker": "Alejandro de la Hoz Martin",
@@ -27,7 +27,7 @@
     "timeISO": "2025-11-21T11:45",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Hyperscalers"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Alberto Morgante",
@@ -37,7 +37,7 @@
     "timeISO": "2025-11-21T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Guillermo Ruiz",
@@ -47,7 +47,7 @@
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 65,
     "durationHuman": "1h 5m",
-    "room": "Hyperscalers"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Antonio Berben, Felipe Vicens",
@@ -57,7 +57,17 @@
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Sala A"
+  },
+  {
+    "speaker": "Felipe Vicens",
+    "talk": "De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras",
+    "description": "La inteligencia artificial ha evolucionado hacia agentes autónomos capaces de colaborar y operar a escala en infraestructura crítica.\n\nAl ver el título, tu pregunta es ineludible: ¿cómo paso de simple becario a Modo Dios de forma segura con los Agentes de AI?\n\nEsta charla desvela el camino de 0 a 100 sobre cómo es posible desplegar y escalar miles de agentes garantizando seguridad y eficiencia en infraestructuras críticas robustas\n\nCon proyectos open source como AgentGateway, Kgateway, KAgent y LLM-D como referencia, exploraremos el papel esencial de los gateways seguros y la colaboración agent-to-agent (A2A) en arquitecturas distribuidas, que permiten mantener la integridad y la protección en sistemas agénticos complejos.\n\nEntenderemos por qué la seguridad y la escalabilidad son pilares fundamentales para el futuro de los agentes autónomos en infraestructuras críticas.",
+    "timeRaw": "2025-11-21 12:50:00",
+    "timeISO": "2025-11-21T12:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Sala B"
   },
   {
     "speaker": "Carlos Villanúa",
@@ -67,7 +77,7 @@
     "timeISO": "2025-11-21T13:40",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Mani Ghelichkhani",
@@ -77,7 +87,7 @@
     "timeISO": "2025-11-21T13:55",
     "durationMinutes": 65,
     "durationHuman": "1h 5m",
-    "room": "Hyperscalers"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Cleyra Uzcategui",
@@ -87,7 +97,27 @@
     "timeISO": "2025-11-21T14:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
+  },
+  {
+    "speaker": "Sara San Luís Rodríguez",
+    "talk": "Implementando un sistema de Machine Learning observable en la nube",
+    "description": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
+    "timeRaw": "2025-11-21 16:00:00",
+    "timeISO": "2025-11-21T16:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
+  },
+  {
+    "speaker": "Christian Carballo Lozano",
+    "talk": "Implementando un sistema de Machine Learning observable en la nube",
+    "description": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
+    "timeRaw": "2025-11-21 16:00:00",
+    "timeISO": "2025-11-21T16:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Sala A"
   },
   {
     "speaker": "Rossana Suarez",
@@ -97,27 +127,7 @@
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Hyperscalers"
-  },
-  {
-    "speaker": "Sara San Luís Rodríguez, Christian Carballo Lozano",
-    "talk": "Implementando un sistema de Machine Learning observable en la nube",
-    "description": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
-    "timeRaw": "2025-11-21 16:00:00",
-    "timeISO": "2025-11-21T16:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m",
-    "room": "Salon de Actos"
-  },
-  {
-    "speaker": "Carlos Polop",
-    "talk": "GCP Vulnerabilities & Features of Offensive Engineers",
-    "description": "Over the past years, I have conducted extensive research into how attackers can exploit various features of Google Cloud Platform (GCP) and Google Workspace to escalate privileges, maintain persistence, and execute post-exploitation actions. This work has uncovered numerous behaviors that hold significant value for Red Teams. While some of these findings have prompted GCP to implement fixes, others have been acknowledged as inherent features of the platform. Key discoveries include:\n\n- Methods to perform critical actions without generating audit logs.\n\n- Exploiting environment variables to achieve remote code execution (RCE) on systems and containers that are not intended to be directly accessible.\n\n- Techniques for pivoting from Google Cloud Storage buckets to other GCP services and Service Accounts.\n\n- Leveraging containers to establish \"invisible\" persistence mechanisms.\n\nAdditionally, my research has focused on understanding and exploiting the behaviour of Google’s enterprise tools, such as:\n\n- Google Credential Provider for Windows\n\n- Google Cloud Directory Sync\n\n- Google Password Sync\n\n- Admin Directory Sync\n\nThese tools can be used to pivot and escalate privileges from environments like Windows, Active Directory, and Microsoft Entra ID into Google Workspace, ultimately gaining access to GCP.",
-    "timeRaw": "2025-11-22 10:30:00",
-    "timeISO": "2025-11-22T10:30",
-    "durationMinutes": 60,
-    "durationHuman": "1h 0m",
-    "room": "Bsides Madrid"
+    "room": "Sala B"
   },
   {
     "speaker": "Dachi Gogotchuri",
@@ -127,7 +137,27 @@
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
+  },
+  {
+    "speaker": "Carlos Polop",
+    "talk": "GCP Vulnerabilities & Features of Offensive Engineers",
+    "description": "Over the past years, I have conducted extensive research into how attackers can exploit various features of Google Cloud Platform (GCP) and Google Workspace to escalate privileges, maintain persistence, and execute post-exploitation actions. This work has uncovered numerous behaviors that hold significant value for Red Teams. While some of these findings have prompted GCP to implement fixes, others have been acknowledged as inherent features of the platform. Key discoveries include:\n\n- Methods to perform critical actions without generating audit logs.\n\n- Exploiting environment variables to achieve remote code execution (RCE) on systems and containers that are not intended to be directly accessible.\n\n- Techniques for pivoting from Google Cloud Storage buckets to other GCP services and Service Accounts.\n\n- Leveraging containers to establish \"invisible\" persistence mechanisms.\n\nAdditionally, my research has focused on understanding and exploiting the behaviour of Google’s enterprise tools, such as:\n\n- Google Credential Provider for Windows\n\n- Google Cloud Directory Sync\n\n- Google Password Sync\n\n- Admin Directory Sync\n\nThese tools can be used to pivot and escalate privileges from environments like Windows, Active Directory, and Microsoft Entra ID into Google Workspace, ultimately gaining access to GCP.",
+    "timeRaw": "2025-11-22 10:30:00",
+    "timeISO": "2025-11-22T10:30",
+    "durationMinutes": 60,
+    "durationHuman": "1h 0m",
+    "room": "Sala A"
+  },
+  {
+    "speaker": "Patricia Rodríguez Vaquero",
+    "talk": "Microsoft Fabric meets AI: Building real-world business solutions",
+    "description": "Dive into the transformative power of Microsoft Fabric as we explore the seamless integration of Artificial Intelligence into practical business scenarios. This session will guide you through the journey of implementing an end-to-end ML project using Microsoft Fabric, from data preparation to model deployment. Discover how this robust platform can turn data into actionable insights, driving innovation and efficiency in your organization. Whether you're a tech enthusiast, data scientist, or business leader, this talk offers practical takeaways and inspiration to harness the potential of AI in solving real-world challenges.",
+    "timeRaw": "2025-11-22 11:00:00",
+    "timeISO": "2025-11-22T11:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López",
@@ -137,7 +167,7 @@
     "timeISO": "2025-11-22T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Sala A"
   },
   {
     "speaker": "Juan Vicente Herrera Ruiz de Alejo",
@@ -147,7 +177,7 @@
     "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Bsides Madrid"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Verónica Rivas Remiseiro, Toni Granell",
@@ -157,7 +187,17 @@
     "timeISO": "2025-11-22T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
+  },
+  {
+    "speaker": "Toni Granell",
+    "talk": "Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps",
+    "description": "La charla versa sobre \"Anticipar Problemas en Entornos AIOps\" se centra en cómo la inteligencia artificial conversacional, como Copilot, puede transformar la gestión de operaciones de TI mediante la predicción proactiva de fallos. Este desarrollo explora la sinergia entre AIOps (Inteligencia Artificial para Operaciones de TI) y las capacidades de Copilot para no solo detectar anomalías, sino también anticiparse a ellas, minimizando interrupciones y mejorando la eficiencia operativa",
+    "timeRaw": "2025-11-22 11:50:00",
+    "timeISO": "2025-11-22T11:50",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Sala A"
   },
   {
     "speaker": "Ignacio Dominguez",
@@ -167,7 +207,7 @@
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 80,
     "durationHuman": "1h 20m",
-    "room": "Bsides Madrid"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Jeff Fan",
@@ -177,7 +217,7 @@
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos"
+    "room": "Sala A"
   },
   {
     "speaker": "Alkin Tezuysal",
@@ -187,7 +227,7 @@
     "timeISO": "2025-11-22T13:35",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Juarez Junior",
@@ -197,7 +237,7 @@
     "timeISO": "2025-11-22T14:20",
     "durationMinutes": 40,
     "durationHuman": "40m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "José Enrique Calderón Sanz",
@@ -207,7 +247,7 @@
     "timeISO": "2025-11-22T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
   },
   {
     "speaker": "David Amorín García",
@@ -217,6 +257,6 @@
     "timeISO": "2025-11-22T16:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salón de Actos"
   }
 ]
