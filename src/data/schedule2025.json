@@ -2,6 +2,7 @@
   {
     "speaker": "Gisela Torres",
     "talk": "Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering",
+    "description": "¿Y si te dijera que hay una forma de liberar a los equipos del caos operativo y además self-service?\n\nEn esta charla exploraremos qué es Platform Engineering, por qué está transformando la forma en que trabajamos con la infraestructura, templates, repos, configuraciones, etc. y cómo puede ser el cambio que tu organización necesita. Te mostraré un caso práctico que ilustra cómo sería nuestro día a día si adoptáramos esta práctica: más foco en el producto, menos fricción y una colaboración mucho más fluida entre equipos. Spoiler: después de esto, no querrás volver atrás.",
     "timeRaw": "2025-11-21 11:00:00",
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 50,
@@ -10,166 +11,187 @@
   {
     "speaker": "Shani Adadi Kazaz",
     "talk": "Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure",
-    "timeRaw": "2025-11-21 10:00:00",
-    "timeISO": "2025-11-21T10:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "Discover how leveraging Kubernetes for platform engineering can dramatically increase development efficiency, streamline operations, and enable unprecedented scale through Kubernetes-native GitOps. This session explores how the Kubernetes API becomes the cornerstone of GitOps practices, solving key challenges in managing cloud resources and infrastructure at scale. Learn how this Kubernetes-centric approach transforms traditional workflows, allowing teams to declaratively manage thousands of resources across complex environments using familiar Kubernetes objects and methodologies. We'll demonstrate how platform abstractions help overcome complex challenges, and how automation aligns with Kubernetes controllers principles using open-source tools. Explore how the powerful combination of Kro, ArgoCD, and ACK extends the Kubernetes API to drive GitOps for both applications and infrastructure, revolutionizing platform engineering on EKS through a truly Kubernetes-native GitOps approach.",
+    "timeRaw": "2025-11-21 11:00:00",
+    "timeISO": "2025-11-21T11:00",
+    "durationMinutes": 45,
+    "durationHuman": "45m"
   },
   {
     "speaker": "Alejandro de la Hoz Martin",
     "talk": "De 0 a 100 con Ansible en AWX",
-    "timeRaw": "2025-11-22 11:00:00",
-    "timeISO": "2025-11-22T11:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "Desarrollando un CICD de un servicio de automatización en AWX. Desde el push del desarrollador hasta la publicación del JobTemplate en AWX para ser lanzado via APIRest, incluyendo por el camino linters, test y firma del mismo.",
+    "timeRaw": "2025-11-21 11:45:00",
+    "timeISO": "2025-11-21T11:45",
+    "durationMinutes": 45,
+    "durationHuman": "45m"
   },
   {
     "speaker": "Alberto Morgante",
     "talk": "Automated Baremetal deployment with CAPI + ClusterClass",
-    "timeRaw": "2025-11-21 14:00:00",
-    "timeISO": "2025-11-21T14:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "As Kubernetes adoption grows beyond the cloud into data centers and edge environments, provisioning clusters on bare metal becomes increasingly crucial. However, deploying and managing these environments at scale remains a complex challenge.\n\nThis session will explore how Cluster API (CAPI) combined with ClusterClass can be leveraged to fully automate the lifecycle of Kubernetes clusters on bare metal infrastructure. Attendees will learn how to eliminate manual provisioning, enforce cluster consistency, and reduce operational toil using modern GitOps-driven workflows.\n\nWe'll walk through a real-world, end-to-end implementation that includes:\n\nSetting up a CAPI provider for bare metal (e.g., Metal3)\n\nUsing ClusterClass to define standardized cluster templates\n\nIntegrating with Ironic for node provisioning\n\nAutomating updates, scaling, and lifecycle management\n\nBest practices for security, HA, and extensibility in bare metal scenarios\n\nWhether you're operating edge clusters, hybrid environments, or building your own metal cloud, this talk will give you the tools to make bare metal Kubernetes feel as dynamic and elastic as the cloud.",
+    "timeRaw": "2025-11-21 11:50:00",
+    "timeISO": "2025-11-21T11:50",
+    "durationMinutes": 30,
+    "durationHuman": "30m"
   },
   {
     "speaker": "Guillermo Ruiz",
     "talk": "Autoscaling Kubernetes Like a Pro: A Hands-On Karpenter Workshop",
-    "timeRaw": "2025-11-22 10:00:00",
-    "timeISO": "2025-11-22T10:00",
-    "durationMinutes": 110,
-    "durationHuman": "1h 50m"
+    "description": "Managing Kubernetes infrastructure efficiently is hard—especially when workloads spike, cloud bills grow, and you’re still using static autoscaling rules. That’s where Karpenter, an open-source autoscaler for Kubernetes, comes in.\n\nThis hands-on workshop is your deep dive into Karpenter’s core capabilities and advanced features. You’ll learn how Karpenter dynamically provisions just the right compute resources for your cluster—at the right time and the right cost. Built for speed, simplicity, and flexibility, Karpenter helps you unlock smarter scheduling, eliminate overprovisioning, and reduce operational overhead.\n\nWhether you're running Kubernetes in the cloud or on-premises, this workshop will show you how to modernize your autoscaling strategy using an open-source solution that puts you in control.\n\nNo black boxes. Just Kubernetes, compute, and clean scaling logic.",
+    "timeRaw": "2025-11-21 12:50:00",
+    "timeISO": "2025-11-21T12:50",
+    "durationMinutes": 65,
+    "durationHuman": "1h 5m"
   },
   {
     "speaker": "Antonio Berben, Felipe Vicens",
     "talk": "De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras",
-    "timeRaw": "2025-11-22 13:00:00",
-    "timeISO": "2025-11-22T13:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Carlos Villanúa",
-    "talk": "$Git It Done: API Management as Code (The DevOps & Platform Team Dream)",
-    "timeRaw": "2025-11-21 12:00:00",
-    "timeISO": "2025-11-21T12:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Mani Ghelichkhani",
-    "talk": "Modernizing EKS workloads: Performance & Cost at Scale with Graviton and Karpenter",
-    "timeRaw": "2025-11-22 15:50:00",
-    "timeISO": "2025-11-22T15:50",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Cleyra Uzcategui",
-    "talk": "Web UI: What's New and What's Next",
-    "timeRaw": "2025-11-22 13:00:00",
-    "timeISO": "2025-11-22T13:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Sara San Luís Rodríguez, Christian Carballo Lozano",
-    "talk": "Implementando un sistema de Machine Learning observable en la nube",
-    "timeRaw": "2025-11-22 12:10:00",
-    "timeISO": "2025-11-22T12:10",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Rossana Suarez",
-    "talk": "Migración inteligente: Containeriza tu aplicación heredada con MCP",
-    "timeRaw": "2025-11-22 10:00:00",
-    "timeISO": "2025-11-22T10:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Dachi Gogotchuri",
-    "talk": "IA generativa en DevSecOps: automatización inteligente de pipelines",
-    "timeRaw": "2025-11-21 15:50:00",
-    "timeISO": "2025-11-21T15:50",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Carlos Polop",
-    "talk": "GCP Vulnerabilities & Features of Offensive Engineers",
-    "timeRaw": "2025-11-22 11:00:00",
-    "timeISO": "2025-11-22T11:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López",
-    "talk": "Microsoft Fabric meets AI: Building real-world business solutions",
+    "description": "La inteligencia artificial ha evolucionado hacia agentes autónomos capaces de colaborar y operar a escala en infraestructura crítica.\n\nAl ver el título, tu pregunta es ineludible: ¿cómo paso de simple becario a Modo Dios de forma segura con los Agentes de AI?\n\nEsta charla desvela el camino de 0 a 100 sobre cómo es posible desplegar y escalar miles de agentes garantizando seguridad y eficiencia en infraestructuras críticas robustas\n\nCon proyectos open source como AgentGateway, Kgateway, KAgent y LLM-D como referencia, exploraremos el papel esencial de los gateways seguros y la colaboración agent-to-agent (A2A) en arquitecturas distribuidas, que permiten mantener la integridad y la protección en sistemas agénticos complejos.\n\nEntenderemos por qué la seguridad y la escalabilidad son pilares fundamentales para el futuro de los agentes autónomos en infraestructuras críticas.",
     "timeRaw": "2025-11-21 12:50:00",
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
     "durationHuman": "50m"
   },
   {
+    "speaker": "Carlos Villanúa",
+    "talk": "$Git It Done: API Management as Code (The DevOps & Platform Team Dream)",
+    "description": "Puede ser en Español o Inglés y puede ser de 30 minutos o 50 minutos. Será una introducción y live demo.\n\n¿Todavía expones tus APIs de forma manual, con poca seguridad ( o la seguridad en la propia API...) o siempre apagando fuegos? Esta charla es para ti.\n\nVoy a mostrarte cómo exponer APIs puede ser fácil para los equipos DevOps y seguro para los desarrolladores, usando una plataforma que es totalmente Infra as Code, sin configuraciones manuales (ClickOps), y pensada para ser rápida, segura y escalable.\n\n¿Qué vas a aprender (y por qué esto es el sueño de cualquier equipo DevOps o de plataforma)?\n\n-Infra as Code total: Todo: APIs, políticas, infraestructura y seguridad está en Git. Así puedes probar, revisar y desplegar todo automáticamente con CI/CD.\n\n-Automatización nativa en Kubernetes: Usamos herramientas como Traefik, CRDs y GitHub para hacer verdadero GitOps. Puedes desplegar, actualizar o revertir APIs sin necesidad de usar interfaces gráficas.\n\n-Seguridad flexible: OPA y Keycloak para políticas y autenticación, WAF y Content Guards para proteger tus APIs. Así los desarrolladores se enfocan en el código, no en problemas de cumplimiento.\n\n-Gateway Offloading: La plataforma se encarga de la autenticación, límites de uso, seguridad y monitoreo. Tus servicios quedan limpios y simples.\n\n-Observabilidad completa: Grafana Loki, Tempo, y Jaeger te dan visibilidad total para detectar y resolver problemas antes que los usuarios los noten.\n\nNo más excusas, no más configuraciones manuales. Solo código, automatización y tranquilidad.",
+    "timeRaw": "2025-11-21 13:40:00",
+    "timeISO": "2025-11-21T13:40",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Mani Ghelichkhani",
+    "talk": "Modernizing EKS workloads: Performance & Cost at Scale with Graviton and Karpenter",
+    "description": "Abstract: Join this hands-on workshop to learn all about AWS Graviton processors and considerations about how to develop and deploy applications to achieve the best EC2 price-performance and sustainability on AWS. During this hands-on workshop you will take an example application running on x86 instances application (choosing from Python, Go, Java or .NET) and learn how to migrate, test, and optimise for Graviton. Once you have converted the application, you will learn to deploy it on Graviton infrastructure through Amazon EKS or Autoscaling Groups.",
+    "timeRaw": "2025-11-21 13:55:00",
+    "timeISO": "2025-11-21T13:55",
+    "durationMinutes": 65,
+    "durationHuman": "1h 5m"
+  },
+  {
+    "speaker": "Cleyra Uzcategui",
+    "talk": "Web UI: What’s New and What’s Next",
+    "description": "The web platform is evolving rapidly, and staying ahead of new UI capabilities is crucial for modern DevOps workflows. In this session, we’ll explore how the latest advances in CSS and HTML can streamline front-end development, improve developer experience, and help teams deliver responsive, accessible, and performant interfaces faster and with less friction.\n\nGet a high-level look at some of the most exciting and impactful UI features that have recently landed — or are just around the corner — and learn how they can fit into your delivery pipelines and workflows. From better defaults for accessibility to powerful new responsive design tools, see how the modern web platform supports shipping better applications, faster.\n\nPerfect for developers, DevOps engineers, and tech leads who want to keep their front-end practices modern, efficient, and aligned with today’s best delivery standards.",
+    "timeRaw": "2025-11-21 14:30:00",
+    "timeISO": "2025-11-21T14:30",
+    "durationMinutes": 30,
+    "durationHuman": "30m"
+  },
+  {
+    "speaker": "Sara San Luís Rodríguez, Christian Carballo Lozano",
+    "talk": "Implementando un sistema de Machine Learning observable en la nube",
+    "description": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
+    "timeRaw": "2025-11-21 16:00:00",
+    "timeISO": "2025-11-21T16:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Rossana Suarez",
+    "talk": "Migración inteligente: Containeriza tu aplicación heredada con MCP",
+    "description": "Las aplicaciones heredadas no tienen por qué ser un obstáculo. En esta sesión aprenderás cómo usar MCP y asistentes inteligentes en la línea de comando para containerizar, modernizar y desplegar aplicaciones de forma ágil, reduciendo la complejidad y acelerando la innovación.",
+    "timeRaw": "2025-11-21 16:00:00",
+    "timeISO": "2025-11-21T16:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Dachi Gogotchuri",
+    "talk": "IA generativa en DevSecOps: automatización inteligente de pipelines",
+    "description": "Descubre cómo la inteligencia artificial generativa está revolucionando la creación y gestión de pipelines en Azure DevOps. En esta sesión práctica, exploraremos cómo automatizar la generación de pipelines CI/CD que cumplan automáticamente con los estándares corporativos, utilizando plantillas inteligentes y análisis predictivo de código.\n\nAprenderás a implementar un sistema que interpreta cambios en pull requests, predice problemas de calidad y seguridad, y garantiza el cumplimiento normativo de forma proactiva. Veremos como documentar políticas para que la IA tome decisiones coherentes sobre advertencias y errores.",
+    "timeRaw": "2025-11-22 10:30:00",
+    "timeISO": "2025-11-22T10:30",
+    "durationMinutes": 30,
+    "durationHuman": "30m"
+  },
+  {
+    "speaker": "Carlos Polop",
+    "talk": "GCP Vulnerabilities & Features of Offensive Engineers",
+    "description": "Over the past years, I have conducted extensive research into how attackers can exploit various features of Google Cloud Platform (GCP) and Google Workspace to escalate privileges, maintain persistence, and execute post-exploitation actions. This work has uncovered numerous behaviors that hold significant value for Red Teams. While some of these findings have prompted GCP to implement fixes, others have been acknowledged as inherent features of the platform. Key discoveries include:\n\n- Methods to perform critical actions without generating audit logs.\n\n- Exploiting environment variables to achieve remote code execution (RCE) on systems and containers that are not intended to be directly accessible.\n\n- Techniques for pivoting from Google Cloud Storage buckets to other GCP services and Service Accounts.\n\n- Leveraging containers to establish \"invisible\" persistence mechanisms.\n\nAdditionally, my research has focused on understanding and exploiting the behaviour of Google’s enterprise tools, such as:\n\n- Google Credential Provider for Windows\n\n- Google Cloud Directory Sync\n\n- Google Password Sync\n\n- Admin Directory Sync\n\nThese tools can be used to pivot and escalate privileges from environments like Windows, Active Directory, and Microsoft Entra ID into Google Workspace, ultimately gaining access to GCP.",
+    "timeRaw": "2025-11-22 10:30:00",
+    "timeISO": "2025-11-22T10:30",
+    "durationMinutes": 60,
+    "durationHuman": "1h 0m"
+  },
+  {
+    "speaker": "Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López",
+    "talk": "Microsoft Fabric meets AI: Building real-world business solutions",
+    "description": "Dive into the transformative power of Microsoft Fabric as we explore the seamless integration of Artificial Intelligence into practical business scenarios. This session will guide you through the journey of implementing an end-to-end ML project using Microsoft Fabric, from data preparation to model deployment. Discover how this robust platform can turn data into actionable insights, driving innovation and efficiency in your organization. Whether you're a tech enthusiast, data scientist, or business leader, this talk offers practical takeaways and inspiration to harness the potential of AI in solving real-world challenges.",
+    "timeRaw": "2025-11-22 11:00:00",
+    "timeISO": "2025-11-22T11:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
     "speaker": "Juan Vicente Herrera Ruiz de Alejo",
     "talk": "Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI",
-    "timeRaw": "2025-11-21 11:50:00",
-    "timeISO": "2025-11-21T11:50",
+    "description": "Esta sesión explora cómo integrar el threat modeling en el ciclo de vida de MLOps utilizando OpenShift AI, alineando la seguridad con cada fase: desde la ingesta de datos hasta el despliegue del modelo. Se presentará el Red Hat Secure Development Lifecycle (SDLC)  y se analizarán aspectos específicos de la plataforma (por ejemplo, registros de modelos o endpoints de inferencia). La charla también aborda amenazas reales en entornos de ML, como el envenenamiento de datos y los ataques adversariales, y propone prácticas de diseño seguro para equipos que trabajan sobre OpenShift AI.",
+    "timeRaw": "2025-11-22 11:30:00",
+    "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
     "durationHuman": "50m"
   },
   {
     "speaker": "Verónica Rivas Remiseiro, Toni Granell",
     "talk": "Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps",
-    "timeRaw": "2025-11-21 10:50:00",
-    "timeISO": "2025-11-21T10:50",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "La charla versa sobre \"Anticipar Problemas en Entornos AIOps\" se centra en cómo la inteligencia artificial conversacional, como Copilot, puede transformar la gestión de operaciones de TI mediante la predicción proactiva de fallos. Este desarrollo explora la sinergia entre AIOps (Inteligencia Artificial para Operaciones de TI) y las capacidades de Copilot para no solo detectar anomalías, sino también anticiparse a ellas, minimizando interrupciones y mejorando la eficiencia operativa",
+    "timeRaw": "2025-11-22 11:50:00",
+    "timeISO": "2025-11-22T11:50",
+    "durationMinutes": 30,
+    "durationHuman": "30m"
   },
   {
     "speaker": "Ignacio Dominguez",
     "talk": "Hacking CI/CD Pipelines",
-    "timeRaw": "2025-11-21 15:00:00",
-    "timeISO": "2025-11-21T15:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "English:\n\nThis hands-on workshop dives into the security risks hiding in modern CI/CD pipelines. You’ll learn how attackers target misconfigurations and weak spots across code repositories, build systems, and deployment workflows. We'll cover real-world attack paths and exploitation techniques using GitHub Actions, Terraform, AWS, Kubernetes, and GitOps tools like ArgoCD. Expect practical insights, demos, and a focus on breaking things to understand how to better defend them.\n\nAgenda:\n\n1. Introduction and CI/CD concepts\n\n2. Poisoned Pipeline Execution\n\n3. Lateral movement to/from Cloud environments (AWS)\n\n4. GitOps - Lateral movement to Kubernetes (ArgoCD)\n\n5. Exploiting GHA Self-Hosted Runners\n\n6. Supply Chain attacks\n\nEspañol:\n\nEste taller práctico se enfoca en los riesgos de seguridad que se esconden en los pipelines modernos de CI/CD. Aprenderás cómo los atacantes aprovechan malas configuraciones y puntos débiles en repositorios de código, sistemas de build y flujos de despliegue. Veremos rutas de ataque reales y técnicas de explotación usando GitHub Actions, Terraform, AWS, Kubernetes y herramientas de GitOps como ArgoCD. Prepárate para demos, ejemplos prácticos y romper cosas para entender cómo defenderlas mejor.\n\nAgenda:\n\n1. Introducción y conceptos de CI/CD\n\n2. Ejecución envenenada del pipeline (Poisoned Pipeline Execution)\n\n3. Movimiento lateral hacia/desde entornos en la nube (AWS)\n\n4. GitOps – Movimiento lateral hacia Kubernetes (ArgoCD)\n\n5. Explotación de runners auto-hospedados en GitHub Actions\n\n6. Ataques a la cadena de suministro (Supply Chain Attacks)",
+    "timeRaw": "2025-11-22 12:50:00",
+    "timeISO": "2025-11-22T12:50",
+    "durationMinutes": 80,
+    "durationHuman": "1h 20m"
   },
   {
     "speaker": "Jeff Fan",
     "talk": "Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards",
-    "timeRaw": "2025-11-21 13:50:00",
-    "timeISO": "2025-11-21T13:50",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "Most teams either overpay for a single GPU vendor or juggle two stacks that never cooperate. We’ll show a third path: a weight-aware scheduler that turns NVIDIA’s quick-burst horsepower and AMD’s memory-rich endurance into one seamless relay. You’ll watch a live demo where prefill tokens sprint on L40S cards, decode tokens cruise on MI300X nodes, and autoscaling expands lanes as the crowd pours in—cutting P90 latency 45 % and per-node cost 38 %. We’ll hand out Helm/YAML templates, Prometheus dashboards, and a spot-vs-reserved pricing calculator so you can coach your own hybrid dream team back home.",
+    "timeRaw": "2025-11-22 12:50:00",
+    "timeISO": "2025-11-22T12:50",
+    "durationMinutes": 45,
+    "durationHuman": "45m"
   },
   {
     "speaker": "Alkin Tezuysal",
     "talk": "Unified Observability: Leveraging ClickHouse as a Comprehensive Telemetry Database",
-    "timeRaw": "2025-11-22 14:50:00",
-    "timeISO": "2025-11-22T14:50",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "As modern infrastructures become more complex, traditional monitoring tools often struggle to provide a complete understanding of system health. This presentation will explore how ClickHouse, a high-performance columnar database, enables unified observability by consolidating metrics, logs, traces, and eBPF data into a scalable platform.\n\nAttendees will learn how fragmented telemetry systems can hinder root-cause analysis and operational efficiency and how ClickHouse overcomes these challenges by offering seamless integration with tools like OpenTelemetry, Grafana, Prometheus, and more. We will also compare observability solutions, such as Coroot, qryn, and custom stacks with Jaeger and Loki, to demonstrate how ClickHouse simplifies data management, enhances real-time analysis, and supports large-scale telemetry use cases.",
+    "timeRaw": "2025-11-22 13:35:00",
+    "timeISO": "2025-11-22T13:35",
+    "durationMinutes": 45,
+    "durationHuman": "45m"
   },
   {
     "speaker": "Juarez Junior",
     "talk": "Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase",
-    "timeRaw": "2025-11-21 14:50:00",
-    "timeISO": "2025-11-21T14:50",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "description": "In the era of DevOps and continuous integration/deployment (CI/CD), automating database operations is critical for maintaining agile and efficient development workflows. This technical session provides a deep dive into the integration of Oracle DB Operator for Kubernetes, GitHub Actions, and Liquibase to streamline and automate database CI/CD pipelines.\n\nThe session will also cover schema versioning and database changes using Liquibase, ensuring that database deployments are consistent, reliable, and easily manageable. Join us to learn how to revolutionize your CI/CD processes, enhance productivity, and achieve seamless database operations in a multi-cloud environment.",
+    "timeRaw": "2025-11-22 14:20:00",
+    "timeISO": "2025-11-22T14:20",
+    "durationMinutes": 40,
+    "durationHuman": "40m"
   },
   {
     "speaker": "José Enrique Calderón Sanz",
     "talk": "Evolutionary Architecture: the art of making decisions",
-    "timeRaw": "2025-11-22 15:50:00",
-    "timeISO": "2025-11-22T15:50",
+    "description": "Join me for an engaging session that explores the indispensable role of decision-making in maintaining the evolvability of architectural designs. Drawing inspiration from Antoni Gaudi's visionary approach in crafting La Sagrada Familia, we delve into the art of decision-making, highlighting its criticality in ensuring the longevity and adaptability of our architectures.\n\nBy the end of this talk, you'll gain a profound understanding of the significance of decision-making in shaping robust architectures and walk away with a practical toolkit of best practices—inspired by Gaudi's methodology—to effectively manage and document your architectural decisions.\n\nDon't miss this opportunity to elevate your architectural decision-making skills and fortify the foundations of your projects for the future.",
+    "timeRaw": "2025-11-22 16:00:00",
+    "timeISO": "2025-11-22T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m"
   },
   {
     "speaker": "David Amorín García",
     "talk": "Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números",
+    "description": "Los datos cuentan historias, pero su impacto depende de cómo los presentamos. En esta charla, exploraremos las mejores prácticas en visualización de datos para comunicar ideas de manera efectiva. Desde principios fundamentales del diseño de gráficos hasta herramientas avanzadas de visualización, aprenderás a transformar datos complejos en mensajes claros y atractivos. Esta sesión es ideal para analistas, científicos de datos y cualquier profesional que necesite presentar información basada en datos de manera persuasiva.",
     "timeRaw": "2025-11-22 16:50:00",
     "timeISO": "2025-11-22T16:50",
     "durationMinutes": 50,
