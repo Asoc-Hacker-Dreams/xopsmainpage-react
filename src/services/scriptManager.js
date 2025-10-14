@@ -12,9 +12,9 @@ const SCRIPTS_CONFIG = {
     src: 'https://www.googletagmanager.com/gtag/js?id=G-8GQ7ZLB9VK',
     init: () => {
       window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-8GQ7ZLB9VK');
+      window.gtag = function gtag(){window.dataLayer.push(arguments);}
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-8GQ7ZLB9VK');
       console.log('Google Analytics loaded with consent');
     }
   }
