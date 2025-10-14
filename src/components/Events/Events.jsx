@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MadridFriday from './madrid_friday';
 import MadridSaturday from './madrid_saturday';
+
 const App = () => {
   const [selectedDay, setSelectedDay] = useState('friday');
 

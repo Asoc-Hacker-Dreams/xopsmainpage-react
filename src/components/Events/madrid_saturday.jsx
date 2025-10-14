@@ -1,6 +1,6 @@
-import AnimationWrapper from '../../../components/AnimationWrapper';
+import AnimationWrapper from './AnimationWrapper';
 import React, { useMemo } from 'react';
-import scheduleData from '../../../data/schedule2025.json';
+import scheduleData from '../../data/schedule2025.json';
 
 const MadridSaturday = () => {
   // Filter events for Saturday (2025-11-22) and sort by time
