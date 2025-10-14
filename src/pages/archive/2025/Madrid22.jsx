@@ -1,12 +1,14 @@
 import AnimationWrapper from '../../../components/AnimationWrapper';
-import React from 'react';
+import React, { useMemo } from 'react';
 import scheduleData from '../../../data/schedule2025.json';
 
 const Madrid22 = () => {
   // Filter events for Friday (2025-11-21) and sort by time
-  const fridayEvents = scheduleData
-    .filter(event => event.timeISO.startsWith('2025-11-21'))
-    .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
+  const fridayEvents = useMemo(() => (
+    scheduleData
+      .filter(event => event.timeISO.startsWith('2025-11-21'))
+      .sort((a, b) => a.timeISO.localeCompare(b.timeISO))
+  ), [scheduleData]);
 
   // Format time from ISO to display format (HH:MM h)
   const formatTime = (timeISO) => {
