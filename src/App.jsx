@@ -5,29 +5,49 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
 import AddToHomeScreen from './components/AddToHomeScreen';
+import { ConsentProvider } from './contexts/ConsentContext';
+import CookieConsentBanner from './components/CookieConsentBanner';
+import CookiePreferencesManager from './components/CookiePreferencesManager';
+import ScriptManager from './components/ScriptManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
+import Events2024 from './pages/archive/2024/Events2024';
+import Speakers2025 from './pages/archive/2025/Speakers2025';
+import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 import { HelmetProvider } from 'react-helmet-async';
+import { useState } from 'react';
+
 function App() {
   const { canPrompt, promptInstall } = usePWA();
+  const [showCookiePreferences, setShowCookiePreferences] = useState(false);
 
   const handleInstallClick = async () => {
     const result = await promptInstall();
     console.log('Install prompt result:', result);
   };
 
+  const handleShowCookiePreferences = () => {
+    setShowCookiePreferences(true);
+  };
+
+  const handleCloseCookiePreferences = () => {
+    setShowCookiePreferences(false);
+  };
 
    return (
   <HelmetProvider>
-    <>
+    <ConsentProvider>
+      <>
+      <ScriptManager />
+      <CookieConsentBanner />
 
 <ScrollHandler />
 <div className="root home-main-section">
@@ -54,6 +74,7 @@ function App() {
         {/* Título X-OPS 2024 */}
         <div className="submenu-title">X-Ops Conference Madrid 2024</div>
         <NavDropdown.Item as={Link} to="/archive/2024/Speakers2024">Ponentes</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Agenda</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">Patrocinio y<br />Colaboradores</NavDropdown.Item>
 
         <NavDropdown.Divider />
@@ -107,8 +128,13 @@ function App() {
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 
+          {/* 2025 */}
+          <Route path="/archive/2025/Speakers2025" element={<Speakers2025 />} />
+          <Route path="/archive/2025/Events2025" element={<Events2025 />} />
+
           {/* 2024 */}
           <Route path="/archive/2024/Speakers2024" element={<Speakers2024 />} />
+          <Route path="/archive/2024/Events2024" element={<Events2024 />} />
           <Route path="/archive/2024/Sponsor2024" element={<Sponsor2024 />} />
 
           {/* 2023 */}
@@ -143,6 +169,15 @@ function App() {
             </Nav>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
               <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>Política de Privacidad</Link></li>
+              <li>
+                <button 
+                  onClick={handleShowCookiePreferences}
+                  className="btn btn-link text-white p-0"
+                  style={{ textDecoration: 'none', fontSize: 'inherit' }}
+                >
+                  🍪 Gestión de Cookies
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -155,9 +190,16 @@ function App() {
    
     {/* Add to Home Screen Banner */}
     <AddToHomeScreen />
+    
+    {/* Cookie Preferences Manager */}
+    <CookiePreferencesManager 
+      show={showCookiePreferences} 
+      onHide={handleCloseCookiePreferences} 
+    />
     </>
+   </ConsentProvider>
   </HelmetProvider>
-  )
+  );
 }
 
-export default App
+export default App;

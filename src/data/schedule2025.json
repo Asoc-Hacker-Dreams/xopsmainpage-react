@@ -1,0 +1,178 @@
+[
+  {
+    "speaker": "Gisela Torres",
+    "talk": "Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering",
+    "timeRaw": "2025-11-21 11:00:00",
+    "timeISO": "2025-11-21T11:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Shani Adadi Kazaz",
+    "talk": "Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure",
+    "timeRaw": "2025-11-21 10:00:00",
+    "timeISO": "2025-11-21T10:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Alejandro de la Hoz Martin",
+    "talk": "De 0 a 100 con Ansible en AWX",
+    "timeRaw": "2025-11-22 11:00:00",
+    "timeISO": "2025-11-22T11:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Alberto Morgante",
+    "talk": "Automated Baremetal deployment with CAPI + ClusterClass",
+    "timeRaw": "2025-11-21 14:00:00",
+    "timeISO": "2025-11-21T14:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Guillermo Ruiz",
+    "talk": "Autoscaling Kubernetes Like a Pro: A Hands-On Karpenter Workshop",
+    "timeRaw": "2025-11-22 10:00:00",
+    "timeISO": "2025-11-22T10:00",
+    "durationMinutes": 110,
+    "durationHuman": "1h 50m"
+  },
+  {
+    "speaker": "Antonio Berben, Felipe Vicens",
+    "talk": "De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras",
+    "timeRaw": "2025-11-22 13:00:00",
+    "timeISO": "2025-11-22T13:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Carlos Villanúa",
+    "talk": "$Git It Done: API Management as Code (The DevOps & Platform Team Dream)",
+    "timeRaw": "2025-11-21 12:00:00",
+    "timeISO": "2025-11-21T12:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Mani Ghelichkhani",
+    "talk": "Modernizing EKS workloads: Performance & Cost at Scale with Graviton and Karpenter",
+    "timeRaw": "2025-11-22 15:50:00",
+    "timeISO": "2025-11-22T15:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Cleyra Uzcategui",
+    "talk": "Web UI: What's New and What's Next",
+    "timeRaw": "2025-11-22 13:00:00",
+    "timeISO": "2025-11-22T13:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Sara San Luís Rodríguez, Christian Carballo Lozano",
+    "talk": "Implementando un sistema de Machine Learning observable en la nube",
+    "timeRaw": "2025-11-22 12:10:00",
+    "timeISO": "2025-11-22T12:10",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Rossana Suarez",
+    "talk": "Migración inteligente: Containeriza tu aplicación heredada con MCP",
+    "timeRaw": "2025-11-22 10:00:00",
+    "timeISO": "2025-11-22T10:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Dachi Gogotchuri",
+    "talk": "IA generativa en DevSecOps: automatización inteligente de pipelines",
+    "timeRaw": "2025-11-21 15:50:00",
+    "timeISO": "2025-11-21T15:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Carlos Polop",
+    "talk": "GCP Vulnerabilities & Features of Offensive Engineers",
+    "timeRaw": "2025-11-22 11:00:00",
+    "timeISO": "2025-11-22T11:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López",
+    "talk": "Microsoft Fabric meets AI: Building real-world business solutions",
+    "timeRaw": "2025-11-21 12:50:00",
+    "timeISO": "2025-11-21T12:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Juan Vicente Herrera Ruiz de Alejo",
+    "talk": "Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI",
+    "timeRaw": "2025-11-21 11:50:00",
+    "timeISO": "2025-11-21T11:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Verónica Rivas Remiseiro, Toni Granell",
+    "talk": "Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps",
+    "timeRaw": "2025-11-21 10:50:00",
+    "timeISO": "2025-11-21T10:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Ignacio Dominguez",
+    "talk": "Hacking CI/CD Pipelines",
+    "timeRaw": "2025-11-21 15:00:00",
+    "timeISO": "2025-11-21T15:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Jeff Fan",
+    "talk": "Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards",
+    "timeRaw": "2025-11-21 13:50:00",
+    "timeISO": "2025-11-21T13:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Alkin Tezuysal",
+    "talk": "Unified Observability: Leveraging ClickHouse as a Comprehensive Telemetry Database",
+    "timeRaw": "2025-11-22 14:50:00",
+    "timeISO": "2025-11-22T14:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "Juarez Junior",
+    "talk": "Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase",
+    "timeRaw": "2025-11-21 14:50:00",
+    "timeISO": "2025-11-21T14:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "José Enrique Calderón Sanz",
+    "talk": "Evolutionary Architecture: the art of making decisions",
+    "timeRaw": "2025-11-22 15:50:00",
+    "timeISO": "2025-11-22T15:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  },
+  {
+    "speaker": "David Amorín García",
+    "talk": "Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números",
+    "timeRaw": "2025-11-22 16:50:00",
+    "timeISO": "2025-11-22T16:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m"
+  }
+]
