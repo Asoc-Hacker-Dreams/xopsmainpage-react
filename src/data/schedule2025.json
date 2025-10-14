@@ -6,7 +6,8 @@
     "timeRaw": "2025-11-21 11:00:00",
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Shani Adadi Kazaz",
@@ -15,7 +16,8 @@
     "timeRaw": "2025-11-21 11:00:00",
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Sala A"
   },
   {
     "speaker": "Alejandro de la Hoz Martin",
@@ -24,7 +26,8 @@
     "timeRaw": "2025-11-21 11:45:00",
     "timeISO": "2025-11-21T11:45",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Alberto Morgante",
@@ -33,7 +36,8 @@
     "timeRaw": "2025-11-21 11:50:00",
     "timeISO": "2025-11-21T11:50",
     "durationMinutes": 30,
-    "durationHuman": "30m"
+    "durationHuman": "30m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Guillermo Ruiz",
@@ -42,7 +46,8 @@
     "timeRaw": "2025-11-21 12:50:00",
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 65,
-    "durationHuman": "1h 5m"
+    "durationHuman": "1h 5m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Antonio Berben",
@@ -51,7 +56,8 @@
     "timeRaw": "2025-11-21 12:50:00",
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Sala A"
   },
   {
     "speaker": "Felipe Vicens",
@@ -60,7 +66,8 @@
     "timeRaw": "2025-11-21 12:50:00",
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Sala B"
   },
   {
     "speaker": "Carlos Villanúa",
@@ -69,7 +76,8 @@
     "timeRaw": "2025-11-21 13:40:00",
     "timeISO": "2025-11-21T13:40",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Mani Ghelichkhani",
@@ -78,7 +86,8 @@
     "timeRaw": "2025-11-21 13:55:00",
     "timeISO": "2025-11-21T13:55",
     "durationMinutes": 65,
-    "durationHuman": "1h 5m"
+    "durationHuman": "1h 5m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Cleyra Uzcategui",
@@ -87,7 +96,8 @@
     "timeRaw": "2025-11-21 14:30:00",
     "timeISO": "2025-11-21T14:30",
     "durationMinutes": 30,
-    "durationHuman": "30m"
+    "durationHuman": "30m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Sara San Luís Rodríguez",
@@ -96,7 +106,8 @@
     "timeRaw": "2025-11-21 16:00:00",
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Christian Carballo Lozano",
@@ -105,7 +116,8 @@
     "timeRaw": "2025-11-21 16:00:00",
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Sala A"
   },
   {
     "speaker": "Rossana Suarez",
@@ -114,7 +126,8 @@
     "timeRaw": "2025-11-21 16:00:00",
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Sala B"
   },
   {
     "speaker": "Dachi Gogotchuri",
@@ -123,7 +136,8 @@
     "timeRaw": "2025-11-22 10:30:00",
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 30,
-    "durationHuman": "30m"
+    "durationHuman": "30m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Carlos Polop",
@@ -132,7 +146,8 @@
     "timeRaw": "2025-11-22 10:30:00",
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 60,
-    "durationHuman": "1h 0m"
+    "durationHuman": "1h 0m",
+    "room": "Sala A"
   },
   {
     "speaker": "Patricia Rodríguez Vaquero",
@@ -141,7 +156,8 @@
     "timeRaw": "2025-11-22 11:00:00",
     "timeISO": "2025-11-22T11:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Almudena Zhou Ramírez López",
@@ -150,7 +166,8 @@
     "timeRaw": "2025-11-22 11:00:00",
     "timeISO": "2025-11-22T11:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Sala A"
   },
   {
     "speaker": "Juan Vicente Herrera Ruiz de Alejo",
@@ -159,7 +176,8 @@
     "timeRaw": "2025-11-22 11:30:00",
     "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Verónica Rivas Remiseiro",
@@ -168,7 +186,8 @@
     "timeRaw": "2025-11-22 11:50:00",
     "timeISO": "2025-11-22T11:50",
     "durationMinutes": 30,
-    "durationHuman": "30m"
+    "durationHuman": "30m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Toni Granell",
@@ -177,7 +196,8 @@
     "timeRaw": "2025-11-22 11:50:00",
     "timeISO": "2025-11-22T11:50",
     "durationMinutes": 30,
-    "durationHuman": "30m"
+    "durationHuman": "30m",
+    "room": "Sala A"
   },
   {
     "speaker": "Ignacio Dominguez",
@@ -186,7 +206,8 @@
     "timeRaw": "2025-11-22 12:50:00",
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 80,
-    "durationHuman": "1h 20m"
+    "durationHuman": "1h 20m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Jeff Fan",
@@ -195,7 +216,8 @@
     "timeRaw": "2025-11-22 12:50:00",
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Sala A"
   },
   {
     "speaker": "Alkin Tezuysal",
@@ -204,7 +226,8 @@
     "timeRaw": "2025-11-22 13:35:00",
     "timeISO": "2025-11-22T13:35",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "Juarez Junior",
@@ -213,7 +236,8 @@
     "timeRaw": "2025-11-22 14:20:00",
     "timeISO": "2025-11-22T14:20",
     "durationMinutes": 40,
-    "durationHuman": "40m"
+    "durationHuman": "40m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "José Enrique Calderón Sanz",
@@ -222,7 +246,8 @@
     "timeRaw": "2025-11-22 16:00:00",
     "timeISO": "2025-11-22T16:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   },
   {
     "speaker": "David Amorín García",
@@ -231,6 +256,7 @@
     "timeRaw": "2025-11-22 16:50:00",
     "timeISO": "2025-11-22T16:50",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salón de Actos"
   }
 ]
