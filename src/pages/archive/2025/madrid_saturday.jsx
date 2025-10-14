@@ -2,17 +2,17 @@ import AnimationWrapper from '../../../components/AnimationWrapper';
 import React, { useMemo } from 'react';
 import scheduleData from '../../../data/schedule2025.json';
 
-const Madrid22 = () => {
-  // Filter events for Friday (2025-11-21) and sort by time
-  const fridayEvents = useMemo(() => (
+const MadridSaturday = () => {
+  // Filter events for Saturday (2025-11-22) and sort by time
+  const saturdayEvents = useMemo(() => (
     scheduleData
-      .filter(event => event.timeISO.startsWith('2025-11-21'))
+      .filter(event => event.timeISO.startsWith('2025-11-22'))
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO))
-  ), [scheduleData]);
+  ), []);
 
   // Format time from ISO to display format (HH:MM h)
   const formatTime = (timeISO) => {
-    // Parse the time from format "2025-11-21T10:00"
+    // Parse the time from format "2025-11-22T10:00"
     const [, time] = timeISO.split('T');
     return `${time} h`;
   };
@@ -20,10 +20,10 @@ const Madrid22 = () => {
   return (
     <section id="events" className="event-schedule-section">
       <AnimationWrapper animation="fade-up" duration={1500}>
-        <h2 className="text-center margin-top">Viernes 21 de noviembre de 2025</h2>
+        <h2 className="text-center margin-top">Sábado 22 de noviembre de 2025</h2>
         <div className="container mt-5">
           <div className="row">
-            
+
             {/* Opening Event */}
             <div className="col-md-6 mb-4">
               <div className="card cardBernabeuD">
@@ -31,15 +31,15 @@ const Madrid22 = () => {
                 <div className="card-body text-white">
                   <h5 className="card-title"><span className='heading'>Inicio: </span>Salón de Actos</h5>
                   <p className="card-text">9:30 h - 30 min</p>
-                  <p>Dar la bienvenida a los asistentes y keynote del evento.</p>
+                  <p>Bienvenida al segundo día del evento.</p>
                 </div>
               </div>
             </div>
 
             {/* Dynamic schedule from JSON */}
-            {fridayEvents.map((event, index) => (
+            {saturdayEvents.map((event, index) => (
               <div className="col-md-6 mb-4" key={index}>
-                <div className="card cardcuatroT">
+                <div className="card cardmanzanares">
                   <div className="overlay"></div>
                   <div className="card-body text-white">
                     <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
@@ -57,8 +57,8 @@ const Madrid22 = () => {
                 <div className="overlay"></div>
                 <div className="card-body text-white">
                   <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
-                  <p className="card-text">17:00 h</p>
-                  <p>Cierre del primer día.</p>
+                  <p className="card-text">18:00 h</p>
+                  <p>Cierre y despedida del evento.</p>
                 </div>
               </div>
             </div>
@@ -70,4 +70,4 @@ const Madrid22 = () => {
   );
 };
 
-export default Madrid22;
+export default MadridSaturday;
