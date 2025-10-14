@@ -1,8 +1,23 @@
 import AnimationWrapper from './AnimationWrapper';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import scheduleData from '../../data/schedule2025.json';
 
 const MadridFriday = () => {
+  // State for managing modal visibility
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = (event) => {
+    setSelectedEvent(event);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedEvent(null);
+  };
+
   // Filter events for Friday (2025-11-21) and sort by time
   const fridayEvents = useMemo(() => (
     scheduleData
@@ -46,6 +61,8 @@ const MadridFriday = () => {
                     <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
                     <p>{event.talk}</p>
                     <p><strong>{event.speaker}</strong></p>
+                    
+                    <button onClick={() => handleShowModal(event)} className="button menu-btn">Más Detalles</button>
                   </div>
                 </div>
               </div>
@@ -65,6 +82,28 @@ const MadridFriday = () => {
 
           </div>
         </div>
+
+        {/* Modal for event details */}
+        {selectedEvent && (
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>{selectedEvent.talk}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p><strong>Ponente:</strong> {selectedEvent.speaker}</p>
+              <p><strong>Duración:</strong> {selectedEvent.durationHuman}</p>
+              <p><strong>Hora:</strong> {formatTime(selectedEvent.timeISO)}</p>
+              <hr />
+              <p>{selectedEvent.description}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>{selectedEvent.speaker}</p>
+              <p className="card-text" style={{ margin: '0', padding: '0' }}>
+                {formatTime(selectedEvent.timeISO)} - {selectedEvent.durationHuman}
+              </p>
+            </Modal.Footer>
+          </Modal>
+        )}
       </AnimationWrapper>
     </section>
   );
