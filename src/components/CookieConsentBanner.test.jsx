@@ -4,22 +4,6 @@ import CookieConsentBanner from './CookieConsentBanner';
 import { ConsentProvider } from '../contexts/ConsentContext';
 
 // Mock the consent context with default values for testing
-const MockConsentProvider = ({ children, mockValues = {} }) => {
-  const defaultMockValues = {
-    showBanner: true,
-    acceptAll: vi.fn(),
-    rejectAll: vi.fn(),
-    savePreferences: vi.fn(),
-    ...mockValues
-  };
-
-  return (
-    <div data-testid="mock-consent-provider">
-      {React.cloneElement(children, { ...defaultMockValues })}
-    </div>
-  );
-};
-
 // Mock the useConsent hook
 vi.mock('../contexts/ConsentContext', async () => {
   const actual = await vi.importActual('../contexts/ConsentContext');
