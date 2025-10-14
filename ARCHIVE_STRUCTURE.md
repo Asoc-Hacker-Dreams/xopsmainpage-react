@@ -11,14 +11,15 @@ src/pages/archive/
 │   └── Speakers2023.jsx
 ├── 2024/
 │   ├── Speakers2024.jsx
+│   ├── Events2024.jsx (date toggle component)
 │   ├── Madrid22.jsx (Friday schedule)
 │   ├── Madrid23.jsx (Saturday schedule)
 │   └── Sponsor2024.jsx
 └── 2025/
     ├── Speakers2025.jsx
     ├── Events2025.jsx (date toggle component)
-    ├── Madrid22.jsx (Friday schedule - JSON driven)
-    └── Madrid23.jsx (Saturday schedule - JSON driven)
+    ├── madrid_friday.jsx (Friday schedule - JSON driven)
+    └── madrid_saturday.jsx (Saturday schedule - JSON driven)
 ```
 
 ## 2025 Implementation
@@ -36,14 +37,14 @@ src/pages/archive/
    - Switches between Friday and Saturday schedules
    - User-friendly interface for navigating between days
 
-3. **Madrid22.jsx** (`src/pages/archive/2025/Madrid22.jsx`)
+3. **madrid_friday.jsx** (`src/pages/archive/2025/madrid_friday.jsx`)
    - Friday, November 21, 2025 schedule
    - **Dynamically imports** `schedule2025.json`
    - Filters events for 2025-11-21
    - Auto-sorts events chronologically
    - Displays speaker, talk title, time, and duration from JSON
 
-4. **Madrid23.jsx** (`src/pages/archive/2025/Madrid23.jsx`)
+4. **madrid_saturday.jsx** (`src/pages/archive/2025/madrid_saturday.jsx`)
    - Saturday, November 22, 2025 schedule
    - **Dynamically imports** `schedule2025.json`
    - Filters events for 2025-11-22
@@ -80,7 +81,7 @@ The 2025 schedule uses `src/data/schedule2025.json` as the single source of trut
 - Contains all speakers and their talks
 - Includes timing information (ISO format)
 - Includes duration for each talk
-- Used by both Madrid22 and Madrid23 components
+- Used by both madrid_friday and madrid_saturday components
 
 ## Key Features
 
@@ -94,10 +95,12 @@ The 2025 schedule uses `src/data/schedule2025.json` as the single source of trut
 
 To add a new year (e.g., 2026):
 1. Create `src/pages/archive/2026/` directory
-2. Create `Speakers2026.jsx`, `Events2026.jsx`, `Madrid22.jsx`, `Madrid23.jsx`
+2. Create `Speakers2026.jsx`, `Events2026.jsx`, `madrid_friday.jsx`, `madrid_saturday.jsx`
 3. Create `src/data/schedule2026.json` with event data
 4. Add imports and routes to `src/App.jsx`
 5. Update navbar dropdown menu
+
+**Note**: The new naming convention uses `madrid_friday` and `madrid_saturday` instead of date-based names (Madrid22/Madrid23) to make the codebase more maintainable and city-expandable.
 
 ## Benefits
 
