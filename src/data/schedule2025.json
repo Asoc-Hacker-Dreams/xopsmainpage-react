@@ -1,21 +1,23 @@
 [
   {
-    "speaker": "Gisela Torres",
-    "talk": "Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering",
-    "description": "¿Y si te dijera que hay una forma de liberar a los equipos del caos operativo y además self-service?\n\nEn esta charla exploraremos qué es Platform Engineering, por qué está transformando la forma en que trabajamos con la infraestructura, templates, repos, configuraciones, etc. y cómo puede ser el cambio que tu organización necesita. Te mostraré un caso práctico que ilustra cómo sería nuestro día a día si adoptáramos esta práctica: más foco en el producto, menos fricción y una colaboración mucho más fluida entre equipos. Spoiler: después de esto, no querrás volver atrás.",
-    "timeRaw": "2025-11-21 11:00:00",
-    "timeISO": "2025-11-21T11:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
     "speaker": "Shani Adadi Kazaz",
     "talk": "Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure",
     "description": "Discover how leveraging Kubernetes for platform engineering can dramatically increase development efficiency, streamline operations, and enable unprecedented scale through Kubernetes-native GitOps. This session explores how the Kubernetes API becomes the cornerstone of GitOps practices, solving key challenges in managing cloud resources and infrastructure at scale. Learn how this Kubernetes-centric approach transforms traditional workflows, allowing teams to declaratively manage thousands of resources across complex environments using familiar Kubernetes objects and methodologies. We'll demonstrate how platform abstractions help overcome complex challenges, and how automation aligns with Kubernetes controllers principles using open-source tools. Explore how the powerful combination of Kro, ArgoCD, and ACK extends the Kubernetes API to drive GitOps for both applications and infrastructure, revolutionizing platform engineering on EKS through a truly Kubernetes-native GitOps approach.",
     "timeRaw": "2025-11-21 11:00:00",
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Hyperscalers"
+  },
+  {
+    "speaker": "Gisela Torres",
+    "talk": "Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering",
+    "description": "¿Y si te dijera que hay una forma de liberar a los equipos del caos operativo y además self-service?\n\nEn esta charla exploraremos qué es Platform Engineering, por qué está transformando la forma en que trabajamos con la infraestructura, templates, repos, configuraciones, etc. y cómo puede ser el cambio que tu organización necesita. Te mostraré un caso práctico que ilustra cómo sería nuestro día a día si adoptáramos esta práctica: más foco en el producto, menos fricción y una colaboración mucho más fluida entre equipos. Spoiler: después de esto, no querrás volver atrás.",
+    "timeRaw": "2025-11-21 11:00:00",
+    "timeISO": "2025-11-21T11:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Alejandro de la Hoz Martin",
@@ -24,7 +26,8 @@
     "timeRaw": "2025-11-21 11:45:00",
     "timeISO": "2025-11-21T11:45",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Hyperscalers"
   },
   {
     "speaker": "Alberto Morgante",
@@ -33,7 +36,8 @@
     "timeRaw": "2025-11-21 11:50:00",
     "timeISO": "2025-11-21T11:50",
     "durationMinutes": 30,
-    "durationHuman": "30m"
+    "durationHuman": "30m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Guillermo Ruiz",
@@ -42,25 +46,18 @@
     "timeRaw": "2025-11-21 12:50:00",
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 65,
-    "durationHuman": "1h 5m"
+    "durationHuman": "1h 5m",
+    "room": "Hyperscalers"
   },
   {
-    "speaker": "Antonio Berben",
+    "speaker": "Antonio Berben, Felipe Vicens",
     "talk": "De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras",
     "description": "La inteligencia artificial ha evolucionado hacia agentes autónomos capaces de colaborar y operar a escala en infraestructura crítica.\n\nAl ver el título, tu pregunta es ineludible: ¿cómo paso de simple becario a Modo Dios de forma segura con los Agentes de AI?\n\nEsta charla desvela el camino de 0 a 100 sobre cómo es posible desplegar y escalar miles de agentes garantizando seguridad y eficiencia en infraestructuras críticas robustas\n\nCon proyectos open source como AgentGateway, Kgateway, KAgent y LLM-D como referencia, exploraremos el papel esencial de los gateways seguros y la colaboración agent-to-agent (A2A) en arquitecturas distribuidas, que permiten mantener la integridad y la protección en sistemas agénticos complejos.\n\nEntenderemos por qué la seguridad y la escalabilidad son pilares fundamentales para el futuro de los agentes autónomos en infraestructuras críticas.",
     "timeRaw": "2025-11-21 12:50:00",
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Felipe Vicens",
-    "talk": "De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras",
-    "description": "La inteligencia artificial ha evolucionado hacia agentes autónomos capaces de colaborar y operar a escala en infraestructura crítica.\n\nAl ver el título, tu pregunta es ineludible: ¿cómo paso de simple becario a Modo Dios de forma segura con los Agentes de AI?\n\nEsta charla desvela el camino de 0 a 100 sobre cómo es posible desplegar y escalar miles de agentes garantizando seguridad y eficiencia en infraestructuras críticas robustas\n\nCon proyectos open source como AgentGateway, Kgateway, KAgent y LLM-D como referencia, exploraremos el papel esencial de los gateways seguros y la colaboración agent-to-agent (A2A) en arquitecturas distribuidas, que permiten mantener la integridad y la protección en sistemas agénticos complejos.\n\nEntenderemos por qué la seguridad y la escalabilidad son pilares fundamentales para el futuro de los agentes autónomos en infraestructuras críticas.",
-    "timeRaw": "2025-11-21 12:50:00",
-    "timeISO": "2025-11-21T12:50",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Carlos Villanúa",
@@ -69,7 +66,8 @@
     "timeRaw": "2025-11-21 13:40:00",
     "timeISO": "2025-11-21T13:40",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Mani Ghelichkhani",
@@ -78,7 +76,8 @@
     "timeRaw": "2025-11-21 13:55:00",
     "timeISO": "2025-11-21T13:55",
     "durationMinutes": 65,
-    "durationHuman": "1h 5m"
+    "durationHuman": "1h 5m",
+    "room": "Hyperscalers"
   },
   {
     "speaker": "Cleyra Uzcategui",
@@ -87,25 +86,8 @@
     "timeRaw": "2025-11-21 14:30:00",
     "timeISO": "2025-11-21T14:30",
     "durationMinutes": 30,
-    "durationHuman": "30m"
-  },
-  {
-    "speaker": "Sara San Luís Rodríguez",
-    "talk": "Implementando un sistema de Machine Learning observable en la nube",
-    "description": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
-    "timeRaw": "2025-11-21 16:00:00",
-    "timeISO": "2025-11-21T16:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Christian Carballo Lozano",
-    "talk": "Implementando un sistema de Machine Learning observable en la nube",
-    "description": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
-    "timeRaw": "2025-11-21 16:00:00",
-    "timeISO": "2025-11-21T16:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "30m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Rossana Suarez",
@@ -114,16 +96,18 @@
     "timeRaw": "2025-11-21 16:00:00",
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Hyperscalers"
   },
   {
-    "speaker": "Dachi Gogotchuri",
-    "talk": "IA generativa en DevSecOps: automatización inteligente de pipelines",
-    "description": "Descubre cómo la inteligencia artificial generativa está revolucionando la creación y gestión de pipelines en Azure DevOps. En esta sesión práctica, exploraremos cómo automatizar la generación de pipelines CI/CD que cumplan automáticamente con los estándares corporativos, utilizando plantillas inteligentes y análisis predictivo de código.\n\nAprenderás a implementar un sistema que interpreta cambios en pull requests, predice problemas de calidad y seguridad, y garantiza el cumplimiento normativo de forma proactiva. Veremos como documentar políticas para que la IA tome decisiones coherentes sobre advertencias y errores.",
-    "timeRaw": "2025-11-22 10:30:00",
-    "timeISO": "2025-11-22T10:30",
-    "durationMinutes": 30,
-    "durationHuman": "30m"
+    "speaker": "Sara San Luís Rodríguez, Christian Carballo Lozano",
+    "talk": "Implementando un sistema de Machine Learning observable en la nube",
+    "description": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
+    "timeRaw": "2025-11-21 16:00:00",
+    "timeISO": "2025-11-21T16:00",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Carlos Polop",
@@ -132,25 +116,28 @@
     "timeRaw": "2025-11-22 10:30:00",
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 60,
-    "durationHuman": "1h 0m"
+    "durationHuman": "1h 0m",
+    "room": "Bsides Madrid"
   },
   {
-    "speaker": "Patricia Rodríguez Vaquero",
+    "speaker": "Dachi Gogotchuri",
+    "talk": "IA generativa en DevSecOps: automatización inteligente de pipelines",
+    "description": "Descubre cómo la inteligencia artificial generativa está revolucionando la creación y gestión de pipelines en Azure DevOps. En esta sesión práctica, exploraremos cómo automatizar la generación de pipelines CI/CD que cumplan automáticamente con los estándares corporativos, utilizando plantillas inteligentes y análisis predictivo de código.\n\nAprenderás a implementar un sistema que interpreta cambios en pull requests, predice problemas de calidad y seguridad, y garantiza el cumplimiento normativo de forma proactiva. Veremos como documentar políticas para que la IA tome decisiones coherentes sobre advertencias y errores.",
+    "timeRaw": "2025-11-22 10:30:00",
+    "timeISO": "2025-11-22T10:30",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Salon de Actos"
+  },
+  {
+    "speaker": "Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López",
     "talk": "Microsoft Fabric meets AI: Building real-world business solutions",
     "description": "Dive into the transformative power of Microsoft Fabric as we explore the seamless integration of Artificial Intelligence into practical business scenarios. This session will guide you through the journey of implementing an end-to-end ML project using Microsoft Fabric, from data preparation to model deployment. Discover how this robust platform can turn data into actionable insights, driving innovation and efficiency in your organization. Whether you're a tech enthusiast, data scientist, or business leader, this talk offers practical takeaways and inspiration to harness the potential of AI in solving real-world challenges.",
     "timeRaw": "2025-11-22 11:00:00",
     "timeISO": "2025-11-22T11:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
-  },
-  {
-    "speaker": "Almudena Zhou Ramírez López",
-    "talk": "Microsoft Fabric meets AI: Building real-world business solutions",
-    "description": "Dive into the transformative power of Microsoft Fabric as we explore the seamless integration of Artificial Intelligence into practical business scenarios. This session will guide you through the journey of implementing an end-to-end ML project using Microsoft Fabric, from data preparation to model deployment. Discover how this robust platform can turn data into actionable insights, driving innovation and efficiency in your organization. Whether you're a tech enthusiast, data scientist, or business leader, this talk offers practical takeaways and inspiration to harness the potential of AI in solving real-world challenges.",
-    "timeRaw": "2025-11-22 11:00:00",
-    "timeISO": "2025-11-22T11:00",
-    "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Juan Vicente Herrera Ruiz de Alejo",
@@ -159,25 +146,18 @@
     "timeRaw": "2025-11-22 11:30:00",
     "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Bsides Madrid"
   },
   {
-    "speaker": "Verónica Rivas Remiseiro",
+    "speaker": "Verónica Rivas Remiseiro, Toni Granell",
     "talk": "Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps",
     "description": "La charla versa sobre \"Anticipar Problemas en Entornos AIOps\" se centra en cómo la inteligencia artificial conversacional, como Copilot, puede transformar la gestión de operaciones de TI mediante la predicción proactiva de fallos. Este desarrollo explora la sinergia entre AIOps (Inteligencia Artificial para Operaciones de TI) y las capacidades de Copilot para no solo detectar anomalías, sino también anticiparse a ellas, minimizando interrupciones y mejorando la eficiencia operativa",
     "timeRaw": "2025-11-22 11:50:00",
     "timeISO": "2025-11-22T11:50",
     "durationMinutes": 30,
-    "durationHuman": "30m"
-  },
-  {
-    "speaker": "Toni Granell",
-    "talk": "Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps",
-    "description": "La charla versa sobre \"Anticipar Problemas en Entornos AIOps\" se centra en cómo la inteligencia artificial conversacional, como Copilot, puede transformar la gestión de operaciones de TI mediante la predicción proactiva de fallos. Este desarrollo explora la sinergia entre AIOps (Inteligencia Artificial para Operaciones de TI) y las capacidades de Copilot para no solo detectar anomalías, sino también anticiparse a ellas, minimizando interrupciones y mejorando la eficiencia operativa",
-    "timeRaw": "2025-11-22 11:50:00",
-    "timeISO": "2025-11-22T11:50",
-    "durationMinutes": 30,
-    "durationHuman": "30m"
+    "durationHuman": "30m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Ignacio Dominguez",
@@ -186,7 +166,8 @@
     "timeRaw": "2025-11-22 12:50:00",
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 80,
-    "durationHuman": "1h 20m"
+    "durationHuman": "1h 20m",
+    "room": "Bsides Madrid"
   },
   {
     "speaker": "Jeff Fan",
@@ -195,7 +176,8 @@
     "timeRaw": "2025-11-22 12:50:00",
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Alkin Tezuysal",
@@ -204,7 +186,8 @@
     "timeRaw": "2025-11-22 13:35:00",
     "timeISO": "2025-11-22T13:35",
     "durationMinutes": 45,
-    "durationHuman": "45m"
+    "durationHuman": "45m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "Juarez Junior",
@@ -213,7 +196,8 @@
     "timeRaw": "2025-11-22 14:20:00",
     "timeISO": "2025-11-22T14:20",
     "durationMinutes": 40,
-    "durationHuman": "40m"
+    "durationHuman": "40m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "José Enrique Calderón Sanz",
@@ -222,7 +206,8 @@
     "timeRaw": "2025-11-22 16:00:00",
     "timeISO": "2025-11-22T16:00",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salon de Actos"
   },
   {
     "speaker": "David Amorín García",
@@ -231,6 +216,7 @@
     "timeRaw": "2025-11-22 16:50:00",
     "timeISO": "2025-11-22T16:50",
     "durationMinutes": 50,
-    "durationHuman": "50m"
+    "durationHuman": "50m",
+    "room": "Salon de Actos"
   }
 ]
