@@ -100,7 +100,10 @@ To add a new year (e.g., 2026):
 4. Add imports and routes to `src/App.jsx`
 5. Update navbar dropdown menu
 
-**Note**: The new naming convention uses `madrid_friday` and `madrid_saturday` instead of date-based names (Madrid22/Madrid23) to make the codebase more maintainable and city-expandable.
+**Note on Naming Convention**: 
+- **2025 onwards**: Uses the new naming convention (`madrid_friday.jsx`, `madrid_saturday.jsx`) for better maintainability and city/day expandability
+- **2024 and earlier**: Maintains the original naming convention (`Madrid22.jsx`, `Madrid23.jsx`) for historical consistency
+- The new convention makes it easier to add multiple cities (e.g., `barcelona_friday.jsx`) and is more descriptive than date-based names
 
 ## Benefits
 
