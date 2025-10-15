@@ -1,4 +1,4 @@
-import AnimationWrapper from './AnimationWrapper';
+import AnimationWrapper from '../AnimationWrapper';
 import React, { useMemo, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import scheduleData from '../../data/schedule2025.json';
