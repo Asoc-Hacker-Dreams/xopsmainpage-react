@@ -96,12 +96,6 @@ const MadridSaturday = () => {
               <hr />
               <p>{selectedEvent.description}</p>
             </Modal.Body>
-            <Modal.Footer>
-              <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>{selectedEvent.speaker}</p>
-              <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                {formatTime(selectedEvent.timeISO)} - {selectedEvent.durationHuman}
-              </p>
-            </Modal.Footer>
           </Modal>
         )}
       </AnimationWrapper>
