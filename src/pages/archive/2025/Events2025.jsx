@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Madrid22 from './Madrid22';
-import Madrid23 from './Madrid23';
+import MadridFriday from './madrid_friday';
+import MadridSaturday from './madrid_saturday';
 
 const Events2025 = () => {
   const [selectedDay, setSelectedDay] = useState('friday');
@@ -24,7 +24,7 @@ const Events2025 = () => {
         </button>
       </div>
       <div style={{ textAlign: 'center', marginTop: '-45px' }}>
-        {selectedDay === 'friday' ? <Madrid22 /> : <Madrid23 />}
+        {selectedDay === 'friday' ? <MadridFriday /> : <MadridSaturday />}
       </div>
     </div>
   );
