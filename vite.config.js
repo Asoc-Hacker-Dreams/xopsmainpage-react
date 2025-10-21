@@ -1,50 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import sitemap from 'vite-plugin-sitemap'
+// import sitemap from 'vite-plugin-sitemap' // Removido temporalmente por problemas con robots.txt
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    sitemap({
-      hostname: 'https://xopsconference.com',
-      dynamicRoutes: [
-        '/',
-        '/about',
-        '/speakers',
-        '/ponentes',
-        '/schedule',
-        '/agenda',
-        '/contact',
-        '/contacto',
-        '/organizer',
-        '/organizadores',
-        '/team',
-        '/equipo',
-        '/sponsor',
-        '/patrocina',
-        // Rutas de archivo para 2025
-        '/archive/2025/Speakers2025',
-        '/archive/2025/Events2025',
-        // Rutas de archivo para 2024
-        '/archive/2024/Speakers2024',
-        '/archive/2024/Events2024',
-        '/archive/2024/Sponsor2024',
-        // Rutas de archivo para 2023
-        '/archive/2023/Speakers2023',
-        // Política de privacidad
-        '/politica-de-privacidad',
-      ],
-      // Generar sitemap.xml automáticamente
-      outDir: 'dist',
-      robots: [
-        {
-          userAgent: '*',
-          allow: '/',
-          sitemap: 'https://xopsconference.com/sitemap.xml'
-        }
-      ],
-    })
+    // Plugin sitemap removido temporalmente - se creará sitemap manual en public/
   ],
   build: {
     outDir: 'dist',
