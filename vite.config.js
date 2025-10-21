@@ -37,7 +37,13 @@ export default defineConfig({
       ],
       // Generar sitemap.xml automáticamente
       outDir: 'dist',
-      generateRobotsTxt: true,
+      robots: [
+        {
+          userAgent: '*',
+          allow: '/',
+          sitemap: 'https://xopsconference.com/sitemap.xml'
+        }
+      ],
     })
   ],
   build: {
