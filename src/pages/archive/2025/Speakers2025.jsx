@@ -107,7 +107,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Alberto Morgante" style={{ height: '250px', width: '280px' }} />
+                  <img src={albertoM} alt="Alberto Morgante" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -123,7 +123,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Guillermo Ruiz" style={{ height: '250px', width: '280px' }} />
+                  <img src={guillermoR} alt="Guillermo Ruiz" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -155,7 +155,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Carlos Villanúa" style={{ height: '250px', width: '280px' }} />
+                  <img src={carlosV} alt="Carlos Villanúa" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -171,7 +171,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Mani Ghelichkhani" style={{ height: '250px', width: '280px' }} />
+                  <img src={maniG} alt="Mani Ghelichkhani" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -187,7 +187,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Cleyra Uzcategui" style={{ height: '250px', width: '280px' }} />
+                  <img src={cleyraU} alt="Cleyra Uzcategui" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -203,7 +203,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Sara San Luís Rodríguez" style={{ height: '250px', width: '280px' }} />
+                  <img src={saraS} alt="Sara San Luís Rodríguez" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -219,7 +219,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Rossana Suarez" style={{ height: '250px', width: '280px' }} />
+                  <img src={rossanaS} alt="Rossana Suarez" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -235,7 +235,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Dachi Gogotchuri" style={{ height: '250px', width: '280px' }} />
+                  <img src={dachiG} alt="Dachi Gogotchuri" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -251,7 +251,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Carlos Polop" style={{ height: '250px', width: '280px' }} />
+                  <img src={carlosP} alt="Carlos Polop" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -267,7 +267,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Patricia Rodríguez Vaquero" style={{ height: '250px', width: '280px' }} />
+                  <img src={patriciaR} alt="Patricia Rodríguez Vaquero" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -299,7 +299,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Verónica Rivas Remiseiro" style={{ height: '250px', width: '280px' }} />
+                  <img src={veronicaR} alt="Verónica Rivas Remiseiro" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -315,7 +315,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Ignacio Dominguez" style={{ height: '250px', width: '280px' }} />
+                  <img src={ignacioD} alt="Ignacio Dominguez" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -331,7 +331,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Jeff Fan" style={{ height: '250px', width: '280px' }} />
+                  <img src={jeffF} alt="Jeff Fan" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -344,26 +344,12 @@ const Speakers2025 = () => {
               </div>
             </div>
 
-            <div className="speaker1 d-flex justify-around margin-top">
-              <div className="speaker-img">
-                <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Alkin Tezuysal" style={{ height: '250px', width: '280px' }} />
-                </AnimationWrapper>
-              </div>
-              <div className="speaker-content">
-                <AnimationWrapper animation="fade-right" duration={1500}>
-                  <h3>Alkin Tezuysal</h3>
-                  <p>
-                    <strong>Unified Observability: Leveraging ClickHouse as a Comprehensive Telemetry Database</strong>
-                  </p>
-                </AnimationWrapper>
-              </div>
-            </div>
+
 
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Juarez Junior" style={{ height: '250px', width: '280px' }} />
+                  <img src={juarezJ} alt="Juarez Junior" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -379,7 +365,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="José Enrique Calderón Sanz" style={{ height: '250px', width: '280px' }} />
+                  <img src={joseC} alt="José Enrique Calderón Sanz" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -395,7 +381,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="David Amorín García" style={{ height: '250px', width: '280px' }} />
+                  <img src={davidA} alt="David Amorín García" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
