@@ -23,13 +23,17 @@ export default defineConfig({
         '/equipo',
         '/sponsor',
         '/patrocina',
+        // Rutas de archivo para 2025
+        '/archive/2025/Speakers2025',
+        '/archive/2025/Events2025',
         // Rutas de archivo para 2024
         '/archive/2024/Speakers2024',
+        '/archive/2024/Events2024',
         '/archive/2024/Sponsor2024',
         // Rutas de archivo para 2023
         '/archive/2023/Speakers2023',
-
-        // Añade todas tus rutas aquí
+        // Política de privacidad
+        '/politica-de-privacidad',
       ],
       // Generar sitemap.xml automáticamente
       outDir: 'dist',
