@@ -2,6 +2,26 @@ import React from 'react';
 import placeholderImg from "../../../assets/speakers/xops.png";
 import antonioB from "../../../assets/speakers/antonioB.png";
 import juanV from "../../../assets/speakers/juanV.jpg";
+import giselaT from "../../../assets/speakers/giselaT.png";
+import shaniA from "../../../assets/speakers/shaniA.png";
+import alejandroH from "../../../assets/speakers/alejandroH.png";
+import albertoM from "../../../assets/speakers/albertoM.png";
+import guillermoR from "../../../assets/speakers/guillermoR.png";
+import carlosV from "../../../assets/speakers/carlosV.png";
+import maniG from "../../../assets/speakers/maniG.png";
+import cleyraU from "../../../assets/speakers/cleyraU.png";
+import saraS from "../../../assets/speakers/saraS.png";
+import rossanaS from "../../../assets/speakers/rossanaS.png";
+import dachiG from "../../../assets/speakers/dachiG.png";
+import carlosP from "../../../assets/speakers/carlosP.png";
+import patriciaR from "../../../assets/speakers/patriciaR.png";
+import veronicaR from "../../../assets/speakers/veronicaR.png";
+import ignacioD from "../../../assets/speakers/ignacioD.png";
+import jeffF from "../../../assets/speakers/jeffF.png";
+import alkinT from "../../../assets/speakers/alkinT.png";
+import juarezJ from "../../../assets/speakers/juarezJ.png";
+import joseC from "../../../assets/speakers/joseC.png";
+import davidA from "../../../assets/speakers/davidA.png";
 import AnimationWrapper from "../../../components/AnimationWrapper";
 import SEO from "../../../components/SEO";
 
@@ -39,7 +59,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Gisela Torres" style={{ height: '250px', width: '280px' }} />
+                  <img src={giselaT} alt="Gisela Torres" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -55,7 +75,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Shani Adadi Kazaz" style={{ height: '250px', width: '280px' }} />
+                  <img src={shaniA} alt="Shani Adadi Kazaz" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
@@ -71,7 +91,7 @@ const Speakers2025 = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={placeholderImg} alt="Alejandro de la Hoz Martin" style={{ height: '250px', width: '280px' }} />
+                  <img src={alejandroH} alt="Alejandro de la Hoz Martin" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
