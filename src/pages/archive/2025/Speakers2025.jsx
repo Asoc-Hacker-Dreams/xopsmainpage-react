@@ -1,27 +1,38 @@
 import React from 'react';
-import placeholderImg from "../assets/speakers/xops.png";
-import antonioB from "../assets/speakers/antonioB.png";
-import juanV from "../assets/speakers/juanV.jpg";
-import { Helmet } from 'react-helmet-async';
+import placeholderImg from "../../../assets/speakers/xops.png";
+import antonioB from "../../../assets/speakers/antonioB.png";
+import juanV from "../../../assets/speakers/juanV.jpg";
+import AnimationWrapper from "../../../components/AnimationWrapper";
+import SEO from "../../../components/SEO";
 
-import AnimationWrapper from "./AnimationWrapper";
-
-const SpeakersSection = () => {
+const Speakers2025 = () => {
   return (
     <>
-      <Helmet>
-        <title>Conoce a los Ponentes de la X-Ops Conference Madrid 2025</title>
-        <meta name="description" content="Descubre a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025. Conoce sus perfiles y temas destacados." />
-        <meta name="keywords" content="X-Ops, DevOps, DevSecOps, AIOps, MLOps, Conferencia Tecnología Madrid, Ponentes, GitOps, SecOps" />
-        <meta property="og:title" content="Ponentes de la X-Ops Conference Madrid 2025" />
-        <meta property="og:description" content="Conoce a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025." />
-        <meta property="og:url" content="https://xopsconference.com/#ponentes" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
-
+      <SEO
+        title="Ponentes | X-Ops Conference Madrid 2025"
+        description="Conoce a los expertos de X-Ops Conference Madrid 2025."
+        path="/archive/2025/Speakers2025"
+        image="https://xopsconference.com/assets/speakers-og.jpg"
+        lang="es"
+        alternates={[
+          { hrefLang: 'es', href: 'https://xopsconference.com/ponentes2025' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/speakers2025' },
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "X-Ops Conference Madrid 2025",
+          "startDate": "2025-11-21",
+          "location": {
+            "@type": "Place",
+            "name": "Universidad Rey Juan Carlos campus Móstoles",
+            "address": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid"
+          }
+        }}
+      />
       <section id="ponentes" className="speaker-section ">
         <div className="container margin-top">
-          <h2 className="text-center">Conoce a Nuestros Ponentes</h2>
+          <h2 className="text-center">Conoce a Nuestros Ponentes 2025</h2>
 
           <div className="speaker-cards margin-top">
 
@@ -384,4 +395,4 @@ const SpeakersSection = () => {
   );
 };
 
-export default SpeakersSection;
+export default Speakers2025;
