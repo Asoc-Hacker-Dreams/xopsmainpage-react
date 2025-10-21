@@ -1,14 +1,29 @@
-import AnimationWrapper from '../../../components/AnimationWrapper';
-import React, { useMemo } from 'react';
-import scheduleData from '../../../data/schedule2025.json';
+import AnimationWrapper from '../AnimationWrapper';
+import React, { useMemo, useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import scheduleData from '../../data/schedule2025.json';
 
-const Madrid22 = () => {
+const MadridFriday = () => {
+  // State for managing modal visibility
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = (event) => {
+    setSelectedEvent(event);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedEvent(null);
+  };
+
   // Filter events for Friday (2025-11-21) and sort by time
   const fridayEvents = useMemo(() => (
     scheduleData
       .filter(event => event.timeISO.startsWith('2025-11-21'))
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO))
-  ), [scheduleData]);
+  ), []);
 
   // Format time from ISO to display format (HH:MM h)
   const formatTime = (timeISO) => {
@@ -42,10 +57,12 @@ const Madrid22 = () => {
                 <div className="card cardcuatroT">
                   <div className="overlay"></div>
                   <div className="card-body text-white">
-                    <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
+                    <h5 className="card-title"><span className='heading'>Lugar: </span>{event.room}</h5>
                     <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
                     <p>{event.talk}</p>
                     <p><strong>{event.speaker}</strong></p>
+                    
+                    <button onClick={() => handleShowModal(event)} className="button menu-btn">Más Detalles</button>
                   </div>
                 </div>
               </div>
@@ -65,9 +82,30 @@ const Madrid22 = () => {
 
           </div>
         </div>
+
+        {/* Modal for event details */}
+        {selectedEvent && (
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>{selectedEvent.talk}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p><strong>Ponente:</strong> {selectedEvent.speaker}</p>
+              <p><strong>Duración:</strong> {selectedEvent.durationHuman}</p>
+              <p><strong>Hora:</strong> {formatTime(selectedEvent.timeISO)}</p>
+              <hr />
+              <p>{selectedEvent.description}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <p className="card-text" style={{ margin: '0', padding: '0' }}>
+                {formatTime(selectedEvent.timeISO)} - {selectedEvent.durationHuman}
+              </p>
+            </Modal.Footer>
+          </Modal>
+        )}
       </AnimationWrapper>
     </section>
   );
 };
 
-export default Madrid22;
+export default MadridFriday;
