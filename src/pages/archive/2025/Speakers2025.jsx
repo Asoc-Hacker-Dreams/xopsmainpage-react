@@ -67,8 +67,12 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Gisela Torres</h3>
+                  <p>Sr. Global Blackbelt - Developer Audience @Microsoft</p>
                   <p>
-                    <strong>Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering</strong>
+                    Sr. Global Blackbelt - Developer Audience @Microsoft | Microsoft Azure MVP 2010&2011 | Lemoncode 🍋 teacher| Blogger at https://www.returngis.net
+                  </p>
+                  <p>
+                    <strong>Charla: Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -83,8 +87,12 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Shani Adadi Kazaz</h3>
+                  <p>Senior Containers & Serverless GTM Specialist - AWS</p>
                   <p>
-                    <strong>Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure</strong>
+                    I started my career as a software developer and later expanded into roles as a Technical Account Manager and Business Developer for Containers and Serverless technologies. Today, I help companies build platforms that are resilient, self-healing, and built to last. I'm passionate about innovation, emerging cloud-native technologies, and enabling builders to succeed, and I thrive on turning transformative ideas into practical, scalable solutions.
+                  </p>
+                  <p>
+                    <strong>Charla: Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -99,8 +107,12 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Alejandro de la Hoz Martin</h3>
+                  <p>RedHat Senior Consultant</p>
                   <p>
-                    <strong>De 0 a 100 con Ansible en AWX</strong>
+                    Mas de 17 años trabajando en el sector TI y soy un enamorado de la methodologias y filosofias DevOps. Soy Javero por naturaleza, pero me encanta Python y la automatización.
+                  </p>
+                  <p>
+                    <strong>Charla: De 0 a 100 con Ansible en AWX</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -115,8 +127,12 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Alberto Morgante</h3>
+                  <p>SUSE - Principal Telco Edge Engineer</p>
                   <p>
-                    <strong>Automated Baremetal deployment with CAPI + ClusterClass</strong>
+                    I'm an engineer passionate about cloud, development and new technologies. I'm always looking for new challenges in order to improve myself everyday!!!
+                  </p>
+                  <p>
+                    <strong>Charla: Automated Baremetal deployment with CAPI + ClusterClass</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -151,8 +167,12 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Antonio Berben, Felipe Vicens</h3>
+                  <p>Solo.io - Principal Solutions Engineer</p>
                   <p>
-                    <strong>De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras</strong>
+                    Antonio is a Principal Solutions Engineer at Solo.io, where he works on learning from the users and helping them to walk the path towards full Service Mesh adoption. He is a CNCF Organizer (KCD Spain, CNCF Iberia) and contributes to open-source projects. His career path coming from development, makes him always put the Developers always at first. His philosophy: "Developers create the business. The rest we are here only to make their life easier" His biggest concern is: How to speed up the development lifecycle. That is one of the reasons why he is an enthusiast of Service Mesh
+                  </p>
+                  <p>
+                    <strong>Charla: De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -168,7 +188,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Carlos Villanúa</h3>
                   <p>
-                    <strong>$Git It Done: API Management as Code (The DevOps &amp; Platform Team Dream)</strong>
+                    <strong>Charla: $Git It Done: API Management as Code (The DevOps &amp; Platform Team Dream)</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -183,8 +203,12 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Mani Ghelichkhani</h3>
+                  <p>Senior Cloud Operations Architect en Amazon Web Services (AWS)</p>
                   <p>
-                    <strong>Modernizing EKS workloads: Performance &amp; Cost at Scale with Graviton and Karpenter</strong>
+                    Computer Engineer with extensive experience in IT system administration and operation of critical services. In addition to keeping systems up and running, provides analytical and communication skills to manage teams, improve processes and assist in general business activities.
+                  </p>
+                  <p>
+                    <strong>Charla: Modernizing EKS workloads: Performance & Cost at Scale with Graviton and Karpenter</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -200,7 +224,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Cleyra Uzcategui</h3>
                   <p>
-                    <strong>Web UI: What's New and What's Next</strong>
+                    <strong>Charla: Web UI: What's New and What's Next</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -216,7 +240,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Sara San Luís Rodríguez, Christian Carballo Lozano</h3>
                   <p>
-                    <strong>Implementando un sistema de Machine Learning observable en la nube</strong>
+                    <strong>Charla: Implementando un sistema de Machine Learning observable en la nube</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -232,7 +256,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Rossana Suarez</h3>
                   <p>
-                    <strong>Migración inteligente: Containeriza tu aplicación heredada con MCP</strong>
+                    <strong>Charla: Migración inteligente: Containeriza tu aplicación heredada con MCP</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -248,7 +272,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Dachi Gogotchuri</h3>
                   <p>
-                    <strong>IA generativa en DevSecOps: automatización inteligente de pipelines</strong>
+                    <strong>Charla: IA generativa en DevSecOps: automatización inteligente de pipelines</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -264,7 +288,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Carlos Polop</h3>
                   <p>
-                    <strong>GCP Vulnerabilities &amp; Features of Offensive Engineers</strong>
+                    <strong>Charla: GCP Vulnerabilities &amp; Features of Offensive Engineers</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -280,7 +304,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López</h3>
                   <p>
-                    <strong>Microsoft Fabric meets AI: Building real-world business solutions</strong>
+                    <strong>Charla: Microsoft Fabric meets AI: Building real-world business solutions</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -296,7 +320,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Juan Vicente Herrera Ruiz de Alejo</h3>
                   <p>
-                    <strong>Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI</strong>
+                    <strong>Charla: Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -312,7 +336,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Verónica Rivas Remiseiro, Toni Granell</h3>
                   <p>
-                    <strong>Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps</strong>
+                    <strong>Charla: Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -328,7 +352,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Ignacio Dominguez</h3>
                   <p>
-                    <strong>Hacking CI/CD Pipelines</strong>
+                    <strong>Charla: Hacking CI/CD Pipelines</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -344,7 +368,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Jeff Fan</h3>
                   <p>
-                    <strong>Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards</strong>
+                    <strong>Charla: Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -370,7 +394,7 @@ const Speakers2025 = () => {
                     With a scientific background in Physics and a PhD in Computational Materials Engineering, curiosity, openness and a pragmatic view are always expected. Beyond the boardroom, he is a C++ enthusiast and a creative force: contributing symphonic touches as a keyboardist in metal bands, when he is not playing video games or lowering lap times at the simracing cockpit. He also loves to spend time teaching Physics to Vet students in the Complutense University of Madrid, as an Associate Professor.
                   </p>
                   <p>
-                    <strong> Charla: Scale Your Monitoring Solution With the VictoriaMetrics Ecosystem</strong>
+                    <strong>Charla: Scale Your Monitoring Solution With the VictoriaMetrics Ecosystem</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -386,7 +410,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Juarez Junior</h3>
                   <p>
-                    <strong>Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase</strong>
+                    <strong>Charla: Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -402,7 +426,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>José Enrique Calderón Sanz</h3>
                   <p>
-                    <strong>Evolutionary Architecture: the art of making decisions</strong>
+                    <strong>Charla: Evolutionary Architecture: the art of making decisions</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -418,7 +442,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>David Amorín García</h3>
                   <p>
-                    <strong>Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números</strong>
+                    <strong>Charla: Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números</strong>
                   </p>
                 </AnimationWrapper>
               </div>

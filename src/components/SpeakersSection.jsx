@@ -57,7 +57,10 @@ const SpeakersSection = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Gisela Torres</h3>
                   <p>
-                    <strong>Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering</strong>
+                    Sr. Global Blackbelt - Developer Audience @Microsoft | Microsoft Azure MVP 2010&2011 | Lemoncode 🍋 teacher| Blogger at https://www.returngis.net
+                  </p>
+                  <p>
+                    <strong>Charla: Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -72,8 +75,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Shani Adadi Kazaz</h3>
+                  <p>Senior Containers & Serverless GTM Specialist - AWS</p>
                   <p>
-                    <strong>Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure</strong>
+                    I started my career as a software developer and later expanded into roles as a Technical Account Manager and Business Developer for Containers and Serverless technologies. Today, I help companies build platforms that are resilient, self-healing, and built to last. I'm passionate about innovation, emerging cloud-native technologies, and enabling builders to succeed, and I thrive on turning transformative ideas into practical, scalable solutions.
+                  </p>
+                  <p>
+                    <strong>Charla: Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -88,8 +95,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Alejandro de la Hoz Martin</h3>
+                  <p>RedHat Senior Consultant</p>
                   <p>
-                    <strong>De 0 a 100 con Ansible en AWX</strong>
+                    Mas de 17 años trabajando en el sector TI y soy un enamorado de la methodologias y filosofias DevOps. Soy Javero por naturaleza, pero me encanta Python y la automatización.
+                  </p>
+                  <p>
+                    <strong>Charla: De 0 a 100 con Ansible en AWX</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -104,8 +115,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Alberto Morgante</h3>
+                  <p>SUSE - Principal Telco Edge Engineer</p>
                   <p>
-                    <strong>Automated Baremetal deployment with CAPI + ClusterClass</strong>
+                    I'm an engineer passionate about cloud, development and new technologies. I'm always looking for new challenges in order to improve myself everyday!!!
+                  </p>
+                  <p>
+                    <strong>Charla: Automated Baremetal deployment with CAPI + ClusterClass</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -140,8 +155,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Antonio Berben, Felipe Vicens</h3>
+                  <p>Solo.io - Principal Solutions Engineer</p>
                   <p>
-                    <strong>De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras</strong>
+                    Antonio is a Principal Solutions Engineer at Solo.io, where he works on learning from the users and helping them to walk the path towards full Service Mesh adoption. He is a CNCF Organizer (KCD Spain, CNCF Iberia) and contributes to open-source projects. His career path coming from development, makes him always put the Developers always at first. His philosophy: "Developers create the business. The rest we are here only to make their life easier" His biggest concern is: How to speed up the development lifecycle. That is one of the reasons why he is an enthusiast of Service Mesh
+                  </p>
+                  <p>
+                    <strong>Charla: De Becario en formación a Agente Épico. Evolución de la IA en Infraestructuras Críticas Seguras</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -156,8 +175,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Carlos Villanúa</h3>
+                  <p>Traefik Labs - Solutions Architect</p>
                   <p>
-                    <strong>$Git It Done: API Management as Code (The DevOps &amp; Platform Team Dream)</strong>
+                    Carlos Villanúa Fernández es Solutions Architect en Traefik Labs. Se dedica a ayudar a equipos a exponer APIs y servicios de forma segura, automatizada y escalable, utilizando tecnologías como Kubernetes, Traefik, OpenTelemetry, OPA, Keycloak... Le gusta trabajar con infraestructuras como código para evitar tareas manuales y asegurar despliegues rápidos y fiables. Carlos disfruta compartiendo su experiencia en eventos y comunidades tecnológicas, siempre buscando soluciones prácticas y sencillas. Fuera del trabajo, le encanta pasar tiempo con su familia, cacharrear con domótica, salir en bici, practicar kayak y dedicarse a la jardinería, especialmente cultivando verduras en su huerto.
+                  </p>
+                  <p>
+                    <strong>Charla: $Git It Done: API Management as Code (The DevOps & Platform Team Dream)</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -172,8 +195,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Mani Ghelichkhani</h3>
+                  <p>Senior Cloud Operations Architect en Amazon Web Services (AWS)</p>
                   <p>
-                    <strong>Modernizing EKS workloads: Performance &amp; Cost at Scale with Graviton and Karpenter</strong>
+                    Computer Engineer with extensive experience in IT system administration and operation of critical services. In addition to keeping systems up and running, provides analytical and communication skills to manage teams, improve processes and assist in general business activities.
+                  </p>
+                  <p>
+                    <strong>Charla: Modernizing EKS workloads: Performance & Cost at Scale with Graviton and Karpenter</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -188,8 +215,13 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Cleyra Uzcategui</h3>
+                  <p>Software Engineer at JP Morgan & Chase Co.</p>
+                  <p>Women Techmakers Ambassador</p>
                   <p>
-                    <strong>Web UI: What's New and What's Next</strong>
+                    Cleyra is a Venezuelan Software Engineer based in United Kingdom. Her passion for web development and user experience have led her to focus her career on creating products that are easy to use and accessible to everyone. She is also a promoter of diversity and inclusion in the tech industry and is always looking for ways to promote equal opportunity and representation, in her role as Women Techmakers ambassador, Women Developer Academy Mentor, Google Developers Group organiser and in her role as Affiliate Professor at University of Glasgow.
+                  </p>
+                  <p>
+                    <strong>Charla: Web UI: What's New and What's Next</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -204,8 +236,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Sara San Luís Rodríguez, Christian Carballo Lozano</h3>
+                  <p>AI Team Lead @ MDW | Microsoft AI MVP</p>
                   <p>
-                    <strong>Implementando un sistema de Machine Learning observable en la nube</strong>
+                    Passionate about science since childhood, I studied Mathematics at the University of Santiago de Compostela, I completed these studies with a Master in Statistics and Operational Research. The latter allowed me to enter the world of AI and ML, fields in which I am currently working as AI Team Lead @MDW.
+                  </p>
+                  <p>
+                    <strong>Charla: Implementando un sistema de Machine Learning observable en la nube</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -220,8 +256,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Rossana Suarez</h3>
+                  <p>RoxsRoss</p>
                   <p>
-                    <strong>Migración inteligente: Containeriza tu aplicación heredada con MCP</strong>
+                    Soy Roxs, Software Engineer apasionada por la tecnología y la innovación. Como DevOps, GitLab HERO, AWS HERO y Docker Captain, busco empoderar a la comunidad tech y fomentar la colaboración. Creo firmemente que 'No se puede crecer si no estás dispuesto a saltar a la zona de peligro', y vivo cada desafío profesional con esa mentalidad. Exploradora de nuevas fronteras en el desarrollo y la automatización, mi objetivo es impactar positivamente y ayudar a otros a alcanzar su máximo potencial.
+                  </p>
+                  <p>
+                    <strong>Charla: Migración inteligente: Containeriza tu aplicación heredada con MCP</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -237,7 +277,10 @@ const SpeakersSection = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Dachi Gogotchuri</h3>
                   <p>
-                    <strong>IA generativa en DevSecOps: automatización inteligente de pipelines</strong>
+                    Founder of Arcasiles Group and Platform Engineering Lead at Nationale Nederlanden Spain, shaping platforms, communities, and the future through real innovation. I'm Dachi Gogotchuri. I work at Nationale Nederlanden where I enjoy creating and managing projects. Arcasiles Group founder: https://arcasiles.com. Past Microsoft MVP (2015 – 2020). I blog about coding & life: https://soydachi.com
+                  </p>
+                  <p>
+                    <strong>Charla: IA generativa en DevSecOps: automatización inteligente de pipelines</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -252,8 +295,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Carlos Polop</h3>
+                  <p>Co-Founder HackTricks Training</p>
                   <p>
-                    <strong>GCP Vulnerabilities &amp; Features of Offensive Engineers</strong>
+                    Carlos has a degree in Telecommunications Engineering with a Master in Cybersecurity. He has worked mainly as Penetration Tester and Red Teamer for several companies and has several relevant certifications in the field of cybersecurity such as OSCP, OSWE, CRTP, eMAPT, eWPTXv2, OSMR, ARTE, GRTE… He was captain of the Spanish team in the ECSC2021 and member of Team Europe for the ICSC2022. And he has spoken at several international conferences such as DEFCON31 and several ROOTEDCONs. Since he started learning cybersecurity he has tried to share his knowledge with the infosec community by publishing open source tools such as https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite and writing a free hacking book that anyone can consult at https://book.hacktricks.xyz.
+                  </p>
+                  <p>
+                    <strong>Charla: GCP Vulnerabilities & Features of Offensive Engineers</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -268,8 +315,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López</h3>
+                  <p>Senior Data Engineer - MDW | Microsoft MVP (verified)</p>
                   <p>
-                    <strong>Microsoft Fabric meets AI: Building real-world business solutions</strong>
+                    Welcome to my profile! I'm Patricia Rodríguez Vaquero, a certified Azure Data Engineer. With 5 years of experience in Microsoft Azure services (Microsoft Fabric, Azure Synapse Analytics, ADF, Azure Databricks, Python, T-SQL, Spark, etc), I bring passion, dedication, and a drive to master Microsoft technologies. Beyond work, I consider myself honest, perseverant, curious, and a committed lifelong learner. I'm an animal and nature lover, an avid traveler, and an active participant in community events. ATTITUDE IS THE KEY TO SUCCESS!
+                  </p>
+                  <p>
+                    <strong>Charla: Microsoft Fabric meets AI: Building real-world business solutions</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -284,8 +335,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Juan Vicente Herrera Ruiz de Alejo</h3>
+                  <p>Cloud Architect - Red Hat</p>
                   <p>
-                    <strong>Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI</strong>
+                    Cloud Architect en Red Hat, co-organizador de Madrid Devops y Devopsdays Madrid y profesor de Cloud Computing en Universidad Pontificia de Comillas
+                  </p>
+                  <p>
+                    <strong>Charla: Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -300,8 +355,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Verónica Rivas Remiseiro, Toni Granell</h3>
+                  <p>Tech & Lead Projects - Cibersecurity & IA</p>
                   <p>
-                    <strong>Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps</strong>
+                    A computer engineer with over 25 years of experience, my profession has fascinated me since I was a child, providing me with wonderful professional and personal experiences. I enjoy building teams, sharing with them, growing together, and executing projects with the greatest possible success. Currently undergoing a process of change, returning to my technological roots, constantly learning, and trying out new technologies like AI, which fascinates me. Author of my first book based on personal events with a stowaway named Alzheimer's, in homage to the woman who helped me become who I am today. Passionate about my life, my profession, and technology.
+                  </p>
+                  <p>
+                    <strong>Charla: Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -316,8 +375,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Ignacio Dominguez</h3>
+                  <p>Co-Funder Hacktricks Training, Cloud Secuirty Engineer @ Circle</p>
                   <p>
-                    <strong>Hacking CI/CD Pipelines</strong>
+                    Ignacio Dominguez is a Cloud Security Engineer with over 6 years of experience securing cloud-native environments. He currently works at Circle as a Lead Cloud Security Engineer, where he focuses on protecting infrastructure at scale. Ignacio is also the co-founder of HackTricks Training, a platform offering high-quality Cloud Security certifications. His main areas of interest include hacking CI/CD systems, securing cloud platforms (especially AWS), and breaking into (and defending) Kubernetes environments.
+                  </p>
+                  <p>
+                    <strong>Charla: Hacking CI/CD Pipelines</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -332,8 +395,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Jeff Fan</h3>
+                  <p>Senior Solutions Architect</p>
                   <p>
-                    <strong>Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards</strong>
+                    I am a Solutions Architect at DigitalOcean, where he designs and optimizes K8s-based GPU infrastructure for gen-AI workloads, with a focus on LLM inference and cost-efficient scaling. Before joining DigitalOcean, he helped build and run mission-critical systems for several large German enterprises. Jeff now distills complex cloud and AI concepts into clear, practical guidance—publishing articles that turn deep technical challenges into straightforward, actionable steps for engineering teams.
+                  </p>
+                  <p>
+                    <strong>Charla: Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -374,8 +441,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Juarez Junior</h3>
+                  <p>Software Architect / Engineer, Solution Architect, Developer Advocate</p>
                   <p>
-                    <strong>Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase</strong>
+                    My name is Juarez Barbosa Junior. I have held senior leadership roles in software engineering and developer relations, focusing on developer audiences, subject matter experts, customers, and business partners. I have also acted as a mentor for Microsoft for Startups, having worked with startup founders, accelerators, incubators, mentors, and venture capitalists. I am a Sr Principal Developer Evangelist and Director of Developer Evangelism at Oracle. Previously, I was an Azure Developer Relations Lead – Director of Developer Relations at Microsoft. I have extensive experience with large enterprise systems and environments with companies like Oracle, Microsoft, IBM, Unisys, Nokia, Accenture, and a few medium-sized companies and startups (two as a founder).
+                  </p>
+                  <p>
+                    <strong>Charla: Automating Database CI/CD with Oracle DB Operator, GitHub Actions, and Liquibase</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -390,8 +461,12 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>José Enrique Calderón Sanz</h3>
+                  <p>Lead Software Engineer at JP Morgan Chase</p>
                   <p>
-                    <strong>Evolutionary Architecture: the art of making decisions</strong>
+                    Jose is an accomplished Venezuelan Lead Software Engineer based in the U.K., with a decade of experience driving cutting-edge software solutions. Jose is consistently seeking opportunities to advance equal access and representation in the tech industry, as Google Developer Group organiser, Ignite JAVA/Spring Community of Practice lead and in his role as Affiliate Professor at University of Glasgow. As speaker, Jose has a passion for demystifying complex concepts and making technology accessible to all through dynamic and engaging talks. He is also known for his captivating and interactive presentations on a wide range of technology subjects.
+                  </p>
+                  <p>
+                    <strong>Charla: Evolutionary Architecture: the art of making decisions</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -406,8 +481,11 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>David Amorín García</h3>
+                  <p>MDW - Analista de Inteligencia Empresarial</p>
                   <p>
-                    <strong>Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números</strong>
+                    Me llamo David Amorin Garcia, tengo 32 años y me dedico a la comunicación desde los 15. Como amante de las tecnologías y de transmitir conocimiento, me gradué en Teatro a la par que me formaba en aspectos relacionados con el SEO y los datos. Aproveché durante varios años la ventana que me ofrecía YouTube y Twitch para mostrar las aptitudes que iba adquiriendo y compartirlas con la audiencia. A principios de 2022 decidí entrar en el mundo empresarial para aportar todo lo que había aprendido durante todos estos años y así poder ayudar a los demás.\n                  </p>
+                  <p>
+                    <strong>Charla: Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números</strong>
                   </p>
                 </AnimationWrapper>
               </div>
