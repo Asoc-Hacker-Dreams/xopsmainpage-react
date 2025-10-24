@@ -7,6 +7,7 @@ import shaniA from "../assets/speakers/shaniA.png";
 import alejandroH from "../assets/speakers/alejandroH.png";
 import albertoM from "../assets/speakers/albertoM.png";
 import guillermoR from "../assets/speakers/guillermoR.png";
+import pabloS from "../assets/speakers/pabloS.png";
 import carlosV from "../assets/speakers/carlosV.png";
 import maniG from "../assets/speakers/maniG.png";
 import cleyraU from "../assets/speakers/cleyraU.png";
@@ -113,14 +114,18 @@ const SpeakersSection = () => {
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <img src={guillermoR} alt="Guillermo Ruiz" style={{ height: '250px', width: '280px' }} />
+                  <img src={pabloS} alt="Pablo Sánchez Carmona" style={{ height: '250px', width: '280px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
-                  <h3>Guillermo Ruiz</h3>
+                  <h3>Pablo Sánchez Carmona</h3>
+                  <p>Senior Network Specialist Solutions Architect, AWS</p>
                   <p>
-                    <strong>Autoscaling Kubernetes Like a Pro: A Hands-On Karpenter Workshop</strong>
+                    Pablo es arquitecto de soluciones especializado en redes en AWS, donde se ha especializado en Infraestructura como Código (IaC), para enseñar a clientes de AWS cómo poder simplificar la creación, gestión y securización de redes complejas en AWS.
+                  </p>
+                  <p>
+                    <strong>Charla: Shift Left, Scale Right - Securizando la infraestructura de AWS a escala con DevSecOps</strong>
                   </p>
                 </AnimationWrapper>
               </div>
