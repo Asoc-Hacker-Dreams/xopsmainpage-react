@@ -21,6 +21,7 @@ import jeffF from "../../../assets/speakers/jeffF.png";
 import alkinT from "../../../assets/speakers/alkinT.png";
 import juarezJ from "../../../assets/speakers/juarezJ.png";
 import joseC from "../../../assets/speakers/joseC.png";
+import joseG from "../../../assets/speakers/joseG.png";
 import davidA from "../../../assets/speakers/davidA.png";
 import AnimationWrapper from "../../../components/AnimationWrapper";
 import SEO from "../../../components/SEO";
@@ -344,7 +345,31 @@ const Speakers2025 = () => {
               </div>
             </div>
 
-
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={joseG} alt="Jose Gómez-Sellés" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Jose Gómez-Sellés</h3>
+                  <p>Product Lead for VictoriaMetrics Cloud</p>
+                  <p>
+                    Jose is the Product Lead for VictoriaMetrics Cloud. With a focus on Observability and Sustainability, his work has been deeply related to the OpenTelemetry project, distributed tracing and power monitoring projects.
+                  </p>
+                  <p>
+                    His expertise has been built from previous gigs as a Software Architect, Tech Lead and Product Owner in the Telecommunications industry, all the way from the software programming trenches where agile ways of working where a sound CI, testing and observability best practices have presented themselves as the main principles that drive every successful project.
+                  </p>
+                  <p>
+                    With a scientific background in Physics and a PhD in Computational Materials Engineering, curiosity, openness and a pragmatic view are always expected. Beyond the boardroom, he is a C++ enthusiast and a creative force: contributing symphonic touches as a keyboardist in metal bands, when he is not playing video games or lowering lap times at the simracing cockpit. He also loves to spend time teaching Physics to Vet students in the Complutense University of Madrid, as an Associate Professor.
+                  </p>
+                  <p>
+                    <strong> Charla: Scale Your Monitoring Solution With the VictoriaMetrics Ecosystem</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
 
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
