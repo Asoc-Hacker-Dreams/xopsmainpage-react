@@ -37,14 +37,14 @@
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400, immutable"
+    Cache-Control =  "no-cache"
 
 [[headers]]
   for = "/*.js"
   [headers.values]
-    Cache-Control = "public, max-age=86400, immutable"
+    Cache-Control =  "no-cache"
 
 [[headers]]
   for = "/*.css"
   [headers.values]
-    Cache-Control = "public, max-age=86400, immutable"
+    Cache-Control =  "no-cache"
