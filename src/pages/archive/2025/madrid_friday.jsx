@@ -45,8 +45,8 @@ const MadridFriday = () => {
                 <div className="overlay"></div>
                 <div className="card-body text-white">
                   <h5 className="card-title"><span className='heading'>Inicio: </span>Salón de Actos</h5>
-                  <p className="card-text">9:30 h - 30 min</p>
-                  <p>Dar la bienvenida a los asistentes y keynote del evento.</p>
+                  <p className="card-text">9:30 h</p>
+                  <p>Apertura de puertas.</p>
                 </div>
               </div>
             </div>
