@@ -1,5 +1,16 @@
 [
   {
+    "speaker": "Luis Guirigay",
+    "talk": "Keynote: Presentación del track AWS",
+    "description": "En este keynote, Luis Guirigay, Worldwide Head of Cloud Infrastructure Solutions en AWS, presentará oficialmente el track exclusivo dedicado a AWS en la X-Ops Conference Madrid 2025. Este track especial cuenta con ingenieros de AWS, AWS Community Builders y AWS Heroes en la lista de ponentes, ofreciendo una experiencia única y especializada.",
+    "timeRaw": "2025-11-21 10:30:00",
+    "timeISO": "2025-11-21T10:30",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Salon de Actos",
+    "type": "keynote"
+  },
+  {
     "speaker": "Shani Adadi Kazaz",
     "talk": "Kubernetes as a Platform: From infrastructure as code to API-driven infrastructure",
     "description": "Discover how leveraging Kubernetes for platform engineering can dramatically increase development efficiency, streamline operations, and enable unprecedented scale through Kubernetes-native GitOps. This session explores how the Kubernetes API becomes the cornerstone of GitOps practices, solving key challenges in managing cloud resources and infrastructure at scale. Learn how this Kubernetes-centric approach transforms traditional workflows, allowing teams to declaratively manage thousands of resources across complex environments using familiar Kubernetes objects and methodologies. We'll demonstrate how platform abstractions help overcome complex challenges, and how automation aligns with Kubernetes controllers principles using open-source tools. Explore how the powerful combination of Kro, ArgoCD, and ACK extends the Kubernetes API to drive GitOps for both applications and infrastructure, revolutionizing platform engineering on EKS through a truly Kubernetes-native GitOps approach.",
