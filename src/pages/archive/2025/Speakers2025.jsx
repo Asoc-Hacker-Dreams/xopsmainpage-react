@@ -24,6 +24,9 @@ import juarezJ from "../../../assets/speakers/juarezJ.png";
 import joseC from "../../../assets/speakers/joseC.png";
 import joseG from "../../../assets/speakers/joseG.png";
 import davidA from "../../../assets/speakers/davidA.png";
+import luisG from "../../../assets/speakers/luisG.png";
+import felipeV from "../../../assets/speakers/felipeV.png";
+import awsLogo from "../../../assets/logos/aws-logo.png";
 import AnimationWrapper from "../../../components/AnimationWrapper";
 import SEO from "../../../components/SEO";
 
@@ -57,6 +60,49 @@ const Speakers2025 = () => {
           <h2 className="text-center">Conoce a Nuestros Ponentes 2025</h2>
 
           <div className="speaker-cards margin-top">
+
+          <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={luisG} alt="Luis Guirigay" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Luis Guirigay</h3>
+                  <p>Worldwide Head of Cloud Infrastructure Solutions at AWS</p>
+                  <p>
+                  A passionate leader with expertise in training and managing high-performing teams of technical professionals to achieve strategic goals and visions. Published Author and Speaker at over 90 conferences across all continents. 
+                  </p>
+                  <p>
+                  Proven track record in developing and leading strategic programs and initiatives around Technology and Business. Skilled in building pre-sales plans and value-based transformational strategies, delivering world-class technical services, and providing consistent and clear value propositions and technology offerings. Adept at directing the application of business process tools and methods to complex business environments in large global enterprises. 
+                  </p>
+                  <p>
+                  In-depth knowledge of architecture, data centers, Cloud, and Application Development with a solid history of innovation and success defining engineering roadmaps and detailed customer requirements, designing new products/solutions, and conducting market research and competitive analysis to ensure proper pricing, positioning, and placement of products/solutions.
+                  </p>
+                  <p>
+                    <strong>KeyNote: TRACK de AWS</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={felipeV} alt="Felipe Vicens" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Felipe Vicens</h3>
+                  <p>AI for everyone, open, scalable, from cloud to edge</p>
+                  <p>
+                  Felipe is a Telco Cloud Architect with over a decade of experience, focused on building infrastructure that supports any workload, from network functions to AI. A committed open-source advocate, he specializes in Telco Cloud, Edge, and AI to enable resilient, scalable operations
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
 
             <div className="speaker1 d-flex justify-around margin-top">
               <div className="speaker-img">
@@ -107,7 +153,7 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Alejandro de la Hoz Martin</h3>
-                  <p>RedHat Senior Consultant</p>
+                  <p>Red Hat Senior Consultant</p>
                   <p>
                     Mas de 17 años trabajando en el sector TI y soy un enamorado de la methodologias y filosofias DevOps. Soy Javero por naturaleza, pero me encanta Python y la automatización.
                   </p>
@@ -188,7 +234,7 @@ const Speakers2025 = () => {
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Carlos Villanúa</h3>
                   <p>
-                    <strong>Charla: $Git It Done: API Management as Code (The DevOps &amp; Platform Team Dream)</strong>
+                    <strong>Charla: $Git It Done: API Management as Code (The DevOps & Platform Team Dream)</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -223,6 +269,11 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Cleyra Uzcategui</h3>
+                  <p>Software Engineer at JP Morgan & Chase Co.</p>
+                  <p>Women Techmakers Ambassador (verified)</p>
+                  <p>
+                    Cleyra is a Venezuelan Software Engineer based in United Kingdom. Her passion for web development and user experience have led her to focus her career on creating products that are easy to use and accessible to everyone. She is also a promoter of diversity and inclusion in the tech industry and is always looking for ways to promote equal opportunity and representation, in her role as Women Techmakers ambassador, Women Developer Academy Mentor, Google Developers Group organiser and in her role as Affiliate Professor at University of Glasgow.
+                  </p>
                   <p>
                     <strong>Charla: Web UI: What's New and What's Next</strong>
                   </p>
@@ -239,6 +290,10 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Sara San Luís Rodríguez, Christian Carballo Lozano</h3>
+                  <p>AI Team Lead @ MDW | Microsoft AI MVP</p>
+                  <p>
+                    Passionate about science since childhood, I studied Mathematics at the University of Santiago de Compostela, I completed these studies with a Master in Statistics and Operational Research. The latter allowed me to enter the world of AI and ML, fields in which I am currently working as AI Team Lead @MDW.
+                  </p>
                   <p>
                     <strong>Charla: Implementando un sistema de Machine Learning observable en la nube</strong>
                   </p>
@@ -255,6 +310,10 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Rossana Suarez</h3>
+                  <p>RoxsRoss</p>
+                  <p>
+                    Soy Roxs, Software Engineer apasionada por la tecnología y la innovación. Como DevOps, GitLab HERO, AWS HERO y Docker Captain, busco empoderar a la comunidad tech y fomentar la colaboración. Creo firmemente que 'No se puede crecer si no estás dispuesto a saltar a la zona de peligro', y vivo cada desafío profesional con esa mentalidad. Exploradora de nuevas fronteras en el desarrollo y la automatización, mi objetivo es impactar positivamente y ayudar a otros a alcanzar su máximo potencial.
+                  </p>
                   <p>
                     <strong>Charla: Migración inteligente: Containeriza tu aplicación heredada con MCP</strong>
                   </p>
@@ -271,6 +330,10 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Dachi Gogotchuri</h3>
+                  <p>Founder of Arcasiles Group and Platform Engineering Lead at Nationale Nederlanden Spain</p>
+                  <p>
+                    Founder of Arcasiles Group and Platform Engineering Lead at Nationale Nederlanden Spain, shaping platforms, communities, and the future through real innovation. I'm Dachi Gogotchuri. I work at Nationale Nederlanden where I enjoy creating and managing projects. Arcasiles Group founder: https://arcasiles.com. Past Microsoft MVP (2015 – 2020). I blog about coding & life: https://soydachi.com
+                  </p>
                   <p>
                     <strong>Charla: IA generativa en DevSecOps: automatización inteligente de pipelines</strong>
                   </p>
@@ -287,8 +350,12 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Carlos Polop</h3>
+                  <p>Co-Founder HackTricks Training</p>
                   <p>
-                    <strong>Charla: GCP Vulnerabilities &amp; Features of Offensive Engineers</strong>
+                    Carlos has a degree in Telecommunications Engineering with a Master in Cybersecurity. He has worked mainly as Penetration Tester and Red Teamer for several companies and has several relevant certifications in the field of cybersecurity such as OSCP, OSWE, CRTP, eMAPT, eWPTXv2, OSMR, ARTE, GRTE… He was captain of the Spanish team in the ECSC2021 and member of Team Europe for the ICSC2022. And he has spoken at several international conferences such as DEFCON31 and several ROOTEDCONs. Since he started learning cybersecurity he has tried to share his knowledge with the infosec community by publishing open source tools such as https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite and writing a free hacking book that anyone can consult at https://book.hacktricks.xyz.
+                  </p>
+                  <p>
+                    <strong>Charla: GCP Vulnerabilities & Features of Offensive Engineers</strong>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -303,6 +370,10 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López</h3>
+                  <p>Senior Data Engineer - MDW | Microsoft MVP (verified)</p>
+                  <p>
+                    Welcome to my profile! I'm Patricia Rodríguez Vaquero, a certified Azure Data Engineer. With 5 years of experience in Microsoft Azure services (Microsoft Fabric, Azure Synapse Analytics, ADF, Azure Databricks, Python, T-SQL, Spark, etc), I bring passion, dedication, and a drive to master Microsoft technologies. Beyond work, I consider myself honest, perseverant, curious, and a committed lifelong learner. I'm an animal and nature lover, an avid traveler, and an active participant in community events. ATTITUDE IS THE KEY TO SUCCESS!
+                  </p>
                   <p>
                     <strong>Charla: Microsoft Fabric meets AI: Building real-world business solutions</strong>
                   </p>
@@ -319,6 +390,10 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Juan Vicente Herrera Ruiz de Alejo</h3>
+                  <p>Cloud Architect - Red Hat</p>
+                  <p>
+                    Cloud Architect en Red Hat, co-organizador de Madrid Devops y Devopsdays Madrid y profesor de Cloud Computing en Universidad Pontificia de Comillas
+                  </p>
                   <p>
                     <strong>Charla: Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI</strong>
                   </p>
@@ -335,6 +410,10 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Verónica Rivas Remiseiro, Toni Granell</h3>
+                  <p>Tech & Lead Projects - Cibersecurity & IA</p>
+                  <p>
+                    A computer engineer with over 25 years of experience, my profession has fascinated me since I was a child, providing me with wonderful professional and personal experiences. I enjoy building teams, sharing with them, growing together, and executing projects with the greatest possible success. Currently undergoing a process of change, returning to my technological roots, constantly learning, and trying out new technologies like AI, which fascinates me. Author of my first book based on personal events with a stowaway named Alzheimer's, in homage to the woman who helped me become who I am today. Passionate about my life, my profession, and technology.
+                  </p>
                   <p>
                     <strong>Charla: Análisis Predictivo con Copilot: Anticipando Problemas en Entornos AIOps</strong>
                   </p>
@@ -351,8 +430,9 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Ignacio Dominguez</h3>
+                  <p>Co-Funder Hacktricks Training, Cloud Secuirty Engineer @ Circle</p>
                   <p>
-                    <strong>Charla: Hacking CI/CD Pipelines</strong>
+                    Ignacio Dominguez is a Cloud Security Engineer with over 6 years of experience securing cloud-native environments. He currently works at Circle as a Lead Cloud Security Engineer, where he focuses on protecting infrastructure at scale. Ignacio is also the co-founder of HackTricks Training, a platform offering high-quality Cloud Security certifications. His main areas of interest include hacking CI/CD systems, securing cloud platforms (especially AWS), and breaking into (and defending) Kubernetes environments.
                   </p>
                 </AnimationWrapper>
               </div>
@@ -367,6 +447,10 @@ const Speakers2025 = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Jeff Fan</h3>
+                  <p>Senior Solutions Architect</p>
+                  <p>
+                    I am a Solutions Architect at DigitalOcean, where he designs and optimizes K8s-based GPU infrastructure for gen-AI workloads, with a focus on LLM inference and cost-efficient scaling. Before joining DigitalOcean, he helped build and run mission-critical systems for several large German enterprises. Jeff now distills complex cloud and AI concepts into clear, practical guidance—publishing articles that turn deep technical challenges into straightforward, actionable steps for engineering teams.
+                  </p>
                   <p>
                     <strong>Charla: Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards</strong>
                   </p>
@@ -389,9 +473,6 @@ const Speakers2025 = () => {
                   </p>
                   <p>
                     His expertise has been built from previous gigs as a Software Architect, Tech Lead and Product Owner in the Telecommunications industry, all the way from the software programming trenches where agile ways of working where a sound CI, testing and observability best practices have presented themselves as the main principles that drive every successful project.
-                  </p>
-                  <p>
-                    With a scientific background in Physics and a PhD in Computational Materials Engineering, curiosity, openness and a pragmatic view are always expected. Beyond the boardroom, he is a C++ enthusiast and a creative force: contributing symphonic touches as a keyboardist in metal bands, when he is not playing video games or lowering lap times at the simracing cockpit. He also loves to spend time teaching Physics to Vet students in the Complutense University of Madrid, as an Associate Professor.
                   </p>
                   <p>
                     <strong>Charla: Scale Your Monitoring Solution With the VictoriaMetrics Ecosystem</strong>
