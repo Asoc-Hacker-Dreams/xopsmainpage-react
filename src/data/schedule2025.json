@@ -40,9 +40,9 @@
     "room": "Salon de Actos"
   },
   {
-    "speaker": "Guillermo Ruiz",
-    "talk": "Autoscaling Kubernetes Like a Pro: A Hands-On Karpenter Workshop",
-    "description": "Managing Kubernetes infrastructure efficiently is hard—especially when workloads spike, cloud bills grow, and you’re still using static autoscaling rules. That’s where Karpenter, an open-source autoscaler for Kubernetes, comes in.\n\nThis hands-on workshop is your deep dive into Karpenter’s core capabilities and advanced features. You’ll learn how Karpenter dynamically provisions just the right compute resources for your cluster—at the right time and the right cost. Built for speed, simplicity, and flexibility, Karpenter helps you unlock smarter scheduling, eliminate overprovisioning, and reduce operational overhead.\n\nWhether you're running Kubernetes in the cloud or on-premises, this workshop will show you how to modernize your autoscaling strategy using an open-source solution that puts you in control.\n\nNo black boxes. Just Kubernetes, compute, and clean scaling logic.",
+    "speaker": "Pablo Sánchez Carmona",
+    "talk": "Shift Left, Scale Right - Securizando la infraestructura de AWS a escala con DevSecOps",
+    "description": "Descubre cómo adoptar una mentalidad DevSecOps transforma la protección de la infraestructura en AWS de un cuello de botella en una ventaja competitiva, permitiendo a los equipos desplegar de forma segura siendo ágiles y escalables. Esta sesión explora la intersección crítica entre automatización, infraestructura como código (IaC) y cultura DevOps en la gestión de entornos complejos. Examinaremos cómo las organizaciones gestionan exitosamente miles de recursos en AWS en entornos multi-cuenta sin sacrificar seguridad ni frenar la innovación. Exploraremos estrategias prácticas para implementar políticas como código, validación automática de requisitos de seguridad y red, y monitoreo continuo de la infraestructura. Al final de esta sesión, queremos que te lleves patrones accionables para construir infraestructura que pueda crecer de forma segura junto con tus necesidades de negocio, demostrando que seguridad y velocidad no son conceptos opuestos cuando haces \"shift left\" y \"scale right\".",
     "timeRaw": "2025-11-21 12:50:00",
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 65,
@@ -180,9 +180,9 @@
     "room": "Salon de Actos"
   },
   {
-    "speaker": "Alkin Tezuysal",
-    "talk": "Unified Observability: Leveraging ClickHouse as a Comprehensive Telemetry Database",
-    "description": "As modern infrastructures become more complex, traditional monitoring tools often struggle to provide a complete understanding of system health. This presentation will explore how ClickHouse, a high-performance columnar database, enables unified observability by consolidating metrics, logs, traces, and eBPF data into a scalable platform.\n\nAttendees will learn how fragmented telemetry systems can hinder root-cause analysis and operational efficiency and how ClickHouse overcomes these challenges by offering seamless integration with tools like OpenTelemetry, Grafana, Prometheus, and more. We will also compare observability solutions, such as Coroot, qryn, and custom stacks with Jaeger and Loki, to demonstrate how ClickHouse simplifies data management, enhances real-time analysis, and supports large-scale telemetry use cases.",
+    "speaker": "Jose Gómez-Sellés",
+    "talk": "Scale Your Monitoring Solution With the VictoriaMetrics Ecosystem",
+    "description": "When it comes down to scaling time series monitoring solutions things can get messy. That’s one of the reasons why VictoriaMetrics, a Silver member of the Cloud Native Computing Foundation (CNCF), started its journey some years ago. It is a simple, reliable and efficient set of Observability Solutions that's been adopted by many organizations. It's open source, with a strong community behind it, with enterprise and managed (Cloud) options for those who need support. VictoriaMetrics plays well with many standards, including Grafana and OpenTelemetry. Apart from that, in case you didn’t know, VictoriaLogs is the new kid in the block that's seriously outperforming other solutions. In this presentation, we’ll present the VictoriaMetrics Open Source projects and how they differ from other solutions, especially when it comes to scaling from single small setups to massive cluster deployments.Come learn how VictoriaMetrics projects can help to ease Observability!",
     "timeRaw": "2025-11-22 13:35:00",
     "timeISO": "2025-11-22T13:35",
     "durationMinutes": 45,
