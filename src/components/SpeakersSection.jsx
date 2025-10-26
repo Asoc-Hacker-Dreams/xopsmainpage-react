@@ -426,7 +426,7 @@ const SpeakersSection = () => {
               <div className="speaker-content">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <h3>Verónica Rivas Remiseiro</h3>
-                  <p>Tech & Lead Projects - Cibersecurity & IA</p>
+                  <p>Microsoft MVP M365 copilot - Tech & Lead Projects - Cybersecurity & AI </p>
                   <p>
                     A computer engineer with over 25 years of experience, my profession has fascinated me since I was a child, providing me with wonderful professional and personal experiences. I enjoy building teams, sharing with them, growing together, and executing projects with the greatest possible success. Currently undergoing a process of change, returning to my technological roots, constantly learning, and trying out new technologies like AI, which fascinates me. Author of my first book based on personal events with a stowaway named Alzheimer's, in homage to the woman who helped me become who I am today. Passionate about my life, my profession, and technology.
                   </p>
