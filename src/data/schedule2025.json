@@ -8,7 +8,8 @@
     "durationMinutes": 30,
     "durationHuman": "30m",
     "room": "Salon de Actos",
-    "type": "keynote"
+    "type": "keynote",
+    "track": "main"
   },
   {
     "speaker": "Luis Guirigay",
@@ -19,7 +20,8 @@
     "durationMinutes": 30,
     "durationHuman": "30m",
     "room": "Hyperscalers",
-    "type": "keynote"
+    "type": "keynote",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Shani Adadi Kazaz",
@@ -29,7 +31,8 @@
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Gisela Torres",
@@ -39,7 +42,8 @@
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Alejandro de la Hoz Martin",
@@ -49,7 +53,8 @@
     "timeISO": "2025-11-21T11:45",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Alberto Morgante",
@@ -59,7 +64,8 @@
     "timeISO": "2025-11-21T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Pablo Sánchez Carmona",
@@ -69,7 +75,8 @@
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 65,
     "durationHuman": "1h 5m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Antonio Berben, Felipe Vicens",
@@ -79,7 +86,8 @@
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Carlos Villanúa",
@@ -89,7 +97,8 @@
     "timeISO": "2025-11-21T13:40",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Mani Ghelichkhani",
@@ -99,7 +108,8 @@
     "timeISO": "2025-11-21T13:55",
     "durationMinutes": 65,
     "durationHuman": "1h 5m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Cleyra Uzcategui",
@@ -109,7 +119,8 @@
     "timeISO": "2025-11-21T14:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Rossana Suarez",
@@ -119,7 +130,8 @@
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Sara San Luís Rodríguez, Christian Carballo Lozano",
@@ -129,7 +141,8 @@
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Carlos Polop",
@@ -139,7 +152,8 @@
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 60,
     "durationHuman": "1h 0m",
-    "room": "Bsides Madrid"
+    "room": "Bsides Madrid",
+    "track": "bsides"
   },
   {
     "speaker": "Dachi Gogotchuri",
@@ -149,7 +163,8 @@
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López",
@@ -159,7 +174,8 @@
     "timeISO": "2025-11-22T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Juan Vicente Herrera Ruiz de Alejo",
@@ -169,7 +185,8 @@
     "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Bsides Madrid"
+    "room": "Bsides Madrid",
+    "track": "bsides"
   },
   {
     "speaker": "Verónica Rivas Remiseiro, Toni Granell",
@@ -179,7 +196,8 @@
     "timeISO": "2025-11-22T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Ignacio Dominguez",
@@ -189,7 +207,8 @@
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 80,
     "durationHuman": "1h 20m",
-    "room": "Bsides Madrid"
+    "room": "Bsides Madrid",
+    "track": "bsides"
   },
   {
     "speaker": "Jeff Fan",
@@ -199,7 +218,8 @@
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Jose Gómez-Sellés",
@@ -209,7 +229,8 @@
     "timeISO": "2025-11-22T13:35",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "Juarez Junior",
@@ -219,7 +240,8 @@
     "timeISO": "2025-11-22T14:20",
     "durationMinutes": 40,
     "durationHuman": "40m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "José Enrique Calderón Sanz",
@@ -229,7 +251,8 @@
     "timeISO": "2025-11-22T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   },
   {
     "speaker": "David Amorín García",
@@ -239,6 +262,7 @@
     "timeISO": "2025-11-22T16:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Salon de Actos",
+    "track": "main"
   }
 ]
