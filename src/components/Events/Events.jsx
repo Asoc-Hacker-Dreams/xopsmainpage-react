@@ -48,7 +48,7 @@ const Events = () => {
   };
 
   // Filter events by day and track, then organize by column
-  const { leftColumnEvents, rightColumnEvents } = useMemo(() => {
+  const { leftColumnEvents, rightColumnEvents, showTwoColumns } = useMemo(() => {
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
       .filter(trackConfig[selectedTrack].filter)
@@ -57,7 +57,10 @@ const Events = () => {
     const left = dayEvents.filter(event => event.track === 'main');
     const right = dayEvents.filter(event => event.track !== 'main');
 
-    return { leftColumnEvents: left, rightColumnEvents: right };
+    // Show two columns only when "Todos los Tracks" is selected and both columns have events
+    const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
+
+    return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
   }, [selectedDay, selectedTrack]);
 
   // Modal handlers
@@ -74,16 +77,16 @@ const Events = () => {
   // Render event card
   const renderEventCard = (event, index) => (
     <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
-      <div className="card cardcuatroT">
+      <div className="card cardcuatroT h-100">
         <div className="overlay"></div>
-        <div className="card-body text-white">
+        <div className="card-body text-white d-flex flex-column">
           <h5 className="card-title">
             <span className="heading">Lugar: </span>{event.room}
           </h5>
           <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
-          <p>{event.talk}</p>
+          <p className="flex-grow-1">{event.talk}</p>
           <p><strong>{event.speaker}</strong></p>
-          <button onClick={() => handleShowModal(event)} className="button menu-btn">
+          <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
             Más Detalles
           </button>
         </div>
@@ -128,34 +131,29 @@ const Events = () => {
           {/* Selected day title */}
           <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
 
-          {/* Two-column layout */}
-          <Row className="mt-5">
-            {/* Left column - Main track */}
-            <Col md={6}>
-              {leftColumnEvents.length > 0 ? (
-                leftColumnEvents.map((event, index) => renderEventCard(event, index))
-              ) : (
-                selectedTrack !== 'all' && selectedTrack !== 'main' && (
-                  <div className="text-center text-muted">
-                    <p>No hay eventos del track principal en este filtro</p>
-                  </div>
-                )
-              )}
-            </Col>
+          {/* Dynamic layout based on track selection */}
+          {showTwoColumns ? (
+            // Two-column layout for "Todos los Tracks"
+            <Row className="mt-5">
+              {/* Left column - Main track */}
+              <Col md={6}>
+                {leftColumnEvents.map((event, index) => renderEventCard(event, index))}
+              </Col>
 
-            {/* Right column - Secondary tracks */}
-            <Col md={6}>
-              {rightColumnEvents.length > 0 ? (
-                rightColumnEvents.map((event, index) => renderEventCard(event, index))
-              ) : (
-                selectedTrack !== 'main' && (
-                  <div className="text-center text-muted">
-                    <p>No hay eventos de tracks secundarios disponibles</p>
-                  </div>
-                )
-              )}
-            </Col>
-          </Row>
+              {/* Right column - Secondary tracks */}
+              <Col md={6}>
+                {rightColumnEvents.map((event, index) => renderEventCard(event, index))}
+              </Col>
+            </Row>
+          ) : (
+            // Single centered column for specific track selection
+            <Row className="mt-5 justify-content-center">
+              <Col md={8} lg={6}>
+                {leftColumnEvents.length > 0 && leftColumnEvents.map((event, index) => renderEventCard(event, index))}
+                {rightColumnEvents.length > 0 && rightColumnEvents.map((event, index) => renderEventCard(event, index))}
+              </Col>
+            </Row>
+          )}
 
           {/* Modal for event details */}
           {selectedEvent && (
