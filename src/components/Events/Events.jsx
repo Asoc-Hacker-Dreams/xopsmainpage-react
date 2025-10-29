@@ -19,7 +19,7 @@ const Events = () => {
   // Define track configuration
   const trackConfig = {
     all: { label: 'Todos los Tracks', filter: () => true },
-    main: { label: 'Salón de Actos', filter: (event) => event.track === 'main' },
+    main: { label: 'Aula magna', filter: (event) => event.track === 'main' },
     hyperscalers: { label: 'Hyperscalers', filter: (event) => event.track === 'hyperscalers' },
     bsides: { label: 'Bsides Madrid', filter: (event) => event.track === 'bsides' }
   };

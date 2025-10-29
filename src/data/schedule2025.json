@@ -7,7 +7,7 @@
     "timeISO": "2025-11-21T09:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "type": "keynote",
     "track": "main"
   },
@@ -42,7 +42,7 @@
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -64,7 +64,7 @@
     "timeISO": "2025-11-21T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -86,7 +86,7 @@
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -97,7 +97,7 @@
     "timeISO": "2025-11-21T13:40",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -106,8 +106,19 @@
     "description": "Abstract: Join this hands-on workshop to learn all about AWS Graviton processors and considerations about how to develop and deploy applications to achieve the best EC2 price-performance and sustainability on AWS. During this hands-on workshop you will take an example application running on x86 instances application (choosing from Python, Go, Java or .NET) and learn how to migrate, test, and optimise for Graviton. Once you have converted the application, you will learn to deploy it on Graviton infrastructure through Amazon EKS or Autoscaling Groups.",
     "timeRaw": "2025-11-21 13:55:00",
     "timeISO": "2025-11-21T13:55",
-    "durationMinutes": 65,
-    "durationHuman": "1h 5m",
+    "durationMinutes": 90,
+    "durationHuman": "1h 30m",
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
+  },
+  {
+    "speaker": "Pablo Sánchez Carmona",
+    "talk": "Shift Left, Scale Right - Securizando la infraestructura de AWS a escala con DevSecOps",
+    "description": "Descubre cómo adoptar una mentalidad DevSecOps transforma la protección de la infraestructura en AWS de un cuello de botella en una ventaja competitiva, permitiendo a los equipos desplegar de forma segura siendo ágiles y escalables. Esta sesión explora la intersección crítica entre automatización, infraestructura como código (IaC) y cultura DevOps en la gestión de entornos complejos. Examinaremos cómo las organizaciones gestionan exitosamente miles de recursos en AWS en entornos multi-cuenta sin sacrificar seguridad ni frenar la innovación. Exploraremos estrategias prácticas para implementar políticas como código, validación automática de requisitos de seguridad y red, y monitoreo continuo de la infraestructura. Al final de esta sesión, queremos que te lleves patrones accionables para construir infraestructura que pueda crecer de forma segura junto con tus necesidades de negocio, demostrando que seguridad y velocidad no son conceptos opuestos cuando haces 'shift left' y 'scale right'.",
+    "timeRaw": "2025-11-21 14:30:00",
+    "timeISO": "2025-11-21T14:30",
+    "durationMinutes": 40,
+    "durationHuman": "40m",
     "room": "Hyperscalers",
     "track": "hyperscalers"
   },
@@ -119,7 +130,7 @@
     "timeISO": "2025-11-21T14:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -141,7 +152,7 @@
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -163,7 +174,7 @@
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -174,7 +185,7 @@
     "timeISO": "2025-11-22T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -196,7 +207,7 @@
     "timeISO": "2025-11-22T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -218,7 +229,7 @@
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -229,7 +240,7 @@
     "timeISO": "2025-11-22T13:35",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -240,7 +251,7 @@
     "timeISO": "2025-11-22T14:20",
     "durationMinutes": 40,
     "durationHuman": "40m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -251,7 +262,7 @@
     "timeISO": "2025-11-22T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
   },
   {
@@ -262,7 +273,29 @@
     "timeISO": "2025-11-22T16:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos",
+    "room": "Aula magna",
     "track": "main"
+  },
+  {
+    "speaker": "David Reguera García",
+    "talk": "Offensive Hardware Hacking I+D+I VS Conceptos y filosofia devops/devsecops",
+    "description": "Cómo los principios de automatización, integración continua y seguridad desde el diseño pueden aplicarse al mundo del hardware.",
+    "timeRaw": "2025-11-22 16:00:00",
+    "timeISO": "2025-11-22T16:00",
+    "durationMinutes": 120,
+    "durationHuman": "2h",
+    "room": "Bsides Madrid",
+    "track": "bsides"
+  },
+  {
+    "speaker": "Alberto Lobato",
+    "talk": "Ciberseguridad y OT. ¿Friends or enemies?",
+    "description": "Los entornos de Tecnología Operativa (OT) están omnipresentes en nuestra vida diaria, desde los sistemas de control de los trenes que tomamos cada mañana, hasta la infraestructura energética que alimenta nuestros hogares y los procesos industriales que producen los bienes que consumimos. Estos entornos son críticos para el funcionamiento de nuestra sociedad y, por lo tanto, su seguridad es de vital importancia.En esta charla, exploraremos los desafíos específicos de la ciberseguridad en entornos OT y cómo difiere de la ciberseguridad convencional en entornos de Tecnología de la Información (IT). Analizaremos las particularidades de la ciberseguridad OT, incluyendo los riesgos y amenazas únicos que enfrentan estos sistemas.A través de ejemplos concretos de proyectos y ofertas reales en los que he trabajado como experto en ciberseguridad en el sector ferroviario, ilustraré el proceso de implementación de medidas de seguridad efectivas conforme a la normativa IEC 62443. Esta charla ofrecerá una visión práctica y experta sobre cómo proteger los entornos OT críticos y garantizar la resiliencia de nuestra infraestructura industrial.",
+    "timeRaw": "2025-11-22 16:50:00",
+    "timeISO": "2025-11-22T16:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Bsides Madrid",
+    "track": "bsides"
   }
 ]
