@@ -582,6 +582,64 @@ const SpeakersSection = () => {
               </div>
             </div>
 
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={giselaT} alt="Gisela Torres" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Gisela Torres</h3>
+                  <p>Sr. Global Blackbelt - Developer Audience @Microsoft <img src={microsoftLogo} alt="Microsoft" style={{ height: '20px', marginLeft: '8px', verticalAlign: 'middle' }} /></p>
+                  <p>
+                    Sr. Global Blackbelt - Developer Audience @Microsoft | Microsoft Azure MVP 2010&2011 | Lemoncode 🍋 teacher| Blogger at https://www.returngis.net
+                  </p>
+                  <p>
+                    <strong>Charla: Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={dreg} alt="David Reguera García" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>David Reguera García</h3>
+                  <p>
+                    Experto en seguridad ofensiva y hardware hacking con amplia experiencia en investigación y desarrollo de técnicas avanzadas de ciberseguridad.
+                  </p>
+                  <p>
+                    <strong>Charla: Offensive Hardware Hacking I+D+I VS Conceptos y filosofia devops/devsecops</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={albertoL} alt="Alberto Lobato" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Alberto Lobato</h3>
+                  <p>
+                    Experto en ciberseguridad para entornos de Tecnología Operativa (OT) con experiencia en el sector ferroviario y cumplimiento de normativas IEC 62443.
+                  </p>
+                  <p>
+                    <strong>Charla: Ciberseguridad y OT. ¿Friends or enemies?</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
