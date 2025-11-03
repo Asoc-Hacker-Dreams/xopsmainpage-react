@@ -7,7 +7,6 @@ import giselaT from "../assets/speakers/giselaT.png";
 import shaniA from "../assets/speakers/shaniA.png";
 import alejandroH from "../assets/speakers/alejandroH.png";
 import albertoM from "../assets/speakers/albertoM.png";
-import guillermoR from "../assets/speakers/guillermoR.png";
 import pabloS from "../assets/speakers/pabloS.png";
 import carlosV from "../assets/speakers/carlosV.png";
 import maniG from "../assets/speakers/maniG.png";
@@ -23,12 +22,13 @@ import veronicaR from "../assets/speakers/veronicaR.png";
 import toniG from "../assets/speakers/toniG.png";
 import ignacioD from "../assets/speakers/ignacioD.png";
 import jeffF from "../assets/speakers/jeffF.png";
-import alkinT from "../assets/speakers/alkinT.png";
 import juarezJ from "../assets/speakers/juarezJ.png";
 import joseC from "../assets/speakers/joseC.png";
 import joseG from "../assets/speakers/joseG.png";
 import davidA from "../assets/speakers/davidA.png";
 import luisG from "../assets/speakers/luisG.png";
+import dreg from "../assets/speakers/dreg.jpeg";
+import albertoL from "../assets/speakers/albertoL.jpeg";
 import awsLogo from "../assets/logos/aws-logo.png";
 import suseLogo from "../assets/logos/suse-logo.png";
 import redhatLogo from "../assets/logos/redhat-logo.png";
@@ -577,6 +577,64 @@ const SpeakersSection = () => {
                     Me llamo David Amorin Garcia, tengo 32 años y me dedico a la comunicación desde los 15. Como amante de las tecnologías y de transmitir conocimiento, me gradué en Teatro a la par que me formaba en aspectos relacionados con el SEO y los datos. Aproveché durante varios años la ventana que me ofrecía YouTube y Twitch para mostrar las aptitudes que iba adquiriendo y compartirlas con la audiencia. A principios de 2022 decidí entrar en el mundo empresarial para aportar todo lo que había aprendido durante todos estos años y así poder ayudar a los demás.\n                  </p>
                   <p>
                     <strong>Charla: Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={giselaT} alt="Gisela Torres" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Gisela Torres</h3>
+                  <p>Sr. Global Blackbelt - Developer Audience @Microsoft <img src={microsoftLogo} alt="Microsoft" style={{ height: '20px', marginLeft: '8px', verticalAlign: 'middle' }} /></p>
+                  <p>
+                    Sr. Global Blackbelt - Developer Audience @Microsoft | Microsoft Azure MVP 2010&2011 | Lemoncode 🍋 teacher| Blogger at https://www.returngis.net
+                  </p>
+                  <p>
+                    <strong>Charla: Desarrolladores/DBA/Data scientists más felices y productivos con Platform Engineering</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={dreg} alt="David Reguera García" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>David Reguera García</h3>
+                  <p>
+                    Experto en seguridad ofensiva y hardware hacking con amplia experiencia en investigación y desarrollo de técnicas avanzadas de ciberseguridad.
+                  </p>
+                  <p>
+                    <strong>Charla: Offensive Hardware Hacking I+D+I VS Conceptos y filosofia devops/devsecops</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={albertoL} alt="Alberto Lobato" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Alberto Lobato</h3>
+                  <p>
+                    Experto en ciberseguridad para entornos de Tecnología Operativa (OT) con experiencia en el sector ferroviario y cumplimiento de normativas IEC 62443.
+                  </p>
+                  <p>
+                    <strong>Charla: Ciberseguridad y OT. ¿Friends or enemies?</strong>
                   </p>
                 </AnimationWrapper>
               </div>

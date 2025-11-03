@@ -26,6 +26,8 @@ import joseG from "../../../assets/speakers/joseG.png";
 import davidA from "../../../assets/speakers/davidA.png";
 import luisG from "../../../assets/speakers/luisG.png";
 import felipeV from "../../../assets/speakers/felipeV.png";
+import dreg from "../assets/speakers/dreg.jpeg";
+import albertoL from "../assets/speakers/albertoL.jpeg";
 import awsLogo from "../../../assets/logos/aws-logo.png";
 import AnimationWrapper from "../../../components/AnimationWrapper";
 import SEO from "../../../components/SEO";
@@ -524,6 +526,44 @@ const Speakers2025 = () => {
                   <h3>David Amorín García</h3>
                   <p>
                     <strong>Charla: Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={dreg} alt="David Reguera García" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>David Reguera García</h3>
+                  <p>
+                    Experto en seguridad ofensiva y hardware hacking con amplia experiencia en investigación y desarrollo de técnicas avanzadas de ciberseguridad.
+                  </p>
+                  <p>
+                    <strong>Charla: Offensive Hardware Hacking I+D+I VS Conceptos y filosofia devops/devsecops</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={albertoL} alt="Alberto Lobato" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Alberto Lobato</h3>
+                  <p>
+                    Experto en ciberseguridad para entornos de Tecnología Operativa (OT) con experiencia en el sector ferroviario y cumplimiento de normativas IEC 62443.
+                  </p>
+                  <p>
+                    <strong>Charla: Ciberseguridad y OT. ¿Friends or enemies?</strong>
                   </p>
                 </AnimationWrapper>
               </div>

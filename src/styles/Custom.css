@@ -78,12 +78,20 @@ border: 1px solid #ffffff;
   border: none;
   font-weight: bold;
   margin: 5px;
+  transition: all 0.3s ease;
 }
 .date-btn:hover{
 background: transparent;
 color: #080606d7;
 border: 1px solid #17dd8a8e;
 margin: 5px;
+}
+.date-btn.active{
+  background: #17dd8a;
+  color: #ffffff;
+  border: 2px solid #17dd8a;
+  font-weight: bold;
+  transform: scale(1.05);
 }
 .responsive-navbar-nav{
   color: #ffffff !important;
