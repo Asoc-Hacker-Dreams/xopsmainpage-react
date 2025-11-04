@@ -138,7 +138,7 @@ async function getLastFetchTime(): Promise<number | null> {
  * Fetch sponsors from JSON file
  */
 async function fetchSponsorsFromJSON(): Promise<Sponsor[]> {
-  const response = await fetch('/src/data/sponsors.json');
+  const response = await fetch('/data/sponsors.json');
   if (!response.ok) {
     throw new Error(`Failed to fetch sponsors: ${response.statusText}`);
   }

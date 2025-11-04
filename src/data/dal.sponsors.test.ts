@@ -131,7 +131,7 @@ describe('dal.sponsors - Integration (basic)', () => {
   it('should have sponsors.json file available', async () => {
     // This is a basic check that the data file exists
     // In a real browser environment, fetch would work
-    const dataFile = '/src/data/sponsors.json';
+    const dataFile = '/data/sponsors.json';
     expect(dataFile).toBeDefined();
   });
 });

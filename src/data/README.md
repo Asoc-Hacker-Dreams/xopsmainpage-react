@@ -130,7 +130,7 @@ The DAL supports two data sources:
 
 #### 1. JSON File (Default)
 
-By default, sponsors are loaded from `/src/data/sponsors.json`.
+By default, sponsors are loaded from `/public/data/sponsors.json` (served at `/data/sponsors.json`).
 
 #### 2. Headless CMS
 
@@ -193,7 +193,7 @@ The tests cover:
 
 ### Method 1: Update JSON File
 
-Edit `/src/data/sponsors.json` and add your sponsor:
+Edit `/public/data/sponsors.json` and add your sponsor:
 
 ```json
 {

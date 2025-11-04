@@ -34,7 +34,7 @@
     "slug": "digitalocean",
     "name": "DigitalOcean",
     "tier": "gold",
-    "logo": "/assets/digialocean-logo.png",
+    "logo": "/assets/digitalocean-logo.png",
     "website": "https://www.digitalocean.com",
     "description": "DigitalOcean simplifica la infraestructura en la nube para desarrolladores y equipos.",
     "social": {
