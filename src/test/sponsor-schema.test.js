@@ -134,6 +134,27 @@ describe('Sponsor Schema Validation', () => {
       expect(valid).toBe(true);
       expect(validate.errors).toBe(null);
     });
+
+    it('should validate sponsor with uppercase UUID in hubspot formGuid', () => {
+      const validSponsor = {
+        id: "test-sponsor-2025",
+        slug: "test-sponsor",
+        name: "Test Sponsor",
+        tier: "gold",
+        logoUrl: "https://example.com/logo.png",
+        shortDesc: "A test sponsor description",
+        website: "https://example.com",
+        hubspot: {
+          formGuid: "12345678-ABCD-1234-ABCD-123456789ABC"
+        },
+        updatedAt: "2025-11-04T08:00:00Z",
+        version: "1.0"
+      };
+
+      const valid = validate(validSponsor);
+      expect(valid).toBe(true);
+      expect(validate.errors).toBe(null);
+    });
   });
 
   describe('Invalid sponsor data - missing required fields', () => {
@@ -448,10 +469,6 @@ describe('Sponsor Schema Validation', () => {
       sponsorsData.forEach((sponsor, index) => {
         const valid = validate(sponsor);
         expect(valid).toBe(true);
-        if (!valid) {
-          // Log errors for debugging in case of failure
-          console.error(`Sponsor ${index} validation errors:`, validate.errors);
-        }
       });
     });
   });
