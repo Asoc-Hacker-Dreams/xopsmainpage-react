@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { getAllSpeakers, getSpeakersByTrack, getAllTracks } from '../services/speakerDAL';
 import AnimationWrapper from '../components/AnimationWrapper';
+import '../styles/Speakers.css';
 
 const SpeakersList = () => {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,11 +1,40 @@
 /**
  * Data Access Layer (DAL) for Speaker and Talk data
  * Normalizes and exposes data from schedule.json
+ * 
+ * @typedef {Object} Talk
+ * @property {string} id
+ * @property {string} title
+ * @property {string} description
+ * @property {string} speaker
+ * @property {string[]} speakers
+ * @property {string} timeRaw
+ * @property {string} timeISO
+ * @property {Date} startTime
+ * @property {number} durationMinutes
+ * @property {string} durationHuman
+ * @property {string} room
+ * @property {string} type
+ * @property {'main'|'hyperscalers'|'bsides'} track
+ * 
+ * @typedef {Object} Speaker
+ * @property {string} id
+ * @property {string} slug
+ * @property {string} name
+ * @property {string} [title]
+ * @property {string} [company]
+ * @property {string} [bio]
+ * @property {string} [image]
+ * @property {Talk[]} talks
+ * @property {Object} [social]
+ * @property {string} [social.twitter]
+ * @property {string} [social.linkedin]
+ * @property {string} [social.github]
+ * @property {string} [social.website]
  */
 
 import scheduleData from '../data/schedule2025.json';
 import speakersMetadata from '../data/speakers.json';
-import { Speaker, Talk } from '../types/speaker';
 
 /**
  * Generate a URL-friendly slug from a name

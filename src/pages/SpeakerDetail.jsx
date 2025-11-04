@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { getSpeaker } from '../services/speakerDAL';
 import AnimationWrapper from '../components/AnimationWrapper';
+import '../styles/Speakers.css';
 
 const SpeakerDetail = () => {
   const { slug } = useParams();
