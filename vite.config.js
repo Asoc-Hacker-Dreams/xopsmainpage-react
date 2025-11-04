@@ -47,8 +47,12 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           bootstrap: ['bootstrap', 'react-bootstrap'],
+          dexie: ['dexie']
         }
       }
     }
+  },
+  optimizeDeps: {
+    include: ['dexie']
   }
 })
