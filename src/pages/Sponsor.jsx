@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PricingTable from "../components/PricingTable";
 import Benefits from "../components/Benefits";
 import LastEditionData from "../components/LastEditionData";
+import SponsorsGrid from "../components/SponsorsGrid";
 import { useLocation } from 'react-router-dom';
 import SEO from "../components/SEO";
 
@@ -46,6 +47,7 @@ const Sponsor = () => {
         />
     <LastEditionData/>
     <Benefits/>
+    <SponsorsGrid />
     <PricingTable />
     </div>
     </>
