@@ -12,6 +12,8 @@ import ScriptManager from './components/ScriptManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
+import SpeakersList from './pages/SpeakersList';
+import SpeakerDetail from './pages/SpeakerDetail';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
@@ -64,6 +66,7 @@ function App() {
               <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/agenda" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>AGENDA 2025</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/speakers" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PATROCINA</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
@@ -134,6 +137,9 @@ function App() {
           {/* Agenda 2025 */}
           <Route path="/agenda" element={<Agenda />} />
           <Route path="/my-agenda" element={<MyAgenda />} />
+          {/* Speakers */}
+          <Route path="/speakers" element={<SpeakersList />} />
+          <Route path="/speakers/:slug" element={<SpeakerDetail />} />
 
           {/* 2025 */}
           <Route path="/archive/2025/Speakers2025" element={<Speakers2025 />} />
