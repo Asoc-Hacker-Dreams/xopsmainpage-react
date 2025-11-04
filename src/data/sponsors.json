@@ -1,0 +1,77 @@
+[
+  {
+    "id": "sponsor-aws-2025",
+    "slug": "aws",
+    "name": "Amazon Web Services",
+    "tier": "platinum",
+    "logo": "/assets/aws-logo.png",
+    "website": "https://aws.amazon.com",
+    "description": "Amazon Web Services ofrece servicios de computación en la nube fiables, escalables y económicos.",
+    "social": {
+      "twitter": "https://twitter.com/awscloud",
+      "linkedin": "https://www.linkedin.com/company/amazon-web-services"
+    },
+    "order": 1,
+    "active": true
+  },
+  {
+    "id": "sponsor-redhat-2025",
+    "slug": "redhat",
+    "name": "Red Hat",
+    "tier": "platinum",
+    "logo": "/assets/redhat-logo.png",
+    "website": "https://www.redhat.com",
+    "description": "Red Hat es el proveedor líder mundial de soluciones empresariales de código abierto.",
+    "social": {
+      "twitter": "https://twitter.com/RedHat",
+      "linkedin": "https://www.linkedin.com/company/red-hat"
+    },
+    "order": 2,
+    "active": true
+  },
+  {
+    "id": "sponsor-digitalocean-2025",
+    "slug": "digitalocean",
+    "name": "DigitalOcean",
+    "tier": "gold",
+    "logo": "/assets/digialocean-logo.png",
+    "website": "https://www.digitalocean.com",
+    "description": "DigitalOcean simplifica la infraestructura en la nube para desarrolladores y equipos.",
+    "social": {
+      "twitter": "https://twitter.com/digitalocean",
+      "linkedin": "https://www.linkedin.com/company/digitalocean"
+    },
+    "order": 3,
+    "active": true
+  },
+  {
+    "id": "sponsor-suse-2025",
+    "slug": "suse",
+    "name": "SUSE",
+    "tier": "gold",
+    "logo": "/assets/suse-logo.png",
+    "website": "https://www.suse.com",
+    "description": "SUSE es pionero en soluciones de código abierto para empresas.",
+    "social": {
+      "twitter": "https://twitter.com/SUSE",
+      "linkedin": "https://www.linkedin.com/company/suse"
+    },
+    "order": 4,
+    "active": true
+  },
+  {
+    "id": "sponsor-madrid-devops-2025",
+    "slug": "madrid-devops",
+    "name": "Madrid DevOps",
+    "tier": "community",
+    "logo": "/assets/madridD.png",
+    "website": "https://www.meetup.com/madrid-devops/",
+    "description": "Comunidad DevOps de Madrid que promueve las mejores prácticas y conocimiento en la región.",
+    "social": {
+      "twitter": "https://twitter.com/madriddevops",
+      "linkedin": "https://www.linkedin.com/company/madrid-devops"
+    },
+    "order": 5,
+    "active": true
+  }
+]
