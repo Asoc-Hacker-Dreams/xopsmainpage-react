@@ -1,14 +1,13 @@
 import { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FixedSizeList as List } from 'react-window';
+import { List } from 'react-window';
 import { Container, Card, Button, Badge } from 'react-bootstrap';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { useFavorites } from '../hooks/useFavorites';
 import { groupTalksByDayAndRoom, formatDate, formatTime } from '../utils/agendaUtils';
 import './AgendaList.css';
 
-const ITEM_HEIGHT = 180; // Height of each talk card
-const HEADER_HEIGHT = 60; // Height of sticky headers
+const ITEM_HEIGHT = 200; // Fixed height for all items (headers and talks)
 
 /**
  * AgendaList component with virtualization, sticky headers, and favorites
@@ -91,12 +90,12 @@ const AgendaList = ({ talks = [], filters = {} }) => {
   /**
    * Render a single row in the virtualized list
    */
-  const Row = ({ index, style }) => {
-    const item = flattenedItems[index];
+  const Row = ({ index, style, ariaAttributes, flattenedItems: items }) => {
+    const item = items[index];
 
     if (item.type === 'day-header') {
       return (
-        <div style={{ ...style, position: 'sticky', top: 0, zIndex: 2 }} className="day-header">
+        <div style={{ ...style, position: 'relative', zIndex: 2 }} className="day-header" {...ariaAttributes}>
           <h3>{formatDate(item.day)}</h3>
         </div>
       );
@@ -104,7 +103,7 @@ const AgendaList = ({ talks = [], filters = {} }) => {
 
     if (item.type === 'room-header') {
       return (
-        <div style={{ ...style, position: 'sticky', top: HEADER_HEIGHT, zIndex: 1 }} className="room-header">
+        <div style={{ ...style, position: 'relative', zIndex: 1 }} className="room-header" {...ariaAttributes}>
           <h4>📍 {item.room}</h4>
         </div>
       );
@@ -115,7 +114,7 @@ const AgendaList = ({ talks = [], filters = {} }) => {
     const isFav = isFavorite(talk.id);
 
     return (
-      <div style={style} className="talk-item-wrapper">
+      <div style={style} className="talk-item-wrapper" {...ariaAttributes}>
         <Card className="talk-card">
           <Card.Body>
             <div className="d-flex justify-content-between align-items-start">
@@ -164,6 +163,8 @@ const AgendaList = ({ talks = [], filters = {} }) => {
   Row.propTypes = {
     index: PropTypes.number.isRequired,
     style: PropTypes.object.isRequired,
+    ariaAttributes: PropTypes.object,
+    flattenedItems: PropTypes.array.isRequired,
   };
 
   if (filteredTalks.length === 0) {
@@ -183,18 +184,12 @@ const AgendaList = ({ talks = [], filters = {} }) => {
       </div>
       <List
         height={listHeight}
-        itemCount={flattenedItems.length}
-        itemSize={(index) => {
-          const item = flattenedItems[index];
-          if (item.type === 'day-header') return HEADER_HEIGHT;
-          if (item.type === 'room-header') return HEADER_HEIGHT;
-          return ITEM_HEIGHT;
-        }}
-        width="100%"
+        rowCount={flattenedItems.length}
+        rowHeight={ITEM_HEIGHT}
+        rowComponent={Row}
+        rowProps={{ flattenedItems }}
         className="agenda-virtualized-list"
-      >
-        {Row}
-      </List>
+      />
     </Container>
   );
 };

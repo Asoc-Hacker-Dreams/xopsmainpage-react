@@ -14,7 +14,7 @@ vi.mock('../hooks/useFavorites', () => ({
 
 // Mock react-window
 vi.mock('react-window', () => ({
-  FixedSizeList: vi.fn(({ children, itemCount }) => {
+  List: vi.fn(({ children, itemCount }) => {
     // Render a simplified version for testing
     return (
       <div data-testid="virtualized-list">
