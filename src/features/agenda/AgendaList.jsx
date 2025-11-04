@@ -49,7 +49,6 @@ const AgendaList = ({ talks, isFavorite, onToggleFavorite }) => {
                   <button
                     onClick={(e) => handleToggleFavorite(e, talk.id)}
                     className="btn btn-link position-absolute top-0 end-0 p-2"
-                    role="button"
                     aria-pressed={isFav}
                     aria-label={isFav ? 
                       `Desmarcar "${talk.talk}" como favorita` : 
@@ -117,7 +116,6 @@ const AgendaList = ({ talks, isFavorite, onToggleFavorite }) => {
                   onToggleFavorite(selectedTalk.id);
                 }}
                 className="btn btn-outline-primary"
-                role="button"
                 aria-pressed={isFavorite(selectedTalk.id)}
                 aria-label={isFavorite(selectedTalk.id) ? 
                   'Desmarcar como favorita' : 

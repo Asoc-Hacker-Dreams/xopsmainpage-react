@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import DAL from '../data/dal.js';
 
 /**
@@ -11,11 +11,14 @@ export function useSpeakers(filters = {}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Memoize filters to prevent unnecessary re-renders
+  const memoizedFilters = useMemo(() => filters, [filters.name]);
+
   const fetchSpeakers = async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await DAL.getSpeakers(filters);
+      const data = await DAL.getSpeakers(memoizedFilters);
       setSpeakers(data);
     } catch (err) {
       console.error('Error fetching speakers:', err);
@@ -27,7 +30,7 @@ export function useSpeakers(filters = {}) {
 
   useEffect(() => {
     fetchSpeakers();
-  }, [JSON.stringify(filters)]); // Re-fetch when filters change
+  }, [memoizedFilters]); // Use memoized filters
 
   return {
     speakers,

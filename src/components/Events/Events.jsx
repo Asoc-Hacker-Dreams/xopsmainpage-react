@@ -109,7 +109,6 @@ const Events = () => {
                 toggleFavorite(event.id);
               }}
               className="btn btn-link position-absolute top-0 end-0 p-2"
-              role="button"
               aria-pressed={isFav}
               aria-label={isFav ? 
                 `Desmarcar "${event.talk}" como favorita` : 
@@ -245,7 +244,6 @@ const Events = () => {
                       toggleFavorite(selectedEvent.id);
                     }}
                     className="btn btn-outline-primary"
-                    role="button"
                     aria-pressed={isFavorite(selectedEvent.id)}
                     aria-label={isFavorite(selectedEvent.id) ? 
                       'Desmarcar como favorita' : 

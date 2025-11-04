@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import DAL from '../data/dal.js';
 
 /**
@@ -11,11 +11,19 @@ export function useAgenda(filters = {}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Memoize filters to prevent unnecessary re-renders
+  const memoizedFilters = useMemo(() => filters, [
+    filters.day,
+    filters.track,
+    filters.type,
+    filters.room
+  ]);
+
   const fetchAgenda = async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await DAL.getAgenda(filters);
+      const data = await DAL.getAgenda(memoizedFilters);
       setTalks(data);
     } catch (err) {
       console.error('Error fetching agenda:', err);
@@ -27,7 +35,7 @@ export function useAgenda(filters = {}) {
 
   useEffect(() => {
     fetchAgenda();
-  }, [JSON.stringify(filters)]); // Re-fetch when filters change
+  }, [memoizedFilters]); // Use memoized filters
 
   return {
     talks,
