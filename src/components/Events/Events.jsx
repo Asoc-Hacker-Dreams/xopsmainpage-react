@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import AnimationWrapper from '../AnimationWrapper';
 import { Modal, Container, Row, Col } from 'react-bootstrap';
-import scheduleData from '../../data/schedule2025.json';
+import { useAgenda } from '../../hooks/useAgenda';
+import useFavorites from '../../hooks/useFavorites';
 
 const Events = () => {
   // State for managing filters
@@ -10,11 +11,25 @@ const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  // Use DAL hook to fetch agenda data
+  const { talks: scheduleData, loading, error } = useAgenda();
+  
+  // Use favorites hook
+  const { isFavorite, toggleFavorite } = useFavorites();
+
   // Extract unique days from schedule data
   const availableDays = useMemo(() => {
+    if (!scheduleData || scheduleData.length === 0) return [];
     const days = [...new Set(scheduleData.map(event => event.timeISO.split('T')[0]))];
     return days.sort();
-  }, []);
+  }, [scheduleData]);
+
+  // Update selectedDay when availableDays changes
+  useEffect(() => {
+    if (availableDays.length > 0 && !availableDays.includes(selectedDay)) {
+      setSelectedDay(availableDays[0]);
+    }
+  }, [availableDays, selectedDay]);
 
   // Define track configuration
   const trackConfig = {
@@ -49,6 +64,10 @@ const Events = () => {
 
   // Filter events by day and track, then organize by column
   const { leftColumnEvents, rightColumnEvents, showTwoColumns } = useMemo(() => {
+    if (!scheduleData || scheduleData.length === 0) {
+      return { leftColumnEvents: [], rightColumnEvents: [], showTwoColumns: false };
+    }
+
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
       .filter(trackConfig[selectedTrack].filter)
@@ -61,7 +80,7 @@ const Events = () => {
     const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
 
     return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
-  }, [selectedDay, selectedTrack]);
+  }, [scheduleData, selectedDay, selectedTrack]);
 
   // Modal handlers
   const handleShowModal = (event) => {
@@ -75,24 +94,53 @@ const Events = () => {
   };
 
   // Render event card
-  const renderEventCard = (event, index) => (
-    <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
-      <div className="card cardcuatroT h-100">
-        <div className="overlay"></div>
-        <div className="card-body text-white d-flex flex-column">
-          <h5 className="card-title">
-            <span className="heading">Lugar: </span>{event.room}
-          </h5>
-          <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
-          <p className="flex-grow-1">{event.talk}</p>
-          <p><strong>{event.speaker}</strong></p>
-          <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
-            Más Detalles
-          </button>
+  const renderEventCard = (event, index) => {
+    const isFav = isFavorite(event.id);
+    
+    return (
+      <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
+        <div className="card cardcuatroT h-100">
+          <div className="overlay"></div>
+          <div className="card-body text-white d-flex flex-column position-relative">
+            {/* Favorite Button with Accessibility */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(event.id);
+              }}
+              className="btn btn-link position-absolute top-0 end-0 p-2"
+              aria-pressed={isFav}
+              aria-label={isFav ? 
+                `Desmarcar "${event.talk}" como favorita` : 
+                `Marcar "${event.talk}" como favorita`
+              }
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                color: isFav ? '#FFD700' : '#FFFFFF',
+                textShadow: '0 0 3px rgba(0,0,0,0.5)',
+                zIndex: 10
+              }}
+            >
+              {isFav ? '★' : '☆'}
+            </button>
+
+            <h5 className="card-title">
+              <span className="heading">Lugar: </span>{event.room}
+            </h5>
+            <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
+            <p className="flex-grow-1">{event.talk}</p>
+            <p><strong>{event.speaker}</strong></p>
+            <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
+              Más Detalles
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="events" className="event-schedule-section">
@@ -100,59 +148,78 @@ const Events = () => {
         <Container>
           <h2 className="text-center margin-top">Horario del Evento 2025</h2>
           
-          {/* Day filter buttons */}
-          <div className="text-center mb-4">
-            {availableDays.map(day => (
-              <button
-                key={day}
-                onClick={() => setSelectedDay(day)}
-                className={`date-btn ${selectedDay === day ? 'active' : ''}`}
-                style={{ margin: '5px' }}
-              >
-                {formatDayLabel(day)}
-              </button>
-            ))}
-          </div>
+          {/* Loading state */}
+          {loading && (
+            <div className="text-center my-5">
+              <p>Cargando agenda...</p>
+            </div>
+          )}
 
-          {/* Track filter buttons */}
-          <div className="text-center mb-4">
-            {Object.entries(trackConfig).map(([key, config]) => (
-              <button
-                key={key}
-                onClick={() => setSelectedTrack(key)}
-                className={`date-btn ${selectedTrack === key ? 'active' : ''}`}
-                style={{ margin: '5px' }}
-              >
-                {config.label}
-              </button>
-            ))}
-          </div>
+          {/* Error state */}
+          {error && (
+            <div className="alert alert-danger text-center my-5" role="alert">
+              <p>Error al cargar la agenda: {error}</p>
+            </div>
+          )}
 
-          {/* Selected day title */}
-          <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
+          {/* Content - only show when not loading and no error */}
+          {!loading && !error && (
+            <>
+              {/* Day filter buttons */}
+              <div className="text-center mb-4">
+                {availableDays.map(day => (
+                  <button
+                    key={day}
+                    onClick={() => setSelectedDay(day)}
+                    className={`date-btn ${selectedDay === day ? 'active' : ''}`}
+                    style={{ margin: '5px' }}
+                  >
+                    {formatDayLabel(day)}
+                  </button>
+                ))}
+              </div>
 
-          {/* Dynamic layout based on track selection */}
-          {showTwoColumns ? (
-            // Two-column layout for "Todos los Tracks"
-            <Row className="mt-5">
-              {/* Left column - Main track */}
-              <Col md={6}>
-                {leftColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
+              {/* Track filter buttons */}
+              <div className="text-center mb-4">
+                {Object.entries(trackConfig).map(([key, config]) => (
+                  <button
+                    key={key}
+                    onClick={() => setSelectedTrack(key)}
+                    className={`date-btn ${selectedTrack === key ? 'active' : ''}`}
+                    style={{ margin: '5px' }}
+                  >
+                    {config.label}
+                  </button>
+                ))}
+              </div>
 
-              {/* Right column - Secondary tracks */}
-              <Col md={6}>
-                {rightColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
-            </Row>
-          ) : (
-            // Single centered column for specific track selection
-            <Row className="mt-5 justify-content-center">
-              <Col md={8} lg={6}>
-                {leftColumnEvents.length > 0 && leftColumnEvents.map((event, index) => renderEventCard(event, index))}
-                {rightColumnEvents.length > 0 && rightColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
-            </Row>
+              {/* Selected day title */}
+              <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
+
+              {/* Dynamic layout based on track selection */}
+              {showTwoColumns ? (
+                // Two-column layout for "Todos los Tracks"
+                <Row className="mt-5">
+                  {/* Left column - Main track */}
+                  <Col md={6}>
+                    {leftColumnEvents.map((event, index) => renderEventCard(event, index))}
+                  </Col>
+
+                  {/* Right column - Secondary tracks */}
+                  <Col md={6}>
+                    {rightColumnEvents.map((event, index) => renderEventCard(event, index))}
+                  </Col>
+                </Row>
+              ) : (
+                // Single centered column for specific track selection
+                <Row className="mt-5 justify-content-center">
+                  <Col md={8} lg={6}>
+                    {leftColumnEvents.length > 0 && leftColumnEvents.map((event, index) => renderEventCard(event, index))}
+                    {rightColumnEvents.length > 0 && rightColumnEvents.map((event, index) => renderEventCard(event, index))}
+                  </Col>
+                </Row>
+              )}
+            </>
           )}
 
           {/* Modal for event details */}
@@ -171,13 +238,27 @@ const Events = () => {
               </Modal.Body>
               <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div>
-                  <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>
-                    {selectedEvent.speaker}
-                  </p>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(selectedEvent.id);
+                    }}
+                    className="btn btn-outline-primary"
+                    aria-pressed={isFavorite(selectedEvent.id)}
+                    aria-label={isFavorite(selectedEvent.id) ? 
+                      'Desmarcar como favorita' : 
+                      'Marcar como favorita'
+                    }
+                  >
+                    {isFavorite(selectedEvent.id) ? '★ En Mi Agenda' : '☆ Añadir a Mi Agenda'}
+                  </button>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <p className="card-text" style={{ margin: '0', padding: '0' }}>
                     {formatTime(selectedEvent.timeISO)} - {selectedEvent.durationHuman}
+                  </p>
+                  <p className="card-text" style={{ textAlign: 'right', margin: '0', padding: '0', fontSize: '0.9rem' }}>
+                    {selectedEvent.speaker}
                   </p>
                 </div>
               </Modal.Footer>
