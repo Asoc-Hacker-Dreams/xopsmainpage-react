@@ -130,7 +130,7 @@ const PricingTable = () => {
             </section>
         </div>
     );
-}
+};
 
 export default PricingTable;
 

@@ -1,5 +1,8 @@
-import '@testing-library/jest-dom'
-import { vi } from 'vitest'
+import '@testing-library/jest-dom';
+import { vi } from 'vitest';
+
+// Import fake-indexeddb for testing IndexedDB operations
+import 'fake-indexeddb/auto';
 
 // Mock para usePWA hook
 vi.mock('../hooks/usePWA.js', () => ({
@@ -9,7 +12,7 @@ vi.mock('../hooks/usePWA.js', () => ({
     installPrompt: null,
     handleInstall: vi.fn()
   })
-}))
+}));
 
 // Mock para Service Worker
 Object.defineProperty(navigator, 'serviceWorker', {
@@ -20,7 +23,7 @@ Object.defineProperty(navigator, 'serviceWorker', {
     })
   },
   writable: true
-})
+});
 
 // Mock para window.matchMedia (responsive design)
 Object.defineProperty(window, 'matchMedia', {
@@ -35,20 +38,20 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
-})
+});
 
 // Mock para IntersectionObserver
 global.IntersectionObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
   disconnect: vi.fn()
-}))
+}));
 
 // Mock para scrollTo
 Object.defineProperty(window, 'scrollTo', {
   value: vi.fn(),
   writable: true
-})
+});
 
 // Mock para localStorage
 const localStorageMock = {
@@ -56,12 +59,12 @@ const localStorageMock = {
   setItem: vi.fn(),
   removeItem: vi.fn(),
   clear: vi.fn()
-}
+};
 Object.defineProperty(window, 'localStorage', {
   value: localStorageMock
-})
+});
 
 // Setup global para testing
 global.beforeEach = () => {
-  vi.clearAllMocks()
-}
+  vi.clearAllMocks();
+};
