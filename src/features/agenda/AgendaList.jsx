@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Modal } from 'react-bootstrap';
-import dayjs from 'dayjs';
 
 /**
  * AgendaList Component - Displays a list of talks with favorite functionality
@@ -22,11 +21,19 @@ const AgendaList = ({ talks, isFavorite, onToggleFavorite }) => {
   };
 
   const formatTime = (timeISO) => {
-    return dayjs(timeISO).format('HH:mm');
+    return new Date(timeISO).toLocaleTimeString('es-ES', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
   };
 
   const formatDate = (timeISO) => {
-    return dayjs(timeISO).format('DD/MM/YYYY');
+    return new Date(timeISO).toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
   };
 
   const handleToggleFavorite = (e, talkId) => {
