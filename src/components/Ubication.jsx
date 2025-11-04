@@ -22,8 +22,8 @@ function Ubication () {
           </div>
         </div>
       </div>
-    )
+    );
   }
   
-  export default Ubication 
+  export default Ubication; 
   
