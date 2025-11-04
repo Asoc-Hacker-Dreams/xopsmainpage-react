@@ -33,7 +33,7 @@ describe('favoritesDB', () => {
     it('returns empty Set when no favorites exist', async () => {
       mockDB.get.mockResolvedValue(undefined);
       
-      const { getFavorites } = await import('../favoritesDB');
+      const { getFavorites } = await import('./favoritesDB');
       const favorites = await getFavorites();
 
       expect(favorites).toBeInstanceOf(Set);
@@ -43,7 +43,7 @@ describe('favoritesDB', () => {
     it('returns Set with favorites when they exist', async () => {
       mockDB.get.mockResolvedValue(['talk-1', 'talk-2']);
       
-      const { getFavorites } = await import('../favoritesDB');
+      const { getFavorites } = await import('./favoritesDB');
       const favorites = await getFavorites();
 
       expect(favorites).toBeInstanceOf(Set);
@@ -55,7 +55,7 @@ describe('favoritesDB', () => {
     it('handles errors gracefully', async () => {
       mockDB.get.mockRejectedValue(new Error('DB Error'));
       
-      const { getFavorites } = await import('../favoritesDB');
+      const { getFavorites } = await import('./favoritesDB');
       const favorites = await getFavorites();
 
       expect(favorites).toBeInstanceOf(Set);
@@ -68,7 +68,7 @@ describe('favoritesDB', () => {
       mockDB.get.mockResolvedValue(['talk-1']);
       mockDB.put.mockResolvedValue(undefined);
       
-      const { addFavorite } = await import('../favoritesDB');
+      const { addFavorite } = await import('./favoritesDB');
       const favorites = await addFavorite('talk-2');
 
       expect(favorites.has('talk-1')).toBe(true);
@@ -86,7 +86,7 @@ describe('favoritesDB', () => {
       mockDB.get.mockResolvedValue(['talk-1', 'talk-2']);
       mockDB.put.mockResolvedValue(undefined);
       
-      const { removeFavorite } = await import('../favoritesDB');
+      const { removeFavorite } = await import('./favoritesDB');
       const favorites = await removeFavorite('talk-1');
 
       expect(favorites.has('talk-1')).toBe(false);
@@ -104,7 +104,7 @@ describe('favoritesDB', () => {
       mockDB.get.mockResolvedValue([]);
       mockDB.put.mockResolvedValue(undefined);
       
-      const { toggleFavorite } = await import('../favoritesDB');
+      const { toggleFavorite } = await import('./favoritesDB');
       const result = await toggleFavorite('talk-1');
 
       expect(result.isFavorite).toBe(true);
@@ -115,7 +115,7 @@ describe('favoritesDB', () => {
       mockDB.get.mockResolvedValue(['talk-1']);
       mockDB.put.mockResolvedValue(undefined);
       
-      const { toggleFavorite } = await import('../favoritesDB');
+      const { toggleFavorite } = await import('./favoritesDB');
       const result = await toggleFavorite('talk-1');
 
       expect(result.isFavorite).toBe(false);
@@ -127,7 +127,7 @@ describe('favoritesDB', () => {
     it('clears all favorites', async () => {
       mockDB.put.mockResolvedValue(undefined);
       
-      const { clearFavorites } = await import('../favoritesDB');
+      const { clearFavorites } = await import('./favoritesDB');
       await clearFavorites();
 
       expect(mockDB.put).toHaveBeenCalledWith('favorites', [], 'favorites');

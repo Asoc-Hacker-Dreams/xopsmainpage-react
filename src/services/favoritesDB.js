@@ -76,16 +76,18 @@ export async function removeFavorite(talkId) {
  */
 export async function toggleFavorite(talkId) {
   try {
+    const db = await initDB();
     const favorites = await getFavorites();
     const isFavorite = favorites.has(talkId);
     
     if (isFavorite) {
-      await removeFavorite(talkId);
       favorites.delete(talkId);
     } else {
-      await addFavorite(talkId);
       favorites.add(talkId);
     }
+    
+    // Save once with the updated set
+    await db.put(STORE_NAME, Array.from(favorites), 'favorites');
     
     return { favorites, isFavorite: !isFavorite };
   } catch (error) {

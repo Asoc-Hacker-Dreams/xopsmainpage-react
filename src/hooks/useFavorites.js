@@ -30,6 +30,9 @@ export function useFavorites() {
    * @param {string} talkId - The ID of the talk to toggle
    */
   const toggleFavorite = useCallback(async (talkId) => {
+    // Store previous state for rollback
+    const previousFavorites = new Set(favorites);
+    
     // Optimistic UI update
     const newFavorites = new Set(favorites);
     const wasFavorite = newFavorites.has(talkId);
@@ -47,8 +50,8 @@ export function useFavorites() {
       await toggleFavoriteDB(talkId);
     } catch (error) {
       console.error('Failed to toggle favorite:', error);
-      // Rollback on error
-      setFavorites(favorites);
+      // Rollback on error using previous state
+      setFavorites(previousFavorites);
     }
   }, [favorites]);
 
