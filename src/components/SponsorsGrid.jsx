@@ -105,6 +105,7 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
             </div>
           ) : (
             tierNames.map(tier => {
+              // Using tier from sponsorsData.json which is a controlled source, not user input
               // eslint-disable-next-line security/detect-object-injection
               const sponsors = sponsorsByTier[tier];
               return (
@@ -119,7 +120,7 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                 )}
                 
                 <Row className="justify-content-center">
-                  {sponsors.map((sponsor, index) => (
+                  {sponsors.map((sponsor) => (
                     <Col 
                       key={sponsor.id} 
                       xs={12} 
@@ -131,7 +132,6 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                       <AnimationWrapper 
                         animation="fade-up" 
                         duration={1000}
-                        delay={index * 100}
                       >
                         <div 
                           className="sponsor-card h-100 d-flex flex-column align-items-center justify-content-center p-3 border rounded"
