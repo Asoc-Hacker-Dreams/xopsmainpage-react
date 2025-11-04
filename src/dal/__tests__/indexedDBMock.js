@@ -193,6 +193,7 @@ class MockIDBDatabase {
     return new MockIDBTransaction(storeNames, mode);
   }
 
+  // eslint-disable-next-line no-unused-vars
   createObjectStore(name, options) {
     return new MockIDBObjectStore(name);
   }
