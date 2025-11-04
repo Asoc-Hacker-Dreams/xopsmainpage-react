@@ -2,8 +2,14 @@ import React, { useState, useMemo } from 'react';
 import AnimationWrapper from '../AnimationWrapper';
 import { Modal, Container, Row, Col } from 'react-bootstrap';
 import scheduleData from '../../data/schedule2025.json';
+import { exportToCalendar, exportAgenda } from '../../utils/calendarUtils';
+import { FaCalendarPlus, FaBookmark, FaRegBookmark, FaFileDownload } from 'react-icons/fa';
+import { useAgenda } from '../../contexts/AgendaContext';
 
 const Events = () => {
+  // Agenda context
+  const { agenda, toggleAgenda, isInAgenda, getAgendaCount } = useAgenda();
+  
   // State for managing filters
   const [selectedDay, setSelectedDay] = useState('2025-11-21');
   const [selectedTrack, setSelectedTrack] = useState('all');
@@ -63,6 +69,26 @@ const Events = () => {
     return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
   }, [selectedDay, selectedTrack]);
 
+  // Handle calendar export
+  const handleExportToCalendar = (event) => {
+    const filename = `xops-${event.talk.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}.ics`;
+    exportToCalendar(event, filename);
+  };
+
+  // Handle export agenda
+  const handleExportAgenda = () => {
+    if (agenda.length === 0) {
+      alert('No hay eventos en tu agenda. Añade eventos a tu agenda usando el botón de marcador.');
+      return;
+    }
+    exportAgenda(agenda, 'xops-mi-agenda.ics');
+  };
+
+  // Handle toggle bookmark
+  const handleToggleBookmark = (event) => {
+    toggleAgenda(event);
+  };
+
   // Modal handlers
   const handleShowModal = (event) => {
     setSelectedEvent(event);
@@ -75,30 +101,64 @@ const Events = () => {
   };
 
   // Render event card
-  const renderEventCard = (event, index) => (
-    <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
-      <div className="card cardcuatroT h-100">
-        <div className="overlay"></div>
-        <div className="card-body text-white d-flex flex-column">
-          <h5 className="card-title">
-            <span className="heading">Lugar: </span>{event.room}
-          </h5>
-          <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
-          <p className="flex-grow-1">{event.talk}</p>
-          <p><strong>{event.speaker}</strong></p>
-          <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
-            Más Detalles
-          </button>
+  const renderEventCard = (event, index) => {
+    const isBookmarked = isInAgenda(event);
+    
+    return (
+      <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
+        <div className="card cardcuatroT h-100">
+          <div className="overlay"></div>
+          <div className="card-body text-white d-flex flex-column">
+            <h5 className="card-title">
+              <span className="heading">Lugar: </span>{event.room}
+            </h5>
+            <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
+            <p className="flex-grow-1">{event.talk}</p>
+            <p><strong>{event.speaker}</strong></p>
+            <div className="d-flex gap-2 mt-auto">
+              <button 
+                onClick={() => handleToggleBookmark(event)} 
+                className={`button menu-btn ${isBookmarked ? 'active' : ''}`}
+                title={isBookmarked ? "Quitar de Mi Agenda" : "Añadir a Mi Agenda"}
+                aria-label={isBookmarked ? "Quitar de Mi Agenda" : "Añadir a Mi Agenda"}
+              >
+                {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
+              </button>
+              <button onClick={() => handleShowModal(event)} className="button menu-btn flex-grow-1">
+                Más Detalles
+              </button>
+              <button 
+                onClick={() => handleExportToCalendar(event)} 
+                className="button menu-btn"
+                title="Añadir al calendario"
+                aria-label="Añadir al calendario"
+              >
+                <FaCalendarPlus />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="events" className="event-schedule-section">
       <AnimationWrapper animation="fade-up" duration={1500}>
         <Container>
-          <h2 className="text-center margin-top">Horario del Evento 2025</h2>
+          <div className="d-flex justify-content-between align-items-center margin-top">
+            <h2 className="text-center flex-grow-1">Horario del Evento 2025</h2>
+            {getAgendaCount() > 0 && (
+              <button 
+                onClick={handleExportAgenda} 
+                className="button menu-btn"
+                title={`Exportar Mi Agenda (${getAgendaCount()} evento${getAgendaCount() > 1 ? 's' : ''})`}
+              >
+                <FaFileDownload className="me-2" />
+                Exportar Mi Agenda ({getAgendaCount()})
+              </button>
+            )}
+          </div>
           
           {/* Day filter buttons */}
           <div className="text-center mb-4">
@@ -168,6 +228,15 @@ const Events = () => {
                 <p><strong>Hora:</strong> {formatTime(selectedEvent.timeISO)}</p>
                 <hr />
                 <p>{selectedEvent.description}</p>
+                <div className="mt-3">
+                  <button 
+                    onClick={() => handleExportToCalendar(selectedEvent)} 
+                    className="button menu-btn w-100"
+                  >
+                    <FaCalendarPlus className="me-2" />
+                    Añadir al Calendario
+                  </button>
+                </div>
               </Modal.Body>
               <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div>
