@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
+// Import fake-indexeddb for testing IndexedDB operations
+import 'fake-indexeddb/auto';
+
 // Mock para usePWA hook
 vi.mock('../hooks/usePWA.js', () => ({
   default: () => ({

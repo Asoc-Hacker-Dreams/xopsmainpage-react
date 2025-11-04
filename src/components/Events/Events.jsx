@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import AnimationWrapper from '../AnimationWrapper';
 import { Modal, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useAgenda } from '../../hooks/useAgenda';
+import useFavorites from '../../hooks/useFavorites';
 
 // Constants for date formatting
 const DAYS_ES_UPPER = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -11,6 +12,9 @@ const MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio
 const Events = () => {
   // Use the stale-while-revalidate hook for agenda data
   const { agenda: scheduleData, loading, error, isStale, lastSync } = useAgenda();
+  
+  // Use favorites hook
+  const { isFavorite, toggleFavorite } = useFavorites();
   
   // State for managing filters
   const [selectedDay, setSelectedDay] = useState('2025-11-21');
@@ -24,6 +28,13 @@ const Events = () => {
     const days = [...new Set(scheduleData.map(event => event.timeISO.split('T')[0]))];
     return days.sort();
   }, [scheduleData]);
+
+  // Update selectedDay when availableDays changes
+  useEffect(() => {
+    if (availableDays.length > 0 && !availableDays.includes(selectedDay)) {
+      setSelectedDay(availableDays[0]);
+    }
+  }, [availableDays, selectedDay]);
 
   // Define track configuration - memoized to prevent re-renders
   const trackConfig = useMemo(() => ({
@@ -87,24 +98,53 @@ const Events = () => {
   };
 
   // Render event card
-  const renderEventCard = (event, index) => (
-    <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
-      <div className="card cardcuatroT h-100">
-        <div className="overlay"></div>
-        <div className="card-body text-white d-flex flex-column">
-          <h5 className="card-title">
-            <span className="heading">Lugar: </span>{event.room}
-          </h5>
-          <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
-          <p className="flex-grow-1">{event.talk}</p>
-          <p><strong>{event.speaker}</strong></p>
-          <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
-            Más Detalles
-          </button>
+  const renderEventCard = (event, index) => {
+    const isFav = isFavorite(event.id);
+    
+    return (
+      <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
+        <div className="card cardcuatroT h-100">
+          <div className="overlay"></div>
+          <div className="card-body text-white d-flex flex-column position-relative">
+            {/* Favorite Button with Accessibility */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(event.id);
+              }}
+              className="btn btn-link position-absolute top-0 end-0 p-2"
+              aria-pressed={isFav}
+              aria-label={isFav ? 
+                `Desmarcar "${event.talk}" como favorita` : 
+                `Marcar "${event.talk}" como favorita`
+              }
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                color: isFav ? '#FFD700' : '#FFFFFF',
+                textShadow: '0 0 3px rgba(0,0,0,0.5)',
+                zIndex: 10
+              }}
+            >
+              {isFav ? '★' : '☆'}
+            </button>
+
+            <h5 className="card-title">
+              <span className="heading">Lugar: </span>{event.room}
+            </h5>
+            <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
+            <p className="flex-grow-1">{event.talk}</p>
+            <p><strong>{event.speaker}</strong></p>
+            <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
+              Más Detalles
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="events" className="event-schedule-section">
