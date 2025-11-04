@@ -20,19 +20,18 @@ const Events = () => {
     return days.sort();
   }, [scheduleData]);
 
-  // Define track configuration
-  const trackConfig = {
+  // Define track configuration - memoized to prevent re-renders
+  const trackConfig = useMemo(() => ({
     all: { label: 'Todos los Tracks', filter: () => true },
     main: { label: 'Aula magna', filter: (event) => event.track === 'main' },
     hyperscalers: { label: 'Hyperscalers', filter: (event) => event.track === 'hyperscalers' },
     bsides: { label: 'Bsides Madrid', filter: (event) => event.track === 'bsides' }
-  };
+  }), []);
 
   // Format day label
   const formatDayLabel = (dateStr) => {
     const date = new Date(dateStr + 'T12:00:00');
     const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     return `${days[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
@@ -57,9 +56,13 @@ const Events = () => {
       return { leftColumnEvents: [], rightColumnEvents: [], showTwoColumns: false };
     }
     
+    // Get track filter function safely
+    // eslint-disable-next-line security/detect-object-injection
+    const trackFilter = trackConfig[selectedTrack]?.filter || (() => true);
+    
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
-      .filter(trackConfig[selectedTrack].filter)
+      .filter(trackFilter)
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
 
     const left = dayEvents.filter(event => event.track === 'main');
@@ -69,7 +72,7 @@ const Events = () => {
     const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
 
     return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
-  }, [scheduleData, selectedDay, selectedTrack]);
+  }, [scheduleData, selectedDay, selectedTrack, trackConfig]);
 
   // Modal handlers
   const handleShowModal = (event) => {

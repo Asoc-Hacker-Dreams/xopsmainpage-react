@@ -9,10 +9,10 @@ import madridD from "../assets/collaborators/madridD.png";
 import morterueloC from "../assets/collaborators/morterueloC.png";
 import upmLogo from "../assets/collaborators/upm.png";
 import devsecconLogo from "../assets/collaborators/devseccon.png";
-import secadminlogo from "../assets/collaborators/secadmin.png"
-import engineerlogo from "../assets/collaborators/engineergame.jpeg"
-import crackersgameslogo from "../assets/collaborators/crackersgames.png"
-import cybershieldlogo from "../assets/collaborators/cybershield.png"
+import secadminlogo from "../assets/collaborators/secadmin.png";
+import engineerlogo from "../assets/collaborators/engineergame.jpeg";
+import crackersgameslogo from "../assets/collaborators/crackersgames.png";
+import cybershieldlogo from "../assets/collaborators/cybershield.png";
 import AnimationWrapper from "./AnimationWrapper";
 
 
