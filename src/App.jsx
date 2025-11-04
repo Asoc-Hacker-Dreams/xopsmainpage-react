@@ -18,6 +18,8 @@ import Sponsor2024 from './pages/archive/2024/Sponsor2024';
 import Events2024 from './pages/archive/2024/Events2024';
 import Speakers2025 from './pages/archive/2025/Speakers2025';
 import Events2025 from './pages/archive/2025/Events2025';
+import Agenda from './pages/Agenda';
+import MyAgenda from './pages/MyAgenda';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
@@ -61,6 +63,7 @@ function App() {
             <Nav className="mx-auto ">
               <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>EVENTO</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PONENTES</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/agenda" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>AGENDA 2025</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>PATROCINA</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
@@ -127,6 +130,10 @@ function App() {
           <Route path="/Patrocina" element={<Sponsor />} />
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
+
+          {/* Agenda 2025 */}
+          <Route path="/agenda" element={<Agenda />} />
+          <Route path="/my-agenda" element={<MyAgenda />} />
 
           {/* 2025 */}
           <Route path="/archive/2025/Speakers2025" element={<Speakers2025 />} />
