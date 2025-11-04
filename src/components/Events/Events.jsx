@@ -1,21 +1,26 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import AnimationWrapper from '../AnimationWrapper';
-import { Modal, Container, Row, Col } from 'react-bootstrap';
+import { Modal, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useAgenda } from '../../hooks/useAgenda';
 import useFavorites from '../../hooks/useFavorites';
 
+// Constants for date formatting
+const DAYS_ES_UPPER = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+const DAYS_ES_LOWER = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
 const Events = () => {
+  // Use the stale-while-revalidate hook for agenda data
+  const { agenda: scheduleData, loading, error, isStale, lastSync } = useAgenda();
+  
+  // Use favorites hook
+  const { isFavorite, toggleFavorite } = useFavorites();
+  
   // State for managing filters
   const [selectedDay, setSelectedDay] = useState('2025-11-21');
   const [selectedTrack, setSelectedTrack] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-  // Use DAL hook to fetch agenda data
-  const { talks: scheduleData, loading, error } = useAgenda();
-  
-  // Use favorites hook
-  const { isFavorite, toggleFavorite } = useFavorites();
 
   // Extract unique days from schedule data
   const availableDays = useMemo(() => {
@@ -31,29 +36,25 @@ const Events = () => {
     }
   }, [availableDays, selectedDay]);
 
-  // Define track configuration
-  const trackConfig = {
+  // Define track configuration - memoized to prevent re-renders
+  const trackConfig = useMemo(() => ({
     all: { label: 'Todos los Tracks', filter: () => true },
     main: { label: 'Aula magna', filter: (event) => event.track === 'main' },
     hyperscalers: { label: 'Hyperscalers', filter: (event) => event.track === 'hyperscalers' },
     bsides: { label: 'Bsides Madrid', filter: (event) => event.track === 'bsides' }
-  };
+  }), []);
 
   // Format day label
   const formatDayLabel = (dateStr) => {
     const date = new Date(dateStr + 'T12:00:00');
-    const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-    return `${days[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    return `${DAYS_ES_UPPER[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
   // Format day title
   const formatDayTitle = (dateStr) => {
     const date = new Date(dateStr + 'T12:00:00');
-    const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-    const dayName = days[date.getDay()].charAt(0).toUpperCase() + days[date.getDay()].slice(1);
-    return `${dayName} ${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`;
+    const dayName = DAYS_ES_LOWER[date.getDay()].charAt(0).toUpperCase() + DAYS_ES_LOWER[date.getDay()].slice(1);
+    return `${dayName} ${date.getDate()} de ${MONTHS_ES[date.getMonth()]} de ${date.getFullYear()}`;
   };
 
   // Format time from ISO to display format
@@ -67,10 +68,13 @@ const Events = () => {
     if (!scheduleData || scheduleData.length === 0) {
       return { leftColumnEvents: [], rightColumnEvents: [], showTwoColumns: false };
     }
-
+    
+    // Get track filter function safely - using optional chaining for safety
+    const trackFilter = trackConfig[selectedTrack]?.filter || (() => true);
+    
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
-      .filter(trackConfig[selectedTrack].filter)
+      .filter(trackFilter)
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
 
     const left = dayEvents.filter(event => event.track === 'main');
@@ -80,7 +84,7 @@ const Events = () => {
     const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
 
     return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
-  }, [scheduleData, selectedDay, selectedTrack]);
+  }, [scheduleData, selectedDay, selectedTrack, trackConfig]);
 
   // Modal handlers
   const handleShowModal = (event) => {
@@ -148,22 +152,39 @@ const Events = () => {
         <Container>
           <h2 className="text-center margin-top">Horario del Evento 2025</h2>
           
-          {/* Loading state */}
-          {loading && (
+          {/* Show subtle update notification when data is being revalidated */}
+          {isStale && scheduleData && scheduleData.length > 0 && (
+            <Alert variant="info" className="text-center" style={{ opacity: 0.7, fontSize: '0.9em' }}>
+              Actualizando horario...
+            </Alert>
+          )}
+          
+          {/* Show error if fetch failed but we have cached data */}
+          {error && scheduleData && scheduleData.length > 0 && (
+            <Alert variant="warning" className="text-center" style={{ fontSize: '0.9em' }}>
+              No se pudo actualizar el horario. Mostrando datos guardados {lastSync ? `(última actualización: ${new Date(lastSync).toLocaleString('es-ES')})` : ''}.
+            </Alert>
+          )}
+          
+          {/* Show loading only when there's no cached data */}
+          {loading && (!scheduleData || scheduleData.length === 0) && (
             <div className="text-center my-5">
-              <p>Cargando agenda...</p>
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Cargando...</span>
+              </div>
+              <p className="mt-2">Cargando horario del evento...</p>
             </div>
           )}
-
-          {/* Error state */}
-          {error && (
-            <div className="alert alert-danger text-center my-5" role="alert">
-              <p>Error al cargar la agenda: {error}</p>
-            </div>
+          
+          {/* Show error when no cached data and fetch failed */}
+          {error && (!scheduleData || scheduleData.length === 0) && (
+            <Alert variant="danger" className="text-center">
+              No se pudo cargar el horario del evento. Por favor, verifica tu conexión e intenta de nuevo.
+            </Alert>
           )}
-
-          {/* Content - only show when not loading and no error */}
-          {!loading && !error && (
+          
+          {/* Show schedule when data is available */}
+          {scheduleData && scheduleData.length > 0 && (
             <>
               {/* Day filter buttons */}
               <div className="text-center mb-4">
@@ -238,27 +259,13 @@ const Events = () => {
               </Modal.Body>
               <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleFavorite(selectedEvent.id);
-                    }}
-                    className="btn btn-outline-primary"
-                    aria-pressed={isFavorite(selectedEvent.id)}
-                    aria-label={isFavorite(selectedEvent.id) ? 
-                      'Desmarcar como favorita' : 
-                      'Marcar como favorita'
-                    }
-                  >
-                    {isFavorite(selectedEvent.id) ? '★ En Mi Agenda' : '☆ Añadir a Mi Agenda'}
-                  </button>
+                  <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>
+                    {selectedEvent.speaker}
+                  </p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <p className="card-text" style={{ margin: '0', padding: '0' }}>
                     {formatTime(selectedEvent.timeISO)} - {selectedEvent.durationHuman}
-                  </p>
-                  <p className="card-text" style={{ textAlign: 'right', margin: '0', padding: '0', fontSize: '0.9rem' }}>
-                    {selectedEvent.speaker}
                   </p>
                 </div>
               </Modal.Footer>
