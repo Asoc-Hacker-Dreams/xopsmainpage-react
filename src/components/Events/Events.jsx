@@ -1,9 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import AnimationWrapper from '../AnimationWrapper';
-import { Modal, Container, Row, Col } from 'react-bootstrap';
-import scheduleData from '../../data/schedule2025.json';
+import { Modal, Container, Row, Col, Alert } from 'react-bootstrap';
+import { useAgenda } from '../../hooks/useAgenda';
 
 const Events = () => {
+  // Use the stale-while-revalidate hook for agenda data
+  const { agenda: scheduleData, loading, error, isStale, lastSync } = useAgenda();
+  
   // State for managing filters
   const [selectedDay, setSelectedDay] = useState('2025-11-21');
   const [selectedTrack, setSelectedTrack] = useState('all');
@@ -12,9 +15,10 @@ const Events = () => {
 
   // Extract unique days from schedule data
   const availableDays = useMemo(() => {
+    if (!scheduleData || scheduleData.length === 0) return [];
     const days = [...new Set(scheduleData.map(event => event.timeISO.split('T')[0]))];
     return days.sort();
-  }, []);
+  }, [scheduleData]);
 
   // Define track configuration
   const trackConfig = {
@@ -49,6 +53,10 @@ const Events = () => {
 
   // Filter events by day and track, then organize by column
   const { leftColumnEvents, rightColumnEvents, showTwoColumns } = useMemo(() => {
+    if (!scheduleData || scheduleData.length === 0) {
+      return { leftColumnEvents: [], rightColumnEvents: [], showTwoColumns: false };
+    }
+    
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
       .filter(trackConfig[selectedTrack].filter)
@@ -61,7 +69,7 @@ const Events = () => {
     const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
 
     return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
-  }, [selectedDay, selectedTrack]);
+  }, [scheduleData, selectedDay, selectedTrack]);
 
   // Modal handlers
   const handleShowModal = (event) => {
@@ -100,59 +108,95 @@ const Events = () => {
         <Container>
           <h2 className="text-center margin-top">Horario del Evento 2025</h2>
           
-          {/* Day filter buttons */}
-          <div className="text-center mb-4">
-            {availableDays.map(day => (
-              <button
-                key={day}
-                onClick={() => setSelectedDay(day)}
-                className={`date-btn ${selectedDay === day ? 'active' : ''}`}
-                style={{ margin: '5px' }}
-              >
-                {formatDayLabel(day)}
-              </button>
-            ))}
-          </div>
+          {/* Show subtle update notification when data is being revalidated */}
+          {isStale && scheduleData && scheduleData.length > 0 && (
+            <Alert variant="info" className="text-center" style={{ opacity: 0.7, fontSize: '0.9em' }}>
+              Actualizando horario...
+            </Alert>
+          )}
+          
+          {/* Show error if fetch failed but we have cached data */}
+          {error && scheduleData && scheduleData.length > 0 && (
+            <Alert variant="warning" className="text-center" style={{ fontSize: '0.9em' }}>
+              No se pudo actualizar el horario. Mostrando datos guardados {lastSync ? `(última actualización: ${new Date(lastSync).toLocaleString('es-ES')})` : ''}.
+            </Alert>
+          )}
+          
+          {/* Show loading only when there's no cached data */}
+          {loading && (!scheduleData || scheduleData.length === 0) && (
+            <div className="text-center my-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Cargando...</span>
+              </div>
+              <p className="mt-2">Cargando horario del evento...</p>
+            </div>
+          )}
+          
+          {/* Show error when no cached data and fetch failed */}
+          {error && (!scheduleData || scheduleData.length === 0) && (
+            <Alert variant="danger" className="text-center">
+              No se pudo cargar el horario del evento. Por favor, verifica tu conexión e intenta de nuevo.
+            </Alert>
+          )}
+          
+          {/* Show schedule when data is available */}
+          {scheduleData && scheduleData.length > 0 && (
+            <>
+              {/* Day filter buttons */}
+              <div className="text-center mb-4">
+                {availableDays.map(day => (
+                  <button
+                    key={day}
+                    onClick={() => setSelectedDay(day)}
+                    className={`date-btn ${selectedDay === day ? 'active' : ''}`}
+                    style={{ margin: '5px' }}
+                  >
+                    {formatDayLabel(day)}
+                  </button>
+                ))}
+              </div>
 
-          {/* Track filter buttons */}
-          <div className="text-center mb-4">
-            {Object.entries(trackConfig).map(([key, config]) => (
-              <button
-                key={key}
-                onClick={() => setSelectedTrack(key)}
-                className={`date-btn ${selectedTrack === key ? 'active' : ''}`}
-                style={{ margin: '5px' }}
-              >
-                {config.label}
-              </button>
-            ))}
-          </div>
+              {/* Track filter buttons */}
+              <div className="text-center mb-4">
+                {Object.entries(trackConfig).map(([key, config]) => (
+                  <button
+                    key={key}
+                    onClick={() => setSelectedTrack(key)}
+                    className={`date-btn ${selectedTrack === key ? 'active' : ''}`}
+                    style={{ margin: '5px' }}
+                  >
+                    {config.label}
+                  </button>
+                ))}
+              </div>
 
-          {/* Selected day title */}
-          <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
+              {/* Selected day title */}
+              <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
 
-          {/* Dynamic layout based on track selection */}
-          {showTwoColumns ? (
-            // Two-column layout for "Todos los Tracks"
-            <Row className="mt-5">
-              {/* Left column - Main track */}
-              <Col md={6}>
-                {leftColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
+              {/* Dynamic layout based on track selection */}
+              {showTwoColumns ? (
+                // Two-column layout for "Todos los Tracks"
+                <Row className="mt-5">
+                  {/* Left column - Main track */}
+                  <Col md={6}>
+                    {leftColumnEvents.map((event, index) => renderEventCard(event, index))}
+                  </Col>
 
-              {/* Right column - Secondary tracks */}
-              <Col md={6}>
-                {rightColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
-            </Row>
-          ) : (
-            // Single centered column for specific track selection
-            <Row className="mt-5 justify-content-center">
-              <Col md={8} lg={6}>
-                {leftColumnEvents.length > 0 && leftColumnEvents.map((event, index) => renderEventCard(event, index))}
-                {rightColumnEvents.length > 0 && rightColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
-            </Row>
+                  {/* Right column - Secondary tracks */}
+                  <Col md={6}>
+                    {rightColumnEvents.map((event, index) => renderEventCard(event, index))}
+                  </Col>
+                </Row>
+              ) : (
+                // Single centered column for specific track selection
+                <Row className="mt-5 justify-content-center">
+                  <Col md={8} lg={6}>
+                    {leftColumnEvents.length > 0 && leftColumnEvents.map((event, index) => renderEventCard(event, index))}
+                    {rightColumnEvents.length > 0 && rightColumnEvents.map((event, index) => renderEventCard(event, index))}
+                  </Col>
+                </Row>
+              )}
+            </>
           )}
 
           {/* Modal for event details */}
