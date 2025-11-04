@@ -57,30 +57,38 @@ export function parseScheduleToTalks(scheduleData: any[]): Talk[] {
 
 /**
  * Parse schedule data and extract unique speakers
+ * Handles multiple speakers separated by commas
  */
 export function parseScheduleToSpeakers(scheduleData: any[]): Speaker[] {
   const speakerMap = new Map<string, Speaker>();
 
   scheduleData.forEach((item, index) => {
     if (item.speaker) {
-      // Generate speaker ID from name
-      const speakerId = item.speaker
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
+      // Split multiple speakers separated by commas
+      const speakerNames = item.speaker.split(',').map((name: string) => name.trim());
+      
+      speakerNames.forEach((speakerName: string) => {
+        if (speakerName) {
+          // Generate speaker ID from name
+          const speakerId = speakerName
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
 
-      // Generate slug (same as ID for simplicity)
-      const slug = speakerId;
+          // Generate slug (same as ID for simplicity)
+          const slug = speakerId;
 
-      if (!speakerMap.has(speakerId)) {
-        speakerMap.set(speakerId, {
-          id: speakerId,
-          slug,
-          name: item.speaker
-        });
-      }
+          if (!speakerMap.has(speakerId)) {
+            speakerMap.set(speakerId, {
+              id: speakerId,
+              slug,
+              name: speakerName
+            });
+          }
+        }
+      });
     }
   });
 
@@ -89,6 +97,7 @@ export function parseScheduleToSpeakers(scheduleData: any[]): Speaker[] {
 
 /**
  * Create talk-speaker relationships
+ * Handles multiple speakers separated by commas
  */
 export function createTalkSpeakerRelations(
   talks: Talk[],
@@ -99,13 +108,20 @@ export function createTalkSpeakerRelations(
 
   talks.forEach(talk => {
     if (talk.speaker) {
-      const speakerId = speakerNameToId.get(talk.speaker);
-      if (speakerId) {
-        relations.push({
-          talkId: talk.id,
-          speakerId
-        });
-      }
+      // Split multiple speakers separated by commas
+      const speakerNames = talk.speaker.split(',').map((name: string) => name.trim());
+      
+      speakerNames.forEach((speakerName: string) => {
+        if (speakerName) {
+          const speakerId = speakerNameToId.get(speakerName);
+          if (speakerId) {
+            relations.push({
+              talkId: talk.id,
+              speakerId
+            });
+          }
+        }
+      });
     }
   });
 

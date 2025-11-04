@@ -109,6 +109,28 @@ describe('Database Utilities', () => {
       expect(speakers[0].id).toBe('juan-vicente-herrera-ruiz-de-alejo');
       expect(speakers[1].id).toBe('luis-guirigay');
     });
+
+    it('should split multiple speakers separated by commas', () => {
+      const dataWithMultipleSpeakers = [
+        {
+          speaker: 'Antonio Berben, Felipe Vicens',
+          talk: 'Multi-speaker talk',
+          description: 'Talk with two speakers',
+          timeISO: '2025-11-21T10:00',
+          durationMinutes: 45,
+          room: 'Main Room',
+          track: 'main'
+        }
+      ];
+
+      const speakers = parseScheduleToSpeakers(dataWithMultipleSpeakers);
+
+      expect(speakers).toHaveLength(2);
+      expect(speakers.map(s => s.name)).toContain('Antonio Berben');
+      expect(speakers.map(s => s.name)).toContain('Felipe Vicens');
+      expect(speakers.map(s => s.id)).toContain('antonio-berben');
+      expect(speakers.map(s => s.id)).toContain('felipe-vicens');
+    });
   });
 
   describe('createTalkSpeakerRelations', () => {
@@ -122,6 +144,30 @@ describe('Database Utilities', () => {
         talkId: talks[0].id,
         speakerId: 'juan-vicente-herrera-ruiz-de-alejo'
       });
+    });
+
+    it('should create multiple relations for talks with multiple speakers', () => {
+      const dataWithMultipleSpeakers = [
+        {
+          speaker: 'Antonio Berben, Felipe Vicens',
+          talk: 'Multi-speaker talk',
+          description: 'Talk with two speakers',
+          timeISO: '2025-11-21T10:00',
+          durationMinutes: 45,
+          room: 'Main Room',
+          track: 'main'
+        }
+      ];
+
+      const talks = parseScheduleToTalks(dataWithMultipleSpeakers);
+      const speakers = parseScheduleToSpeakers(dataWithMultipleSpeakers);
+      const relations = createTalkSpeakerRelations(talks, speakers);
+
+      expect(relations).toHaveLength(2);
+      expect(relations[0].talkId).toBe(talks[0].id);
+      expect(relations[1].talkId).toBe(talks[0].id);
+      expect(relations.map(r => r.speakerId)).toContain('antonio-berben');
+      expect(relations.map(r => r.speakerId)).toContain('felipe-vicens');
     });
   });
 
