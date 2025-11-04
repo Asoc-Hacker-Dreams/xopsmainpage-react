@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://xopsconference.com/schemas/sponsor.schema.json",
+  "title": "Sponsor",
+  "description": "Schema for sponsor data model v1.0",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "name",
+    "tier",
+    "logoUrl",
+    "shortDesc",
+    "website",
+    "updatedAt",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "UUID or stable slug identifier",
+      "minLength": 1
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly identifier",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "Sponsor name",
+      "minLength": 1
+    },
+    "tier": {
+      "type": "string",
+      "description": "Sponsorship tier level",
+      "enum": ["platinum", "gold", "silver", "community"]
+    },
+    "logoUrl": {
+      "type": "string",
+      "description": "URL to sponsor logo image",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "shortDesc": {
+      "type": "string",
+      "description": "Short description of the sponsor",
+      "minLength": 1
+    },
+    "longDesc": {
+      "type": ["string", "null"],
+      "description": "Long description of the sponsor (optional)",
+      "minLength": 1
+    },
+    "website": {
+      "type": "string",
+      "description": "Sponsor website URL",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "socials": {
+      "type": "array",
+      "description": "Social media links",
+      "items": {
+        "type": "object",
+        "required": ["type", "url"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Social media platform type",
+            "enum": ["x", "twitter", "linkedin", "facebook", "instagram", "youtube", "github"]
+          },
+          "url": {
+            "type": "string",
+            "description": "Social media profile URL",
+            "format": "uri",
+            "pattern": "^https?://"
+          }
+        }
+      }
+    },
+    "showcase": {
+      "type": "object",
+      "description": "Call-to-action buttons for showcase",
+      "properties": {
+        "ctaPrimary": {
+          "type": "object",
+          "required": ["label", "href"],
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "ctaSecondary": {
+          "type": "object",
+          "required": ["label", "href"],
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "booking": {
+      "type": "object",
+      "description": "Booking configuration",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["external", "internal", "disabled"]
+        },
+        "url": {
+          "type": "string",
+          "description": "External booking URL (required for type=external)",
+          "format": "uri",
+          "pattern": "^https?://"
+        }
+      }
+    },
+    "hubspot": {
+      "type": "object",
+      "description": "HubSpot integration configuration",
+      "required": ["formGuid"],
+      "properties": {
+        "formGuid": {
+          "type": "string",
+          "description": "HubSpot form GUID",
+          "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+        }
+      }
+    },
+    "analytics": {
+      "type": "object",
+      "description": "Analytics configuration",
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["ga4", "gtm", "matomo"]
+        },
+        "utm_default": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "medium": {
+              "type": "string",
+              "minLength": 1
+            },
+            "campaign": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "Last update timestamp in ISO 8601 format",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    }
+  }
+}
