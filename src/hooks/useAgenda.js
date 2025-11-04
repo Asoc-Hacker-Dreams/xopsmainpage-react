@@ -87,9 +87,6 @@ export const useAgenda = (scheduleUrl = '/data/schedule2025.json') => {
         // Update state
         setAgenda(freshData);
         setLastSync(now);
-        
-        // Notify user about update (subtle)
-        console.log('Agenda updated with fresh data');
       }
       
       setIsStale(false);

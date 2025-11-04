@@ -3,6 +3,11 @@ import AnimationWrapper from '../AnimationWrapper';
 import { Modal, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useAgenda } from '../../hooks/useAgenda';
 
+// Constants for date formatting
+const DAYS_ES_UPPER = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+const DAYS_ES_LOWER = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
 const Events = () => {
   // Use the stale-while-revalidate hook for agenda data
   const { agenda: scheduleData, loading, error, isStale, lastSync } = useAgenda();
@@ -31,17 +36,14 @@ const Events = () => {
   // Format day label
   const formatDayLabel = (dateStr) => {
     const date = new Date(dateStr + 'T12:00:00');
-    const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    return `${days[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    return `${DAYS_ES_UPPER[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
   // Format day title
   const formatDayTitle = (dateStr) => {
     const date = new Date(dateStr + 'T12:00:00');
-    const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-    const dayName = days[date.getDay()].charAt(0).toUpperCase() + days[date.getDay()].slice(1);
-    return `${dayName} ${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`;
+    const dayName = DAYS_ES_LOWER[date.getDay()].charAt(0).toUpperCase() + DAYS_ES_LOWER[date.getDay()].slice(1);
+    return `${dayName} ${date.getDate()} de ${MONTHS_ES[date.getMonth()]} de ${date.getFullYear()}`;
   };
 
   // Format time from ISO to display format
@@ -56,8 +58,7 @@ const Events = () => {
       return { leftColumnEvents: [], rightColumnEvents: [], showTwoColumns: false };
     }
     
-    // Get track filter function safely
-    // eslint-disable-next-line security/detect-object-injection
+    // Get track filter function safely - using optional chaining for safety
     const trackFilter = trackConfig[selectedTrack]?.filter || (() => true);
     
     const dayEvents = scheduleData
