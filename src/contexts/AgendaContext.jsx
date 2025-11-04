@@ -28,8 +28,8 @@ export const AgendaProvider = ({ children }) => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       return stored ? JSON.parse(stored) : [];
-    } catch (error) {
-      console.error('Error loading agenda from localStorage:', error);
+    } catch {
+      // Error loading agenda from localStorage
       return [];
     }
   });
@@ -38,8 +38,8 @@ export const AgendaProvider = ({ children }) => {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(agenda));
-    } catch (error) {
-      console.error('Error saving agenda to localStorage:', error);
+    } catch {
+      // Error saving agenda to localStorage
     }
   }, [agenda]);
 

@@ -267,10 +267,6 @@ describe('calendarUtils', () => {
   });
 
   describe('exportAgenda', () => {
-    let createElementSpy;
-    let appendChildSpy;
-    let removeChildSpy;
-
     beforeEach(() => {
       // Mock URL methods if they don't exist in test environment
       if (!global.URL.createObjectURL) {
@@ -286,9 +282,9 @@ describe('calendarUtils', () => {
         click: vi.fn()
       };
 
-      createElementSpy = vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
-      appendChildSpy = vi.spyOn(document.body, 'appendChild').mockImplementation(() => {});
-      removeChildSpy = vi.spyOn(document.body, 'removeChild').mockImplementation(() => {});
+      vi.spyOn(document, 'createElement').mockReturnValue(mockLink);
+      vi.spyOn(document.body, 'appendChild').mockImplementation(() => {});
+      vi.spyOn(document.body, 'removeChild').mockImplementation(() => {});
       vi.spyOn(global.URL, 'createObjectURL').mockReturnValue('blob:mock-url');
       vi.spyOn(global.URL, 'revokeObjectURL').mockImplementation(() => {});
     });
@@ -298,6 +294,7 @@ describe('calendarUtils', () => {
     });
 
     it('exports multiple events to ICS file', () => {
+      const createElementSpy = vi.spyOn(document, 'createElement');
       exportAgenda([mockEvent, mockEvent2], 'mi-agenda.ics');
 
       expect(createElementSpy).toHaveBeenCalledWith('a');
@@ -306,6 +303,7 @@ describe('calendarUtils', () => {
     });
 
     it('uses default filename when not provided', () => {
+      const createElementSpy = vi.spyOn(document, 'createElement');
       exportAgenda([mockEvent, mockEvent2]);
 
       const mockLink = createElementSpy.mock.results[0].value;
@@ -313,6 +311,7 @@ describe('calendarUtils', () => {
     });
 
     it('handles empty agenda array', () => {
+      const createElementSpy = vi.spyOn(document, 'createElement');
       exportAgenda([]);
 
       expect(createElementSpy).toHaveBeenCalled();

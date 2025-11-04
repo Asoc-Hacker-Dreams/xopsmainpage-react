@@ -213,8 +213,6 @@ describe('AgendaContext', () => {
   });
 
   it('handles localStorage errors gracefully', () => {
-    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    
     // Mock localStorage.getItem to throw an error
     const originalGetItem = localStorage.getItem;
     localStorage.getItem = vi.fn(() => {
@@ -227,12 +225,11 @@ describe('AgendaContext', () => {
       </AgendaProvider>
     );
 
+    // Should handle error gracefully and initialize with empty agenda
     expect(screen.getByTestId('agenda-count')).toHaveTextContent('0');
-    expect(consoleErrorSpy).toHaveBeenCalled();
 
     // Restore
     localStorage.getItem = originalGetItem;
-    consoleErrorSpy.mockRestore();
   });
 
   it('throws error when useAgenda is used outside provider', () => {

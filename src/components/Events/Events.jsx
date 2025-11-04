@@ -34,7 +34,6 @@ const Events = () => {
   const formatDayLabel = (dateStr) => {
     const date = new Date(dateStr + 'T12:00:00');
     const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     return `${days[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
@@ -57,7 +56,14 @@ const Events = () => {
   const { leftColumnEvents, rightColumnEvents, showTwoColumns } = useMemo(() => {
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
-      .filter(trackConfig[selectedTrack].filter)
+      .filter(event => {
+        // Safely access trackConfig with validation
+        if (Object.prototype.hasOwnProperty.call(trackConfig, selectedTrack)) {
+          const trackFilter = trackConfig[selectedTrack];
+          return trackFilter ? trackFilter.filter(event) : true;
+        }
+        return true;
+      })
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
 
     const left = dayEvents.filter(event => event.track === 'main');
@@ -67,7 +73,7 @@ const Events = () => {
     const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
 
     return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
-  }, [selectedDay, selectedTrack]);
+  }, [selectedDay, selectedTrack, trackConfig]);
 
   // Handle calendar export
   const handleExportToCalendar = (event) => {
