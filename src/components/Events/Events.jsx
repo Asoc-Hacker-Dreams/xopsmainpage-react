@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import AnimationWrapper from '../AnimationWrapper';
 import { Modal, Container, Row, Col } from 'react-bootstrap';
 import { useAgenda } from '../../hooks/useAgenda';
+import useFavorites from '../../hooks/useFavorites';
 
 const Events = () => {
   // State for managing filters
@@ -12,6 +13,9 @@ const Events = () => {
 
   // Use DAL hook to fetch agenda data
   const { talks: scheduleData, loading, error } = useAgenda();
+  
+  // Use favorites hook
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   // Extract unique days from schedule data
   const availableDays = useMemo(() => {
@@ -90,24 +94,54 @@ const Events = () => {
   };
 
   // Render event card
-  const renderEventCard = (event, index) => (
-    <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
-      <div className="card cardcuatroT h-100">
-        <div className="overlay"></div>
-        <div className="card-body text-white d-flex flex-column">
-          <h5 className="card-title">
-            <span className="heading">Lugar: </span>{event.room}
-          </h5>
-          <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
-          <p className="flex-grow-1">{event.talk}</p>
-          <p><strong>{event.speaker}</strong></p>
-          <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
-            Más Detalles
-          </button>
+  const renderEventCard = (event, index) => {
+    const isFav = isFavorite(event.id);
+    
+    return (
+      <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
+        <div className="card cardcuatroT h-100">
+          <div className="overlay"></div>
+          <div className="card-body text-white d-flex flex-column position-relative">
+            {/* Favorite Button with Accessibility */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(event.id);
+              }}
+              className="btn btn-link position-absolute top-0 end-0 p-2"
+              role="button"
+              aria-pressed={isFav}
+              aria-label={isFav ? 
+                `Desmarcar "${event.talk}" como favorita` : 
+                `Marcar "${event.talk}" como favorita`
+              }
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                color: isFav ? '#FFD700' : '#FFFFFF',
+                textShadow: '0 0 3px rgba(0,0,0,0.5)',
+                zIndex: 10
+              }}
+            >
+              {isFav ? '★' : '☆'}
+            </button>
+
+            <h5 className="card-title">
+              <span className="heading">Lugar: </span>{event.room}
+            </h5>
+            <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
+            <p className="flex-grow-1">{event.talk}</p>
+            <p><strong>{event.speaker}</strong></p>
+            <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
+              Más Detalles
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="events" className="event-schedule-section">
@@ -205,13 +239,28 @@ const Events = () => {
               </Modal.Body>
               <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div>
-                  <p className="card-text" style={{ textAlign: 'left', margin: '0', padding: '0' }}>
-                    {selectedEvent.speaker}
-                  </p>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(selectedEvent.id);
+                    }}
+                    className="btn btn-outline-primary"
+                    role="button"
+                    aria-pressed={isFavorite(selectedEvent.id)}
+                    aria-label={isFavorite(selectedEvent.id) ? 
+                      'Desmarcar como favorita' : 
+                      'Marcar como favorita'
+                    }
+                  >
+                    {isFavorite(selectedEvent.id) ? '★ En Mi Agenda' : '☆ Añadir a Mi Agenda'}
+                  </button>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <p className="card-text" style={{ margin: '0', padding: '0' }}>
                     {formatTime(selectedEvent.timeISO)} - {selectedEvent.durationHuman}
+                  </p>
+                  <p className="card-text" style={{ textAlign: 'right', margin: '0', padding: '0', fontSize: '0.9rem' }}>
+                    {selectedEvent.speaker}
                   </p>
                 </div>
               </Modal.Footer>
