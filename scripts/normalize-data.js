@@ -33,32 +33,42 @@ function createId(text) {
 
 // Helper to calculate end time
 function calculateEndTime(startTime, durationMinutes) {
-  // Parse the time components
-  const match = startTime.match(/^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2}):(\d{2})([+-]\d{2}:\d{2})$/);
+  // Parse the ISO8601 timestamp manually to avoid timezone conversion issues
+  const match = startTime.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})([+-]\d{2}:\d{2})$/);
   if (!match) {
     throw new Error(`Invalid startTime format: ${startTime}`);
   }
   
-  const [, date, hours, minutes, seconds, offset] = match;
+  const [, year, month, day, hours, minutes, seconds, offset] = match;
   
-  // Calculate end time in minutes
-  const startMinutes = parseInt(hours) * 60 + parseInt(minutes);
-  const endMinutes = startMinutes + durationMinutes;
+  // Calculate total minutes from start of day
+  let totalMinutes = parseInt(hours) * 60 + parseInt(minutes) + durationMinutes;
   
-  const endHours = Math.floor(endMinutes / 60);
-  const endMins = endMinutes % 60;
+  // Calculate new time components
+  let newHours = Math.floor(totalMinutes / 60);
+  const newMinutes = totalMinutes % 60;
   
-  // Handle day overflow (if end time goes past midnight)
-  let endDate = date;
-  if (endHours >= 24) {
-    const d = new Date(date);
-    d.setDate(d.getDate() + Math.floor(endHours / 24));
-    endDate = d.toISOString().split('T')[0];
+  // Handle day overflow
+  let dayOffset = 0;
+  while (newHours >= 24) {
+    newHours -= 24;
+    dayOffset++;
   }
   
-  const finalHours = endHours % 24;
+  // Calculate new date if needed
+  let newYear = parseInt(year);
+  let newMonth = parseInt(month);
+  let newDay = parseInt(day);
   
-  return `${endDate}T${String(finalHours).padStart(2, '0')}:${String(endMins).padStart(2, '0')}:${seconds}${offset}`;
+  if (dayOffset > 0) {
+    const date = new Date(newYear, newMonth - 1, newDay);
+    date.setDate(date.getDate() + dayOffset);
+    newYear = date.getFullYear();
+    newMonth = date.getMonth() + 1;
+    newDay = date.getDate();
+  }
+  
+  return `${String(newYear).padStart(4, '0')}-${String(newMonth).padStart(2, '0')}-${String(newDay).padStart(2, '0')}T${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}:${seconds}${offset}`;
 }
 
 // Read the original schedule

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2025-11-04T10:54:02.404Z",
+  "updatedAt": "2025-11-04T11:01:43.315Z",
   "speakers": [
     {
       "id": "Juan_Vicente_Herrera_Ruiz_de_Alejo",
@@ -9,7 +9,7 @@
       "bio": "Juan Vicente Herrera, Cloud Architect en Red Hat y co-organizador de Madrid DevOps y DevOpsdays Madrid, dará la bienvenida oficial a todos los asistentes de la X-Ops Conference Madrid 2025. En este keynote general del evento, presentará la visión de la conferencia, destacará las tendencias más importantes en el ecosistema X-Ops y establecerá el contexto para las sesiones que seguirán durante los dos días del evento.",
       "photoUrl": "https://xopsconference.com/images/speakers/juan-vicente-herrera-ruiz-de-alejo.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -19,7 +19,7 @@
       "bio": "En este keynote, Luis Guirigay, Worldwide Head of Cloud Infrastructure Solutions en AWS, presentará oficialmente el track exclusivo dedicado a AWS en la X-Ops Conference Madrid 2025. Este track especial cuenta con ingenieros de AWS, AWS Community Builders y AWS Heroes en la lista de ponentes, ofreciendo una experiencia única y especializada.",
       "photoUrl": "https://xopsconference.com/images/speakers/luis-guirigay.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -29,7 +29,7 @@
       "bio": "Discover how leveraging Kubernetes for platform engineering can dramatically increase development efficiency, streamline operations, and enable unprecedented scale through Kubernetes-native GitOps. This session explores how the Kubernetes API becomes the cornerstone of GitOps practices, solving key challenges in managing cloud resources and infrastructure at scale. Learn how this Kubernetes-centric approach transforms traditional workflows, allowing teams to declaratively manage thousands of resources across complex environments using familiar Kubernetes objects and methodologies. We'll demonstrate how platform abstractions help overcome complex challenges, and how automation aligns with Kubernetes controllers principles using open-source tools. Explore how the powerful combination of Kro, ArgoCD, and ACK extends the Kubernetes API to drive GitOps for both applications and infrastructure, revolutionizing platform engineering on EKS through a truly Kubernetes-native GitOps approach.",
       "photoUrl": "https://xopsconference.com/images/speakers/shani-adadi-kazaz.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -39,7 +39,7 @@
       "bio": "¿Y si te dijera que hay una forma de liberar a los equipos del caos operativo y además self-service?\n\nEn esta charla exploraremos qué es Platform Engineering, por qué está transformando la forma en que trabajamos con la infraestructura, templates, repos, configuraciones, etc. y cómo puede ser el cambio que tu organización necesita. Te mostraré un caso práctico que ilustra cómo sería nuestro día a día si adoptáramos esta práctica: más foco en el producto, menos fricción y una colaboración mucho más fluida entre equipos. Spoiler: después de esto, no querrás volver atrás.",
       "photoUrl": "https://xopsconference.com/images/speakers/gisela-torres.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -49,7 +49,7 @@
       "bio": "Desarrollando un CICD de un servicio de automatización en AWX. Desde el push del desarrollador hasta la publicación del JobTemplate en AWX para ser lanzado via APIRest, incluyendo por el camino linters, test y firma del mismo.",
       "photoUrl": "https://xopsconference.com/images/speakers/alejandro-de-la-hoz-martin.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -59,7 +59,7 @@
       "bio": "As Kubernetes adoption grows beyond the cloud into data centers and edge environments, provisioning clusters on bare metal becomes increasingly crucial. However, deploying and managing these environments at scale remains a complex challenge.\n\nThis session will explore how Cluster API (CAPI) combined with ClusterClass can be leveraged to fully automate the lifecycle of Kubernetes clusters on bare metal infrastructure. Attendees will learn how to eliminate manual provisioning, enforce cluster consistency, and reduce operational toil using modern GitOps-driven workflows.\n\nWe'll walk through a real-world, end-to-end implementation that includes:\n\nSetting up a CAPI provider for bare metal (e.g., Metal3)\n\nUsing ClusterClass to define standardized cluster templates\n\nIntegrating with Ironic for node provisioning\n\nAutomating updates, scaling, and lifecycle management\n\nBest practices for security, HA, and extensibility in bare metal scenarios\n\nWhether you're operating edge clusters, hybrid environments, or building your own metal cloud, this talk will give you the tools to make bare metal Kubernetes feel as dynamic and elastic as the cloud.",
       "photoUrl": "https://xopsconference.com/images/speakers/alberto-morgante.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -69,7 +69,7 @@
       "bio": "Descubre cómo adoptar una mentalidad DevSecOps transforma la protección de la infraestructura en AWS de un cuello de botella en una ventaja competitiva, permitiendo a los equipos desplegar de forma segura siendo ágiles y escalables. Esta sesión explora la intersección crítica entre automatización, infraestructura como código (IaC) y cultura DevOps en la gestión de entornos complejos. Examinaremos cómo las organizaciones gestionan exitosamente miles de recursos en AWS en entornos multi-cuenta sin sacrificar seguridad ni frenar la innovación. Exploraremos estrategias prácticas para implementar políticas como código, validación automática de requisitos de seguridad y red, y monitoreo continuo de la infraestructura. Al final de esta sesión, queremos que te lleves patrones accionables para construir infraestructura que pueda crecer de forma segura junto con tus necesidades de negocio, demostrando que seguridad y velocidad no son conceptos opuestos cuando haces \"shift left\" y \"scale right\".",
       "photoUrl": "https://xopsconference.com/images/speakers/pablo-sanchez-carmona.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -79,7 +79,7 @@
       "bio": "La inteligencia artificial ha evolucionado hacia agentes autónomos capaces de colaborar y operar a escala en infraestructura crítica.\n\nAl ver el título, tu pregunta es ineludible: ¿cómo paso de simple becario a Modo Dios de forma segura con los Agentes de AI?\n\nEsta charla desvela el camino de 0 a 100 sobre cómo es posible desplegar y escalar miles de agentes garantizando seguridad y eficiencia en infraestructuras críticas robustas\n\nCon proyectos open source como AgentGateway, Kgateway, KAgent y LLM-D como referencia, exploraremos el papel esencial de los gateways seguros y la colaboración agent-to-agent (A2A) en arquitecturas distribuidas, que permiten mantener la integridad y la protección en sistemas agénticos complejos.\n\nEntenderemos por qué la seguridad y la escalabilidad son pilares fundamentales para el futuro de los agentes autónomos en infraestructuras críticas.",
       "photoUrl": "https://xopsconference.com/images/speakers/antonio-berben-felipe-vicens.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -89,7 +89,7 @@
       "bio": "Puede ser en Español o Inglés y puede ser de 30 minutos o 50 minutos. Será una introducción y live demo.\n\n¿Todavía expones tus APIs de forma manual, con poca seguridad ( o la seguridad en la propia API...) o siempre apagando fuegos? Esta charla es para ti.\n\nVoy a mostrarte cómo exponer APIs puede ser fácil para los equipos DevOps y seguro para los desarrolladores, usando una plataforma que es totalmente Infra as Code, sin configuraciones manuales (ClickOps), y pensada para ser rápida, segura y escalable.\n\n¿Qué vas a aprender (y por qué esto es el sueño de cualquier equipo DevOps o de plataforma)?\n\n-Infra as Code total: Todo: APIs, políticas, infraestructura y seguridad está en Git. Así puedes probar, revisar y desplegar todo automáticamente con CI/CD.\n\n-Automatización nativa en Kubernetes: Usamos herramientas como Traefik, CRDs y GitHub para hacer verdadero GitOps. Puedes desplegar, actualizar o revertir APIs sin necesidad de usar interfaces gráficas.\n\n-Seguridad flexible: OPA y Keycloak para políticas y autenticación, WAF y Content Guards para proteger tus APIs. Así los desarrolladores se enfocan en el código, no en problemas de cumplimiento.\n\n-Gateway Offloading: La plataforma se encarga de la autenticación, límites de uso, seguridad y monitoreo. Tus servicios quedan limpios y simples.\n\n-Observabilidad completa: Grafana Loki, Tempo, y Jaeger te dan visibilidad total para detectar y resolver problemas antes que los usuarios los noten.\n\nNo más excusas, no más configuraciones manuales. Solo código, automatización y tranquilidad.",
       "photoUrl": "https://xopsconference.com/images/speakers/carlos-villanua.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -99,7 +99,7 @@
       "bio": "Abstract: Join this hands-on workshop to learn all about AWS Graviton processors and considerations about how to develop and deploy applications to achieve the best EC2 price-performance and sustainability on AWS. During this hands-on workshop you will take an example application running on x86 instances application (choosing from Python, Go, Java or .NET) and learn how to migrate, test, and optimise for Graviton. Once you have converted the application, you will learn to deploy it on Graviton infrastructure through Amazon EKS or Autoscaling Groups.",
       "photoUrl": "https://xopsconference.com/images/speakers/mani-ghelichkhani.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -109,7 +109,7 @@
       "bio": "The web platform is evolving rapidly, and staying ahead of new UI capabilities is crucial for modern DevOps workflows. In this session, we’ll explore how the latest advances in CSS and HTML can streamline front-end development, improve developer experience, and help teams deliver responsive, accessible, and performant interfaces faster and with less friction.\n\nGet a high-level look at some of the most exciting and impactful UI features that have recently landed — or are just around the corner — and learn how they can fit into your delivery pipelines and workflows. From better defaults for accessibility to powerful new responsive design tools, see how the modern web platform supports shipping better applications, faster.\n\nPerfect for developers, DevOps engineers, and tech leads who want to keep their front-end practices modern, efficient, and aligned with today’s best delivery standards.",
       "photoUrl": "https://xopsconference.com/images/speakers/cleyra-uzcategui.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -119,7 +119,7 @@
       "bio": "Las aplicaciones heredadas no tienen por qué ser un obstáculo. En esta sesión aprenderás cómo usar MCP y asistentes inteligentes en la línea de comando para containerizar, modernizar y desplegar aplicaciones de forma ágil, reduciendo la complejidad y acelerando la innovación.",
       "photoUrl": "https://xopsconference.com/images/speakers/rossana-suarez.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -129,7 +129,7 @@
       "bio": "¿Interesado en aplicar la observabilidad en Machine Learning? En esta charla aprenderemos a implementar sistemas de ML bajo estos principios.\n\nLa observabilidad permite monitorear el rendimiento del modelo en todas las etapas, detectando y corrigiendo errores rápidamente. Nos enfocaremos en prácticas concretas para hacer tus proyectos de ML más transparentes y eficientes.\n\n¡Únete y descubre las herramientas esenciales para construir y mantener sistemas de ML observables en la nube!",
       "photoUrl": "https://xopsconference.com/images/speakers/sara-san-luis-rodriguez-christian-carballo-lozano.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -139,7 +139,7 @@
       "bio": "Over the past years, I have conducted extensive research into how attackers can exploit various features of Google Cloud Platform (GCP) and Google Workspace to escalate privileges, maintain persistence, and execute post-exploitation actions. This work has uncovered numerous behaviors that hold significant value for Red Teams. While some of these findings have prompted GCP to implement fixes, others have been acknowledged as inherent features of the platform. Key discoveries include:\n\n- Methods to perform critical actions without generating audit logs.\n\n- Exploiting environment variables to achieve remote code execution (RCE) on systems and containers that are not intended to be directly accessible.\n\n- Techniques for pivoting from Google Cloud Storage buckets to other GCP services and Service Accounts.\n\n- Leveraging containers to establish \"invisible\" persistence mechanisms.\n\nAdditionally, my research has focused on understanding and exploiting the behaviour of Google’s enterprise tools, such as:\n\n- Google Credential Provider for Windows\n\n- Google Cloud Directory Sync\n\n- Google Password Sync\n\n- Admin Directory Sync\n\nThese tools can be used to pivot and escalate privileges from environments like Windows, Active Directory, and Microsoft Entra ID into Google Workspace, ultimately gaining access to GCP.",
       "photoUrl": "https://xopsconference.com/images/speakers/carlos-polop.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -149,7 +149,7 @@
       "bio": "Descubre cómo la inteligencia artificial generativa está revolucionando la creación y gestión de pipelines en Azure DevOps. En esta sesión práctica, exploraremos cómo automatizar la generación de pipelines CI/CD que cumplan automáticamente con los estándares corporativos, utilizando plantillas inteligentes y análisis predictivo de código.\n\nAprenderás a implementar un sistema que interpreta cambios en pull requests, predice problemas de calidad y seguridad, y garantiza el cumplimiento normativo de forma proactiva. Veremos como documentar políticas para que la IA tome decisiones coherentes sobre advertencias y errores.",
       "photoUrl": "https://xopsconference.com/images/speakers/dachi-gogotchuri.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -159,7 +159,7 @@
       "bio": "Dive into the transformative power of Microsoft Fabric as we explore the seamless integration of Artificial Intelligence into practical business scenarios. This session will guide you through the journey of implementing an end-to-end ML project using Microsoft Fabric, from data preparation to model deployment. Discover how this robust platform can turn data into actionable insights, driving innovation and efficiency in your organization. Whether you're a tech enthusiast, data scientist, or business leader, this talk offers practical takeaways and inspiration to harness the potential of AI in solving real-world challenges.",
       "photoUrl": "https://xopsconference.com/images/speakers/patricia-rodriguez-vaquero-almudena-zhou-ramirez-lopez.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -169,7 +169,7 @@
       "bio": "La charla versa sobre \"Anticipar Problemas en Entornos AIOps\" se centra en cómo la inteligencia artificial conversacional, como Copilot, puede transformar la gestión de operaciones de TI mediante la predicción proactiva de fallos. Este desarrollo explora la sinergia entre AIOps (Inteligencia Artificial para Operaciones de TI) y las capacidades de Copilot para no solo detectar anomalías, sino también anticiparse a ellas, minimizando interrupciones y mejorando la eficiencia operativa",
       "photoUrl": "https://xopsconference.com/images/speakers/veronica-rivas-remiseiro-toni-granell.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -179,7 +179,7 @@
       "bio": "English:\n\nThis hands-on workshop dives into the security risks hiding in modern CI/CD pipelines. You’ll learn how attackers target misconfigurations and weak spots across code repositories, build systems, and deployment workflows. We'll cover real-world attack paths and exploitation techniques using GitHub Actions, Terraform, AWS, Kubernetes, and GitOps tools like ArgoCD. Expect practical insights, demos, and a focus on breaking things to understand how to better defend them.\n\nAgenda:\n\n1. Introduction and CI/CD concepts\n\n2. Poisoned Pipeline Execution\n\n3. Lateral movement to/from Cloud environments (AWS)\n\n4. GitOps - Lateral movement to Kubernetes (ArgoCD)\n\n5. Exploiting GHA Self-Hosted Runners\n\n6. Supply Chain attacks\n\nEspañol:\n\nEste taller práctico se enfoca en los riesgos de seguridad que se esconden en los pipelines modernos de CI/CD. Aprenderás cómo los atacantes aprovechan malas configuraciones y puntos débiles en repositorios de código, sistemas de build y flujos de despliegue. Veremos rutas de ataque reales y técnicas de explotación usando GitHub Actions, Terraform, AWS, Kubernetes y herramientas de GitOps como ArgoCD. Prepárate para demos, ejemplos prácticos y romper cosas para entender cómo defenderlas mejor.\n\nAgenda:\n\n1. Introducción y conceptos de CI/CD\n\n2. Ejecución envenenada del pipeline (Poisoned Pipeline Execution)\n\n3. Movimiento lateral hacia/desde entornos en la nube (AWS)\n\n4. GitOps – Movimiento lateral hacia Kubernetes (ArgoCD)\n\n5. Explotación de runners auto-hospedados en GitHub Actions\n\n6. Ataques a la cadena de suministro (Supply Chain Attacks)",
       "photoUrl": "https://xopsconference.com/images/speakers/ignacio-dominguez.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -189,7 +189,7 @@
       "bio": "Most teams either overpay for a single GPU vendor or juggle two stacks that never cooperate. We’ll show a third path: a weight-aware scheduler that turns NVIDIA’s quick-burst horsepower and AMD’s memory-rich endurance into one seamless relay. You’ll watch a live demo where prefill tokens sprint on L40S cards, decode tokens cruise on MI300X nodes, and autoscaling expands lanes as the crowd pours in—cutting P90 latency 45 % and per-node cost 38 %. We’ll hand out Helm/YAML templates, Prometheus dashboards, and a spot-vs-reserved pricing calculator so you can coach your own hybrid dream team back home.",
       "photoUrl": "https://xopsconference.com/images/speakers/jeff-fan.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -199,7 +199,7 @@
       "bio": "When it comes down to scaling time series monitoring solutions things can get messy. That’s one of the reasons why VictoriaMetrics, a Silver member of the Cloud Native Computing Foundation (CNCF), started its journey some years ago. It is a simple, reliable and efficient set of Observability Solutions that's been adopted by many organizations. It's open source, with a strong community behind it, with enterprise and managed (Cloud) options for those who need support. VictoriaMetrics plays well with many standards, including Grafana and OpenTelemetry. Apart from that, in case you didn’t know, VictoriaLogs is the new kid in the block that's seriously outperforming other solutions. In this presentation, we’ll present the VictoriaMetrics Open Source projects and how they differ from other solutions, especially when it comes to scaling from single small setups to massive cluster deployments.Come learn how VictoriaMetrics projects can help to ease Observability!",
       "photoUrl": "https://xopsconference.com/images/speakers/jose-gomez-selles.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -209,7 +209,7 @@
       "bio": "In the era of DevOps and continuous integration/deployment (CI/CD), automating database operations is critical for maintaining agile and efficient development workflows. This technical session provides a deep dive into the integration of Oracle DB Operator for Kubernetes, GitHub Actions, and Liquibase to streamline and automate database CI/CD pipelines.\n\nThe session will also cover schema versioning and database changes using Liquibase, ensuring that database deployments are consistent, reliable, and easily manageable. Join us to learn how to revolutionize your CI/CD processes, enhance productivity, and achieve seamless database operations in a multi-cloud environment.",
       "photoUrl": "https://xopsconference.com/images/speakers/juarez-junior.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -219,7 +219,7 @@
       "bio": "Join me for an engaging session that explores the indispensable role of decision-making in maintaining the evolvability of architectural designs. Drawing inspiration from Antoni Gaudi's visionary approach in crafting La Sagrada Familia, we delve into the art of decision-making, highlighting its criticality in ensuring the longevity and adaptability of our architectures.\n\nBy the end of this talk, you'll gain a profound understanding of the significance of decision-making in shaping robust architectures and walk away with a practical toolkit of best practices—inspired by Gaudi's methodology—to effectively manage and document your architectural decisions.\n\nDon't miss this opportunity to elevate your architectural decision-making skills and fortify the foundations of your projects for the future.",
       "photoUrl": "https://xopsconference.com/images/speakers/jose-enrique-calderon-sanz.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -229,7 +229,7 @@
       "bio": "Los datos cuentan historias, pero su impacto depende de cómo los presentamos. En esta charla, exploraremos las mejores prácticas en visualización de datos para comunicar ideas de manera efectiva. Desde principios fundamentales del diseño de gráficos hasta herramientas avanzadas de visualización, aprenderás a transformar datos complejos en mensajes claros y atractivos. Esta sesión es ideal para analistas, científicos de datos y cualquier profesional que necesite presentar información basada en datos de manera persuasiva.",
       "photoUrl": "https://xopsconference.com/images/speakers/david-amorin-garcia.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -239,7 +239,7 @@
       "bio": "Cómo los principios de automatización, integración continua y seguridad desde el diseño pueden aplicarse al mundo del hardware.",
       "photoUrl": "https://xopsconference.com/images/speakers/david-reguera-garcia.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -249,7 +249,7 @@
       "bio": "Los entornos de Tecnología Operativa (OT) están omnipresentes en nuestra vida diaria, desde los sistemas de control de los trenes que tomamos cada mañana, hasta la infraestructura energética que alimenta nuestros hogares y los procesos industriales que producen los bienes que consumimos. Estos entornos son críticos para el funcionamiento de nuestra sociedad y, por lo tanto, su seguridad es de vital importancia.En esta charla, exploraremos los desafíos específicos de la ciberseguridad en entornos OT y cómo difiere de la ciberseguridad convencional en entornos de Tecnología de la Información (IT). Analizaremos las particularidades de la ciberseguridad OT, incluyendo los riesgos y amenazas únicos que enfrentan estos sistemas.A través de ejemplos concretos de proyectos y ofertas reales en los que he trabajado como experto en ciberseguridad en el sector ferroviario, ilustraré el proceso de implementación de medidas de seguridad efectivas conforme a la normativa IEC 62443. Esta charla ofrecerá una visión práctica y experta sobre cómo proteger los entornos OT críticos y garantizar la resiliencia de nuestra infraestructura industrial.",
       "photoUrl": "https://xopsconference.com/images/speakers/alberto-lobato.jpg",
       "socials": [],
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     }
   ],
@@ -269,7 +269,7 @@
       ],
       "type": "keynote",
       "duration": 30,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -287,7 +287,7 @@
       ],
       "type": "keynote",
       "duration": 30,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -305,7 +305,7 @@
       ],
       "type": "talk",
       "duration": 45,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -323,7 +323,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -341,7 +341,7 @@
       ],
       "type": "talk",
       "duration": 45,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -359,7 +359,7 @@
       ],
       "type": "talk",
       "duration": 30,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -377,7 +377,7 @@
       ],
       "type": "talk",
       "duration": 65,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -395,7 +395,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -413,7 +413,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -431,7 +431,7 @@
       ],
       "type": "talk",
       "duration": 90,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -449,7 +449,7 @@
       ],
       "type": "talk",
       "duration": 40,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -467,7 +467,7 @@
       ],
       "type": "talk",
       "duration": 30,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -485,7 +485,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -503,7 +503,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -521,7 +521,7 @@
       ],
       "type": "talk",
       "duration": 60,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -539,7 +539,7 @@
       ],
       "type": "talk",
       "duration": 30,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -557,7 +557,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -575,7 +575,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -593,7 +593,7 @@
       ],
       "type": "talk",
       "duration": 30,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -611,7 +611,7 @@
       ],
       "type": "talk",
       "duration": 80,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -629,7 +629,7 @@
       ],
       "type": "talk",
       "duration": 45,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -647,7 +647,7 @@
       ],
       "type": "talk",
       "duration": 45,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -665,7 +665,7 @@
       ],
       "type": "talk",
       "duration": 40,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -683,7 +683,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -701,7 +701,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -719,7 +719,7 @@
       ],
       "type": "talk",
       "duration": 120,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     },
     {
@@ -737,7 +737,7 @@
       ],
       "type": "talk",
       "duration": 50,
-      "updatedAt": "2025-11-04T10:54:02.404Z",
+      "updatedAt": "2025-11-04T11:01:43.315Z",
       "version": "1.0"
     }
   ]
