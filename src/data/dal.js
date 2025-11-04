@@ -1,5 +1,4 @@
 import db from './db.js';
-import dayjs from 'dayjs';
 
 /**
  * Data Access Layer - Abstraction for data sources
@@ -83,7 +82,9 @@ class JSONDataProvider {
       
       // If data exists and was synced recently (within 24 hours), skip reload
       if (lastSync && talksCount > 0) {
-        const hoursSinceSync = dayjs().diff(dayjs(lastSync.value), 'hour');
+        const lastSyncDate = new Date(lastSync.value);
+        const now = new Date();
+        const hoursSinceSync = (now.getTime() - lastSyncDate.getTime()) / (1000 * 60 * 60);
         if (hoursSinceSync < 24) {
           this.initialized = true;
           return;
