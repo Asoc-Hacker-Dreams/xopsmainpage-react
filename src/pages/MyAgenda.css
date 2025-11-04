@@ -1,0 +1,122 @@
+.my-agenda-page {
+  min-height: calc(100vh - 200px);
+}
+
+.my-agenda-empty {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-section {
+  margin-bottom: 3rem;
+}
+
+.day-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #0066CC;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #0066CC;
+  text-transform: capitalize;
+}
+
+.talks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.talk-card {
+  transition: all 0.3s ease;
+  border: 2px solid #dee2e6;
+}
+
+.talk-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.talk-card.conflict {
+  border-color: #ffc107;
+  background-color: #fff9e6;
+}
+
+.talk-card.conflict:hover {
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.talk-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+.talk-card .card-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.talk-description {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.time-display {
+  font-size: 1.1rem;
+  color: #0066CC;
+}
+
+.favorite-btn {
+  transition: transform 0.2s ease;
+  min-width: 40px;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.15);
+}
+
+.favorite-btn:focus {
+  outline: 2px solid #0066CC;
+  outline-offset: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .day-title {
+    font-size: 1.5rem;
+  }
+
+  .talk-card .card-title {
+    font-size: 1.1rem;
+  }
+
+  .time-display {
+    font-size: 1rem;
+  }
+
+  .talk-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .talk-card,
+  .favorite-btn {
+    transition: none;
+  }
+
+  .talk-card:hover {
+    transform: none;
+  }
+
+  .favorite-btn:hover {
+    transform: none;
+  }
+}
