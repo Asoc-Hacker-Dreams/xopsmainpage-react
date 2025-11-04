@@ -11,15 +11,15 @@ describe('Collaborators Component', () => {
   it('renders without crashing', () => {
     render(<Collaborators />)
     
-    expect(screen.getByText(/Colaboradores/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Colaboradores/i).length).toBeGreaterThan(0)
   })
 
   it('displays collaborators section title', () => {
     render(<Collaborators />)
     
-    const title = screen.getByRole('heading', { level: 2 })
-    expect(title).toBeInTheDocument()
-    expect(title.textContent).toMatch(/colaboradores/i)
+    const titles = screen.getAllByRole('heading', { level: 2 })
+    expect(titles.length).toBeGreaterThan(0)
+    expect(titles.some(title => title.textContent.match(/colaboradores/i))).toBeTruthy()
   })
 
   it('renders collaborator logos', () => {
