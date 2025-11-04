@@ -18,6 +18,7 @@
     "test:watch": "vitest --watch",
     "test:integration": "vitest run --config vitest.config.js src/test/integration.test.jsx",
     "test:unit": "vitest run --config vitest.config.js --exclude src/test/integration.test.jsx",
+    "validate:sponsors": "node scripts/validate-sponsors.js",
     "security:audit": "npm audit --audit-level=moderate",
     "security:license-check": "license-checker --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;CC0-1.0' --excludePrivatePackages",
     "security:eslint": "eslint . --config .eslintrc.security.json",
