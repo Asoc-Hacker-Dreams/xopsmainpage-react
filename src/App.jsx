@@ -12,6 +12,7 @@ import ScriptManager from './components/ScriptManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
+import SponsorDetail from './pages/SponsorDetail';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
@@ -125,6 +126,7 @@ function App() {
 
           <Route path="/Sponsor" element={<Sponsor />} />
           <Route path="/Patrocina" element={<Sponsor />} />
+          <Route path="/sponsors/:slug" element={<SponsorDetail />} />
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 

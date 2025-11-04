@@ -1,4 +1,5 @@
 import React from 'react';      
+import { Link } from 'react-router-dom';
 import amaxop from "../assets/collaborators/amaxop.png";
 import hackerD from "../assets/collaborators/hackerD.jpeg";
 import hackB from "../assets/collaborators/hackB.png";
@@ -27,9 +28,9 @@ const Collaborators = () => {
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://cybershield.com" target="_blank" rel="noopener noreferrer">
+                  <Link to="/sponsors/cybershield">
                     <img src={cybershieldlogo} alt="Logo de Cybershield" style={{ height: '160px'}} />
-                  </a>
+                  </Link>
                 </AnimationWrapper>
               </div>
             </div>
@@ -39,9 +40,9 @@ const Collaborators = () => {
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
               <div className="speaker-img">
                   <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://www.amaxop.com/" target="_blank" rel="noopener noreferrer">
+                    <Link to="/sponsors/amaxop">
                       <img src={amaxop} alt="Logo de Amaxop" style={{ height: '150px', width: '150px' }} />
-                    </a>
+                    </Link>
                   </AnimationWrapper>
               </div>
               {/* <div className="speaker-img">
@@ -62,39 +63,41 @@ const Collaborators = () => {
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
               <div className="speaker-img">
                   <AnimationWrapper animation="fade-right" duration={1500}>
-                    <img src={hackB} alt="Roberto Gonzalez" style={{width: '120px' }} />
+                    <Link to="/sponsors/hackerb">
+                      <img src={hackB} alt="Roberto Gonzalez" style={{width: '120px' }} />
+                    </Link>
                   </AnimationWrapper>
               </div>
 
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://ctf.hackerdreams.org" target="_blank" rel="noopener noreferrer">
+                  <Link to="/sponsors/crackersgames">
                     <img src={crackersgameslogo} alt="Logo de CrackerGames" style={{width: '120px' }} />
-                  </a>
+                  </Link>
                 </AnimationWrapper>
               </div>
 
               <div className="speaker-img">
                   <AnimationWrapper animation="fade-right" duration={1500}>
-                    <a href="https://hackbcn.org" target="_blank" rel="noopener noreferrer">
+                    <Link to="/sponsors/hackbcn">
                       <img src={hackBcn} alt="Logo de HackBCN" style={{width: '120px' }} />
-                    </a>
+                    </Link>
                   </AnimationWrapper>
               </div>
 
               <div className="speaker-img">
                   <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://asturcon.tech" target="_blank" rel="noopener noreferrer">
+                    <Link to="/sponsors/asturcon">
                       <img src={asturC} alt="Logo de AsturCon" style={{width: '120px' }} />
-                    </a>
+                    </Link>
                   </AnimationWrapper>
               </div>
 
               <div className="speaker-img">
                   <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://madrid.devops.es" target="_blank" rel="noopener noreferrer">
+                    <Link to="/sponsors/madrid-devops">
                       <img src={madridD} alt="Logo de MadridDevOps" style={{width: '120px' }} />
-                    </a>
+                    </Link>
                   </AnimationWrapper>
               </div>
 
@@ -102,16 +105,16 @@ const Collaborators = () => {
             <div className="speaker1 d-flex justify-content-center justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://www.morteruelo.net/" target="_blank" rel="noopener noreferrer">
+                  <Link to="/sponsors/morteruelo">
                     <img src={morterueloC} alt="Logo de Morteruelo C" style={{width: '120px' }} />
-                  </a>
+                  </Link>
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://hackerdreams.org/" target="_blank" rel="noopener noreferrer">
+                  <Link to="/sponsors/hacker-dreams">
                     <img src={hackerD} alt="Logo de Hacker D" style={{width: '120px' }} />
-                  </a>
+                  </Link>
                 </AnimationWrapper>
               </div>
               {/* <div className="speaker-img">
@@ -123,23 +126,25 @@ const Collaborators = () => {
               </div> */}
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://snyk.io/community/" target="_blank" rel="noopener noreferrer">
+                  <Link to="/sponsors/devseccon">
                     <img src={devsecconLogo} alt="Logo de DevSecCon" style={{width: '120px' }} />
-                  </a>
+                  </Link>
                 </AnimationWrapper>
               </div>
             </div>
             <div className="speaker1 d-flex justify-content-center justify-around margin-top">
               <div className="speaker-img">
                   <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://secadmin.es" target="_blank" rel="noopener noreferrer">
+                    <Link to="/sponsors/secadmin">
                       <img src={secadminlogo} alt="Logo de SecAdmin" style={{width: '120px' }} />
-                    </a>
+                    </Link>
                   </AnimationWrapper>
                 </div>
                 <div className="speaker-img">
                   <AnimationWrapper animation="fade-right" duration={1500}>
-                    <img src={CNCFlogo} alt="Logo CNCF" style={{width: '120px' }} />
+                    <Link to="/sponsors/cncf-madrid">
+                      <img src={CNCFlogo} alt="Logo CNCF" style={{width: '120px' }} />
+                    </Link>
                   </AnimationWrapper>
                 </div>
               </div>

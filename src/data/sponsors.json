@@ -1,0 +1,216 @@
+{
+  "sponsors": [
+    {
+      "id": "cybershield",
+      "slug": "cybershield",
+      "name": "Cybershield",
+      "tier": "oro",
+      "logo": "/src/assets/collaborators/cybershield.png",
+      "description": "Cybershield es una empresa líder en soluciones de ciberseguridad, comprometida con la protección de sistemas y datos críticos. Con años de experiencia en el sector, ofrecemos servicios de seguridad integral para empresas de todos los tamaños.",
+      "website": "https://cybershield.com",
+      "ctas": [
+        {
+          "text": "Visitar sitio web",
+          "url": "https://cybershield.com",
+          "type": "primary"
+        },
+        {
+          "text": "Contáctanos",
+          "url": "https://cybershield.com/contacto",
+          "type": "secondary"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "https://twitter.com/cybershield",
+        "linkedin": "https://linkedin.com/company/cybershield"
+      },
+      "assets": []
+    },
+    {
+      "id": "amaxop",
+      "slug": "amaxop",
+      "name": "Amaxop",
+      "tier": "plata",
+      "logo": "/src/assets/collaborators/amaxop.png",
+      "description": "Amaxop proporciona soluciones innovadoras en tecnología y desarrollo de software. Nos especializamos en transformación digital y servicios en la nube para impulsar el crecimiento empresarial.",
+      "website": "https://www.amaxop.com/",
+      "ctas": [
+        {
+          "text": "Conocer más",
+          "url": "https://www.amaxop.com/",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "hackerb",
+      "slug": "hackerb",
+      "name": "Hacker B",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/hackB.png",
+      "description": "Comunidad de hackers éticos dedicada a promover la seguridad informática y el conocimiento en ciberseguridad a través de eventos, talleres y competiciones.",
+      "website": "#",
+      "ctas": [],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "crackersgames",
+      "slug": "crackersgames",
+      "name": "Crackers Games",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/crackersgames.png",
+      "description": "Plataforma de CTF (Capture The Flag) y desafíos de seguridad informática. Organizamos competiciones y eventos para desarrollar habilidades en ciberseguridad.",
+      "website": "https://ctf.hackerdreams.org",
+      "ctas": [
+        {
+          "text": "Ver CTF",
+          "url": "https://ctf.hackerdreams.org",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "hackbcn",
+      "slug": "hackbcn",
+      "name": "HackBCN",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/hackBcn.png",
+      "description": "Comunidad de hackers y profesionales de seguridad de Barcelona. Organizamos eventos, meetups y conferencias sobre ciberseguridad y hacking ético.",
+      "website": "https://hackbcn.org",
+      "ctas": [
+        {
+          "text": "Únete a la comunidad",
+          "url": "https://hackbcn.org",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "asturcon",
+      "slug": "asturcon",
+      "name": "AsturCon",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/asturC.jpeg",
+      "description": "Conferencia de tecnología en Asturias enfocada en DevOps, desarrollo de software y cultura tech. Reunimos a profesionales de toda España.",
+      "website": "https://asturcon.tech",
+      "ctas": [
+        {
+          "text": "Visitar AsturCon",
+          "url": "https://asturcon.tech",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "madrid-devops",
+      "slug": "madrid-devops",
+      "name": "Madrid DevOps",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/madridD.png",
+      "description": "Comunidad de DevOps en Madrid. Organizamos meetups mensuales, talleres y eventos para compartir conocimiento sobre prácticas DevOps y cultura de colaboración.",
+      "website": "https://madrid.devops.es",
+      "ctas": [
+        {
+          "text": "Unirse a meetups",
+          "url": "https://madrid.devops.es",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "morteruelo",
+      "slug": "morteruelo",
+      "name": "Morteruelo Community",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/morterueloC.png",
+      "description": "Comunidad tecnológica dedicada a promover el conocimiento en desarrollo de software, DevOps y buenas prácticas de ingeniería.",
+      "website": "https://www.morteruelo.net/",
+      "ctas": [
+        {
+          "text": "Conocer más",
+          "url": "https://www.morteruelo.net/",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "hacker-dreams",
+      "slug": "hacker-dreams",
+      "name": "Hacker Dreams",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/hackerD.jpeg",
+      "description": "Organización dedicada a fomentar el hacking ético y la seguridad informática a través de eventos, competiciones y educación en ciberseguridad.",
+      "website": "https://hackerdreams.org/",
+      "ctas": [
+        {
+          "text": "Explorar",
+          "url": "https://hackerdreams.org/",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "devseccon",
+      "slug": "devseccon",
+      "name": "DevSecCon",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/devseccon.png",
+      "description": "Conferencia global enfocada en DevSecOps y seguridad en el desarrollo de software. Promovemos la integración de seguridad en el ciclo de vida del desarrollo.",
+      "website": "https://snyk.io/community/",
+      "ctas": [
+        {
+          "text": "Ver comunidad",
+          "url": "https://snyk.io/community/",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "secadmin",
+      "slug": "secadmin",
+      "name": "SecAdmin",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/secadmin.png",
+      "description": "Plataforma de recursos y formación en seguridad y administración de sistemas. Ofrecemos contenido actualizado sobre ciberseguridad y mejores prácticas.",
+      "website": "https://secadmin.es",
+      "ctas": [
+        {
+          "text": "Acceder al portal",
+          "url": "https://secadmin.es",
+          "type": "primary"
+        }
+      ],
+      "socialMedia": {},
+      "assets": []
+    },
+    {
+      "id": "cncf-madrid",
+      "slug": "cncf-madrid",
+      "name": "CNCF Madrid",
+      "tier": "colaborador",
+      "logo": "/src/assets/collaborators/CNCF_MADRID.png",
+      "description": "Capítulo de Madrid de la Cloud Native Computing Foundation. Comunidad dedicada a tecnologías cloud-native, Kubernetes y ecosistema CNCF.",
+      "website": "#",
+      "ctas": [],
+      "socialMedia": {},
+      "assets": []
+    }
+  ]
+}
