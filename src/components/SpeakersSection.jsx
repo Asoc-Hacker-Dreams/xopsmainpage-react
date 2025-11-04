@@ -28,7 +28,7 @@ import joseG from "../assets/speakers/joseG.png";
 import davidA from "../assets/speakers/davidA.png";
 import luisG from "../assets/speakers/luisG.png";
 import dreg from "../assets/speakers/dreg.jpeg";
-import albertoL from "../assets/speakers/albertoL.jpeg";
+import albertoL from "../assets/speakers/albertoL.jpg";
 import awsLogo from "../assets/logos/aws-logo.png";
 import suseLogo from "../assets/logos/suse-logo.png";
 import redhatLogo from "../assets/logos/redhat-logo.png";
