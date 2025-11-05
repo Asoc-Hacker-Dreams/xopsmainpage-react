@@ -1,0 +1,76 @@
+[
+  {
+    "id": "acme-corp-2025",
+    "slug": "acme-corp",
+    "name": "ACME Corporation",
+    "tier": "platinum",
+    "logoUrl": "https://example.com/logos/acme-corp.png",
+    "shortDesc": "Líder mundial en soluciones empresariales de DevOps y Cloud Infrastructure",
+    "longDesc": "ACME Corporation es una empresa líder en el desarrollo de herramientas y plataformas de DevOps que ayudan a las organizaciones a acelerar su transformación digital. Con más de 20 años de experiencia, ACME proporciona soluciones innovadoras para la automatización, monitorización y gestión de infraestructuras cloud.",
+    "website": "https://www.acmecorp.com",
+    "socials": [
+      {
+        "type": "x",
+        "url": "https://x.com/acmecorp"
+      },
+      {
+        "type": "linkedin",
+        "url": "https://linkedin.com/company/acmecorp"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/acmecorp"
+      }
+    ],
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Contactar",
+        "href": "/sponsors/acme-corp#lead"
+      },
+      "ctaSecondary": {
+        "label": "Descargar dossier",
+        "href": "https://www.acmecorp.com/resources/xops-2025-dossier.pdf"
+      }
+    },
+    "booking": {
+      "type": "external",
+      "url": "https://calendly.com/acmecorp/xops-meeting"
+    },
+    "hubspot": {
+      "formGuid": "12345678-1234-1234-1234-123456789abc"
+    },
+    "analytics": {
+      "source": "ga4",
+      "utm_default": {
+        "source": "xops",
+        "medium": "sponsor",
+        "campaign": "xops2025"
+      }
+    },
+    "updatedAt": "2025-11-04T08:00:00Z",
+    "version": "1.0"
+  },
+  {
+    "id": "techsolutions-inc-2025",
+    "slug": "techsolutions-inc",
+    "name": "TechSolutions Inc",
+    "tier": "gold",
+    "logoUrl": "https://example.com/logos/techsolutions.png",
+    "shortDesc": "Innovación en automatización y CI/CD para equipos ágiles",
+    "website": "https://www.techsolutions.com",
+    "socials": [
+      {
+        "type": "linkedin",
+        "url": "https://linkedin.com/company/techsolutions"
+      }
+    ],
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Más información",
+        "href": "/sponsors/techsolutions-inc#info"
+      }
+    },
+    "updatedAt": "2025-11-03T10:30:00Z",
+    "version": "1.0"
+  }
+]

@@ -1,10 +1,88 @@
-# Sponsors Data Access Layer (DAL)
+# Data Layer Implementation
 
-## Overview
+This directory contains three complementary data persistence implementations for the X-Ops Conference PWA:
+
+1. **Data Access Layer (DAL)** - High-level abstraction for agenda/talks data sources (JavaScript)
+2. **IndexedDB with Dexie** - Low-level database implementation (TypeScript)
+3. **Sponsors DAL** - Dedicated layer for sponsor data management (TypeScript)
+
+---
+
+## 📦 Data Access Layer (DAL) - Agenda & Talks
+
+### Overview
+
+The DAL provides a unified interface for accessing agenda, talks, and speaker data, supporting multiple data sources through environment configuration.
+
+### Components
+
+1. **db.js** - IndexedDB database wrapper using Dexie
+   - Provides persistent storage for offline access
+   - Caches data locally for improved performance
+   - Stores talks, speakers, and metadata
+
+2. **dal.js** - Data Access Layer with provider abstraction
+   - Implements data provider interface
+   - Supports JSON (default) and CMS data sources
+   - Handles data normalization and caching
+
+### Usage (JavaScript)
+
+```javascript
+import DAL from './data/dal.js';
+
+// Get all talks
+const talks = await DAL.getAgenda();
+
+// Get talks with filters
+const mainTrackTalks = await DAL.getAgenda({ day: '2025-11-21', track: 'main' });
+```
+
+---
+
+## 🗄️ IndexedDB Database with Dexie (TypeScript)
+
+### Overview
+
+A comprehensive, type-safe IndexedDB implementation using Dexie.js for structured offline data persistence with advanced features.
+
+### Features
+
+- ✅ Structured data persistence with IndexedDB
+- ✅ Optimized indices for fast queries
+- ✅ Relationship support between talks and speakers
+- ✅ Favorites management
+- ✅ Notification scheduling
+- ✅ Performance optimized (< 50ms for 1000 records)
+- ✅ Full TypeScript support
+
+### Usage (TypeScript)
+
+```typescript
+import { db } from '@/data/db';
+
+// Get talks by day
+const talks = await db.getTalksByDay('2025-11-21');
+
+// Manage favorites
+await db.addFavorite('talk-1');
+const favorites = await db.getFavorites();
+```
+
+### Performance
+
+- **Query Performance**: ~3ms p50 for 1000 talks filtered by day
+- **Requirement**: < 50ms (15x faster!)
+
+---
+
+## 🏢 Sponsors Data Access Layer (DAL)
+
+### Overview
 
 The Sponsors DAL provides a unified interface for loading and managing sponsor data in the X-Ops Conference application. It implements a stale-while-revalidate caching strategy with IndexedDB for offline support.
 
-## Features
+### Features
 
 - **Offline-First**: Data is cached in IndexedDB and available offline
 - **Stale-While-Revalidate**: Returns cached data immediately while fetching fresh data in the background
@@ -12,9 +90,9 @@ The Sponsors DAL provides a unified interface for loading and managing sponsor d
 - **TypeScript Support**: Fully typed with TypeScript interfaces
 - **Performance**: Instant data loading from cache with background updates
 
-## Usage
+### Usage
 
-### Basic Usage
+#### Basic Usage
 
 ```typescript
 import { getSponsors, getSponsorBySlug } from '../data/dal.sponsors';
@@ -26,7 +104,7 @@ const sponsors = await getSponsors();
 const sponsor = await getSponsorBySlug('aws');
 ```
 
-### React Component Example
+#### React Component Example
 
 ```jsx
 import React, { useState, useEffect } from 'react';
@@ -55,9 +133,9 @@ function SponsorsList() {
 
 See `src/components/SponsorsExample.tsx` for a complete example.
 
-## API
+### API
 
-### `getSponsors(): Promise<Sponsor[]>`
+#### `getSponsors(): Promise<Sponsor[]>`
 
 Returns all active sponsors sorted by their order field.
 
@@ -75,7 +153,7 @@ const sponsors = await getSponsors();
 console.log(`Loaded ${sponsors.length} sponsors`);
 ```
 
-### `getSponsorBySlug(slug: string): Promise<Sponsor | null>`
+#### `getSponsorBySlug(slug: string): Promise<Sponsor | null>`
 
 Returns a single sponsor by its unique slug.
 
@@ -97,9 +175,9 @@ if (aws) {
 }
 ```
 
-## Data Model
+### Data Model
 
-### Sponsor Interface
+#### Sponsor Interface
 
 ```typescript
 interface Sponsor {
@@ -122,17 +200,17 @@ interface Sponsor {
 type SponsorTier = 'platinum' | 'gold' | 'silver' | 'bronze' | 'community';
 ```
 
-## Configuration
+### Configuration
 
-### Data Sources
+#### Data Sources
 
-The DAL supports two data sources:
+The Sponsors DAL supports two data sources:
 
-#### 1. JSON File (Default)
+##### 1. JSON File (Default)
 
 By default, sponsors are loaded from `/public/data/sponsors.json` (served at `/data/sponsors.json`).
 
-#### 2. Headless CMS
+##### 2. Headless CMS
 
 To use a headless CMS, set the following environment variables:
 
@@ -142,7 +220,7 @@ VITE_CMS_SPONSORS_ENDPOINT=https://your-cms.com/api/sponsors
 VITE_CMS_API_KEY=your-api-key (optional)
 ```
 
-### Cache Configuration
+#### Cache Configuration
 
 The cache is considered stale after 5 minutes. This is configurable in `dal.sponsors.ts`:
 
@@ -150,9 +228,9 @@ The cache is considered stale after 5 minutes. This is configurable in `dal.spon
 const STALE_TIME = 5 * 60 * 1000; // 5 minutes
 ```
 
-## IndexedDB Structure
+### IndexedDB Structure (Sponsors)
 
-The DAL uses IndexedDB with the following structure:
+The Sponsors DAL uses IndexedDB with the following structure:
 
 **Database**: `xops-sponsors-db` (version 1)
 
@@ -164,16 +242,16 @@ The DAL uses IndexedDB with the following structure:
 2. `metadata` - Stores cache metadata
    - Stores last fetch timestamp
 
-## Offline Support
+### Offline Support
 
-The DAL is designed to work offline:
+The Sponsors DAL is designed to work offline:
 
 1. **First Visit**: Fetches data from the network and caches it
 2. **Subsequent Visits**: Returns cached data immediately
 3. **Offline**: Returns cached data even if network is unavailable
 4. **Stale Cache**: Returns cached data and fetches fresh data in the background
 
-## Testing
+### Testing
 
 Tests are located in `src/data/dal.sponsors.test.ts`.
 
@@ -189,9 +267,9 @@ The tests cover:
 - Sorting logic
 - Slug lookup
 
-## Adding New Sponsors
+### Adding New Sponsors
 
-### Method 1: Update JSON File
+#### Method 1: Update JSON File
 
 Edit `/public/data/sponsors.json` and add your sponsor:
 
@@ -213,13 +291,13 @@ Edit `/public/data/sponsors.json` and add your sponsor:
 }
 ```
 
-### Method 2: Use CMS
+#### Method 2: Use CMS
 
 Configure the CMS endpoint (see Configuration section) and manage sponsors through your CMS.
 
-## Troubleshooting
+### Troubleshooting
 
-### Sponsors not updating
+#### Sponsors not updating
 
 The cache may be stale. Clear the browser's IndexedDB:
 
@@ -227,43 +305,62 @@ The cache may be stale. Clear the browser's IndexedDB:
 2. Delete `xops-sponsors-db`
 3. Refresh the page
 
-### Console errors about IndexedDB
+#### Console errors about IndexedDB
 
 Make sure your browser supports IndexedDB. Most modern browsers do, but some privacy modes may block it.
 
-### Sponsors showing offline data
+#### Sponsors showing offline data
 
 This is expected behavior! The DAL uses stale-while-revalidate, so it shows cached data immediately and updates in the background.
 
-## Performance Considerations
+### Performance Considerations
 
 - **Initial Load**: ~50-100ms (depending on network)
 - **Cached Load**: <10ms (instant from IndexedDB)
 - **Background Revalidation**: Happens asynchronously, doesn't block UI
 
+---
+
+## 🔄 Which Implementation to Use?
+
+### Use Agenda DAL (db.js + dal.js) when:
+- You need a simple, high-level API for talks/agenda
+- You want data source abstraction (JSON/CMS)
+- You're working in JavaScript
+
+### Use IndexedDB/Dexie (db.ts) when:
+- You need advanced features (favorites, notifications)
+- You want type safety with TypeScript
+- You need performance-critical operations
+
+### Use Sponsors DAL (dal.sponsors.ts) when:
+- You need to work with sponsor data
+- You want offline-first sponsor loading
+- You need stale-while-revalidate caching
+
+### Using Multiple Implementations Together
+
+All implementations can coexist:
+- **Agenda DAL** handles talks/agenda data fetching and caching
+- **Dexie TypeScript** handles user state (favorites, notifications)
+- **Sponsors DAL** handles sponsor data with its own cache
+
+---
+
+## 📚 Additional Documentation
+
+- **dbUtils.ts**: Utility functions for data management
+- **examples.ts**: Complete usage examples and React hooks
+- **dal.sponsors.ts**: Sponsors-specific data access layer
+- See individual files for detailed API documentation
+
 ## Security
 
 - No sensitive data is stored in IndexedDB
 - All external links use `rel="noopener noreferrer"`
-- Input validation on all sponsor data
+- Input validation on all data
 - Sanitize user-provided content before rendering
-
-## Future Enhancements
-
-- [ ] Real-time updates via WebSocket
-- [ ] Image lazy loading and optimization
-- [ ] Analytics integration for sponsor click tracking
-- [ ] A/B testing support for sponsor placement
-- [ ] Multi-language support for descriptions
-
-## Support
-
-For issues or questions, please:
-1. Check this README
-2. Review the example component
-3. Check the tests for usage examples
-4. Open an issue on GitHub
 
 ## License
 
-Part of the X-Ops Conference project.
+Part of the X-Ops Conference PWA project.

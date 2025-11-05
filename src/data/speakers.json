@@ -1,0 +1,205 @@
+[
+  {
+    "name": "Luis Guirigay",
+    "title": "Worldwide Head of Cloud Infrastructure Solutions",
+    "company": "AWS",
+    "bio": "A passionate leader with expertise in training and managing high-performing teams of technical professionals to achieve strategic goals and visions. Published Author and Speaker at over 90 conferences across all continents. Proven track record in developing and leading strategic programs around Technology and Business. Skilled in building value-based transformational strategies and delivering world-class technical services. In-depth knowledge of architecture, data centers, and Cloud with a solid history of innovation and success defining engineering roadmaps and detailed customer requirements.",
+    "image": "luisG.png"
+  },
+  {
+    "name": "Rossana Suarez",
+    "title": "Tech Lead DevOps",
+    "company": "naranjax",
+    "bio": "Soy Roxs, Software Engineer apasionada por la tecnología y la innovación. Como DevOps, GitLab HERO, AWS HERO y Docker Captain, busco empoderar a la comunidad tech y fomentar la colaboración. Creo firmemente que 'No se puede crecer si no estás dispuesto a saltar a la zona de peligro', y vivo cada desafío profesional con esa mentalidad. Exploradora de nuevas fronteras en el desarrollo y la automatización, mi objetivo es impactar positivamente y ayudar a otros a alcanzar su máximo potencial.",
+    "image": "rossanaS.png"
+  },
+  {
+    "name": "Juan Vicente Herrera Ruiz de Alejo",
+    "title": "Cloud Architect",
+    "company": "Red Hat",
+    "bio": "Cloud Architect en Red Hat, co-organizador de Madrid Devops y Devopsdays Madrid y profesor de Cloud Computing en Universidad Pontificia de Comillas",
+    "image": "juanV.jpg"
+  },
+  {
+    "name": "Shani Adadi Kazaz",
+    "title": "Senior Containers & Serverless GTM Specialist",
+    "company": "AWS",
+    "bio": "I started my career as a software developer and later expanded into roles as a Technical Account Manager and Business Developer for Containers and Serverless technologies. Today, I help companies build platforms that are resilient, self-healing, and built to last. I'm passionate about innovation, emerging cloud-native technologies, and enabling builders to succeed, and I thrive on turning transformative ideas into practical, scalable solutions.",
+    "image": "shaniA.png"
+  },
+  {
+    "name": "Alejandro de la Hoz Martin",
+    "title": "Red Hat Senior Consultant",
+    "company": "Red Hat",
+    "bio": "Mas de 17 años trabajando en el sector TI y soy un enamorado de la methodologias y filosofias DevOps. Soy Javero por naturaleza, pero me encanta Python y la automatización.",
+    "image": "alejandroH.png"
+  },
+  {
+    "name": "Alberto Morgante",
+    "title": "Principal Telco Edge Engineer",
+    "company": "SUSE",
+    "bio": "I'm an engineer passionate about cloud, development and new technologies. I'm always looking for new challenges in order to improve myself everyday!!!",
+    "image": "albertoM.png"
+  },
+  {
+    "name": "Pablo Sánchez Carmona",
+    "title": "Senior Network Specialist Solutions Architect",
+    "company": "AWS",
+    "bio": "Pablo es arquitecto de soluciones especializado en redes en AWS, donde se ha especializado en Infraestructura como Código (IaC), para enseñar a clientes de AWS cómo poder simplificar la creación, gestión y securización de redes complejas en AWS.",
+    "image": "pabloS.png"
+  },
+  {
+    "name": "Antonio Berben",
+    "title": "Principal Solutions Engineer",
+    "company": "Solo.io",
+    "bio": "Antonio is a Principal Solutions Engineer at Solo.io, where he works on learning from the users and helping them to walk the path towards full Service Mesh adoption. He is a CNCF Organizer (KCD Spain, CNCF Iberia) and contributes to open-source projects. His career path coming from development, makes him always put the Developers always at first. His philosophy: 'Developers create the business. The rest we are here only to make their life easier' His biggest concern is: How to speed up the development lifecycle. That is one of the reasons why he is an enthusiast of Service Mesh",
+    "image": "antonioB.png"
+  },
+  {
+    "name": "Felipe Vicens",
+    "title": "Telco Cloud Architect",
+    "company": "",
+    "bio": "Felipe is a Telco Cloud Architect with over a decade of experience, focused on building infrastructure that supports any workload, from network functions to AI. A committed open-source advocate, he specializes in Telco Cloud, Edge, and AI to enable resilient, scalable operations.",
+    "image": "felipeV.png"
+  },
+  {
+    "name": "Carlos Villanúa",
+    "title": "Solutions Architect",
+    "company": "Traefik Labs",
+    "bio": "Carlos Villanúa Fernández es Solutions Architect en Traefik Labs. Se dedica a ayudar a equipos a exponer APIs y servicios de forma segura, automatizada y escalable, utilizando tecnologías como Kubernetes, Traefik, OpenTelemetry, OPA, Keycloak... Le gusta trabajar con infraestructuras como código para evitar tareas manuales y asegurar despliegues rápidos y fiables. Carlos disfruta compartiendo su experiencia en eventos y comunidades tecnológicas, siempre buscando soluciones prácticas y sencillas. Fuera del trabajo, le encanta pasar tiempo con su familia, cacharrear con domótica, salir en bici, practicar kayak y dedicarse a la jardinería, especialmente cultivando verduras en su huerto.",
+    "image": "carlosV.png"
+  },
+  {
+    "name": "Mani Ghelichkhani",
+    "title": "Senior Cloud Operations Architect",
+    "company": "AWS",
+    "bio": "Computer Engineer with extensive experience in IT system administration and operation of critical services. In addition to keeping systems up and running, provides analytical and communication skills to manage teams, improve processes and assist in general business activities.",
+    "image": "maniG.png"
+  },
+  {
+    "name": "Cleyra Uzcategui",
+    "title": "Software Engineer",
+    "company": "JP Morgan & Chase Co.",
+    "bio": "Cleyra is a Venezuelan Software Engineer based in United Kingdom. Her passion for web development and user experience have led her to focus her career on creating products that are easy to use and accessible to everyone. She is also a promoter of diversity and inclusion in the tech industry and is always looking for ways to promote equal opportunity and representation, in her role as Women Techmakers ambassador, Women Developer Academy Mentor, Google Developers Group organiser and in her role as Affiliate Professor at University of Glasgow.",
+    "image": "cleyraU.png"
+  },
+  {
+    "name": "Sara San Luís Rodríguez",
+    "title": "AI Team Lead",
+    "company": "MDW",
+    "bio": "Passionate about science since childhood, I studied Mathematics at the University of Santiago de Compostela, I completed these studies with a Master in Statistics and Operational Research. The latter allowed me to enter the world of AI and ML, fields in which I am currently working as AI Team Lead @MDW.",
+    "image": "saraS.png"
+  },
+  {
+    "name": "Christian Carballo Lozano",
+    "title": "Artificial Intelligence Engineer",
+    "company": "Plain Concepts",
+    "bio": "Christian Carballo Lozano is a Mathematician building Machine Learning and AI solutions at Plain Concepts and a Microsoft MVP in AI.",
+    "image": "christianC.jpeg"
+  },
+  {
+    "name": "Dachi Gogotchuri",
+    "title": "Platform Engineering Lead",
+    "company": "Nationale Nederlanden Spain",
+    "bio": "Founder of Arcasiles Group and Platform Engineering Lead at Nationale Nederlanden Spain, shaping platforms, communities, and the future through real innovation. I'm Dachi Gogotchuri. I work at Nationale Nederlanden where I enjoy creating and managing projects. Arcasiles Group founder: https://arcasiles.com. Past Microsoft MVP (2015 – 2020). I blog about coding & life: https://soydachi.com",
+    "image": "dachiG.png"
+  },
+  {
+    "name": "Carlos Polop",
+    "title": "Co-Founder",
+    "company": "HackTricks Training",
+    "bio": "Carlos has a degree in Telecommunications Engineering with a Master in Cybersecurity. He has worked mainly as Penetration Tester and Red Teamer for several companies and has several relevant certifications in the field of cybersecurity such as OSCP, OSWE, CRTP, eMAPT, eWPTXv2, OSMR, ARTE, GRTE… He was captain of the Spanish team in the ECSC2021 and member of Team Europe for the ICSC2022. And he has spoken at several international conferences such as DEFCON31 and several ROOTEDCONs. Since he started learning cybersecurity he has tried to share his knowledge with the infosec community by publishing open source tools such as https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite and writing a free hacking book that anyone can consult at https://book.hacktricks.xyz.",
+    "image": "carlosP.png"
+  },
+  {
+    "name": "Patricia Rodríguez Vaquero",
+    "title": "Senior Data Engineer",
+    "company": "MDW",
+    "bio": "Certified Azure Data Engineer. With 5 years of experience in Microsoft Azure services (Microsoft Fabric, Azure Synapse Analytics, ADF, Azure Databricks, Python, T-SQL, Spark, etc), I bring passion, dedication, and a drive to master Microsoft technologies. Beyond work, I consider myself honest, perseverant, curious, and a committed lifelong learner. I'm an animal and nature lover, an avid traveler, and an active participant in community events. ATTITUDE IS THE KEY TO SUCCESS!",
+    "image": "patriciaR.png"
+  },
+  {
+    "name": "Almudena Zhou Ramírez López",
+    "title": "Senior AI Engineer",
+    "company": "MDW",
+    "bio": "Hi, I'm Almudena Zhou, an AI Engineer certified in Azure (AI-102, DP-100) and GenAI Databricks. I love exploring new technologies and enjoy working on projects where AI and software development come together. My experience includes building and deploying machine learning models, experimenting with generative AI, and applying innovative tools to real-world challenges. I'm always curious to learn, swap ideas, and connect with others who share a passion for technology!",
+    "image": "almudenaZ.png"
+  },
+  {
+    "name": "Verónica Rivas Remiseiro",
+    "title": "Microsoft MVP M365 copilot - Tech & Lead Projects - Cybersecurity & AI",
+    "company": "",
+    "bio": "A computer engineer with over 25 years of experience, my profession has fascinated me since I was a child, providing me with wonderful professional and personal experiences. I enjoy building teams, sharing with them, growing together, and executing projects with the greatest possible success. Currently undergoing a process of change, returning to my technological roots, constantly learning, and trying out new technologies like AI, which fascinates me. Author of my first book based on personal events with a stowaway named Alzheimer's, in homage to the woman who helped me become who I am today. Passionate about my life, my profession, and technology.",
+    "image": "veronicaR.png"
+  },
+  {
+    "name": "Toni Granell",
+    "title": "Microsoft MVP & MVS #powerplatform advocate. Speaker.",
+    "company": "",
+    "bio": "He participado en más de 200 proyectos de implantación de soluciones basadas en Dynamics CRM & Dynamics 365. Speaker de Microsoft en diversos eventos, destacando el lanzamiento de CRM 3.0 presentando el primer caso de éxito (SPAMINA). Diversos casos de éxito publicados por Microsoft de proyectos llevados a cabo desde Amauta, destacando Cámara de Comercio de Valencia, Fermax y Marie Claire. Participación en eventos internacionales relacionados con Microsoft: ExtremeCRM, Extreme365, Summit EMEA CRM/UG, Microsoft Convergence, Microsoft World Partner Conference, Microsoft Inspire, Microsoft Business Application Summit, Microsoft DIRECTIONS.",
+    "image": "toniG.png"
+  },
+  {
+    "name": "Ignacio Dominguez",
+    "title": "Co-Funder Hacktricks Training, Cloud Security Engineer",
+    "company": "Circle",
+    "bio": "Ignacio Dominguez is a Cloud Security Engineer with over 6 years of experience securing cloud-native environments. He currently works at Circle as a Lead Cloud Security Engineer, where he focuses on protecting infrastructure at scale. Ignacio is also the co-founder of HackTricks Training, a platform offering high-quality Cloud Security certifications. His main areas of interest include hacking CI/CD systems, securing cloud platforms (especially AWS), and breaking into (and defending) Kubernetes environments.",
+    "image": "ignacioD.png"
+  },
+  {
+    "name": "Jeff Fan",
+    "title": "Senior Solutions Architect",
+    "company": "DigitalOcean",
+    "bio": "I am a Solutions Architect at DigitalOcean, where he designs and optimizes K8s-based GPU infrastructure for gen-AI workloads, with a focus on LLM inference and cost-efficient scaling. Before joining DigitalOcean, he helped build and run mission-critical systems for several large German enterprises. Jeff now distills complex cloud and AI concepts into clear, practical guidance—publishing articles that turn deep technical challenges into straightforward, actionable steps for engineering teams.",
+    "image": "jeffF.png"
+  },
+  {
+    "name": "Jose Gómez-Sellés",
+    "title": "Product Lead for VictoriaMetrics Cloud",
+    "company": "",
+    "bio": "Jose is the Product Lead for VictoriaMetrics Cloud, focusing on Observability and Sustainability through projects like OpenTelemetry, distributed tracing, and power monitoring. His background spans roles as Software Architect, Tech Lead, and Product Owner in the Telecommunications industry, where agile practices, CI, testing, and observability have been core principles. With a PhD in Computational Materials Engineering, he combines scientific curiosity with a pragmatic mindset. Outside work, he's a C++ enthusiast, metal keyboardist, simracer, and Associate Professor of Physics at the Complutense University of Madrid.",
+    "image": "joseG.png"
+  },
+  {
+    "name": "Juarez Junior",
+    "title": "Sr Principal Developer Evangelist and Director of Developer Evangelism",
+    "company": "Oracle",
+    "bio": "My name is Juarez Barbosa Junior. I have held senior leadership roles in software engineering and developer relations, focusing on developer audiences, subject matter experts, customers, and business partners. I have also acted as a mentor for Microsoft for Startups, having worked with startup founders, accelerators, incubators, mentors, and venture capitalists. I am a Sr Principal Developer Evangelist and Director of Developer Evangelism at Oracle. Previously, I was an Azure Developer Relations Lead – Director of Developer Relations at Microsoft. I have extensive experience with large enterprise systems and environments with companies like Oracle, Microsoft, IBM, Unisys, Nokia, Accenture, and a few medium-sized companies and startups (two as a founder).",
+    "image": "juarezJ.png"
+  },
+  {
+    "name": "José Enrique Calderón Sanz",
+    "title": "Lead Software Engineer",
+    "company": "JP Morgan Chase",
+    "bio": "Jose is an accomplished Venezuelan Lead Software Engineer based in the U.K., with a decade of experience driving cutting-edge software solutions. Jose is consistently seeking opportunities to advance equal access and representation in the tech industry, as Google Developer Group organiser, Ignite JAVA/Spring Community of Practice lead and in his role as Affiliate Professor at University of Glasgow. As speaker, Jose has a passion for demystifying complex concepts and making technology accessible to all through dynamic and engaging talks. He is also known for his captivating and interactive presentations on a wide range of technology subjects.",
+    "image": "joseC.png"
+  },
+  {
+    "name": "David Amorín García",
+    "title": "Analista de Inteligencia Empresarial",
+    "company": "MDW",
+    "bio": "Me llamo David Amorin Garcia, tengo 32 años y me dedico a la comunicación desde los 15. Como amante de las tecnologías y de transmitir conocimiento, me gradué en Teatro a la par que me formaba en aspectos relacionados con el SEO y los datos. Aproveché durante varios años la ventana que me ofrecía YouTube y Twitch para mostrar las aptitudes que iba adquiriendo y compartirlas con la audiencia. A principios de 2022 decidí entrar en el mundo empresarial para aportar todo lo que había aprendido durante todos estos años y así poder ayudar a los demás.",
+    "image": "davidA.png"
+  },
+  {
+    "name": "Gisela Torres",
+    "title": "Sr. Global Blackbelt - Developer Audience",
+    "company": "Microsoft",
+    "bio": "Sr. Global Blackbelt - Developer Audience @Microsoft | Microsoft Azure MVP 2010&2011 | Lemoncode 🍋 teacher| Blogger at https://www.returngis.net",
+    "image": "giselaT.png"
+  },
+  {
+    "name": "David Reguera García",
+    "title": "",
+    "company": "",
+    "bio": "Experto en seguridad ofensiva y hardware hacking con amplia experiencia en investigación y desarrollo de técnicas avanzadas de ciberseguridad.",
+    "image": "dreg.jpeg"
+  },
+  {
+    "name": "Alberto Lobato",
+    "title": "",
+    "company": "",
+    "bio": "Experto en ciberseguridad para entornos de Tecnología Operativa (OT) con experiencia en el sector ferroviario y cumplimiento de normativas IEC 62443.",
+    "image": "albertoL.jpg"
+  }
+]
