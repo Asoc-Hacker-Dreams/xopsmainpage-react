@@ -44,7 +44,7 @@ const MadridFriday = () => {
               <div className="card cardBernabeuD">
                 <div className="overlay"></div>
                 <div className="card-body text-white">
-                  <h5 className="card-title"><span className='heading'>Inicio: </span>Salón de Actos</h5>
+                  <h5 className="card-title"><span className='heading'>Inicio: </span>Aula magna</h5>
                   <p className="card-text">9:30 h</p>
                   <p>Apertura de puertas.</p>
                 </div>
@@ -73,7 +73,7 @@ const MadridFriday = () => {
               <div className="card cardpuertaA">
                 <div className="overlay"></div>
                 <div className="card-body text-white">
-                  <h5 className="card-title"><span className='heading'>Lugar: </span>Salón de Actos</h5>
+                  <h5 className="card-title"><span className='heading'>Lugar: </span>Aula magna</h5>
                   <p className="card-text">17:00 h</p>
                   <p>Cierre del primer día.</p>
                 </div>

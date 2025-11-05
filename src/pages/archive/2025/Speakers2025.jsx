@@ -6,7 +6,6 @@ import giselaT from "../../../assets/speakers/giselaT.png";
 import shaniA from "../../../assets/speakers/shaniA.png";
 import alejandroH from "../../../assets/speakers/alejandroH.png";
 import albertoM from "../../../assets/speakers/albertoM.png";
-import guillermoR from "../../../assets/speakers/guillermoR.png";
 import pabloS from "../../../assets/speakers/pabloS.png";
 import carlosV from "../../../assets/speakers/carlosV.png";
 import maniG from "../../../assets/speakers/maniG.png";
@@ -19,13 +18,14 @@ import patriciaR from "../../../assets/speakers/patriciaR.png";
 import veronicaR from "../../../assets/speakers/veronicaR.png";
 import ignacioD from "../../../assets/speakers/ignacioD.png";
 import jeffF from "../../../assets/speakers/jeffF.png";
-import alkinT from "../../../assets/speakers/alkinT.png";
 import juarezJ from "../../../assets/speakers/juarezJ.png";
 import joseC from "../../../assets/speakers/joseC.png";
 import joseG from "../../../assets/speakers/joseG.png";
 import davidA from "../../../assets/speakers/davidA.png";
 import luisG from "../../../assets/speakers/luisG.png";
 import felipeV from "../../../assets/speakers/felipeV.png";
+import dreg from "../../../assets/speakers/dreg.jpeg";
+import albertoL from "../../../assets/speakers/albertoL.jpg";
 import awsLogo from "../../../assets/logos/aws-logo.png";
 import AnimationWrapper from "../../../components/AnimationWrapper";
 import SEO from "../../../components/SEO";
@@ -524,6 +524,44 @@ const Speakers2025 = () => {
                   <h3>David Amorín García</h3>
                   <p>
                     <strong>Charla: Estrategias de Visualización de Datos para Comunicadores: Contando Historias con Números</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={dreg} alt="David Reguera García" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>David Reguera García</h3>
+                  <p>
+                    Experto en seguridad ofensiva y hardware hacking con amplia experiencia en investigación y desarrollo de técnicas avanzadas de ciberseguridad.
+                  </p>
+                  <p>
+                    <strong>Charla: Offensive Hardware Hacking I+D+I VS Conceptos y filosofia devops/devsecops</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={albertoL} alt="Alberto Lobato" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Alberto Lobato</h3>
+                  <p>
+                    Experto en ciberseguridad para entornos de Tecnología Operativa (OT) con experiencia en el sector ferroviario y cumplimiento de normativas IEC 62443.
+                  </p>
+                  <p>
+                    <strong>Charla: Ciberseguridad y OT. ¿Friends or enemies?</strong>
                   </p>
                 </AnimationWrapper>
               </div>
