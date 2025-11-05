@@ -32,7 +32,6 @@ function openDatabase(): Promise<IDBDatabase> {
         const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
         store.createIndex('slug', 'slug', { unique: true });
         store.createIndex('tier', 'tier', { unique: false });
-        store.createIndex('active', 'active', { unique: false });
       }
 
       // Create metadata store for tracking last update
@@ -55,7 +54,7 @@ async function getSponsorsFromIDB(): Promise<Sponsor[]> {
 
     request.onsuccess = () => {
       const sponsors = request.result as Sponsor[];
-      resolve(sponsors.sort((a, b) => a.order - b.order));
+      resolve(sponsors); // Return as-is, sorting will be done by sortSponsorsByTier
     };
     request.onerror = () => reject(request.error);
   });
@@ -217,9 +216,27 @@ async function isCacheStale(): Promise<boolean> {
 }
 
 /**
+ * Sort sponsors by tier priority (platinum > gold > silver > community)
+ */
+function sortSponsorsByTier(sponsors: Sponsor[]): Sponsor[] {
+  const tierPriority: Record<string, number> = {
+    'platinum': 1,
+    'gold': 2,
+    'silver': 3,
+    'community': 4,
+  };
+  
+  return [...sponsors].sort((a, b) => {
+    const aPriority = tierPriority[a.tier] || 999;
+    const bPriority = tierPriority[b.tier] || 999;
+    return aPriority - bPriority;
+  });
+}
+
+/**
  * Get all sponsors with stale-while-revalidate strategy
  * 
- * @returns Promise<Sponsor[]> Array of sponsors sorted by order
+ * @returns Promise<Sponsor[]> Array of sponsors sorted by tier
  * 
  * Strategy:
  * 1. Try to return cached data from IndexedDB immediately
@@ -241,8 +258,8 @@ export async function getSponsors(): Promise<Sponsor[]> {
         revalidateSponsors().catch(console.error);
       }
 
-      // Return cached data immediately (filtered for active sponsors)
-      return cachedSponsors.filter(sponsor => sponsor.active);
+      // Return cached data immediately (sorted by tier priority)
+      return sortSponsorsByTier(cachedSponsors);
     }
 
     // No cache, fetch fresh data
@@ -250,7 +267,7 @@ export async function getSponsors(): Promise<Sponsor[]> {
     await saveSponsorsToIDB(freshSponsors);
     await updateLastFetchTime();
     
-    return freshSponsors.filter(sponsor => sponsor.active);
+    return sortSponsorsByTier(freshSponsors);
   } catch (error) {
     console.error('Error getting sponsors:', error);
     
@@ -258,7 +275,7 @@ export async function getSponsors(): Promise<Sponsor[]> {
     try {
       const cachedSponsors = await getSponsorsFromIDB();
       if (cachedSponsors.length > 0) {
-        return cachedSponsors.filter(sponsor => sponsor.active);
+        return sortSponsorsByTier(cachedSponsors);
       }
     } catch (cacheError) {
       console.error('Error getting cached sponsors:', cacheError);
@@ -294,8 +311,8 @@ export async function getSponsorBySlug(slug: string): Promise<Sponsor | null> {
         revalidateSponsors().catch(console.error);
       }
 
-      // Return cached data immediately if active
-      return cachedSponsor.active ? cachedSponsor : null;
+      // Return cached data immediately
+      return cachedSponsor;
     }
 
     // No cache, fetch fresh data
@@ -304,14 +321,14 @@ export async function getSponsorBySlug(slug: string): Promise<Sponsor | null> {
     await updateLastFetchTime();
     
     const sponsor = freshSponsors.find(s => s.slug === slug);
-    return sponsor && sponsor.active ? sponsor : null;
+    return sponsor || null;
   } catch (error) {
     console.error('Error getting sponsor by slug:', error);
     
     // Try to return cached data as a fallback
     try {
       const cachedSponsor = await getSponsorFromIDB(slug);
-      return cachedSponsor && cachedSponsor.active ? cachedSponsor : null;
+      return cachedSponsor || null;
     } catch (cacheError) {
       console.error('Error getting cached sponsor:', cacheError);
     }

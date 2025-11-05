@@ -1,14 +1,70 @@
 /**
  * Sponsor tier levels
  */
-export type SponsorTier = 'platinum' | 'gold' | 'silver' | 'bronze' | 'community';
+export type SponsorTier = 'platinum' | 'gold' | 'silver' | 'community';
 
 /**
- * Sponsor entity
+ * Social media platform types
+ */
+export type SocialMediaType = 'x' | 'twitter' | 'linkedin' | 'facebook' | 'instagram' | 'youtube' | 'github';
+
+/**
+ * Social media link
+ */
+export interface SocialLink {
+  type: SocialMediaType;
+  url: string;
+}
+
+/**
+ * Call-to-action button
+ */
+export interface CTAButton {
+  label: string;
+  href: string;
+}
+
+/**
+ * Showcase section with CTAs
+ */
+export interface Showcase {
+  ctaPrimary?: CTAButton;
+  ctaSecondary?: CTAButton;
+}
+
+/**
+ * Booking configuration
+ */
+export interface Booking {
+  type: 'external';
+  url: string;
+}
+
+/**
+ * HubSpot integration
+ */
+export interface HubSpot {
+  formGuid: string;
+}
+
+/**
+ * Analytics configuration
+ */
+export interface Analytics {
+  source: string;
+  utm_default?: {
+    source: string;
+    medium: string;
+    campaign: string;
+  };
+}
+
+/**
+ * Sponsor entity (matches schema v1.0)
  */
 export interface Sponsor {
   /**
-   * Unique identifier for the sponsor
+   * UUID or stable slug identifier
    */
   id: string;
   
@@ -30,7 +86,17 @@ export interface Sponsor {
   /**
    * URL to sponsor logo image
    */
-  logo: string;
+  logoUrl: string;
+  
+  /**
+   * Short description of the sponsor
+   */
+  shortDesc: string;
+  
+  /**
+   * Long description of the sponsor (optional)
+   */
+  longDesc?: string | null;
   
   /**
    * Sponsor website URL
@@ -38,26 +104,37 @@ export interface Sponsor {
   website: string;
   
   /**
-   * Brief description of the sponsor
-   */
-  description: string;
-  
-  /**
    * Social media links
    */
-  social?: {
-    twitter?: string;
-    linkedin?: string;
-    github?: string;
-  };
+  socials?: SocialLink[];
   
   /**
-   * Order for display (lower numbers appear first)
+   * Showcase section with CTAs
    */
-  order: number;
+  showcase?: Showcase;
   
   /**
-   * Whether this sponsor is active/visible
+   * Booking configuration
    */
-  active: boolean;
+  booking?: Booking;
+  
+  /**
+   * HubSpot integration
+   */
+  hubspot?: HubSpot;
+  
+  /**
+   * Analytics configuration
+   */
+  analytics?: Analytics;
+  
+  /**
+   * Last updated timestamp
+   */
+  updatedAt: string;
+  
+  /**
+   * Schema version
+   */
+  version: string;
 }

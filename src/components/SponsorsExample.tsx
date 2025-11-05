@@ -63,7 +63,7 @@ const SponsorsExample = () => {
     return acc;
   }, {} as Record<string, Sponsor[]>);
 
-  const tierOrder = ['platinum', 'gold', 'silver', 'bronze', 'community'];
+  const tierOrder = ['platinum', 'gold', 'silver', 'community'];
 
   return (
     <section className="sponsors-section">
@@ -80,7 +80,6 @@ const SponsorsExample = () => {
                 {tier === 'platinum' && '💎 Platino'}
                 {tier === 'gold' && '🥇 Oro'}
                 {tier === 'silver' && '🥈 Plata'}
-                {tier === 'bronze' && '🥉 Bronce'}
                 {tier === 'community' && '🤝 Comunidad'}
               </h3>
               
@@ -95,38 +94,31 @@ const SponsorsExample = () => {
                         aria-label={`Visit ${sponsor.name} website`}
                       >
                         <img 
-                          src={sponsor.logo} 
+                          src={sponsor.logoUrl} 
                           alt={sponsor.name}
                           className="sponsor-logo"
                           loading="lazy"
                         />
                       </a>
                       <h4 className="sponsor-name mt-2">{sponsor.name}</h4>
-                      <p className="sponsor-description">{sponsor.description}</p>
+                      <p className="sponsor-description">{sponsor.shortDesc}</p>
                       
-                      {sponsor.social && (
+                      {sponsor.socials && sponsor.socials.length > 0 && (
                         <div className="sponsor-social mt-2">
-                          {sponsor.social.twitter && (
+                          {sponsor.socials.map((social, idx) => (
                             <a 
-                              href={sponsor.social.twitter} 
+                              key={idx}
+                              href={social.url} 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              aria-label={`${sponsor.name} on Twitter`}
+                              className={idx > 0 ? "ms-2" : ""}
+                              aria-label={`${sponsor.name} on ${social.type}`}
                             >
-                              Twitter
+                              {social.type === 'x' || social.type === 'twitter' ? 'X/Twitter' : 
+                               social.type === 'linkedin' ? 'LinkedIn' :
+                               social.type === 'github' ? 'GitHub' : social.type}
                             </a>
-                          )}
-                          {sponsor.social.linkedin && (
-                            <a 
-                              href={sponsor.social.linkedin} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="ms-2"
-                              aria-label={`${sponsor.name} on LinkedIn`}
-                            >
-                              LinkedIn
-                            </a>
-                          )}
+                          ))}
                         </div>
                       )}
                     </div>
