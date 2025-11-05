@@ -7,20 +7,20 @@ describe('SponsorHeader', () => {
     render(
       <SponsorHeader
         name="Test Sponsor"
-        tier="oro"
+        tier="platinum"
         website="https://example.com"
       />
     );
     
     expect(screen.getByText('Test Sponsor')).toBeInTheDocument();
-    expect(screen.getByText('Patrocinador Oro')).toBeInTheDocument();
+    expect(screen.getByText('Patrocinador Platinum')).toBeInTheDocument();
   });
 
   it('renders logo when provided', () => {
     render(
       <SponsorHeader
         name="Test Sponsor"
-        tier="plata"
+        tier="gold"
         logo="/test-logo.png"
         website="https://example.com"
       />
@@ -35,7 +35,7 @@ describe('SponsorHeader', () => {
     render(
       <SponsorHeader
         name="Test Sponsor"
-        tier="colaborador"
+        tier="community"
         website="https://example.com"
       />
     );
@@ -49,7 +49,7 @@ describe('SponsorHeader', () => {
     render(
       <SponsorHeader
         name="Test Sponsor"
-        tier="oro"
+        tier="platinum"
         website="#"
       />
     );
@@ -61,7 +61,7 @@ describe('SponsorHeader', () => {
     render(
       <SponsorHeader
         name="Test Sponsor"
-        tier="oro"
+        tier="platinum"
         website="https://example.com"
       />
     );

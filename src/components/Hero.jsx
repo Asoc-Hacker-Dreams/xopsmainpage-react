@@ -38,4 +38,4 @@ import { Helmet } from 'react-helmet-async';  // añado despues de instalar reac
 );
   }
 
-export default Hero
+export default Hero;

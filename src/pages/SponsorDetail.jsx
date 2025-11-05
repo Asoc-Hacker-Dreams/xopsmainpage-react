@@ -10,8 +10,8 @@ import sponsorsData from '../data/sponsors.json';
 const SponsorDetail = () => {
   const { slug } = useParams();
   
-  // Find sponsor by slug
-  const sponsor = sponsorsData.sponsors.find((s) => s.slug === slug);
+  // Find sponsor by slug (sponsors.json is now an array)
+  const sponsor = sponsorsData.find((s) => s.slug === slug);
 
   // If sponsor not found, show 404
   if (!sponsor) {
@@ -35,28 +35,50 @@ const SponsorDetail = () => {
     );
   }
 
+  // Convert socials array to object for compatibility
+  const socialMedia = sponsor.socials ? sponsor.socials.reduce((acc, social) => {
+    acc[social.type] = social.url;
+    return acc;
+  }, {}) : {};
+
+  // Convert showcase to CTAs format
+  const ctas = [];
+  if (sponsor.showcase?.ctaPrimary) {
+    ctas.push({
+      text: sponsor.showcase.ctaPrimary.label,
+      url: sponsor.showcase.ctaPrimary.href,
+      type: 'primary'
+    });
+  }
+  if (sponsor.showcase?.ctaSecondary) {
+    ctas.push({
+      text: sponsor.showcase.ctaSecondary.label,
+      url: sponsor.showcase.ctaSecondary.href,
+      type: 'secondary'
+    });
+  }
+
+  // Get description (use longDesc if available, otherwise shortDesc)
+  const description = sponsor.longDesc || sponsor.shortDesc;
+
   // Generate Schema.org Organization structured data
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": sponsor.name,
     "url": sponsor.website,
-    "logo": sponsor.logo ? `https://xopsconference.com${sponsor.logo}` : undefined,
-    "description": sponsor.description,
-    "sameAs": [
-      sponsor.socialMedia?.twitter,
-      sponsor.socialMedia?.linkedin,
-      sponsor.socialMedia?.facebook,
-    ].filter(Boolean),
+    "logo": sponsor.logoUrl,
+    "description": description,
+    "sameAs": sponsor.socials ? sponsor.socials.map(s => s.url) : [],
   };
 
   return (
     <>
       <SEO
         title={`${sponsor.name} - Patrocinador`}
-        description={sponsor.description}
+        description={sponsor.shortDesc}
         path={`/sponsors/${sponsor.slug}`}
-        image={sponsor.logo ? `https://xopsconference.com${sponsor.logo}` : 'https://xopsconference.com/assets/og-default.jpg'}
+        image={sponsor.logoUrl || 'https://xopsconference.com/assets/og-default.jpg'}
         keywords={`X-Ops, ${sponsor.name}, Patrocinador, DevOps, DevSecOps, Conferencia`}
         lang="es"
         alternates={[
@@ -68,19 +90,19 @@ const SponsorDetail = () => {
       <main role="main">
         <SponsorHeader
           name={sponsor.name}
-          logo={sponsor.logo}
+          logo={sponsor.logoUrl}
           tier={sponsor.tier}
           website={sponsor.website}
         />
 
         <SponsorAbout
-          description={sponsor.description}
-          socialMedia={sponsor.socialMedia}
+          description={description}
+          socialMedia={socialMedia}
         />
 
-        <SponsorCTAs ctas={sponsor.ctas} />
+        <SponsorCTAs ctas={ctas} />
 
-        <SponsorAssets assets={sponsor.assets} />
+        <SponsorAssets assets={sponsor.assets || []} />
 
         {/* Back to sponsors section */}
         <section className="py-5 text-center">

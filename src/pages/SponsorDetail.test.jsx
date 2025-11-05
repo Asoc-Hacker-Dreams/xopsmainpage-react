@@ -6,26 +6,26 @@ import SponsorDetail from './SponsorDetail';
 
 // Mock the sponsors data
 vi.mock('../data/sponsors.json', () => ({
-  default: {
-    sponsors: [
-      {
-        id: 'test-sponsor',
-        slug: 'test-sponsor',
-        name: 'Test Sponsor',
-        tier: 'oro',
-        logo: '/test-logo.png',
-        description: 'This is a test sponsor description.',
-        website: 'https://example.com',
-        ctas: [
-          { text: 'Visit Website', url: 'https://example.com', type: 'primary' },
-        ],
-        socialMedia: {
-          twitter: 'https://twitter.com/test',
-        },
-        assets: [],
+  default: [
+    {
+      id: 'test-sponsor-2025',
+      slug: 'test-sponsor',
+      name: 'Test Sponsor',
+      tier: 'platinum',
+      logoUrl: 'https://xopsconference.com/test-logo.png',
+      shortDesc: 'This is a test sponsor description.',
+      longDesc: 'This is a longer test sponsor description with more details.',
+      website: 'https://example.com',
+      updatedAt: '2025-11-05T04:00:00Z',
+      version: '1.0',
+      socials: [
+        { type: 'twitter', url: 'https://twitter.com/test' },
+      ],
+      showcase: {
+        ctaPrimary: { label: 'Visit Website', href: 'https://example.com' },
       },
-    ],
-  },
+    },
+  ],
 }));
 
 const renderWithRouter = (slug) => {

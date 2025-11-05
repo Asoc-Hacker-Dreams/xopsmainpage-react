@@ -5,8 +5,12 @@ import AnimationWrapper from './AnimationWrapper';
 const SponsorHeader = ({ name, logo, tier, website }) => {
   const getTierColor = (tier) => {
     const tierColors = {
+      platinum: 'warning',
       oro: 'warning',
+      gold: 'warning',
+      silver: 'secondary',
       plata: 'secondary',
+      community: 'info',
       colaborador: 'info',
     };
     return tierColors[tier?.toLowerCase()] || 'primary';
@@ -14,8 +18,12 @@ const SponsorHeader = ({ name, logo, tier, website }) => {
 
   const getTierLabel = (tier) => {
     const tierLabels = {
+      platinum: 'Patrocinador Platinum',
       oro: 'Patrocinador Oro',
+      gold: 'Patrocinador Gold',
+      silver: 'Patrocinador Silver',
       plata: 'Patrocinador Plata',
+      community: 'Colaborador',
       colaborador: 'Colaborador',
     };
     return tierLabels[tier?.toLowerCase()] || 'Patrocinador';
@@ -72,7 +80,7 @@ const SponsorHeader = ({ name, logo, tier, website }) => {
 SponsorHeader.propTypes = {
   name: PropTypes.string.isRequired,
   logo: PropTypes.string,
-  tier: PropTypes.oneOf(['oro', 'plata', 'colaborador']).isRequired,
+  tier: PropTypes.oneOf(['platinum', 'gold', 'silver', 'community', 'oro', 'plata', 'colaborador']).isRequired,
   website: PropTypes.string,
 };
 
