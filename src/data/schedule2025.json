@@ -112,17 +112,6 @@
     "track": "hyperscalers"
   },
   {
-    "speaker": "Pablo Sánchez Carmona",
-    "talk": "Shift Left, Scale Right - Securizando la infraestructura de AWS a escala con DevSecOps",
-    "description": "Descubre cómo adoptar una mentalidad DevSecOps transforma la protección de la infraestructura en AWS de un cuello de botella en una ventaja competitiva, permitiendo a los equipos desplegar de forma segura siendo ágiles y escalables. Esta sesión explora la intersección crítica entre automatización, infraestructura como código (IaC) y cultura DevOps en la gestión de entornos complejos. Examinaremos cómo las organizaciones gestionan exitosamente miles de recursos en AWS en entornos multi-cuenta sin sacrificar seguridad ni frenar la innovación. Exploraremos estrategias prácticas para implementar políticas como código, validación automática de requisitos de seguridad y red, y monitoreo continuo de la infraestructura. Al final de esta sesión, queremos que te lleves patrones accionables para construir infraestructura que pueda crecer de forma segura junto con tus necesidades de negocio, demostrando que seguridad y velocidad no son conceptos opuestos cuando haces 'shift left' y 'scale right'.",
-    "timeRaw": "2025-11-21 14:30:00",
-    "timeISO": "2025-11-21T14:30",
-    "durationMinutes": 40,
-    "durationHuman": "40m",
-    "room": "Hyperscalers",
-    "track": "hyperscalers"
-  },
-  {
     "speaker": "Cleyra Uzcategui",
     "talk": "Web UI: What’s New and What’s Next",
     "description": "The web platform is evolving rapidly, and staying ahead of new UI capabilities is crucial for modern DevOps workflows. In this session, we’ll explore how the latest advances in CSS and HTML can streamline front-end development, improve developer experience, and help teams deliver responsive, accessible, and performant interfaces faster and with less friction.\n\nGet a high-level look at some of the most exciting and impactful UI features that have recently landed — or are just around the corner — and learn how they can fit into your delivery pipelines and workflows. From better defaults for accessibility to powerful new responsive design tools, see how the modern web platform supports shipping better applications, faster.\n\nPerfect for developers, DevOps engineers, and tech leads who want to keep their front-end practices modern, efficient, and aligned with today’s best delivery standards.",
