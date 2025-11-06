@@ -7,8 +7,9 @@
     "timeISO": "2025-11-21T09:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos",
-    "type": "keynote"
+    "room": "Aula magna",
+    "type": "keynote",
+    "track": "main"
   },
   {
     "speaker": "Luis Guirigay",
@@ -19,7 +20,8 @@
     "durationMinutes": 30,
     "durationHuman": "30m",
     "room": "Hyperscalers",
-    "type": "keynote"
+    "type": "keynote",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Shani Adadi Kazaz",
@@ -29,7 +31,8 @@
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Gisela Torres",
@@ -39,7 +42,8 @@
     "timeISO": "2025-11-21T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Alejandro de la Hoz Martin",
@@ -49,7 +53,8 @@
     "timeISO": "2025-11-21T11:45",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Alberto Morgante",
@@ -59,7 +64,8 @@
     "timeISO": "2025-11-21T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Pablo Sánchez Carmona",
@@ -69,7 +75,8 @@
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 65,
     "durationHuman": "1h 5m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Antonio Berben, Felipe Vicens",
@@ -79,7 +86,8 @@
     "timeISO": "2025-11-21T12:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Carlos Villanúa",
@@ -89,7 +97,8 @@
     "timeISO": "2025-11-21T13:40",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Mani Ghelichkhani",
@@ -97,9 +106,10 @@
     "description": "Abstract: Join this hands-on workshop to learn all about AWS Graviton processors and considerations about how to develop and deploy applications to achieve the best EC2 price-performance and sustainability on AWS. During this hands-on workshop you will take an example application running on x86 instances application (choosing from Python, Go, Java or .NET) and learn how to migrate, test, and optimise for Graviton. Once you have converted the application, you will learn to deploy it on Graviton infrastructure through Amazon EKS or Autoscaling Groups.",
     "timeRaw": "2025-11-21 13:55:00",
     "timeISO": "2025-11-21T13:55",
-    "durationMinutes": 65,
-    "durationHuman": "1h 5m",
-    "room": "Hyperscalers"
+    "durationMinutes": 90,
+    "durationHuman": "1h 30m",
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Cleyra Uzcategui",
@@ -109,7 +119,8 @@
     "timeISO": "2025-11-21T14:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Rossana Suarez",
@@ -119,7 +130,8 @@
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Hyperscalers"
+    "room": "Hyperscalers",
+    "track": "hyperscalers"
   },
   {
     "speaker": "Sara San Luís Rodríguez, Christian Carballo Lozano",
@@ -129,7 +141,8 @@
     "timeISO": "2025-11-21T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Carlos Polop",
@@ -139,7 +152,8 @@
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 60,
     "durationHuman": "1h 0m",
-    "room": "Bsides Madrid"
+    "room": "Bsides Madrid",
+    "track": "bsides"
   },
   {
     "speaker": "Dachi Gogotchuri",
@@ -149,7 +163,8 @@
     "timeISO": "2025-11-22T10:30",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Patricia Rodríguez Vaquero, Almudena Zhou Ramírez López",
@@ -159,7 +174,8 @@
     "timeISO": "2025-11-22T11:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Juan Vicente Herrera Ruiz de Alejo",
@@ -169,7 +185,8 @@
     "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Bsides Madrid"
+    "room": "Bsides Madrid",
+    "track": "bsides"
   },
   {
     "speaker": "Verónica Rivas Remiseiro, Toni Granell",
@@ -179,7 +196,8 @@
     "timeISO": "2025-11-22T11:50",
     "durationMinutes": 30,
     "durationHuman": "30m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Ignacio Dominguez",
@@ -189,7 +207,8 @@
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 80,
     "durationHuman": "1h 20m",
-    "room": "Bsides Madrid"
+    "room": "Bsides Madrid",
+    "track": "bsides"
   },
   {
     "speaker": "Jeff Fan",
@@ -199,7 +218,8 @@
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Jose Gómez-Sellés",
@@ -209,7 +229,8 @@
     "timeISO": "2025-11-22T13:35",
     "durationMinutes": 45,
     "durationHuman": "45m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "Juarez Junior",
@@ -219,7 +240,8 @@
     "timeISO": "2025-11-22T14:20",
     "durationMinutes": 40,
     "durationHuman": "40m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "José Enrique Calderón Sanz",
@@ -229,7 +251,8 @@
     "timeISO": "2025-11-22T16:00",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
   },
   {
     "speaker": "David Amorín García",
@@ -239,6 +262,29 @@
     "timeISO": "2025-11-22T16:50",
     "durationMinutes": 50,
     "durationHuman": "50m",
-    "room": "Salon de Actos"
+    "room": "Aula magna",
+    "track": "main"
+  },
+  {
+    "speaker": "David Reguera García",
+    "talk": "Offensive Hardware Hacking I+D+I VS Conceptos y filosofia devops/devsecops",
+    "description": "Cómo los principios de automatización, integración continua y seguridad desde el diseño pueden aplicarse al mundo del hardware.",
+    "timeRaw": "2025-11-22 16:00:00",
+    "timeISO": "2025-11-22T16:00",
+    "durationMinutes": 120,
+    "durationHuman": "2h",
+    "room": "Bsides Madrid",
+    "track": "bsides"
+  },
+  {
+    "speaker": "Alberto Lobato",
+    "talk": "Ciberseguridad y OT. ¿Friends or enemies?",
+    "description": "Los entornos de Tecnología Operativa (OT) están omnipresentes en nuestra vida diaria, desde los sistemas de control de los trenes que tomamos cada mañana, hasta la infraestructura energética que alimenta nuestros hogares y los procesos industriales que producen los bienes que consumimos. Estos entornos son críticos para el funcionamiento de nuestra sociedad y, por lo tanto, su seguridad es de vital importancia.En esta charla, exploraremos los desafíos específicos de la ciberseguridad en entornos OT y cómo difiere de la ciberseguridad convencional en entornos de Tecnología de la Información (IT). Analizaremos las particularidades de la ciberseguridad OT, incluyendo los riesgos y amenazas únicos que enfrentan estos sistemas.A través de ejemplos concretos de proyectos y ofertas reales en los que he trabajado como experto en ciberseguridad en el sector ferroviario, ilustraré el proceso de implementación de medidas de seguridad efectivas conforme a la normativa IEC 62443. Esta charla ofrecerá una visión práctica y experta sobre cómo proteger los entornos OT críticos y garantizar la resiliencia de nuestra infraestructura industrial.",
+    "timeRaw": "2025-11-22 16:50:00",
+    "timeISO": "2025-11-22T16:50",
+    "durationMinutes": 50,
+    "durationHuman": "50m",
+    "room": "Bsides Madrid",
+    "track": "bsides"
   }
 ]
