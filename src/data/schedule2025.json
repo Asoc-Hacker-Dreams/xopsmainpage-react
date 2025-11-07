@@ -145,6 +145,18 @@
     "track": "main"
   },
   {
+    "speaker": "Next Digital",
+    "talk": "Keynote BSides Madrid - Innovación en Ciberseguridad",
+    "description": "Next Digital, patrocinador oficial de la X-Ops Conference Madrid 2025, presenta el keynote de apertura del track BSides Madrid. En esta sesión inaugural, exploraremos las tendencias más importantes en ciberseguridad, las innovaciones tecnológicas que están transformando el sector y cómo las empresas pueden prepararse para los desafíos de seguridad del futuro. Una visión estratégica que establecerá el contexto perfecto para todas las sesiones técnicas especializadas que seguirán en el track BSides.",
+    "timeRaw": "2025-11-22 10:00:00",
+    "timeISO": "2025-11-22T10:00",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Bsides Madrid",
+    "type": "keynote",
+    "track": "bsides"
+  },
+  {
     "speaker": "Carlos Polop",
     "talk": "GCP Vulnerabilities & Features of Offensive Engineers",
     "description": "Over the past years, I have conducted extensive research into how attackers can exploit various features of Google Cloud Platform (GCP) and Google Workspace to escalate privileges, maintain persistence, and execute post-exploitation actions. This work has uncovered numerous behaviors that hold significant value for Red Teams. While some of these findings have prompted GCP to implement fixes, others have been acknowledged as inherent features of the platform. Key discoveries include:\n\n- Methods to perform critical actions without generating audit logs.\n\n- Exploiting environment variables to achieve remote code execution (RCE) on systems and containers that are not intended to be directly accessible.\n\n- Techniques for pivoting from Google Cloud Storage buckets to other GCP services and Service Accounts.\n\n- Leveraging containers to establish \"invisible\" persistence mechanisms.\n\nAdditionally, my research has focused on understanding and exploiting the behaviour of Google’s enterprise tools, such as:\n\n- Google Credential Provider for Windows\n\n- Google Cloud Directory Sync\n\n- Google Password Sync\n\n- Admin Directory Sync\n\nThese tools can be used to pivot and escalate privileges from environments like Windows, Active Directory, and Microsoft Entra ID into Google Workspace, ultimately gaining access to GCP.",
