@@ -22,6 +22,7 @@ import Events2024 from './pages/archive/2024/Events2024';
 import Speakers2025 from './pages/archive/2025/Speakers2025';
 import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import ThankYou from './pages/ThankYou';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
@@ -150,6 +151,9 @@ function App() {
           
           {/* Privacy Policy */}
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
+          
+          {/* Thank You Page */}
+          <Route path="/thank-you" element={<ThankYou />} />
           
           <Route path="*" element={<NotFound />} /> {/* Ruta por defecto para manejar 404 */}
 
