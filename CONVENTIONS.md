@@ -257,7 +257,7 @@ The `updatedAt` field tracks when data was last modified:
 ### 2. Updating Data
 
 ```bash
-# 1. Modify source data in src/data/schedule2025.json
+# 1. Modify source data in public/data/schedule.json
 # 2. Run normalization
 npm run normalize:data
 
@@ -325,7 +325,7 @@ When making breaking changes:
 
 ### normalize-data.js
 
-Converts `src/data/schedule2025.json` to normalized format:
+Converts `public/data/schedule.json` to normalized format:
 - Extracts unique speakers
 - Creates proper IDs and slugs
 - Calculates end times

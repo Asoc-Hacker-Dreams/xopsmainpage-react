@@ -142,7 +142,7 @@ const {
 ```
 
 **Parameters:**
-- `scheduleUrl` (optional): URL to fetch schedule data. Defaults to `/data/schedule2025.json`
+- `scheduleUrl` (optional): URL to fetch schedule data. Defaults to `/data/schedule.json`
 
 **Return Values:**
 - `agenda`: Array of agenda items
