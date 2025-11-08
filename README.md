@@ -62,6 +62,61 @@ Definimos en `public/sw.js`:
 - **Manual**: Los desarrolladores pueden forzar la eliminación de caches específicas usando `caches.delete()` en la consola del navegador.
 - **Criterios de invalidación**: Cambiar la versión del `DATA_CACHE` fuerza la regeneración de toda la cache de datos en el próximo despliegue.
 
+## Image Optimization & Core Web Vitals
+
+### 🚀 Performance Optimizations
+
+The project includes comprehensive image optimization for better Core Web Vitals:
+
+- **73.8% size reduction** (27.70 MB → 7.26 MB)
+- **AVIF/WebP** format support with automatic fallback
+- **Lazy loading** with Intersection Observer API
+- **Priority loading** for above-the-fold images (LCP optimization)
+
+### OptimizedImage Component
+
+Use the `OptimizedImage` component for automatic format selection and lazy loading:
+
+```jsx
+import OptimizedImage from './components/OptimizedImage';
+
+// Above-the-fold image (priority loading)
+<OptimizedImage 
+  src="/assets/logo.png" 
+  alt="Logo" 
+  width={300}
+  height={200}
+  priority={true}
+  loading="eager"
+/>
+
+// Below-the-fold image (lazy loading)
+<OptimizedImage 
+  src="/assets/image.png" 
+  alt="Description" 
+  width={600}
+  height={400}
+  loading="lazy"
+/>
+```
+
+### Image Conversion
+
+Convert images to AVIF and WebP formats:
+
+```bash
+# Convert all images in src/assets
+npm run convert:images
+
+# Force reconversion of existing files
+npm run convert:images:force
+```
+
+### Documentation
+
+- **Core Web Vitals Guide:** [docs/CORE_WEB_VITALS.md](docs/CORE_WEB_VITALS.md)
+- **Optimization Summary:** [docs/IMAGE_OPTIMIZATION_SUMMARY.md](docs/IMAGE_OPTIMIZATION_SUMMARY.md)
+
 ## Badges
 
 Add badges from somewhere like: [shields.io](https://shields.io/)
