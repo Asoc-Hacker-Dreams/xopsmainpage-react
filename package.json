@@ -27,7 +27,9 @@
     "osdo:sca": "chmod +x .osdo/tools/sca.sh && ./.osdo/tools/sca.sh",
     "osdo:sast": "chmod +x .osdo/tools/sast.sh && ./.osdo/tools/sast.sh",
     "normalize:data": "node scripts/normalize-data.js",
-    "validate:data": "node scripts/validate-data.js"
+    "validate:data": "node scripts/validate-data.js",
+    "convert:images": "node scripts/convert-images.js",
+    "convert:images:force": "node scripts/convert-images.js --force"
   },
   "dependencies": {
     "aos": "^2.3.4",
@@ -65,6 +67,7 @@
     "globals": "^15.11.0",
     "jsdom": "^23.0.0",
     "license-checker": "^25.0.1",
+    "sharp": "^0.34.5",
     "vite": "^6.3.3",
     "vite-plugin-sitemap": "^0.7.1",
     "vitest": "^1.0.0"

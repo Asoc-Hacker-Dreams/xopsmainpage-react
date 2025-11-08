@@ -5,6 +5,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
 import AddToHomeScreen from './components/AddToHomeScreen';
+import OptimizedImage from './components/OptimizedImage';
 import { ConsentProvider } from './contexts/ConsentContext';
 import { AgendaProvider } from './contexts/AgendaContext';
 import CookieConsentBanner from './components/CookieConsentBanner';
@@ -13,6 +14,7 @@ import ScriptManager from './components/ScriptManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
+import SponsorMicrosite from './pages/SponsorMicrosite';
 import SpeakersList from './pages/SpeakersList';
 import SpeakerDetail from './pages/SpeakerDetail';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
@@ -57,7 +59,15 @@ function App() {
 <div className="root home-main-section">
         <Navbar bg="light" expand="lg" className='header'>
         <div className="d-flex align-items-center">
-          <img src={logo} alt="X-Ops Logo" style={{ height: '51px', width: '56px', marginRight: '15px' }} />
+          <OptimizedImage 
+            src={logo} 
+            alt="X-Ops Logo" 
+            style={{ height: '51px', width: '56px', marginRight: '15px' }}
+            width={56}
+            height={51}
+            priority={true}
+            loading="eager"
+          />
           <Navbar.Brand className='text-white font-weight-bold navbar-brand-text'>X-OPS CONFERENCE</Navbar.Brand>
         </div>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>
@@ -129,6 +139,7 @@ function App() {
 
           <Route path="/Sponsor" element={<Sponsor />} />
           <Route path="/Patrocina" element={<Sponsor />} />
+          <Route path="/sponsor/:sponsorId" element={<SponsorMicrosite />} />
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 

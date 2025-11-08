@@ -8,6 +8,13 @@ vi.mock('./AnimationWrapper', () => ({
   default: ({ children }) => <div data-testid="animation-wrapper">{children}</div>
 }));
 
+// Mock de OptimizedImage
+vi.mock('./OptimizedImage', () => ({
+  default: ({ src, alt, loading, ...props }) => (
+    <img src={src} alt={alt} loading={loading} {...props} />
+  )
+}));
+
 // Mock de los datos de sponsors
 vi.mock('../data/sponsorsData.json', () => ({
   default: {
