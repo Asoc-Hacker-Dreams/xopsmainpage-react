@@ -6,7 +6,11 @@
       "tier": "gold",
       "logo": "/assets/collaborators/cybershield.png",
       "website": "https://cybershield.com",
-      "description": "Líder en seguridad cibernética empresarial"
+      "description": "Líder en seguridad cibernética empresarial",
+      "booking": {
+        "type": "external",
+        "url": "https://calendly.com/cybershield/demo"
+      }
     },
     {
       "id": 2,
@@ -14,7 +18,11 @@
       "tier": "silver",
       "logo": "/assets/collaborators/amaxop.png",
       "website": "https://www.amaxop.com/",
-      "description": "Soluciones tecnológicas innovadoras"
+      "description": "Soluciones tecnológicas innovadoras",
+      "booking": {
+        "type": "external",
+        "url": "https://calendly.com/amaxop/xops-meeting"
+      }
     },
     {
       "id": 3,

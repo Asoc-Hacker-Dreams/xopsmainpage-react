@@ -1,12 +1,23 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import AnimationWrapper from './AnimationWrapper';
 import sponsorsData from '../data/sponsorsData.json';
+import { trackCtaClick } from '../utils/analytics';
 
 const SponsorsGrid = ({ orderBy = 'tier' }) => {
   const location = useLocation();
+
+  // Handler for booking button click
+  const handleBookingClick = (sponsor, url) => {
+    trackCtaClick('booking', {
+      sponsor_name: sponsor.name,
+      sponsor_id: sponsor.id,
+      sponsor_tier: sponsor.tier
+    });
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
   
   // Extract tier filter from query params
   const tierFilter = useMemo(() => {
@@ -159,9 +170,23 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                               {sponsor.tier}
                             </Badge>
                           </a>
-                          <p className="text-center text-muted small mb-0">
+                          <p className="text-center text-muted small mb-3">
                             {sponsor.description}
                           </p>
+                          {sponsor.booking && sponsor.booking.type === 'external' && sponsor.booking.url && (
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleBookingClick(sponsor, sponsor.booking.url);
+                              }}
+                              className="mt-2"
+                              aria-label={`Reservar demo con ${sponsor.name}`}
+                            >
+                              Reservar demo
+                            </Button>
+                          )}
                         </div>
                       </AnimationWrapper>
                     </Col>
