@@ -6,6 +6,7 @@ import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
 import AddToHomeScreen from './components/AddToHomeScreen';
 import { ConsentProvider } from './contexts/ConsentContext';
+import { AgendaProvider } from './contexts/AgendaContext';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import CookiePreferencesManager from './components/CookiePreferencesManager';
 import ScriptManager from './components/ScriptManager';
@@ -48,6 +49,7 @@ function App() {
    return (
   <HelmetProvider>
     <ConsentProvider>
+      <AgendaProvider>
       <>
       <ScriptManager />
       <CookieConsentBanner />
@@ -205,6 +207,7 @@ function App() {
       onHide={handleCloseCookiePreferences} 
     />
     </>
+   </AgendaProvider>
    </ConsentProvider>
   </HelmetProvider>
   );

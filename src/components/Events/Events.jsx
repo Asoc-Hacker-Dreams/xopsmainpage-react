@@ -3,6 +3,8 @@ import AnimationWrapper from '../AnimationWrapper';
 import { Modal, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useAgenda } from '../../hooks/useAgenda';
 import useFavorites from '../../hooks/useFavorites';
+import { exportToCalendar, exportAgenda } from '../../utils/calendarUtils';
+import { FaCalendarPlus } from 'react-icons/fa';
 
 // Constants for date formatting
 const DAYS_ES_UPPER = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -97,6 +99,26 @@ const Events = () => {
     setSelectedEvent(null);
   };
 
+  // Handle calendar export
+  const handleExportToCalendar = (event) => {
+    const filename = `xops-${event.talk.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}.ics`;
+    exportToCalendar(event, filename);
+  };
+
+  // Handle export favorites as agenda
+  const handleExportFavoritesAgenda = () => {
+    if (!scheduleData) return;
+    
+    const favoriteEvents = scheduleData.filter(event => isFavorite(event.id));
+    
+    if (favoriteEvents.length === 0) {
+      alert('No hay eventos favoritos para exportar. Añade eventos a favoritos haciendo clic en la estrella.');
+      return;
+    }
+    
+    exportAgenda(favoriteEvents, 'xops-mi-agenda-favoritos.ics');
+  };
+
   // Render event card
   const renderEventCard = (event, index) => {
     const isFav = isFavorite(event.id);
@@ -137,9 +159,22 @@ const Events = () => {
             <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
             <p className="flex-grow-1">{event.talk}</p>
             <p><strong>{event.speaker}</strong></p>
-            <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
-              Más Detalles
-            </button>
+            <div className="d-flex gap-2 mt-auto">
+              <button onClick={() => handleShowModal(event)} className="button menu-btn flex-grow-1">
+                Más Detalles
+              </button>
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleExportToCalendar(event);
+                }} 
+                className="button menu-btn"
+                title="Añadir al calendario"
+                aria-label="Añadir al calendario"
+              >
+                <FaCalendarPlus />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -150,7 +185,19 @@ const Events = () => {
     <section id="events" className="event-schedule-section">
       <AnimationWrapper animation="fade-up" duration={1500}>
         <Container>
-          <h2 className="text-center margin-top">Horario del Evento 2025</h2>
+          <div className="d-flex justify-content-between align-items-center margin-top">
+            <h2 className="text-center flex-grow-1">Horario del Evento 2025</h2>
+            {scheduleData && scheduleData.filter(event => isFavorite(event.id)).length > 0 && (
+              <button 
+                onClick={handleExportFavoritesAgenda} 
+                className="button menu-btn"
+                title={`Exportar favoritos (${scheduleData.filter(event => isFavorite(event.id)).length} evento${scheduleData.filter(event => isFavorite(event.id)).length > 1 ? 's' : ''})`}
+              >
+                <FaCalendarPlus className="me-2" />
+                Exportar Favoritos ({scheduleData.filter(event => isFavorite(event.id)).length})
+              </button>
+            )}
+          </div>
           
           {/* Show subtle update notification when data is being revalidated */}
           {isStale && scheduleData && scheduleData.length > 0 && (
@@ -256,6 +303,15 @@ const Events = () => {
                 <p><strong>Hora:</strong> {formatTime(selectedEvent.timeISO)}</p>
                 <hr />
                 <p>{selectedEvent.description}</p>
+                <div className="mt-3">
+                  <button 
+                    onClick={() => handleExportToCalendar(selectedEvent)} 
+                    className="button menu-btn w-100"
+                  >
+                    <FaCalendarPlus className="me-2" />
+                    Añadir al Calendario
+                  </button>
+                </div>
               </Modal.Body>
               <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div>
