@@ -13,7 +13,7 @@ import {
  * @param {string} scheduleUrl - URL to fetch the schedule data
  * @returns {object} - { agenda, loading, error, isStale, lastSync }
  */
-export const useAgenda = (scheduleUrl = '/data/schedule2025.json') => {
+export const useAgenda = (scheduleUrl = '/data/schedule.json') => {
   const [agenda, setAgenda] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
