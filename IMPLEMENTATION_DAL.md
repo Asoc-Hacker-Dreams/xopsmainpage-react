@@ -240,7 +240,7 @@ npm run test:coverage
 
 The JSON provider automatically caches data in IndexedDB:
 
-- **First Load**: Downloads data from `schedule2025.json` and caches it
+- **First Load**: Downloads data from `schedule.json` and caches it
 - **Subsequent Loads**: Uses cached data (fast!)
 - **Cache Duration**: 24 hours
 - **Manual Refresh**: Call `refetch()` from hooks
@@ -275,7 +275,7 @@ To implement CMS integration:
 
 **Solution:** Check browser console for errors. Verify:
 - Environment variables are set correctly
-- JSON file exists at `src/data/schedule2025.json`
+- JSON file exists at `public/data/schedule.json` (served at `/data/schedule.json`)
 - Network requests succeed (for CMS mode)
 
 ### Issue: Old data showing
