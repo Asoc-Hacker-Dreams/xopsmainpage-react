@@ -14,18 +14,56 @@ vi.mock('../data/sponsorsData.json', () => ({
   default: {
     sponsors: [
       { 
-        id: 1, 
+        id: 1,
+        slug: 'alpha-tech',
         name: 'Alpha Tech', 
         tier: 'gold', 
         logo: '/logo1.png', 
         website: 'https://alpha.com', 
         description: 'Tech company',
-        booking: { type: 'external', url: 'https://calendly.com/alpha/demo' }
+        showcase: {
+          ctaPrimary: {
+            label: 'Reservar demo',
+            href: 'https://calendly.com/alpha/demo'
+          }
+        }
       },
-      { id: 2, name: 'Beta Systems', tier: 'silver', logo: '/logo2.png', website: 'https://beta.com', description: 'Systems provider' },
-      { id: 3, name: 'Gamma Solutions', tier: 'community', logo: '/logo3.png', website: 'https://gamma.com', description: 'Community partner' },
-      { id: 4, name: 'Delta Corp', tier: 'gold', logo: '/logo4.png', website: 'https://delta.com', description: 'Corporate sponsor' },
-      { id: 5, name: 'Epsilon Inc', tier: 'platinum', logo: '/logo5.png', website: 'https://epsilon.com', description: 'Premium sponsor' }
+      { 
+        id: 2,
+        slug: 'beta-systems',
+        name: 'Beta Systems', 
+        tier: 'silver', 
+        logo: '/logo2.png', 
+        website: 'https://beta.com', 
+        description: 'Systems provider'
+      },
+      { 
+        id: 3,
+        slug: 'gamma-solutions',
+        name: 'Gamma Solutions', 
+        tier: 'community', 
+        logo: '/logo3.png', 
+        website: 'https://gamma.com', 
+        description: 'Community partner'
+      },
+      { 
+        id: 4,
+        slug: 'delta-corp',
+        name: 'Delta Corp', 
+        tier: 'gold', 
+        logo: '/logo4.png', 
+        website: 'https://delta.com', 
+        description: 'Corporate sponsor'
+      },
+      { 
+        id: 5,
+        slug: 'epsilon-inc',
+        name: 'Epsilon Inc', 
+        tier: 'platinum', 
+        logo: '/logo5.png', 
+        website: 'https://epsilon.com', 
+        description: 'Premium sponsor'
+      }
     ]
   }
 }));
@@ -134,15 +172,16 @@ describe('SponsorsGrid Component', () => {
     expect(screen.getByText('Community partner')).toBeInTheDocument();
   });
 
-  it('renders links to sponsor websites', () => {
+  it('renders links to sponsor virtual stands', () => {
     renderWithRouter(<SponsorsGrid />);
     const links = screen.getAllByRole('link');
     expect(links.length).toBeGreaterThan(0);
     
     links.forEach(link => {
       expect(link).toHaveAttribute('href');
-      expect(link).toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      // Virtual stand links are internal routes, not external links
+      const href = link.getAttribute('href');
+      expect(href).toMatch(/^\/sponsors\//);
     });
   });
 
@@ -178,7 +217,7 @@ describe('SponsorsGrid Component', () => {
     const links = screen.getAllByRole('link');
     links.forEach(link => {
       expect(link).toHaveAttribute('aria-label');
-      expect(link.getAttribute('aria-label')).toMatch(/Visitar sitio web de/);
+      expect(link.getAttribute('aria-label')).toMatch(/Ver stand virtual de/);
     });
   });
 
@@ -204,44 +243,54 @@ describe('SponsorsGrid Component', () => {
     expect(screen.getByText('Delta Corp')).toBeInTheDocument();
   });
 
-  describe('Booking CTA functionality', () => {
+  describe('Virtual Stand CTA functionality', () => {
     beforeEach(() => {
       vi.clearAllMocks();
-      // Mock window.open
+      // Mock window.open and window.location
       window.open = vi.fn();
+      delete window.location;
+      window.location = { href: '' };
     });
 
-    it('displays booking button for sponsors with external booking', () => {
-      renderWithRouter(<SponsorsGrid />);
-      const bookingButton = screen.getByRole('button', { name: /Reservar demo con Alpha Tech/i });
-      expect(bookingButton).toBeInTheDocument();
-    });
-
-    it('does not display booking button for sponsors without booking data', () => {
+    it('displays CTA button for all sponsors', () => {
       renderWithRouter(<SponsorsGrid />);
       const allButtons = screen.queryAllByRole('button');
-      // Only Alpha Tech has booking configured
-      expect(allButtons).toHaveLength(1);
+      // All 5 sponsors should have a CTA button
+      expect(allButtons.length).toBeGreaterThanOrEqual(5);
     });
 
-    it('tracks GA4 event when booking button is clicked', () => {
+    it('displays custom CTA label when showcase is configured', () => {
       renderWithRouter(<SponsorsGrid />);
-      const bookingButton = screen.getByRole('button', { name: /Reservar demo con Alpha Tech/i });
+      const customButton = screen.getByRole('button', { name: /Reservar demo de Alpha Tech/i });
+      expect(customButton).toBeInTheDocument();
+      expect(customButton).toHaveTextContent('Reservar demo');
+    });
+
+    it('displays default CTA label for sponsors without showcase', () => {
+      renderWithRouter(<SponsorsGrid />);
+      const defaultButtons = screen.getAllByRole('button', { name: /Ver stand virtual/i });
+      expect(defaultButtons.length).toBeGreaterThan(0);
+    });
+
+    it('tracks GA4 event when CTA button is clicked', () => {
+      renderWithRouter(<SponsorsGrid />);
+      const ctaButton = screen.getByRole('button', { name: /Reservar demo de Alpha Tech/i });
       
-      fireEvent.click(bookingButton);
+      fireEvent.click(ctaButton);
 
       expect(trackCtaClick).toHaveBeenCalledWith('booking', {
         sponsor_name: 'Alpha Tech',
         sponsor_id: 1,
-        sponsor_tier: 'gold'
+        sponsor_tier: 'gold',
+        cta_label: 'Reservar demo'
       });
     });
 
-    it('opens booking URL in new tab when button is clicked', () => {
+    it('opens external URL in new tab when CTA href is external', () => {
       renderWithRouter(<SponsorsGrid />);
-      const bookingButton = screen.getByRole('button', { name: /Reservar demo con Alpha Tech/i });
+      const ctaButton = screen.getByRole('button', { name: /Reservar demo de Alpha Tech/i });
       
-      fireEvent.click(bookingButton);
+      fireEvent.click(ctaButton);
 
       expect(window.open).toHaveBeenCalledWith(
         'https://calendly.com/alpha/demo',
@@ -250,23 +299,50 @@ describe('SponsorsGrid Component', () => {
       );
     });
 
-    it('prevents default event propagation when booking button is clicked', () => {
+    it('navigates internally when CTA href is internal route', () => {
       renderWithRouter(<SponsorsGrid />);
-      const bookingButton = screen.getByRole('button', { name: /Reservar demo con Alpha Tech/i });
+      const defaultButton = screen.getAllByRole('button', { name: /Ver stand virtual de Beta Systems/i })[0];
+      
+      fireEvent.click(defaultButton);
+
+      expect(window.location.href).toBe('/sponsors/beta-systems');
+    });
+
+    it('sponsor logos link to virtual stand', () => {
+      renderWithRouter(<SponsorsGrid />);
+      const links = screen.getAllByRole('link');
+      
+      // Check that links point to virtual stands, not external websites
+      const virtualStandLinks = links.filter(link => 
+        link.getAttribute('href')?.startsWith('/sponsors/')
+      );
+      expect(virtualStandLinks.length).toBeGreaterThan(0);
+    });
+
+    it('sponsor logo links have correct aria-label', () => {
+      renderWithRouter(<SponsorsGrid />);
+      const alphaLink = screen.getByRole('link', { name: /Ver stand virtual de Alpha Tech/i });
+      
+      expect(alphaLink).toHaveAttribute('href', '/sponsors/alpha-tech');
+    });
+
+    it('prevents default event propagation when CTA button is clicked', () => {
+      renderWithRouter(<SponsorsGrid />);
+      const ctaButton = screen.getByRole('button', { name: /Reservar demo de Alpha Tech/i });
       
       const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
       const preventDefaultSpy = vi.spyOn(clickEvent, 'preventDefault');
       
-      bookingButton.dispatchEvent(clickEvent);
+      ctaButton.dispatchEvent(clickEvent);
 
       expect(preventDefaultSpy).toHaveBeenCalled();
     });
 
-    it('booking button has correct styling classes', () => {
+    it('CTA button has correct styling classes', () => {
       renderWithRouter(<SponsorsGrid />);
-      const bookingButton = screen.getByRole('button', { name: /Reservar demo con Alpha Tech/i });
+      const ctaButton = screen.getByRole('button', { name: /Reservar demo de Alpha Tech/i });
       
-      expect(bookingButton).toHaveClass('btn', 'btn-primary', 'btn-sm', 'mt-2');
+      expect(ctaButton).toHaveClass('btn', 'btn-primary', 'btn-sm', 'mt-2');
     });
   });
 });

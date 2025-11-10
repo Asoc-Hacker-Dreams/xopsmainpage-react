@@ -9,14 +9,30 @@ import { trackCtaClick } from '../utils/analytics';
 const SponsorsGrid = ({ orderBy = 'tier' }) => {
   const location = useLocation();
 
-  // Handler for booking button click
-  const handleBookingClick = (sponsor, url) => {
+  // Handler for CTA button click
+  const handleCtaClick = (sponsor, ctaLabel, ctaHref) => {
     trackCtaClick('booking', {
       sponsor_name: sponsor.name,
       sponsor_id: sponsor.id,
-      sponsor_tier: sponsor.tier
+      sponsor_tier: sponsor.tier,
+      cta_label: ctaLabel
     });
-    window.open(url, '_blank', 'noopener,noreferrer');
+    
+    // Check if it's an internal route or external URL
+    if (ctaHref.startsWith('/')) {
+      // Internal route - use React Router navigation
+      window.location.href = ctaHref;
+    } else {
+      // External URL - open in new tab
+      window.open(ctaHref, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  // Get virtual stand URL for sponsor
+  const getVirtualStandUrl = (sponsor) => {
+    // If sponsor has a slug, use it; otherwise create one from ID
+    const slug = sponsor.slug || sponsor.id.toString().toLowerCase().replace(/\s+/g, '-');
+    return `/sponsors/${slug}`;
   };
   
   // Extract tier filter from query params
@@ -150,11 +166,9 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                           aria-label={`Patrocinador: ${sponsor.name}`}
                         >
                           <a 
-                            href={sponsor.website} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
+                            href={getVirtualStandUrl(sponsor)}
                             className="d-flex flex-column align-items-center text-decoration-none"
-                            aria-label={`Visitar sitio web de ${sponsor.name}`}
+                            aria-label={`Ver stand virtual de ${sponsor.name}`}
                           >
                             <img 
                               src={sponsor.logo} 
@@ -173,20 +187,20 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                           <p className="text-center text-muted small mb-3">
                             {sponsor.description}
                           </p>
-                          {sponsor.booking && sponsor.booking.type === 'external' && sponsor.booking.url && (
-                            <Button
-                              variant="primary"
-                              size="sm"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleBookingClick(sponsor, sponsor.booking.url);
-                              }}
-                              className="mt-2"
-                              aria-label={`Reservar demo con ${sponsor.name}`}
-                            >
-                              Reservar demo
-                            </Button>
-                          )}
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const ctaLabel = sponsor.showcase?.ctaPrimary?.label || 'Ver stand virtual';
+                              const ctaHref = sponsor.showcase?.ctaPrimary?.href || getVirtualStandUrl(sponsor);
+                              handleCtaClick(sponsor, ctaLabel, ctaHref);
+                            }}
+                            className="mt-2"
+                            aria-label={`${sponsor.showcase?.ctaPrimary?.label || 'Ver stand virtual'} de ${sponsor.name}`}
+                          >
+                            {sponsor.showcase?.ctaPrimary?.label || 'Ver stand virtual'}
+                          </Button>
                         </div>
                       </AnimationWrapper>
                     </Col>
