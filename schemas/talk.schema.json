@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://xopsconference.com/schemas/talk.schema.json",
+  "title": "Talk",
+  "description": "Schema for X-Ops Conference talk/session data",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "abstract",
+    "track",
+    "room",
+    "day",
+    "startTime",
+    "endTime",
+    "speakerIds",
+    "updatedAt",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique immutable identifier for the talk",
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the talk",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the talk",
+      "minLength": 1
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Talk description/abstract"
+    },
+    "track": {
+      "type": "string",
+      "description": "Conference track (e.g., main, hyperscalers, bsides)",
+      "minLength": 1
+    },
+    "room": {
+      "type": "string",
+      "description": "Room/venue where the talk takes place",
+      "minLength": 1
+    },
+    "day": {
+      "type": "string",
+      "description": "Date of the talk in YYYY-MM-DD format",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "startTime": {
+      "type": "string",
+      "description": "Start time in ISO8601 format",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "description": "End time in ISO8601 format",
+      "format": "date-time"
+    },
+    "speakerIds": {
+      "type": "array",
+      "description": "Array of speaker IDs presenting this talk",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of session (e.g., keynote, talk, workshop)"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Duration in minutes",
+      "minimum": 1
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "Last update timestamp in ISO8601 format",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "const": "1.0"
+    }
+  },
+  "additionalProperties": false
+}

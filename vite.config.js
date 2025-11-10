@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import sitemap from 'vite-plugin-sitemap'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import sitemap from 'vite-plugin-sitemap';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -47,8 +47,12 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           bootstrap: ['bootstrap', 'react-bootstrap'],
+          dexie: ['dexie']
         }
       }
     }
+  },
+  optimizeDeps: {
+    include: ['dexie']
   }
-})
+});

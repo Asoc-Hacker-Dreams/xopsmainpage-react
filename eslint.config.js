@@ -85,6 +85,6 @@ export default [
 
   // 4. Patrones a ignorar
   {
-    ignores: ["dist/", "node_modules/", "*.min.js"],
+    ignores: ["dist/", "node_modules/", "*.min.js", "**/*.ts", "**/*.tsx"],
   }
 ];

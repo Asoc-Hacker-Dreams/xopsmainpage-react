@@ -3,7 +3,7 @@ import franciscoA from "../assets/organizers/franciscoA.jpg";
 import juanillaA from "../assets/organizers/juanillaA.jpg";
 import juanV from "../assets/organizers/juanV.jpg";
 import oscarC from "../assets/organizers/oscarC.png";
-import claraC from "../assets/organizers/claraC.jpg"
+import claraC from "../assets/organizers/claraC.jpg";
 import { Helmet } from 'react-helmet-async';  // añado despues de instalar react helmet
 
 import AnimationWrapper from "./AnimationWrapper";
@@ -55,8 +55,8 @@ const Organizers = () => {
                   </p>
                   <p>
                     <strong>Redes:</strong><br />
-                    Twitter: <a href="https://twitter.com/robedugonzalez" target="_blank">@robedugonzalez</a><br />
-                    LinkedIn: <a href="https://www.linkedin.com/in/robertoegonzalez1" target="_blank">in/robertoegonzalez1</a>
+                    Twitter: <a href="https://twitter.com/robedugonzalez" target="_blank" rel="noreferrer">@robedugonzalez</a><br />
+                    LinkedIn: <a href="https://www.linkedin.com/in/robertoegonzalez1" target="_blank" rel="noreferrer">in/robertoegonzalez1</a>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -101,7 +101,7 @@ const Organizers = () => {
                   </p>
                   <p>
                     <strong>Redes:</strong><br />
-                    LinkedIn: <a href="https://www.linkedin.com/in/franciscoarencibia/" target="_blank">in/franciscoarencibia</a>
+                    LinkedIn: <a href="https://www.linkedin.com/in/franciscoarencibia/" target="_blank" rel="noreferrer">in/franciscoarencibia</a>
                   </p>
                 </AnimationWrapper>
               </div>
@@ -131,8 +131,8 @@ const Organizers = () => {
                   </p>
                   <p>
                     <strong>Redes:</strong><br />
-                    Twitter: <a href="https://twitter.com/spectertj" target="_blank">@spectertj</a><br />
-                    LinkedIn: <a href="https://www.linkedin.com/in/spectertj" target="_blank">in/spectertj</a>
+                    Twitter: <a href="https://twitter.com/spectertj" target="_blank" rel="noreferrer">@spectertj</a><br />
+                    LinkedIn: <a href="https://www.linkedin.com/in/spectertj" target="_blank" rel="noreferrer">in/spectertj</a>
                   </p>
                 </AnimationWrapper>
               </div>

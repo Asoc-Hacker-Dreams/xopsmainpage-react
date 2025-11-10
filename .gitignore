@@ -58,3 +58,4 @@ typings/
 .osdo/results
 .osdo/test-results
 .vscode/settings.json
+.vscode/mcp.json

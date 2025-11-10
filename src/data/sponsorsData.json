@@ -1,0 +1,124 @@
+{
+  "sponsors": [
+    {
+      "id": 1,
+      "slug": "cybershield",
+      "name": "Cybershield",
+      "tier": "gold",
+      "logo": "/assets/collaborators/cybershield.png",
+      "website": "https://cybershield.com",
+      "description": "Líder en seguridad cibernética empresarial",
+      "showcase": {
+        "ctaPrimary": {
+          "label": "Reservar demo",
+          "href": "https://calendly.com/cybershield/demo"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "slug": "amaxop",
+      "name": "Amaxop",
+      "tier": "silver",
+      "logo": "/assets/collaborators/amaxop.png",
+      "website": "https://www.amaxop.com/",
+      "description": "Soluciones tecnológicas innovadoras",
+      "showcase": {
+        "ctaPrimary": {
+          "label": "Reservar demo",
+          "href": "https://calendly.com/amaxop/xops-meeting"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "slug": "hackbilbao",
+      "name": "HackBilbao",
+      "tier": "community",
+      "logo": "/assets/collaborators/hackB.png",
+      "website": "#",
+      "description": "Comunidad de hackers éticos"
+    },
+    {
+      "id": 4,
+      "slug": "hackbcn",
+      "name": "HackBCN",
+      "tier": "community",
+      "logo": "/assets/collaborators/hackBcn.png",
+      "website": "https://hackbcn.org",
+      "description": "Comunidad tecnológica de Barcelona"
+    },
+    {
+      "id": 5,
+      "slug": "asturcon",
+      "name": "AsturCon",
+      "tier": "community",
+      "logo": "/assets/collaborators/asturC.jpeg",
+      "website": "https://asturcon.tech",
+      "description": "Conferencia tecnológica asturiana"
+    },
+    {
+      "id": 6,
+      "slug": "madrid-devops",
+      "name": "Madrid DevOps",
+      "tier": "community",
+      "logo": "/assets/collaborators/madridD.png",
+      "website": "https://madrid.devops.es",
+      "description": "Comunidad DevOps de Madrid"
+    },
+    {
+      "id": 7,
+      "slug": "morteruelo-ciberseguridad",
+      "name": "Morteruelo Ciberseguridad",
+      "tier": "community",
+      "logo": "/assets/collaborators/morterueloC.png",
+      "website": "https://www.morteruelo.net/",
+      "description": "Especialistas en ciberseguridad"
+    },
+    {
+      "id": 8,
+      "slug": "hacker-dreams",
+      "name": "Hacker Dreams",
+      "tier": "community",
+      "logo": "/assets/collaborators/hackerD.jpeg",
+      "website": "https://hackerdreams.org/",
+      "description": "Asociación de hackers éticos"
+    },
+    {
+      "id": 9,
+      "slug": "devseccon",
+      "name": "DevSecCon",
+      "tier": "community",
+      "logo": "/assets/collaborators/devseccon.png",
+      "website": "https://snyk.io/community/",
+      "description": "Conferencia de seguridad para desarrolladores"
+    },
+    {
+      "id": 10,
+      "slug": "secadmin",
+      "name": "SecAdmin",
+      "tier": "community",
+      "logo": "/assets/collaborators/secadmin.png",
+      "website": "https://secadmin.es",
+      "description": "Administración segura de sistemas"
+    },
+    {
+      "id": 11,
+      "slug": "crackergames",
+      "name": "CrackerGames",
+      "tier": "community",
+      "logo": "/assets/collaborators/crackersgames.png",
+      "website": "https://ctf.hackerdreams.org",
+      "description": "Plataforma de CTF y juegos de seguridad"
+    },
+    {
+      "id": 12,
+      "slug": "cncf-madrid",
+      "name": "CNCF Madrid",
+      "tier": "community",
+      "logo": "/assets/collaborators/CNCF_MADRID.png",
+      "website": "#",
+      "description": "Cloud Native Computing Foundation Madrid"
+    }
+  ]
+}

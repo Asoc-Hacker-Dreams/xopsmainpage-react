@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://xopsconference.com/schemas/speaker.schema.json",
+  "title": "Speaker",
+  "description": "Schema for X-Ops Conference speaker data",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "name",
+    "bio",
+    "photoUrl",
+    "socials",
+    "updatedAt",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique immutable identifier for the speaker",
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the speaker",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the speaker",
+      "minLength": 1
+    },
+    "bio": {
+      "type": "string",
+      "description": "Speaker biography/description"
+    },
+    "photoUrl": {
+      "type": "string",
+      "description": "URL to the speaker's photo",
+      "format": "uri"
+    },
+    "socials": {
+      "type": "array",
+      "description": "Social media links for the speaker",
+      "items": {
+        "type": "object",
+        "required": ["platform", "url"],
+        "properties": {
+          "platform": {
+            "type": "string",
+            "description": "Social media platform name (e.g., twitter, linkedin, github)"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL to the social media profile",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "company": {
+      "type": "string",
+      "description": "Speaker's company/organization"
+    },
+    "title": {
+      "type": "string",
+      "description": "Speaker's job title"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "Last update timestamp in ISO8601 format",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "const": "1.0"
+    }
+  },
+  "additionalProperties": false
+}
