@@ -2,22 +2,37 @@
   "sponsors": [
     {
       "id": 1,
+      "slug": "cybershield",
       "name": "Cybershield",
       "tier": "gold",
       "logo": "/assets/collaborators/cybershield.png",
       "website": "https://cybershield.com",
-      "description": "Líder en seguridad cibernética empresarial"
+      "description": "Líder en seguridad cibernética empresarial",
+      "showcase": {
+        "ctaPrimary": {
+          "label": "Reservar demo",
+          "href": "https://calendly.com/cybershield/demo"
+        }
+      }
     },
     {
       "id": 2,
+      "slug": "amaxop",
       "name": "Amaxop",
       "tier": "silver",
       "logo": "/assets/collaborators/amaxop.png",
       "website": "https://www.amaxop.com/",
-      "description": "Soluciones tecnológicas innovadoras"
+      "description": "Soluciones tecnológicas innovadoras",
+      "showcase": {
+        "ctaPrimary": {
+          "label": "Reservar demo",
+          "href": "https://calendly.com/amaxop/xops-meeting"
+        }
+      }
     },
     {
       "id": 3,
+      "slug": "hackbilbao",
       "name": "HackBilbao",
       "tier": "community",
       "logo": "/assets/collaborators/hackB.png",
@@ -26,6 +41,7 @@
     },
     {
       "id": 4,
+      "slug": "hackbcn",
       "name": "HackBCN",
       "tier": "community",
       "logo": "/assets/collaborators/hackBcn.png",
@@ -34,6 +50,7 @@
     },
     {
       "id": 5,
+      "slug": "asturcon",
       "name": "AsturCon",
       "tier": "community",
       "logo": "/assets/collaborators/asturC.jpeg",
@@ -42,6 +59,7 @@
     },
     {
       "id": 6,
+      "slug": "madrid-devops",
       "name": "Madrid DevOps",
       "tier": "community",
       "logo": "/assets/collaborators/madridD.png",
@@ -50,6 +68,7 @@
     },
     {
       "id": 7,
+      "slug": "morteruelo-ciberseguridad",
       "name": "Morteruelo Ciberseguridad",
       "tier": "community",
       "logo": "/assets/collaborators/morterueloC.png",
@@ -58,6 +77,7 @@
     },
     {
       "id": 8,
+      "slug": "hacker-dreams",
       "name": "Hacker Dreams",
       "tier": "community",
       "logo": "/assets/collaborators/hackerD.jpeg",
@@ -66,6 +86,7 @@
     },
     {
       "id": 9,
+      "slug": "devseccon",
       "name": "DevSecCon",
       "tier": "community",
       "logo": "/assets/collaborators/devseccon.png",
@@ -74,6 +95,7 @@
     },
     {
       "id": 10,
+      "slug": "secadmin",
       "name": "SecAdmin",
       "tier": "community",
       "logo": "/assets/collaborators/secadmin.png",
@@ -82,6 +104,7 @@
     },
     {
       "id": 11,
+      "slug": "crackergames",
       "name": "CrackerGames",
       "tier": "community",
       "logo": "/assets/collaborators/crackersgames.png",
@@ -90,6 +113,7 @@
     },
     {
       "id": 12,
+      "slug": "cncf-madrid",
       "name": "CNCF Madrid",
       "tier": "community",
       "logo": "/assets/collaborators/CNCF_MADRID.png",

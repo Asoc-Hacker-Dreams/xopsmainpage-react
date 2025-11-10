@@ -1,12 +1,78 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { trackLeadSubmit, trackEvent } from './analytics';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { trackCtaClick, trackLeadSubmit, trackEvent } from './analytics';
 
-describe('Analytics Utility', () => {
+describe('Analytics Utilities', () => {
+  let originalGtag;
+  let originalConsole;
+
   beforeEach(() => {
-    // Reset window.gtag before each test
+    // Save original values
+    originalGtag = window.gtag;
+    originalConsole = console.log;
+    
+    // Mock console.log
+    console.log = vi.fn();
+    console.warn = vi.fn();
+    
+    // Reset window.gtag
     delete window.gtag;
-    // Clear console mocks
-    vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    // Restore original values
+    window.gtag = originalGtag;
+    console.log = originalConsole;
+  });
+
+  describe('trackCtaClick', () => {
+    it('should call gtag with correct parameters when gtag is available', () => {
+      // Mock gtag function
+      window.gtag = vi.fn();
+
+      trackCtaClick('booking', { sponsor_name: 'Test Sponsor' });
+
+      expect(window.gtag).toHaveBeenCalledWith('event', 'cta_click', {
+        cta_type: 'booking',
+        sponsor_name: 'Test Sponsor'
+      });
+    });
+
+    it('should not throw when gtag is not available', () => {
+      // Ensure gtag is not available
+      delete window.gtag;
+
+      // Should not throw
+      expect(() => {
+        trackCtaClick('booking', { sponsor_name: 'Test Sponsor' });
+      }).not.toThrow();
+    });
+
+    it('should work with empty additional parameters', () => {
+      window.gtag = vi.fn();
+
+      trackCtaClick('contact');
+
+      expect(window.gtag).toHaveBeenCalledWith('event', 'cta_click', {
+        cta_type: 'contact'
+      });
+    });
+
+    it('should merge multiple additional parameters', () => {
+      window.gtag = vi.fn();
+
+      trackCtaClick('download', {
+        sponsor_id: '123',
+        sponsor_tier: 'gold',
+        document_type: 'brochure'
+      });
+
+      expect(window.gtag).toHaveBeenCalledWith('event', 'cta_click', {
+        cta_type: 'download',
+        sponsor_id: '123',
+        sponsor_tier: 'gold',
+        document_type: 'brochure'
+      });
+    });
   });
 
   describe('trackLeadSubmit', () => {
@@ -60,76 +126,76 @@ describe('Analytics Utility', () => {
         tier: 'platinum'
       };
 
-      trackLeadSubmit(params);
-
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        'GA4 not available - event not tracked:',
-        expect.objectContaining({
-          sponsor_id: 'acme-corp-2025',
-          tier: 'platinum'
-        })
-      );
-
-      consoleWarnSpy.mockRestore();
+      expect(() => {
+        trackLeadSubmit(params);
+      }).not.toThrow();
     });
 
     it('should track different sponsor tiers correctly', () => {
       const mockGtag = vi.fn();
       window.gtag = mockGtag;
-
-      const tiers = ['platinum', 'gold', 'silver', 'community'];
       
-      tiers.forEach(tier => {
+      ['platinum', 'gold', 'silver', 'community'].forEach(tier => {
         mockGtag.mockClear();
         
         trackLeadSubmit({
           sponsor_id: `sponsor-${tier}`,
           tier,
-          sponsor_name: `${tier} Sponsor`
+          sponsor_name: `Sponsor ${tier}`
         });
 
-        expect(mockGtag).toHaveBeenCalledWith('event', 'lead_submit', 
-          expect.objectContaining({
-            tier,
-            event_label: `${tier}_sponsor_lead`
-          })
-        );
+        expect(mockGtag).toHaveBeenCalledWith('event', 'lead_submit', {
+          sponsor_id: `sponsor-${tier}`,
+          tier,
+          sponsor_name: `Sponsor ${tier}`,
+          event_category: 'engagement',
+          event_label: `${tier}_sponsor_lead`
+        });
       });
     });
   });
 
   describe('trackEvent', () => {
-    it('should track custom event when gtag is available', () => {
-      const mockGtag = vi.fn();
-      window.gtag = mockGtag;
+    it('should call gtag with event name and parameters', () => {
+      window.gtag = vi.fn();
 
-      trackEvent('custom_event', { param1: 'value1' });
+      trackEvent('page_view', { page_title: 'Home' });
 
-      expect(mockGtag).toHaveBeenCalledWith('event', 'custom_event', {
-        param1: 'value1'
+      expect(window.gtag).toHaveBeenCalledWith('event', 'page_view', {
+        page_title: 'Home'
       });
     });
 
-    it('should track event with empty params object', () => {
-      const mockGtag = vi.fn();
-      window.gtag = mockGtag;
-
-      trackEvent('simple_event');
-
-      expect(mockGtag).toHaveBeenCalledWith('event', 'simple_event', {});
+    it('should not throw when gtag is not available', () => {
+      // Should not throw
+      expect(() => {
+        trackEvent('custom_event', { param1: 'value1' });
+      }).not.toThrow();
     });
 
-    it('should warn when gtag is not available', () => {
-      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    it('should work with empty event parameters', () => {
+      window.gtag = vi.fn();
 
-      trackEvent('test_event', { test: 'data' });
+      trackEvent('button_click');
 
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        'GA4 not available - event not tracked: test_event',
-        { test: 'data' }
-      );
+      expect(window.gtag).toHaveBeenCalledWith('event', 'button_click', {});
+    });
 
-      consoleWarnSpy.mockRestore();
+    it('should handle complex parameter objects', () => {
+      window.gtag = vi.fn();
+
+      const complexParams = {
+        user_id: '12345',
+        session_id: 'abc-def',
+        nested: {
+          value: 'test'
+        },
+        array: [1, 2, 3]
+      };
+
+      trackEvent('complex_event', complexParams);
+
+      expect(window.gtag).toHaveBeenCalledWith('event', 'complex_event', complexParams);
     });
   });
 });

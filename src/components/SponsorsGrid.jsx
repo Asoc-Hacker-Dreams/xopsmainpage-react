@@ -1,12 +1,40 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Badge } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AnimationWrapper from './AnimationWrapper';
 import sponsorsData from '../data/sponsorsData.json';
+import { trackCtaClick } from '../utils/analytics';
 
 const SponsorsGrid = ({ orderBy = 'tier' }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Handler for CTA button click
+  const handleCtaClick = (sponsor, ctaLabel, ctaHref) => {
+    trackCtaClick('booking', {
+      sponsor_name: sponsor.name,
+      sponsor_id: sponsor.id,
+      sponsor_tier: sponsor.tier,
+      cta_label: ctaLabel
+    });
+    
+    // Check if it's an internal route or external URL
+    if (ctaHref.startsWith('/')) {
+      // Internal route - use React Router navigation
+      navigate(ctaHref);
+    } else {
+      // External URL - open in new tab
+      window.open(ctaHref, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  // Get virtual stand URL for sponsor
+  const getVirtualStandUrl = (sponsor) => {
+    // All sponsors should have a slug field, but provide a simple fallback
+    const slug = sponsor.slug || sponsor.id.toString();
+    return `/sponsors/${slug}`;
+  };
   
   // Extract tier filter from query params
   const tierFilter = useMemo(() => {
@@ -139,11 +167,9 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                           aria-label={`Patrocinador: ${sponsor.name}`}
                         >
                           <a 
-                            href={sponsor.website} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
+                            href={getVirtualStandUrl(sponsor)}
                             className="d-flex flex-column align-items-center text-decoration-none"
-                            aria-label={`Visitar sitio web de ${sponsor.name}`}
+                            aria-label={`Ver stand virtual de ${sponsor.name}`}
                           >
                             <img 
                               src={sponsor.logo} 
@@ -159,9 +185,23 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                               {sponsor.tier}
                             </Badge>
                           </a>
-                          <p className="text-center text-muted small mb-0">
+                          <p className="text-center text-muted small mb-3">
                             {sponsor.description}
                           </p>
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const ctaLabel = sponsor.showcase?.ctaPrimary?.label || 'Ver stand virtual';
+                              const ctaHref = sponsor.showcase?.ctaPrimary?.href || getVirtualStandUrl(sponsor);
+                              handleCtaClick(sponsor, ctaLabel, ctaHref);
+                            }}
+                            className="mt-2"
+                            aria-label={`${sponsor.showcase?.ctaPrimary?.label || 'Ver stand virtual'} de ${sponsor.name}`}
+                          >
+                            {sponsor.showcase?.ctaPrimary?.label || 'Ver stand virtual'}
+                          </Button>
                         </div>
                       </AnimationWrapper>
                     </Col>
