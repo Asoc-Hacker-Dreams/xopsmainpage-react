@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Badge } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import AnimationWrapper from './AnimationWrapper';
+import OptimizedImage from './OptimizedImage';
 import sponsorsData from '../data/sponsorsData.json';
 
 const SponsorsGrid = ({ orderBy = 'tier' }) => {
@@ -138,30 +139,39 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
                           role="article"
                           aria-label={`Patrocinador: ${sponsor.name}`}
                         >
-                          <a 
-                            href={sponsor.website} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="d-flex flex-column align-items-center text-decoration-none"
-                            aria-label={`Visitar sitio web de ${sponsor.name}`}
-                          >
-                            <img 
-                              src={sponsor.logo} 
-                              alt={`Logo de ${sponsor.name}`}
-                              className="sponsor-logo mb-3"
-                              style={{ maxWidth: '150px', maxHeight: '100px', objectFit: 'contain' }}
-                              loading="lazy"
-                            />
-                            <h4 className="text-center sponsor-name mb-2 text-dark">
-                              {sponsor.name}
-                            </h4>
-                            <Badge bg={getTierColor(sponsor.tier)} className="mb-2">
-                              {sponsor.tier}
-                            </Badge>
-                          </a>
-                          <p className="text-center text-muted small mb-0">
-                            {sponsor.description}
-                          </p>
+                            <Link
+                              to={`/sponsor/${sponsor.id}`}
+                              className="d-flex flex-column align-items-center text-decoration-none"
+                              aria-label={`Ver micrositio de ${sponsor.name}`}
+                            >
+                              <OptimizedImage
+                                src={sponsor.logo} 
+                                alt={`Logo de ${sponsor.name}`}
+                                className="sponsor-logo mb-3"
+                                style={{ maxWidth: '150px', maxHeight: '100px', objectFit: 'contain' }}
+                                loading="lazy"
+                                width={150}
+                                height={100}
+                              />
+                              <h4 className="text-center sponsor-name mb-2 text-dark">
+                                {sponsor.name}
+                              </h4>
+                              <Badge bg={getTierColor(sponsor.tier)} className="mb-2">
+                                {sponsor.tier}
+                              </Badge>
+                            </Link>
+                            <p className="text-center text-muted small mb-2">
+                              {sponsor.description}
+                            </p>
+                            <a 
+                              href={sponsor.website} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="btn btn-sm btn-outline-primary"
+                              aria-label={`Visitar sitio web de ${sponsor.name}`}
+                            >
+                              Sitio web
+                            </a>
                         </div>
                       </AnimationWrapper>
                     </Col>

@@ -8,6 +8,13 @@ vi.mock('./AnimationWrapper', () => ({
   default: ({ children }) => <div data-testid="animation-wrapper">{children}</div>
 }));
 
+// Mock de OptimizedImage
+vi.mock('./OptimizedImage', () => ({
+  default: ({ src, alt, loading, ...props }) => (
+    <img src={src} alt={alt} loading={loading} {...props} />
+  )
+}));
+
 // Mock de los datos de sponsors
 vi.mock('../data/sponsorsData.json', () => ({
   default: {
@@ -125,7 +132,11 @@ describe('SponsorsGrid Component', () => {
     const links = screen.getAllByRole('link');
     expect(links.length).toBeGreaterThan(0);
     
-    links.forEach(link => {
+    // Check that external links have proper attributes
+    const externalLinks = Array.from(links).filter(link => link.getAttribute('target') === '_blank');
+    expect(externalLinks.length).toBeGreaterThan(0);
+    
+    externalLinks.forEach(link => {
       expect(link).toHaveAttribute('href');
       expect(link).toHaveAttribute('target', '_blank');
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
@@ -164,7 +175,9 @@ describe('SponsorsGrid Component', () => {
     const links = screen.getAllByRole('link');
     links.forEach(link => {
       expect(link).toHaveAttribute('aria-label');
-      expect(link.getAttribute('aria-label')).toMatch(/Visitar sitio web de/);
+      const label = link.getAttribute('aria-label');
+      // Links should have either microsite or website labels
+      expect(label).toMatch(/(Ver micrositio de|Visitar sitio web de)/);
     });
   });
 
