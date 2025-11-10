@@ -13,6 +13,7 @@ import ScriptManager from './components/ScriptManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
+import SponsorDetail from './pages/SponsorDetail';
 import SpeakersList from './pages/SpeakersList';
 import SpeakerDetail from './pages/SpeakerDetail';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
@@ -22,6 +23,7 @@ import Events2024 from './pages/archive/2024/Events2024';
 import Speakers2025 from './pages/archive/2025/Speakers2025';
 import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import ThankYou from './pages/ThankYou';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
@@ -129,6 +131,7 @@ function App() {
 
           <Route path="/Sponsor" element={<Sponsor />} />
           <Route path="/Patrocina" element={<Sponsor />} />
+          <Route path="/sponsors/:slug" element={<SponsorDetail />} />
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 
@@ -150,6 +153,9 @@ function App() {
           
           {/* Privacy Policy */}
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
+          
+          {/* Thank You Page */}
+          <Route path="/thank-you" element={<ThankYou />} />
           
           <Route path="*" element={<NotFound />} /> {/* Ruta por defecto para manejar 404 */}
 
