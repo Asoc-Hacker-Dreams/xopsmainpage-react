@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AnimationWrapper from './AnimationWrapper';
 import sponsorsData from '../data/sponsorsData.json';
 import { trackCtaClick } from '../utils/analytics';
 
 const SponsorsGrid = ({ orderBy = 'tier' }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Handler for CTA button click
   const handleCtaClick = (sponsor, ctaLabel, ctaHref) => {
@@ -21,7 +22,7 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
     // Check if it's an internal route or external URL
     if (ctaHref.startsWith('/')) {
       // Internal route - use React Router navigation
-      window.location.href = ctaHref;
+      navigate(ctaHref);
     } else {
       // External URL - open in new tab
       window.open(ctaHref, '_blank', 'noopener,noreferrer');
@@ -30,8 +31,8 @@ const SponsorsGrid = ({ orderBy = 'tier' }) => {
 
   // Get virtual stand URL for sponsor
   const getVirtualStandUrl = (sponsor) => {
-    // If sponsor has a slug, use it; otherwise create one from ID
-    const slug = sponsor.slug || sponsor.id.toString().toLowerCase().replace(/\s+/g, '-');
+    // All sponsors should have a slug field, but provide a simple fallback
+    const slug = sponsor.slug || sponsor.id.toString();
     return `/sponsors/${slug}`;
   };
   

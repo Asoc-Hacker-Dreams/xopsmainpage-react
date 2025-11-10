@@ -9,6 +9,16 @@ vi.mock('./AnimationWrapper', () => ({
   default: ({ children }) => <div data-testid="animation-wrapper">{children}</div>
 }));
 
+// Mock useNavigate
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate
+  };
+});
+
 // Mock de los datos de sponsors
 vi.mock('../data/sponsorsData.json', () => ({
   default: {
@@ -246,10 +256,9 @@ describe('SponsorsGrid Component', () => {
   describe('Virtual Stand CTA functionality', () => {
     beforeEach(() => {
       vi.clearAllMocks();
-      // Mock window.open and window.location
+      mockNavigate.mockClear();
+      // Mock window.open
       window.open = vi.fn();
-      delete window.location;
-      window.location = { href: '' };
     });
 
     it('displays CTA button for all sponsors', () => {
@@ -305,7 +314,7 @@ describe('SponsorsGrid Component', () => {
       
       fireEvent.click(defaultButton);
 
-      expect(window.location.href).toBe('/sponsors/beta-systems');
+      expect(mockNavigate).toHaveBeenCalledWith('/sponsors/beta-systems');
     });
 
     it('sponsor logos link to virtual stand', () => {

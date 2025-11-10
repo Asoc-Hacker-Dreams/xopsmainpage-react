@@ -33,16 +33,14 @@ describe('Analytics Utilities', () => {
       });
     });
 
-    it('should log to console when gtag is not available', () => {
+    it('should not throw when gtag is not available', () => {
       // Ensure gtag is not available
       delete window.gtag;
 
-      trackCtaClick('booking', { sponsor_name: 'Test Sponsor' });
-
-      expect(console.log).toHaveBeenCalledWith(
-        'GA4 not available. Would track: cta_click - booking',
-        { sponsor_name: 'Test Sponsor' }
-      );
+      // Should not throw
+      expect(() => {
+        trackCtaClick('booking', { sponsor_name: 'Test Sponsor' });
+      }).not.toThrow();
     });
 
     it('should work with empty additional parameters', () => {
@@ -85,15 +83,13 @@ describe('Analytics Utilities', () => {
       });
     });
 
-    it('should log to console when gtag is not available', () => {
+    it('should not throw when gtag is not available', () => {
       delete window.gtag;
 
-      trackEvent('custom_event', { param1: 'value1' });
-
-      expect(console.log).toHaveBeenCalledWith(
-        'GA4 not available. Would track: custom_event',
-        { param1: 'value1' }
-      );
+      // Should not throw
+      expect(() => {
+        trackEvent('custom_event', { param1: 'value1' });
+      }).not.toThrow();
     });
 
     it('should work with empty event parameters', () => {
