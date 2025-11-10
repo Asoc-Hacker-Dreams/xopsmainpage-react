@@ -1,126 +1,86 @@
 import React from 'react';      
-import amaxop from "../assets/collaborators/amaxop.png";
+import nextdigital from "../assets/collaborators/nextdigital.png";
 import hackerD from "../assets/collaborators/hackerD.jpeg";
 import hackB from "../assets/collaborators/hackB.png";
 import CNCFlogo from "../assets/collaborators/CNCF_MADRID.png";
 import hackBcn from "../assets/collaborators/hackBcn.png";
-import asturC from "../assets/collaborators/asturC.jpeg";
 import madridD from "../assets/collaborators/madridD.png";
-import morterueloC from "../assets/collaborators/morterueloC.png";
-//import upmLogo from "../assets/collaborators/upm.png";
 import devsecconLogo from "../assets/collaborators/devseccon.png";
 import secadminlogo from "../assets/collaborators/secadmin.png";
 //import engineerlogo from "../assets/collaborators/engineergame.jpeg"
 import crackersgameslogo from "../assets/collaborators/crackersgames.png";
 import cybershieldlogo from "../assets/collaborators/cybershield.png";
+import crackersgameslogo from "../assets/collaborators/crackersgames.png";
+import hacktricksLogo from "../assets/collaborators/hacktricks.png";
+import hackbysecurityLogo from "../assets/collaborators/hackbysecurity.png";
+import sirviendoCodigoLogo from "../assets/collaborators/SirviendoCodigologo.png";
 import AnimationWrapper from "./AnimationWrapper";
 
 
 const Collaborators = () => {
   return (
     <>
-      <section id="patros" className="speaker-section ">
+      <section id="colaboradores" role="region" className="speaker-section ">
         <div className="container margin-top">
-          <h2 className="text-center">Gracias al patrocinio de:</h2>
-          <h2 className="text-center">ORO</h2>
+          <h2 className="text-center">Patrocinadores</h2>
+          <h2 className="text-center">PLATINUM</h2>
           <div className="speaker-cards margin-top">
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
               <div className="speaker-img">
-                <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://cybershield.com" target="_blank" rel="noopener noreferrer">
-                    <img src={cybershieldlogo} alt="Logo de Cybershield" style={{ height: '160px'}} />
+                <AnimationWrapper animation="fade-up" duration={1500}>
+                  <a href="https://nextdigital.es" target="_blank" rel="noopener noreferrer">
+                    <img src={nextdigital} alt="Logo de Next Digital" style={{ height: '160px'}} />
                   </a>
                 </AnimationWrapper>
               </div>
-            </div>
-          </div>
-          <h2 className="text-center">PLATA</h2>
-          <div className="speaker-cards margin-top">
-            <div className="speaker1 justify-content-center d-flex justify-around margin-top">
-              <div className="speaker-img">
-                  <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://www.amaxop.com/" target="_blank" rel="noopener noreferrer">
-                      <img src={amaxop} alt="Logo de Amaxop" style={{ height: '150px', width: '150px' }} />
-                    </a>
-                  </AnimationWrapper>
-              </div>
-              {/* <div className="speaker-img">
-                <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://engineergame.com" target="_blank" rel="noopener noreferrer">
-                    <img src={engineerlogo} alt="Logo de EngineerGames" style={{ height: '90px', width: '180px' }} />
-                  </a>
-                </AnimationWrapper>
-              </div> */}
             </div>
           </div>
 
           <hr />
 
-          <h2 className="text-center">Gracias a la colaboración:</h2>
+          <h2 className="text-center">Colaboradores</h2>
+          <p className="text-center">Gracias a la comunidad y todos los colaboradores que hacen posible este evento</p>
           <div className="speaker-cards margin-top">
 
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
               <div className="speaker-img">
-                  <AnimationWrapper animation="fade-right" duration={1500}>
-                    <img src={hackB} alt="Roberto Gonzalez" style={{width: '120px' }} />
-                  </AnimationWrapper>
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <a href="https://hackerdreams.org/" target="_blank" rel="noopener noreferrer">
+                    <img src={hackerD} alt="Logo de Hacker Dreams" style={{width: '120px' }} />
+                  </a>
+                </AnimationWrapper>
+              </div>
+
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <a href="https://hackbcn.org" target="_blank" rel="noopener noreferrer">
+                    <img src={hackBcn} alt="Logo de HackBCN" style={{width: '120px' }} />
+                  </a>
+                </AnimationWrapper>
+              </div>
+
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <img src={CNCFlogo} alt="Logo de Cloud Native Madrid" style={{width: '120px' }} />
+                </AnimationWrapper>
               </div>
 
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://ctf.hackerdreams.org" target="_blank" rel="noopener noreferrer">
-                    <img src={crackersgameslogo} alt="Logo de CrackerGames" style={{width: '120px' }} />
+                    <img src={crackersgameslogo} alt="Logo de Cracker Games" style={{width: '120px' }} />
                   </a>
                 </AnimationWrapper>
               </div>
 
               <div className="speaker-img">
-                  <AnimationWrapper animation="fade-right" duration={1500}>
-                    <a href="https://hackbcn.org" target="_blank" rel="noopener noreferrer">
-                      <img src={hackBcn} alt="Logo de HackBCN" style={{width: '120px' }} />
-                    </a>
-                  </AnimationWrapper>
-              </div>
-
-              <div className="speaker-img">
-                  <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://asturcon.tech" target="_blank" rel="noopener noreferrer">
-                      <img src={asturC} alt="Logo de AsturCon" style={{width: '120px' }} />
-                    </a>
-                  </AnimationWrapper>
-              </div>
-
-              <div className="speaker-img">
-                  <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://madrid.devops.es" target="_blank" rel="noopener noreferrer">
-                      <img src={madridD} alt="Logo de MadridDevOps" style={{width: '120px' }} />
-                    </a>
-                  </AnimationWrapper>
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <img src={hackB} alt="Logo de Hack Buenos Aires" style={{width: '120px' }} />
+                </AnimationWrapper>
               </div>
 
             </div>
             <div className="speaker1 d-flex justify-content-center justify-around margin-top">
-              <div className="speaker-img">
-                <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://www.morteruelo.net/" target="_blank" rel="noopener noreferrer">
-                    <img src={morterueloC} alt="Logo de Morteruelo C" style={{width: '120px' }} />
-                  </a>
-                </AnimationWrapper>
-              </div>
-              <div className="speaker-img">
-                <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://hackerdreams.org/" target="_blank" rel="noopener noreferrer">
-                    <img src={hackerD} alt="Logo de Hacker D" style={{width: '120px' }} />
-                  </a>
-                </AnimationWrapper>
-              </div>
-              {/* <div className="speaker-img">
-                <AnimationWrapper animation="fade-left" duration={1500}>
-                  <a href="https://www.upm.es/" target="_blank" rel="noopener noreferrer">
-                    <img src={upmLogo} alt="Logo de la UPM" style={{width: '120px' }} />
-                  </a>
-                </AnimationWrapper>
-              </div> */}
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://snyk.io/community/" target="_blank" rel="noopener noreferrer">
@@ -128,26 +88,38 @@ const Collaborators = () => {
                   </a>
                 </AnimationWrapper>
               </div>
-            </div>
-            <div className="speaker1 d-flex justify-content-center justify-around margin-top">
               <div className="speaker-img">
-                  <AnimationWrapper animation="fade-left" duration={1500}>
-                    <a href="https://secadmin.es" target="_blank" rel="noopener noreferrer">
-                      <img src={secadminlogo} alt="Logo de SecAdmin" style={{width: '120px' }} />
-                    </a>
-                  </AnimationWrapper>
-                </div>
-                <div className="speaker-img">
-                  <AnimationWrapper animation="fade-right" duration={1500}>
-                    <img src={CNCFlogo} alt="Logo CNCF" style={{width: '120px' }} />
-                  </AnimationWrapper>
-                </div>
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <a href="https://madrid.devops.es" target="_blank" rel="noopener noreferrer">
+                    <img src={madridD} alt="Logo de Madrid DevOps" style={{width: '120px' }} />
+                  </a>
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <a href="https://book.hacktricks.xyz" target="_blank" rel="noopener noreferrer">
+                    <img src={hacktricksLogo} alt="Logo de HackTricks" style={{width: '120px' }} />
+                  </a>
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <img src={hackbysecurityLogo} alt="Logo de Hack By Security" style={{width: '120px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <a href="https://sirviendo-codigo.dev" target="_blank" rel="noopener noreferrer">
+                    <img src={sirviendoCodigoLogo} alt="Logo de Sirviendo Codigo" style={{width: '120px' }} />
+                  </a>
+                </AnimationWrapper>
               </div>
             </div>
+          </div>
         </div>
       </section>
     </>
   );
-};   
+};
 
 export default Collaborators;
