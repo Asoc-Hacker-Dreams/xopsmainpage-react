@@ -118,7 +118,9 @@ describe('Analytics Utilities', () => {
       });
     });
 
-    it('should not throw when gtag is not available', () => {
+    it('should warn when gtag is not available', () => {
+      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      
       const params = {
         sponsor_id: 'acme-corp-2025',
         tier: 'platinum'

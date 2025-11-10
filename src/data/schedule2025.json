@@ -112,17 +112,6 @@
     "track": "hyperscalers"
   },
   {
-    "speaker": "Pablo Sánchez Carmona",
-    "talk": "Shift Left, Scale Right - Securizando la infraestructura de AWS a escala con DevSecOps",
-    "description": "Descubre cómo adoptar una mentalidad DevSecOps transforma la protección de la infraestructura en AWS de un cuello de botella en una ventaja competitiva, permitiendo a los equipos desplegar de forma segura siendo ágiles y escalables. Esta sesión explora la intersección crítica entre automatización, infraestructura como código (IaC) y cultura DevOps en la gestión de entornos complejos. Examinaremos cómo las organizaciones gestionan exitosamente miles de recursos en AWS en entornos multi-cuenta sin sacrificar seguridad ni frenar la innovación. Exploraremos estrategias prácticas para implementar políticas como código, validación automática de requisitos de seguridad y red, y monitoreo continuo de la infraestructura. Al final de esta sesión, queremos que te lleves patrones accionables para construir infraestructura que pueda crecer de forma segura junto con tus necesidades de negocio, demostrando que seguridad y velocidad no son conceptos opuestos cuando haces 'shift left' y 'scale right'.",
-    "timeRaw": "2025-11-21 14:30:00",
-    "timeISO": "2025-11-21T14:30",
-    "durationMinutes": 40,
-    "durationHuman": "40m",
-    "room": "Hyperscalers",
-    "track": "hyperscalers"
-  },
-  {
     "speaker": "Cleyra Uzcategui",
     "talk": "Web UI: What’s New and What’s Next",
     "description": "The web platform is evolving rapidly, and staying ahead of new UI capabilities is crucial for modern DevOps workflows. In this session, we’ll explore how the latest advances in CSS and HTML can streamline front-end development, improve developer experience, and help teams deliver responsive, accessible, and performant interfaces faster and with less friction.\n\nGet a high-level look at some of the most exciting and impactful UI features that have recently landed — or are just around the corner — and learn how they can fit into your delivery pipelines and workflows. From better defaults for accessibility to powerful new responsive design tools, see how the modern web platform supports shipping better applications, faster.\n\nPerfect for developers, DevOps engineers, and tech leads who want to keep their front-end practices modern, efficient, and aligned with today’s best delivery standards.",
@@ -154,6 +143,18 @@
     "durationHuman": "50m",
     "room": "Aula magna",
     "track": "main"
+  },
+  {
+    "speaker": "Next Digital",
+    "talk": "Keynote BSides Madrid - Innovación en Ciberseguridad",
+    "description": "Next Digital, patrocinador oficial de la X-Ops Conference Madrid 2025, presenta el keynote de apertura del track BSides Madrid. En esta sesión inaugural, exploraremos las tendencias más importantes en ciberseguridad, las innovaciones tecnológicas que están transformando el sector y cómo las empresas pueden prepararse para los desafíos de seguridad del futuro. Una visión estratégica que establecerá el contexto perfecto para todas las sesiones técnicas especializadas que seguirán en el track BSides.",
+    "timeRaw": "2025-11-22 10:00:00",
+    "timeISO": "2025-11-22T10:00",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Bsides Madrid",
+    "type": "keynote",
+    "track": "bsides"
   },
   {
     "speaker": "Carlos Polop",
@@ -223,8 +224,8 @@
   },
   {
     "speaker": "Jeff Fan",
-    "talk": "Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards",
-    "description": "Most teams either overpay for a single GPU vendor or juggle two stacks that never cooperate. We’ll show a third path: a weight-aware scheduler that turns NVIDIA’s quick-burst horsepower and AMD’s memory-rich endurance into one seamless relay. You’ll watch a live demo where prefill tokens sprint on L40S cards, decode tokens cruise on MI300X nodes, and autoscaling expands lanes as the crowd pours in—cutting P90 latency 45 % and per-node cost 38 %. We’ll hand out Helm/YAML templates, Prometheus dashboards, and a spot-vs-reserved pricing calculator so you can coach your own hybrid dream team back home.",
+    "talk": "Stop Treating LLMs as a RESTful API",
+    "description": "Why do PoCs run smoothly while launch day implodes? Because LLM traffic is a streaming, state-heavy beast that breaks every REST assumption: requests aren’t stateless, payloads snowball with context, and GPU memory melts under token floods. We’ll map the three checkpoints where most projects stall—context explosion, batch backfires, cache chaos—and show how LLM-D’s open-source sharding plus a hybrid NVIDIA/AMD node pool turns each choke point into a green light. You’ll see live before-and-after dashboards, get a YAML ladder you can drop into any cluster, and learn a back-of-the-napkin formula to keep cost per 1 000 tokens under control.",
     "timeRaw": "2025-11-22 12:50:00",
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
@@ -291,8 +292,8 @@
     "speaker": "Alberto Lobato",
     "talk": "Ciberseguridad y OT. ¿Friends or enemies?",
     "description": "Los entornos de Tecnología Operativa (OT) están omnipresentes en nuestra vida diaria, desde los sistemas de control de los trenes que tomamos cada mañana, hasta la infraestructura energética que alimenta nuestros hogares y los procesos industriales que producen los bienes que consumimos. Estos entornos son críticos para el funcionamiento de nuestra sociedad y, por lo tanto, su seguridad es de vital importancia.En esta charla, exploraremos los desafíos específicos de la ciberseguridad en entornos OT y cómo difiere de la ciberseguridad convencional en entornos de Tecnología de la Información (IT). Analizaremos las particularidades de la ciberseguridad OT, incluyendo los riesgos y amenazas únicos que enfrentan estos sistemas.A través de ejemplos concretos de proyectos y ofertas reales en los que he trabajado como experto en ciberseguridad en el sector ferroviario, ilustraré el proceso de implementación de medidas de seguridad efectivas conforme a la normativa IEC 62443. Esta charla ofrecerá una visión práctica y experta sobre cómo proteger los entornos OT críticos y garantizar la resiliencia de nuestra infraestructura industrial.",
-    "timeRaw": "2025-11-22 16:50:00",
-    "timeISO": "2025-11-22T16:50",
+    "timeRaw": "2025-11-22 14:10:00",
+    "timeISO": "2025-11-22T14:10",
     "durationMinutes": 50,
     "durationHuman": "50m",
     "room": "Bsides Madrid",

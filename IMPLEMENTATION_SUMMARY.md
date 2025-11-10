@@ -15,7 +15,7 @@
 
 **Key Features:**
 - ✅ Unified interface: `getAgenda()`, `getTalk()`, `getSpeakers()`, `getSpeaker()`
-- ✅ JSON Provider: Reads from `schedule2025.json`, normalizes data, caches in IndexedDB
+- ✅ JSON Provider: Reads from `schedule.json`, normalizes data, caches in IndexedDB
 - ✅ CMS Provider: Placeholder implementation ready for REST/GraphQL integration
 - ✅ Data normalization: Automatic ID and slug generation
 - ✅ Offline support: 24-hour cache with IndexedDB
@@ -114,7 +114,7 @@ IndexedDB  REST/GraphQL API
 ```env
 VITE_DATA_SOURCE=json
 ```
-- Reads from `src/data/schedule2025.json`
+- Reads from `public/data/schedule.json` (served at `/data/schedule.json`)
 - Caches in IndexedDB
 - Works offline
 
@@ -131,7 +131,7 @@ VITE_CMS_API_URL=https://your-cms.com/api
 
 **Before (Direct JSON Import):**
 ```jsx
-import scheduleData from '../../data/schedule2025.json';
+import scheduleData from '../../data/schedule.json';
 
 const Events = () => {
   // Use scheduleData directly
@@ -157,7 +157,7 @@ const Events = () => {
 ### ✅ Given NEXT_PUBLIC_DATA_SOURCE=json When renderizo agenda Then carga datos desde schedule.json vía DAL/IDB
 
 **Status:** ✅ IMPLEMENTED
-- Data loads from `schedule2025.json`
+- Data loads from `schedule.json`
 - Normalizes and stores in IndexedDB
 - Serves from IndexedDB cache
 - 24-hour cache expiration

@@ -1,76 +1,220 @@
 [
   {
-    "id": "acme-corp-2025",
-    "slug": "acme-corp",
-    "name": "ACME Corporation",
+    "id": "cybershield-2025",
+    "slug": "cybershield",
+    "name": "Cybershield",
     "tier": "platinum",
-    "logoUrl": "https://example.com/logos/acme-corp.png",
-    "shortDesc": "Líder mundial en soluciones empresariales de DevOps y Cloud Infrastructure",
-    "longDesc": "ACME Corporation es una empresa líder en el desarrollo de herramientas y plataformas de DevOps que ayudan a las organizaciones a acelerar su transformación digital. Con más de 20 años de experiencia, ACME proporciona soluciones innovadoras para la automatización, monitorización y gestión de infraestructuras cloud.",
-    "website": "https://www.acmecorp.com",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/cybershield.png",
+    "shortDesc": "Cybershield es una empresa líder en soluciones de ciberseguridad, comprometida con la protección de sistemas y datos críticos. Con años de experiencia en el sector, ofrecemos servicios de seguridad in...",
+    "longDesc": "Cybershield es una empresa líder en soluciones de ciberseguridad, comprometida con la protección de sistemas y datos críticos. Con años de experiencia en el sector, ofrecemos servicios de seguridad integral para empresas de todos los tamaños.",
+    "website": "https://cybershield.com",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
     "socials": [
       {
-        "type": "x",
-        "url": "https://x.com/acmecorp"
+        "type": "twitter",
+        "url": "https://twitter.com/cybershield"
       },
       {
         "type": "linkedin",
-        "url": "https://linkedin.com/company/acmecorp"
-      },
-      {
-        "type": "github",
-        "url": "https://github.com/acmecorp"
+        "url": "https://linkedin.com/company/cybershield"
       }
     ],
     "showcase": {
       "ctaPrimary": {
-        "label": "Contactar",
-        "href": "/sponsors/acme-corp#lead"
+        "label": "Visitar sitio web",
+        "href": "https://cybershield.com"
       },
       "ctaSecondary": {
-        "label": "Descargar dossier",
-        "href": "https://www.acmecorp.com/resources/xops-2025-dossier.pdf"
+        "label": "Contáctanos",
+        "href": "https://cybershield.com/contacto"
       }
-    },
-    "booking": {
-      "type": "external",
-      "url": "https://calendly.com/acmecorp/xops-meeting"
-    },
-    "hubspot": {
-      "formGuid": "12345678-1234-1234-1234-123456789abc"
-    },
-    "analytics": {
-      "source": "ga4",
-      "utm_default": {
-        "source": "xops",
-        "medium": "sponsor",
-        "campaign": "xops2025"
+    }
+  },
+  {
+    "id": "amaxop-2025",
+    "slug": "amaxop",
+    "name": "Amaxop",
+    "tier": "gold",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/amaxop.png",
+    "shortDesc": "Amaxop proporciona soluciones innovadoras en tecnología y desarrollo de software. Nos especializamos en transformación digital y servicios en la nube para impulsar el crecimiento empresarial.",
+    "longDesc": null,
+    "website": "https://www.amaxop.com/",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Conocer más",
+        "href": "https://www.amaxop.com/"
       }
-    },
-    "updatedAt": "2025-11-04T08:00:00Z",
+    }
+  },
+  {
+    "id": "hackerb-2025",
+    "slug": "hackerb",
+    "name": "Hacker B",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/hackB.png",
+    "shortDesc": "Comunidad de hackers éticos dedicada a promover la seguridad informática y el conocimiento en ciberseguridad a través de eventos, talleres y competiciones.",
+    "longDesc": null,
+    "website": "#",
+    "updatedAt": "2025-11-05T04:00:00Z",
     "version": "1.0"
   },
   {
-    "id": "techsolutions-inc-2025",
-    "slug": "techsolutions-inc",
-    "name": "TechSolutions Inc",
-    "tier": "gold",
-    "logoUrl": "https://example.com/logos/techsolutions.png",
-    "shortDesc": "Innovación en automatización y CI/CD para equipos ágiles",
-    "website": "https://www.techsolutions.com",
-    "socials": [
-      {
-        "type": "linkedin",
-        "url": "https://linkedin.com/company/techsolutions"
-      }
-    ],
+    "id": "crackersgames-2025",
+    "slug": "crackersgames",
+    "name": "Crackers Games",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/crackersgames.png",
+    "shortDesc": "Plataforma de CTF (Capture The Flag) y desafíos de seguridad informática. Organizamos competiciones y eventos para desarrollar habilidades en ciberseguridad.",
+    "longDesc": null,
+    "website": "https://ctf.hackerdreams.org",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
     "showcase": {
       "ctaPrimary": {
-        "label": "Más información",
-        "href": "/sponsors/techsolutions-inc#info"
+        "label": "Ver CTF",
+        "href": "https://ctf.hackerdreams.org"
       }
-    },
-    "updatedAt": "2025-11-03T10:30:00Z",
+    }
+  },
+  {
+    "id": "hackbcn-2025",
+    "slug": "hackbcn",
+    "name": "HackBCN",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/hackBcn.png",
+    "shortDesc": "Comunidad de hackers y profesionales de seguridad de Barcelona. Organizamos eventos, meetups y conferencias sobre ciberseguridad y hacking ético.",
+    "longDesc": null,
+    "website": "https://hackbcn.org",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Únete a la comunidad",
+        "href": "https://hackbcn.org"
+      }
+    }
+  },
+  {
+    "id": "asturcon-2025",
+    "slug": "asturcon",
+    "name": "AsturCon",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/asturC.jpeg",
+    "shortDesc": "Conferencia de tecnología en Asturias enfocada en DevOps, desarrollo de software y cultura tech. Reunimos a profesionales de toda España.",
+    "longDesc": null,
+    "website": "https://asturcon.tech",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Visitar AsturCon",
+        "href": "https://asturcon.tech"
+      }
+    }
+  },
+  {
+    "id": "madrid-devops-2025",
+    "slug": "madrid-devops",
+    "name": "Madrid DevOps",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/madridD.png",
+    "shortDesc": "Comunidad de DevOps en Madrid. Organizamos meetups mensuales, talleres y eventos para compartir conocimiento sobre prácticas DevOps y cultura de colaboración.",
+    "longDesc": null,
+    "website": "https://madrid.devops.es",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Unirse a meetups",
+        "href": "https://madrid.devops.es"
+      }
+    }
+  },
+  {
+    "id": "morteruelo-2025",
+    "slug": "morteruelo",
+    "name": "Morteruelo Community",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/morterueloC.png",
+    "shortDesc": "Comunidad tecnológica dedicada a promover el conocimiento en desarrollo de software, DevOps y buenas prácticas de ingeniería.",
+    "longDesc": null,
+    "website": "https://www.morteruelo.net/",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Conocer más",
+        "href": "https://www.morteruelo.net/"
+      }
+    }
+  },
+  {
+    "id": "hacker-dreams-2025",
+    "slug": "hacker-dreams",
+    "name": "Hacker Dreams",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/hackerD.jpeg",
+    "shortDesc": "Organización dedicada a fomentar el hacking ético y la seguridad informática a través de eventos, competiciones y educación en ciberseguridad.",
+    "longDesc": null,
+    "website": "https://hackerdreams.org/",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Explorar",
+        "href": "https://hackerdreams.org/"
+      }
+    }
+  },
+  {
+    "id": "devseccon-2025",
+    "slug": "devseccon",
+    "name": "DevSecCon",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/devseccon.png",
+    "shortDesc": "Conferencia global enfocada en DevSecOps y seguridad en el desarrollo de software. Promovemos la integración de seguridad en el ciclo de vida del desarrollo.",
+    "longDesc": null,
+    "website": "https://snyk.io/community/",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Ver comunidad",
+        "href": "https://snyk.io/community/"
+      }
+    }
+  },
+  {
+    "id": "secadmin-2025",
+    "slug": "secadmin",
+    "name": "SecAdmin",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/secadmin.png",
+    "shortDesc": "Plataforma de recursos y formación en seguridad y administración de sistemas. Ofrecemos contenido actualizado sobre ciberseguridad y mejores prácticas.",
+    "longDesc": null,
+    "website": "https://secadmin.es",
+    "updatedAt": "2025-11-05T04:00:00Z",
+    "version": "1.0",
+    "showcase": {
+      "ctaPrimary": {
+        "label": "Acceder al portal",
+        "href": "https://secadmin.es"
+      }
+    }
+  },
+  {
+    "id": "cncf-madrid-2025",
+    "slug": "cncf-madrid",
+    "name": "CNCF Madrid",
+    "tier": "community",
+    "logoUrl": "https://xopsconference.com/src/assets/collaborators/CNCF_MADRID.png",
+    "shortDesc": "Capítulo de Madrid de la Cloud Native Computing Foundation. Comunidad dedicada a tecnologías cloud-native, Kubernetes y ecosistema CNCF.",
+    "longDesc": null,
+    "website": "#",
+    "updatedAt": "2025-11-05T04:00:00Z",
     "version": "1.0"
   }
 ]

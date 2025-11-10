@@ -39,14 +39,14 @@ src/pages/archive/
 
 3. **madrid_friday.jsx** (`src/pages/archive/2025/madrid_friday.jsx`)
    - Friday, November 21, 2025 schedule
-   - **Dynamically imports** `schedule2025.json`
+   - **Dynamically imports** `schedule.json` from public data
    - Filters events for 2025-11-21
    - Auto-sorts events chronologically
    - Displays speaker, talk title, time, and duration from JSON
 
 4. **madrid_saturday.jsx** (`src/pages/archive/2025/madrid_saturday.jsx`)
    - Saturday, November 22, 2025 schedule
-   - **Dynamically imports** `schedule2025.json`
+   - **Dynamically imports** `schedule.json` from public data
    - Filters events for 2025-11-22
    - Auto-sorts events chronologically
    - Displays speaker, talk title, time, and duration from JSON
@@ -77,7 +77,7 @@ Updated navbar dropdown menu to include 2025:
 
 ## Data Source
 
-The 2025 schedule uses `src/data/schedule2025.json` as the single source of truth:
+The 2025 schedule uses `public/data/schedule.json` as the single source of truth:
 - Contains all speakers and their talks
 - Includes timing information (ISO format)
 - Includes duration for each talk
