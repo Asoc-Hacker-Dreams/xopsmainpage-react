@@ -224,8 +224,8 @@
   },
   {
     "speaker": "Jeff Fan",
-    "talk": "Make Rival GPUs Play Nice—Slash Latency 45 % Without Buying More Cards",
-    "description": "Most teams either overpay for a single GPU vendor or juggle two stacks that never cooperate. We’ll show a third path: a weight-aware scheduler that turns NVIDIA’s quick-burst horsepower and AMD’s memory-rich endurance into one seamless relay. You’ll watch a live demo where prefill tokens sprint on L40S cards, decode tokens cruise on MI300X nodes, and autoscaling expands lanes as the crowd pours in—cutting P90 latency 45 % and per-node cost 38 %. We’ll hand out Helm/YAML templates, Prometheus dashboards, and a spot-vs-reserved pricing calculator so you can coach your own hybrid dream team back home.",
+    "talk": "Stop Treating LLMs as a RESTful API",
+    "description": "Why do PoCs run smoothly while launch day implodes? Because LLM traffic is a streaming, state-heavy beast that breaks every REST assumption: requests aren’t stateless, payloads snowball with context, and GPU memory melts under token floods. We’ll map the three checkpoints where most projects stall—context explosion, batch backfires, cache chaos—and show how LLM-D’s open-source sharding plus a hybrid NVIDIA/AMD node pool turns each choke point into a green light. You’ll see live before-and-after dashboards, get a YAML ladder you can drop into any cluster, and learn a back-of-the-napkin formula to keep cost per 1 000 tokens under control.",
     "timeRaw": "2025-11-22 12:50:00",
     "timeISO": "2025-11-22T12:50",
     "durationMinutes": 45,
