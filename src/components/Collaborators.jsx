@@ -10,6 +10,7 @@ import crackersgameslogo from "../assets/collaborators/crackersgames.png";
 import hacktricksLogo from "../assets/collaborators/hacktricks.png";
 import hackbysecurityLogo from "../assets/collaborators/hackbysecurity.png";
 import sirviendoCodigoLogo from "../assets/collaborators/SirviendoCodigologo.png";
+import snykLogo from "../assets/collaborators/snyklogo.png";
 import AnimationWrapper from "./AnimationWrapper";
 
 
@@ -19,13 +20,51 @@ const Collaborators = () => {
       <section id="colaboradores" role="region" className="speaker-section ">
         <div className="container margin-top">
           <h2 className="text-center">Patrocinadores</h2>
+          <br></br>
+          <br></br>
+          <br></br>
+
           <h2 className="text-center">PLATINUM</h2>
           <div className="speaker-cards margin-top">
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-up" duration={1500}>
                   <a href="https://nextdigital.es" target="_blank" rel="noopener noreferrer">
-                    <img src={nextdigital} alt="Logo de Next Digital" style={{ height: '160px'}} />
+                    <img 
+                      src={nextdigital} 
+                      alt="Logo de Next Digital" 
+                      style={{ 
+                        maxHeight: '240px', 
+                        maxWidth: '450px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
+                  </a>
+                </AnimationWrapper>
+              </div>
+            </div>
+          </div>
+
+
+          <br></br>
+          <br></br>
+          <br></br>
+          <h2 className="text-center">SILVER</h2>
+          <div className="speaker-cards margin-top">
+            <div className="speaker1 justify-content-center d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <a href="https://snyk.io" target="_blank" rel="noopener noreferrer">
+                    <img src={snykLogo} alt="Logo de Snyk" style={{ height: '150px', width: '150px' }} />
+                  </a>
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <a href="https://hackbysecurity.com" target="_blank" rel="noopener noreferrer">
+                    <img src={hackbysecurityLogo} alt="Logo de Hack By Security" style={{ height: '150px', width: '150px' }} />
                   </a>
                 </AnimationWrapper>
               </div>
@@ -57,7 +96,9 @@ const Collaborators = () => {
 
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-right" duration={1500}>
-                  <img src={CNCFlogo} alt="Logo de Cloud Native Madrid" style={{width: '120px' }} />
+                  <a href="https://community.cncf.io/cloud-native-madrid/" target="_blank" rel="noopener noreferrer">
+                    <img src={CNCFlogo} alt="Logo de Cloud Native Madrid" style={{width: '120px' }} />
+                  </a>
                 </AnimationWrapper>
               </div>
 
@@ -96,11 +137,6 @@ const Collaborators = () => {
                   <a href="https://book.hacktricks.xyz" target="_blank" rel="noopener noreferrer">
                     <img src={hacktricksLogo} alt="Logo de HackTricks" style={{width: '120px' }} />
                   </a>
-                </AnimationWrapper>
-              </div>
-              <div className="speaker-img">
-                <AnimationWrapper animation="fade-right" duration={1500}>
-                  <img src={hackbysecurityLogo} alt="Logo de Hack By Security" style={{width: '120px' }} />
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">
