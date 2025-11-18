@@ -4,6 +4,7 @@ import juanillaA from "../assets/organizers/juanillaA.jpg";
 import juanV from "../assets/organizers/juanV.jpg";
 import oscarC from "../assets/organizers/oscarC.png";
 import claraC from "../assets/organizers/claraC.jpg"
+import armandoF from "../assets/organizers/AmandoF.jpg"
 import { Helmet } from 'react-helmet-async';  // añado despues de instalar react helmet
 
 import AnimationWrapper from "./AnimationWrapper";
@@ -208,6 +209,31 @@ const Organizers = () => {
                   Ingeniera de Ciberseguridad | Líder Valkyrias | Mentora STEM
                   </p>
                   
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>Armando Felipe Fuentes Denis</h3>
+                  <p>
+                    <strong>Cloud Architect & DevSecOps</strong>
+                  </p>
+                  <p>
+                    Arquitecto cloud especializado en AWS, Kubernetes, Terraform y FinOps, enfocado en automatización, alta disponibilidad y seguridad.
+                    <br />
+                    Fundador de SysCu y de la comunidad SysAdminsdeCuba, donde impulsa la adopción de buenas prácticas cloud y cultura DevOps.
+                  </p>
+                  <p>
+                    <strong>Redes:</strong><br />
+                    LinkedIn: <a href="https://www.linkedin.com/in/armandofcom" target="_blank">in/armandofcom</a>
+                  </p>
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={armandoF} alt="Armando Felipe Fuentes Denis" style={{ height: '331px', width: '346px' }} />
                 </AnimationWrapper>
               </div>
             </div>
