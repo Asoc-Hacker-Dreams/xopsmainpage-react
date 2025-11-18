@@ -57,14 +57,34 @@ const Collaborators = () => {
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://snyk.io" target="_blank" rel="noopener noreferrer">
-                    <img src={snykLogo} alt="Logo de Snyk" style={{ height: '150px', width: '150px' }} />
+                    <img 
+                      src={snykLogo} 
+                      alt="Logo de Snyk" 
+                      style={{ 
+                        maxHeight: '180px', 
+                        maxWidth: '180px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <a href="https://hackbysecurity.com" target="_blank" rel="noopener noreferrer">
-                    <img src={hackbysecurityLogo} alt="Logo de Hack By Security" style={{ height: '150px', width: '150px' }} />
+                    <img 
+                      src={hackbysecurityLogo} 
+                      alt="Logo de Hack By Security" 
+                      style={{ 
+                        maxHeight: '180px', 
+                        maxWidth: '180px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
@@ -81,7 +101,17 @@ const Collaborators = () => {
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <a href="https://hackerdreams.org/" target="_blank" rel="noopener noreferrer">
-                    <img src={hackerD} alt="Logo de Hacker Dreams" style={{width: '120px' }} />
+                    <img 
+                      src={hackerD} 
+                      alt="Logo de Hacker Dreams" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
@@ -89,7 +119,17 @@ const Collaborators = () => {
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://hackbcn.org" target="_blank" rel="noopener noreferrer">
-                    <img src={hackBcn} alt="Logo de HackBCN" style={{width: '120px' }} />
+                    <img 
+                      src={hackBcn} 
+                      alt="Logo de HackBCN" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
@@ -97,7 +137,17 @@ const Collaborators = () => {
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <a href="https://community.cncf.io/cloud-native-madrid/" target="_blank" rel="noopener noreferrer">
-                    <img src={CNCFlogo} alt="Logo de Cloud Native Madrid" style={{width: '120px' }} />
+                    <img 
+                      src={CNCFlogo} 
+                      alt="Logo de Cloud Native Madrid" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
@@ -105,14 +155,34 @@ const Collaborators = () => {
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://ctf.hackerdreams.org" target="_blank" rel="noopener noreferrer">
-                    <img src={crackersgameslogo} alt="Logo de Cracker Games" style={{width: '120px' }} />
+                    <img 
+                      src={crackersgameslogo} 
+                      alt="Logo de Cracker Games" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
 
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-right" duration={1500}>
-                  <img src={hackB} alt="Logo de Hack Buenos Aires" style={{width: '120px' }} />
+                  <img 
+                    src={hackB} 
+                    alt="Logo de Hack Buenos Aires" 
+                    style={{ 
+                      maxHeight: '150px', 
+                      maxWidth: '150px', 
+                      width: 'auto', 
+                      height: 'auto',
+                      objectFit: 'contain'
+                    }} 
+                  />
                 </AnimationWrapper>
               </div>
 
@@ -121,28 +191,68 @@ const Collaborators = () => {
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://snyk.io/community/" target="_blank" rel="noopener noreferrer">
-                    <img src={devsecconLogo} alt="Logo de DevSecCon" style={{width: '120px' }} />
+                    <img 
+                      src={devsecconLogo} 
+                      alt="Logo de DevSecCon" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-right" duration={1500}>
                   <a href="https://madrid.devops.es" target="_blank" rel="noopener noreferrer">
-                    <img src={madridD} alt="Logo de Madrid DevOps" style={{width: '120px' }} />
+                    <img 
+                      src={madridD} 
+                      alt="Logo de Madrid DevOps" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://book.hacktricks.xyz" target="_blank" rel="noopener noreferrer">
-                    <img src={hacktricksLogo} alt="Logo de HackTricks" style={{width: '120px' }} />
+                    <img 
+                      src={hacktricksLogo} 
+                      alt="Logo de HackTricks" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
               <div className="speaker-img">
                 <AnimationWrapper animation="fade-left" duration={1500}>
                   <a href="https://sirviendo-codigo.dev" target="_blank" rel="noopener noreferrer">
-                    <img src={sirviendoCodigoLogo} alt="Logo de Sirviendo Codigo" style={{width: '120px' }} />
+                    <img 
+                      src={sirviendoCodigoLogo} 
+                      alt="Logo de Sirviendo Codigo" 
+                      style={{ 
+                        maxHeight: '150px', 
+                        maxWidth: '150px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
                   </a>
                 </AnimationWrapper>
               </div>
