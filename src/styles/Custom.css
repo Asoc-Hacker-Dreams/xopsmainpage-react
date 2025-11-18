@@ -177,11 +177,21 @@ a{
 width: 400px;
 border-radius: 10px;
 }
+
+/* Logo containers for sponsors and collaborators */
+.speaker-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+}
+
 .margin-top{
   margin-top: 5rem;
 }
 .speaker1{
   gap: 4rem;
+  align-items: center;
 }
 
 .schedule-section {
