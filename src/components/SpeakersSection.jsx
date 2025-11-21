@@ -29,6 +29,7 @@ import davidA from "../assets/speakers/davidA.png";
 import luisG from "../assets/speakers/luisG.png";
 import dreg from "../assets/speakers/dreg.jpeg";
 import albertoL from "../assets/speakers/albertoL.jpg";
+import davidS from "../assets/speakers/davidS.png";
 import awsLogo from "../assets/logos/aws-logo.png";
 import suseLogo from "../assets/logos/suse-logo.png";
 import redhatLogo from "../assets/logos/redhat-logo.png";
@@ -635,6 +636,30 @@ const SpeakersSection = () => {
                   </p>
                   <p>
                     <strong>Charla: Ciberseguridad y OT. ¿Friends or enemies?</strong>
+                  </p>
+                </AnimationWrapper>
+              </div>
+            </div>
+
+            <div className="speaker1 d-flex justify-around margin-top">
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <img src={davidS} alt="David Sastre" style={{ height: '250px', width: '280px' }} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-content">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <h3>David Sastre</h3>
+                  <p>Staff Product Security Engineer at Nexthink</p>
+                  <p>
+                    David Sastre cuenta con una amplia experiencia profesional en seguridad y arquitectura de la nube. 
+                    Actualmente, trabaja como Staff Product Security Engineer en Nexthink. Trabajó como Principal Product Security Engineer en Red Hat durante 7 años, donde lideró iniciativas en seguridad de productos y adopción de datos abiertos enlazados para mejorar la gestión de amenazas y vulnerabilidades.
+                  </p>
+                  <p>
+                    Ha desempeñado roles destacados como Senior Product Security Engineer y Cloud and DevOps Senior Architect. Con más de 7 años de experiencia, sus habilidades abarcan desde Information Security, Red Hat Enterprise Linux (RHEL), y OpenShift hasta Network Security, Threat Modeling, y ciberseguridad.
+                  </p>
+                  <p>
+                    <strong>Charla: Unikernels: The Next Frontier</strong>
                   </p>
                 </AnimationWrapper>
               </div>
