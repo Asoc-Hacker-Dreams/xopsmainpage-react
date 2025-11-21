@@ -11,6 +11,7 @@ import hacktricksLogo from "../assets/collaborators/hacktricks.png";
 import hackbysecurityLogo from "../assets/collaborators/hackbysecurity.png";
 import sirviendoCodigoLogo from "../assets/collaborators/SirviendoCodigologo.png";
 import snykLogo from "../assets/collaborators/snyklogo.png";
+import amaxopLogo from "../assets/collaborators/amaxop.png";
 import AnimationWrapper from "./AnimationWrapper";
 
 
@@ -60,6 +61,23 @@ const Collaborators = () => {
                     <img 
                       src={snykLogo} 
                       alt="Logo de Snyk" 
+                      style={{ 
+                        maxHeight: '180px', 
+                        maxWidth: '180px', 
+                        width: 'auto', 
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }} 
+                    />
+                  </a>
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-up" duration={1500}>
+                  <a href="https://amaxop.com" target="_blank" rel="noopener noreferrer">
+                    <img 
+                      src={amaxopLogo} 
+                      alt="Logo de Amaxop" 
                       style={{ 
                         maxHeight: '180px', 
                         maxWidth: '180px', 
