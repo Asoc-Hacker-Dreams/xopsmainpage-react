@@ -202,9 +202,9 @@
     "track": "main"
   },
   {
-    "speaker": "Juan Vicente Herrera Ruiz de Alejo",
-    "talk": "Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI",
-    "description": "Esta sesión explora cómo integrar el threat modeling en el ciclo de vida de MLOps utilizando OpenShift AI, alineando la seguridad con cada fase: desde la ingesta de datos hasta el despliegue del modelo. Se presentará el Red Hat Secure Development Lifecycle (SDLC)  y se analizarán aspectos específicos de la plataforma (por ejemplo, registros de modelos o endpoints de inferencia). La charla también aborda amenazas reales en entornos de ML, como el envenenamiento de datos y los ataques adversariales, y propone prácticas de diseño seguro para equipos que trabajan sobre OpenShift AI.",
+    "speaker": "David Sastre",
+    "talk": "Unikernels: The Next Frontier",
+    "description": "Why the assumptions of a 70 year old model are not fit for the Cloud",
     "timeRaw": "2025-11-22 11:30:00",
     "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
