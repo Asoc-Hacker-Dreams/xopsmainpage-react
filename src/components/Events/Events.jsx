@@ -19,9 +19,9 @@ const Events = () => {
   // Define track configuration
   const trackConfig = {
     all: { label: 'Todos los Tracks', filter: () => true },
-    main: { label: 'Aula magna', filter: (event) => event.track === 'main' },
-    hyperscalers: { label: 'Hyperscalers', filter: (event) => event.track === 'hyperscalers' },
-    bsides: { label: 'Bsides Madrid', filter: (event) => event.track === 'bsides' }
+    main: { label: 'Aula magna', filter: (event) => event.track === 'main' || event.type === 'break' },
+    hyperscalers: { label: 'Hyperscalers', filter: (event) => event.track === 'hyperscalers' || event.type === 'break' },
+    bsides: { label: 'Bsides Madrid', filter: (event) => event.track === 'bsides' || event.type === 'break' }
   };
 
   // Format day label
@@ -48,19 +48,30 @@ const Events = () => {
   };
 
   // Filter events by day and track, then organize by column
-  const { leftColumnEvents, rightColumnEvents, showTwoColumns } = useMemo(() => {
+  const { leftColumnEvents, rightColumnEvents, showTwoColumns, singleColumnEvents } = useMemo(() => {
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
       .filter(trackConfig[selectedTrack].filter)
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
 
-    const left = dayEvents.filter(event => event.track === 'main');
-    const right = dayEvents.filter(event => event.track !== 'main');
+    // Separate breaks from regular events
+    const breaks = dayEvents.filter(event => event.type === 'break');
+    const regularEvents = dayEvents.filter(event => event.type !== 'break');
 
-    // Show two columns only when "Todos los Tracks" is selected and both columns have events
+    const left = regularEvents.filter(event => event.track === 'main');
+    const right = regularEvents.filter(event => event.track !== 'main');
+
+    // Add breaks to both columns when showing two columns
+    const leftColumnEvents = [...left, ...breaks].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
+    const rightColumnEvents = [...right, ...breaks].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
+
+    // For single column view, combine all events including breaks
+    const singleColumnEvents = [...dayEvents].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
+
+    // Show two columns only when "Todos los Tracks" is selected and both columns have regular events
     const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
 
-    return { leftColumnEvents: left, rightColumnEvents: right, showTwoColumns };
+    return { leftColumnEvents, rightColumnEvents, showTwoColumns, singleColumnEvents };
   }, [selectedDay, selectedTrack]);
 
   // Modal handlers
@@ -75,24 +86,29 @@ const Events = () => {
   };
 
   // Render event card
-  const renderEventCard = (event, index) => (
-    <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
-      <div className="card cardcuatroT h-100">
-        <div className="overlay"></div>
-        <div className="card-body text-white d-flex flex-column">
-          <h5 className="card-title">
-            <span className="heading">Lugar: </span>{event.room}
-          </h5>
-          <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
-          <p className="flex-grow-1">{event.talk}</p>
-          <p><strong>{event.speaker}</strong></p>
-          <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
-            Más Detalles
-          </button>
+  const renderEventCard = (event, index) => {
+    // Use different card style for breaks
+    const cardClass = event.type === 'break' ? 'cardgranV' : 'cardcuatroT';
+    
+    return (
+      <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
+        <div className={`card ${cardClass} h-100`}>
+          <div className="overlay"></div>
+          <div className="card-body text-white d-flex flex-column">
+            <h5 className="card-title">
+              <span className="heading">Lugar: </span>{event.room}
+            </h5>
+            <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
+            <p className="flex-grow-1">{event.talk}</p>
+            <p><strong>{event.speaker}</strong></p>
+            <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
+              Más Detalles
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="events" className="event-schedule-section">
@@ -149,8 +165,7 @@ const Events = () => {
             // Single centered column for specific track selection
             <Row className="mt-5 justify-content-center">
               <Col md={8} lg={6}>
-                {leftColumnEvents.length > 0 && leftColumnEvents.map((event, index) => renderEventCard(event, index))}
-                {rightColumnEvents.length > 0 && rightColumnEvents.map((event, index) => renderEventCard(event, index))}
+                {singleColumnEvents.map((event, index) => renderEventCard(event, index))}
               </Col>
             </Row>
           )}

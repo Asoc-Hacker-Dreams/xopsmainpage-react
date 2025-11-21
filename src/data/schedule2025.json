@@ -68,6 +68,18 @@
     "track": "main"
   },
   {
+    "speaker": "Organización",
+    "talk": "Coffee Break",
+    "description": "Pausa para café y networking. Un momento perfecto para relajarse, tomar un café, hacer networking con otros asistentes y prepararse para las siguientes sesiones de la tarde.",
+    "timeRaw": "2025-11-21 12:20:00",
+    "timeISO": "2025-11-21T12:20",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Área de networking",
+    "type": "break",
+    "track": "main"
+  },
+  {
     "speaker": "Pablo Sánchez Carmona",
     "talk": "Shift Left, Scale Right - Securizando la infraestructura de AWS a escala con DevSecOps",
     "description": "Descubre cómo adoptar una mentalidad DevSecOps transforma la protección de la infraestructura en AWS de un cuello de botella en una ventaja competitiva, permitiendo a los equipos desplegar de forma segura siendo ágiles y escalables. Esta sesión explora la intersección crítica entre automatización, infraestructura como código (IaC) y cultura DevOps en la gestión de entornos complejos. Examinaremos cómo las organizaciones gestionan exitosamente miles de recursos en AWS en entornos multi-cuenta sin sacrificar seguridad ni frenar la innovación. Exploraremos estrategias prácticas para implementar políticas como código, validación automática de requisitos de seguridad y red, y monitoreo continuo de la infraestructura. Al final de esta sesión, queremos que te lleves patrones accionables para construir infraestructura que pueda crecer de forma segura junto con tus necesidades de negocio, demostrando que seguridad y velocidad no son conceptos opuestos cuando haces \"shift left\" y \"scale right\".",
@@ -197,6 +209,18 @@
     "durationMinutes": 30,
     "durationHuman": "30m",
     "room": "Aula magna",
+    "track": "main"
+  },
+  {
+    "speaker": "Organización",
+    "talk": "Coffee Break",
+    "description": "Pausa para café y networking. Un momento perfecto para relajarse, tomar un café, hacer networking con otros asistentes y prepararse para las siguientes sesiones de la tarde.",
+    "timeRaw": "2025-11-22 12:20:00",
+    "timeISO": "2025-11-22T12:20",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Área de networking",
+    "type": "break",
     "track": "main"
   },
   {
