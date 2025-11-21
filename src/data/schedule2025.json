@@ -68,6 +68,18 @@
     "track": "main"
   },
   {
+    "speaker": "Organización",
+    "talk": "Coffee Break",
+    "description": "Pausa para café y networking. Un momento perfecto para relajarse, tomar un café, hacer networking con otros asistentes y prepararse para las siguientes sesiones de la tarde.",
+    "timeRaw": "2025-11-21 12:20:00",
+    "timeISO": "2025-11-21T12:20",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Área de networking",
+    "type": "break",
+    "track": "main"
+  },
+  {
     "speaker": "Pablo Sánchez Carmona",
     "talk": "Shift Left, Scale Right - Securizando la infraestructura de AWS a escala con DevSecOps",
     "description": "Descubre cómo adoptar una mentalidad DevSecOps transforma la protección de la infraestructura en AWS de un cuello de botella en una ventaja competitiva, permitiendo a los equipos desplegar de forma segura siendo ágiles y escalables. Esta sesión explora la intersección crítica entre automatización, infraestructura como código (IaC) y cultura DevOps en la gestión de entornos complejos. Examinaremos cómo las organizaciones gestionan exitosamente miles de recursos en AWS en entornos multi-cuenta sin sacrificar seguridad ni frenar la innovación. Exploraremos estrategias prácticas para implementar políticas como código, validación automática de requisitos de seguridad y red, y monitoreo continuo de la infraestructura. Al final de esta sesión, queremos que te lleves patrones accionables para construir infraestructura que pueda crecer de forma segura junto con tus necesidades de negocio, demostrando que seguridad y velocidad no son conceptos opuestos cuando haces \"shift left\" y \"scale right\".",
@@ -120,6 +132,18 @@
     "durationMinutes": 30,
     "durationHuman": "30m",
     "room": "Aula magna",
+    "track": "main"
+  },
+  {
+    "speaker": "Organización",
+    "talk": "Pausa para comer",
+    "description": "Descanso para almorzar y networking. Un momento perfecto para recargar energías, disfrutar de una comida, hacer networking con otros asistentes y prepararse para las sesiones de la tarde.",
+    "timeRaw": "2025-11-21 15:00:00",
+    "timeISO": "2025-11-21T15:00",
+    "durationMinutes": 60,
+    "durationHuman": "1h",
+    "room": "Área de catering",
+    "type": "break",
     "track": "main"
   },
   {
@@ -178,9 +202,9 @@
     "track": "main"
   },
   {
-    "speaker": "Juan Vicente Herrera Ruiz de Alejo",
-    "talk": "Secure by Design: Integrando Threat Modeling en el Ciclo de Vida MLOps con OpenShift AI",
-    "description": "Esta sesión explora cómo integrar el threat modeling en el ciclo de vida de MLOps utilizando OpenShift AI, alineando la seguridad con cada fase: desde la ingesta de datos hasta el despliegue del modelo. Se presentará el Red Hat Secure Development Lifecycle (SDLC)  y se analizarán aspectos específicos de la plataforma (por ejemplo, registros de modelos o endpoints de inferencia). La charla también aborda amenazas reales en entornos de ML, como el envenenamiento de datos y los ataques adversariales, y propone prácticas de diseño seguro para equipos que trabajan sobre OpenShift AI.",
+    "speaker": "David Sastre",
+    "talk": "Unikernels: The Next Frontier",
+    "description": "Why the assumptions of a 70 year old model are not fit for the Cloud",
     "timeRaw": "2025-11-22 11:30:00",
     "timeISO": "2025-11-22T11:30",
     "durationMinutes": 50,
@@ -197,6 +221,18 @@
     "durationMinutes": 30,
     "durationHuman": "30m",
     "room": "Aula magna",
+    "track": "main"
+  },
+  {
+    "speaker": "Organización",
+    "talk": "Coffee Break",
+    "description": "Pausa para café y networking. Un momento perfecto para relajarse, tomar un café, hacer networking con otros asistentes y prepararse para las siguientes sesiones de la tarde.",
+    "timeRaw": "2025-11-22 12:20:00",
+    "timeISO": "2025-11-22T12:20",
+    "durationMinutes": 30,
+    "durationHuman": "30m",
+    "room": "Área de networking",
+    "type": "break",
     "track": "main"
   },
   {
@@ -241,6 +277,18 @@
     "durationMinutes": 40,
     "durationHuman": "40m",
     "room": "Aula magna",
+    "track": "main"
+  },
+  {
+    "speaker": "Organización",
+    "talk": "Pausa para comer",
+    "description": "Descanso para almorzar y networking. Un momento perfecto para recargar energías, disfrutar de una comida, hacer networking con otros asistentes y prepararse para las sesiones de la tarde.",
+    "timeRaw": "2025-11-22 15:00:00",
+    "timeISO": "2025-11-22T15:00",
+    "durationMinutes": 60,
+    "durationHuman": "1h",
+    "room": "Área de catering",
+    "type": "break",
     "track": "main"
   },
   {
