@@ -1,18 +1,165 @@
 {
   "nav": {
-    "evento": "EVENTO",
-    "ponentes": "PONENTES",
-    "patrocina": "PATROCINA",
-    "organizadores": "ORGANIZADORES",
-    "entradas": "ENTRADAS"
+    "event": "EVENTO",
+    "speakers": "PONENTES",
+    "sponsor": "PATROCINA",
+    "organizers": "ORGANIZADORES",
+    "previousEvents": "EVENTOS ANTERIORES",
+    "tickets": "ENTRADAS",
+    "becomeSponsor": "CONVIÉRTETE EN PATROCINADOR",
+    "volunteer": "Hazte voluntario"
   },
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
-    "subtitle": "El mundo de las IT está cambiando."
+    "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
+    "date": "Fecha: 21 y 22 de noviembre 2025",
+    "buyTicket": "Compra tu entrada",
+    "viewAgenda": "Ver agenda",
+    "cfp": "CFP",
+    "installApp": "📱 Instalar App"
+  },
+  "footer": {
+    "address": "Dirección",
+    "addressLine1": "Universidad Rey Juan Carlos campus Móstoles",
+    "addressLine2": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid",
+    "contacts": "Contactos",
+    "links": "Enlaces",
+    "privacyPolicy": "Política de Privacidad",
+    "cookieSettings": "🍪 Gestión de Cookies",
+    "copyright": "© 2025 - X-Ops Conference"
+  },
+  "archive": {
+    "xops2024": "X-Ops Conference Madrid 2024",
+    "speakers": "Ponentes",
+    "agenda": "Agenda",
+    "sponsorCollab": "Patrocinio y Colaboradores",
+    "aldea2023": "Aldea DevSecOps 2023"
   },
   "summit": {
     "title": "X-Ops Summit Barcelona 2026",
-    "date": "6-7 de Mayo 2026",
-    "location": "Barcelona · Cinesa Diagonal Mar"
+    "subtitle": "Evento Ejecutivo para Decision Makers",
+    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 6-7 Mayo 2026, Barcelona. Networking de alto nivel y contenido estratégico paralelo a HackBCN Con.",
+    "hero": {
+      "badge": "EVENTO EJECUTIVO",
+      "title": "X-Ops Summit",
+      "titleAccent": "Barcelona 2026",
+      "subtitle": "El evento exclusivo para líderes tecnológicos",
+      "date": "6-7 de Mayo 2026",
+      "location": "Barcelona · Cinesa Diagonal Mar",
+      "capacity": "Máximo 50 asistentes",
+      "description": "Un programa ejecutivo paralelo a HackBCN Con, diseñado para CTOs, CISOs y Decision Makers que buscan networking de alto nivel y contenido estratégico.",
+      "ctaPrimary": "Reservar entrada VIP",
+      "ctaSecondary": "Ver programa",
+      "earlyBirdBadge": "🎭 EARLY BIRD",
+      "earlyBirdText": "20% de descuento hasta el 15 de Marzo",
+      "scrollText": "Descubre más"
+    },
+    "value": {
+      "sectionTitle": "¿Por qué asistir al X-Ops Summit?",
+      "sectionSubtitle": "Un evento diseñado pensando en las necesidades de los líderes tecnológicos",
+      "strategic": {
+        "title": "ENFOQUE ESTRATÉGICO",
+        "description": "Contenido diseñado para C-levels y directivos. Sin technical deep-dives, sí business impact."
+      },
+      "networking": {
+        "title": "NETWORKING EJECUTIVO",
+        "description": "Sesiones exclusivas con 50 máximo asistentes. Coffee breaks premium con catering de alto nivel."
+      },
+      "roi": {
+        "title": "ROI DEMOSTRABLE",
+        "description": "Casos de éxito de implementación DevOps/SecOps. Métricas y KPIs que puedes aplicar el lunes."
+      },
+      "certification": {
+        "title": "CERTIFICACIÓN",
+        "description": "Certificado de asistencia de X-Ops Conferences, reconocido por la industria tech europea."
+      },
+      "hackbcn": {
+        "title": "PARALELO A HACKBCN",
+        "description": "Aprovecha el ecosistema de HackBCN Con mientras asistes a contenido ejecutivo exclusivo."
+      },
+      "exclusivity": {
+        "title": "EXCLUSIVIDAD",
+        "description": "Aforo limitado a 50 ejecutivos. Garantizamos calidad en cada interacción."
+      }
+    },
+    "tickets": {
+      "sectionTitle": "Tipos de Entrada",
+      "sectionSubtitle": "Elige la opción que mejor se adapte a tus necesidades",
+      "earlyBirdBanner": "EARLY BIRD: 20% de descuento hasta el 15 de Marzo",
+      "executive": {
+        "name": "EXECUTIVE",
+        "features": [
+          "2 días de acceso completo",
+          "Todas las sesiones",
+          "Coffee breaks premium",
+          "Almuerzos ejecutivos",
+          "Certificado de asistencia",
+          "Material del evento"
+        ],
+        "cta": "Reservar"
+      },
+      "vip": {
+        "name": "VIP PASS",
+        "badge": "RECOMENDADO",
+        "features": [
+          "Todo lo de Executive, más:",
+          "VIP Welcome Pack",
+          "Asiento prioritario",
+          "Acceso VIP Lounge",
+          "Sesión privada con speakers",
+          "Foto profesional del evento"
+        ],
+        "cta": "Reservar VIP"
+      },
+      "partner": {
+        "name": "PARTNER",
+        "features": [
+          "Todo lo de VIP, más:",
+          "Cena de Gala exclusiva",
+          "Reuniones 1-a-1",
+          "Logo en web y materiales",
+          "5 min Demo slot",
+          "2 entradas adicionales"
+        ],
+        "cta": "Contactar"
+      },
+      "guarantee": "Garantía de satisfacción: si no quedas satisfecho después del primer día, te devolvemos el 100% de tu entrada.",
+      "contactQuestion": "¿Necesitas factura o tienes dudas?"
+    },
+    "agenda": {
+      "sectionTitle": "Programa Ejecutivo",
+      "sectionSubtitle": "Dos días de contenido estratégico de alto impacto",
+      "day1Date": "6 Mayo",
+      "day1Title": "Estrategia y Transformación",
+      "day1Label": "Día 1",
+      "day2Date": "7 Mayo",
+      "day2Title": "Implementación y Futuro",
+      "day2Label": "Día 2",
+      "disclaimer": "* Programa sujeto a cambios. Los speakers serán anunciados próximamente.",
+      "cta": "Reservar mi plaza"
+    },
+    "location": {
+      "sectionTitle": "Ubicación",
+      "sectionSubtitle": "Un espacio premium para un evento premium",
+      "venue": "Cinesa Diagonal Mar",
+      "address": "C/ de la Lluna, 13, 08005 Barcelona",
+      "howToArrive": "Cómo llegar",
+      "metro": "Metro L4",
+      "metroStop": "Parada Selva de Mar (5 min caminando)",
+      "tram": "Tranvía T4",
+      "tramStop": "Parada Sant Adrià (3 min caminando)",
+      "parking": "Parking",
+      "parkingInfo": "Parking subterráneo disponible",
+      "viewMap": "Ver en Google Maps →"
+    }
+  },
+  "language": {
+    "switch": "EN",
+    "label": "Idioma"
+  },
+  "theme": {
+    "dark": "Modo oscuro",
+    "light": "Modo claro",
+    "toggle": "Cambiar tema"
   }
 }
