@@ -69,3 +69,34 @@ export interface CFPSubmission {
   submittedAt: string; // ISO timestamp
   status?: 'pending' | 'reviewed' | 'accepted' | 'rejected';
 }
+
+// Networking types for E5
+export interface Attendee {
+  id: string;
+  name: string;
+  email?: string;
+  company: string;
+  role: string;
+  bio?: string;
+  photoUrl?: string;
+  interests?: string[];
+  social?: {
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+  };
+  createdAt?: string;
+}
+
+export interface Meeting {
+  id: string;
+  attendeeId: string;
+  attendeeName: string;
+  date: string;
+  time: string;
+  duration: string;
+  topic: string;
+  notes?: string;
+  status?: 'scheduled' | 'completed' | 'cancelled';
+  createdAt: string;
+}

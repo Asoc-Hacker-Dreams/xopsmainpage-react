@@ -1,18 +1,52 @@
 {
   "nav": {
-    "evento": "EVENT",
-    "ponentes": "SPEAKERS",
-    "patrocina": "SPONSOR",
-    "organizadores": "ORGANIZERS",
-    "entradas": "TICKETS"
+    "event": "EVENT",
+    "speakers": "SPEAKERS",
+    "sponsor": "SPONSOR",
+    "organizers": "ORGANIZERS",
+    "previousEvents": "PREVIOUS<br/>EVENTS",
+    "tickets": "TICKETS",
+    "becomeSponsor": "BECOME A SPONSOR",
+    "volunteer": "Become a volunteer"
   },
   "hero": {
     "title": "JOIN THE X-OPS REVOLUTION!",
-    "subtitle": "The IT world is changing."
+    "description": "The IT world is changing. Join us at X-Ops Conference, where you'll discover how technology and the right people are driving change.",
+    "date": "Date: November 21-22, 2025",
+    "buyTicket": "Buy your ticket",
+    "viewAgenda": "View agenda",
+    "cfp": "CFP",
+    "installApp": "📱 Install App"
+  },
+  "footer": {
+    "address": "Address",
+    "addressLine1": "Universidad Rey Juan Carlos campus Móstoles",
+    "addressLine2": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid",
+    "contacts": "Contacts",
+    "links": "Links",
+    "privacyPolicy": "Privacy Policy",
+    "cookieSettings": "🍪 Cookie Settings",
+    "copyright": "© 2025 - X-Ops Conference"
+  },
+  "archive": {
+    "xops2024": "X-Ops Conference Madrid 2024",
+    "speakers": "Speakers",
+    "agenda": "Agenda",
+    "sponsorCollab": "Sponsorship &<br/>Collaborators",
+    "aldea2023": "Aldea DevSecOps 2023"
   },
   "summit": {
     "title": "X-Ops Summit Barcelona 2026",
-    "date": "May 6-7, 2026",
-    "location": "Barcelona · Cinesa Diagonal Mar"
+    "subtitle": "Executive Event for Decision Makers",
+    "description": "The exclusive event for CTOs, CISOs, and tech leaders. May 6-7, 2026, Barcelona. High-level networking and strategic content alongside HackBCN Con."
+  },
+  "language": {
+    "switch": "ES",
+    "label": "Language"
+  },
+  "theme": {
+    "dark": "Dark mode",
+    "light": "Light mode",
+    "toggle": "Toggle theme"
   }
 }

@@ -54,7 +54,7 @@ div[class*="-page"] {
 /* Theme Toggle Button */
 .theme-toggle {
   background: transparent;
-  border: 2px solid var(--header-text);
+  border: 2px solid var(--text-primary);
   border-radius: 50%;
   width: 40px;
   height: 40px;

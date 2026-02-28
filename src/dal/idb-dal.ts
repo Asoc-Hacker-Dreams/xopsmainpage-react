@@ -102,3 +102,56 @@ export class IdbCFPDal implements CFPDal {
     await db.cfpSubmissions.update(id, { status });
   }
 }
+
+// E5 Networking DAL implementations
+import type { AttendeesDal, MeetingsDal } from './interfaces';
+import type { Attendee, Meeting } from './types';
+
+export class IdbAttendeesDal implements AttendeesDal {
+  async getAllAttendees(): Promise<Attendee[]> {
+    return db.table<Attendee>('attendees').orderBy('name').toArray();
+  }
+  async getAttendeeById(id: string): Promise<Attendee | undefined> {
+    return db.table<Attendee>('attendees').get(id);
+  }
+  async getAttendeesByRole(role: string): Promise<Attendee[]> {
+    return db.table<Attendee>('attendees').where('role').equals(role).toArray();
+  }
+  async getAttendeesByCompany(company: string): Promise<Attendee[]> {
+    return db.table<Attendee>('attendees').where('company').equals(company).toArray();
+  }
+  async putAttendees(attendees: Attendee[]): Promise<void> {
+    await db.table<Attendee>('attendees').bulkPut(attendees);
+  }
+}
+
+export class IdbMeetingsDal implements MeetingsDal {
+  async getAllMeetings(): Promise<Meeting[]> {
+    return db.meetings.orderBy('createdAt').reverse().toArray();
+  }
+  async getMeetingById(id: string): Promise<Meeting | undefined> {
+    return db.meetings.get(id);
+  }
+  async getMeetingsByAttendee(attendeeId: string): Promise<Meeting[]> {
+    return db.meetings.where('attendeeId').equals(attendeeId).toArray();
+  }
+  async getMeetingsByDate(date: string): Promise<Meeting[]> {
+    return db.meetings.where('date').equals(date).sortBy('time');
+  }
+  async scheduleMeeting(meeting: Omit<Meeting, 'id'>): Promise<string> {
+    const id = `mtg-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const fullMeeting: Meeting = {
+      ...meeting,
+      id,
+      status: 'scheduled',
+    };
+    await db.meetings.add(fullMeeting);
+    return id;
+  }
+  async cancelMeeting(id: string): Promise<void> {
+    await db.meetings.delete(id);
+  }
+  async updateMeetingStatus(id: string, status: Meeting['status']): Promise<void> {
+    await db.meetings.update(id, { status });
+  }
+}
