@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "event": "EVENTO",
+    "speakers": "PONENTES",
+    "sponsor": "PATROCINA",
+    "organizers": "ORGANIZADORES",
+    "previousEvents": "EVENTOS<br/>ANTERIORES",
+    "tickets": "ENTRADAS",
+    "becomeSponsor": "CONVIÉRTETE EN PATROCINADOR",
+    "volunteer": "Hazte voluntario"
+  },
+  "hero": {
+    "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
+    "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
+    "date": "Fecha: 21 y 22 de noviembre 2025",
+    "buyTicket": "Compra tu entrada",
+    "viewAgenda": "Ver agenda",
+    "cfp": "CFP",
+    "installApp": "📱 Instalar App"
+  },
+  "footer": {
+    "address": "Dirección",
+    "addressLine1": "Universidad Rey Juan Carlos campus Móstoles",
+    "addressLine2": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid",
+    "contacts": "Contactos",
+    "links": "Enlaces",
+    "privacyPolicy": "Política de Privacidad",
+    "cookieSettings": "🍪 Gestión de Cookies",
+    "copyright": "© 2025 - X-Ops Conference"
+  },
+  "archive": {
+    "xops2024": "X-Ops Conference Madrid 2024",
+    "speakers": "Ponentes",
+    "agenda": "Agenda",
+    "sponsorCollab": "Patrocinio y<br/>Colaboradores",
+    "aldea2023": "Aldea DevSecOps 2023"
+  },
+  "summit": {
+    "title": "X-Ops Summit Barcelona 2026",
+    "subtitle": "Evento Ejecutivo para Decision Makers",
+    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 6-7 Mayo 2026, Barcelona. Networking de alto nivel y contenido estratégico paralelo a HackBCN Con."
+  },
+  "language": {
+    "switch": "EN",
+    "label": "Idioma"
+  },
+  "theme": {
+    "dark": "Modo oscuro",
+    "light": "Modo claro",
+    "toggle": "Cambiar tema"
+  }
+}

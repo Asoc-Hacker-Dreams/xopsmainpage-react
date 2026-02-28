@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://xopsconference.com/schemas/speaker.v1.json",
+  "title": "Speaker",
+  "description": "Schema for a conference speaker (v1.0)",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "bio": { "type": "string" },
+    "company": { "type": "string" },
+    "role": { "type": "string" },
+    "photoUrl": { "type": "string", "format": "uri" },
+    "social": {
+      "type": "object",
+      "properties": {
+        "twitter": { "type": "string" },
+        "linkedin": { "type": "string", "format": "uri" },
+        "github": { "type": "string" },
+        "web": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "talkIds": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

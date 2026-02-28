@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://xopsconference.com/schemas/sponsor.v1.json",
+  "title": "Sponsor",
+  "description": "Schema for a conference sponsor (v1.0)",
+  "type": "object",
+  "required": ["id", "name", "tier"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "tier": { "type": "string", "enum": ["platinum", "gold", "silver", "bronze", "community"] },
+    "logoUrl": { "type": "string", "format": "uri" },
+    "websiteUrl": { "type": "string", "format": "uri" },
+    "description": { "type": "string" }
+  },
+  "additionalProperties": false
+}
