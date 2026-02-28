@@ -12,6 +12,7 @@ import ScriptManager from './components/ScriptManager';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
+import Summit from './pages/Summit';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
@@ -19,9 +20,13 @@ import Events2024 from './pages/archive/2024/Events2024';
 import Speakers2025 from './pages/archive/2025/Speakers2025';
 import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Agenda from './pages/Agenda';
+import SpeakerPage from './pages/Speaker';
+import MyAgenda from './pages/MyAgenda';
 import NotFound from './components/NotFound'; // Componente para manejar 404
 import './styles/Custom.css';
 import './styles/PricingTable.css';
+import './styles/Summit.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { useState } from 'react';
 
@@ -84,7 +89,7 @@ function App() {
         <NavDropdown.Item as={Link} to="/archive/2023/Speakers2023">Ponentes</NavDropdown.Item>
       </NavDropdown>
             </Nav>
-        <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="button menu-btn" style={{ textDecoration: 'none', width: "110px", paddingLeft: "1%", marginTop: "-2%" }}>
+        <a href="/summit#tickets" className="button menu-btn" style={{ textDecoration: 'none', width: "110px", paddingLeft: "1%", marginTop: "-2%" }}>
             ENTRADAS
         </a>
 
@@ -98,7 +103,7 @@ function App() {
             <p className="lead">El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.        </p>
             <p className="lead">Fecha: 21 y 22 de noviembre 2025 </p>
             <div className="mt-4 mx-4">
-            <a href="https://www.eventbrite.ch/e/entradas-x-ops-conference-madrid-2025-1306767269079" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
+            <a href="/summit#tickets" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
                 <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/#events">Ver agenda</Link>
              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true"className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Hazte voluntario</a> 
              <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">CFP</a>
@@ -126,6 +131,10 @@ function App() {
           <Route path="/Sponsor" element={<Sponsor />} />
           <Route path="/Patrocina" element={<Sponsor />} />
 
+          {/* X-Ops Summit 2026 */}
+          <Route path="/summit" element={<Summit />} />
+          <Route path="/Summit" element={<Summit />} />
+
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 
           {/* 2025 */}
@@ -140,6 +149,11 @@ function App() {
           {/* 2023 */}
           <Route path="/archive/2023/Speakers2023" element={<Speakers2023 />} />
           
+          {/* Agenda, Speaker, MyAgenda */}
+          <Route path="/agenda" element={<Agenda />} />
+          <Route path="/speaker/:id" element={<SpeakerPage />} />
+          <Route path="/mi-agenda" element={<MyAgenda />} />
+
           {/* Privacy Policy */}
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
           

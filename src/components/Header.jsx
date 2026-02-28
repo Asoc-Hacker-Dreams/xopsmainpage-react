@@ -42,7 +42,7 @@ const Header = () => {
                 <Nav.Link className='links px-4 font-weight-bold text-white' href="#tickets"></Nav.Link>
                 
             </Nav>
-        <a href="https://www.eventbrite.es/e/entradas-xops-conference-1049115200807?aff=oddtdtcreator" className="button menu-btn">
+        <a href="/summit#tickets" className="button menu-btn">
             Tickets
         </a>
         </Navbar.Collapse>

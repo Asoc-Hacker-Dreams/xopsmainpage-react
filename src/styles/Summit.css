@@ -1,0 +1,454 @@
+/* ============================================
+   X-OPS SUMMIT - Custom Styles
+   ============================================ */
+
+/* ===== HERO SECTION ===== */
+.summit-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  overflow: hidden;
+}
+
+.summit-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+}
+
+.summit-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.summit-badge {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  animation: pulse-glow 2s infinite;
+}
+
+.badge-text {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.summit-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.summit-title-accent {
+  display: block;
+  font-size: 2rem;
+  font-weight: 400;
+  background: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.summit-subtitle {
+  font-size: 1.5rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+.summit-subtitle strong {
+  color: #f8fafc;
+}
+
+.summit-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summit-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+
+.summit-detail-icon {
+  font-size: 1.25rem;
+}
+
+.summit-description {
+  font-size: 1.125rem;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.summit-description strong {
+  color: #f8fafc;
+}
+
+.summit-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summit-btn-primary {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.summit-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.summit-btn-secondary {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: transparent;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  color: #3b82f6;
+  transition: all 0.3s ease;
+}
+
+.summit-btn-secondary:hover {
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.summit-early-bird {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 8px;
+}
+
+.early-bird-badge {
+  padding: 0.25rem 0.75rem;
+  background: #f59e0b;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.early-bird-text {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.summit-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #64748b;
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* ===== SECTION TITLES ===== */
+.summit-section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.summit-section-subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+/* ===== VALUE PROPOSITION ===== */
+.summit-value-prop {
+  padding: 6rem 0;
+  background: #f8fafc;
+}
+
+.value-card {
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+  font-size: 2.5rem;
+  color: #3b82f6;
+  margin-bottom: 1rem;
+}
+
+.value-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+}
+
+.value-description {
+  font-size: 0.9375rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* ===== TICKET TIERS ===== */
+.summit-tickets {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.summit-tickets .summit-section-title {
+  color: white;
+}
+
+.summit-tickets .summit-section-subtitle {
+  color: #94a3b8;
+}
+
+.early-bird-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  border-radius: 50px;
+  color: #fbbf24;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.early-bird-icon {
+  color: #f59e0b;
+}
+
+.ticket-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.ticket-card.highlighted {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+}
+
+.ticket-card.highlighted * {
+  color: white;
+}
+
+.ticket-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  background: #f59e0b;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ticket-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.ticket-price-container {
+  margin-bottom: 1.5rem;
+}
+
+.ticket-original-price {
+  font-size: 1rem;
+  color: #94a3b8;
+  text-decoration: line-through;
+  margin-right: 0.5rem;
+}
+
+.ticket-price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.ticket-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.ticket-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  color: #475569;
+}
+
+.ticket-card.highlighted .ticket-features li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.feature-check {
+  color: #22c55e;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.ticket-card.highlighted .feature-check {
+  color: #86efac;
+}
+
+.ticket-cta {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.ticket-cta-primary {
+  background: white;
+  color: #3b82f6;
+}
+
+.ticket-cta-primary:hover {
+  background: #f8fafc;
+  color: #3b82f6;
+}
+
+.ticket-cta-secondary {
+  background: #3b82f6;
+  color: white;
+}
+
+.ticket-cta-outline {
+  background: transparent;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+}
+
+.tickets-guarantee {
+  color: #94a3b8;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tickets-contact {
+  color: #94a3b8;
+}
+
+.contact-link {
+  color: #3b82f6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .summit-title {
+    font-size: 2.5rem;
+  }
+  
+  .summit-title-accent {
+    font-size: 1.5rem;
+  }
+  
+  .summit-details {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .ticket-card.highlighted {
+    transform: scale(1);
+  }
+  
+  .summit-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+}
