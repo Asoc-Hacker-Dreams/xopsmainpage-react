@@ -57,3 +57,15 @@ export interface Favorite {
   talkId: string;
   addedAt: string; // ISO timestamp
 }
+
+export interface CFPSubmission {
+  id: string;
+  name: string;
+  email: string;
+  bio: string;
+  talkTitle: string;
+  abstract: string;
+  track: string;
+  submittedAt: string; // ISO timestamp
+  status?: 'pending' | 'reviewed' | 'accepted' | 'rejected';
+}

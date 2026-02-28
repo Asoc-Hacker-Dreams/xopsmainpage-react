@@ -8,51 +8,54 @@ import {
   BsLightningCharge,
   BsShieldCheck
 } from 'react-icons/bs';
-
-const valueProps = [
-  {
-    icon: <BsGraphUp />,
-    title: 'ENFOQUE ESTRATÉGICO',
-    description: 'Contenido diseñado para C-levels y directivos. Sin technical deep-dives, sí business impact.',
-  },
-  {
-    icon: <BsPeople />,
-    title: 'NETWORKING EJECUTIVO',
-    description: 'Sesiones exclusivas con 50 máximo asistentes. Coffee breaks premium con catering de alto nivel.',
-  },
-  {
-    icon: <BsTrophy />,
-    title: 'ROI DEMOSTRABLE',
-    description: 'Casos de éxito de implementación DevOps/SecOps. Métricas y KPIs que puedes aplicar el lunes.',
-  },
-  {
-    icon: <BsAward />,
-    title: 'CERTIFICACIÓN',
-    description: 'Certificado de asistencia de X-Ops Conferences, reconocido por la industria tech europea.',
-  },
-  {
-    icon: <BsLightningCharge />,
-    title: 'PARALELO A HACKBCN',
-    description: 'Aprovecha el ecosistema de HackBCN Con mientras asistes a contenido ejecutivo exclusivo.',
-  },
-  {
-    icon: <BsShieldCheck />,
-    title: 'EXCLUSIVIDAD',
-    description: 'Aforo limitado a 50 ejecutivos. Garantizamos calidad en cada interacción.',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const ValueProposition = () => {
+  const { t } = useTranslation();
+
+  const valueProps = [
+    {
+      icon: <BsGraphUp />,
+      title: t('summit.value.strategic.title'),
+      description: t('summit.value.strategic.description'),
+    },
+    {
+      icon: <BsPeople />,
+      title: t('summit.value.networking.title'),
+      description: t('summit.value.networking.description'),
+    },
+    {
+      icon: <BsTrophy />,
+      title: t('summit.value.roi.title'),
+      description: t('summit.value.roi.description'),
+    },
+    {
+      icon: <BsAward />,
+      title: t('summit.value.certification.title'),
+      description: t('summit.value.certification.description'),
+    },
+    {
+      icon: <BsLightningCharge />,
+      title: t('summit.value.hackbcn.title'),
+      description: t('summit.value.hackbcn.description'),
+    },
+    {
+      icon: <BsShieldCheck />,
+      title: t('summit.value.exclusivity.title'),
+      description: t('summit.value.exclusivity.description'),
+    },
+  ];
+
   return (
     <section className="summit-value-prop" id="beneficios">
       <Container>
         <Row className="justify-content-center text-center mb-5">
           <Col lg={8}>
             <h2 className="summit-section-title">
-              ¿Por qué asistir al X-Ops Summit?
+              {t('summit.value.sectionTitle')}
             </h2>
             <p className="summit-section-subtitle">
-              Un evento diseñado pensando en las necesidades de los líderes tecnológicos
+              {t('summit.value.sectionSubtitle')}
             </p>
           </Col>
         </Row>

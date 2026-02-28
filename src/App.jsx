@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
 import { Route, Routes, Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown para hacer submenús
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'; //agrego NavDropdown para hacer submenus
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
 import AddToHomeScreen from './components/AddToHomeScreen';
@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Organizer from './pages/Organizer';  // Este es el Organizer principal
 import Sponsor from './pages/Sponsor';
 import Summit from './pages/Summit';
+import CFP from './pages/CFP';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
@@ -70,13 +71,13 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>ORGANIZADORES</Link>
           
         
-      {/* Menú EVENTOS ANTERIORES */}  
+      {/* Menu EVENTOS ANTERIORES */}  
       <NavDropdown
         title={<span>EVENTOS<br />ANTERIORES</span>}
         className='links px-4 font-weight-bold custom-white-dropdown'
         style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
       >
-        {/* Título X-OPS 2024 */}
+        {/* Titulo X-OPS 2024 */}
         <div className="submenu-title">X-Ops Conference Madrid 2024</div>
         <NavDropdown.Item as={Link} to="/archive/2024/Speakers2024">Ponentes</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/archive/2024/Events2024">Agenda</NavDropdown.Item>
@@ -84,7 +85,7 @@ function App() {
 
         <NavDropdown.Divider />
 
-        {/* Título Aldea DevSecOps 2023 */}
+        {/* Titulo Aldea DevSecOps 2023 */}
         <div className="submenu-title">Aldea DevSecOps 2023</div>
         <NavDropdown.Item as={Link} to="/archive/2023/Speakers2023">Ponentes</NavDropdown.Item>
       </NavDropdown>
@@ -99,17 +100,17 @@ function App() {
     <div className='Hero-section d-flex align-items-center justify-content-center text-center'>
       <div className="d-flex align-items-center justify-content-center text-center text-white py-5">
         <div className="container">
-            <h1 className="display-4 font-weight-bold">¡ÚNETE A LA REVOLUCIÓN X-OPS!</h1>
-            <p className="lead">El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.        </p>
+            <h1 className="display-4 font-weight-bold">UNETE A LA REVOLUCION X-OPS!</h1>
+            <p className="lead">El mundo de las IT esta cambiando. Unete a nosotros en la X-Ops Conference, donde descubriras como la tecnologia y las personas adecuadas estan impulsando el cambio.        </p>
             <p className="lead">Fecha: 21 y 22 de noviembre 2025 </p>
             <div className="mt-4 mx-4">
             <a href="/summit#tickets" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Compra tu entrada</a>
                 <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/#events">Ver agenda</Link>
              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true"className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">Hazte voluntario</a> 
-             <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">CFP</a>
+             <Link to="/cfp" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">CFP</Link>
              {canPrompt && (
                <button onClick={handleInstallClick} className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">
-                 📱 Instalar App
+                 Instalar App
                </button>
              )}
             </div>
@@ -134,6 +135,9 @@ function App() {
           {/* X-Ops Summit 2026 */}
           <Route path="/summit" element={<Summit />} />
           <Route path="/Summit" element={<Summit />} />
+
+          {/* CFP */}
+          <Route path="/cfp" element={<CFP />} />
 
           <Route path="/#ponentes" element={<Home />} /> {/* Redirige a los ponentes */}
 
@@ -166,9 +170,9 @@ function App() {
       <div className="container">
         <div className="row">
           <div className="col-md-4 mb-3">
-            <h5 className='heading'>Dirección</h5>
-            <p>Universidad Rey Juan Carlos campus Móstoles</p>
-            <p>Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid</p>
+            <h5 className='heading'>Direccion</h5>
+            <p>Universidad Rey Juan Carlos campus Mostoles</p>
+            <p>Av. del Alcalde de Mostoles, s/n, 28933 Mostoles, Madrid</p>
           </div>
           <div className="col-md-4 mb-3">
             <h5 className='heading'>Contactos</h5>
@@ -182,14 +186,14 @@ function App() {
             <Link className="text-white" to="/#events" style={{textDecoration: 'none' }}>Evento</Link>
             </Nav>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
-              <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>Política de Privacidad</Link></li>
+              <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>Politica de Privacidad</Link></li>
               <li>
                 <button 
                   onClick={handleShowCookiePreferences}
                   className="btn btn-link text-white p-0"
                   style={{ textDecoration: 'none', fontSize: 'inherit' }}
                 >
-                  🍪 Gestión de Cookies
+                  Gestion de Cookies
                 </button>
               </li>
             </ul>
@@ -198,7 +202,7 @@ function App() {
       </div>
       <div className="text-center py-3">
         <p>&copy; 2025 - X-Ops Conference</p>
-        <p>Teléfono: <a href="tel:+34744644873" className="text-white">+34744644873</a> / <a href="tel:+34693814098" className="text-white">+34693814098</a></p>
+        <p>Telefono: <a href="tel:+34744644873" className="text-white">+34744644873</a> / <a href="tel:+34693814098" className="text-white">+34693814098</a></p>
       </div>
     </footer>
    

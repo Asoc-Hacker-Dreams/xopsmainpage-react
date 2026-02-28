@@ -1,7 +1,10 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const SummitHero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="summit-hero">
       <div className="summit-hero-overlay"></div>
@@ -9,58 +12,56 @@ const SummitHero = () => {
         <Row className="justify-content-center text-center">
           <Col lg={10}>
             <div className="summit-badge">
-              <span className="badge-text">EVENTO EJECUTIVO</span>
+              <span className="badge-text">{t('summit.hero.badge')}</span>
             </div>
             
             <h1 className="summit-title">
-              X-Ops Summit
-              <span className="summit-title-accent">Barcelona 2026</span>
+              {t('summit.hero.title')}
+              <span className="summit-title-accent">{t('summit.hero.titleAccent')}</span>
             </h1>
             
             <p className="summit-subtitle">
-              El evento exclusivo para <strong>líderes tecnológicos</strong>
+              {t('summit.hero.subtitle')}
             </p>
             
             <div className="summit-details">
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">📅</span>
-                <span>6-7 de Mayo 2026</span>
+                <span>{t('summit.hero.date')}</span>
               </div>
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">📍</span>
-                <span>Barcelona · Cinesa Diagonal Mar</span>
+                <span>{t('summit.hero.location')}</span>
               </div>
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">🎯</span>
-                <span>Máximo 50 asistentes</span>
+                <span>{t('summit.hero.capacity')}</span>
               </div>
             </div>
             
             <p className="summit-description">
-              Un programa ejecutivo paralelo a <strong>HackBCN Con</strong>, diseñado 
-              para CTOs, CISOs y Decision Makers que buscan networking de alto nivel 
-              y contenido estratégico.
+              {t('summit.hero.description')}
             </p>
             
             <div className="summit-cta">
               <Button className="summit-btn-primary" href="#tickets">
-                Reservar entrada VIP
+                {t('summit.hero.ctaPrimary')}
               </Button>
               <Button className="summit-btn-secondary" href="#agenda">
-                Ver programa
+                {t('summit.hero.ctaSecondary')}
               </Button>
             </div>
             
             <div className="summit-early-bird">
-              <span className="early-bird-badge">🎭 EARLY BIRD</span>
-              <span className="early-bird-text">20% de descuento hasta el 15 de Marzo</span>
+              <span className="early-bird-badge">{t('summit.hero.earlyBirdBadge')}</span>
+              <span className="early-bird-text">{t('summit.hero.earlyBirdText')}</span>
             </div>
           </Col>
         </Row>
       </Container>
       
       <div className="summit-scroll-indicator">
-        <span>Descubre más</span>
+        <span>{t('summit.hero.scrollText')}</span>
         <div className="scroll-arrow">↓</div>
       </div>
     </section>

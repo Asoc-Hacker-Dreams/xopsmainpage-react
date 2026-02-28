@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "evento": "EVENTO",
+    "ponentes": "PONENTES",
+    "patrocina": "PATROCINA",
+    "organizadores": "ORGANIZADORES",
+    "entradas": "ENTRADAS"
+  },
+  "hero": {
+    "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
+    "subtitle": "El mundo de las IT está cambiando."
+  },
+  "summit": {
+    "title": "X-Ops Summit Barcelona 2026",
+    "date": "6-7 de Mayo 2026",
+    "location": "Barcelona · Cinesa Diagonal Mar"
+  }
+}

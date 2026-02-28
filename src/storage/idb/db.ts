@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { Talk, Speaker, Ticket, Sponsor, Favorite } from '../../dal/types';
+import type { Talk, Speaker, Ticket, Sponsor, Favorite, CFPSubmission } from '../../dal/types';
 
 export class XopsDatabase extends Dexie {
   talks!: Table<Talk, string>;
@@ -7,16 +7,18 @@ export class XopsDatabase extends Dexie {
   tickets!: Table<Ticket, string>;
   sponsors!: Table<Sponsor, string>;
   favorites!: Table<Favorite, string>;
+  cfpSubmissions!: Table<CFPSubmission, string>;
 
   constructor() {
     super('xops-e14');
 
-    this.version(1).stores({
+    this.version(2).stores({
       talks: 'id, day, track, room, startTime',
       speakers: 'id, name',
       tickets: 'id, available',
       sponsors: 'id, tier',
       favorites: 'id, talkId',
+      cfpSubmissions: 'id, submittedAt, status, track',
     });
   }
 }

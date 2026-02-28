@@ -1,18 +1,21 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { BsGeoAlt, BsTrainFront, BsCarFront } from 'react-icons/bs';
+import { useTranslation } from 'react-i18next';
 
 const SummitLocation = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="summit-location" id="ubicacion">
       <Container>
         <Row className="justify-content-center text-center mb-5">
           <Col lg={8}>
             <h2 className="summit-section-title">
-              Ubicación
+              {t('summit.location.sectionTitle')}
             </h2>
             <p className="summit-section-subtitle">
-              Un espacio premium para un evento premium
+              {t('summit.location.sectionSubtitle')}
             </p>
           </Col>
         </Row>
@@ -20,33 +23,33 @@ const SummitLocation = () => {
         <Row className="align-items-center">
           <Col lg={6} className="mb-4 mb-lg-0">
             <div className="location-info">
-              <h3 className="location-venue">Cinesa Diagonal Mar</h3>
+              <h3 className="location-venue">{t('summit.location.venue')}</h3>
               <p className="location-address">
                 <BsGeoAlt className="location-icon" />
-                C/ de la Lluna, 13, 08005 Barcelona
+                {t('summit.location.address')}
               </p>
 
               <div className="location-access">
-                <h4>Cómo llegar</h4>
+                <h4>{t('summit.location.howToArrive')}</h4>
                 <div className="access-item">
-                  <BsBus className="access-icon" />
+                  <BsTrainFront className="access-icon" />
                   <div>
-                    <strong>Metro L4</strong>
-                    <span>Parada Selva de Mar (5 min caminando)</span>
+                    <strong>{t('summit.location.metro')}</strong>
+                    <span>{t('summit.location.metroStop')}</span>
                   </div>
                 </div>
                 <div className="access-item">
-                  <BsBus className="access-icon" />
+                  <BsTrainFront className="access-icon" />
                   <div>
-                    <strong>Tranvía T4</strong>
-                    <span>Parada Sant Adrià (3 min caminando)</span>
+                    <strong>{t('summit.location.tram')}</strong>
+                    <span>{t('summit.location.tramStop')}</span>
                   </div>
                 </div>
                 <div className="access-item">
                   <BsCarFront className="access-icon" />
                   <div>
-                    <strong>Parking</strong>
-                    <span>Parking subterráneo disponible</span>
+                    <strong>{t('summit.location.parking')}</strong>
+                    <span>{t('summit.location.parkingInfo')}</span>
                   </div>
                 </div>
               </div>
@@ -57,7 +60,7 @@ const SummitLocation = () => {
                 rel="noopener noreferrer"
                 className="location-map-link"
               >
-                Ver en Google Maps →
+                {t('summit.location.viewMap')}
               </a>
             </div>
           </Col>

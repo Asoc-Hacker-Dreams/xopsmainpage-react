@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const agendaData = {
   day1: {
-    date: '8 Mayo',
+    date: '6 Mayo',
     title: 'Estrategia y Transformación',
     sessions: [
       { time: '09:00-09:30', title: 'Acreditación & Welcome Coffee', type: 'break' },
@@ -20,7 +21,7 @@ const agendaData = {
     ],
   },
   day2: {
-    date: '9 Mayo',
+    date: '7 Mayo',
     title: 'Implementación y Futuro',
     sessions: [
       { time: '09:00-09:30', title: 'Morning Coffee', type: 'break' },
@@ -38,6 +39,7 @@ const agendaData = {
 };
 
 const ExecutiveAgenda = () => {
+  const { t } = useTranslation();
   const [activeDay, setActiveDay] = useState('day1');
 
   const renderSession = (session, index) => {
@@ -68,10 +70,10 @@ const ExecutiveAgenda = () => {
         <Row className="justify-content-center text-center mb-5">
           <Col lg={8}>
             <h2 className="summit-section-title">
-              Programa Ejecutivo
+              {t('summit.agenda.sectionTitle')}
             </h2>
             <p className="summit-section-subtitle">
-              Dos días de contenido estratégico de alto impacto
+              {t('summit.agenda.sectionSubtitle')}
             </p>
           </Col>
         </Row>
@@ -81,22 +83,22 @@ const ExecutiveAgenda = () => {
             className={`day-btn ${activeDay === 'day1' ? 'active' : ''}`}
             onClick={() => setActiveDay('day1')}
           >
-            <span className="day-date">8 Mayo</span>
-            <span className="day-title">Día 1</span>
+            <span className="day-date">{t('summit.agenda.day1Date')}</span>
+            <span className="day-title">{t('summit.agenda.day1Label')}</span>
           </Button>
           <Button
             className={`day-btn ${activeDay === 'day2' ? 'active' : ''}`}
             onClick={() => setActiveDay('day2')}
           >
-            <span className="day-date">9 Mayo</span>
-            <span className="day-title">Día 2</span>
+            <span className="day-date">{t('summit.agenda.day2Date')}</span>
+            <span className="day-title">{t('summit.agenda.day2Label')}</span>
           </Button>
         </div>
 
         <Row className="justify-content-center">
           <Col lg={10}>
             <div className="agenda-day-header">
-              <h3>{agendaData[activeDay].title}</h3>
+              <h3>{t(activeDay === 'day1' ? 'summit.agenda.day1Title' : 'summit.agenda.day2Title')}</h3>
             </div>
             <div className="agenda-timeline">
               {agendaData[activeDay].sessions.map(renderSession)}
@@ -107,10 +109,10 @@ const ExecutiveAgenda = () => {
         <Row className="justify-content-center mt-4">
           <Col lg={8} className="text-center">
             <p className="agenda-disclaimer">
-              * Programa sujeto a cambios. Los speakers serán anunciados próximamente.
+              {t('summit.agenda.disclaimer')}
             </p>
             <Button className="summit-btn-outline" href="#tickets">
-              Reservar mi plaza
+              {t('summit.agenda.cta')}
             </Button>
           </Col>
         </Row>

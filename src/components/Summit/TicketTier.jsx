@@ -1,79 +1,60 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
 import { BsCheckCircleFill, BsStar, BsBriefcase } from 'react-icons/bs';
+import { useTranslation } from 'react-i18next';
 
 const API_BASE_URL = (import.meta.env.VITE_TRISKELL_API_BASE_URL || 'http://localhost:3001').replace(/\/$/, '');
 const CONFIG_EVENT_ID = Number(import.meta.env.VITE_TRISKELL_EVENT_ID || 1);
 
-const ticketTiers = [
-  {
-    id: 'executive',
-    apiName: 'General',
-    name: 'EXECUTIVE',
-    price: '299',
-    originalPrice: '375',
-    features: [
-      '2 días de acceso completo',
-      'Todas las sesiones',
-      'Coffee breaks premium',
-      'Almuerzos ejecutivos',
-      'Certificado de asistencia',
-      'Material del evento',
-    ],
-    highlighted: false,
-    cta: 'Reservar',
-    ctaStyle: 'secondary',
-  },
-  {
-    id: 'vip',
-    apiName: 'VIP',
-    name: 'VIP PASS',
-    price: '499',
-    originalPrice: '625',
-    features: [
-      'Todo lo de Executive, más:',
-      'VIP Welcome Pack',
-      'Asiento prioritario',
-      'Acceso VIP Lounge',
-      'Sesión privada con speakers',
-      'Foto profesional del evento',
-    ],
-    highlighted: true,
-    badge: 'RECOMENDADO',
-    cta: 'Reservar VIP',
-    ctaStyle: 'primary',
-  },
-  {
-    id: 'partner',
-    name: 'PARTNER',
-    price: '999',
-    originalPrice: '1250',
-    features: [
-      'Todo lo de VIP, más:',
-      'Cena de Gala exclusiva',
-      'Reuniones 1-a-1',
-      'Logo en web y materiales',
-      '5 min Demo slot',
-      '2 entradas adicionales',
-    ],
-    highlighted: false,
-    cta: 'Contactar',
-    ctaStyle: 'outline',
-  },
-];
-
-const askCustomerData = () => {
-  const customerName = window.prompt('Nombre completo para la reserva:');
-  if (!customerName) return null;
-
-  const customerEmail = window.prompt('Email para recibir los tickets:');
-  if (!customerEmail) return null;
-
-  return { customerName, customerEmail };
-};
-
 const TicketTier = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(null);
+
+  const ticketTiers = [
+    {
+      id: 'executive',
+      apiName: 'General',
+      name: t('summit.tickets.executive.name'),
+      price: '299',
+      originalPrice: '375',
+      features: t('summit.tickets.executive.features', { returnObjects: true }),
+      highlighted: false,
+      cta: t('summit.tickets.executive.cta'),
+      ctaStyle: 'secondary',
+    },
+    {
+      id: 'vip',
+      apiName: 'VIP',
+      name: t('summit.tickets.vip.name'),
+      price: '499',
+      originalPrice: '625',
+      features: t('summit.tickets.vip.features', { returnObjects: true }),
+      highlighted: true,
+      badge: t('summit.tickets.vip.badge'),
+      cta: t('summit.tickets.vip.cta'),
+      ctaStyle: 'primary',
+    },
+    {
+      id: 'partner',
+      name: t('summit.tickets.partner.name'),
+      price: '999',
+      originalPrice: '1250',
+      features: t('summit.tickets.partner.features', { returnObjects: true }),
+      highlighted: false,
+      cta: t('summit.tickets.partner.cta'),
+      ctaStyle: 'outline',
+    },
+  ];
+
+  const askCustomerData = () => {
+    const customerName = window.prompt('Nombre completo para la reserva:');
+    if (!customerName) return null;
+
+    const customerEmail = window.prompt('Email para recibir los tickets:');
+    if (!customerEmail) return null;
+
+    return { customerName, customerEmail };
+  };
 
   const getTicketTypeId = async (eventId, apiName) => {
     const res = await fetch(`${API_BASE_URL}/api/events/${eventId}/ticket-types`);
@@ -148,11 +129,11 @@ const TicketTier = () => {
       <Container>
         <Row className="justify-content-center text-center mb-5">
           <Col lg={8}>
-            <h2 className="summit-section-title">Tipos de Entrada</h2>
-            <p className="summit-section-subtitle">Elige la opción que mejor se adapte a tus necesidades</p>
+            <h2 className="summit-section-title">{t('summit.tickets.sectionTitle')}</h2>
+            <p className="summit-section-subtitle">{t('summit.tickets.sectionSubtitle')}</p>
             <div className="early-bird-banner">
               <BsStar className="early-bird-icon" />
-              <span>EARLY BIRD: 20% de descuento hasta el 15 de Marzo</span>
+              <span>{t('summit.tickets.earlyBirdBanner')}</span>
             </div>
           </Col>
         </Row>
@@ -173,7 +154,7 @@ const TicketTier = () => {
                     <span className="ticket-price">€{tier.price}</span>
                   </div>
                   <ul className="ticket-features">
-                    {tier.features.map((feature, index) => (
+                    {Array.isArray(tier.features) && tier.features.map((feature, index) => (
                       <li key={index}>
                         <BsCheckCircleFill className="feature-check" />
                         <span>{feature}</span>
@@ -196,8 +177,7 @@ const TicketTier = () => {
         <Row className="justify-content-center mt-4">
           <Col lg={8} className="text-center">
             <p className="tickets-guarantee">
-              <BsBriefcase /> Garantía de satisfacción: si no quedas satisfecho después del primer día, te devolvemos el
-              100% de tu entrada.
+              <BsBriefcase /> {t('summit.tickets.guarantee')}
             </p>
           </Col>
         </Row>
@@ -205,7 +185,7 @@ const TicketTier = () => {
         <Row className="justify-content-center mt-4">
           <Col lg={6} className="text-center">
             <div className="tickets-contact">
-              <p>¿Necesitas factura o tienes dudas?</p>
+              <p>{t('summit.tickets.contactQuestion')}</p>
               <a href="mailto:summit@xopsconferences.com" className="contact-link">
                 summit@xopsconferences.com
               </a>

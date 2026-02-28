@@ -1,4 +1,4 @@
-import type { Talk, Speaker, Ticket, Sponsor, Favorite } from './types';
+import type { Talk, Speaker, Ticket, Sponsor, Favorite, CFPSubmission } from './types';
 
 export interface AgendaDal {
   getAllTalks(): Promise<Talk[]>;
@@ -33,4 +33,11 @@ export interface FavoritesDal {
   addFavorite(talkId: string): Promise<void>;
   removeFavorite(talkId: string): Promise<void>;
   isFavorite(talkId: string): Promise<boolean>;
+}
+
+export interface CFPDal {
+  getAllSubmissions(): Promise<CFPSubmission[]>;
+  getSubmissionById(id: string): Promise<CFPSubmission | undefined>;
+  submitCFP(submission: Omit<CFPSubmission, 'id' | 'submittedAt' | 'status'>): Promise<string>;
+  updateStatus(id: string, status: CFPSubmission['status']): Promise<void>;
 }

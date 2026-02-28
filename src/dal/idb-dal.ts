@@ -1,6 +1,6 @@
 import { db } from '../storage/idb/db';
-import type { AgendaDal, SpeakersDal, TicketsDal, SponsorsDal, FavoritesDal } from './interfaces';
-import type { Talk, Speaker, Ticket, Sponsor, Favorite } from './types';
+import type { AgendaDal, SpeakersDal, TicketsDal, SponsorsDal, FavoritesDal, CFPDal } from './interfaces';
+import type { Talk, Speaker, Ticket, Sponsor, Favorite, CFPSubmission } from './types';
 
 export class IdbAgendaDal implements AgendaDal {
   async getAllTalks(): Promise<Talk[]> {
@@ -77,5 +77,28 @@ export class IdbFavoritesDal implements FavoritesDal {
   async isFavorite(talkId: string): Promise<boolean> {
     const id = `fav-${talkId}`;
     return (await db.favorites.get(id)) !== undefined;
+  }
+}
+
+export class IdbCFPDal implements CFPDal {
+  async getAllSubmissions(): Promise<CFPSubmission[]> {
+    return db.cfpSubmissions.orderBy('submittedAt').reverse().toArray();
+  }
+  async getSubmissionById(id: string): Promise<CFPSubmission | undefined> {
+    return db.cfpSubmissions.get(id);
+  }
+  async submitCFP(submission: Omit<CFPSubmission, 'id' | 'submittedAt' | 'status'>): Promise<string> {
+    const id = `cfp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const fullSubmission: CFPSubmission = {
+      ...submission,
+      id,
+      submittedAt: new Date().toISOString(),
+      status: 'pending',
+    };
+    await db.cfpSubmissions.add(fullSubmission);
+    return id;
+  }
+  async updateStatus(id: string, status: CFPSubmission['status']): Promise<void> {
+    await db.cfpSubmissions.update(id, { status });
   }
 }
