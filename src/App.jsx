@@ -9,6 +9,7 @@ import { ConsentProvider } from './contexts/ConsentContext';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import CookiePreferencesManager from './components/CookiePreferencesManager';
 import ScriptManager from './components/ScriptManager';
+import Analytics from './components/Analytics';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';
 import Sponsor from './pages/Sponsor';
@@ -25,6 +26,8 @@ import SpeakerPage from './pages/Speaker';
 import MyAgenda from './pages/MyAgenda';
 import Tickets from './pages/Tickets';
 import TicketSuccess from './pages/TicketSuccess';
+import PostEventPage from './pages/PostEventPage';
+import AnalyticsPage from './pages/Analytics';
 import NotFound from './components/NotFound';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
@@ -75,6 +78,7 @@ function App() {
   <HelmetProvider>
     <ConsentProvider>
       <>
+      <Analytics />
       <ScriptManager />
       <CookieConsentBanner />
 
@@ -202,6 +206,12 @@ function App() {
           <Route path="/agenda" element={<Agenda />} />
           <Route path="/speaker/:id" element={<SpeakerPage />} />
           <Route path="/mi-agenda" element={<MyAgenda />} />
+
+          /* Post-Event */
+          <Route path="/post-event" element={<PostEventPage />} />
+
+          {/* Analytics Dashboard */}
+          <Route path="/analytics" element={<AnalyticsPage />} />
 
           {/* Privacy Policy */}
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
