@@ -31,9 +31,12 @@ import AnalyticsPage from './pages/Analytics';
 import NotFound from './components/NotFound';
 import SophiaHome from './pages/sophia/SophiaHome';
 import SophiaPostulate from './pages/sophia/SophiaPostulate';
+import SophiaAbout from './pages/sophia/SophiaAbout';
 import WalletLogin from './pages/wallet/WalletLogin';
 import CheckoutSuccess from './pages/tickets/CheckoutSuccess';
 import CheckoutCancel from './pages/tickets/CheckoutCancel';
+import XOpsHome from './pages/tickets/XOpsHome';
+import XOpsEventDetail from './pages/tickets/XOpsEventDetail';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 import './styles/Summit.css';
@@ -232,6 +235,13 @@ function App() {
           {/* Checkout routes */}
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/checkout/cancel" element={<CheckoutCancel />} />
+          
+          {/* X-Ops public ticket pages */}
+          <Route path="/events/x-ops-conference-dubai-2026" element={<XOpsEventDetail />} />
+          <Route path="/events/x-ops-conference-dubai-2026/buy" element={<Tickets />} />
+          
+          {/* Sophia civic pages */}
+          <Route path="/sophia/about" element={<SophiaAbout />} />
           
           <Route path="*" element={<NotFound />} />
 

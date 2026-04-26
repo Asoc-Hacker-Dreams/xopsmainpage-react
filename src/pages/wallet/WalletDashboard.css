@@ -1,0 +1,158 @@
+.wallet-dashboard {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.wallet-header {
+  background: #1a1a2e;
+  color: white;
+  padding: 1rem 0;
+}
+
+.wallet-brand {
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wallet-brand:hover {
+  color: white;
+}
+
+.wallet-icon {
+  font-size: 1.5rem;
+}
+
+.wallet-btn-icon {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: color 0.2s;
+}
+
+.wallet-btn-icon:hover {
+  color: white;
+}
+
+/* Identity Card */
+.wallet-identity-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+}
+
+.wallet-identity-card h2,
+.wallet-identity-card p {
+  color: white;
+}
+
+.wallet-avatar {
+  font-size: 4rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.wallet-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.wallet-handle {
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.wallet-meta p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.wallet-meta strong {
+  opacity: 0.7;
+}
+
+/* Section Header */
+.wallet-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.wallet-section-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wallet-count {
+  background: #1a1a2e;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Stamp Card */
+.wallet-stamp-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.wallet-stamp-card:hover {
+  transform: translateY(-4px);
+}
+
+.wallet-stamp-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.wallet-stamp-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.wallet-stamp-card p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Community Card */
+.wallet-community-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.wallet-community-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
