@@ -244,6 +244,15 @@ const Tickets = () => {
               </div>
             </Col>
           </Row>
+
+          {/* Sophia Footer Note */}
+          <Row className="justify-content-center mt-5">
+            <Col lg={8} className="text-center">
+              <p className="tickets-sophia-note">
+                X-Ops Conference es una iniciativa de <Link to="/sophia">Sophia Metapolis</Link>. Conoce la nación digital.
+              </p>
+            </Col>
+          </Row>
         </Container>
       </div>
     </>

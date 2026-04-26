@@ -160,8 +160,10 @@
     "event": {
       "getTickets": "Get tickets",
       "buyTickets": "Buy tickets",
-      "viewDetails": "View details"
+      "viewDetails": "View details",
+      "buyNow": "Buy now"
     },
+    "sophiaNote": "X-Ops Conference is an initiative of Sophia Metapolis. Discover the digital nation.",
     "checkout": {
       "title": "Complete purchase",
       "event": "Event",

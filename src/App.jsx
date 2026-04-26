@@ -32,7 +32,9 @@ import NotFound from './components/NotFound';
 import SophiaHome from './pages/sophia/SophiaHome';
 import SophiaPostulate from './pages/sophia/SophiaPostulate';
 import SophiaAbout from './pages/sophia/SophiaAbout';
+import SophiaPostulateStatus from './pages/sophia/SophiaPostulateStatus';
 import WalletLogin from './pages/wallet/WalletLogin';
+import WalletDashboard from './pages/wallet/WalletDashboard';
 import CheckoutSuccess from './pages/tickets/CheckoutSuccess';
 import CheckoutCancel from './pages/tickets/CheckoutCancel';
 import XOpsHome from './pages/tickets/XOpsHome';
@@ -226,11 +228,13 @@ function App() {
           
           {/* Sophia Metapolis routes */}
           <Route path="/sophia" element={<SophiaHome />} />
-          <Route path="/sophia/about" element={<SophiaHome />} />
+          <Route path="/sophia/about" element={<SophiaAbout />} />
           <Route path="/sophia/postulate" element={<SophiaPostulate />} />
+          <Route path="/sophia/postulate/status" element={<SophiaPostulateStatus />} />
           
           {/* Wallet routes */}
           <Route path="/wallet/login" element={<WalletLogin />} />
+          <Route path="/wallet" element={<WalletDashboard />} />
           
           {/* Checkout routes */}
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
@@ -239,9 +243,6 @@ function App() {
           {/* X-Ops public ticket pages */}
           <Route path="/events/x-ops-conference-dubai-2026" element={<XOpsEventDetail />} />
           <Route path="/events/x-ops-conference-dubai-2026/buy" element={<Tickets />} />
-          
-          {/* Sophia civic pages */}
-          <Route path="/sophia/about" element={<SophiaAbout />} />
           
           <Route path="*" element={<NotFound />} />
 
