@@ -1,0 +1,167 @@
+/* Reuse sophia design tokens */
+.sophia-postulate {
+  min-height: 100vh;
+  background: #faf9f7;
+  color: #1a1a1a;
+}
+
+.sophia-postulate-content {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.sophia-postulate-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.sophia-postulate-intro {
+  color: #6b7280;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.sophia-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.sophia-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sophia-form-section label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.sophia-form input[type="text"],
+.sophia-form input[type="email"],
+.sophia-form textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.sophia-form input[type="text"]:focus,
+.sophia-form input[type="email"]:focus,
+.sophia-form textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+.sophia-form textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.form-help {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: -0.5rem;
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  text-align: right;
+}
+
+.form-declaration-help {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 0.25rem;
+  width: 18px;
+  height: 18px;
+}
+
+.sophia-btn-submit {
+  padding: 1rem 2rem;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sophia-btn-submit:hover:not(:disabled) {
+  background: #333;
+}
+
+.sophia-btn-submit:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.sophia-success {
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.sophia-success-icon {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  background: #6366f1;
+  color: #fff;
+  font-size: 2rem;
+  border-radius: 50%;
+  line-height: 64px;
+  margin-bottom: 1.5rem;
+}
+
+.sophia-success h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.sophia-success p {
+  color: #6b7280;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}

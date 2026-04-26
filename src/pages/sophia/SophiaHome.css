@@ -1,0 +1,245 @@
+/* Sophia Metapolis - Civic Design System */
+
+.sophia-home {
+  min-height: 100vh;
+  background: #faf9f7;
+  color: #1a1a1a;
+}
+
+/* Header */
+.sophia-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e8e5e0;
+  padding: 0 2rem;
+}
+
+.sophia-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 64px;
+}
+
+.sophia-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.sophia-icon {
+  font-size: 1.5rem;
+  color: #6366f1;
+}
+
+.sophia-nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.sophia-nav-links a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.sophia-nav-links a:hover {
+  color: #1a1a1a;
+}
+
+/* Hero */
+.sophia-hero {
+  padding: 6rem 2rem;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, #faf9f7 100%);
+}
+
+.sophia-hero-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.sophia-title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.sophia-subtitle {
+  font-size: 1.25rem;
+  color: #6366f1;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.sophia-description {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.sophia-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.sophia-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: #1a1a1a;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.sophia-btn-primary:hover {
+  background: #333;
+}
+
+.sophia-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #d1d5db;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.sophia-btn-secondary:hover {
+  border-color: #1a1a1a;
+}
+
+/* Features */
+.sophia-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sophia-feature {
+  padding: 2rem;
+  background: #ffffff;
+  border: 1px solid #e8e5e0;
+}
+
+.sophia-feature-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sophia-feature h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+}
+
+.sophia-feature p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* Events */
+.sophia-events {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sophia-events h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+}
+
+.sophia-event-card {
+  padding: 2rem;
+  background: #ffffff;
+  border: 1px solid #e8e5e0;
+  text-align: left;
+}
+
+.sophia-event-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sophia-event-card p {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.sophia-btn-outline {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.sophia-btn-outline:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+/* Footer */
+.sophia-footer {
+  padding: 2rem;
+  border-top: 1px solid #e8e5e0;
+  text-align: center;
+}
+
+.sophia-footer-note {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.sophia-footer-note a {
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.sophia-footer-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.sophia-footer-links a {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.sophia-footer-links a:hover {
+  color: #4b5563;
+}

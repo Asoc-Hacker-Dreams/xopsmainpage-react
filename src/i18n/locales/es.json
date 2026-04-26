@@ -48,5 +48,154 @@
     "dark": "Modo oscuro",
     "light": "Modo claro",
     "toggle": "Cambiar tema"
+  },
+  "sophia": {
+    "nav": {
+      "home": "Home",
+      "about": "Sobre Sophia",
+      "postulate": "Postularse",
+      "wallet": "Mi Wallet",
+      "communities": "Comunidades",
+      "language": "Idioma"
+    },
+    "home": {
+      "title": "Sophia Metapolis",
+      "subtitle": "La nación digital donde la ciudadanía es identidad",
+      "description": "Una comunidad soberana digital fundada en principios de transparencia, meritocracia y participación activa. Sophia Metapolis no es solo una plataforma — es una nación con gobernanza propia, ciudadanos con derechos y responsabilidades, y una propuesta de valor única en el espacio digital.",
+      "cta": "Conocer más",
+      "postulate": "Iniciar postulación",
+      "events": "Eventos ciudadanos",
+      "communities": "Comunidades activas"
+    },
+    "about": {
+      "title": "Sobre Sophia Metapolis",
+      "governance": {
+        "title": "Gobernanza",
+        "description": "Sophia Metapolis opera bajo un modelo de gobernanza donde roles arquetípicos (Horus, Sulis, Minerva) representan funciones específicas: protección/seguridad, bienestar/social, y conocimiento/sabiduría. Los fundadores ocupan estos roles de manera rotativa.",
+        "founders": "Cuerpo fundacional"
+      },
+      "model": {
+        "title": "Modelo federal",
+        "description": "La nación se organiza en comunidadesautónomas que operan bajo principios compartidos pero con gobernanza local. Círculos (profesionales), cofradías (temáticas), y capítulos (geográficos) conforman el tejido social."
+      },
+      "citizenship": {
+        "title": "Ciudadanía",
+        "entry": "Ritual de entrada",
+        "participation": "Participación activa como condición de permanencia",
+        "exit": "Proceso justo en caso de salida"
+      }
+    },
+    "postulate": {
+      "title": "Postularse a ciudadanía",
+      "intro": "La ciudadanía en Sophia Metapolis no es un producto — es un compromiso mutuo entre la nación y el ciudadano. Antes de iniciar tu postulación, lee la Carta Fundacional y comprende lo que significa pertenecer.",
+      "form": {
+        "handle": "Handle deseado",
+        "handlePlaceholder": "Tu identificador único en la nación",
+        "email": "Email",
+        "emailPlaceholder": "Para confirmación de tu postulación",
+        "country": "País (opcional)",
+        "displayName": "Nombre visible (opcional)",
+        "declaration": "Declaración personal",
+        "declarationPrompt": "Cuéntanos por qué quieres pertenecer a Sophia Metapolis",
+        "declarationHelp": "Mínimo 200 caracteres. Esta declaración queda como parte de tu historial cívico si eres aceptado.",
+        "terms": "Acepto los términos básicos de la Carta Fundacional",
+        "submit": "Enviar postulación",
+        "submitting": "Enviando..."
+      },
+      "success": {
+        "title": "Postulación recibida",
+        "message": "Tu postulación ha sido recibida. El cuerpo de gobernanza la revisará y recibirás un email con el resultado en un plazo de 7 días.",
+        "checkStatus": "Consultar estado de mi postulación"
+      }
+    },
+    "wallet": {
+      "title": "Mi Wallet",
+      "login": {
+        "title": "Acceder a mi wallet",
+        "email": "Email",
+        "emailPlaceholder": "Tu email registrado",
+        "magicLink": "Enviarme un link mágico",
+        "magicLinkSent": "Revisa tu email — te hemos enviado un link de acceso.",
+        "oauth": "O inicia con",
+        "apple": "Apple",
+        "github": "GitHub"
+      },
+      "identity": {
+        "title": "Identidad cívica",
+        "handle": "Handle",
+        "displayName": "Nombre visible",
+        "declaration": "Declaración personal",
+        "avatar": "Avatar",
+        "authMethods": "Métodos de autenticación activos"
+      },
+      "passport": {
+        "title": "Mi pasaporte",
+        "stamps": "Stamps",
+        "noStamps": "Aún no tienes stamps. Participa en eventos y actividades para obtenerlos.",
+        "groups": {
+          "attendance": "Asistencia",
+          "speaker": "Ponencia",
+          "organization": "Organización",
+          "sponsor": "Sponsor",
+          "achievement": "Logros"
+        }
+      },
+      "communities": {
+        "title": "Mis comunidades",
+        "noCommunities": "No tienes membresías activas en comunidades."
+      },
+      "settings": {
+        "title": "Configuración",
+        "profile": "Mi perfil",
+        "authMethods": "Métodos de autenticación",
+        "visibility": "Visibilidad del perfil",
+        "preferences": "Preferencias del wallet"
+      }
+    },
+    "footer": {
+      "sophiaNote": "X-Ops Conference es una iniciativa de Sophia Metapolis.",
+      "knowSophia": "Conoce la nación digital",
+      "legal": "Información legal",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
+  },
+  "tickets": {
+    "event": {
+      "getTickets": "Obtener entradas",
+      "buyTickets": "Comprar entradas",
+      "viewDetails": "Ver detalles"
+    },
+    "checkout": {
+      "title": "Completar compra",
+      "event": "Evento",
+      "ticketType": "Tipo de entrada",
+      "quantity": "Cantidad",
+      "customerData": "Datos del comprador",
+      "email": "Email",
+      "emailRequired": "Email (obligatorio)",
+      "fullName": "Nombre completo",
+      "fullNameRequired": "Nombre completo (obligatorio para el ticket)",
+      "phone": "Teléfono",
+      "phoneOptional": "Teléfono (opcional, para notificaciones)",
+      "termsAccept": "Acepto los términos y condiciones",
+      "gdprConsent": "Consiento el tratamiento de mis datos según la política de privacidad",
+      "continueToPayment": "Continuar al pago",
+      "processing": "Procesando..."
+    },
+    "success": {
+      "title": "¡Compra completada!",
+      "processing": "Procesando tu compra...",
+      "summary": "Resumen de tu compra",
+      "ticketSent": "Recibirás un email con tu ticket en PDF.",
+      "backHome": "Volver a la home",
+      "learnSophia": "Aprende sobre Sophia Metapolis, la nación digital que organiza este evento"
+    },
+    "cancel": {
+      "title": "Pago no completado",
+      "message": "Tu pago no se completó. Puedes volver a intentar cuando lo desees.",
+      "tryAgain": "Volver a intentar",
+      "contactSupport": "Si experimentas problemas, contacta a soporte."
+    }
   }
 }

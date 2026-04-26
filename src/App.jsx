@@ -29,6 +29,11 @@ import TicketSuccess from './pages/TicketSuccess';
 import PostEventPage from './pages/PostEventPage';
 import AnalyticsPage from './pages/Analytics';
 import NotFound from './components/NotFound';
+import SophiaHome from './pages/sophia/SophiaHome';
+import SophiaPostulate from './pages/sophia/SophiaPostulate';
+import WalletLogin from './pages/wallet/WalletLogin';
+import CheckoutSuccess from './pages/tickets/CheckoutSuccess';
+import CheckoutCancel from './pages/tickets/CheckoutCancel';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 import './styles/Summit.css';
@@ -215,6 +220,18 @@ function App() {
 
           {/* Privacy Policy */}
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
+          
+          {/* Sophia Metapolis routes */}
+          <Route path="/sophia" element={<SophiaHome />} />
+          <Route path="/sophia/about" element={<SophiaHome />} />
+          <Route path="/sophia/postulate" element={<SophiaPostulate />} />
+          
+          {/* Wallet routes */}
+          <Route path="/wallet/login" element={<WalletLogin />} />
+          
+          {/* Checkout routes */}
+          <Route path="/checkout/success" element={<CheckoutSuccess />} />
+          <Route path="/checkout/cancel" element={<CheckoutCancel />} />
           
           <Route path="*" element={<NotFound />} />
 
