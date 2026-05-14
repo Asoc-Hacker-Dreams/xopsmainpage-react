@@ -11,6 +11,8 @@ import type {
   TGValidateResponse,
   TGCheckoutPayload,
   TGCheckoutResponse,
+  TGCheckoutSessionStatus,
+  TGApiResponse,
   TGOrder,
 } from './types';
 
@@ -38,14 +40,21 @@ export class TriskelGateClient {
 
   /** GET /api/events – list all events */
   async listEvents(): Promise<TGEvent[]> {
-    return this.breaker.execute(() => this.request<TGEvent[]>('GET', '/api/events'));
+    return this.breaker.execute(async () => {
+      const raw = await this.request<TGApiResponse<TGEvent[]>>('GET', '/api/events');
+      return raw.data ?? (raw as unknown as TGEvent[]);
+    });
   }
 
   /** GET /api/events/:id/ticket-types – list ticket types for an event */
-  async listTicketTypes(eventId: string): Promise<TGTicketType[]> {
-    return this.breaker.execute(() =>
-      this.request<TGTicketType[]>('GET', `/api/events/${encodeURIComponent(eventId)}/ticket-types`),
-    );
+  async listTicketTypes(eventId: number | string): Promise<TGTicketType[]> {
+    return this.breaker.execute(async () => {
+      const raw = await this.request<TGApiResponse<TGTicketType[]>>(
+        'GET',
+        `/api/events/${encodeURIComponent(String(eventId))}/ticket-types`,
+      );
+      return raw.data ?? (raw as unknown as TGTicketType[]);
+    });
   }
 
   /** POST /api/validate – validate a ticket (QR scan) */
@@ -55,10 +64,20 @@ export class TriskelGateClient {
     );
   }
 
-  /** POST /api/checkout – create a checkout session */
+  /** POST /api/payment/create-session – create a Stripe checkout session */
   async createCheckout(payload: TGCheckoutPayload): Promise<TGCheckoutResponse> {
     return this.breaker.execute(() =>
-      this.request<TGCheckoutResponse>('POST', '/api/checkout', payload),
+      this.request<TGCheckoutResponse>('POST', '/api/payment/create-session', payload),
+    );
+  }
+
+  /** GET /api/checkout/sessions/:id/status – check payment status */
+  async getCheckoutSessionStatus(sessionId: string): Promise<TGCheckoutSessionStatus> {
+    return this.breaker.execute(() =>
+      this.request<TGCheckoutSessionStatus>(
+        'GET',
+        `/api/checkout/sessions/${encodeURIComponent(sessionId)}/status`,
+      ),
     );
   }
 
@@ -120,7 +139,7 @@ export class TriskelGateApiError extends Error {
   }
 }
 
-/** Singleton-ish factory – reads env vars if available */
+/** Singleton-ish factory – reads env vars if available (Node / SSR) */
 let _defaultClient: TriskelGateClient | null = null;
 
 export function getDefaultClient(): TriskelGateClient {
@@ -136,3 +155,12 @@ export function getDefaultClient(): TriskelGateClient {
   }
   return _defaultClient;
 }
+
+/** Browser-side singleton – reads Vite env vars */
+export const triskelGateClient = new TriskelGateClient({
+  baseUrl: (
+    (typeof import.meta !== 'undefined' && (import.meta as Record<string, any>).env?.VITE_TRISKELGATE_URL) ||
+    (typeof import.meta !== 'undefined' && (import.meta as Record<string, any>).env?.VITE_TRISKELL_API_BASE_URL) ||
+    'http://localhost:3001'
+  ),
+});

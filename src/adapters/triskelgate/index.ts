@@ -1,4 +1,4 @@
-export { TriskelGateClient, getDefaultClient, TriskelGateApiError } from './client';
+export { TriskelGateClient, getDefaultClient, triskelGateClient, TriskelGateApiError } from './client';
 export type { TriskelGateClientOptions } from './client';
 export { CircuitBreaker, CircuitBreakerError } from './circuitBreaker';
 export { mapTicketTypeToTicket, mapTicketTypes } from './mapTicket';

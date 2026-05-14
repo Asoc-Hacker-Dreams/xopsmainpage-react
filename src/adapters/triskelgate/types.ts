@@ -17,6 +17,7 @@ export interface TGTicketType {
   price: number;
   currency: string;
   available: boolean;
+  isActive?: boolean;
   maxPerOrder?: number;
   features?: string[];
   purchaseUrl?: string;
@@ -36,15 +37,34 @@ export interface TGValidateResponse {
 }
 
 export interface TGCheckoutPayload {
-  eventId: string;
-  ticketTypeId: string;
+  eventId: number | string;
+  ticketTypeId: number | string;
   quantity: number;
-  email: string;
+  customerEmail: string;
+  customerName?: string;
+  successUrl?: string;
+  cancelUrl?: string;
 }
 
 export interface TGCheckoutResponse {
-  redirectUrl: string;
-  checkoutId: string;
+  success: boolean;
+  sessionUrl?: string;
+  redirectUrl?: string;
+  checkoutId?: string;
+  message?: string;
+  error?: string;
+}
+
+export interface TGCheckoutSessionStatus {
+  status: string;
+}
+
+/** Standard wrapper the TriskelGate API uses for list endpoints */
+export interface TGApiResponse<T> {
+  success: boolean;
+  data: T;
+  message?: string;
+  error?: string;
 }
 
 export interface TGOrder {

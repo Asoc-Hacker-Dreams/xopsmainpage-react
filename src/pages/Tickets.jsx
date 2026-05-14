@@ -3,8 +3,8 @@ import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstr
 import { BsCheckCircleFill, BsStar, BsBriefcase, BsArrowLeft } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { triskelGateClient } from '../adapters/triskelgate/client';
 
-const API_BASE_URL = (import.meta.env.VITE_TRISKELL_API_BASE_URL || 'http://localhost:3001').replace(/\/$/, '');
 const CONFIG_EVENT_ID = Number(import.meta.env.VITE_TRISKELL_EVENT_ID || 1);
 
 const ticketTiers = [
@@ -69,15 +69,14 @@ const Tickets = () => {
   const [error, setError] = useState(null);
 
   const getTicketTypeId = async (eventId, apiName) => {
-    const res = await fetch(`${API_BASE_URL}/api/events/${eventId}/ticket-types`);
-    const data = await res.json();
+    const ticketTypes = await triskelGateClient.listTicketTypes(eventId);
 
-    if (!res.ok || !data?.success || !Array.isArray(data.data)) {
-      throw new Error('No se pudieron cargar tipos de ticket desde TriskellGate');
+    if (!Array.isArray(ticketTypes)) {
+      throw new Error('No se pudieron cargar tipos de ticket desde TriskelGate');
     }
 
-    const match = data.data.find(
-      (t) => (t?.name || '').toLowerCase() === apiName.toLowerCase() && t?.isActive,
+    const match = ticketTypes.find(
+      (t) => (t?.name || '').toLowerCase() === apiName.toLowerCase() && (t?.isActive ?? t?.available),
     );
 
     if (!match) {
@@ -110,21 +109,15 @@ const Tickets = () => {
         eventId: CONFIG_EVENT_ID,
         ticketTypeId,
         quantity: 1,
-        customerEmail,
-        customerName,
+        customerEmail: customerEmail,
+        customerName: customerName,
         successUrl: `${window.location.origin}/tickets/success`,
         cancelUrl: `${window.location.origin}/tickets`,
       };
 
-      const response = await fetch(`${API_BASE_URL}/api/payment/create-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      const data = await triskelGateClient.createCheckout(payload);
 
-      const data = await response.json();
-
-      if (!response.ok || !data?.success) {
+      if (!data?.success) {
         throw new Error(data?.message || data?.error || 'No se pudo iniciar el pago');
       }
 

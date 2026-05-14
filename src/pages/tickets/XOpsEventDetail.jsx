@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Card, Tab, Tabs, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { FaMapMarkerAlt, FaCalendarAlt, FaClock, FaMicrophoneAlt, FaLaptopCode, FaNetworkWired, FaCheckCircle } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaCalendarAlt, FaClock, FaMicrophoneAlt, FaLaptopCode, FaNetworkWired, FaCheckCircle, FaUsers } from 'react-icons/fa';
 import SEO from '../../components/SEO';
 import './XOpsEventDetail.css';
 

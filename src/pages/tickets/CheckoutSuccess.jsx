@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { triskelGateClient } from '../../adapters/triskelgate/client';
 import './CheckoutSuccess.css';
 
 function CheckoutSuccess() {
@@ -17,8 +18,7 @@ function CheckoutSuccess() {
     // Poll backend for payment confirmation
     const pollInterval = setInterval(async () => {
       try {
-        const res = await fetch(`/api/v1/checkout/sessions/${sessionId}/status`);
-        const data = await res.json();
+        const data = await triskelGateClient.getCheckoutSessionStatus(sessionId);
         if (data.status === 'paid') {
           setStatus('confirmed');
           clearInterval(pollInterval);

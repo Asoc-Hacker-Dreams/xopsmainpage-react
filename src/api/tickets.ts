@@ -64,7 +64,7 @@ export async function createCheckout(body: CheckoutRequest): Promise<CheckoutRes
     eventId: body.eventId,
     ticketTypeId: body.ticketTypeId,
     quantity: body.quantity,
-    email: body.email,
+    customerEmail: body.email,
   };
 
   const result = await client.createCheckout(payload);
