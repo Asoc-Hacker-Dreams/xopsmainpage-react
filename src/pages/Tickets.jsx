@@ -132,8 +132,7 @@ const Tickets = () => {
         err.name === 'TypeError' ||
         (typeof err.message === 'string' && (
           err.message.includes('Failed to fetch') ||
-          err.message.includes('NetworkError') ||
-          err.message.includes('fetch')
+          err.message.includes('NetworkError')
         ));
       setError(
         isNetworkError
