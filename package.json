@@ -24,7 +24,10 @@
     "sbom:generate": "cyclonedx-npm --output-file sbom.json && cyclonedx-npm --output-format xml --output-file sbom.xml",
     "osdo:test": "chmod +x .osdo/tools/test-runner.sh && ./.osdo/tools/test-runner.sh",
     "osdo:sca": "chmod +x .osdo/tools/sca.sh && ./.osdo/tools/sca.sh",
-    "osdo:sast": "chmod +x .osdo/tools/sast.sh && ./.osdo/tools/sast.sh"
+    "osdo:sast": "chmod +x .osdo/tools/sast.sh && ./.osdo/tools/sast.sh",
+    "test:e2e": "playwright test --config e2e/playwright.config.ts",
+    "test:e2e:headed": "playwright test --config e2e/playwright.config.ts --headed",
+    "test:e2e:report": "playwright show-report e2e/report"
   },
   "dependencies": {
     "ajv": "^8.18.0",
@@ -44,6 +47,7 @@
     "@cyclonedx/cyclonedx-npm": "^1.19.3",
     "@eslint/js": "^9.13.0",
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
     "@testing-library/dom": "^9.3.0",

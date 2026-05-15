@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { BsGeoAlt, BsTrainFront, BsCarFront } from 'react-icons/bs';
+import { BsGeoAlt, BsTrainFront, BsCarFront, BsBusFront } from 'react-icons/bs';
 
 const SummitLocation = () => {
   return (
@@ -29,14 +29,14 @@ const SummitLocation = () => {
               <div className="location-access">
                 <h4>Cómo llegar</h4>
                 <div className="access-item">
-                  <BsBus className="access-icon" />
+                  <BsBusFront className="access-icon" />
                   <div>
                     <strong>Metro L4</strong>
                     <span>Parada Selva de Mar (5 min caminando)</span>
                   </div>
                 </div>
                 <div className="access-item">
-                  <BsBus className="access-icon" />
+                  <BsBusFront className="access-icon" />
                   <div>
                     <strong>Tranvía T4</strong>
                     <span>Parada Sant Adrià (3 min caminando)</span>
