@@ -107,7 +107,7 @@ const CookieConsentBanner = () => {
                   onClick={rejectAll}
                   className="me-2"
                 >
-                  Rechazar Todo
+                  Solo esenciales
                 </Button>
                 <Button 
                   variant="primary" 
@@ -187,7 +187,7 @@ const CookieConsentBanner = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-secondary" onClick={rejectAll}>
-            Rechazar Todo
+            Solo esenciales
           </Button>
           <Button variant="success" onClick={acceptAll}>
             Aceptar Todo
