@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "X-Ops Conference",
+  "name_for_model": "xops_conference",
+  "description_for_human": "X-Ops Conference - DevOps, DevSecOps, AIOps & MLOps conference in Madrid, Spain.",
+  "description_for_model": "Use this plugin to get information about X-Ops Conference: event dates, speakers, agenda, sponsorship packages, startup pack, and registration. The event focuses on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE, and Cybersecurity.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://xopsconference.com/.well-known/openapi.json"
+  },
+  "logo_url": "https://xopsconference.com/icon-512x512.png",
+  "contact_email": "info@xopsconference.com",
+  "legal_info_url": "https://xopsconference.com/terminos-de-servicio"
+}

@@ -1,0 +1,53 @@
+# X-Ops Conference
+
+> X-Ops Conference es el mayor evento de DevOps, DevSecOps, AIOps, MLOps, Platform Engineering y Ciberseguridad en España. Se celebra en Madrid con formato Summit + Conference.
+
+## About
+
+X-Ops Conference is an international technology conference held in Madrid, Spain. The event focuses on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE, and Cybersecurity topics.
+
+- **Edition 2026**: Madrid · URJC · November/December 2026
+- **Format**: 2-day Executive Summit (C-Level) + 2-day Technical Conference
+- **Attendees**: 500+ expected (300+ in 2025)
+- **Rating**: 4.7/5 (2025 edition)
+- **Tracks**: DevSecOps, Platform Engineering, AIOps/MLOps, SRE, Ciberseguridad
+- **Languages**: Spanish and English
+
+## Organizer
+
+X-Ops Conference is organized by the X-Ops community, part of HSM (Hacker Dreams & Social Media).
+Contact: info@xopsconference.com
+Website: https://xopsconference.com
+Phone: +34 744 644 873
+
+## Events
+
+- [Home](https://xopsconference.com/)
+- [Summit 2026](https://xopsconference.com/summit)
+- [Speakers](https://xopsconference.com/#ponentes)
+- [Agenda](https://xopsconference.com/agenda)
+- [Sponsorship](https://xopsconference.com/Sponsor)
+- [Startup Pack](https://xopsconference.com/startup-pack)
+- [Organizers](https://xopsconference.com/Organizer)
+
+## Past Editions
+
+- [X-Ops Conference 2025 - Speakers](https://xopsconference.com/archive/2025/Speakers2025)
+- [X-Ops Conference 2025 - Agenda](https://xopsconference.com/archive/2025/Events2025)
+- [X-Ops Conference 2025 - Sponsors](https://xopsconference.com/archive/2025/Sponsor2025)
+- [X-Ops Conference 2024 - Speakers](https://xopsconference.com/archive/2024/Speakers2024)
+- [X-Ops Conference 2024 - Agenda](https://xopsconference.com/archive/2024/Events2024)
+- [X-Ops Conference 2024 - Sponsors](https://xopsconference.com/archive/2024/Sponsor2024)
+- [Aldea DevSecOps 2023 - Speakers](https://xopsconference.com/archive/2023/Speakers2023)
+
+## Sponsorship
+
+Sponsorship packages available for Madrid, Dubai, and London editions. Tiers: Platinum (€8,000+), Track Sponsor (€6,000), Gold (€3,000), Silver (€2,000), Welcome Pack (€350), Startup Pack (€350–€950).
+Contact: info@xopsconference.com
+
+## Optional
+
+- [Privacy Policy](https://xopsconference.com/politica-de-privacidad)
+- [Cookie Policy](https://xopsconference.com/politica-de-cookies)
+- [Terms of Service](https://xopsconference.com/terminos-de-servicio)
+- [Sitemap](https://xopsconference.com/sitemap.xml)

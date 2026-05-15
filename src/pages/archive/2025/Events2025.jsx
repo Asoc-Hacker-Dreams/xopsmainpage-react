@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../../../components/SEO';
 import MadridFriday from './madrid_friday';
 import MadridSaturday from './madrid_saturday';
 
@@ -7,6 +8,37 @@ const Events2025 = () => {
 
   return (
     <div style={{ textAlign: 'center'}}>
+      <SEO
+        title="Agenda X-Ops Conference 2025"
+        description="Programa completo de X-Ops Conference Madrid 2025 — 21 y 22 de noviembre 2025. Sesiones de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering."
+        path="/archive/2025/Events2025"
+        keywords="agenda, horario, X-Ops 2025, DevOps, DevSecOps, sesiones, Madrid"
+        lang="es"
+        alternates={[
+          { hrefLang: 'es', href: 'https://xopsconference.com/archive/2025/Events2025' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/archive/2025/Events2025' },
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "X-Ops Conference Madrid 2025",
+          "description": "Programa completo de X-Ops Conference 2025. Sesiones de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering.",
+          "startDate": "2025-11-21",
+          "endDate": "2025-11-22",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": "URJC Móstoles",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Móstoles",
+              "addressRegion": "Madrid",
+              "addressCountry": "ES"
+            }
+          }
+        }}
+      />
       <h2 className="text-center margin-top">Horario del Evento 2025</h2>
       <div>
         <button 

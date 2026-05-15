@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import './StartupPack.css';
 
 const SYNC_URL = import.meta.env.VITE_HUBSPOT_SYNC_URL || 'http://localhost:3002';
@@ -201,6 +202,31 @@ export default function StartupPack() {
 
   return (
     <div className="stk-wrap">
+      <SEO
+        title="Startup Pack — X-Ops Conference 2026"
+        description="Startup Pack de X-Ops Conference: visibilidad en el mayor evento de DevOps y DevSecOps de España para startups de hasta 3 años, 15 empleados y ARR &lt;€500K. Desde €350."
+        path="/startup-pack"
+        keywords="Startup Pack, X-Ops Conference, startup DevOps, patrocinio startup, Madrid 2026"
+        lang="es"
+        alternates={[
+          { hrefLang: 'es', href: 'https://xopsconference.com/startup-pack' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/startup-pack' },
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Offer",
+          "name": "X-Ops Conference Startup Pack",
+          "description": "Sponsorship package for early-stage startups (≤3 years, ≤15 employees, ARR <€500K). Includes web visibility, social mention, 1 full pass, shared booth.",
+          "priceCurrency": "EUR",
+          "price": "350",
+          "url": "https://xopsconference.com/startup-pack",
+          "seller": {
+            "@type": "Organization",
+            "name": "X-Ops Conference",
+            "url": "https://xopsconference.com"
+          }
+        }}
+      />
       {/* ── Header ── */}
       <header className="stk-header">
         <Link to="/Sponsor" className="stk-header-logo">

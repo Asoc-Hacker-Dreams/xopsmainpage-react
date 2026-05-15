@@ -34,25 +34,22 @@ const Speakers2025 = () => {
   return (
     <>
       <SEO
-        title="Ponentes | X-Ops Conference Madrid 2025"
-        description="Conoce a los expertos de X-Ops Conference Madrid 2025."
+        title="Speakers 2025 - X-Ops Conference"
+        description="Conoce a los ponentes de X-Ops Conference Madrid 2025. Más de 16 speakers nacionales e internacionales de DevOps, DevSecOps, AIOps y Platform Engineering."
         path="/archive/2025/Speakers2025"
-        image="https://xopsconference.com/assets/speakers-og.jpg"
+        image="https://xopsconference.com/icon-512x512.png"
+        keywords="speakers, ponentes, X-Ops 2025, DevOps, DevSecOps, AIOps, Platform Engineering, Madrid"
         lang="es"
         alternates={[
-          { hrefLang: 'es', href: 'https://xopsconference.com/ponentes2025' },
-          { hrefLang: 'en', href: 'https://xopsconference.com/speakers2025' },
+          { hrefLang: 'es', href: 'https://xopsconference.com/archive/2025/Speakers2025' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/archive/2025/Speakers2025' },
         ]}
         structuredData={{
           "@context": "https://schema.org",
-          "@type": "Event",
-          "name": "X-Ops Conference Madrid 2025",
-          "startDate": "2025-11-21",
-          "location": {
-            "@type": "Place",
-            "name": "Universidad Rey Juan Carlos campus Móstoles",
-            "address": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid"
-          }
+          "@type": "ItemList",
+          "name": "X-Ops Conference 2025 Speakers",
+          "description": "List of speakers at X-Ops Conference Madrid 2025. DevOps, DevSecOps, AIOps, Platform Engineering experts.",
+          "url": "https://xopsconference.com/archive/2025/Speakers2025"
         }}
       />
       <section id="ponentes" className="speaker-section ">
