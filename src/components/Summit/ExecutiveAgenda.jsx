@@ -1,44 +1,42 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-
-const agendaData = {
-  day1: {
-    date: '18 Nov',
-    title: 'Día 1 — Estrategia y Transformación',
-    sessions: [
-      { time: '09:00-09:30', title: 'Acreditación & Welcome Coffee', type: 'break' },
-      { time: '09:30-10:30', title: 'Keynote de apertura', speaker: 'Por anunciar', type: 'keynote' },
-      { time: '10:30-11:15', title: 'Sesión estratégica', speaker: 'Por anunciar', type: 'talk' },
-      { time: '11:15-11:45', title: 'Networking Break', type: 'break' },
-      { time: '11:45-12:30', title: 'Sesión estratégica', speaker: 'Por anunciar', type: 'talk' },
-      { time: '12:30-13:15', title: 'Panel ejecutivo', speakers: 'Por anunciar', type: 'panel' },
-      { time: '13:15-14:30', title: 'Almuerzo Ejecutivo', type: 'break' },
-      { time: '14:30-15:15', title: 'Workshop ejecutivo', speaker: 'Por anunciar', type: 'workshop' },
-      { time: '15:15-16:00', title: 'Caso de éxito', speaker: 'Por anunciar', type: 'talk' },
-      { time: '16:00-16:30', title: 'Coffee & Networking', type: 'break' },
-      { time: '16:30-17:30', title: 'Roundtable: Desafíos 2026-2027', type: 'roundtable' },
-    ],
-  },
-  day2: {
-    date: '19 Nov',
-    title: 'Día 2 — Implementación y Futuro',
-    sessions: [
-      { time: '09:00-09:30', title: 'Morning Coffee', type: 'break' },
-      { time: '09:30-10:30', title: 'Keynote', speaker: 'Por anunciar', type: 'keynote' },
-      { time: '10:30-11:15', title: 'Sesión estratégica', speaker: 'Por anunciar', type: 'talk' },
-      { time: '11:15-11:45', title: 'Networking Break', type: 'break' },
-      { time: '11:45-12:30', title: 'Sesión estratégica', speaker: 'Por anunciar', type: 'talk' },
-      { time: '12:30-13:15', title: 'Panel ejecutivo', speakers: 'Por anunciar', type: 'panel' },
-      { time: '13:15-14:30', title: 'Almuerzo Ejecutivo', type: 'break' },
-      { time: '14:30-15:15', title: 'Workshop ejecutivo', speaker: 'Por anunciar', type: 'workshop' },
-      { time: '15:15-16:00', title: 'Sesión de cierre', speaker: 'Por anunciar', type: 'talk' },
-      { time: '16:00-17:00', title: 'Closing & Networking Cocktail', type: 'break' },
-    ],
-  },
-};
+import { useTranslation } from 'react-i18next';
 
 const ExecutiveAgenda = () => {
+  const { t } = useTranslation();
   const [activeDay, setActiveDay] = useState('day1');
+  const tba = t('summit.agenda.tba');
+
+  const agendaData = {
+    day1: {
+      date: '18 Nov',
+      title: t('summit.agenda.day1'),
+      sessions: [
+        { time: '09:00', title: tba, type: 'break' },
+        { time: '10:00', title: tba, type: 'keynote' },
+        { time: '11:00', title: tba, type: 'talk' },
+        { time: '12:00', title: tba, type: 'panel' },
+        { time: '13:00', title: tba, type: 'break' },
+        { time: '15:00', title: tba, type: 'workshop' },
+        { time: '16:00', title: tba, type: 'talk' },
+        { time: '17:00', title: tba, type: 'roundtable' },
+      ],
+    },
+    day2: {
+      date: '19 Nov',
+      title: t('summit.agenda.day2'),
+      sessions: [
+        { time: '09:00', title: tba, type: 'break' },
+        { time: '10:00', title: tba, type: 'keynote' },
+        { time: '11:00', title: tba, type: 'talk' },
+        { time: '12:00', title: tba, type: 'panel' },
+        { time: '13:00', title: tba, type: 'break' },
+        { time: '15:00', title: tba, type: 'workshop' },
+        { time: '16:00', title: tba, type: 'talk' },
+        { time: '17:00', title: tba, type: 'break' },
+      ],
+    },
+  };
 
   const renderSession = (session, index) => {
     const typeClass = {
@@ -55,8 +53,6 @@ const ExecutiveAgenda = () => {
         <div className="agenda-time">{session.time}</div>
         <div className="agenda-content">
           <h4 className="agenda-title">{session.title}</h4>
-          {session.speaker && <span className="agenda-speaker">{session.speaker}</span>}
-          {session.speakers && <span className="agenda-speaker">{session.speakers}</span>}
         </div>
       </div>
     );
@@ -67,10 +63,8 @@ const ExecutiveAgenda = () => {
       <Container>
         <Row className="justify-content-center text-center mb-5">
           <Col lg={8}>
-            <h2 className="summit-section-title">Programa Ejecutivo</h2>
-            <p className="summit-section-subtitle">
-              Dos días de contenido estratégico de alto impacto — programa por confirmar
-            </p>
+            <h2 className="summit-section-title">{t('summit.agenda.title')}</h2>
+            <p className="summit-section-subtitle">{t('summit.agenda.subtitle')}</p>
           </Col>
         </Row>
 
@@ -99,17 +93,6 @@ const ExecutiveAgenda = () => {
             <div className="agenda-timeline">
               {agendaData[activeDay].sessions.map(renderSession)}
             </div>
-          </Col>
-        </Row>
-
-        <Row className="justify-content-center mt-4">
-          <Col lg={8} className="text-center">
-            <p className="agenda-disclaimer">
-              * Programa sujeto a cambios. Los speakers serán anunciados próximamente.
-            </p>
-            <Button className="summit-btn-outline" href="#tickets">
-              Reservar mi plaza
-            </Button>
           </Col>
         </Row>
       </Container>

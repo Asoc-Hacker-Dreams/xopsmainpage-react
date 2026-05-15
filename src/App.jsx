@@ -57,7 +57,7 @@ function App() {
   const { canPrompt, promptInstall } = usePWA();
   const [showCookiePreferences, setShowCookiePreferences] = useState(false);
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'light';
+    return localStorage.getItem('theme') || 'dark';
   });
 
   useEffect(() => {
@@ -107,9 +107,9 @@ function App() {
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto ">
               <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.event')}</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.organizers')}</Link>
           
         
@@ -150,16 +150,6 @@ function App() {
             title={t('language.label')}
           >
             {t('language.switch')}
-          </button>
-          
-          {/* Theme Toggle */}
-          <button 
-            onClick={toggleTheme} 
-            className="theme-toggle"
-            aria-label={t('theme.toggle')}
-            title={t('theme.toggle')}
-          >
-            {theme === 'light' ? '🌙' : '☀️'}
           </button>
           
           <a href="/summit#tickets" className="button menu-btn" style={{ textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: "10px" }}>

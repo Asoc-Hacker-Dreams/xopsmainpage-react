@@ -1,7 +1,9 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const SummitHero = () => {
+  const { t } = useTranslation();
   return (
     <section className="summit-hero">
       <div className="summit-hero-overlay"></div>
@@ -9,54 +11,35 @@ const SummitHero = () => {
         <Row className="justify-content-center text-center">
           <Col lg={10}>
             <div className="summit-badge">
-              <span className="badge-text">EVENTO EJECUTIVO</span>
+              <span className="badge-text">{t('summit.hero.badge')}</span>
             </div>
-
             <h1 className="summit-title">
-              X-Ops Summit
+              {t('summit.hero.title')}
               <span className="summit-title-accent">Madrid 2026</span>
             </h1>
-
             <p className="summit-subtitle">
-              El evento exclusivo para <strong>líderes tecnológicos</strong>
+              {t('summit.hero.subtitle')}
             </p>
-
             <div className="summit-details">
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">📅</span>
-                <span>18 y 19 de noviembre 2026</span>
+                <span>{t('summit.hero.date')}</span>
               </div>
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">📍</span>
-                <span>Madrid · Lugar por confirmar</span>
+                <span>{t('summit.hero.venue')}</span>
               </div>
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">🎯</span>
-                <span>Máximo 50 asistentes</span>
+                <span>{t('summit.hero.attendees')}</span>
               </div>
             </div>
-
             <p className="summit-description">
-              Un programa ejecutivo diseñado para CTOs, CISOs y Decision Makers
-              que buscan networking de alto nivel y contenido estratégico.
+              {t('summit.hero.description')}
             </p>
-
-            <div className="summit-cta">
-              <Button className="summit-btn-primary" href="#tickets">
-                Reservar entrada VIP
-              </Button>
-              <Button className="summit-btn-secondary" href="#agenda">
-                Ver programa
-              </Button>
-            </div>
           </Col>
         </Row>
       </Container>
-
-      <div className="summit-scroll-indicator">
-        <span>Descubre más</span>
-        <div className="scroll-arrow">↓</div>
-      </div>
     </section>
   );
 };

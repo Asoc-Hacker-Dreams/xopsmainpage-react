@@ -6,14 +6,14 @@
     "organizers": "ORGANIZADORES",
     "previousEvents": "EVENTOS<br/>ANTERIORES",
     "tickets": "ENTRADAS",
-    "summit": "Summit",
+    "summit": "SUMMIT",
     "becomeSponsor": "CONVIÉRTETE EN PATROCINADOR",
     "volunteer": "Hazte voluntario"
   },
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
     "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
-    "date": "Fecha: 20 y 21 de noviembre 2026",
+    "date": "Fecha: 18 al 21 de noviembre 2026",
     "buyTicket": "Compra tu entrada",
     "viewAgenda": "Ver agenda",
     "cfp": "CFP",
@@ -40,7 +40,34 @@
   "summit": {
     "title": "X-Ops Summit Madrid 2026",
     "subtitle": "Evento Ejecutivo para Decision Makers",
-    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-19 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico."
+    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-21 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico.",
+    "hero": {
+      "badge": "EVENTO EJECUTIVO",
+      "title": "X-Ops Summit",
+      "subtitle": "El evento exclusivo para líderes tecnológicos",
+      "date": "18 al 21 de noviembre 2026",
+      "venue": "Madrid · Lugar por confirmar",
+      "attendees": "Máximo 90 asistentes",
+      "description": "Un programa ejecutivo diseñado para CTOs, CISOs y Decision Makers que buscan networking de alto nivel y contenido estratégico."
+    },
+    "value": {
+      "title": "¿Por qué asistir al X-Ops Summit?",
+      "subtitle": "Un evento diseñado pensando en las necesidades de los líderes tecnológicos",
+      "props": {
+        "strategic": { "title": "ENFOQUE ESTRATÉGICO", "desc": "Contenido diseñado para C-levels y directivos. Sin technical deep-dives, sí business impact." },
+        "networking": { "title": "NETWORKING EJECUTIVO", "desc": "Sesiones exclusivas con 90 máximo asistentes. Coffee breaks premium con catering de alto nivel." },
+        "roi": { "title": "ROI DEMOSTRABLE", "desc": "Casos de éxito de implementación DevOps/SecOps. Métricas y KPIs que puedes aplicar el lunes." },
+        "cert": { "title": "CERTIFICACIÓN", "desc": "Certificado de asistencia de X-Ops Conferences, reconocido por la industria tech europea." },
+        "exclusive": { "title": "EXCLUSIVIDAD", "desc": "Aforo limitado a 90 ejecutivos. Garantizamos calidad en cada interacción." }
+      }
+    },
+    "agenda": {
+      "title": "Programa Ejecutivo",
+      "subtitle": "Agenda en construcción — próximamente los detalles de sesiones y ponentes",
+      "day1": "Día 1 — Estrategia y Transformación",
+      "day2": "Día 2 — Implementación y Futuro",
+      "tba": "Por anunciar"
+    }
   },
   "language": {
     "switch": "EN",

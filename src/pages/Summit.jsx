@@ -5,7 +5,6 @@ import ValueProposition from '../components/Summit/ValueProposition';
 import TicketTier from '../components/Summit/TicketTier';
 import ExecutiveAgenda from '../components/Summit/ExecutiveAgenda';
 import SummitLocation from '../components/Summit/SummitLocation';
-import SummitOrganizers from '../components/Summit/SummitOrganizers';
 
 const Summit = () => {
   return (
@@ -59,7 +58,6 @@ const Summit = () => {
         <ExecutiveAgenda />
         <TicketTier />
         <SummitLocation />
-        <SummitOrganizers />
       </div>
     </>
   );

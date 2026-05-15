@@ -8,7 +8,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, #0A0F2E 0%, #111840 50%, #0A0F2E 100%);
   overflow: hidden;
 }
 
@@ -18,7 +18,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(0, 188, 212, 0.1) 0%, transparent 70%);
 }
 
 .summit-hero-content {
@@ -29,7 +29,7 @@
 .summit-badge {
   display: inline-block;
   padding: 0.5rem 1.5rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #00BCD4 0%, #0D6E82 100%);
   border-radius: 50px;
   margin-bottom: 1.5rem;
   animation: pulse-glow 2s infinite;
@@ -55,7 +55,7 @@
   display: block;
   font-size: 2rem;
   font-weight: 400;
-  background: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%);
+  background: linear-gradient(90deg, #00BCD4 0%, #FFD600 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -115,7 +115,7 @@
   padding: 1rem 2.5rem;
   font-size: 1.125rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #00BCD4 0%, #0D6E82 100%);
   border: none;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -123,7 +123,7 @@
 
 .summit-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
 }
 
 .summit-btn-secondary {
@@ -131,14 +131,14 @@
   font-size: 1.125rem;
   font-weight: 700;
   background: transparent;
-  border: 2px solid #3b82f6;
+  border: 2px solid #00BCD4;
   border-radius: 8px;
-  color: #3b82f6;
+  color: #00BCD4;
   transition: all 0.3s ease;
 }
 
 .summit-btn-secondary:hover {
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(0, 188, 212, 0.1);
   transform: translateY(-2px);
 }
 
@@ -186,29 +186,32 @@
 .summit-section-title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
 .summit-section-subtitle {
   font-size: 1.25rem;
-  color: #64748b;
+  color: #B0BEC5;
   margin-bottom: 2rem;
 }
 
 /* ===== VALUE PROPOSITION ===== */
 .summit-value-prop {
   padding: 6rem 0;
-  background: #f8fafc;
+  background: #0D1238;
+  color: #e0e0e0;
 }
 
 .value-card {
   padding: 2rem;
-  background: white;
+  background: #111840;
+  border: 1px solid rgba(0, 188, 212, 0.2);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   height: 100%;
+  color: #e0e0e0;
 }
 
 .value-card:hover {
@@ -218,27 +221,28 @@
 
 .value-icon {
   font-size: 2.5rem;
-  color: #3b82f6;
+  color: #00BCD4;
   margin-bottom: 1rem;
 }
 
 .value-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #00BCD4;
   margin-bottom: 0.75rem;
 }
 
 .value-description {
   font-size: 0.9375rem;
-  color: #64748b;
+  color: #B0BEC5;
   line-height: 1.6;
 }
 
 /* ===== TICKET TIERS ===== */
 .summit-tickets {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: #0A0F2E;
+  color: #e0e0e0;
 }
 
 .summit-tickets .summit-section-title {
@@ -276,9 +280,9 @@
 }
 
 .ticket-card.highlighted {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #00BCD4 0%, #0D6E82 100%);
   transform: scale(1.05);
-  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 188, 212, 0.3);
 }
 
 .ticket-card.highlighted * {
@@ -303,7 +307,7 @@
 .ticket-name {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #0A0F2E;
   margin-bottom: 1rem;
 }
 
@@ -321,7 +325,7 @@
 .ticket-price {
   font-size: 2.5rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #0A0F2E;
 }
 
 .ticket-features {
@@ -364,23 +368,23 @@
 
 .ticket-cta-primary {
   background: white;
-  color: #3b82f6;
+  color: #00BCD4;
 }
 
 .ticket-cta-primary:hover {
   background: #f8fafc;
-  color: #3b82f6;
+  color: #00BCD4;
 }
 
 .ticket-cta-secondary {
-  background: #3b82f6;
+  background: #00BCD4;
   color: white;
 }
 
 .ticket-cta-outline {
   background: transparent;
-  border: 2px solid #3b82f6;
-  color: #3b82f6;
+  border: 2px solid #00BCD4;
+  color: #00BCD4;
 }
 
 .tickets-guarantee {
@@ -397,7 +401,7 @@
 }
 
 .contact-link {
-  color: #3b82f6;
+  color: #00BCD4;
   font-weight: 600;
   text-decoration: none;
 }
@@ -409,10 +413,10 @@
 /* ===== ANIMATIONS ===== */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 40px rgba(0, 188, 212, 0.5);
   }
 }
 
@@ -456,7 +460,7 @@
 /* ===== SPONSORS GRID ===== */
 .sponsors-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(180deg, #0A0F2E 0%, #111840 100%);
 }
 
 .sponsor-tier {
@@ -506,8 +510,8 @@
 .sponsor-card:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+  border-color: rgba(0, 188, 212, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 188, 212, 0.2);
 }
 
 .sponsor-platinum {
@@ -561,7 +565,7 @@
 /* ===== TICKETS PAGE ===== */
 .tickets-page {
   padding: 120px 0 80px;
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(180deg, #0A0F2E 0%, #111840 100%);
   min-height: 100vh;
 }
 
@@ -582,7 +586,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #3b82f6;
+  color: #00BCD4;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
@@ -595,7 +599,7 @@
 /* ===== TICKET SUCCESS PAGE ===== */
 .ticket-success-page {
   padding: 120px 0 80px;
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(180deg, #0A0F2E 0%, #111840 100%);
   min-height: 100vh;
 }
 
@@ -637,7 +641,7 @@
 .order-id {
   font-family: monospace;
   font-size: 1.25rem;
-  color: #3b82f6;
+  color: #00BCD4;
   font-weight: 600;
 }
 
@@ -687,7 +691,7 @@
 }
 
 .contact-support a {
-  color: #3b82f6;
+  color: #00BCD4;
   text-decoration: none;
 }
 
@@ -698,7 +702,7 @@
 /* ===== CFP PAGE STYLES ===== */
 .cfp-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, #0A0F2E 0%, #111840 50%, #0A0F2E 100%);
   padding-bottom: 4rem;
 }
 
@@ -711,7 +715,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 1.5rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #00BCD4 0%, #00BCD4 100%);
   border-radius: 50px;
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
@@ -784,8 +788,8 @@
 .cfp-form .form-control:focus,
 .cfp-form .form-select:focus {
   background: rgba(15, 23, 42, 0.8);
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  border-color: #00BCD4;
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
   color: #f8fafc;
 }
 
@@ -812,7 +816,7 @@
 }
 
 .cfp-submit-btn {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #00BCD4 0%, #00BCD4 100%);
   border: none;
   padding: 1rem 3rem;
   font-size: 1.125rem;
@@ -824,7 +828,7 @@
 
 .cfp-submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.4);
 }
 
 .cfp-submit-btn:disabled {
@@ -872,14 +876,25 @@
 }
 
 .cfp-submission-id code {
-  color: #3b82f6;
+  color: #00BCD4;
   font-size: 0.875rem;
 }
 
 /* ===== ENHANCED LOCATION STYLES ===== */
 .summit-location {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: #0D1238;
+  color: #e0e0e0;
+}
+
+.summit-organizers {
+  background: #0A0F2E;
+  color: #e0e0e0;
+}
+
+.summit-agenda {
+  background: #0A0F2E;
+  color: #e0e0e0;
 }
 
 .summit-section-title {
@@ -918,7 +933,7 @@
 }
 
 .location-icon {
-  color: #3b82f6;
+  color: #00BCD4;
   font-size: 1.25rem;
 }
 
@@ -950,7 +965,7 @@
 
 .access-icon {
   font-size: 1.5rem;
-  color: #3b82f6;
+  color: #00BCD4;
   flex-shrink: 0;
   margin-top: 0.25rem;
 }
@@ -969,7 +984,7 @@
 .location-map-link {
   display: inline-flex;
   align-items: center;
-  color: #3b82f6;
+  color: #00BCD4;
   font-weight: 500;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -1060,7 +1075,7 @@
 
 .hotel-card:hover {
   background: rgba(15, 23, 42, 0.6);
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: rgba(0, 188, 212, 0.3);
 }
 
 .hotel-name {
@@ -1070,7 +1085,7 @@
 }
 
 .hotel-distance {
-  color: #3b82f6;
+  color: #00BCD4;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
@@ -1099,14 +1114,14 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(0, 188, 212, 0.1);
+  border: 1px solid rgba(0, 188, 212, 0.2);
   border-radius: 12px;
 }
 
 .parking-icon {
   font-size: 1.5rem;
-  color: #3b82f6;
+  color: #00BCD4;
 }
 
 .parking-details {
