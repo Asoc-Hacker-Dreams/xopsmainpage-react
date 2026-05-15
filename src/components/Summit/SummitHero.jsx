@@ -11,37 +11,36 @@ const SummitHero = () => {
             <div className="summit-badge">
               <span className="badge-text">EVENTO EJECUTIVO</span>
             </div>
-            
+
             <h1 className="summit-title">
               X-Ops Summit
-              <span className="summit-title-accent">Barcelona 2026</span>
+              <span className="summit-title-accent">Madrid 2026</span>
             </h1>
-            
+
             <p className="summit-subtitle">
               El evento exclusivo para <strong>líderes tecnológicos</strong>
             </p>
-            
+
             <div className="summit-details">
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">📅</span>
-                <span>6-7 de Mayo 2026</span>
+                <span>18 y 19 de noviembre 2026</span>
               </div>
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">📍</span>
-                <span>Barcelona · Cinesa Diagonal Mar</span>
+                <span>Madrid · Lugar por confirmar</span>
               </div>
               <div className="summit-detail-item">
                 <span className="summit-detail-icon">🎯</span>
                 <span>Máximo 50 asistentes</span>
               </div>
             </div>
-            
+
             <p className="summit-description">
-              Un programa ejecutivo paralelo a <strong>HackBCN Con</strong>, diseñado 
-              para CTOs, CISOs y Decision Makers que buscan networking de alto nivel 
-              y contenido estratégico.
+              Un programa ejecutivo diseñado para CTOs, CISOs y Decision Makers
+              que buscan networking de alto nivel y contenido estratégico.
             </p>
-            
+
             <div className="summit-cta">
               <Button className="summit-btn-primary" href="#tickets">
                 Reservar entrada VIP
@@ -50,15 +49,10 @@ const SummitHero = () => {
                 Ver programa
               </Button>
             </div>
-            
-            <div className="summit-early-bird">
-              <span className="early-bird-badge">🎭 EARLY BIRD</span>
-              <span className="early-bird-text">20% de descuento hasta el 15 de Marzo</span>
-            </div>
           </Col>
         </Row>
       </Container>
-      
+
       <div className="summit-scroll-indicator">
         <span>Descubre más</span>
         <div className="scroll-arrow">↓</div>
