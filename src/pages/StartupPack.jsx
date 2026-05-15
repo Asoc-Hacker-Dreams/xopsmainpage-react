@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './StartupPack.css';
 
+const SYNC_URL = import.meta.env.VITE_HUBSPOT_SYNC_URL || 'http://localhost:3002';
+
 const CITIES = [
   { key: 'madrid', flag: '🇪🇸', name: 'Madrid', price: '€850', currency: 'EUR', amount: 850 },
   { key: 'barcelona', flag: '🇪🇸', name: 'Barcelona', price: '€950', currency: 'EUR', amount: 950 },
@@ -106,6 +108,8 @@ export default function StartupPack() {
   const [declNewsletter, setDeclNewsletter] = useState(false);
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const t = (es, en) => lang === 'es' ? es : en;
 
@@ -130,11 +134,40 @@ export default function StartupPack() {
     selectedCities.length > 0 && docType &&
     declAccuracy && declVerification && declTerms;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formValid) return;
-    // TODO (production): POST to /api/startup-application or HubSpot form endpoint
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError(false);
+    try {
+      const res = await fetch(`${SYNC_URL}/webhooks/startup-application`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          firstname: firstName,
+          lastname: lastName,
+          companyName,
+          website,
+          country,
+          city: selectedCities.join(', '),
+          stage: arr,
+          employees,
+          category,
+          jobTitle,
+          linkedin,
+          productDesc,
+          newsletterConsent: declNewsletter,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Startup Pack submission error:', err);
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -489,8 +522,15 @@ export default function StartupPack() {
             </label>
           </div>
 
-          <button type="submit" className="stk-submit-btn" disabled={!formValid}>
-            {t('Enviar solicitud de elegibilidad', 'Submit eligibility application')}
+          {submitError && (
+            <p style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
+              {t('Error al enviar la solicitud. Inténtalo de nuevo.', 'Submission error. Please try again.')}
+            </p>
+          )}
+          <button type="submit" className="stk-submit-btn" disabled={!formValid || submitting}>
+            {submitting
+              ? t('Enviando...', 'Submitting...')
+              : t('Enviar solicitud de elegibilidad', 'Submit eligibility application')}
           </button>
 
         </form>
