@@ -20,7 +20,7 @@ El evento X-Ops Conference 2025 ya se celebró. La web necesita:
 
 | Evento | Día | Ubicación |
 |--------|-----|-----------|
-| X-Ops Summit | Jueves 19 noviembre 2026 | Madrid — Lugar por confirmar (TBD) |
+| X-Ops Summit | Miércoles 18 y jueves 19 noviembre 2026 | Madrid — Lugar por confirmar (TBD) |
 | X-Ops Conference | Viernes 20 y sábado 21 noviembre 2026 | URJC Campus Móstoles, Madrid |
 
 ---
@@ -86,7 +86,7 @@ No modificar el contenido de los archivos de archivo 2025 — usarlos tal cual.
 
 **Archivo:** `src/components/Summit/SummitHero.jsx`
 - Título: `X-Ops Summit Madrid 2026`
-- Fecha mostrada: `19 de noviembre 2026`
+- Fecha mostrada: `18 y 19 de noviembre 2026`
 - Ubicación mostrada: `Madrid · Lugar por confirmar`
 - Eliminar "paralelo a HackBCN Con" del texto descriptivo
 - Eliminar la sección early bird (precios y descuentos aún no confirmados para 2026)
@@ -120,11 +120,11 @@ No modificar el contenido de los archivos de archivo 2025 — usarlos tal cual.
 
 #### 5a. Summit — `src/components/Summit/ExecutiveAgenda.jsx`
 
-Reducir de 2 días a **1 día** (jueves 19 de noviembre). Conservar los tipos de sesión (keynote, talk, panel, workshop, break) pero reemplazar los contenidos por placeholders:
+Mantener la estructura de **2 días** pero actualizar las fechas a **miércoles 18 y jueves 19 de noviembre**. Conservar los tipos de sesión (keynote, talk, panel, workshop, break) pero reemplazar los contenidos por placeholders:
 
 - Mantener los breaks con horario: café de bienvenida, almuerzo ejecutivo, cocktail de cierre.
 - Los slots de charlas: title = "Por anunciar", speaker = "TBD".
-- Actualizar los botones del selector de días para mostrar solo "19 Nov".
+- Actualizar los botones del selector de días: "18 Nov" / "19 Nov".
 - Actualizar título de la sección: "Programa Ejecutivo — Por confirmar".
 
 #### 5b. Conferencia — `src/components/Events/Events.jsx` + nuevo JSON
