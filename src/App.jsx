@@ -41,6 +41,7 @@ import CheckoutSuccess from './pages/tickets/CheckoutSuccess';
 import CheckoutCancel from './pages/tickets/CheckoutCancel';
 import XOpsHome from './pages/tickets/XOpsHome';
 import XOpsEventDetail from './pages/tickets/XOpsEventDetail';
+import StartupPack from './pages/StartupPack';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 import './styles/Summit.css';
@@ -254,6 +255,9 @@ function App() {
           {/* X-Ops public ticket pages */}
           <Route path="/events/x-ops-conference-dubai-2026" element={<XOpsEventDetail />} />
           <Route path="/events/x-ops-conference-dubai-2026/buy" element={<Tickets />} />
+
+          <Route path="/startup-pack" element={<StartupPack />} />
+          <Route path="/startup-pack-application" element={<StartupPack />} />
           
           <Route path="*" element={<NotFound />} />
 

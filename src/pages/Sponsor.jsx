@@ -4,6 +4,7 @@ import Benefits from "../components/Benefits";
 import LastEditionData from "../components/LastEditionData";
 import { useLocation } from 'react-router-dom';
 import SEO from "../components/SEO";
+import SponsorDossier from './SponsorDossier';
 
 
 const Sponsor = () => {
@@ -44,9 +45,12 @@ const Sponsor = () => {
             }
             }}
         />
-    <LastEditionData/>
-    <Benefits/>
-    <PricingTable />
+    <SponsorDossier />
+    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2rem' }}>
+      <LastEditionData/>
+      <Benefits/>
+      <PricingTable />
+    </div>
     </div>
     </>
   );
