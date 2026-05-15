@@ -13,10 +13,29 @@ import joseLuis from "../../../assets/speakers/joseLuis.jpg";
 import davidC from "../../../assets/speakers/davidC.jpg";
 
 import AnimationWrapper from "../../../components/AnimationWrapper";
+import SEO from "../../../components/SEO";
 
 const Speakers2023 = () => {
   return (
     <>
+      <SEO
+        title="Speakers Aldea DevSecOps 2023 - X-Ops Conference"
+        description="Ponentes de Aldea DevSecOps 2023, el evento precursor de X-Ops Conference. Expertos en DevSecOps, Ciberseguridad y Cloud-native de Madrid."
+        path="/archive/2023/Speakers2023"
+        keywords="speakers, ponentes, Aldea DevSecOps 2023, DevSecOps, Ciberseguridad, Madrid"
+        lang="es"
+        alternates={[
+          { hrefLang: 'es', href: 'https://xopsconference.com/archive/2023/Speakers2023' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/archive/2023/Speakers2023' },
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Aldea DevSecOps 2023 Speakers",
+          "description": "List of speakers at Aldea DevSecOps 2023, precursor event of X-Ops Conference.",
+          "url": "https://xopsconference.com/archive/2023/Speakers2023"
+        }}
+      />
       <section id="ponentes" className="speaker-section ">
         <div className="container margin-top">
           <h2 className="text-center">Conoce a Nuestros Ponentes</h2>

@@ -5,17 +5,19 @@ import PropTypes from 'prop-types';
 export const CONSENT_CATEGORIES = {
   ESSENTIAL: 'essential',
   ANALYTICS: 'analytics', 
-  MARKETING: 'marketing'
+  MARKETING: 'marketing',
+  NEWSLETTERS: 'newsletters'
 };
 
 // Default consent state (GDPR compliant - all denied except essential)
 const DEFAULT_CONSENT = {
   [CONSENT_CATEGORIES.ESSENTIAL]: true,  // Always required
   [CONSENT_CATEGORIES.ANALYTICS]: false,
-  [CONSENT_CATEGORIES.MARKETING]: false
+  [CONSENT_CATEGORIES.MARKETING]: false,
+  [CONSENT_CATEGORIES.NEWSLETTERS]: false
 };
 
-const CONSENT_STORAGE_KEY = 'xops-cookie-consent';
+const CONSENT_STORAGE_KEY = 'xopsconf_consent_v1';
 const CONSENT_EXPIRY_MONTHS = 12;
 
 const ConsentContext = createContext();
@@ -69,9 +71,12 @@ export const ConsentProvider = ({ children }) => {
       const consentData = {
         consent: newConsent,
         timestamp: new Date().toISOString(),
+        method: 'banner',
         version: '1.0'
       };
       localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentData));
+      // TODO: sync to API (gdpr-6)
+      // if (user) fetch('/api/v1/me/consents', { method: 'POST', body: JSON.stringify(consentData) })
     } catch (error) {
       console.error('Error saving consent:', error);
     }
@@ -82,7 +87,8 @@ export const ConsentProvider = ({ children }) => {
     const newConsent = {
       [CONSENT_CATEGORIES.ESSENTIAL]: true,
       [CONSENT_CATEGORIES.ANALYTICS]: true,
-      [CONSENT_CATEGORIES.MARKETING]: true
+      [CONSENT_CATEGORIES.MARKETING]: true,
+      [CONSENT_CATEGORIES.NEWSLETTERS]: true
     };
     setConsent(newConsent);
     setHasInteracted(true);
@@ -101,10 +107,12 @@ export const ConsentProvider = ({ children }) => {
 
   // Save custom preferences
   const savePreferences = (newConsent) => {
-    setConsent(newConsent);
+    // Always enforce essential: true regardless of what was passed
+    const validatedConsent = { ...newConsent, [CONSENT_CATEGORIES.ESSENTIAL]: true };
+    setConsent(validatedConsent);
     setHasInteracted(true);
     setShowBanner(false);
-    saveConsent(newConsent);
+    saveConsent(validatedConsent);
   };
 
   // Update specific category

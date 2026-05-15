@@ -1,0 +1,69 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "X-Ops Conference API",
+    "description": "Public information API for X-Ops Conference events, speakers, and sponsorship.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "info@xopsconference.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://xopsconference.com",
+      "description": "X-Ops Conference website"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Conference home page",
+        "description": "Main page of X-Ops Conference with upcoming event info, speakers, agenda overview.",
+        "operationId": "getHome",
+        "responses": {
+          "200": { "description": "HTML page with conference information" }
+        }
+      }
+    },
+    "/summit": {
+      "get": {
+        "summary": "X-Ops Summit 2026",
+        "description": "Executive summit page with C-Level sessions, tickets and registration.",
+        "operationId": "getSummit",
+        "responses": {
+          "200": { "description": "Summit page" }
+        }
+      }
+    },
+    "/Sponsor": {
+      "get": {
+        "summary": "Sponsorship dossier",
+        "description": "Interactive sponsorship dossier with tiers (Platinum, Gold, Silver, Welcome Pack) for Madrid, Dubai, London editions.",
+        "operationId": "getSponsor",
+        "responses": {
+          "200": { "description": "Sponsorship page" }
+        }
+      }
+    },
+    "/startup-pack": {
+      "get": {
+        "summary": "Startup Pack application",
+        "description": "Startup Pack for early-stage companies (≤3 years, ≤15 employees, ARR <€500K).",
+        "operationId": "getStartupPack",
+        "responses": {
+          "200": { "description": "Startup Pack page" }
+        }
+      }
+    },
+    "/agenda": {
+      "get": {
+        "summary": "Conference agenda",
+        "description": "Full conference agenda with sessions from Sessionize.",
+        "operationId": "getAgenda",
+        "responses": {
+          "200": { "description": "Agenda page" }
+        }
+      }
+    }
+  }
+}

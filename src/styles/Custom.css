@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); /*agrego fuente para menú*/
 
-body{
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0A0F2E;
+  color: #e0e0e0;
   overflow-x: hidden;
 }
 :root{
@@ -10,16 +13,19 @@ body{
   width: 100%;       /* Asegura que ocupe el 100% del ancho disponible */
   box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
   overflow-x: hidden;
-    --bg:#d90845;
+    --bg:#FFD600;
 }
 .header{
     margin-inline: 0rem;
     background: black !important;
-    margin: 5;
-    padding-top: 40px;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     padding-left: 40px;
     padding-right: 40px;
     height: 85px;     /* largo fondo negro menu cabecera */
+    display: flex;
+    align-items: center;
 }
 
 /* Mejores estilos para el logo y brand en desktop */
@@ -30,6 +36,9 @@ body{
 .navbar-brand-text {
     margin: 0;
     font-size: 1.2rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 2px;
+    color: #ffffff !important;
 }
 
 /* Estilos para el botón toggle personalizado */
@@ -46,14 +55,19 @@ body{
 .navbar-toggler-custom .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
-.heading{
-color: var(--bg);
+.heading {
+  color: #00BCD4 !important;
 }
 .bg-color{
     background: var(--bg);
+    color: #0A0F2E !important;
+}
+.bg-color.text-white,
+.btn.bg-color {
+  color: #0A0F2E !important;
 }
 .button{
-    color: #ffffff;
+    color: #0A0F2E;
     background: var(--bg);
     padding: .5rem 2rem;
     border-radius: 5px;
@@ -70,28 +84,21 @@ background: transparent;
 color: #ffffff;
 border: 1px solid #ffffff;
 }
-.date-btn{
-  color: #887878c2;
-  background: #79db9f85;
-  padding: .5rem 2rem;
-  border-radius: 5px;
-  border: none;
-  font-weight: bold;
-  margin: 5px;
-  transition: all 0.3s ease;
+.date-btn {
+  background: transparent;
+  border: 1px solid #00BCD4;
+  color: #00BCD4;
+  padding: 0.4rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background 0.2s, color 0.2s;
+  margin: 0 0.3rem;
 }
-.date-btn:hover{
-background: transparent;
-color: #080606d7;
-border: 1px solid #17dd8a8e;
-margin: 5px;
-}
-.date-btn.active{
-  background: #17dd8a;
-  color: #ffffff;
-  border: 2px solid #17dd8a;
-  font-weight: bold;
-  transform: scale(1.05);
+.date-btn:hover, .date-btn.active {
+  background: #00BCD4;
+  color: #0A0F2E;
 }
 .responsive-navbar-nav{
   color: #ffffff !important;
@@ -101,23 +108,19 @@ margin: 5px;
 color: #d90845  !important;
 }
 
-.home-main-section{
-height: 65vh;
-min-width: 100%;
-background: #000;
-background-image: url(../assets/landscapes/madrid.jpeg);
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;
+.home-main-section {
+  height: 65vh;
+  min-width: 100%;
+  background: #0A0F2E;
 }
-.Hero-section{
-    height: 50vh ;
-       min-width: 100%;
-
+.Hero-section {
+    height: 50vh;
+    min-width: 100%;
+    background: transparent;
 }
 .xops-section {
     padding: 50px 0;
-    background-color: #f8f9fa;
+    background-color: #0D1238 !important;
   }
 
   .xops-section h2 {
@@ -196,24 +199,32 @@ border-radius: 10px;
 
 .schedule-section {
   padding: 50px 0;
-  border: 1px solid red;
   margin-top: 4rem;
+  background-color: #0A0F2E;
+  color: #e0e0e0;
 }
 
 .schedule-section h2 {
   margin-bottom: 30px;
+  color: #ffffff;
 }
 
 .schedule-section .col-lg-6 {
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 188, 212, 0.25);
   padding: 2px;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #0D1238 !important;
 }
 
 .schedule-section .col-lg-6 h3 {
-  color: #333;
+  color: var(--text-primary, #ffffff);
   margin-bottom: 10px;
+}
+
+.schedule-section .schedule-item, .schedule-section .event-card {
+  background-color: #111840;
+  border-left: 3px solid #00BCD4;
+  color: #e0e0e0;
 }
 
 .event-cards{
@@ -224,109 +235,70 @@ border-radius: 10px;
 border: red;
 }
 
-.event-schedule-section .cardBernabeu{
-background-image: url(../assets/landscapes/granV.jpeg);
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-position: relative;
+.event-schedule-section .cardBernabeu {
+  background-color: #111840;
+  position: relative;
 }
 
-.event-schedule-section .cardBernabeuD{
-  background-image: url(../assets/landscapes/granV.jpeg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.event-schedule-section .cardBernabeuD {
+  background-color: #111840;
   position: relative;
-  }
+}
 
-  .event-schedule-section .cardcuatroT{
-    background-image: url(../assets/landscapes/granV.jpeg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    }
+.event-schedule-section .cardcuatroT {
+  background-color: #111840;
+  position: relative;
+}
 
-    .event-schedule-section .cardcuatroTD{
-      background-image: url(../assets/landscapes/granV.jpeg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      }
+.event-schedule-section .cardcuatroTD {
+  background-color: #111840;
+  position: relative;
+}
 
-      .event-schedule-section .cardgranV{
-        background-image: url(../assets/landscapes/granV.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardgranV {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardmanzanares{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardmanzanares {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardmanzanaresD{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardmanzanaresD {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardmetropolitano{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardmetropolitano {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardmetropolitanoD{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardmetropolitanoD {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardministerios{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardministerios {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardministeriosD{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardministeriosD {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardplazaM{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardplazaM {
+  background-color: #111840;
+  position: relative;
+}
 
-.event-schedule-section .cardpuertaA{
-        background-image: url(../assets/landscapes/plazaM.jpeg);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-        }
+.event-schedule-section .cardpuertaA {
+  background-color: #111840;
+  position: relative;
+}
 
 .overlay{
 height: 100%;
@@ -419,9 +391,11 @@ background: rgba(22, 1, 1, 0.5);
 }
 /* Gallery ends */
 
-.footer{
+.footer {
   padding: 3rem 0;
   margin-top: 4rem;
+  background: #0A0F2E !important;
+  border-top: 1px solid rgba(0, 188, 212, 0.2);
 }
 
 .banner{
@@ -469,10 +443,11 @@ margin-block: 1rem;
     top: 0;
     width: 100%;
     z-index: 1000;
+    background-color: #0A0F2E !important;
 }
 
 .navbar-collapse {
-    background-color: black; 
+    background-color: #0A0F2E !important;
     padding-bottom: 7%;
 }
 
@@ -516,15 +491,17 @@ margin-block: 1rem;
 }
 
 /* Menú "EVENTOS ANTERIORES" */
-.custom-white-dropdown .dropdown-toggle {
-  font-size: 1rem;  /* Igualar tamaño de fuente */
-  color: white !important; /* Color blanco para el texto */
+.custom-white-dropdown .dropdown-toggle,
+.navbar .dropdown-toggle {
+  font-weight: 700 !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+  color: white !important;
   background-color: transparent !important;
   border: none;
-  padding: 10px 15px; /* Añadir un poco de espacio en los laterales */
-  height: auto; /* Aseguramos que no haya desajustes de altura */
+  height: auto;
   display: flex;
-  align-items: center; /* Centra el texto verticalmente */
+  align-items: center;
   margin-top: -10px;
 }
 
@@ -541,11 +518,22 @@ margin-block: 1rem;
 .navbar,
 .navbar .nav-link,
 .navbar-brand,
-.navbar .dropdown-toggle,
 .links {
   font-family: 'Poppins', sans-serif !important; 
   font-weight: 800 !important; /* Negrita */
   font-size: 1.1rem !important;
+}
+
+/* Fix 5 — reducir tamaño para que no se corte el botón Entradas */
+.links {
+  font-size: 0.85rem !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+.menu-btn {
+  padding: 0.4rem 1rem !important;
+  font-size: 0.85rem !important;
 }
 
 /* Rojo para los títulos de submenús */
@@ -559,11 +547,11 @@ margin-block: 1rem;
 /* Last Edition Data Section Styles */
 .last-edition-section {
   padding: 60px 0;
-  background-color: #f8f9fa;
+  background-color: #0D1238 !important;
 }
 
 .stat-card {
-  background: white;
+  background: var(--card-bg, #111840);
   padding: 30px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -585,18 +573,19 @@ margin-block: 1rem;
   font-weight: bold;
   margin-bottom: 10px;
   line-height: 1;
+  color: #FFD600;
 }
 
 .stat-label {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #333;
+  color: #00BCD4;
 }
 
 .stat-description {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary, #B0BEC5);
   margin-bottom: 0;
 }
 
@@ -721,5 +710,111 @@ margin-block: 1rem;
   .Hero-section {
     padding-top: 110px; /* Increased for small devices too */
   }
+}
+
+/* =============================================
+   Dossier-unified section styles
+   ============================================= */
+
+h2, .section-title {
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+h3, h4 {
+  color: #00BCD4;
+}
+p, li, span {
+  color: #e0e0e0;
+}
+
+.xops-section h2 {
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+.xops-section p {
+  color: #e0e0e0;
+}
+
+.key-themes-section {
+  background-color: #0A0F2E;
+  padding: 50px 0;
+}
+.key-themes-section h2 {
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+.key-themes-section .card {
+  background-color: #111840;
+  border: 1px solid rgba(0, 188, 212, 0.25);
+  color: #e0e0e0;
+}
+.key-themes-section .card-title,
+.key-themes-section h5 {
+  color: #00BCD4;
+}
+.key-themes-section .card-text,
+.key-themes-section p {
+  color: #B0BEC5;
+}
+
+.speaker-section {
+  background-color: #0D1238;
+  padding: 50px 0;
+}
+.speaker-section h2 {
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+.speaker-section .speaker-card,
+.speaker-section .card {
+  background-color: #111840;
+  border: 1px solid rgba(0, 188, 212, 0.2);
+  color: #e0e0e0;
+}
+.speaker-section .card-title,
+.speaker-section h5,
+.speaker-section h4 {
+  color: #00BCD4;
+}
+.speaker-section .card-text,
+.speaker-section p {
+  color: #B0BEC5;
+}
+
+.last-edition-section h2,
+.last-edition-section h4 {
+  color: #ffffff;
+}
+.stat-card {
+  border: 1px solid rgba(0, 188, 212, 0.2);
+}
+.stat-card h3,
+.stat-card .stat-number {
+  color: #FFD600;
+}
+.stat-card h5,
+.stat-card .stat-label {
+  color: #00BCD4;
+}
+.stat-card p,
+.stat-card .stat-description {
+  color: #B0BEC5;
+}
+
+#colaboradores, .collaborators-section {
+  background-color: #0A0F2E;
+  padding: 50px 0;
+}
+#colaboradores h2 {
+  color: #ffffff;
+}
+
+.ubication-section, #ubicacion {
+  background-color: #0D1238;
+  color: #e0e0e0;
+}
+.ubication-section h2,
+#ubicacion h2 {
+  color: #ffffff;
 }
 

@@ -1,0 +1,232 @@
+{
+  "nav": {
+    "event": "EVENTO",
+    "speakers": "PONENTES",
+    "sponsor": "PATROCINA",
+    "organizers": "ORGANIZADORES",
+    "previousEvents": "EVENTOS<br/>ANTERIORES",
+    "tickets": "ENTRADAS",
+    "summit": "SUMMIT",
+    "becomeSponsor": "CONVIÉRTETE EN PATROCINADOR",
+    "volunteer": "Hazte voluntario"
+  },
+  "hero": {
+    "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
+    "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
+    "date": "Fecha: 18 al 21 de noviembre 2026",
+    "buyTicket": "Compra tu entrada",
+    "viewAgenda": "Ver agenda",
+    "cfp": "CFP",
+    "installApp": "📱 Instalar App"
+  },
+  "footer": {
+    "address": "Dirección",
+    "addressLine1": "Universidad Rey Juan Carlos campus Móstoles",
+    "addressLine2": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid",
+    "contacts": "Contactos",
+    "links": "Enlaces",
+    "privacyPolicy": "Política de Privacidad",
+    "cookieSettings": "🍪 Gestión de Cookies",
+    "copyright": "© 2026 - X-Ops Conference"
+  },
+  "archive": {
+    "xops2025": "X-Ops Conference Madrid 2025",
+    "xops2024": "X-Ops Conference Madrid 2024",
+    "speakers": "Ponentes",
+    "agenda": "Agenda",
+    "sponsorCollab": "Patrocinio y Colaboradores",
+    "aldea2023": "Aldea DevSecOps 2023"
+  },
+  "summit": {
+    "title": "X-Ops Summit Madrid 2026",
+    "subtitle": "Evento Ejecutivo para Decision Makers",
+    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-19 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico.",
+    "hero": {
+      "badge": "EVENTO EJECUTIVO",
+      "title": "X-Ops Summit",
+      "subtitle": "El evento exclusivo para líderes tecnológicos",
+      "date": "18 y 19 de noviembre 2026",
+      "venue": "Madrid · Lugar por confirmar",
+      "attendees": "Máximo 90 asistentes",
+      "description": "Un programa ejecutivo diseñado para CTOs, CISOs y Decision Makers que buscan networking de alto nivel y contenido estratégico."
+    },
+    "value": {
+      "title": "¿Por qué asistir al X-Ops Summit?",
+      "subtitle": "Un evento diseñado pensando en las necesidades de los líderes tecnológicos",
+      "props": {
+        "strategic": { "title": "ENFOQUE ESTRATÉGICO", "desc": "Contenido diseñado para C-levels y directivos. Sin technical deep-dives, sí business impact." },
+        "networking": { "title": "NETWORKING EJECUTIVO", "desc": "Sesiones exclusivas con 90 máximo asistentes. Coffee breaks premium con catering de alto nivel." },
+        "roi": { "title": "ROI DEMOSTRABLE", "desc": "Casos de éxito de implementación DevOps/SecOps. Métricas y KPIs que puedes aplicar el lunes." },
+        "cert": { "title": "CERTIFICACIÓN", "desc": "Certificado de asistencia de X-Ops Conferences, reconocido por la industria tech europea." },
+        "exclusive": { "title": "EXCLUSIVIDAD", "desc": "Aforo limitado a 90 ejecutivos. Garantizamos calidad en cada interacción." }
+      }
+    },
+    "agenda": {
+      "title": "Programa Ejecutivo",
+      "subtitle": "Agenda en construcción — próximamente los detalles de sesiones y ponentes",
+      "day1": "Día 1 — Estrategia y Transformación",
+      "day2": "Día 2 — Implementación y Futuro",
+      "tba": "Por anunciar"
+    }
+  },
+  "language": {
+    "switch": "EN",
+    "label": "Idioma"
+  },
+  "theme": {
+    "dark": "Modo oscuro",
+    "light": "Modo claro",
+    "toggle": "Cambiar tema"
+  },
+  "sophia": {
+    "nav": {
+      "home": "Home",
+      "about": "Sobre Sophia",
+      "postulate": "Postularse",
+      "wallet": "Mi Wallet",
+      "communities": "Comunidades",
+      "language": "Idioma"
+    },
+    "home": {
+      "title": "Sophia Metapolis",
+      "subtitle": "La nación digital donde la ciudadanía es identidad",
+      "description": "Una comunidad soberana digital fundada en principios de transparencia, meritocracia y participación activa. Sophia Metapolis no es solo una plataforma — es una nación con gobernanza propia, ciudadanos con derechos y responsabilidades, y una propuesta de valor única en el espacio digital.",
+      "cta": "Conocer más",
+      "postulate": "Iniciar postulación",
+      "events": "Eventos ciudadanos",
+      "communities": "Comunidades activas"
+    },
+    "about": {
+      "title": "Sobre Sophia Metapolis",
+      "governance": {
+        "title": "Gobernanza",
+        "description": "Sophia Metapolis opera bajo un modelo de gobernanza donde roles arquetípicos (Horus, Sulis, Minerva) representan funciones específicas: protección/seguridad, bienestar/social, y conocimiento/sabiduría. Los fundadores ocupan estos roles de manera rotativa.",
+        "founders": "Cuerpo fundacional"
+      },
+      "model": {
+        "title": "Modelo federal",
+        "description": "La nación se organiza en comunidadesautónomas que operan bajo principios compartidos pero con gobernanza local. Círculos (profesionales), cofradías (temáticas), y capítulos (geográficos) conforman el tejido social."
+      },
+      "citizenship": {
+        "title": "Ciudadanía",
+        "entry": "Ritual de entrada",
+        "participation": "Participación activa como condición de permanencia",
+        "exit": "Proceso justo en caso de salida"
+      }
+    },
+    "postulate": {
+      "title": "Postularse a ciudadanía",
+      "intro": "La ciudadanía en Sophia Metapolis no es un producto — es un compromiso mutuo entre la nación y el ciudadano. Antes de iniciar tu postulación, lee la Carta Fundacional y comprende lo que significa pertenecer.",
+      "form": {
+        "handle": "Handle deseado",
+        "handlePlaceholder": "Tu identificador único en la nación",
+        "email": "Email",
+        "emailPlaceholder": "Para confirmación de tu postulación",
+        "country": "País (opcional)",
+        "displayName": "Nombre visible (opcional)",
+        "declaration": "Declaración personal",
+        "declarationPrompt": "Cuéntanos por qué quieres pertenecer a Sophia Metapolis",
+        "declarationHelp": "Mínimo 200 caracteres. Esta declaración queda como parte de tu historial cívico si eres aceptado.",
+        "terms": "Acepto los términos básicos de la Carta Fundacional",
+        "submit": "Enviar postulación",
+        "submitting": "Enviando..."
+      },
+      "success": {
+        "title": "Postulación recibida",
+        "message": "Tu postulación ha sido recibida. El cuerpo de gobernanza la revisará y recibirás un email con el resultado en un plazo de 7 días.",
+        "checkStatus": "Consultar estado de mi postulación"
+      }
+    },
+    "wallet": {
+      "title": "Mi Wallet",
+      "login": {
+        "title": "Acceder a mi wallet",
+        "email": "Email",
+        "emailPlaceholder": "Tu email registrado",
+        "magicLink": "Enviarme un link mágico",
+        "magicLinkSent": "Revisa tu email — te hemos enviado un link de acceso.",
+        "oauth": "O inicia con",
+        "apple": "Apple",
+        "github": "GitHub"
+      },
+      "identity": {
+        "title": "Identidad cívica",
+        "handle": "Handle",
+        "displayName": "Nombre visible",
+        "declaration": "Declaración personal",
+        "avatar": "Avatar",
+        "authMethods": "Métodos de autenticación activos"
+      },
+      "passport": {
+        "title": "Mi pasaporte",
+        "stamps": "Stamps",
+        "noStamps": "Aún no tienes stamps. Participa en eventos y actividades para obtenerlos.",
+        "groups": {
+          "attendance": "Asistencia",
+          "speaker": "Ponencia",
+          "organization": "Organización",
+          "sponsor": "Sponsor",
+          "achievement": "Logros"
+        }
+      },
+      "communities": {
+        "title": "Mis comunidades",
+        "noCommunities": "No tienes membresías activas en comunidades."
+      },
+      "settings": {
+        "title": "Configuración",
+        "profile": "Mi perfil",
+        "authMethods": "Métodos de autenticación",
+        "visibility": "Visibilidad del perfil",
+        "preferences": "Preferencias del wallet"
+      }
+    },
+    "footer": {
+      "sophiaNote": "X-Ops Conference es una iniciativa de Sophia Metapolis.",
+      "knowSophia": "Conoce la nación digital",
+      "legal": "Información legal",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
+  },
+  "tickets": {
+    "event": {
+      "getTickets": "Obtener entradas",
+      "buyTickets": "Comprar entradas",
+      "viewDetails": "Ver detalles",
+      "buyNow": "Comprar ahora"
+    },
+    "sophiaNote": "X-Ops Conference es una iniciativa de Sophia Metapolis. Conoce la nación digital.",
+    "checkout": {
+      "title": "Completar compra",
+      "event": "Evento",
+      "ticketType": "Tipo de entrada",
+      "quantity": "Cantidad",
+      "customerData": "Datos del comprador",
+      "email": "Email",
+      "emailRequired": "Email (obligatorio)",
+      "fullName": "Nombre completo",
+      "fullNameRequired": "Nombre completo (obligatorio para el ticket)",
+      "phone": "Teléfono",
+      "phoneOptional": "Teléfono (opcional, para notificaciones)",
+      "termsAccept": "Acepto los términos y condiciones",
+      "gdprConsent": "Consiento el tratamiento de mis datos según la política de privacidad",
+      "continueToPayment": "Continuar al pago",
+      "processing": "Procesando..."
+    },
+    "success": {
+      "title": "¡Compra completada!",
+      "processing": "Procesando tu compra...",
+      "summary": "Resumen de tu compra",
+      "ticketSent": "Recibirás un email con tu ticket en PDF.",
+      "backHome": "Volver a la home",
+      "learnSophia": "Aprende sobre Sophia Metapolis, la nación digital que organiza este evento"
+    },
+    "cancel": {
+      "title": "Pago no completado",
+      "message": "Tu pago no se completó. Puedes volver a intentar cuando lo desees.",
+      "tryAgain": "Volver a intentar",
+      "contactSupport": "Si experimentas problemas, contacta a soporte."
+    }
+  }
+}

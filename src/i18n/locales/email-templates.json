@@ -1,0 +1,194 @@
+{
+  "es": {
+    "ticket_confirmation": {
+      "subject": "🎫 Confirmación de tu entrada - X-Ops Conference Dubai 2026",
+      "template": {
+        "greeting": "Hola {{customerName}},",
+        "title": "¡Tu entrada está confirmada!",
+        "body": "Gracias por tu compra. Aquí están los detalles de tu entrada para X-Ops Conference Dubai 2026.",
+        "ticket_details": {
+          "event": "Evento",
+          "date": "Fecha",
+          "venue": "Ubicación",
+          "ticket_type": "Tipo de entrada",
+          "order_id": "ID de pedido"
+        },
+        "cta": "Ver mis entradas",
+        "footer": "Si tienes alguna pregunta, responde a este email o contacta a info@xopsconference.com"
+      }
+    },
+    "ticket_pdf": {
+      "subject": "🎫 Tu entrada PDF - X-Ops Conference Dubai 2026",
+      "template": {
+        "greeting": "Hola {{customerName}},",
+        "title": "Tu entrada está lista",
+        "body": "Adjunta encontrarás tu entrada en formato PDF para X-Ops Conference Dubai 2026.",
+        "instructions": "Por favor, presenta este PDF (o muéstralo desde tu móvil) en la entrada del evento.",
+        "cta": "Descargar PDF",
+        "footer": "Conserva este email hasta el evento. Recibirás recordatorios antes del congreso."
+      }
+    },
+    "postulation_received": {
+      "subject": "📋 Postulación recibida - Sophia Metapolis",
+      "template": {
+        "greeting": "Hola {{handle}},",
+        "title": "Postulación recibida",
+        "body": "Hemos recibido tu postulación para convertirte en ciudadano de Sophia Metapolis.",
+        "next_steps": [
+          "El Consejo de Ciudadanía revisará tu postulación",
+          "Recibirás una notificación cuando sea procesada",
+          "Tiempo de revisión: 5-7 días hábiles"
+        ],
+        "status": "Estado actual",
+        "status_value": "En revisión",
+        "footer": "Durante el proceso de revisión, puedes consultar el estado en cualquier momento."
+      }
+    },
+    "citizenship_approved": {
+      "subject": "🎉 ¡Bienvenido a Sophia Metapolis!",
+      "template": {
+        "greeting": "¡Felicidades, {{handle}}!",
+        "title": "Tu ciudadanía ha sido aprobada",
+        "body": "El Consejo de Ciudadanía ha aprobado tu postulación. Bienvenido a Sophia Metapolis.",
+        "welcome_package": {
+          "title": "Tu kit de bienvenida incluye:",
+          "items": [
+            "Identidad digital oficial",
+            "Acceso a la wallet de ciudadano",
+            "Tu primer sello: 'Ciudadano Sophia'",
+            "Acceso a comunidades y eventos"
+          ]
+        },
+        "cta": "Acceder a mi Wallet",
+        "footer": "Como ciudadano de Sophia Metapolis, tienes derecho a participar en la gobernanza y acceder a todos los servicios cívicos."
+      }
+    },
+    "citizenship_rejected": {
+      "subject": "📋 Actualización de tu postulación - Sophia Metapolis",
+      "template": {
+        "greeting": "Hola {{handle}},",
+        "title": "Actualización de tu postulación",
+        "body": "Lamentamos informarte que tu postulación para ciudadanía en Sophia Metapolis no ha sido aprobada en esta ocasión.",
+        "reason": "El Consejo de Ciudadanía ha determinado que no se cumplen los requisitos en este momento.",
+        "options": {
+          "title": "Opciones disponibles:",
+          "items": [
+            "Puedes volver a aplicar después de 90 días",
+            "Revisa los requisitos de ciudadanía",
+            "Contacta al soporte para más información"
+          ]
+        },
+        "cta": "Más información",
+        "footer": "Gracias por tu interés en Sophia Metapolis."
+      }
+    },
+    "magic_link": {
+      "subject": "✨ Tu enlace mágico para Sophia Wallet",
+      "template": {
+        "greeting": "Hola,",
+        "title": "Solicitaste acceso a tu Wallet",
+        "body": "Haz clic en el siguiente enlace para acceder a tu Sophia Wallet:",
+        "cta": "Acceder a mi Wallet",
+        "warning": "Este enlace expira en 15 minutos y solo puede ser usado una vez.",
+        "security_note": "Si no solicitaste este acceso, puedes ignorar este email de forma segura.",
+        "footer": "Sophia Metapolis - La nación digital"
+      }
+    }
+  },
+  "en": {
+    "ticket_confirmation": {
+      "subject": "🎫 Ticket Confirmation - X-Ops Conference Dubai 2026",
+      "template": {
+        "greeting": "Hi {{customerName}},",
+        "title": "Your ticket is confirmed!",
+        "body": "Thank you for your purchase. Here are your ticket details for X-Ops Conference Dubai 2026.",
+        "ticket_details": {
+          "event": "Event",
+          "date": "Date",
+          "venue": "Venue",
+          "ticket_type": "Ticket Type",
+          "order_id": "Order ID"
+        },
+        "cta": "View my tickets",
+        "footer": "If you have any questions, reply to this email or contact info@xopsconference.com"
+      }
+    },
+    "ticket_pdf": {
+      "subject": "🎫 Your PDF Ticket - X-Ops Conference Dubai 2026",
+      "template": {
+        "greeting": "Hi {{customerName}},",
+        "title": "Your ticket is ready",
+        "body": "Attached is your ticket in PDF format for X-Ops Conference Dubai 2026.",
+        "instructions": "Please present this PDF (or show it from your mobile) at the event entrance.",
+        "cta": "Download PDF",
+        "footer": "Keep this email until the event. You will receive reminders before the conference."
+      }
+    },
+    "postulation_received": {
+      "subject": "📋 Postulation Received - Sophia Metapolis",
+      "template": {
+        "greeting": "Hi {{handle}},",
+        "title": "Postulation Received",
+        "body": "We have received your application to become a citizen of Sophia Metapolis.",
+        "next_steps": [
+          "The Citizenship Council will review your application",
+          "You will receive a notification when processed",
+          "Review time: 5-7 business days"
+        ],
+        "status": "Current Status",
+        "status_value": "Under Review",
+        "footer": "During the review process, you can check the status at any time."
+      }
+    },
+    "citizenship_approved": {
+      "subject": "🎉 Welcome to Sophia Metapolis!",
+      "template": {
+        "greeting": "Congratulations, {{handle}}!",
+        "title": "Your citizenship has been approved",
+        "body": "The Citizenship Council has approved your application. Welcome to Sophia Metapolis.",
+        "welcome_package": {
+          "title": "Your welcome package includes:",
+          "items": [
+            "Official digital identity",
+            "Access to citizen wallet",
+            "Your first stamp: 'Sophia Citizen'",
+            "Access to communities and events"
+          ]
+        },
+        "cta": "Access my Wallet",
+        "footer": "As a citizen of Sophia Metapolis, you have the right to participate in governance and access all civic services."
+      }
+    },
+    "citizenship_rejected": {
+      "subject": "📋 Update on Your Postulation - Sophia Metapolis",
+      "template": {
+        "greeting": "Hi {{handle}},",
+        "title": "Update on Your Postulation",
+        "body": "We regret to inform you that your application for citizenship in Sophia Metapolis has not been approved at this time.",
+        "reason": "The Citizenship Council has determined that the requirements are not met at this moment.",
+        "options": {
+          "title": "Available options:",
+          "items": [
+            "You may reapply after 90 days",
+            "Review citizenship requirements",
+            "Contact support for more information"
+          ]
+        },
+        "cta": "More Information",
+        "footer": "Thank you for your interest in Sophia Metapolis."
+      }
+    },
+    "magic_link": {
+      "subject": "✨ Your magic link for Sophia Wallet",
+      "template": {
+        "greeting": "Hi,",
+        "title": "You requested Wallet access",
+        "body": "Click the following link to access your Sophia Wallet:",
+        "cta": "Access my Wallet",
+        "warning": "This link expires in 15 minutes and can only be used once.",
+        "security_note": "If you did not request this access, you can safely ignore this email.",
+        "footer": "Sophia Metapolis - The Digital Nation"
+      }
+    }
+  }
+}

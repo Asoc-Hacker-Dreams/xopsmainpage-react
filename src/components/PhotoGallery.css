@@ -1,0 +1,258 @@
+/* Photo Gallery Styles */
+
+.photo-gallery {
+  padding: 1rem 0;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-header h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary, #212529);
+  margin: 0 0 0.5rem;
+}
+
+.gallery-header p {
+  color: var(--text-muted, #6c757d);
+  margin: 0;
+}
+
+/* Category Filter */
+.gallery-filter {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.gallery-filter .filter-btn {
+  background: var(--bg-secondary, #f8f9fa);
+  border: 2px solid var(--border-color, #dee2e6);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #495057);
+  transition: all 0.2s;
+}
+
+.gallery-filter .filter-btn:hover {
+  border-color: #d90845;
+  color: #d90845;
+}
+
+.gallery-filter .filter-btn.active {
+  background: #d90845;
+  border-color: #d90845;
+  color: white;
+}
+
+/* Photo Grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.photo-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.photo-item:hover {
+  transform: translateY(-4px);
+}
+
+.photo-thumbnail {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-secondary, #f8f9fa);
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #d90845 0%, #ff4d6d 100%);
+  color: white;
+  font-size: 2rem;
+}
+
+.photo-number {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.photo-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.photo-item:hover .photo-overlay {
+  opacity: 1;
+}
+
+.zoom-icon {
+  font-size: 1.5rem;
+}
+
+.photo-caption {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #495057);
+  text-align: center;
+}
+
+.no-photos {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted, #6c757d);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-nav.prev {
+  left: -4rem;
+}
+
+.lightbox-nav.next {
+  right: -4rem;
+}
+
+.lightbox-image {
+  max-width: 80vw;
+  max-height: 70vh;
+}
+
+.lightbox-placeholder {
+  width: 600px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #d90845 0%, #ff4d6d 100%);
+  color: white;
+  font-size: 4rem;
+  border-radius: 8px;
+}
+
+.lightbox-info {
+  position: absolute;
+  bottom: -3rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+}
+
+.lightbox-info p {
+  margin: 0;
+}
+
+.lightbox-counter {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .lightbox-nav.prev {
+    left: 0.5rem;
+  }
+
+  .lightbox-nav.next {
+    right: 0.5rem;
+  }
+
+  .lightbox-placeholder {
+    width: 300px;
+    height: 225px;
+    font-size: 2rem;
+  }
+}

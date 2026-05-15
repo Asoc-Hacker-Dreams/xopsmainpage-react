@@ -1,0 +1,52 @@
+X-OPS CONFERENCE — FULL INFORMATION FOR AI SYSTEMS
+====================================================
+
+DESCRIPTION
+-----------
+X-Ops Conference is an annual technology conference held in Madrid, Spain,
+focusing on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE (Site
+Reliability Engineering), and Cybersecurity. It is part of the HSM (Hacker Dreams
+& Social Media) organization ecosystem.
+
+EDITIONS
+--------
+2024 (First Edition): ETSISI UPM, Vallecas · 1 day · 1 track
+2025 (Second Edition): URJC Móstoles · 2 days · 3 tracks · 300+ attendees · 4.7/5
+2026 (Third Edition): URJC Madrid · Summit (2 days) + Conference (2 days)
+  Planned expansion: Madrid + Dubai (Q2-Q3 2027) + London (Q3-Q4 2027)
+
+2026 EVENT DETAILS
+------------------
+Format: 2-day Executive Summit (C-Level, Enterprise) + 2-day Technical Conference
+Venue: URJC Madrid
+Date: November/December 2026
+Expected attendees: 500+
+Tracks: DevSecOps, Platform Engineering, AIOps/MLOps, SRE, Ciberseguridad
+
+SPONSORSHIP
+-----------
+Platinum: €8,000 — 15 passes, exclusive keynote, premium booth 3x2m, X-Ops Academy
+Track Sponsor: €6,000 — naming rights, 10 passes, keynote in track
+Gold: €3,000 — 5 passes, 45min tech talk, 2x2m booth
+Silver: €2,000 — 2 passes, logo on website, 2x2m booth
+Welcome Pack: €350 — product in welcome pack, logo on web
+Startup Pack: €350–€950 — for startups ≤3 years, ≤15 employees, ARR <€500K
+Multi-city discount: 20% for 2 cities, 30% for 3-4 cities
+
+CONTACT
+-------
+Email: info@xopsconference.com
+Phone: +34 744 644 873 / +34 693 814 098
+Website: https://xopsconference.com
+
+RELATED ORGANIZATIONS
+---------------------
+- TriskelGate: Ticketing and event management platform
+- AgoraPass: Digital identity and passkey authentication
+- X-Ops Alliance: Community alliance network
+- HackerDreams: Parent organization
+
+SOCIAL
+------
+Twitter/X: @xopsconf
+Website: https://xopsconference.com

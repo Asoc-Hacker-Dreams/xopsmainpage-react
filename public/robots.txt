@@ -1,7 +1,41 @@
 User-agent: *
 Allow: /
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /src/
+Disallow: /.osdo/
 Sitemap: https://xopsconference.com/sitemap.xml
 
-# Bloquear rutas de desarrollo
-Disallow: /.osdo/
-Disallow: /node_modules/
+# AI Crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /

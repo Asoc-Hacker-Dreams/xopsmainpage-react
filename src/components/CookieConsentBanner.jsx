@@ -9,7 +9,8 @@ const CookieConsentBanner = () => {
   const [preferences, setPreferences] = useState({
     [CONSENT_CATEGORIES.ESSENTIAL]: true,
     [CONSENT_CATEGORIES.ANALYTICS]: false,
-    [CONSENT_CATEGORIES.MARKETING]: false
+    [CONSENT_CATEGORIES.MARKETING]: false,
+    [CONSENT_CATEGORIES.NEWSLETTERS]: false
   });
 
   if (!showBanner) {
@@ -47,6 +48,8 @@ const CookieConsentBanner = () => {
         return 'Nos ayudan a entender cómo los visitantes interactúan con el sitio web, recopilando información de forma anónima (Google Analytics).';
       case CONSENT_CATEGORIES.MARKETING:
         return 'Se utilizan para mostrar anuncios relevantes y medir la efectividad de las campañas publicitarias.';
+      case CONSENT_CATEGORIES.NEWSLETTERS:
+        return 'Permiten el envío de comunicaciones y novedades de X-Ops Conference a tu correo electrónico.';
       default:
         return '';
     }
@@ -60,6 +63,8 @@ const CookieConsentBanner = () => {
         return 'Cookies Analíticas';
       case CONSENT_CATEGORIES.MARKETING:
         return 'Cookies de Marketing';
+      case CONSENT_CATEGORIES.NEWSLETTERS:
+        return 'Newsletter';
       default:
         return category;
     }
@@ -102,7 +107,7 @@ const CookieConsentBanner = () => {
                   onClick={rejectAll}
                   className="me-2"
                 >
-                  Rechazar Todo
+                  Solo esenciales
                 </Button>
                 <Button 
                   variant="primary" 
@@ -141,13 +146,15 @@ const CookieConsentBanner = () => {
                     <h6 className="cookie-category-title">
                       {getCategoryTitle(category)}
                     </h6>
-                    <p className="cookie-category-description text-muted">
+                    <p id={`cookie-${category}-desc`} className="cookie-category-description text-muted">
                       {getCategoryDescription(category)}
                     </p>
                   </div>
                   <Form.Check
                     type="switch"
                     id={`cookie-${category}`}
+                    aria-label={getCategoryTitle(category)}
+                    aria-describedby={`cookie-${category}-desc`}
                     checked={preferences[category]}
                     disabled={category === CONSENT_CATEGORIES.ESSENTIAL}
                     onChange={(e) => handlePreferenceChange(category, e.target.checked)}
@@ -182,7 +189,7 @@ const CookieConsentBanner = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-secondary" onClick={rejectAll}>
-            Rechazar Todo
+            Solo esenciales
           </Button>
           <Button variant="success" onClick={acceptAll}>
             Aceptar Todo

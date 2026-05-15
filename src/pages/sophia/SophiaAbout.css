@@ -1,0 +1,145 @@
+/* Sophia About - Civic themed page */
+.sophia-about {
+  min-height: 100vh;
+  background: #faf9f7;
+  color: #1a1a1a;
+}
+
+.sophia-about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.sophia-about-content > h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.sophia-section {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #e8e5e0;
+}
+
+.sophia-section-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.sophia-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.sophia-section > p {
+  color: #6b7280;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* Archetypes */
+.sophia-archetypes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.sophia-archetype {
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e8e5e0;
+}
+
+.sophia-archetype-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.sophia-archetype h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sophia-archetype p {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Community types */
+.sophia-community-types {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sophia-community-type {
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e8e5e0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+.sophia-community-type h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6366f1;
+}
+
+.sophia-community-type p {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Citizenship flow */
+.sophia-citizenship-flow {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.sophia-citizenship-step {
+  flex: 1;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e8e5e0;
+}
+
+.step-num {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  background: #6366f1;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.sophia-citizenship-step h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sophia-citizenship-step p {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.sophia-about-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 3rem;
+}

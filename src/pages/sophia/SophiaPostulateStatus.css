@@ -1,0 +1,111 @@
+.sophia-status-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+.sophia-status-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.sophia-status-card h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1a1a2e;
+}
+
+.sophia-status-form {
+  margin-top: 2rem;
+}
+
+.sophia-status-result {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.sophia-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sophia-status-handle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-success {
+  background: #d1e7dd;
+  color: #0a5132;
+}
+
+.status-danger {
+  background: #f8d7da;
+  color: #842029;
+}
+
+.status-warning {
+  background: #fff3cd;
+  color: #664d03;
+}
+
+.status-secondary {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.sophia-status-message {
+  margin: 0 0 1rem;
+  color: #495057;
+}
+
+.sophia-status-date {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.sophia-btn-primary {
+  display: inline-block;
+  background: #1a1a2e;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.sophia-btn-primary:hover {
+  background: #16213e;
+  color: white;
+  text-decoration: none;
+}
+
+.sophia-btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.sophia-status-help a {
+  color: #1a1a2e;
+  font-weight: 600;
+}

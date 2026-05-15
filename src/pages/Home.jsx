@@ -14,24 +14,46 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="Home"
-        description="X-Ops Conference la mejor conferencia de tecnologia en Madrid."
+        title="X-Ops Conference Madrid 2026 · DevOps, DevSecOps, AIOps & MLOps"
+        description="X-Ops Conference: el mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Madrid 2026 · Summit 2 días + Conference 2 días · 500+ asistentes."
         path="/"
-        image="https://xopsconference.com/assets/speakers-og.jpg"
+        image="https://xopsconference.com/icon-512x512.png"
+        keywords="X-Ops Conference, DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, Ciberseguridad, SecOps, Kubernetes, Madrid, conferencia tecnología 2026"
         lang="es"
         alternates={[
-          { hrefLang: 'es', href: 'https://xopsconference.com/home' },
-          { hrefLang: 'en', href: 'https://xopsconference.com/home' },
+          { hrefLang: 'es', href: 'https://xopsconference.com/' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/' },
         ]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Event",
-          "name": "X-Ops Conference Madrid 2025",
-          "startDate": "2025-10-15",
+          "name": "X-Ops Conference Madrid 2026",
+          "description": "El mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Summit + Conference.",
+          "startDate": "2026-11-01",
+          "endDate": "2026-11-30",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
           "location": {
             "@type": "Place",
-            "name": "Madrid",
-            "address": "Madrid, España"
+            "name": "URJC Madrid",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Madrid",
+              "addressRegion": "Madrid",
+              "addressCountry": "ES"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "X-Ops Conference",
+            "url": "https://xopsconference.com"
+          },
+          "image": "https://xopsconference.com/icon-512x512.png",
+          "offers": {
+            "@type": "Offer",
+            "url": "https://xopsconference.com/summit",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
           }
         }}
       />
