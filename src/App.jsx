@@ -98,7 +98,7 @@ function App() {
 
 <ScrollHandler />
 <div className="root home-main-section">
-        <Navbar bg="light" expand="lg" className='header'>
+        <Navbar expand="lg" className='header'>
         <div className="d-flex align-items-center">
           <img src={logo} alt="X-Ops Logo" style={{ height: '51px', width: '56px', marginRight: '15px' }} />
           <Navbar.Brand className='text-white font-weight-bold navbar-brand-text'>X-OPS CONFERENCE</Navbar.Brand>

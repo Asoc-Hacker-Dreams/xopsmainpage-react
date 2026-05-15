@@ -120,7 +120,7 @@ color: #d90845  !important;
 }
 .xops-section {
     padding: 50px 0;
-    background-color: var(--bg-secondary, #0D1238);
+    background-color: #0D1238 !important;
   }
 
   .xops-section h2 {
@@ -213,7 +213,7 @@ border-radius: 10px;
   border: 1px solid rgba(0, 188, 212, 0.25);
   padding: 2px;
   border-radius: 8px;
-  background-color: var(--bg-secondary, #0D1238);
+  background-color: #0D1238 !important;
 }
 
 .schedule-section .col-lg-6 h3 {
@@ -443,10 +443,11 @@ margin-block: 1rem;
     top: 0;
     width: 100%;
     z-index: 1000;
+    background-color: #0A0F2E !important;
 }
 
 .navbar-collapse {
-    background-color: black; 
+    background-color: #0A0F2E !important;
     padding-bottom: 7%;
 }
 
@@ -518,7 +519,6 @@ margin-block: 1rem;
 .navbar,
 .navbar .nav-link,
 .navbar-brand,
-.navbar .dropdown-toggle,
 .links {
   font-family: 'Poppins', sans-serif !important; 
   font-weight: 800 !important; /* Negrita */
@@ -548,7 +548,7 @@ margin-block: 1rem;
 /* Last Edition Data Section Styles */
 .last-edition-section {
   padding: 60px 0;
-  background-color: var(--bg-secondary, #0D1238);
+  background-color: #0D1238 !important;
 }
 
 .stat-card {
