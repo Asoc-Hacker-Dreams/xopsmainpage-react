@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import type { Talk } from '../dal/types';
 import { IdbAgendaDal } from '../dal';
 import { talks2025 } from '../data/talks2025';
+import { fetchSessionizeTalks } from '../services/sessionize';
 
 export interface AgendaFilters {
   day?: string;
@@ -11,6 +12,7 @@ export interface AgendaFilters {
 }
 
 const dal = new IdbAgendaDal();
+const CACHE_TTL_MS = 3_600_000; // 1 hour
 
 export function useAgenda(filters: AgendaFilters = {}) {
   const [talks, setTalks] = useState<Talk[]>([]);
@@ -19,11 +21,26 @@ export function useAgenda(filters: AgendaFilters = {}) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      // Seed IDB on first load
-      const existing = await dal.getAllTalks();
-      if (existing.length === 0) {
-        await dal.putTalks(talks2025);
+      try {
+        const cached = await dal.getAllTalks();
+        const lastFetch = localStorage.getItem('sessionize_talks_fetched');
+        const isStale = !lastFetch || Date.now() - Number(lastFetch) > CACHE_TTL_MS;
+
+        if (cached.length === 0 || isStale) {
+          const live = await fetchSessionizeTalks();
+          if (live.length > 0) {
+            await dal.putTalks(live);
+            localStorage.setItem('sessionize_talks_fetched', String(Date.now()));
+          }
+        }
+      } catch (err) {
+        console.warn('Sessionize talks fetch failed, using cached/static data:', err);
+        const existing = await dal.getAllTalks();
+        if (existing.length === 0) {
+          await dal.putTalks(talks2025);
+        }
       }
+
       const all = await dal.getAllTalks();
       if (!cancelled) {
         setTalks(all);
