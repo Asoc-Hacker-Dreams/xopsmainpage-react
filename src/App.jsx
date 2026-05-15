@@ -167,11 +167,11 @@ function App() {
             <p className="lead">{t('hero.description')}</p>
             <p className="lead">{t('hero.date')}</p>
             <div className="mt-4 mx-4">
-            <a href="/summit#tickets" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">{t('hero.buyTicket')}</a>
-                <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/summit">{t('nav.summit')}</Link>
-                <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/#events">{t('hero.viewAgenda')}</Link>
-             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true"className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">{t('nav.volunteer')}</a> 
-             <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">{t('hero.cfp')}</a>
+            <a href="/summit#tickets" className="btn mx-2 my-2 bg-color btn-lg mr-3">{t('hero.buyTicket')}</a>
+                <Link className="btn mx-2 my-2 bg-color btn-lg mr-3" to="/#events">{t('nav.event')}</Link>
+                <Link className="btn mx-2 my-2 bg-color btn-lg mr-3" to="/summit">{t('nav.summit')}</Link>
+             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" className="btn mx-2 my-2 bg-color btn-lg mr-3">{t('nav.volunteer')}</a>
+             <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color btn-lg mr-3">{t('hero.cfp')}</a>
              {canPrompt && (
                <button onClick={handleInstallClick} className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">
                  {t('hero.installApp')}
