@@ -80,7 +80,7 @@ const PrivacyPolicy = () => {
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">4. Plazos de Conservación</h2>
                       <ul>
-                        <li><strong>Datos de inscripción y asistencia al evento:</strong> 3 años desde la celebración del evento.</li>
+                        <li><strong>Datos de inscripción y asistencia al evento:</strong> 5 años desde la celebración del evento.</li>
                         <li><strong>Registros financieros (pagos, facturas):</strong> 7 años (obligación legal fiscal).</li>
                         <li><strong>Datos analíticos anónimos:</strong> máximo 26 meses en formato agregado.</li>
                         <li><strong>Preferencias de cookies:</strong> permanecen en su dispositivo hasta que las elimine.</li>
