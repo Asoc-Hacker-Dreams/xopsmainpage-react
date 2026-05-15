@@ -146,13 +146,15 @@ const CookieConsentBanner = () => {
                     <h6 className="cookie-category-title">
                       {getCategoryTitle(category)}
                     </h6>
-                    <p className="cookie-category-description text-muted">
+                    <p id={`cookie-${category}-desc`} className="cookie-category-description text-muted">
                       {getCategoryDescription(category)}
                     </p>
                   </div>
                   <Form.Check
                     type="switch"
                     id={`cookie-${category}`}
+                    aria-label={getCategoryTitle(category)}
+                    aria-describedby={`cookie-${category}-desc`}
                     checked={preferences[category]}
                     disabled={category === CONSENT_CATEGORIES.ESSENTIAL}
                     onChange={(e) => handlePreferenceChange(category, e.target.checked)}

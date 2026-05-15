@@ -107,10 +107,12 @@ export const ConsentProvider = ({ children }) => {
 
   // Save custom preferences
   const savePreferences = (newConsent) => {
-    setConsent(newConsent);
+    // Always enforce essential: true regardless of what was passed
+    const validatedConsent = { ...newConsent, [CONSENT_CATEGORIES.ESSENTIAL]: true };
+    setConsent(validatedConsent);
     setHasInteracted(true);
     setShowBanner(false);
-    saveConsent(newConsent);
+    saveConsent(validatedConsent);
   };
 
   // Update specific category
