@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import AnimationWrapper from '../AnimationWrapper';
 import { Modal, Container, Row, Col } from 'react-bootstrap';
-import scheduleData from '../../data/schedule2025.json';
+import scheduleData from '../../data/schedule2026.json';
 
 const Events = () => {
   // State for managing filters
@@ -84,6 +84,32 @@ const Events = () => {
     setShowModal(false);
     setSelectedEvent(null);
   };
+
+  if (scheduleData.length === 0) {
+    return (
+      <section id="events" className="event-schedule-section">
+        <AnimationWrapper animation="fade-up" duration={1500}>
+          <Container>
+            <h2 className="text-center margin-top">Agenda 2026</h2>
+            <div className="text-center py-5">
+              <p style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>📢</p>
+              <h3>Ponentes y agenda próximamente</h3>
+              <p className="lead mt-3">¡El Call for Papers está abierto!</p>
+              <a
+                href="https://sessionize.com/xops-conference-2026/"
+                className="button menu-btn mt-3"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'inline-block' }}
+              >
+                Proponer charla →
+              </a>
+            </div>
+          </Container>
+        </AnimationWrapper>
+      </section>
+    );
+  }
 
   // Render event card
   const renderEventCard = (event, index) => {
