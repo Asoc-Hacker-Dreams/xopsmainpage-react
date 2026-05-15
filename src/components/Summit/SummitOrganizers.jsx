@@ -25,12 +25,9 @@ const SummitOrganizers = () => {
       <Container>
         <Row className="justify-content-center text-center mb-5">
           <Col lg={8}>
-            <h2 className="summit-section-title">
-              Organizadores
-            </h2>
+            <h2 className="summit-section-title">Organizadores</h2>
             <p className="summit-section-subtitle">
-              X-Ops Summit es organizado por el equipo de X-Ops Conferences 
-              en colaboración con HackBCN
+              X-Ops Summit es organizado por el equipo de X-Ops Conferences
             </p>
           </Col>
         </Row>
@@ -56,11 +53,6 @@ const SummitOrganizers = () => {
               <div className="organizer-logo">
                 <strong>X-Ops</strong>
                 <span>CONFERENCES</span>
-              </div>
-              <span className="logo-divider">×</span>
-              <div className="organizer-logo">
-                <strong>Hack</strong>
-                <span>BCN</span>
               </div>
             </div>
           </Col>
