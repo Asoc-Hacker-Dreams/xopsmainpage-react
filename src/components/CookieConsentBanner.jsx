@@ -9,7 +9,8 @@ const CookieConsentBanner = () => {
   const [preferences, setPreferences] = useState({
     [CONSENT_CATEGORIES.ESSENTIAL]: true,
     [CONSENT_CATEGORIES.ANALYTICS]: false,
-    [CONSENT_CATEGORIES.MARKETING]: false
+    [CONSENT_CATEGORIES.MARKETING]: false,
+    [CONSENT_CATEGORIES.NEWSLETTERS]: false
   });
 
   if (!showBanner) {
@@ -47,6 +48,8 @@ const CookieConsentBanner = () => {
         return 'Nos ayudan a entender cómo los visitantes interactúan con el sitio web, recopilando información de forma anónima (Google Analytics).';
       case CONSENT_CATEGORIES.MARKETING:
         return 'Se utilizan para mostrar anuncios relevantes y medir la efectividad de las campañas publicitarias.';
+      case CONSENT_CATEGORIES.NEWSLETTERS:
+        return 'Permiten el envío de comunicaciones y novedades de X-Ops Conference a tu correo electrónico.';
       default:
         return '';
     }
@@ -60,6 +63,8 @@ const CookieConsentBanner = () => {
         return 'Cookies Analíticas';
       case CONSENT_CATEGORIES.MARKETING:
         return 'Cookies de Marketing';
+      case CONSENT_CATEGORIES.NEWSLETTERS:
+        return 'Newsletter';
       default:
         return category;
     }
