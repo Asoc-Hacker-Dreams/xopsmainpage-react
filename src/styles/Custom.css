@@ -10,7 +10,7 @@ body{
   width: 100%;       /* Asegura que ocupe el 100% del ancho disponible */
   box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
   overflow-x: hidden;
-    --bg:#d90845;
+    --bg:#FFD600;
 }
 .header{
     margin-inline: 0rem;
@@ -54,9 +54,14 @@ color: var(--bg);
 }
 .bg-color{
     background: var(--bg);
+    color: #0A0F2E !important;
+}
+.bg-color.text-white,
+.btn.bg-color {
+  color: #0A0F2E !important;
 }
 .button{
-    color: #ffffff;
+    color: #0A0F2E;
     background: var(--bg);
     padding: .5rem 2rem;
     border-radius: 5px;

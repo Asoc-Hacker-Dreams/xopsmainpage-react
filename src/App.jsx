@@ -19,6 +19,7 @@ import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
 import Events2024 from './pages/archive/2024/Events2024';
 import Speakers2025 from './pages/archive/2025/Speakers2025';
+import Sponsor2025 from './pages/archive/2025/Sponsor2025';
 import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookiePolicy from './pages/CookiePolicy';
@@ -108,6 +109,7 @@ function App() {
               <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.event')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.organizers')}</Link>
           
         
@@ -121,6 +123,7 @@ function App() {
         <div className="submenu-title">{t('archive.xops2025')}</div>
         <NavDropdown.Item as={Link} to="/archive/2025/Speakers2025">{t('archive.speakers')}</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/archive/2025/Events2025">{t('archive.agenda')}</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/archive/2025/Sponsor2025">{t('archive.sponsorCollab')}</NavDropdown.Item>
 
         <NavDropdown.Divider />
 
@@ -159,7 +162,7 @@ function App() {
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
           
-          <a href="/summit#tickets" className="button menu-btn" style={{ textDecoration: 'none', width: "110px", paddingLeft: "1%", marginTop: "-2%", marginLeft: "10px" }}>
+          <a href="/summit#tickets" className="button menu-btn" style={{ textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: "10px" }}>
             {t('nav.tickets')}
           </a>
         </div>
@@ -175,6 +178,7 @@ function App() {
             <p className="lead">{t('hero.date')}</p>
             <div className="mt-4 mx-4">
             <a href="/summit#tickets" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">{t('hero.buyTicket')}</a>
+                <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/summit">{t('nav.summit')}</Link>
                 <Link className="btn mx-2 my-2 bg-color text-white btn-lg mr-3" to="/#events">{t('hero.viewAgenda')}</Link>
              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true"className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">{t('nav.volunteer')}</a> 
              <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">{t('hero.cfp')}</a>
@@ -213,6 +217,7 @@ function App() {
           {/* 2025 */}
           <Route path="/archive/2025/Speakers2025" element={<Speakers2025 />} />
           <Route path="/archive/2025/Events2025" element={<Events2025 />} />
+          <Route path="/archive/2025/Sponsor2025" element={<Sponsor2025 />} />
 
           {/* 2024 */}
           <Route path="/archive/2024/Speakers2024" element={<Speakers2024 />} />

@@ -45,7 +45,7 @@ const LastEditionData = () => {
         <AnimationWrapper animation="fade-up" duration={1000}>
           <h2 className="text-center margin-top">Datos de la Edición Anterior</h2>
           <p className="text-center">
-            Los números de nuestra <span className='heading'><strong>X-Ops Conference 2024</strong></span> que demuestran 
+            Los números de nuestra <span className='heading'><strong>X-Ops Conference 2025</strong></span> que demuestran 
             el éxito y el impacto de nuestro evento.
           </p>
         </AnimationWrapper>

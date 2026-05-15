@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import SummitHero from '../components/Summit/SummitHero';
 import ValueProposition from '../components/Summit/ValueProposition';
 import TicketTier from '../components/Summit/TicketTier';
@@ -10,15 +10,48 @@ import SummitOrganizers from '../components/Summit/SummitOrganizers';
 const Summit = () => {
   return (
     <>
-      <Helmet>
-        <title>X-Ops Summit Madrid 2026 | Evento Ejecutivo para Decision Makers</title>
-        <meta name="description" content="El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-19 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico." />
-        <meta name="keywords" content="X-Ops Summit, DevOps, SecOps, CTO, CISO, Madrid, Decision Makers, Executive Event" />
-        <meta property="og:title" content="X-Ops Summit Madrid 2026" />
-        <meta property="og:description" content="El evento exclusivo para líderes tecnológicos. Networking de alto nivel y contenido estratégico." />
-        <meta property="og:type" content="event" />
-        <meta property="og:url" content="https://xopsconferences.com/summit" />
-      </Helmet>
+      <SEO
+        title="X-Ops Summit Madrid 2026 · Evento Ejecutivo para Decision Makers"
+        description="El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-19 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico."
+        path="/summit"
+        keywords="X-Ops Summit, DevOps, SecOps, CTO, CISO, Madrid, Decision Makers, Executive Event, 2026"
+        lang="es"
+        alternates={[
+          { hrefLang: 'es', href: 'https://xopsconference.com/summit' },
+          { hrefLang: 'en', href: 'https://xopsconference.com/summit' },
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "X-Ops Summit Madrid 2026",
+          "description": "Evento exclusivo para CTOs, CISOs y líderes tecnológicos. Networking de alto nivel y contenido estratégico.",
+          "startDate": "2026-11-18",
+          "endDate": "2026-11-19",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": "URJC Madrid",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Madrid",
+              "addressRegion": "Madrid",
+              "addressCountry": "ES"
+            }
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "X-Ops Conference",
+            "url": "https://xopsconference.com"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://xopsconference.com/summit#tickets",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+          }
+        }}
+      />
 
       <div className="summit-page">
         <SummitHero />

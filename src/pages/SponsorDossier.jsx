@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './SponsorDossier.css';
 
@@ -44,11 +45,11 @@ const CITY_DATA = {
     flag: '🇪🇸',
     price: { es: 'desde €2.000', en: 'from €2,000' },
     detail: {
-      title: { es: 'Madrid · Conference 2 días', en: 'Madrid · 2-day Conference' },
+      title: { es: 'Madrid · Summit 2d + Conference 2d', en: 'Madrid · Summit 2d + Conference 2d' },
       venue: 'URJC Madrid',
       items: {
-        es: ['Día 1: Talks + Workshops', 'Día 2: Parallel Tracks (3)', 'Networking & Expo'],
-        en: ['Day 1: Talks + Workshops', 'Day 2: Parallel Tracks (3)', 'Networking & Expo'],
+        es: ['Día 1–2: X-Ops Summit Ejecutivo (C-Level, Enterprise)', 'Día 3–4: X-Ops Conference (3 tracks técnicos)', 'Networking, Expo & CrackerNight'],
+        en: ['Days 1–2: X-Ops Executive Summit (C-Level, Enterprise)', 'Days 3–4: X-Ops Conference (3 technical tracks)', 'Networking, Expo & CrackerNight'],
       },
     },
     tiers: {
@@ -65,32 +66,6 @@ const CITY_DATA = {
         { name: 'Gold', price: '€3,000', features: ['5 full passes', '45min tech talk', '2×2m booth', 'Featured logo on web'] },
         { name: 'Silver', price: '€2,000', features: ['2 full passes', 'Logo on website', '2×2m booth'] },
         { name: 'Welcome Pack', price: '€350', features: ['Product in welcome pack', 'Logo on website'] },
-      ],
-    },
-  },
-  barcelona: {
-    flag: '🇪🇸',
-    price: { es: 'desde €3.000', en: 'from €3,000' },
-    detail: {
-      title: { es: 'Barcelona · Summit Enterprise 2 días', en: 'Barcelona · 2-day Enterprise Summit' },
-      venue: 'TBD · Barcelona',
-      items: {
-        es: ['Día 1: Summit Ejecutivo C-Level', 'Día 2: Casos Enterprise & Roundtables', 'Formato B2B cerrado'],
-        en: ['Day 1: C-Level Executive Summit', 'Day 2: Enterprise Cases & Roundtables', 'Closed B2B format'],
-      },
-    },
-    tiers: {
-      es: [
-        { name: 'Platinum', price: '€12.000', platinum: true, features: ['Stand 3×2m', '15 pases Summit', 'Keynote + C-Level roundtable', 'X-Ops Academy incluida', 'Logo máximo'] },
-        { name: 'Track Sponsor', price: '€8.000', features: ['Naming rights sesión', '10 pases', 'Presentación 30min', 'Logo web'] },
-        { name: 'Gold', price: '€5.000', features: ['5 pases', 'Charla 45min', 'Stand 2×2m'] },
-        { name: 'Silver', price: '€3.000', features: ['2 pases', 'Logo en web', 'Stand 2×2m'] },
-      ],
-      en: [
-        { name: 'Platinum', price: '€12,000', platinum: true, features: ['3×2m booth', '15 Summit passes', 'Keynote + C-Level roundtable', 'X-Ops Academy included', 'Max logo'] },
-        { name: 'Track Sponsor', price: '€8,000', features: ['Session naming rights', '10 passes', '30min presentation', 'Logo on web'] },
-        { name: 'Gold', price: '€5,000', features: ['5 passes', '45min talk', '2×2m booth'] },
-        { name: 'Silver', price: '€3,000', features: ['2 passes', 'Logo on website', '2×2m booth'] },
       ],
     },
   },
@@ -152,10 +127,11 @@ const TECH_TAGS = ['Kubernetes','Docker','AWS','Azure','GCP','Terraform','ArgoCD
   'Grafana','Datadog','Falco','OPA','Kyverno','Snyk','Trivy','Wazuh','GitLab','GitHub Actions'];
 
 const AUDIENCE = [
-  { label: { es: 'Platform / DevOps Engineers', en: 'Platform / DevOps Engineers' }, pct: 35 },
-  { label: { es: 'DevSecOps Engineers', en: 'DevSecOps Engineers' }, pct: 25 },
-  { label: { es: 'SRE / Infrastructure', en: 'SRE / Infrastructure' }, pct: 20 },
-  { label: { es: 'CTOs / Tech Leads', en: 'CTOs / Tech Leads' }, pct: 15 },
+  { label: { es: 'Platform / DevOps Engineers', en: 'Platform / DevOps Engineers' }, pct: 30 },
+  { label: { es: 'DevSecOps Engineers', en: 'DevSecOps Engineers' }, pct: 20 },
+  { label: { es: 'SRE / Infrastructure', en: 'SRE / Infrastructure' }, pct: 15 },
+  { label: { es: 'Ciberseguridad / SecOps Engineers', en: 'Cybersecurity / SecOps Engineers' }, pct: 20 },
+  { label: { es: 'CTOs / Tech Leads', en: 'CTOs / Tech Leads' }, pct: 10 },
   { label: { es: 'AIOps / MLOps', en: 'AIOps / MLOps' }, pct: 5 },
 ];
 
@@ -175,14 +151,15 @@ const REASONS = [
 ];
 
 const TABLE_ROWS = [
-  { benefit: { es: 'Stand físico', en: 'Physical booth' }, platinum: '3×2m Premium', track: '2×2m', gold: '2×2m', silver: '2×2m' },
-  { benefit: { es: 'Pases completos', en: 'Full passes' }, platinum: '15', track: '10', gold: '5', silver: '2' },
-  { benefit: { es: 'Logo en web', en: 'Logo on website' }, platinum: { es: 'Máximo', en: 'Maximum' }, track: { es: 'Máximo', en: 'Maximum' }, gold: { es: 'Destacado', en: 'Featured' }, silver: '✓' },
-  { benefit: { es: 'Logo en emails', en: 'Logo in emails' }, platinum: '✓', track: '✓', gold: '—', silver: '—' },
-  { benefit: { es: 'Charla técnica 45min', en: '45min tech talk' }, platinum: '✓', track: '✓', gold: '✓', silver: '—' },
-  { benefit: { es: 'Keynote 30min', en: '30min Keynote' }, platinum: { es: 'Exclusiva', en: 'Exclusive' }, track: { es: 'En su track', en: 'In their track' }, gold: '—', silver: '—' },
-  { benefit: { es: 'Naming Rights Track', en: 'Track Naming Rights' }, platinum: { es: 'Sujeto disponib.', en: 'Subject to avail.' }, track: '✓', gold: '—', silver: '—' },
-  { benefit: { es: '✦ X-Ops Academy', en: '✦ X-Ops Academy' }, platinum: { es: 'Incluida', en: 'Included' }, track: '—', gold: '—', silver: '—' },
+  { benefit: { es: 'Stand físico', en: 'Physical booth' }, platinum: '3×2m Premium', track: '2×2m', gold: '2×2m', silver: '2×2m', welcomepack: '—' },
+  { benefit: { es: 'Pases completos', en: 'Full passes' }, platinum: '15', track: '10', gold: '5', silver: '2', welcomepack: '—' },
+  { benefit: { es: 'Logo en web', en: 'Logo on website' }, platinum: { es: 'Máximo', en: 'Maximum' }, track: { es: 'Máximo', en: 'Maximum' }, gold: { es: 'Destacado', en: 'Featured' }, silver: '✓', welcomepack: '✓' },
+  { benefit: { es: 'Logo en emails', en: 'Logo in emails' }, platinum: '✓', track: '✓', gold: '—', silver: '—', welcomepack: '—' },
+  { benefit: { es: 'Charla técnica 45min', en: '45min tech talk' }, platinum: '✓', track: '✓', gold: '✓', silver: '—', welcomepack: '—' },
+  { benefit: { es: 'Keynote 30min', en: '30min Keynote' }, platinum: { es: 'Exclusiva', en: 'Exclusive' }, track: { es: 'En su track', en: 'In their track' }, gold: '—', silver: '—', welcomepack: '—' },
+  { benefit: { es: 'Naming Rights Track', en: 'Track Naming Rights' }, platinum: { es: 'Sujeto disponib.', en: 'Subject to avail.' }, track: '✓', gold: '—', silver: '—', welcomepack: '—' },
+  { benefit: { es: '✦ X-Ops Academy', en: '✦ X-Ops Academy' }, platinum: { es: 'Incluida', en: 'Included' }, track: '—', gold: '—', silver: '—', welcomepack: '—' },
+  { benefit: { es: 'Producto en welcome pack', en: 'Product in welcome pack' }, platinum: '✓', track: '✓', gold: '✓', silver: '—', welcomepack: '✓' },
 ];
 
 function renderCell(val, lang) {
@@ -194,16 +171,16 @@ function renderCell(val, lang) {
 }
 
 export default function SponsorDossier() {
-  const [lang, setLang] = useState('es');
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
   const [city, setCity] = useState('madrid');
 
   const t = (es, en) => lang === 'es' ? es : en;
 
   const cityBadge = () => {
-    if (city === 'madrid') return t('📍 Madrid · Nov/Dic 2026 (Summit + Conference)', '📍 Madrid · Nov/Dec 2026 (Summit + Conference)');
+    if (city === 'madrid') return t('📍 Madrid · Nov/Dic 2026 (Summit 2d + Conference 2d)', '📍 Madrid · Nov/Dec 2026 (Summit 2d + Conference 2d)');
     if (city === 'dubai') return '📍 Dubai · Q2–Q3 2027 · Premium GCC';
     if (city === 'london') return '📍 London · Q3–Q4 2027 · Global';
-    if (city === 'barcelona') return t('📍 Barcelona · 2027 · Enterprise Summit', '📍 Barcelona · 2027 · Enterprise Summit');
     return '';
   };
 
@@ -215,29 +192,6 @@ export default function SponsorDossier() {
 
   return (
     <div className="sp-wrap">
-      {/* ── Nav ── */}
-      <nav className="sp-nav">
-        <div className="sp-nav-logo">
-          <svg viewBox="0 0 200 200" style={{ width: 32, height: 32 }}>
-            <circle cx="100" cy="100" r="95" fill="#0D1A4A" stroke="#00BCD4" strokeWidth="3"/>
-            <circle cx="83" cy="88" r="16" fill="#00BCD4" opacity="0.9"/>
-            <circle cx="117" cy="88" r="16" fill="#00BCD4" opacity="0.9"/>
-            <circle cx="83" cy="88" r="6" fill="#00E5FF"/>
-            <circle cx="117" cy="88" r="6" fill="#00E5FF"/>
-            <polygon points="100,98 93,108 107,108" fill="#FFD600"/>
-          </svg>
-          X-OPS CONFERENCE
-        </div>
-        <div className="sp-nav-controls">
-          <button className={`sp-btn${lang === 'es' ? ' active' : ''}`} onClick={() => setLang('es')}>ES</button>
-          <button className={`sp-btn${lang === 'en' ? ' active' : ''}`} onClick={() => setLang('en')}>EN</button>
-          <button className={`sp-btn sp-btn-gold${city === 'madrid' ? ' active' : ''}`} onClick={() => setCity('madrid')}>Madrid</button>
-          <button className={`sp-btn sp-btn-gold${city === 'barcelona' ? ' active' : ''}`} onClick={() => setCity('barcelona')}>Barcelona</button>
-          <button className={`sp-btn sp-btn-gold${city === 'dubai' ? ' active' : ''}`} onClick={() => setCity('dubai')}>Dubai</button>
-          <button className={`sp-btn sp-btn-gold${city === 'london' ? ' active' : ''}`} onClick={() => setCity('london')}>London</button>
-        </div>
-      </nav>
-
       {/* ── Hero ── */}
       <section className="sp-hero">
         <OwlSVG />
@@ -350,6 +304,11 @@ export default function SponsorDossier() {
               <div className="sp-track-detail">{t('Formación a medida', 'Custom training')}</div>
               <div className="sp-track-price">€2.000–€8.000 / {t('equipo', 'team')}</div>
             </div>
+            <div className="sp-academy-track">
+              <h4>{t('Ciberseguridad Ofensiva', 'Offensive Cybersecurity')}</h4>
+              <div className="sp-track-detail">{t('10 semanas · Online', '10 weeks · Online')}</div>
+              <div className="sp-track-price">€549</div>
+            </div>
           </div>
           <p style={{ color: '#69F0AE', fontSize: '0.82rem', marginTop: '0.5rem' }}>
             ✦ {t('Patrocinadores Platinum: logo en todos los materiales del curso + mención en sesiones', 'Platinum sponsors: logo on all course materials + mention in sessions')}
@@ -422,6 +381,7 @@ export default function SponsorDossier() {
                 <th>Track Sponsor</th>
                 <th>Gold</th>
                 <th>Silver</th>
+                <th>Welcome Pack</th>
               </tr>
             </thead>
             <tbody>
@@ -432,6 +392,7 @@ export default function SponsorDossier() {
                   <td>{renderCell(row.track, lang)}</td>
                   <td>{renderCell(row.gold, lang)}</td>
                   <td>{renderCell(row.silver, lang)}</td>
+                  <td>{renderCell(row.welcomepack, lang)}</td>
                 </tr>
               ))}
             </tbody>
@@ -439,18 +400,46 @@ export default function SponsorDossier() {
         </div>
       </section>
 
+      {/* ── Startup Pack ── */}
+      <section className="sp-section">
+        <h2 className="sp-section-title">🌱 Startup Pack</h2>
+        <div className="sp-academy-box">
+          <p style={{ color: '#b0bec5', marginBottom: '1rem', fontSize: '0.95rem' }}>
+            {t(
+              'Diseñado para startups de hasta 3 años con menos de 15 empleados. El Startup Pack ofrece visibilidad real en el ecosistema X-Ops a una fracción del coste de patrocinio estándar.',
+              'Designed for startups up to 3 years old with fewer than 15 employees. The Startup Pack offers real visibility in the X-Ops ecosystem at a fraction of standard sponsorship cost.'
+            )}
+          </p>
+          <div className="sp-academy-grid">
+            <div className="sp-academy-track">
+              <h4>{t('¿Qué incluye?', "What's included?")}</h4>
+              <div className="sp-track-detail" style={{ lineHeight: '1.8' }}>
+                {t('Logo en web · Mención en redes · 1 pase completo · Stand compartido · Welcome Pack', 'Logo on web · Social mention · 1 full pass · Shared booth · Welcome Pack')}
+              </div>
+              <div className="sp-track-price">€350–€950</div>
+            </div>
+            <div className="sp-academy-track">
+              <h4>{t('Criterios de elegibilidad', 'Eligibility criteria')}</h4>
+              <div className="sp-track-detail" style={{ lineHeight: '1.8' }}>
+                {t('≤3 años de antigüedad · ≤15 empleados · ARR <€500K · Sector X-Ops', '≤3 years old · ≤15 employees · ARR <€500K · X-Ops sector')}
+              </div>
+            </div>
+            <div className="sp-academy-track">
+              <h4>{t('Ciudades disponibles', 'Available cities')}</h4>
+              <div className="sp-track-detail" style={{ lineHeight: '1.8' }}>
+                Madrid · Dubai · London
+              </div>
+              <div className="sp-track-price" style={{ fontSize: '0.8rem', color: '#69F0AE' }}>
+                {t('−10% multi-ciudad', '−10% multi-city')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Contact CTA ── */}
       <section className="sp-section">
-        <div className="sp-cta-box">
-          <h2>{t('¿Listo para patrocinar?', 'Ready to sponsor?')}</h2>
-          <p style={{ color: '#b0bec5', fontSize: '0.9rem' }}>
-            {t('Ponte en contacto y te enviamos la propuesta personalizada en 24h.', 'Contact us and we\'ll send you a tailored proposal within 24h.')}
-          </p>
-          <div className="sp-contact-row">
-            <span>✉️ <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></span>
-            <span>📞 <a href="tel:+34744644873">+34 744 644 873</a></span>
-            <span>🌐 <a href="https://xopsconference.com" target="_blank" rel="noreferrer">xopsconference.com</a></span>
-          </div>
+        <div className="sp-cta-box" style={{ textAlign: 'center' }}>
           <div className="sp-cta-btns">
             <a
               href={`mailto:info@xopsconference.com?subject=${mailSubject}`}
