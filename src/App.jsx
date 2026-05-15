@@ -21,6 +21,8 @@ import Events2024 from './pages/archive/2024/Events2024';
 import Speakers2025 from './pages/archive/2025/Speakers2025';
 import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import CookiePolicy from './pages/CookiePolicy';
+import TermsOfService from './pages/TermsOfService';
 import Agenda from './pages/Agenda';
 import SpeakerPage from './pages/Speaker';
 import MyAgenda from './pages/MyAgenda';
@@ -225,6 +227,8 @@ function App() {
 
           {/* Privacy Policy */}
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
+          <Route path="/politica-de-cookies" element={<CookiePolicy />} />
+          <Route path="/terminos-de-servicio" element={<TermsOfService />} />
           
           {/* Sophia Metapolis routes */}
           <Route path="/sophia" element={<SophiaHome />} />
@@ -270,6 +274,8 @@ function App() {
             </Nav>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
               <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
+              <li><Link to="/politica-de-cookies" className="text-white" style={{textDecoration: 'none'}}>Política de Cookies</Link></li>
+              <li><Link to="/terminos-de-servicio" className="text-white" style={{textDecoration: 'none'}}>Términos de Servicio</Link></li>
               <li>
                 <button 
                   onClick={handleShowCookiePreferences}
