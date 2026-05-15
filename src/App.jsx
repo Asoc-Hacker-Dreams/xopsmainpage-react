@@ -110,12 +110,19 @@ function App() {
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.organizers')}</Link>
           
         
-      {/* Menú EVENTOS ANTERIORES */}  
+      {/* Menú EVENTOS ANTERIORES */}
       <NavDropdown
         title={<span dangerouslySetInnerHTML={{ __html: t('nav.previousEvents') }} />}
         className='links px-4 font-weight-bold custom-white-dropdown'
         style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
       >
+        {/* X-Ops 2025 */}
+        <div className="submenu-title">{t('archive.xops2025')}</div>
+        <NavDropdown.Item as={Link} to="/archive/2025/Speakers2025">{t('archive.speakers')}</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/archive/2025/Events2025">{t('archive.agenda')}</NavDropdown.Item>
+
+        <NavDropdown.Divider />
+
         {/* Título X-OPS 2024 */}
         <div className="submenu-title">{t('archive.xops2024')}</div>
         <NavDropdown.Item as={Link} to="/archive/2024/Speakers2024">{t('archive.speakers')}</NavDropdown.Item>
