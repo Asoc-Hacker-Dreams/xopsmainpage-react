@@ -128,7 +128,18 @@ const Tickets = () => {
       }
     } catch (err) {
       console.error('Payment error:', err);
-      setError(err.message);
+      const isNetworkError =
+        err.name === 'TypeError' ||
+        (typeof err.message === 'string' && (
+          err.message.includes('Failed to fetch') ||
+          err.message.includes('NetworkError') ||
+          err.message.includes('fetch')
+        ));
+      setError(
+        isNetworkError
+          ? 'El sistema de entradas no está disponible en este momento. Escríbenos a summit@xopsconferences.com para reservar tu entrada.'
+          : err.message,
+      );
     } finally {
       setLoading(null);
     }
