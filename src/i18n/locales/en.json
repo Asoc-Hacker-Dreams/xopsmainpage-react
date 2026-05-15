@@ -12,7 +12,7 @@
   "hero": {
     "title": "JOIN THE X-OPS REVOLUTION!",
     "description": "The world of IT is changing. Join us at X-Ops Conference, where you will discover how the right technology and people are driving change.",
-    "date": "Date: November 21-22, 2025",
+    "date": "Date: November 20-21, 2026",
     "buyTicket": "Buy ticket",
     "viewAgenda": "View agenda",
     "cfp": "CFP",
@@ -26,12 +26,21 @@
     "links": "Links",
     "privacyPolicy": "Privacy Policy",
     "cookieSettings": "🍪 Cookie Settings",
-    "copyright": "© 2025 - X-Ops Conference"
+    "copyright": "© 2026 - X-Ops Conference"
   },
   "archive": {
-    "pastEvents": "Past Events"
+    "pastEvents": "Past Events",
+    "xops2025": "X-Ops Conference Madrid 2025",
+    "xops2024": "X-Ops Conference Madrid 2024",
+    "speakers": "Speakers",
+    "agenda": "Agenda",
+    "sponsorCollab": "Sponsorship and Collaborators",
+    "aldea2023": "Aldea DevSecOps 2023"
   },
   "summit": {
+    "title": "X-Ops Summit Madrid 2026",
+    "subtitle": "Executive Event for Decision Makers",
+    "description": "The exclusive event for CTOs, CISOs and tech leaders. November 18-19, 2026, Madrid. High-level networking and strategic content.",
     "about": "About the Summit",
     "highlights": "Highlights"
   },

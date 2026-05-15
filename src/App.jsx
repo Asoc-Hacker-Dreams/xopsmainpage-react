@@ -120,7 +120,7 @@ function App() {
         <div className="submenu-title">{t('archive.xops2024')}</div>
         <NavDropdown.Item as={Link} to="/archive/2024/Speakers2024">{t('archive.speakers')}</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/archive/2024/Events2024">{t('archive.agenda')}</NavDropdown.Item>
-        <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024"><span dangerouslySetInnerHTML={{ __html: t('archive.sponsorCollab') }} /></NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/archive/2024/Sponsor2024">{t('archive.sponsorCollab')}</NavDropdown.Item>
 
         <NavDropdown.Divider />
 

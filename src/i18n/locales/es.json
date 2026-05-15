@@ -12,7 +12,7 @@
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
     "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
-    "date": "Fecha: 21 y 22 de noviembre 2025",
+    "date": "Fecha: 20 y 21 de noviembre 2026",
     "buyTicket": "Compra tu entrada",
     "viewAgenda": "Ver agenda",
     "cfp": "CFP",
@@ -26,19 +26,20 @@
     "links": "Enlaces",
     "privacyPolicy": "Política de Privacidad",
     "cookieSettings": "🍪 Gestión de Cookies",
-    "copyright": "© 2025 - X-Ops Conference"
+    "copyright": "© 2026 - X-Ops Conference"
   },
   "archive": {
+    "xops2025": "X-Ops Conference Madrid 2025",
     "xops2024": "X-Ops Conference Madrid 2024",
     "speakers": "Ponentes",
     "agenda": "Agenda",
-    "sponsorCollab": "Patrocinio y<br/>Colaboradores",
+    "sponsorCollab": "Patrocinio y Colaboradores",
     "aldea2023": "Aldea DevSecOps 2023"
   },
   "summit": {
-    "title": "X-Ops Summit Barcelona 2026",
+    "title": "X-Ops Summit Madrid 2026",
     "subtitle": "Evento Ejecutivo para Decision Makers",
-    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 6-7 Mayo 2026, Barcelona. Networking de alto nivel y contenido estratégico paralelo a HackBCN Con."
+    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-19 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico."
   },
   "language": {
     "switch": "EN",
