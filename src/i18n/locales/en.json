@@ -36,6 +36,8 @@
     "highlights": "Highlights"
   },
   "language": {
+    "switch": "ES",
+    "label": "Language",
     "changeLanguage": "Change language",
     "spanish": "Spanish",
     "english": "English"
