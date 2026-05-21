@@ -7,3 +7,8 @@ coverage
 .env.*
 *.log
 README.md
+docs
+tests
+e2e
+scripts
+test-results
