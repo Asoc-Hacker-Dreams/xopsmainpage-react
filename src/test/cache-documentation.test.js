@@ -30,12 +30,12 @@ describe('Cache Documentation Tests', () => {
     expect(readmeContent).toContain('data-cache-v1');
   });
 
-  it('Service Worker includes DATA_CACHE implementation', () => {
+  it('Service Worker includes content cache implementation', () => {
     const swPath = path.join(process.cwd(), 'public/sw.js');
     const swContent = readFileSync(swPath, 'utf8');
     
-    expect(swContent).toContain('const DATA_CACHE = \'data-cache-v1\'');
-    expect(swContent).toContain('const DATA_URLS = [');
+    expect(swContent).toContain('const CONTENT_CACHE_NAME = \'xops-content-v1\'');
+    expect(swContent).toContain('const contentUrlsToCache = [');
     expect(swContent).toContain('/api/agenda');
     expect(swContent).toContain('/api/ponentes');
   });
@@ -44,8 +44,8 @@ describe('Cache Documentation Tests', () => {
     const swPath = path.join(process.cwd(), 'public/sw.js');
     const swContent = readFileSync(swPath, 'utf8');
     
-    expect(swContent).toContain('validCaches');
-    expect(swContent).toContain('CACHE_NAME, DATA_CACHE');
+    expect(swContent).toContain('WHITELISTED_CACHES');
+    expect(swContent).toContain('SHELL_CACHE_NAME, CONTENT_CACHE_NAME');
     expect(swContent).toContain('caches.delete(cacheName)');
   });
 });

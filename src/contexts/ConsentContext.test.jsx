@@ -131,7 +131,7 @@ describe('ConsentContext', () => {
     fireEvent.click(screen.getByTestId('accept-all'));
 
     await waitFor(() => {
-      const stored = mockLocalStorage.getItem('xops-cookie-consent');
+      const stored = mockLocalStorage.getItem('xopsconf_consent_v1');
       expect(stored).toBeTruthy();
       
       const parsed = JSON.parse(stored);
@@ -154,7 +154,7 @@ describe('ConsentContext', () => {
       timestamp: new Date().toISOString(),
       version: '1.0'
     };
-    mockLocalStorage.setItem('xops-cookie-consent', JSON.stringify(consentData));
+    mockLocalStorage.setItem('xopsconf_consent_v1', JSON.stringify(consentData));
 
     render(
       <ConsentProvider>
@@ -183,7 +183,7 @@ describe('ConsentContext', () => {
       timestamp: expiredDate.toISOString(),
       version: '1.0'
     };
-    mockLocalStorage.setItem('xops-cookie-consent', JSON.stringify(consentData));
+    mockLocalStorage.setItem('xopsconf_consent_v1', JSON.stringify(consentData));
 
     render(
       <ConsentProvider>

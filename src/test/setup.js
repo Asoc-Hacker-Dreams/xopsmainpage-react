@@ -3,11 +3,9 @@ import { vi } from 'vitest'
 
 // Mock para usePWA hook
 vi.mock('../hooks/usePWA.js', () => ({
-  default: () => ({
-    isStandalone: false,
-    canInstall: false,
-    installPrompt: null,
-    handleInstall: vi.fn()
+  usePWA: () => ({
+    canPrompt: false,
+    promptInstall: vi.fn().mockResolvedValue(null)
   })
 }))
 
@@ -62,6 +60,6 @@ Object.defineProperty(window, 'localStorage', {
 })
 
 // Setup global para testing
-global.beforeEach = () => {
+beforeEach(() => {
   vi.clearAllMocks()
-}
+})

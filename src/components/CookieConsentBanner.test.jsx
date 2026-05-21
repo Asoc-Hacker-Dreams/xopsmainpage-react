@@ -1,24 +1,29 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import CookieConsentBanner from './CookieConsentBanner';
 import { ConsentProvider } from '../contexts/ConsentContext';
 
-// Mock the consent context with default values for testing
-// Mock the useConsent hook
+const useConsentMock = vi.hoisted(() => vi.fn());
+
+// Mock the consent context with configurable mock
 vi.mock('../contexts/ConsentContext', async () => {
   const actual = await vi.importActual('../contexts/ConsentContext');
   return {
     ...actual,
-    useConsent: () => ({
-      showBanner: true,
-      acceptAll: vi.fn(),
-      rejectAll: vi.fn(),
-      savePreferences: vi.fn()
-    })
+    useConsent: useConsentMock
   };
 });
 
 describe('CookieConsentBanner', () => {
+  beforeEach(() => {
+    useConsentMock.mockReturnValue({
+      showBanner: true,
+      acceptAll: vi.fn(),
+      rejectAll: vi.fn(),
+      savePreferences: vi.fn()
+    });
+  });
+
   it('should render banner when showBanner is true', () => {
     render(
       <ConsentProvider>
@@ -29,25 +34,17 @@ describe('CookieConsentBanner', () => {
     expect(screen.getByText('🍪 Gestión de Cookies')).toBeInTheDocument();
     expect(screen.getByText(/Utilizamos cookies para mejorar/)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Aceptar Todo' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Rechazar Todo' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Solo esenciales' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Personalizar' })).toBeInTheDocument();
   });
 
   it('should not render when showBanner is false', () => {
-    // Mock useConsent to return showBanner: false
-    vi.doMock('../contexts/ConsentContext', () => ({
-      useConsent: () => ({
-        showBanner: false,
-        acceptAll: vi.fn(),
-        rejectAll: vi.fn(),
-        savePreferences: vi.fn()
-      }),
-      CONSENT_CATEGORIES: {
-        ESSENTIAL: 'essential',
-        ANALYTICS: 'analytics',
-        MARKETING: 'marketing'
-      }
-    }));
+    useConsentMock.mockReturnValueOnce({
+      showBanner: false,
+      acceptAll: vi.fn(),
+      rejectAll: vi.fn(),
+      savePreferences: vi.fn()
+    });
 
     const { container } = render(<CookieConsentBanner />);
     expect(container.firstChild).toBeNull();
@@ -91,7 +88,7 @@ describe('CookieConsentBanner', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Personalizar' }));
 
-    const essentialCheckbox = screen.getByRole('checkbox', { name: /cookie-essential/ });
+    const essentialCheckbox = screen.getByRole('checkbox', { name: /Cookies Esenciales/i });
     expect(essentialCheckbox).toBeChecked();
     expect(essentialCheckbox).toBeDisabled();
   });

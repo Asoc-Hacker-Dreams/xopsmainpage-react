@@ -1,8 +1,12 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivacyPolicy from './PrivacyPolicy';
+
+vi.mock('../components/AnimationWrapper', () => ({
+  default: ({ children }) => <>{children}</>
+}));
 
 const renderWithRouter = (component) => {
   return render(
@@ -24,30 +28,30 @@ describe('PrivacyPolicy Component', () => {
     renderWithRouter(<PrivacyPolicy />);
     
     // Check for main sections
-    expect(screen.getByText(/Información General/i)).toBeInTheDocument();
+    expect(screen.getByText(/Responsable del Tratamiento/i)).toBeInTheDocument();
     expect(screen.getByText(/Datos que Recopilamos/i)).toBeInTheDocument();
-    expect(screen.getByText(/Sus Derechos bajo el GDPR/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sus Derechos bajo el RGPD/i)).toBeInTheDocument();
     expect(screen.getByText(/Contacto para Privacidad/i)).toBeInTheDocument();
   });
 
   it('includes contact email for privacy inquiries', () => {
     renderWithRouter(<PrivacyPolicy />);
     
-    const emailLinks = screen.getAllByText(/info@xopsconference.com/i);
+    const emailLinks = screen.getAllByText(/privacy@xopsalliance.com/i);
     expect(emailLinks.length).toBeGreaterThan(0);
     
     // Check that at least one is a mailto link
-    const mailtoLinks = screen.getAllByRole('link', { name: /info@xopsconference.com/i });
-    expect(mailtoLinks[0]).toHaveAttribute('href', 'mailto:info@xopsconference.com');
+    const mailtoLinks = screen.getAllByRole('link', { name: /privacy@xopsalliance.com/i });
+    expect(mailtoLinks[0]).toHaveAttribute('href', 'mailto:privacy@xopsalliance.com');
   });
 
   it('mentions GDPR rights', () => {
     renderWithRouter(<PrivacyPolicy />);
     
-    expect(screen.getByText('Acceso:')).toBeInTheDocument();
-    expect(screen.getByText('Rectificación:')).toBeInTheDocument();
-    expect(screen.getByText('Supresión:')).toBeInTheDocument();
-    expect(screen.getByText('Portabilidad:')).toBeInTheDocument();
+    expect(screen.getByText(/Acceso \(Art\. 15\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Rectificación \(Art\. 16\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Supresión \(Art\. 17\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Portabilidad \(Art\. 20\)/i)).toBeInTheDocument();
   });
 
   it('describes data collection practices', () => {
@@ -55,20 +59,20 @@ describe('PrivacyPolicy Component', () => {
     
     expect(screen.getByText('2.1 Datos de Navegación Anónimos')).toBeInTheDocument();
     expect(screen.getByText('2.2 Datos Almacenados Localmente')).toBeInTheDocument();
-    expect(screen.getByText(/login federado gestionado por Microsoft/i)).toBeInTheDocument();
+    expect(screen.getByText(/login federado \(Microsoft\)/i)).toBeInTheDocument();
   });
 
   it('includes information about data retention', () => {
     renderWithRouter(<PrivacyPolicy />);
     
-    expect(screen.getByText(/Retención de Datos/i)).toBeInTheDocument();
+    expect(screen.getByText(/Plazos de Conservación/i)).toBeInTheDocument();
   });
 
   it('includes security information', () => {
     renderWithRouter(<PrivacyPolicy />);
     
     expect(screen.getByRole('heading', { name: /Seguridad/i })).toBeInTheDocument();
-    expect(screen.getByText(/HTTPS/i)).toBeInTheDocument();
+    expect(screen.getByText(/cifrado TLS/i)).toBeInTheDocument();
   });
 
   it('includes structured data for SEO', () => {

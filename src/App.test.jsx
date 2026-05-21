@@ -41,7 +41,7 @@ describe('App Component', () => {
       </AppWrapper>
     )
     
-    expect(screen.getByRole('banner')).toBeInTheDocument()
+    expect(screen.getByRole('navigation')).toBeInTheDocument()
   })
 
   it('displays X-Ops logo in navigation', () => {
@@ -51,7 +51,7 @@ describe('App Component', () => {
       </AppWrapper>
     )
     
-    const logo = screen.getByAltText('X-Ops logo')
+    const logo = screen.getByAltText('X-Ops Logo')
     expect(logo).toBeInTheDocument()
     expect(logo).toHaveAttribute('src', expect.stringContaining('xops.png'))
   })
@@ -63,9 +63,10 @@ describe('App Component', () => {
       </AppWrapper>
     )
     
-    expect(screen.getByText('Home')).toBeInTheDocument()
-    expect(screen.getByText('Organizers')).toBeInTheDocument()
-    expect(screen.getByText('Sponsors')).toBeInTheDocument()
+    // Nav uses i18n (default: Spanish). EVENTO appears in nav, hero, and footer.
+    expect(screen.getAllByText('EVENTO').length).toBeGreaterThan(0)
+    expect(screen.getByText('ORGANIZADORES')).toBeInTheDocument()
+    expect(screen.getByText('PATROCINA')).toBeInTheDocument()
   })
 
   it('renders archive navigation dropdown', () => {
@@ -75,7 +76,8 @@ describe('App Component', () => {
       </AppWrapper>
     )
     
-    expect(screen.getByText('Archive')).toBeInTheDocument()
+    // Dropdown title uses dangerouslySetInnerHTML: "EVENTOS<br/>ANTERIORES"
+    expect(screen.getAllByText(/EVENTOS/i).length).toBeGreaterThan(0)
   })
 
   it('has proper navigation structure', () => {

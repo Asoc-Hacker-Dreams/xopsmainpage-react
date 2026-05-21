@@ -31,7 +31,8 @@ describe('Benefits Component', () => {
   it('includes X-Ops Conference branding', () => {
     render(<Benefits />)
     
-    expect(screen.getByText(/X-Ops Conference/i)).toBeInTheDocument()
+    const brandElements = screen.getAllByText(/X-Ops Conference/i)
+    expect(brandElements.length).toBeGreaterThan(0)
   })
 
   it('displays sponsorship question heading', () => {

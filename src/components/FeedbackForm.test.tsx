@@ -95,7 +95,7 @@ describe('FeedbackForm', () => {
       <FeedbackForm show={true} onHide={onHide} />
     );
     
-    const closeButton = screen.getByText('Cerrar');
+    const closeButton = screen.getByText('Cancelar');
     fireEvent.click(closeButton);
     
     expect(onHide).toHaveBeenCalled();

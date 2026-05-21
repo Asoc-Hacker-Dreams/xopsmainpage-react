@@ -2,6 +2,12 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import Hero from './Hero'
 
+// Mock react-helmet-async (requires HelmetProvider context)
+vi.mock('react-helmet-async', () => ({
+  Helmet: ({ children }) => <>{children}</>,
+  HelmetProvider: ({ children }) => <>{children}</>
+}))
+
 // Mock de AOS (Animate On Scroll)
 vi.mock('aos', () => ({
   default: {

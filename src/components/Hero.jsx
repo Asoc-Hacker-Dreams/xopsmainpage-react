@@ -19,7 +19,7 @@ import { Helmet } from 'react-helmet-async';  // añado despues de instalar reac
 
 {/* function Hero() {
   return (   */}
-    <div className='Hero-section d-flex align-items-center justify-content-center text-center'>
+    <div role="main" className='Hero-section d-flex align-items-center justify-content-center text-center'>
       <div className="d-flex align-items-center justify-content-center text-center text-white py-5">
     <div className="container">
         <h1 className="display-4 font-weight-bold">¡ÚNETE A LA REVOLUCIÓN X-OPS!    </h1>

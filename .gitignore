@@ -58,3 +58,7 @@ typings/
 .osdo/results
 .osdo/test-results
 .vscode/settings.json
+# Playwright test artifacts
+test-results/
+e2e/report/
+playwright-report/
