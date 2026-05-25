@@ -168,7 +168,7 @@
   color: var(--sp-cyan);
   letter-spacing: 2px;
   text-transform: uppercase;
-  border-left: 3px solid var(--sp-cyan);
+  border: 1px solid var(--sp-cyan);
   padding-left: 0.8rem;
   margin-bottom: 1.5rem;
 }

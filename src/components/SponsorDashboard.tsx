@@ -219,7 +219,7 @@ const SponsorDashboard: React.FC<SponsorDashboardProps> = ({ onSelectSponsor }) 
 
       {/* Sponsor Detail Modal */}
       {selectedSponsor && (
-        <div className="sponsor-modal-overlay" onClick={closeModal}>
+        <div className="sponsor-modal-overlay" role="button" tabIndex={0} aria-label="Cerrar modal" onClick={closeModal} onKeyDown={(e) => e.key === 'Enter' && closeModal()}>
           <div className="sponsor-modal" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal} aria-label="Cerrar">
               ×

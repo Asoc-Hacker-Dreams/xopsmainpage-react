@@ -69,7 +69,7 @@ const StarRating: React.FC<{
           >
             <FaStar
               className="star-icon"
-              color={(hover || rating) >= star ? '#ffc107' : '#e4e5e9'}
+              color={(hover || rating) >= star ? 'var(--stk-gold)' : 'var(--sp-gray, #e4e5e9)'}
               size={32}
             />
           </button>

@@ -223,7 +223,7 @@ border-radius: 10px;
 
 .schedule-section .schedule-item, .schedule-section .event-card {
   background-color: #111840;
-  border-left: 3px solid #00BCD4;
+  border: 1px solid var(--sp-cyan);
   color: #e0e0e0;
 }
 

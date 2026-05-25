@@ -307,8 +307,12 @@
 }
 
 .form-group textarea:focus {
-  outline: none;
   border-color: #d90845;
+}
+
+.form-group textarea:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
 }
 
 .form-actions {

@@ -55,10 +55,7 @@
   display: block;
   font-size: 2rem;
   font-weight: 400;
-  background: linear-gradient(90deg, #00BCD4 0%, #FFD600 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--sp-cyan);
 }
 
 .summit-subtitle {

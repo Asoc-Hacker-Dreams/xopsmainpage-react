@@ -166,7 +166,7 @@
   color: var(--stk-green);
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  border-left: 3px solid var(--stk-green);
+  border: 1px solid var(--stk-green);
   padding-left: 0.7rem;
   margin-bottom: 1rem;
 }
@@ -198,7 +198,6 @@
   padding: 0.6rem 0.9rem;
   border-radius: 5px;
   font-size: 0.88rem;
-  outline: none;
   transition: border-color 0.2s;
   box-sizing: border-box;
 }
@@ -208,6 +207,13 @@
 .stk-textarea:focus {
   border-color: var(--stk-green);
   box-shadow: 0 0 0 2px rgba(105,240,174,0.1);
+}
+
+.stk-input:focus-visible,
+.stk-select:focus-visible,
+.stk-textarea:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
 }
 
 .stk-textarea {

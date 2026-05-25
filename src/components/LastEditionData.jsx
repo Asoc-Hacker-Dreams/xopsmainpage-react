@@ -2,6 +2,15 @@ import React from 'react';
 import AnimationWrapper from './AnimationWrapper';
 import { BsPeople, BsCalendar, BsMic, BsBuilding } from 'react-icons/bs';
 
+const TRACK_COLORS = {
+  DevSecOps: '#d90845',
+  DevOps: '#00BCD4',
+  MLOps: '#28a745',
+  AIOps: '#FFD600',
+  PrivacyOps: '#6f42c1',
+  SecOps: '#fd7e14'
+};
+
 const LastEditionData = () => {
   const stats = [
     {
@@ -31,12 +40,12 @@ const LastEditionData = () => {
   ];
 
   const chartData = [
-    { label: 'DevSecOps', percentage: 25, color: '#d90845' },
-    { label: 'DevOps', percentage: 15, color: '#007bff' },
-    { label: 'MLOps', percentage: 15, color: '#28a745' },
-    { label: 'AIOps', percentage: 15, color: '#ffc107' },
-    { label: 'PrivacyOps', percentage: 15, color: '#6f42c1' },
-    { label: 'SecOps', percentage: 15, color: '#fd7e14' }
+    { label: 'DevSecOps', percentage: 25, color: TRACK_COLORS.DevSecOps },
+    { label: 'DevOps', percentage: 15, color: TRACK_COLORS.DevOps },
+    { label: 'MLOps', percentage: 15, color: TRACK_COLORS.MLOps },
+    { label: 'AIOps', percentage: 15, color: TRACK_COLORS.AIOps },
+    { label: 'PrivacyOps', percentage: 15, color: TRACK_COLORS.PrivacyOps },
+    { label: 'SecOps', percentage: 15, color: TRACK_COLORS.SecOps }
   ];
 
   return (
