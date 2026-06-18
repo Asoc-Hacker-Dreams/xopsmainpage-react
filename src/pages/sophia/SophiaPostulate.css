@@ -74,8 +74,14 @@
 .sophia-form input[type="text"]:focus,
 .sophia-form input[type="email"]:focus,
 .sophia-form textarea:focus {
-  outline: none;
   border-color: #6366f1;
+}
+
+.sophia-form input[type="text"]:focus-visible,
+.sophia-form input[type="email"]:focus-visible,
+.sophia-form textarea:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
 }
 
 .sophia-form textarea {

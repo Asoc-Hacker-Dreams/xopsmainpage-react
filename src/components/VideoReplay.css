@@ -41,8 +41,12 @@
 }
 
 .search-box input:focus {
-  outline: none;
   border-color: #d90845;
+}
+
+.search-box input:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
 }
 
 .track-filter {

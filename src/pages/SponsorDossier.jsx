@@ -3,42 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './SponsorDossier.css';
 
-const OwlSVG = () => (
-  <svg className="owl-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
-    style={{ width: 120, height: 120, display: 'block', margin: '0 auto 1.5rem' }}>
-    <circle cx="100" cy="100" r="95" fill="#0D1A4A" stroke="#00BCD4" strokeWidth="3"/>
-    <ellipse cx="100" cy="115" rx="55" ry="65" fill="#1A237E"/>
-    <ellipse cx="100" cy="110" rx="45" ry="55" fill="#243284"/>
-    <ellipse cx="55" cy="115" rx="38" ry="50" fill="#1A237E" transform="rotate(-15 55 115)"/>
-    <ellipse cx="145" cy="115" rx="38" ry="50" fill="#1A237E" transform="rotate(15 145 115)"/>
-    <ellipse cx="100" cy="130" rx="30" ry="8" fill="#0F1F6E" opacity="0.6"/>
-    <ellipse cx="100" cy="118" rx="28" ry="7" fill="#0F1F6E" opacity="0.5"/>
-    <ellipse cx="100" cy="106" rx="26" ry="7" fill="#0F1F6E" opacity="0.4"/>
-    <circle cx="83" cy="88" r="16" fill="#00BCD4" opacity="0.9"/>
-    <circle cx="117" cy="88" r="16" fill="#00BCD4" opacity="0.9"/>
-    <circle cx="83" cy="88" r="11" fill="#001F3F"/>
-    <circle cx="117" cy="88" r="11" fill="#001F3F"/>
-    <circle cx="83" cy="88" r="6" fill="#00E5FF"/>
-    <circle cx="117" cy="88" r="6" fill="#00E5FF"/>
-    <circle cx="86" cy="85" r="2" fill="white" opacity="0.8"/>
-    <circle cx="120" cy="85" r="2" fill="white" opacity="0.8"/>
-    <polygon points="100,98 93,108 107,108" fill="#FFD600"/>
-    <polygon points="78,48 68,25 88,42" fill="#1A237E"/>
-    <polygon points="122,48 132,25 112,42" fill="#1A237E"/>
-    <polygon points="80,46 72,30 86,42" fill="#00BCD4" opacity="0.5"/>
-    <polygon points="120,46 128,30 114,42" fill="#00BCD4" opacity="0.5"/>
-    <path d="M 60 55 Q 100 30 140 55" stroke="#00BCD4" strokeWidth="2" fill="none" opacity="0.6"/>
-    <circle cx="100" cy="32" r="5" fill="#00BCD4"/>
-    <circle cx="75" cy="42" r="3" fill="#00BCD4" opacity="0.6"/>
-    <circle cx="125" cy="42" r="3" fill="#00BCD4" opacity="0.6"/>
-    <circle cx="42" cy="100" r="8" fill="none" stroke="#00BCD4" strokeWidth="1.5" opacity="0.5"/>
-    <circle cx="158" cy="100" r="8" fill="none" stroke="#00BCD4" strokeWidth="1.5" opacity="0.5"/>
-    <path id="arc-dossier" d="M 25 155 A 80 80 0 0 0 175 155" fill="none"/>
-    <text fontSize="9" fill="#00BCD4" fontFamily="Arial" letterSpacing="4" fontWeight="700">
-      <textPath href="#arc-dossier" startOffset="8%">X O P S  C O N F E R E N C E</textPath>
-    </text>
-  </svg>
-);
 
 const CITY_DATA = {
   madrid: {
@@ -194,7 +158,6 @@ export default function SponsorDossier() {
     <div className="sp-wrap">
       {/* ── Hero ── */}
       <section className="sp-hero">
-        <OwlSVG />
         <h1>X-OPS CONFERENCE</h1>
         <p className="sp-subtitle">{t('DOSSIER DE PATROCINIO 2026–2027', 'SPONSORSHIP DOSSIER 2026–2027')}</p>
         <div className="sp-badge">{cityBadge()}</div>

@@ -94,7 +94,7 @@ const AddToHomeScreen = () => {
         <button
           onClick={handleInstallClick}
           style={{
-            backgroundColor: '#007bff',
+            backgroundColor: '#00BCD4',
             color: 'white',
             border: 'none',
             padding: '8px 16px',

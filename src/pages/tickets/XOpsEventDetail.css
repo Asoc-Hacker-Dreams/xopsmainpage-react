@@ -142,13 +142,13 @@
 }
 
 .xops-agenda-workshop {
-  border-left: 3px solid #198754;
+  border: 1px solid #198754;
   padding-left: 1rem;
   margin-left: -1rem;
 }
 
 .xops-agenda-panel {
-  border-left: 3px solid #0d6efd;
+  border: 1px solid #0d6efd;
   padding-left: 1rem;
   margin-left: -1rem;
 }

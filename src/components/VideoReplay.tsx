@@ -121,7 +121,7 @@ const VideoReplay: React.FC = () => {
       {/* Video Grid */}
       <div className="video-grid">
         {filteredVideos.map(video => (
-          <div key={video.id} className="video-card" onClick={() => openVideo(video)}>
+          <div key={video.id} className="video-card" role="button" tabIndex={0} onClick={() => openVideo(video)} onKeyDown={(e) => e.key === 'Enter' && openVideo(video)}>
             <div className="video-thumbnail">
               <div className="video-placeholder">
                 <span>▶️</span>
@@ -148,7 +148,7 @@ const VideoReplay: React.FC = () => {
 
       {/* Video Modal */}
       {selectedVideo && (
-        <div className="video-modal-overlay" onClick={closeVideo}>
+        <div className="video-modal-overlay" role="button" tabIndex={0} aria-label="Cerrar modal" onClick={closeVideo} onKeyDown={(e) => e.key === 'Enter' && closeVideo()}>
           <div className="video-modal" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeVideo} aria-label="Cerrar">
               ×

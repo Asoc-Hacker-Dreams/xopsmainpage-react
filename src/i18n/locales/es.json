@@ -4,17 +4,18 @@
     "speakers": "PONENTES",
     "sponsor": "PATROCINA",
     "organizers": "ORGANIZADORES",
-    "previousEvents": "EVENTOS<br/>ANTERIORES",
+    "previousEvents": "EVENTOS ANTERIORES",
     "tickets": "ENTRADAS",
     "summit": "SUMMIT",
+    "editions": "EDICIONES",
     "becomeSponsor": "CONVIÉRTETE EN PATROCINADOR",
     "volunteer": "Hazte voluntario"
   },
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
     "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
-    "date": "Fecha: 18 al 21 de noviembre 2026",
-    "buyTicket": "Compra tu entrada",
+    "date": "Madrid: 19, 20 y 21 Nov · Dubai: 15, 16 y 17 Oct 2026",
+    "buyTicket": "Reserva tu entrada",
     "viewAgenda": "Ver agenda",
     "cfp": "CFP",
     "installApp": "📱 Instalar App"
@@ -189,6 +190,37 @@
       "terms": "Términos"
     }
   },
+  "ticketModal": {
+    "titleHighlight": "Entradas",
+    "earlyBird": "EARLY BIRD: 20% de descuento hasta el 15 de Marzo",
+    "loading": "Cargando eventos disponibles…",
+    "noTickets": "No hay entradas disponibles para este evento.",
+    "noEvents": "No se pudieron cargar los eventos. Escríbenos a summit@xopsconferences.com.",
+    "contact": "¿Necesitas factura o tienes dudas?",
+    "contactEmail": "summit@xopsconferences.com",
+    "close": "Cerrar",
+    "checkout": {
+      "title": "Reservar Entrada",
+      "cancel": "Cancelar",
+      "submit": "Continuar al Pago",
+      "submitting": "Procesando…",
+      "fullName": "Nombre completo",
+      "fullNamePlaceholder": "Ej: María García",
+      "email": "Email",
+      "emailHint": "Recibirás tu entrada en este email.",
+      "errors": {
+        "nameRequired": "Por favor introduce tu nombre completo.",
+        "emailInvalid": "Por favor introduce un email válido.",
+        "networkError": "Sistema de entradas no disponible. Escríbenos a summit@xopsconferences.com."
+      }
+    },
+    "features": {
+      "fullAccess": "Acceso completo al evento",
+      "allSessions": "Todas las sesiones",
+      "eventMaterial": "Material del evento",
+      "areaAccess": "Acceso área {{tier}}"
+    }
+  },
   "tickets": {
     "event": {
       "getTickets": "Obtener entradas",
@@ -228,5 +260,197 @@
       "tryAgain": "Volver a intentar",
       "contactSupport": "Si experimentas problemas, contacta a soporte."
     }
+  },
+  "ecosystem": {
+    "sectionPrefix": "Nuestro ecosistema",
+    "audienceLabel": "Audiencia",
+    "title": "Dos eventos, un ecosistema",
+    "subtitle": "X-Ops Conference y X-Ops Summit son los dos pilares del ecosistema X-Ops. Diseñados para diferentes perfiles, son el mismo movimiento desde perspectivas distintas.",
+    "tagline": "Si la Conference es donde la comunidad técnica aprende y comparte, el Summit es donde los líderes deciden y transforman. Mismo movimiento, perspectiva distinta.",
+    "conference": {
+      "badge": "COMUNIDAD TÉCNICA",
+      "title": "X-Ops Conference",
+      "description": "El evento técnico de referencia para profesionales de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering. Un espacio de aprendizaje horizontal donde la comunidad es el protagonista.",
+      "features": {
+        "talks": { "label": "Charlas técnicas", "desc": "Casos reales de implementación por practicioners que lo han vivido" },
+        "community": { "label": "Comunidad abierta", "desc": "Acceso para todos los niveles, desde junior hasta senior" },
+        "workshops": { "label": "Talleres prácticos", "desc": "Sesiones hands-on con herramientas y tecnologías del momento" }
+      },
+      "audience": "Engineers, SREs, DevOps, DevSecOps, MLOps, Platform Engineers y Tech Leads",
+      "cta": "Ver eventos Conference"
+    },
+    "summit": {
+      "badge": "LÍDERES EJECUTIVOS",
+      "title": "X-Ops Summit",
+      "description": "El evento exclusivo para CTOs, CISOs y Decision Makers. Un espacio de alto nivel donde la estrategia, el ROI y el networking ejecutivo marcan el ritmo.",
+      "features": {
+        "strategic": { "label": "Contenido estratégico", "desc": "Sin technical deep-dives; enfoque en business impact y transformación" },
+        "networking": { "label": "Networking exclusivo", "desc": "Aforo limitado a 90 ejecutivos, garantizando calidad en cada interacción" },
+        "cases": { "label": "Casos de éxito", "desc": "Experiencias reales con métricas y KPIs que puedes aplicar el lunes" }
+      },
+      "audience": "CTOs, CISOs, VPs Engineering, Directors y Decision Makers tecnológicos",
+      "cta": "Ver X-Ops Summit"
+    }
+  },
+  "editions": {
+    "sectionPrefix": "Próximas ediciones",
+    "title": "X-Ops Ecosystem 2026",
+    "subtitle": "Un movimiento que crece. En 2026 llevamos el ecosistema X-Ops a dos continentes, con el mismo ADN y adaptado al contexto local.",
+    "countdown": {
+      "days": "Días",
+      "hours": "Horas",
+      "min": "Min",
+      "sec": "Seg"
+    },
+    "madrid": {
+      "flag": "🇪🇸",
+      "dates": "19 · 20 · 21 NOV",
+      "year": "2026",
+      "title": "X-Ops Madrid 2026",
+      "city": "Madrid, España",
+      "summit": {
+        "label": "X-Ops Summit",
+        "dates": "19 y 20 de noviembre",
+        "venue": "Fundación Juan XXIII Roncalli"
+      },
+      "conference": {
+        "label": "X-Ops Conference",
+        "dates": "21 de noviembre",
+        "venue": "Universidad Rey Juan Carlos, Campus Móstoles"
+      },
+      "narrative": "La edición consolidada. Madrid es el hogar del movimiento X-Ops desde sus inicios. En 2026 ampliamos el formato: dos días de Summit ejecutivo en la Fundación Juan XXIII y un día de Conference técnica en la URJC. Una ciudad, un ecosistema completo.",
+      "badges": {
+        "format": "Summit + Conference",
+        "edition": "Edición consolidada",
+        "attendees": "500+ asistentes"
+      },
+      "cta": {
+        "summit": "Ver Summit Madrid",
+        "conference": "Ver Conference Madrid"
+      }
+    },
+    "dubai": {
+      "flag": "🇦🇪",
+      "dates": "15 · 16 · 17 OCT",
+      "year": "2026",
+      "title": "X-Ops Dubai 2026",
+      "city": "Dubai, EAU",
+      "summit": {
+        "label": "X-Ops Summit",
+        "dates": "15 y 16 de octubre",
+        "venue": "Por confirmar"
+      },
+      "conference": {
+        "label": "X-Ops Conference",
+        "dates": "17 de octubre",
+        "venue": "Por confirmar"
+      },
+      "narrative": "La primera edición en Oriente Medio. Dubai es el hub tecnológico y financiero del MENA. Llevamos el ADN de X-Ops a un nuevo continente: el mismo formato Summit + Conference, adaptado a un ecosistema donde la transformación digital avanza a velocidad de fórmula 1.",
+      "badges": {
+        "format": "Summit + Conference",
+        "edition": "Primera edición",
+        "region": "Oriente Medio"
+      },
+      "cta": {
+        "summit": "Ver Summit Dubai",
+        "conference": "Ver Conference Dubai"
+      }
+    }
+  },
+  "ubication": {
+    "sectionPrefix": "Dónde nos encontramos",
+    "title": "Sedes 2026",
+    "subtitle": "Dos ciudades, tres espacios. Cada venue ha sido seleccionado para reflejar el espíritu del evento que acoge.",
+    "madrid": {
+      "city": "Madrid, España",
+      "summit": {
+        "label": "X-Ops Summit · 19 y 20 de noviembre",
+        "name": "Fundación Juan XXIII Roncalli",
+        "address": "Madrid"
+      },
+      "conference": {
+        "label": "X-Ops Conference · 21 de noviembre",
+        "name": "Universidad Rey Juan Carlos, Campus Móstoles",
+        "address": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles"
+      }
+    },
+    "dubai": {
+      "city": "Dubai, EAU",
+      "label": "X-Ops Dubai · 15, 16 y 17 de octubre",
+      "name": "Venue por confirmar",
+      "address": "Dubai, Emiratos Árabes Unidos",
+      "tbdNote": "La ubicación exacta se comunicará próximamente. Mantente al tanto."
+    }
+  },
+  "xops": {
+    "title": "¿Qué es X-Ops?",
+    "description": "La X-Ops Conference es un evento de primer nivel que se celebra en Madrid y Dubai. Diseñada para profesionales y entusiastas del mundo X-Ops, reúne la comunidad detrás de DevOps, DevSecOps, AIOps, MLOps y BizDevOps. Los asistentes aprenden de los mejores, asisten a charlas magistrales, participan en talleres prácticos y construyen conexiones valiosas.",
+    "keyComponents": "Componentes Clave",
+    "items": {
+      "devops": "Colaboración entre equipos de desarrollo y operaciones.",
+      "devsecops": "Integra prácticas de seguridad dentro del proceso DevOps.",
+      "aiops": "Utiliza inteligencia artificial para mejorar las operaciones de TI.",
+      "mlops": "Optimiza el despliegue de modelos de aprendizaje automático.",
+      "bizdevops": "Alinea los objetivos empresariales con las operaciones de TI."
+    }
+  },
+  "themes": {
+    "title": "Temas Clave de la Conferencia",
+    "description": "La X-Ops Conference contará con una agenda completa que abarcará automatización de pruebas de seguridad, integración continua, entrega continua, monitoreo y análisis de seguridad, arquitecturas seguras, y mucho más.",
+    "card1": {
+      "title": "Nuestro Objetivo",
+      "text": "El objetivo principal es reunir a expertos, líderes de la industria, desarrolladores e ingenieros de seguridad para compartir conocimientos, experiencias y mejores prácticas en X-Ops. Los asistentes aprenderán de los mejores, participarán en talleres prácticos y establecerán conexiones valiosas."
+    },
+    "card2": {
+      "title": "¿Dónde y Cuándo?",
+      "text": "X-Ops Conference Madrid 2026 se celebra el 21 de noviembre en el Auditorio de la Universidad Rey Juan Carlos, campus Móstoles. X-Ops Dubai 2026 el 17 de octubre. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+    },
+    "card3": {
+      "title": "El Futuro del Trabajo",
+      "text": "Este evento transformador reúne a expertos e impacta a los participantes. Al finalizar habrán adquirido conocimientos prácticos sobre las últimas herramientas X-Ops, mejorando sus habilidades y la eficiencia de sus organizaciones. Las conexiones establecidas promoverán redes de colaboración y aprendizaje continuo."
+    }
+  },
+  "events": {
+    "title": "Agenda 2026",
+    "comingSoon": "Ponentes y agenda próximamente",
+    "cfpOpen": "¡El Call for Papers está abierto!",
+    "cfpCta": "Proponer charla",
+    "scheduleTitle": "Agenda del Evento 2026",
+    "tracks": {
+      "all": "Todos los Tracks",
+      "main": "Aula magna",
+      "hyperscalers": "Hyperscalers",
+      "bsides": "Bsides Madrid"
+    },
+    "place": "Lugar",
+    "details": "Más Detalles",
+    "modal": {
+      "speaker": "Ponente",
+      "place": "Lugar",
+      "duration": "Duración",
+      "time": "Hora"
+    }
+  },
+  "lastEdition": {
+    "title": "Datos de la Edición Anterior",
+    "description": "Los números de nuestra X-Ops Conference 2025 que demuestran el éxito y el impacto de nuestro evento.",
+    "stats": {
+      "attendees": { "label": "Asistentes", "desc": "personas asistieron al evento" },
+      "sessions": { "label": "Sesiones", "desc": "charlas y talleres especializados" },
+      "speakers": { "label": "Speakers", "desc": "nacionales e internacionales" },
+      "communities": { "label": "Comunidades", "desc": "colaboradoras participantes" }
+    },
+    "chartTitle": "Distribución de Contenidos por Área"
+  },
+  "collaborators": {
+    "sponsors": "Patrocinadores",
+    "collaborators": "Colaboradores",
+    "collaboratorsDesc": "Gracias a la comunidad y todos los colaboradores que hacen posible este evento"
+  },
+  "speakers": {
+    "title": "Conoce a Nuestros Ponentes",
+    "metaTitle": "Ponentes de la X-Ops Conference Madrid 2025",
+    "metaDesc": "Descubre a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025.",
+    "talk": "Charla"
   }
 }

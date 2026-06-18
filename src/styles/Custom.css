@@ -23,7 +23,7 @@ body {
     padding-bottom: 0;
     padding-left: 40px;
     padding-right: 40px;
-    height: 85px;     /* largo fondo negro menu cabecera */
+    height: 85px;
     display: flex;
     align-items: center;
 }
@@ -223,7 +223,7 @@ border-radius: 10px;
 
 .schedule-section .schedule-item, .schedule-section .event-card {
   background-color: #111840;
-  border-left: 3px solid #00BCD4;
+  border: 1px solid var(--sp-cyan);
   color: #e0e0e0;
 }
 
@@ -436,13 +436,9 @@ margin-block: 1rem;
 .Hero-section {
     background-position: center top;
     background-size: cover;
-    padding-top: 140px; /* Increased to prevent text cutoff */
+    padding-top: 20px;
 }
 .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
     background-color: #0A0F2E !important;
 }
 
@@ -494,8 +490,9 @@ margin-block: 1rem;
 .custom-white-dropdown .dropdown-toggle,
 .navbar .dropdown-toggle {
   font-weight: 700 !important;
-  padding-left: 0.75rem !important;
-  padding-right: 0.75rem !important;
+  font-size: 0.8rem !important;
+  padding-left: 0.35rem !important;
+  padding-right: 0.35rem !important;
   color: white !important;
   background-color: transparent !important;
   border: none;
@@ -526,9 +523,18 @@ margin-block: 1rem;
 
 /* Fix 5 — reducir tamaño para que no se corte el botón Entradas */
 .links {
-  font-size: 0.85rem !important;
-  padding-left: 0.75rem !important;
-  padding-right: 0.75rem !important;
+  font-size: 0.8rem !important;
+  padding-left: 0.35rem !important;
+  padding-right: 0.35rem !important;
+  white-space: nowrap;
+}
+
+/* Uniform nav: dropdown toggle + brand text match link size.
+   Higher specificity wins over the .navbar .nav-link rule above. */
+.navbar .nav-link.dropdown-toggle,
+.navbar-brand-text {
+  font-size: 0.8rem !important;
+  letter-spacing: 1.5px;
 }
 
 .menu-btn {
@@ -708,7 +714,7 @@ margin-block: 1rem;
   }
 
   .Hero-section {
-    padding-top: 110px; /* Increased for small devices too */
+    padding-top: 20px;
   }
 }
 

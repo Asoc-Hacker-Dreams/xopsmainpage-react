@@ -193,7 +193,7 @@
 
 .cookie-info-box {
   margin-top: 1rem;
-  border-left: 4px solid #0066CC;
+  border: 1px solid #0066CC;
 }
 
 .cookie-info-box h6 {

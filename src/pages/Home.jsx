@@ -1,11 +1,13 @@
 import React from 'react';
 import XOpsSection from "../components/XOpsSection";
+import EcosystemSection from "../components/EcosystemSection";
+import EditionsSection from "../components/EditionsSection";
 import Themes from "../components/Themes";
-import SpeakersSection from "../components/SpeakersSection";
 import Events from "../components/Events/Events";
 import Ubication from "../components/Ubication";
 import Collaborators from "../components/Collaborators";
 import LastEditionData from "../components/LastEditionData";
+import SpeakersSection from "../components/SpeakersSection";
 import SEO from "../components/SEO";
 
 
@@ -15,10 +17,10 @@ const Home = () => {
     <>
       <SEO
         title="X-Ops Conference Madrid 2026 · DevOps, DevSecOps, AIOps & MLOps"
-        description="X-Ops Conference: el mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Madrid 2026 · Summit 2 días + Conference 2 días · 500+ asistentes."
+        description="X-Ops Conference: el mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Madrid y Dubai 2026 · Summit ejecutivo + Conference técnica."
         path="/"
         image="https://xopsconference.com/icon-512x512.png"
-        keywords="X-Ops Conference, DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, Ciberseguridad, SecOps, Kubernetes, Madrid, conferencia tecnología 2026"
+        keywords="X-Ops Conference, DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, Ciberseguridad, SecOps, Kubernetes, Madrid, Dubai, conferencia tecnología 2026"
         lang="es"
         alternates={[
           { hrefLang: 'es', href: 'https://xopsconference.com/' },
@@ -29,8 +31,8 @@ const Home = () => {
           "@type": "Event",
           "name": "X-Ops Conference Madrid 2026",
           "description": "El mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Summit + Conference.",
-          "startDate": "2026-11-01",
-          "endDate": "2026-11-30",
+          "startDate": "2026-11-19",
+          "endDate": "2026-11-21",
           "eventStatus": "https://schema.org/EventScheduled",
           "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
           "location": {
@@ -58,13 +60,14 @@ const Home = () => {
         }}
       />
       <XOpsSection />
+      <EcosystemSection />
+      <EditionsSection />
       <Themes />
       <Events />
       <Ubication />
       <LastEditionData/>
       <Collaborators />
       <SpeakersSection />
-
     </>
   );
 };

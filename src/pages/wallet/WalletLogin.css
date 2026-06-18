@@ -42,8 +42,12 @@
 }
 
 .wallet-login-form input[type="email"]:focus {
-  outline: none;
   border-color: #6366f1;
+}
+
+.wallet-login-form input[type="email"]:focus-visible {
+  outline: 2px solid var(--sp-cyan);
+  outline-offset: 2px;
 }
 
 .wallet-btn-full {
