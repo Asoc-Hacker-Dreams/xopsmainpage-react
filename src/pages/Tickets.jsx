@@ -1,146 +1,132 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstrap';
-import { BsCheckCircleFill, BsStar, BsBriefcase, BsArrowLeft } from 'react-icons/bs';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Button, Spinner, Alert, Modal, Form, Badge } from 'react-bootstrap';
+import { BsCheckCircleFill, BsStar, BsCalendar3, BsGeoAlt, BsArrowLeft } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { triskelGateClient } from '../adapters/triskelgate/client';
 
-const CONFIG_EVENT_ID = Number(import.meta.env.VITE_TRISKELL_EVENT_ID || 1);
+// Filter events to only show those belonging to the configured organizer (optional).
+const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
+  ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
+  : null;
 
-const ticketTiers = [
-  {
-    id: 'executive',
-    apiName: 'General',
-    name: 'EXECUTIVE',
-    price: '299',
-    originalPrice: '375',
-    features: [
-      '2 días de acceso completo',
-      'Todas las sesiones',
-      'Coffee breaks premium',
-      'Almuerzos ejecutivos',
-      'Certificado de asistencia',
-      'Material del evento',
-    ],
-    highlighted: false,
-    cta: 'Comprar Ahora',
-    ctaStyle: 'secondary',
-  },
-  {
-    id: 'vip',
-    apiName: 'VIP',
-    name: 'VIP PASS',
-    price: '499',
-    originalPrice: '625',
-    features: [
-      'Todo lo de Executive, más:',
-      'VIP Welcome Pack',
-      'Asiento prioritario',
-      'Acceso VIP Lounge',
-      'Sesión privada con speakers',
-      'Foto profesional del evento',
-    ],
-    highlighted: true,
-    badge: 'RECOMENDADO',
-    cta: 'Comprar VIP',
-    ctaStyle: 'primary',
-  },
-  {
-    id: 'partner',
-    name: 'PARTNER',
-    price: '999',
-    originalPrice: '1250',
-    features: [
-      'Todo lo de VIP, más:',
-      'Cena de Gala exclusiva',
-      'Reuniones 1-a-1',
-      'Logo en web y materiales',
-      '5 min Demo slot',
-      '2 entradas adicionales',
-    ],
-    highlighted: false,
-    cta: 'Contactar',
-    ctaStyle: 'outline',
-  },
-];
+// Pricing tier visual config keyed by ticket name (case-insensitive)
+const TIER_STYLE = {
+  standard:  { badge: null,            ctaVariant: 'outline-primary', highlighted: false },
+  business:  { badge: 'MÁS POPULAR',   ctaVariant: 'primary',         highlighted: true  },
+  vip:       { badge: 'PREMIUM',       ctaVariant: 'warning',         highlighted: false },
+};
+
+const getTierStyle = (name) => TIER_STYLE[name?.toLowerCase()] ?? TIER_STYLE.standard;
+
+const formatDate = (iso) => {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+};
 
 const Tickets = () => {
-  const [loading, setLoading] = useState(null);
-  const [error, setError] = useState(null);
+  const [events, setEvents]             = useState([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
+  const [loadError, setLoadError]       = useState(null);
 
-  const getTicketTypeId = async (eventId, apiName) => {
-    const ticketTypes = await triskelGateClient.listTicketTypes(eventId);
+  // Checkout modal
+  const [showModal, setShowModal]         = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedTT, setSelectedTT]       = useState(null);
+  const [customerName, setCustomerName]   = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+  const [formError, setFormError]         = useState(null);
+  const [purchasing, setPurchasing]       = useState(false);
 
-    if (!Array.isArray(ticketTypes)) {
-      throw new Error('No se pudieron cargar tipos de ticket desde TriskelGate');
-    }
+  // Load all active events + their ticket types on mount
+  useEffect(() => {
+    let cancelled = false;
 
-    const match = ticketTypes.find(
-      (t) => (t?.name || '').toLowerCase() === apiName.toLowerCase() && (t?.isActive ?? t?.available),
-    );
+    const load = async () => {
+      try {
+        const evList = await triskelGateClient.listEvents();
+        if (cancelled) return;
 
-    if (!match) {
-      throw new Error(`No existe ticket activo "${apiName}" en evento ${eventId}`);
-    }
+        const active = evList.filter(
+          (e) => e.status === 'active' &&
+            (CONFIG_ORGANIZER_ID === null || e.organizerId === CONFIG_ORGANIZER_ID),
+        );
+        const withTT = await Promise.all(
+          active.map(async (ev) => {
+            try {
+              const types = await triskelGateClient.listTicketTypes(ev.id);
+              return { ...ev, ticketTypes: Array.isArray(types) ? types.filter((t) => t.isActive !== false) : [] };
+            } catch {
+              return { ...ev, ticketTypes: [] };
+            }
+          }),
+        );
 
-    return match.id;
+        if (!cancelled) setEvents(withTT);
+      } catch (err) {
+        if (!cancelled) setLoadError('No se pudieron cargar los eventos. Escríbenos a summit@xopsconferences.com.');
+      } finally {
+        if (!cancelled) setLoadingEvents(false);
+      }
+    };
+
+    load();
+    return () => { cancelled = true; };
+  }, []);
+
+  const openModal = (event, ticketType) => {
+    setSelectedEvent(event);
+    setSelectedTT(ticketType);
+    setCustomerName('');
+    setCustomerEmail('');
+    setFormError(null);
+    setShowModal(true);
   };
 
-  const handlePayment = async (tier) => {
-    if (tier.id === 'partner') {
-      window.location.href = 'mailto:summit@xopsconferences.com?subject=Partner Ticket Inquiry';
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name  = customerName.trim();
+    const email = customerEmail.trim();
+
+    if (!name)  { setFormError('Por favor introduce tu nombre completo.'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormError('Por favor introduce un email válido.');
       return;
     }
 
-    // Prompt for customer data
-    const customerName = window.prompt('Nombre completo para la reserva:');
-    if (!customerName) return;
-
-    const customerEmail = window.prompt('Email para recibir los tickets:');
-    if (!customerEmail) return;
-
-    setLoading(tier.id);
-    setError(null);
+    setPurchasing(true);
+    setFormError(null);
 
     try {
-      const ticketTypeId = await getTicketTypeId(CONFIG_EVENT_ID, tier.apiName);
-
-      const payload = {
-        eventId: CONFIG_EVENT_ID,
-        ticketTypeId,
-        quantity: 1,
-        customerEmail: customerEmail,
-        customerName: customerName,
-        successUrl: `${window.location.origin}/tickets/success`,
-        cancelUrl: `${window.location.origin}/tickets`,
-      };
-
-      const data = await triskelGateClient.createCheckout(payload);
+      const data = await triskelGateClient.createCheckout({
+        eventId:       selectedEvent.id,
+        ticketTypeId:  selectedTT.id,
+        quantity:      1,
+        customerEmail: email,
+        customerName:  name,
+        // {CHECKOUT_SESSION_ID} is a Stripe server-side template literal, not a JS template
+        successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancelUrl:  `${window.location.origin}/tickets`,
+      });
 
       if (!data?.success) {
         throw new Error(data?.message || data?.error || 'No se pudo iniciar el pago');
       }
 
-      if (data.sessionUrl) {
-        window.location.href = data.sessionUrl;
-      } else {
-        alert('Reserva creada en modo prueba. Revisa backend para confirmar orden.');
-      }
+      setShowModal(false);
+      window.location.href = data.sessionUrl || `${window.location.origin}/tickets/success`;
     } catch (err) {
-      console.error('Payment error:', err);
       const isNetworkError =
         err.name === 'TypeError' ||
-        (typeof err.message === 'string' && (
-          err.message.includes('Failed to fetch') ||
-          err.message.includes('NetworkError')
-        ));
-      setError(
+        (typeof err.message === 'string' &&
+          (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')));
+      setFormError(
         isNetworkError
-          ? 'El sistema de entradas no está disponible en este momento. Escríbenos a summit@xopsconferences.com para reservar tu entrada.'
+          ? 'Sistema de entradas no disponible. Escríbenos a summit@xopsconferences.com.'
           : err.message,
       );
     } finally {
-      setLoading(null);
+      setPurchasing(false);
     }
   };
 
@@ -148,12 +134,12 @@ const Tickets = () => {
     <>
       <SEO
         title="Entradas - X-Ops Summit"
-        description="Compra tu entrada para X-Ops Summit. Elige entre Executive, VIP o Partner."
+        description="Compra tu entrada para X-Ops Summit. Elige el evento y tipo de entrada."
         path="/tickets"
       />
       <div className="tickets-page">
         <Container>
-          {/* Back Link */}
+          {/* Back link */}
           <Row className="mb-4">
             <Col>
               <Link to="/summit" className="back-link">
@@ -167,7 +153,7 @@ const Tickets = () => {
             <Col lg={8}>
               <h1 className="tickets-page-title">Entradas X-Ops Summit</h1>
               <p className="tickets-page-subtitle">
-                Elige la opción que mejor se adapte a tus necesidades
+                Elige el evento y la opción que mejor se adapte a tus necesidades
               </p>
               <div className="early-bird-banner">
                 <BsStar className="early-bird-icon" />
@@ -176,88 +162,165 @@ const Tickets = () => {
             </Col>
           </Row>
 
-          {/* Error Alert */}
-          {error && (
-            <Row className="justify-content-center mb-4">
-              <Col lg={8}>
-                <Alert variant="danger" onClose={() => setError(null)} dismissible>
-                  {error}
-                </Alert>
+          {/* Loading / Error */}
+          {loadingEvents && (
+            <Row className="justify-content-center mb-5">
+              <Col xs="auto" className="text-center">
+                <Spinner animation="border" className="events-spinner" />
+                <p className="mt-2 text-muted">Cargando eventos disponibles…</p>
               </Col>
             </Row>
           )}
 
-          {/* Ticket Cards */}
-          <Row className="justify-content-center">
-            {ticketTiers.map((tier) => (
-              <Col md={6} lg={4} key={tier.id} className="mb-4">
-                <Card className={`ticket-card ${tier.highlighted ? 'highlighted' : ''}`}>
-                  {tier.badge && (
-                    <div className="ticket-badge">
-                      <BsStar /> {tier.badge}
-                    </div>
-                  )}
-                  <Card.Body>
-                    <h3 className="ticket-name">{tier.name}</h3>
-                    <div className="ticket-price-container">
-                      {tier.originalPrice && (
-                        <span className="ticket-original-price">€{tier.originalPrice}</span>
-                      )}
-                      <span className="ticket-price">€{tier.price}</span>
-                    </div>
-                    <ul className="ticket-features">
-                      {tier.features.map((feature, index) => (
-                        <li key={index}>
-                          <BsCheckCircleFill className="feature-check" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      className={`ticket-cta ticket-cta-${tier.ctaStyle}`}
-                      onClick={() => handlePayment(tier)}
-                      disabled={loading === tier.id}
-                    >
-                      {loading === tier.id ? <Spinner size="sm" /> : tier.cta}
-                    </Button>
-                  </Card.Body>
-                </Card>
+          {loadError && (
+            <Row className="justify-content-center mb-4">
+              <Col lg={8}>
+                <Alert variant="danger">{loadError}</Alert>
               </Col>
-            ))}
-          </Row>
+            </Row>
+          )}
 
-          {/* Guarantee */}
-          <Row className="justify-content-center mt-4">
-            <Col lg={8} className="text-center">
-              <p className="tickets-guarantee">
-                <BsBriefcase /> Garantía de satisfacción: si no quedas satisfecho después del
-                primer día, te devolvemos el 100% de tu entrada.
-              </p>
-            </Col>
-          </Row>
+          {/* Event sections */}
+          {events.map((ev) => (
+            <div key={ev.id} className="event-section mb-5" data-event-id={ev.id}>
+              {/* Event header */}
+              <Row className="mb-3">
+                <Col>
+                  <h2 className="event-section-title">{ev.name}</h2>
+                  <div className="event-meta">
+                    {ev.startDate && (
+                      <span className="event-meta-item">
+                        <BsCalendar3 className="me-1" />
+                        {formatDate(ev.startDate)}
+                        {ev.endDate && ev.endDate !== ev.startDate && ` — ${formatDate(ev.endDate)}`}
+                      </span>
+                    )}
+                    {ev.location && (
+                      <span className="event-meta-item ms-3">
+                        <BsGeoAlt className="me-1" />{ev.location}
+                      </span>
+                    )}
+                  </div>
+                </Col>
+              </Row>
+
+              {/* Ticket type cards */}
+              <Row className="justify-content-center">
+                {ev.ticketTypes.length === 0 && (
+                  <Col>
+                    <p className="text-muted">No hay entradas disponibles para este evento.</p>
+                  </Col>
+                )}
+                {ev.ticketTypes.map((tt) => {
+                  const style = getTierStyle(tt.name);
+                  return (
+                    <Col md={6} lg={4} key={tt.id} className="mb-4">
+                      <Card className={`ticket-card ${style.highlighted ? 'highlighted' : ''}`}>
+                        {style.badge && (
+                          <div className="ticket-badge">
+                            <BsStar /> {style.badge}
+                          </div>
+                        )}
+                        <Card.Body>
+                          <h3 className="ticket-name">{tt.name.toUpperCase()}</h3>
+                          <div className="ticket-price-container">
+                            <span className="ticket-price">€{tt.price}</span>
+                          </div>
+                          {tt.description && (
+                            <p className="ticket-description text-muted small">{tt.description}</p>
+                          )}
+                          <ul className="ticket-features">
+                            <li><BsCheckCircleFill className="feature-check" /><span>Acceso completo al evento</span></li>
+                            <li><BsCheckCircleFill className="feature-check" /><span>Todas las sesiones</span></li>
+                            <li><BsCheckCircleFill className="feature-check" /><span>Material del evento</span></li>
+                            {tt.name?.toLowerCase() !== 'standard' && (
+                              <li><BsCheckCircleFill className="feature-check" /><span>Acceso área {tt.name}</span></li>
+                            )}
+                          </ul>
+                          <Button
+                            className={`ticket-cta ticket-cta-${style.ctaVariant.replace('outline-', 'outline-')}`}
+                            variant={style.ctaVariant}
+                            onClick={() => openModal(ev, tt)}
+                          >
+                            Comprar {tt.name}
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </div>
+          ))}
 
           {/* Contact */}
-          <Row className="justify-content-center mt-4">
-            <Col lg={6} className="text-center">
-              <div className="tickets-contact">
-                <p>¿Necesitas factura o tienes dudas?</p>
-                <a href="mailto:summit@xopsconferences.com" className="contact-link">
-                  summit@xopsconferences.com
-                </a>
-              </div>
-            </Col>
-          </Row>
-
-          {/* Sophia Footer Note */}
-          <Row className="justify-content-center mt-5">
-            <Col lg={8} className="text-center">
-              <p className="tickets-sophia-note">
-                X-Ops Conference es una iniciativa de <Link to="/sophia">Sophia Metapolis</Link>. Conoce la nación digital.
-              </p>
-            </Col>
-          </Row>
+          {!loadingEvents && (
+            <Row className="justify-content-center mt-4">
+              <Col lg={6} className="text-center">
+                <div className="tickets-contact">
+                  <p>¿Necesitas factura o tienes dudas?</p>
+                  <a href="mailto:summit@xopsconferences.com" className="contact-link">
+                    summit@xopsconferences.com
+                  </a>
+                </div>
+              </Col>
+            </Row>
+          )}
         </Container>
       </div>
+
+      {/* Checkout modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title className="modal-title">
+            {selectedTT && selectedEvent
+              ? `${selectedTT.name.toUpperCase()} — €${selectedTT.price}`
+              : 'Comprar Entrada'}
+          </Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={handleSubmit} noValidate>
+          <Modal.Body>
+            {selectedEvent && (
+              <p className="text-muted small mb-3">
+                <BsCalendar3 className="me-1" />{selectedEvent.name}
+              </p>
+            )}
+            {formError && (
+              <Alert variant="danger" onClose={() => setFormError(null)} dismissible>
+                {formError}
+              </Alert>
+            )}
+            <Form.Group className="mb-3">
+              <Form.Label>Nombre completo</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Ej: María García"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="tu@email.com"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+              />
+              <Form.Text className="text-muted">Recibirás tu entrada en este email.</Form.Text>
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="outline-secondary" onClick={() => setShowModal(false)}>
+              Cancelar
+            </Button>
+            <Button variant="primary" type="submit" disabled={purchasing}>
+              {purchasing ? <Spinner size="sm" /> : 'Continuar al Pago'}
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     </>
   );
 };
