@@ -32,6 +32,7 @@ import TicketSuccess from './pages/TicketSuccess';
 import PostEventPage from './pages/PostEventPage';
 import AnalyticsPage from './pages/Analytics';
 import NotFound from './components/NotFound';
+import TicketModal from './components/TicketModal';
 import SophiaHome from './pages/sophia/SophiaHome';
 import SophiaPostulate from './pages/sophia/SophiaPostulate';
 import SophiaAbout from './pages/sophia/SophiaAbout';
@@ -56,6 +57,7 @@ function App() {
   const { t, i18n } = useTranslation();
   const { canPrompt, promptInstall } = usePWA();
   const [showCookiePreferences, setShowCookiePreferences] = useState(false);
+  const [showTicketModal, setShowTicketModal] = useState(false);
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'dark';
   });
@@ -99,23 +101,23 @@ function App() {
 <ScrollHandler />
 <div className="root home-main-section">
         <Navbar expand="lg" className='header'>
-        <div className="d-flex align-items-center">
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center" style={{ textDecoration: 'none' }}>
           <img src={logo} alt="X-Ops Logo" style={{ height: '51px', width: '56px', marginRight: '15px' }} />
-          <Navbar.Brand className='text-white font-weight-bold navbar-brand-text'>X-OPS CONFERENCE</Navbar.Brand>
-        </div>
+          <span className='text-white font-weight-bold navbar-brand-text'>X-OPS CONFERENCE</span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto ">
-              <Link className='links px-4 font-weight-bold text-white' to="/#events" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.event')}</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</Link>
+                <Link className='links px-4 font-weight-bold text-white' to="/#ediciones" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.editions')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</Link>
                 <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.organizers')}</Link>
-          
-        
+                <a className='links px-4 font-weight-bold text-white' href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.volunteer')}</a>
+                <a className='links px-4 font-weight-bold text-white' href="https://sessionize.com/x-ops-conference-mad-2026/" target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('hero.cfp')}</a>
+
       {/* Menú EVENTOS ANTERIORES */}
       <NavDropdown
-        title={<span dangerouslySetInnerHTML={{ __html: t('nav.previousEvents') }} />}
+        title={t('nav.previousEvents')}
         className='links px-4 font-weight-bold custom-white-dropdown'
         style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
       >
@@ -152,9 +154,13 @@ function App() {
             {t('language.switch')}
           </button>
           
-          <a href="/summit#tickets" className="button menu-btn" style={{ textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: "10px" }}>
+          <button
+            className="button menu-btn"
+            style={{ textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: "10px", cursor: 'pointer' }}
+            onClick={() => setShowTicketModal(true)}
+          >
             {t('nav.tickets')}
-          </a>
+          </button>
         </div>
 
         </Navbar.Collapse>
@@ -166,18 +172,13 @@ function App() {
             <h1 className="display-4 font-weight-bold">{t('hero.title')}</h1>
             <p className="lead">{t('hero.description')}</p>
             <p className="lead">{t('hero.date')}</p>
-            <div className="mt-4 mx-4">
-            <a href="/summit#tickets" className="btn mx-2 my-2 bg-color btn-lg mr-3">{t('hero.buyTicket')}</a>
-                <Link className="btn mx-2 my-2 bg-color btn-lg mr-3" to="/#events">{t('nav.event')}</Link>
-                <Link className="btn mx-2 my-2 bg-color btn-lg mr-3" to="/summit">{t('nav.summit')}</Link>
-             <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" className="btn mx-2 my-2 bg-color btn-lg mr-3">{t('nav.volunteer')}</a>
-             <a href="https://sessionize.com/xops-conference-2025/" className="btn mx-2 my-2 bg-color btn-lg mr-3">{t('hero.cfp')}</a>
-             {canPrompt && (
-               <button onClick={handleInstallClick} className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">
-                 {t('hero.installApp')}
-               </button>
-             )}
-            </div>
+            {canPrompt && (
+              <div className="mt-4 mx-4">
+                <button onClick={handleInstallClick} className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">
+                  {t('hero.installApp')}
+                </button>
+              </div>
+            )}
         </div>
     </div>
 
@@ -305,10 +306,13 @@ function App() {
     <AddToHomeScreen />
     
     {/* Cookie Preferences Manager */}
-    <CookiePreferencesManager 
-      show={showCookiePreferences} 
-      onHide={handleCloseCookiePreferences} 
+    <CookiePreferencesManager
+      show={showCookiePreferences}
+      onHide={handleCloseCookiePreferences}
     />
+
+    {/* Ticket Purchase Modal */}
+    <TicketModal show={showTicketModal} onHide={() => setShowTicketModal(false)} />
     </>
    </ConsentProvider>
   </HelmetProvider>

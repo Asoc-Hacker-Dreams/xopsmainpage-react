@@ -1,4 +1,5 @@
-import React from 'react';      
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import nextdigital from "../assets/collaborators/nextdigital.png";
 import hackerD from "../assets/collaborators/hackerD.jpeg";
 import hackB from "../assets/collaborators/hackB.png";
@@ -16,11 +17,12 @@ import AnimationWrapper from "./AnimationWrapper";
 
 
 const Collaborators = () => {
+  const { t } = useTranslation();
   return (
     <>
       <section id="colaboradores" role="region" className="speaker-section ">
         <div className="container margin-top">
-          <h2 className="text-center">Patrocinadores</h2>
+          <h2 className="text-center">{t('collaborators.sponsors')}</h2>
           <br></br>
           <br></br>
           <br></br>
@@ -111,8 +113,8 @@ const Collaborators = () => {
 
           <hr />
 
-          <h2 className="text-center">Colaboradores</h2>
-          <p className="text-center">Gracias a la comunidad y todos los colaboradores que hacen posible este evento</p>
+          <h2 className="text-center">{t('collaborators.collaborators')}</h2>
+          <p className="text-center">{t('collaborators.collaboratorsDesc')}</p>
           <div className="speaker-cards margin-top">
 
             <div className="speaker1 justify-content-center d-flex justify-around margin-top">
