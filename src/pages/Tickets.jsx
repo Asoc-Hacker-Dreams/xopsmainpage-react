@@ -105,6 +105,12 @@ const getTierConfig = (name) =>
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
+const CURRENCY_SYMBOLS = { EUR: '€', AED: 'AED ', USD: '$', GBP: '£' };
+const formatPrice = (price, currency) => {
+  const sym = CURRENCY_SYMBOLS[currency?.toUpperCase()] ?? (currency ? `${currency} ` : '€');
+  return `${sym}${price}`;
+};
+
 // Guard against date-only strings (e.g. "2026-08-31") which parse as UTC midnight.
 // End dates without a time component get T23:59:59Z so the sale stays open all day.
 const toDate = (s) => s ? new Date(s.includes('T') ? s : s + 'T23:59:59.000Z') : null;
@@ -316,6 +322,7 @@ const Tickets = () => {
                   const active   = isSaleActive(tt);
                   const Icon     = cfg.icon;
                   const saleEnd  = formatSaleEnd(tt.saleEndDate, locale);
+                  const lowStock = tt.availableCount != null && tt.availableCount > 0 && tt.availableCount <= 10;
 
                   return (
                     <Col md={6} lg={4} key={tt.id} className="mb-4">
@@ -341,7 +348,7 @@ const Tickets = () => {
                           <h3 className="ticket-tier-name">{tt.name.toUpperCase()}</h3>
 
                           <div className="ticket-price-row">
-                            <span className="ticket-price-amount">€{tt.price}</span>
+                            <span className="ticket-price-amount">{formatPrice(tt.price, tt.currency)}</span>
                           </div>
 
                           {tt.description && (
@@ -366,9 +373,14 @@ const Tickets = () => {
                             </p>
                           )}
 
-                          {tt.maxQuantity && (
+                          {lowStock && (
+                            <p className="ticket-low-stock">
+                              {t('tickets.lowStock', { n: tt.availableCount })}
+                            </p>
+                          )}
+                          {!lowStock && tt.availableCount != null && tt.availableCount > 0 && (
                             <p className="ticket-stock-info">
-                              {t('tickets.capacity', { n: tt.maxQuantity })}
+                              {t('tickets.capacity', { n: tt.availableCount })}
                             </p>
                           )}
 
@@ -411,7 +423,7 @@ const Tickets = () => {
         <Modal.Header closeButton>
           <Modal.Title className="modal-title">
             {selectedTT && selectedEvent
-              ? `${selectedTT.name.toUpperCase()} — €${selectedTT.price}`
+              ? `${selectedTT.name.toUpperCase()} — ${formatPrice(selectedTT.price, selectedTT.currency)}`
               : t('tickets.buyTicket')}
           </Modal.Title>
         </Modal.Header>

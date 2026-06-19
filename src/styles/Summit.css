@@ -1295,6 +1295,13 @@
   margin: 0;
 }
 
+.ticket-low-stock {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #f59e0b;
+  margin: 0;
+}
+
 .ticket-buy-btn {
   width: 100%;
   font-family: 'Poppins', sans-serif;

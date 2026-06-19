@@ -313,7 +313,8 @@
       "personalAttention": "Personal dedicated attention"
     },
     "fieldEmailPlaceholder": "you@email.com",
-    "capacity": "Limited to {{n}} spots"
+    "capacity": "{{n}} spots available",
+    "lowStock": "Only {{n}} spots left!"
   },
   "ecosystem": {
     "sectionPrefix": "Our ecosystem",

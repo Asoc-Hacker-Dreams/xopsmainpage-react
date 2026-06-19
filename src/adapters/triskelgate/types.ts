@@ -17,6 +17,10 @@ export interface TGTicketType {
   displayOrder?: number;
   features?: string[];
   purchaseUrl?: string;
+  /** Filled by the API — number of sold (completed) tickets for this type */
+  soldCount?: number;
+  /** Filled by the API — remaining capacity (maxQuantity - soldCount), null if unlimited */
+  availableCount?: number | null;
 }
 
 export interface TGEvent {

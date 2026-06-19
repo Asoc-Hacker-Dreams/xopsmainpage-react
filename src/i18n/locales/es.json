@@ -307,7 +307,8 @@
       "personalAttention": "Atención personalizada"
     },
     "fieldEmailPlaceholder": "tu@email.com",
-    "capacity": "Aforo limitado a {{n}} plazas"
+    "capacity": "{{n}} plazas disponibles",
+    "lowStock": "¡Solo quedan {{n}} plazas!"
   },
   "ecosystem": {
     "sectionPrefix": "Nuestro ecosistema",
