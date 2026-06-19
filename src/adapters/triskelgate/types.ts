@@ -1,26 +1,35 @@
 /** TriskelGate API response types */
 
-export interface TGEvent {
-  id: string;
-  name: string;
-  description?: string;
-  date?: string;
-  location?: string;
-  status?: string;
-}
-
 export interface TGTicketType {
   id: string;
   eventId: string;
   name: string;
   description?: string;
   price: number;
-  currency: string;
-  available: boolean;
+  currency?: string;
+  available?: boolean;
   isActive?: boolean;
+  maxQuantity?: number;
   maxPerOrder?: number;
+  minPerOrder?: number;
+  saleStartDate?: string;
+  saleEndDate?: string;
+  displayOrder?: number;
   features?: string[];
   purchaseUrl?: string;
+}
+
+export interface TGEvent {
+  id: string;
+  name: string;
+  description?: string;
+  slug?: string;
+  startDate?: string;
+  endDate?: string;
+  date?: string;
+  location?: string;
+  status?: string;
+  organizerId?: number;
 }
 
 export interface TGValidatePayload {
