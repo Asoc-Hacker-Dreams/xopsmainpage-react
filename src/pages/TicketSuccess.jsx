@@ -112,7 +112,7 @@ const TicketSuccess = () => {
               <div className="contact-support mt-4">
                 <p>
                   ¿Tienes preguntas?{' '}
-                  <a href="mailto:summit@xopsconferences.com">Contáctanos</a>
+                  <a href="mailto:info@xopsconference.com">Contáctanos</a>
                 </p>
               </div>
             </Col>

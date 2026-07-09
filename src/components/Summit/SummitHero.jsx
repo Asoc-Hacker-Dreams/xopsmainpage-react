@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { BsCalendar3, BsGeoAlt, BsBullseye } from 'react-icons/bs';
 
 const SummitHero = () => {
   const { t } = useTranslation();
   return (
-    <section className="summit-hero">
+    <section className="summit-hero" id="summit">
       <div className="summit-hero-overlay"></div>
       <Container className="summit-hero-content">
         <Row className="justify-content-center text-center">
@@ -22,15 +23,15 @@ const SummitHero = () => {
             </p>
             <div className="summit-details">
               <div className="summit-detail-item">
-                <span className="summit-detail-icon">📅</span>
+                <BsCalendar3 className="summit-detail-icon" aria-hidden="true" />
                 <span>{t('summit.hero.date')}</span>
               </div>
               <div className="summit-detail-item">
-                <span className="summit-detail-icon">📍</span>
+                <BsGeoAlt className="summit-detail-icon" aria-hidden="true" />
                 <span>{t('summit.hero.venue')}</span>
               </div>
               <div className="summit-detail-item">
-                <span className="summit-detail-icon">🎯</span>
+                <BsBullseye className="summit-detail-icon" aria-hidden="true" />
                 <span>{t('summit.hero.attendees')}</span>
               </div>
             </div>

@@ -11,7 +11,7 @@ const Summit = () => {
     <>
       <SEO
         title="X-Ops Summit Madrid 2026 · Evento Ejecutivo para Decision Makers"
-        description="El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-19 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico."
+        description="El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 19 de noviembre de 2026, Madrid. Networking de alto nivel y contenido estratégico."
         path="/summit"
         keywords="X-Ops Summit, DevOps, SecOps, CTO, CISO, Madrid, Decision Makers, Executive Event, 2026"
         lang="es"
