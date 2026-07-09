@@ -9,11 +9,11 @@ const CITY_DATA = {
     flag: '🇪🇸',
     price: { es: 'desde €2.000', en: 'from €2,000' },
     detail: {
-      title: { es: 'Madrid · Summit 2d + Conference 2d', en: 'Madrid · Summit 2d + Conference 2d' },
-      venue: 'URJC Madrid',
+      title: { es: 'Madrid · Summit 1d + Conference 2d', en: 'Madrid · Summit 1d + Conference 2d' },
+      venue: 'Fundación Juan XXIII Roncalli + URJC Madrid',
       items: {
-        es: ['Día 1–2: X-Ops Summit Ejecutivo (C-Level, Enterprise)', 'Día 3–4: X-Ops Conference (3 tracks técnicos)', 'Networking, Expo & CrackerNight'],
-        en: ['Days 1–2: X-Ops Executive Summit (C-Level, Enterprise)', 'Days 3–4: X-Ops Conference (3 technical tracks)', 'Networking, Expo & CrackerNight'],
+        es: ['Día 1: X-Ops Summit Ejecutivo (C-Level, Enterprise)', 'Día 2–3: X-Ops Conference (3 tracks técnicos)', 'Networking, Expo & CrackerNight'],
+        en: ['Day 1: X-Ops Executive Summit (C-Level, Enterprise)', 'Days 2–3: X-Ops Conference (3 technical tracks)', 'Networking, Expo & CrackerNight'],
       },
     },
     tiers: {

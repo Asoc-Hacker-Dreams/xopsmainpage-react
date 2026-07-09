@@ -407,8 +407,8 @@ const Tickets = () => {
               <Col lg={6} className="text-center">
                 <div className="tickets-contact">
                   <p>{t('tickets.contactText')}</p>
-                  <a href="mailto:info@xopsconferences.com" className="contact-link">
-                    info@xopsconferences.com
+                  <a href="mailto:info@xopsconference.com" className="contact-link">
+                    info@xopsconference.com
                   </a>
                 </div>
               </Col>

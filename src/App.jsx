@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
-import { Route, Routes, Link } from 'react-router-dom';
+import bgMain from "./assets/bg-main.jpg";
+import { BsCalendar3, BsChevronDown } from 'react-icons/bs';
+import { Route, Routes, Link, NavLink, Navigate } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
@@ -12,8 +14,6 @@ import ScriptManager from './components/ScriptManager';
 import Analytics from './components/Analytics';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';
-import Sponsor from './pages/Sponsor';
-import Summit from './pages/Summit';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
 import Speakers2024 from './pages/archive/2024/Speakers2024';
 import Sponsor2024 from './pages/archive/2024/Sponsor2024';
@@ -94,6 +94,7 @@ function App() {
   <HelmetProvider>
     <ConsentProvider>
       <>
+      <a href="#main-content" className="skip-link">Saltar al contenido</a>
       <Analytics />
       <ScriptManager />
       <CookieConsentBanner />
@@ -107,18 +108,16 @@ function App() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
-            <Nav className="mx-auto ">
-                <Link className='links px-4 font-weight-bold text-white' to="/#ediciones" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.editions')}</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/Sponsor#patrocinio"  style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</Link>
-                <Link className='links px-4 font-weight-bold text-white' to="/Organizer#organizr" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.organizers')}</Link>
-                <a className='links px-4 font-weight-bold text-white' href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.volunteer')}</a>
-                <a className='links px-4 font-weight-bold text-white' href="https://sessionize.com/x-ops-conference-mad-2026/" target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('hero.cfp')}</a>
+            <Nav className="mx-auto">
+                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</NavLink>
+                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</NavLink>
+                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ediciones" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.editions')}</NavLink>
+                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#patrocinio" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</NavLink>
 
       {/* Menú EVENTOS ANTERIORES */}
       <NavDropdown
         title={t('nav.previousEvents')}
-        className='links px-4 font-weight-bold custom-white-dropdown'
+        className='links px-4 fw-bold custom-white-dropdown'
         style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}
       >
         {/* X-Ops 2025 */}
@@ -166,23 +165,41 @@ function App() {
         </Navbar.Collapse>
     </Navbar>
 
-    <div className='Hero-section d-flex align-items-center justify-content-center text-center'>
-      <div className="d-flex align-items-center justify-content-center text-center text-white py-5">
-        <div className="container">
-            <h1 className="display-4 font-weight-bold">{t('hero.title')}</h1>
-            <p className="lead">{t('hero.description')}</p>
-            <p className="lead">{t('hero.date')}</p>
-            {canPrompt && (
-              <div className="mt-4 mx-4">
-                <button onClick={handleInstallClick} className="btn mx-2 my-2 bg-color text-white btn-lg mr-3">
-                  {t('hero.installApp')}
-                </button>
-              </div>
-            )}
+    <section
+      id="main-content"
+      className="site-hero"
+      style={{ backgroundImage: `url(${bgMain})` }}
+      aria-label={t('hero.title')}
+    >
+      <div className="site-hero__overlay" aria-hidden="true" />
+      <div className="site-hero__content">
+        <h1 className="site-hero__title">{t('hero.title')}</h1>
+        <p className="site-hero__tagline">{t('hero.description')}</p>
+        <p className="site-hero__date">
+          <BsCalendar3 aria-hidden="true" />
+          <span>{t('hero.date')}</span>
+        </p>
+        <div className="site-hero__ctas">
+          <button
+            className="btn-hero-primary"
+            onClick={() => setShowTicketModal(true)}
+          >
+            {t('hero.buyTicket')}
+          </button>
+          <Link to="/#summit" className="btn-hero-secondary">
+            {t('hero.viewAgenda')}
+          </Link>
         </div>
-    </div>
-
-    </div>
+        {canPrompt && (
+          <button onClick={handleInstallClick} className="site-hero__install">
+            {t('hero.installApp')}
+          </button>
+        )}
+      </div>
+      <div className="site-hero__scroll" aria-hidden="true">
+        <BsChevronDown />
+      </div>
+    </section>
 
       </div>
 
@@ -194,14 +211,16 @@ function App() {
           <Route path="/Team" element={<Organizer />} />
           <Route path="/Equipo" element={<Organizer />} />
 
-          <Route path="/Sponsor" element={<Sponsor />} />
-          <Route path="/Patrocina" element={<Sponsor />} />
+          {/* Single-page site: Summit and Sponsor now live as anchored
+              sections on Home. These routes redirect old bookmarks/links
+              rather than 404ing them. */}
+          <Route path="/Sponsor" element={<Navigate to="/#patrocinio" replace />} />
+          <Route path="/Patrocina" element={<Navigate to="/#patrocinio" replace />} />
+          <Route path="/summit" element={<Navigate to="/#summit" replace />} />
+          <Route path="/Summit" element={<Navigate to="/#summit" replace />} />
 
-          {/* X-Ops Summit 2026 */}
-          <Route path="/summit" element={<Summit />} />
           <Route path="/tickets" element={<Tickets />} />
           <Route path="/tickets/success" element={<TicketSuccess />} />
-          <Route path="/Summit" element={<Summit />} />
 
           <Route path="/#ponentes" element={<Home />} />
 
@@ -276,9 +295,10 @@ function App() {
             <h5 className='heading'>{t('footer.links')}</h5>
             <ul className="list-unstyled">
 
-            <Nav className="mx-auto ">
-            <Link className="text-white" to="/#events" style={{textDecoration: 'none' }}>{t('nav.event')}</Link>
-            </Nav>
+              <li><Link className="text-white" to="/#events" style={{textDecoration: 'none'}}>{t('nav.event')}</Link></li>
+              <li><NavLink className="text-white" to="/Organizer#organizr" style={{textDecoration: 'none'}}>{t('nav.organizers')}</NavLink></li>
+              <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</a></li>
+              <li><a href="https://sessionize.com/x-ops-conference-mad-2026/" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</a></li>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
               <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
               <li><Link to="/politica-de-cookies" className="text-white" style={{textDecoration: 'none'}}>Política de Cookies</Link></li>

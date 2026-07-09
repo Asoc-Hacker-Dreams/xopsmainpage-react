@@ -41,13 +41,13 @@
   "summit": {
     "title": "X-Ops Summit Madrid 2026",
     "subtitle": "Evento Ejecutivo para Decision Makers",
-    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 18-19 noviembre 2026, Madrid. Networking de alto nivel y contenido estratégico.",
+    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 19 de noviembre de 2026, Madrid. Networking de alto nivel y contenido estratégico.",
     "hero": {
       "badge": "EVENTO EJECUTIVO",
       "title": "X-Ops Summit",
       "subtitle": "El evento exclusivo para líderes tecnológicos",
-      "date": "18 y 19 de noviembre 2026",
-      "venue": "Madrid · Lugar por confirmar",
+      "date": "19 de noviembre de 2026",
+      "venue": "Fundación Juan XXIII Roncalli, Madrid",
       "attendees": "Máximo 90 asistentes",
       "description": "Un programa ejecutivo diseñado para CTOs, CISOs y Decision Makers que buscan networking de alto nivel y contenido estratégico."
     },
@@ -80,8 +80,7 @@
     "agenda": {
       "title": "Programa Ejecutivo",
       "subtitle": "Agenda en construcción — próximamente los detalles de sesiones y ponentes",
-      "day1": "Día 1 — Estrategia y Transformación",
-      "day2": "Día 2 — Implementación y Futuro",
+      "day": "Estrategia, Transformación y Futuro",
       "tba": "Por anunciar"
     }
   },
@@ -207,12 +206,12 @@
   },
   "ticketModal": {
     "titleHighlight": "Entradas",
-    "earlyBird": "EARLY BIRD: 20% de descuento hasta el 15 de Marzo",
+    "earlyBird": "EARLY BIRD: Precios especiales para reservas anticipadas",
     "loading": "Cargando eventos disponibles…",
     "noTickets": "No hay entradas disponibles para este evento.",
-    "noEvents": "No se pudieron cargar los eventos. Escríbenos a summit@xopsconferences.com.",
+    "noEvents": "No se pudieron cargar los eventos. Escríbenos a info@xopsconference.com.",
     "contact": "¿Necesitas factura o tienes dudas?",
-    "contactEmail": "summit@xopsconferences.com",
+    "contactEmail": "info@xopsconference.com",
     "close": "Cerrar",
     "checkout": {
       "title": "Reservar Entrada",
@@ -226,7 +225,7 @@
       "errors": {
         "nameRequired": "Por favor introduce tu nombre completo.",
         "emailInvalid": "Por favor introduce un email válido.",
-        "networkError": "Sistema de entradas no disponible. Escríbenos a summit@xopsconferences.com."
+        "networkError": "Sistema de entradas no disponible. Escríbenos a info@xopsconference.com."
       }
     },
     "features": {
@@ -276,7 +275,7 @@
     "pageSubtitle": "Elige tu tipo de entrada. Precios especiales por tiempo limitado.",
     "backHome": "Volver al inicio",
     "loading": "Cargando entradas disponibles...",
-    "loadError": "No se pudieron cargar las entradas. Escríbenos a info@xopsconferences.com.",
+    "loadError": "No se pudieron cargar las entradas. Escríbenos a info@xopsconference.com.",
     "noTickets": "No hay entradas disponibles para este evento.",
     "buyBtn": "Comprar {{name}}",
     "unavailable": "No disponible",
@@ -292,7 +291,7 @@
     "errorName": "Por favor introduce tu nombre completo.",
     "errorEmail": "Por favor introduce un email válido.",
     "errorPayment": "No se pudo iniciar el pago.",
-    "errorNetwork": "Sistema de entradas no disponible. Escríbenos a info@xopsconferences.com.",
+    "errorNetwork": "Sistema de entradas no disponible. Escríbenos a info@xopsconference.com.",
     "features": {
       "fullAccess": "Acceso completo a X-Ops Conference Madrid",
       "allSessions": "Todas las sesiones y tracks",
@@ -377,15 +376,15 @@
       "city": "Madrid, España",
       "summit": {
         "label": "X-Ops Summit",
-        "dates": "19 y 20 de noviembre",
+        "dates": "19 de noviembre",
         "venue": "Fundación Juan XXIII Roncalli"
       },
       "conference": {
         "label": "X-Ops Conference",
-        "dates": "21 de noviembre",
+        "dates": "20 y 21 de noviembre",
         "venue": "Universidad Rey Juan Carlos, Campus Móstoles"
       },
-      "narrative": "La edición consolidada. Madrid es el hogar del movimiento X-Ops desde sus inicios. En 2026 ampliamos el formato: dos días de Summit ejecutivo en la Fundación Juan XXIII y un día de Conference técnica en la URJC. Una ciudad, un ecosistema completo.",
+      "narrative": "La edición consolidada. Madrid es el hogar del movimiento X-Ops desde sus inicios. En 2026 ampliamos el formato: un día de Summit ejecutivo en la Fundación Juan XXIII y dos días de Conference técnica en la URJC. Una ciudad, un ecosistema completo.",
       "badges": {
         "format": "Summit + Conference",
         "edition": "Edición consolidada",
@@ -431,12 +430,12 @@
     "madrid": {
       "city": "Madrid, España",
       "summit": {
-        "label": "X-Ops Summit · 19 y 20 de noviembre",
+        "label": "X-Ops Summit · 19 de noviembre",
         "name": "Fundación Juan XXIII Roncalli",
         "address": "Madrid"
       },
       "conference": {
-        "label": "X-Ops Conference · 21 de noviembre",
+        "label": "X-Ops Conference · 20 y 21 de noviembre",
         "name": "Universidad Rey Juan Carlos, Campus Móstoles",
         "address": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles"
       }
@@ -470,7 +469,7 @@
     },
     "card2": {
       "title": "¿Dónde y Cuándo?",
-      "text": "X-Ops Conference Madrid 2026 se celebra el 21 de noviembre en el Auditorio de la Universidad Rey Juan Carlos, campus Móstoles. X-Ops Dubai 2026 el 17 de octubre. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+      "text": "X-Ops Conference Madrid 2026 se celebra los días 20 y 21 de noviembre en el Auditorio de la Universidad Rey Juan Carlos, campus Móstoles. X-Ops Dubai 2026 el 17 de octubre. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
     },
     "card3": {
       "title": "El Futuro del Trabajo",

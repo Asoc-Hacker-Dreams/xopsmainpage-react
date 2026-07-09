@@ -6,7 +6,8 @@ import 'aos/dist/aos.css';
 const AnimationWrapper = ({ children, animation, duration }) => {
   useEffect(() => {
     AOS.init({
-      duration: duration || 1000, 
+      duration: duration || 1000,
+      disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     });
   }, []);
 

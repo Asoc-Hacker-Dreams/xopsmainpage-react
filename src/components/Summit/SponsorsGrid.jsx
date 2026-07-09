@@ -141,7 +141,7 @@ const SponsorsGrid = () => {
           <Col lg={8} className="text-center">
             <p className="become-sponsor-text">
               ¿Quieres patrocinar X-Ops Summit?{' '}
-              <a href="mailto:sponsors@xopsconferences.com" className="contact-link">
+              <a href="mailto:sponsors@xopsconference.com" className="contact-link">
                 Contáctanos
               </a>
             </p>

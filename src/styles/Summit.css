@@ -429,6 +429,22 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .summit-badge,
+  .summit-scroll-indicator {
+    animation: none;
+  }
+  .summit-btn-primary:hover,
+  .summit-btn-secondary:hover,
+  .value-card:hover,
+  .sponsor-card:hover,
+  .ticket-card:hover,
+  .hotel-card:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .summit-title {
@@ -1130,50 +1146,28 @@
   color: #f8fafc;
 }
 
-/* ===== AGENDA DAY SELECTOR ===== */
-.agenda-day-selector {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+/* ===== AGENDA DAY HEADER (single-day summit) ===== */
+.agenda-day-header {
+  text-align: center;
   margin-bottom: 2rem;
-  flex-wrap: wrap;
 }
 
-.day-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.75rem 2rem;
+.agenda-day-badge {
+  display: inline-block;
+  padding: 0.4rem 1.25rem;
   background: rgba(0, 188, 212, 0.1);
   border: 1px solid rgba(0, 188, 212, 0.3);
-  border-radius: 12px;
-  color: #94a3b8;
-  transition: all 0.2s ease;
-  min-width: 140px;
-}
-
-.day-btn:hover {
-  background: rgba(0, 188, 212, 0.2);
-  border-color: #00BCD4;
-  color: #e0e0e0;
-}
-
-.day-btn.active {
-  background: linear-gradient(135deg, #00BCD4 0%, #0D6E82 100%);
-  border-color: #00BCD4;
-  color: white;
-}
-
-.day-date {
-  font-size: 1rem;
+  border-radius: 999px;
+  color: #00BCD4;
+  font-size: 0.85rem;
   font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
 }
 
-.day-title {
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  opacity: 0.85;
+.agenda-day-header h3 {
+  color: #f8fafc;
+  font-weight: 700;
 }
 
 /* ===== TICKET CARDS V2 — X-Ops Conference Madrid 2026 ===== */

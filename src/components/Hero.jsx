@@ -1,5 +1,8 @@
+// DEPRECATED — this component is not rendered anywhere in production.
+// The app hero lives inline in App.jsx and uses i18n. This file has stale 2025 Spanish copy.
+// Safe to delete once Hero.test.jsx is updated to reflect current behaviour.
 import React from 'react';
-import { Helmet } from 'react-helmet-async';  // añado despues de instalar react helmet
+import { Helmet } from 'react-helmet-async';
 
  function Hero() {
           return (

@@ -8,6 +8,11 @@ import Ubication from "../components/Ubication";
 import Collaborators from "../components/Collaborators";
 import LastEditionData from "../components/LastEditionData";
 import SpeakersSection from "../components/SpeakersSection";
+import SummitHero from "../components/Summit/SummitHero";
+import ValueProposition from "../components/Summit/ValueProposition";
+import ExecutiveAgenda from "../components/Summit/ExecutiveAgenda";
+import TicketTier from "../components/Summit/TicketTier";
+import PricingTable from "../components/PricingTable";
 import SEO from "../components/SEO";
 
 
@@ -62,9 +67,18 @@ const Home = () => {
       <XOpsSection />
       <EcosystemSection />
       <EditionsSection />
+
+      <div className="summit-page">
+        <SummitHero />
+        <ValueProposition />
+        <ExecutiveAgenda />
+        <TicketTier />
+      </div>
+
       <Themes />
       <Events />
       <Ubication />
+      <PricingTable />
       <LastEditionData/>
       <Collaborators />
       <SpeakersSection />
