@@ -1175,3 +1175,209 @@
   text-transform: uppercase;
   opacity: 0.85;
 }
+
+/* ===== TICKET CARDS V2 — X-Ops Conference Madrid 2026 ===== */
+.ticket-card-v2 {
+  background: #0D1238;
+  border: 1px solid #2a3a5a;
+  border-radius: 20px;
+  position: relative;
+  height: 100%;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+}
+
+.ticket-card-v2:not(.ticket-card-disabled):hover {
+  border-color: var(--tier-accent, #00BCD4);
+  transform: translateY(-3px);
+}
+
+.ticket-card-v2.ticket-card-highlighted {
+  border-color: var(--tier-accent, #FFD600);
+  box-shadow: 0 0 0 1px var(--tier-accent, #FFD600);
+}
+
+.ticket-card-v2.ticket-card-disabled {
+  opacity: 0.55;
+  filter: grayscale(0.4);
+}
+
+.ticket-tier-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 0;
+  width: 100%;
+}
+
+.ticket-card-body {
+  padding: 1.75rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ticket-tier-icon {
+  line-height: 1;
+}
+
+.ticket-tier-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.ticket-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.ticket-price-amount {
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #f8fafc;
+  line-height: 1;
+}
+
+.ticket-tier-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ticket-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.ticket-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.ticket-feature-list li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 0.75rem;
+}
+
+.ticket-sale-end {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.ticket-stock-info {
+  font-size: 0.72rem;
+  color: #475569;
+  margin: 0;
+}
+
+.ticket-low-stock {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #f59e0b;
+  margin: 0;
+}
+
+.ticket-buy-btn {
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  border: none;
+  margin-top: auto;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.ticket-buy-btn:not(:disabled):hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.ticket-buy-btn:disabled {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #475569 !important;
+}
+
+.ticket-location-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(0,188,212,0.1);
+  border: 1px solid rgba(0,188,212,0.25);
+  color: #00BCD4;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-top: 0.5rem;
+}
+
+.event-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  border-left: 3px solid #00BCD4;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-meta {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.event-meta-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tickets-contact {
+  background: #111840;
+  border: 1px solid #2a3a5a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #94a3b8;
+}
+
+.tickets-contact .contact-link {
+  color: #00BCD4;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.tickets-contact .contact-link:hover {
+  text-decoration: underline;
+}
+
+.events-spinner {
+  color: #00BCD4;
+}

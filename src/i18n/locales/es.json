@@ -55,11 +55,26 @@
       "title": "¿Por qué asistir al X-Ops Summit?",
       "subtitle": "Un evento diseñado pensando en las necesidades de los líderes tecnológicos",
       "props": {
-        "strategic": { "title": "ENFOQUE ESTRATÉGICO", "desc": "Contenido diseñado para C-levels y directivos. Sin technical deep-dives, sí business impact." },
-        "networking": { "title": "NETWORKING EJECUTIVO", "desc": "Sesiones exclusivas con 90 máximo asistentes. Coffee breaks premium con catering de alto nivel." },
-        "roi": { "title": "ROI DEMOSTRABLE", "desc": "Casos de éxito de implementación DevOps/SecOps. Métricas y KPIs que puedes aplicar el lunes." },
-        "cert": { "title": "CERTIFICACIÓN", "desc": "Certificado de asistencia de X-Ops Conferences, reconocido por la industria tech europea." },
-        "exclusive": { "title": "EXCLUSIVIDAD", "desc": "Aforo limitado a 90 ejecutivos. Garantizamos calidad en cada interacción." }
+        "strategic": {
+          "title": "ENFOQUE ESTRATÉGICO",
+          "desc": "Contenido diseñado para C-levels y directivos. Sin technical deep-dives, sí business impact."
+        },
+        "networking": {
+          "title": "NETWORKING EJECUTIVO",
+          "desc": "Sesiones exclusivas con 90 máximo asistentes. Coffee breaks premium con catering de alto nivel."
+        },
+        "roi": {
+          "title": "ROI DEMOSTRABLE",
+          "desc": "Casos de éxito de implementación DevOps/SecOps. Métricas y KPIs que puedes aplicar el lunes."
+        },
+        "cert": {
+          "title": "CERTIFICACIÓN",
+          "desc": "Certificado de asistencia de X-Ops Conferences, reconocido por la industria tech europea."
+        },
+        "exclusive": {
+          "title": "EXCLUSIVIDAD",
+          "desc": "Aforo limitado a 90 ejecutivos. Garantizamos calidad en cada interacción."
+        }
       }
     },
     "agenda": {
@@ -254,12 +269,46 @@
       "backHome": "Volver a la home",
       "learnSophia": "Aprende sobre Sophia Metapolis, la nación digital que organiza este evento"
     },
-    "cancel": {
-      "title": "Pago no completado",
-      "message": "Tu pago no se completó. Puedes volver a intentar cuando lo desees.",
-      "tryAgain": "Volver a intentar",
-      "contactSupport": "Si experimentas problemas, contacta a soporte."
-    }
+    "cancel": "Cancelar",
+    "seoTitle": "Entradas — X-Ops Conference Madrid 2026",
+    "seoDesc": "Compra tu entrada para X-Ops Conference Madrid 2026. 6 tipos de tickets disponibles desde 15€.",
+    "pageTitle": "Entradas X-Ops Conference Madrid 2026",
+    "pageSubtitle": "Elige tu tipo de entrada. Precios especiales por tiempo limitado.",
+    "backHome": "Volver al inicio",
+    "loading": "Cargando entradas disponibles...",
+    "loadError": "No se pudieron cargar las entradas. Escríbenos a info@xopsconferences.com.",
+    "noTickets": "No hay entradas disponibles para este evento.",
+    "buyBtn": "Comprar {{name}}",
+    "unavailable": "No disponible",
+    "saleUntil": "Disponible hasta el {{date}}",
+    "saleEnded": "Venta cerrada el {{date}}",
+    "contactText": "¿Necesitas factura o tienes dudas?",
+    "buyTicket": "Comprar Entrada",
+    "fieldName": "Nombre completo",
+    "fieldNamePlaceholder": "Ej: María García",
+    "fieldEmail": "Email",
+    "emailHelp": "Recibirás tu entrada en este email.",
+    "proceedPayment": "Continuar al Pago",
+    "errorName": "Por favor introduce tu nombre completo.",
+    "errorEmail": "Por favor introduce un email válido.",
+    "errorPayment": "No se pudo iniciar el pago.",
+    "errorNetwork": "Sistema de entradas no disponible. Escríbenos a info@xopsconferences.com.",
+    "features": {
+      "fullAccess": "Acceso completo a X-Ops Conference Madrid",
+      "allSessions": "Todas las sesiones y tracks",
+      "eventMaterial": "Material del evento",
+      "earlyBirdPrice": "Precio exclusivo early bird",
+      "earlyAdopterPrice": "Precio especial early adopter",
+      "summitAccess": "Acceso al X-Ops Summit ejecutivo",
+      "executiveSessions": "Sesiones exclusivas de liderazgo",
+      "vipNetworking": "Networking VIP",
+      "mainStageAccess": "Acceso preferente al escenario principal",
+      "vipArea": "Zona VIP exclusiva",
+      "personalAttention": "Atención personalizada"
+    },
+    "fieldEmailPlaceholder": "tu@email.com",
+    "capacity": "{{n}} plazas disponibles",
+    "lowStock": "¡Solo quedan {{n}} plazas!"
   },
   "ecosystem": {
     "sectionPrefix": "Nuestro ecosistema",
@@ -272,9 +321,18 @@
       "title": "X-Ops Conference",
       "description": "El evento técnico de referencia para profesionales de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering. Un espacio de aprendizaje horizontal donde la comunidad es el protagonista.",
       "features": {
-        "talks": { "label": "Charlas técnicas", "desc": "Casos reales de implementación por practicioners que lo han vivido" },
-        "community": { "label": "Comunidad abierta", "desc": "Acceso para todos los niveles, desde junior hasta senior" },
-        "workshops": { "label": "Talleres prácticos", "desc": "Sesiones hands-on con herramientas y tecnologías del momento" }
+        "talks": {
+          "label": "Charlas técnicas",
+          "desc": "Casos reales de implementación por practicioners que lo han vivido"
+        },
+        "community": {
+          "label": "Comunidad abierta",
+          "desc": "Acceso para todos los niveles, desde junior hasta senior"
+        },
+        "workshops": {
+          "label": "Talleres prácticos",
+          "desc": "Sesiones hands-on con herramientas y tecnologías del momento"
+        }
       },
       "audience": "Engineers, SREs, DevOps, DevSecOps, MLOps, Platform Engineers y Tech Leads",
       "cta": "Ver eventos Conference"
@@ -284,9 +342,18 @@
       "title": "X-Ops Summit",
       "description": "El evento exclusivo para CTOs, CISOs y Decision Makers. Un espacio de alto nivel donde la estrategia, el ROI y el networking ejecutivo marcan el ritmo.",
       "features": {
-        "strategic": { "label": "Contenido estratégico", "desc": "Sin technical deep-dives; enfoque en business impact y transformación" },
-        "networking": { "label": "Networking exclusivo", "desc": "Aforo limitado a 90 ejecutivos, garantizando calidad en cada interacción" },
-        "cases": { "label": "Casos de éxito", "desc": "Experiencias reales con métricas y KPIs que puedes aplicar el lunes" }
+        "strategic": {
+          "label": "Contenido estratégico",
+          "desc": "Sin technical deep-dives; enfoque en business impact y transformación"
+        },
+        "networking": {
+          "label": "Networking exclusivo",
+          "desc": "Aforo limitado a 90 ejecutivos, garantizando calidad en cada interacción"
+        },
+        "cases": {
+          "label": "Casos de éxito",
+          "desc": "Experiencias reales con métricas y KPIs que puedes aplicar el lunes"
+        }
       },
       "audience": "CTOs, CISOs, VPs Engineering, Directors y Decision Makers tecnológicos",
       "cta": "Ver X-Ops Summit"
@@ -435,10 +502,22 @@
     "title": "Datos de la Edición Anterior",
     "description": "Los números de nuestra X-Ops Conference 2025 que demuestran el éxito y el impacto de nuestro evento.",
     "stats": {
-      "attendees": { "label": "Asistentes", "desc": "personas asistieron al evento" },
-      "sessions": { "label": "Sesiones", "desc": "charlas y talleres especializados" },
-      "speakers": { "label": "Speakers", "desc": "nacionales e internacionales" },
-      "communities": { "label": "Comunidades", "desc": "colaboradoras participantes" }
+      "attendees": {
+        "label": "Asistentes",
+        "desc": "personas asistieron al evento"
+      },
+      "sessions": {
+        "label": "Sesiones",
+        "desc": "charlas y talleres especializados"
+      },
+      "speakers": {
+        "label": "Speakers",
+        "desc": "nacionales e internacionales"
+      },
+      "communities": {
+        "label": "Comunidades",
+        "desc": "colaboradoras participantes"
+      }
     },
     "chartTitle": "Distribución de Contenidos por Área"
   },

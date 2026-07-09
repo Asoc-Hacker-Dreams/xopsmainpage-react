@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Spinner, Modal, Form, Alert } from 'react-bootstrap';
 import { BsCheckCircleFill, BsStar, BsBriefcase } from 'react-icons/bs';
 
 const API_BASE_URL = (import.meta.env.VITE_TRISKELL_API_BASE_URL || 'http://localhost:3001').replace(/\/$/, '');
@@ -62,18 +62,13 @@ const ticketTiers = [
   },
 ];
 
-const askCustomerData = () => {
-  const customerName = window.prompt('Nombre completo para la reserva:');
-  if (!customerName) return null;
-
-  const customerEmail = window.prompt('Email para recibir los tickets:');
-  if (!customerEmail) return null;
-
-  return { customerName, customerEmail };
-};
-
 const TicketTier = () => {
   const [loading, setLoading] = useState(null);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [pendingTier, setPendingTier] = useState(null);
+  const [customerName, setCustomerName] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+  const [formError, setFormError] = useState(null);
 
   const getTicketTypeId = async (eventId, apiName) => {
     const res = await fetch(`${API_BASE_URL}/api/events/${eventId}/ticket-types`);
@@ -94,28 +89,48 @@ const TicketTier = () => {
     return match.id;
   };
 
-  const handlePayment = async (tier) => {
+  const openCheckout = (tier) => {
     if (tier.id === 'partner') {
-      window.location.href = 'mailto:summit@xopsconferences.com';
+      window.location.href = 'mailto:info@xopsconference.com';
+      return;
+    }
+    setPendingTier(tier);
+    setCustomerName('');
+    setCustomerEmail('');
+    setFormError(null);
+    setShowCheckout(true);
+  };
+
+  const closeCheckout = () => {
+    setShowCheckout(false);
+    setPendingTier(null);
+  };
+
+  const handleCheckoutSubmit = async (e) => {
+    e.preventDefault();
+    const name = customerName.trim();
+    const email = customerEmail.trim();
+
+    if (!name) { setFormError('Por favor, introduce tu nombre completo.'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormError('Por favor, introduce un email válido.');
       return;
     }
 
-    const customer = askCustomerData();
-    if (!customer) return;
-
-    setLoading(tier.id);
+    setLoading(pendingTier.id);
+    setFormError(null);
 
     try {
-      const ticketTypeId = await getTicketTypeId(CONFIG_EVENT_ID, tier.apiName);
+      const ticketTypeId = await getTicketTypeId(CONFIG_EVENT_ID, pendingTier.apiName);
 
       const payload = {
         eventId: CONFIG_EVENT_ID,
         ticketTypeId,
         quantity: 1,
-        customerEmail: customer.customerEmail,
-        customerName: customer.customerName,
-        successUrl: `${window.location.origin}/payment/success`,
-        cancelUrl: `${window.location.origin}/payment/cancel`,
+        customerEmail: email,
+        customerName: name,
+        successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancelUrl: `${window.location.origin}/tickets`,
       };
 
       const response = await fetch(`${API_BASE_URL}/api/payment/create-session`, {
@@ -130,14 +145,12 @@ const TicketTier = () => {
         throw new Error(data?.message || data?.error || 'No se pudo iniciar el pago');
       }
 
+      setShowCheckout(false);
       if (data.sessionUrl) {
         window.location.href = data.sessionUrl;
-      } else {
-        alert('Reserva creada en modo prueba. Revisa backend para confirmar orden.');
       }
     } catch (error) {
-      console.error('Payment error:', error);
-      alert(`Error al iniciar reserva/pago: ${error.message}`);
+      setFormError(`Error al iniciar el pago: ${error.message}`);
     } finally {
       setLoading(null);
     }
@@ -150,10 +163,6 @@ const TicketTier = () => {
           <Col lg={8}>
             <h2 className="summit-section-title">Tipos de Entrada</h2>
             <p className="summit-section-subtitle">Elige la opción que mejor se adapte a tus necesidades</p>
-            <div className="early-bird-banner">
-              <BsStar className="early-bird-icon" />
-              <span>EARLY BIRD: 20% de descuento hasta el 15 de Marzo</span>
-            </div>
           </Col>
         </Row>
 
@@ -182,7 +191,7 @@ const TicketTier = () => {
                   </ul>
                   <Button
                     className={`ticket-cta ticket-cta-${tier.ctaStyle}`}
-                    onClick={() => handlePayment(tier)}
+                    onClick={() => openCheckout(tier)}
                     disabled={loading === tier.id}
                   >
                     {loading === tier.id ? <Spinner size="sm" /> : tier.cta}
@@ -206,13 +215,77 @@ const TicketTier = () => {
           <Col lg={6} className="text-center">
             <div className="tickets-contact">
               <p>¿Necesitas factura o tienes dudas?</p>
-              <a href="mailto:summit@xopsconferences.com" className="contact-link">
-                summit@xopsconferences.com
+              <a href="mailto:info@xopsconference.com" className="contact-link">
+                info@xopsconference.com
               </a>
             </div>
           </Col>
         </Row>
       </Container>
+
+      <Modal show={showCheckout} onHide={closeCheckout} centered>
+        <Modal.Header
+          closeButton
+          style={{ background: '#1a1a2e', borderBottom: '2px solid #00BCD4' }}
+        >
+          <Modal.Title style={{ color: '#ffffff', fontWeight: 700 }}>
+            {pendingTier
+              ? `${pendingTier.name} — €${pendingTier.price}`
+              : 'Reserva tu entrada'}
+          </Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={handleCheckoutSubmit} noValidate>
+          <Modal.Body style={{ background: '#0f0f1a', color: '#e0e0e0' }}>
+            {formError && (
+              <Alert variant="danger" role="alert" onClose={() => setFormError(null)} dismissible>
+                {formError}
+              </Alert>
+            )}
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="tt-name" style={{ color: '#ccc' }}>
+                Nombre completo <span aria-hidden="true">*</span>
+              </Form.Label>
+              <Form.Control
+                id="tt-name"
+                type="text"
+                placeholder="Tu nombre completo"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                required
+                autoFocus
+                style={{ background: '#1e1e3a', border: '1px solid #2a2a4a', color: '#fff' }}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="tt-email" style={{ color: '#ccc' }}>
+                Email <span aria-hidden="true">*</span>
+              </Form.Label>
+              <Form.Control
+                id="tt-email"
+                type="email"
+                placeholder="tu@email.com"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+                required
+                style={{ background: '#1e1e3a', border: '1px solid #2a2a4a', color: '#fff' }}
+              />
+              <Form.Text style={{ color: '#888' }}>Recibirás tus entradas en este email.</Form.Text>
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer style={{ background: '#1a1a2e', borderTop: '1px solid #2a2a4a' }}>
+            <Button variant="outline-secondary" onClick={closeCheckout}>
+              Cancelar
+            </Button>
+            <Button
+              type="submit"
+              disabled={loading !== null}
+              style={{ background: '#00BCD4', border: 'none', fontWeight: 600 }}
+            >
+              {loading !== null ? <Spinner size="sm" /> : 'Confirmar y pagar'}
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     </section>
   );
 };

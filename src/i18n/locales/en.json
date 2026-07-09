@@ -58,11 +58,26 @@
       "title": "Why attend X-Ops Summit?",
       "subtitle": "An event designed with the needs of technology leaders in mind",
       "props": {
-        "strategic": { "title": "STRATEGIC FOCUS", "desc": "Content designed for C-levels and directors. No technical deep-dives, yes business impact." },
-        "networking": { "title": "EXECUTIVE NETWORKING", "desc": "Exclusive sessions with maximum 90 attendees. Premium coffee breaks with high-level catering." },
-        "roi": { "title": "DEMONSTRABLE ROI", "desc": "DevOps/SecOps implementation success cases. Metrics and KPIs you can apply on Monday." },
-        "cert": { "title": "CERTIFICATION", "desc": "X-Ops Conferences attendance certificate, recognised by the European tech industry." },
-        "exclusive": { "title": "EXCLUSIVITY", "desc": "Capacity limited to 90 executives. We guarantee quality in every interaction." }
+        "strategic": {
+          "title": "STRATEGIC FOCUS",
+          "desc": "Content designed for C-levels and directors. No technical deep-dives, yes business impact."
+        },
+        "networking": {
+          "title": "EXECUTIVE NETWORKING",
+          "desc": "Exclusive sessions with maximum 90 attendees. Premium coffee breaks with high-level catering."
+        },
+        "roi": {
+          "title": "DEMONSTRABLE ROI",
+          "desc": "DevOps/SecOps implementation success cases. Metrics and KPIs you can apply on Monday."
+        },
+        "cert": {
+          "title": "CERTIFICATION",
+          "desc": "X-Ops Conferences attendance certificate, recognised by the European tech industry."
+        },
+        "exclusive": {
+          "title": "EXCLUSIVITY",
+          "desc": "Capacity limited to 90 executives. We guarantee quality in every interaction."
+        }
       }
     },
     "agenda": {
@@ -260,12 +275,46 @@
       "backHome": "Return to home",
       "learnSophia": "Learn about Sophia Metapolis, the digital nation organizing this event"
     },
-    "cancel": {
-      "title": "Payment not completed",
-      "message": "Your payment was not completed. You can try again whenever you wish.",
-      "tryAgain": "Try again",
-      "contactSupport": "If you experience problems, contact support."
-    }
+    "cancel": "Cancel",
+    "seoTitle": "Tickets — X-Ops Conference Madrid 2026",
+    "seoDesc": "Buy your ticket for X-Ops Conference Madrid 2026. 6 ticket types available from €15.",
+    "pageTitle": "X-Ops Conference Madrid 2026 Tickets",
+    "pageSubtitle": "Choose your ticket type. Special prices for a limited time.",
+    "backHome": "Back to home",
+    "loading": "Loading available tickets...",
+    "loadError": "Could not load tickets. Email us at info@xopsconferences.com.",
+    "noTickets": "No tickets available for this event.",
+    "buyBtn": "Buy {{name}}",
+    "unavailable": "Not available",
+    "saleUntil": "Available until {{date}}",
+    "saleEnded": "Sales closed on {{date}}",
+    "contactText": "Need an invoice or have questions?",
+    "buyTicket": "Buy Ticket",
+    "fieldName": "Full name",
+    "fieldNamePlaceholder": "E.g. Maria Garcia",
+    "fieldEmail": "Email",
+    "emailHelp": "You will receive your ticket at this email address.",
+    "proceedPayment": "Continue to Payment",
+    "errorName": "Please enter your full name.",
+    "errorEmail": "Please enter a valid email address.",
+    "errorPayment": "Could not initiate payment.",
+    "errorNetwork": "Ticketing system unavailable. Email us at info@xopsconferences.com.",
+    "features": {
+      "fullAccess": "Full access to X-Ops Conference Madrid",
+      "allSessions": "All sessions and tracks",
+      "eventMaterial": "Event materials",
+      "earlyBirdPrice": "Exclusive early bird price",
+      "earlyAdopterPrice": "Special early adopter price",
+      "summitAccess": "Access to X-Ops Executive Summit",
+      "executiveSessions": "Exclusive leadership sessions",
+      "vipNetworking": "VIP networking",
+      "mainStageAccess": "Priority main stage access",
+      "vipArea": "Exclusive VIP area",
+      "personalAttention": "Personal dedicated attention"
+    },
+    "fieldEmailPlaceholder": "you@email.com",
+    "capacity": "{{n}} spots available",
+    "lowStock": "Only {{n}} spots left!"
   },
   "ecosystem": {
     "sectionPrefix": "Our ecosystem",
@@ -278,9 +327,18 @@
       "title": "X-Ops Conference",
       "description": "The reference technical event for DevOps, DevSecOps, AIOps, MLOps and Platform Engineering professionals. A horizontal learning space where the community takes center stage.",
       "features": {
-        "talks": { "label": "Technical talks", "desc": "Real implementation cases by practitioners who have lived it" },
-        "community": { "label": "Open community", "desc": "Access for all levels, from junior to senior" },
-        "workshops": { "label": "Practical workshops", "desc": "Hands-on sessions with current tools and technologies" }
+        "talks": {
+          "label": "Technical talks",
+          "desc": "Real implementation cases by practitioners who have lived it"
+        },
+        "community": {
+          "label": "Open community",
+          "desc": "Access for all levels, from junior to senior"
+        },
+        "workshops": {
+          "label": "Practical workshops",
+          "desc": "Hands-on sessions with current tools and technologies"
+        }
       },
       "audience": "Engineers, SREs, DevOps, DevSecOps, MLOps, Platform Engineers and Tech Leads",
       "cta": "View Conference events"
@@ -290,9 +348,18 @@
       "title": "X-Ops Summit",
       "description": "The exclusive event for CTOs, CISOs and Decision Makers. A high-level space where strategy, ROI and executive networking set the pace.",
       "features": {
-        "strategic": { "label": "Strategic content", "desc": "No technical deep-dives; focus on business impact and transformation" },
-        "networking": { "label": "Exclusive networking", "desc": "Limited to 90 executives, guaranteeing quality in every interaction" },
-        "cases": { "label": "Success cases", "desc": "Real experiences with metrics and KPIs you can apply on Monday" }
+        "strategic": {
+          "label": "Strategic content",
+          "desc": "No technical deep-dives; focus on business impact and transformation"
+        },
+        "networking": {
+          "label": "Exclusive networking",
+          "desc": "Limited to 90 executives, guaranteeing quality in every interaction"
+        },
+        "cases": {
+          "label": "Success cases",
+          "desc": "Real experiences with metrics and KPIs you can apply on Monday"
+        }
       },
       "audience": "CTOs, CISOs, VPs Engineering, Directors and technology Decision Makers",
       "cta": "View X-Ops Summit"
@@ -441,10 +508,22 @@
     "title": "Previous Edition Data",
     "description": "The numbers from our X-Ops Conference 2025 that demonstrate the success and impact of our event.",
     "stats": {
-      "attendees": { "label": "Attendees", "desc": "people attended the event" },
-      "sessions": { "label": "Sessions", "desc": "talks and specialised workshops" },
-      "speakers": { "label": "Speakers", "desc": "national and international" },
-      "communities": { "label": "Communities", "desc": "collaborating participants" }
+      "attendees": {
+        "label": "Attendees",
+        "desc": "people attended the event"
+      },
+      "sessions": {
+        "label": "Sessions",
+        "desc": "talks and specialised workshops"
+      },
+      "speakers": {
+        "label": "Speakers",
+        "desc": "national and international"
+      },
+      "communities": {
+        "label": "Communities",
+        "desc": "collaborating participants"
+      }
     },
     "chartTitle": "Content Distribution by Area"
   },
