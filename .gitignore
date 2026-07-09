@@ -19,8 +19,10 @@ compliance-report.md
 # Security sensitive files (ejemplos)
 .env
 .env.local
-.env.production
 .env.staging
+# .env.production is intentionally committed: Vercel builds straight from
+# this repo's source, and every VITE_* value here is a public build-time
+# constant anyway (bundled into client JS), never a real secret.
 *.key
 *.pem
 *.p12
