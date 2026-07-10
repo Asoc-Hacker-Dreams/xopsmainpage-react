@@ -434,22 +434,6 @@ const TicketModal = ({ show, onHide }) => {
                   </Row>
                 </div>
               ))}
-
-              {!loadingEvents && (
-                <Row className="justify-content-center mt-2 mb-2">
-                  <Col lg={6} className="text-center">
-                    <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>
-                      {t('ticketModal.contact')}{' '}
-                      <a
-                        href={`mailto:${t('ticketModal.contactEmail')}`}
-                        style={{ color: '#00BCD4', textDecoration: 'none' }}
-                      >
-                        {t('ticketModal.contactEmail')}
-                      </a>
-                    </p>
-                  </Col>
-                </Row>
-              )}
             </Container>
           </Modal.Body>
 

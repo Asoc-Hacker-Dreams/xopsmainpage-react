@@ -216,8 +216,6 @@
     "loading": "Loading available events…",
     "noTickets": "No tickets available for this event.",
     "noEvents": "Could not load events. Contact us at info@xopsconference.com.",
-    "contact": "Need an invoice or have questions?",
-    "contactEmail": "info@xopsconference.com",
     "close": "Close",
     "checkout": {
       "title": "Reserve Ticket",
