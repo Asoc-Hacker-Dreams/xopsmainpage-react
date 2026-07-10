@@ -11,7 +11,6 @@ import SpeakersSection from "../components/SpeakersSection";
 import SummitHero from "../components/Summit/SummitHero";
 import ValueProposition from "../components/Summit/ValueProposition";
 import ExecutiveAgenda from "../components/Summit/ExecutiveAgenda";
-import TicketTier from "../components/Summit/TicketTier";
 import PricingTable from "../components/PricingTable";
 import SEO from "../components/SEO";
 
@@ -72,7 +71,6 @@ const Home = () => {
         <SummitHero />
         <ValueProposition />
         <ExecutiveAgenda />
-        <TicketTier />
       </div>
 
       <Themes />
