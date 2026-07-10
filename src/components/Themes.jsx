@@ -9,7 +9,7 @@ const Themes = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="key-themes-section">
+    <section className="key-themes-section" id="conferencia">
       <AnimationWrapper animation="fade-up" duration={1500}>
         <div className="container">
           <h6 className="heading text-center text-uppercase"></h6>

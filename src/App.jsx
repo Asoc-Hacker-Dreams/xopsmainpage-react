@@ -110,6 +110,7 @@ function App() {
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto">
                 <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</NavLink>
+                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#conferencia" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</NavLink>
                 <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</NavLink>
                 <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ediciones" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.editions')}</NavLink>
                 <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#patrocinio" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</NavLink>
