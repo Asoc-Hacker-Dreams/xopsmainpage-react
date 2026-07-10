@@ -232,7 +232,8 @@
       "fullAccess": "Acceso completo al evento",
       "allSessions": "Todas las sesiones",
       "eventMaterial": "Material del evento",
-      "areaAccess": "Acceso área {{tier}}"
+      "summitTierAccess": "Acceso al Summit y a la Conferencia",
+      "vipDinnerAccess": "Acceso a cena con ponentes y patrocinadores"
     }
   },
   "tickets": {

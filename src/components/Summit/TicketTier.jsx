@@ -162,7 +162,6 @@ const TicketTier = () => {
         <Row className="justify-content-center text-center mb-5">
           <Col lg={8}>
             <h2 className="summit-section-title">Tipos de Entrada</h2>
-            <p className="summit-section-subtitle">Elige la opción que mejor se adapte a tus necesidades</p>
           </Col>
         </Row>
 
@@ -211,16 +210,6 @@ const TicketTier = () => {
           </Col>
         </Row>
 
-        <Row className="justify-content-center mt-4">
-          <Col lg={6} className="text-center">
-            <div className="tickets-contact">
-              <p>¿Necesitas factura o tienes dudas?</p>
-              <a href="mailto:info@xopsconference.com" className="contact-link">
-                info@xopsconference.com
-              </a>
-            </div>
-          </Col>
-        </Row>
       </Container>
 
       <Modal show={showCheckout} onHide={closeCheckout} centered>

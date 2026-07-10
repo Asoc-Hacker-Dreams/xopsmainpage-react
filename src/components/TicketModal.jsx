@@ -406,10 +406,16 @@ const TicketModal = ({ show, onHide }) => {
                                   <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
                                   <span>{t('ticketModal.features.eventMaterial')}</span>
                                 </li>
-                                {tt.name?.toLowerCase() !== 'standard' && (
+                                {tt.name?.toLowerCase() === 'summit' && (
                                   <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
                                     <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
-                                    <span>{t('ticketModal.features.areaAccess', { tier: tt.name })}</span>
+                                    <span>{t('ticketModal.features.summitTierAccess')}</span>
+                                  </li>
+                                )}
+                                {tt.name?.toLowerCase() === 'vip' && (
+                                  <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
+                                    <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
+                                    <span>{t('ticketModal.features.vipDinnerAccess')}</span>
                                   </li>
                                 )}
                               </ul>
