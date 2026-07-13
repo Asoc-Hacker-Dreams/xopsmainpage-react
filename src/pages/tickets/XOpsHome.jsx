@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaMicrophoneAlt, FaShieldAlt } from 'react-icons/fa';
 import SEO from '../../components/SEO';
@@ -34,10 +34,10 @@ const XOpsHome = () => {
                 </p>
                 <div className="xops-hero-cta">
                   <Link to="/events/x-ops-conference-dubai-2026/buy" className="xops-btn-primary">
-                    {t('tickets.buyNow')}
+                    {t('tickets.event.buyNow')}
                   </Link>
                   <Link to="/events/x-ops-conference-dubai-2026" className="xops-btn-outline">
-                    {t('tickets.viewDetails')}
+                    {t('tickets.event.viewDetails')}
                   </Link>
                 </div>
                 <div className="xops-hero-meta">
@@ -100,7 +100,7 @@ const XOpsHome = () => {
               </Col>
               <Col md={4} className="text-md-end">
                 <Link to="/events/x-ops-conference-dubai-2026/buy" className="xops-btn-primary">
-                  {t('tickets.buyTickets')}
+                  {t('tickets.event.buyTickets')}
                 </Link>
               </Col>
             </Row>

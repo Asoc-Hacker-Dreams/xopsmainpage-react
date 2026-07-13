@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="X-Ops Conference Madrid 2026 · DevOps, DevSecOps, AIOps & MLOps"
+        title="X-Ops Conference & Summit 2026 · Madrid y Dubai"
         description="X-Ops Conference: el mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Madrid y Dubai 2026 · Summit ejecutivo + Conference técnica."
         path="/"
         image="https://xopsconference.com/icon-512x512.png"
@@ -33,20 +33,20 @@ const Home = () => {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Event",
-          "name": "X-Ops Conference Madrid 2026",
-          "description": "El mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Summit + Conference.",
-          "startDate": "2026-11-19",
+          "name": "X-Ops Conference & Summit 2026 · Madrid y Dubai",
+          "description": "Ecosistema X-Ops 2026 en Madrid y Dubai: Summit ejecutivo y Conference técnica.",
+          "startDate": "2026-10-15",
           "endDate": "2026-11-21",
           "eventStatus": "https://schema.org/EventScheduled",
           "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
           "location": {
             "@type": "Place",
-            "name": "URJC Madrid",
+            "name": "Madrid y Dubai",
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "Madrid",
-              "addressRegion": "Madrid",
-              "addressCountry": "ES"
+              "addressLocality": "Madrid / Dubai",
+              "addressRegion": "Madrid / Dubai",
+              "addressCountry": "ES / AE"
             }
           },
           "organizer": {

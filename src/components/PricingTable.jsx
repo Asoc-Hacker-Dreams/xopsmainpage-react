@@ -1,206 +1,267 @@
-import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BsCheckCircleFill, BsStar } from 'react-icons/bs';
 import AnimationWrapper from './AnimationWrapper';
 
 const CONTACT_EMAIL = 'info@xopsconference.com';
+const EUR_TO_AED = 4.0;
+const EUR_TO_USD = 1.1;
+const ROUND_STEP = 50;
+const COMBINED_DISCOUNT = 0.1;
 
-const formatPrice = (price) => price.toLocaleString('es-ES');
+const roundToStep = (value, step = ROUND_STEP) => Math.round(value / step) * step;
+const formatNumber = (value) => value.toLocaleString('es-ES');
 
-const platinum = {
-  id: 'platinum',
-  name: 'PLATINUM',
-  price: 10000,
-  features: [
-    'Todos los beneficios del Track Sponsor',
-    'Charla Principal (Keynote) de 30 minutos',
-    'Stand Físico grande (3×2m) en posición estratégica',
-    'Logo en email de bienvenida a asistentes',
-    'Agradecimiento en ceremonia de apertura y clausura',
-    '15 Entradas completas',
-  ],
-};
-
-const track = {
-  id: 'track',
-  name: 'TRACK SPONSOR',
-  price: 6000,
-  features: [
-    'Todos los beneficios del paquete Gold',
-    'Derechos de Nomenclatura del Track',
-    'Branding exclusivo en la sala física',
-    'Logo en cabecera de la agenda del track',
-    'Mención especial al inicio de cada jornada',
-    'Stand Virtual Premium en posición destacada',
-    '15 Entradas completas',
-  ],
-};
-
-const standard = [
+const plans = [
+  {
+    id: 'platinum',
+    name: 'PLATINUM',
+    eurPrice: 10000,
+    featured: true,
+    features: [
+      'Todos los beneficios del Track Sponsor',
+      'Charla Principal (Keynote) de 30 minutos',
+      'Stand físico premium en posición estratégica',
+      'Logo en email de bienvenida a asistentes',
+      'Agradecimiento en ceremonia de apertura y clausura',
+      '15 entradas completas',
+    ],
+  },
+  {
+    id: 'track',
+    name: 'TRACK SPONSOR',
+    eurPrice: 6000,
+    track: true,
+    features: [
+      'Todos los beneficios del paquete Gold',
+      'Derechos de nomenclatura del track',
+      'Branding exclusivo en sala física',
+      'Logo en cabecera de la agenda del track',
+      'Mención especial al inicio de cada jornada',
+      '15 entradas completas',
+    ],
+  },
   {
     id: 'gold',
     name: 'GOLD',
-    price: 3000,
+    eurPrice: 3000,
     features: [
       'Todos los beneficios del paquete Silver',
       'Charla técnica de 45 minutos',
       'Logo destacado en posición superior',
       'Publicación dedicada en redes sociales',
-      'Stand Virtual Mejorado con vídeo y formulario',
-      '10 Entradas completas',
+      '10 entradas completas',
     ],
   },
   {
     id: 'silver',
     name: 'SILVER',
-    price: 1500,
+    eurPrice: 1500,
     features: [
-      'Stand Físico de 2×2m con mesa y sillas',
-      'Stand Virtual Básico',
+      'Stand físico de 2x2m con mesa y sillas',
       'Logo, descripción y enlace web',
       "Logo en sección 'Silver Sponsors'",
       'Mención en publicación conjunta en redes sociales',
-      '5 Entradas completas',
+      '5 entradas completas',
     ],
   },
   {
     id: 'virtual',
     name: 'VIRTUAL-ONLY',
-    price: 1000,
+    eurPrice: 1000,
     features: [
-      'Stand Virtual Premium',
+      'Stand virtual premium',
       'Perfil completo en la aplicación web',
       'Logo, descripción y enlaces a redes sociales',
       'Vídeo promocional incrustado',
-      'Chat en tiempo real con asistentes',
       'Formulario integrado para captura de leads',
-      "Logo en sección 'Virtual Sponsors' de la web",
     ],
   },
 ];
 
-const PricingTable = () => (
-  <section className="sponsor-tiers" id="patrocinio" aria-labelledby="sponsor-tiers-heading">
-    <div className="sponsor-tiers__container">
+const cityModes = [
+  {
+    id: 'madrid',
+    label: 'Patrocina Madrid',
+    currencySymbol: '€',
+    currencyCode: 'EUR',
+    copy: 'Beneficios presenciales aplicados a Madrid.',
+    computePrice: (eur) => eur,
+    subjectPrefix: 'Madrid',
+  },
+  {
+    id: 'dubai',
+    label: 'Patrocina Dubai',
+    currencySymbol: 'AED',
+    currencyCode: 'AED',
+    copy: 'Beneficios presenciales aplicados a Dubai.',
+    computePrice: (eur) => roundToStep(eur * EUR_TO_AED),
+    subjectPrefix: 'Dubai',
+  },
+  {
+    id: 'both',
+    label: 'Patrocina ambas ciudades',
+    currencySymbol: 'US$',
+    currencyCode: 'USD',
+    copy: 'Presencia en Madrid + Dubai con 10% de descuento combinado.',
+    computePrice: (eur) => roundToStep(eur * 2 * EUR_TO_USD * (1 - COMBINED_DISCOUNT)),
+    subjectPrefix: 'Madrid+Dubai',
+  },
+];
 
-      <header className="sponsor-tiers__header">
-        <h2 id="sponsor-tiers-heading" className="sponsor-tiers__title">
-          Nuestros Planes de Promoción
-        </h2>
-        <p className="sponsor-tiers__subtitle">
-          Elige el nivel que mejor encaja con tu estrategia de visibilidad
-        </p>
-      </header>
+const renderPrice = (symbol, amount) => (
+  <div className="sponsor-tiers__price">
+    <span className="sponsor-tiers__price-sign">{symbol}</span>
+    <span className="sponsor-tiers__price-amount">{formatNumber(amount)}</span>
+  </div>
+);
 
-      {/* Platinum — full-width featured */}
-      <AnimationWrapper animation="fade-up" duration={800}>
-        <div className="sponsor-tiers__featured">
-          <div className="sponsor-tiers__featured-inner">
-            <div className="sponsor-tiers__tier-side">
-              <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--gold">
-                {platinum.name}
-              </span>
-              <div className="sponsor-tiers__price">
-                <span className="sponsor-tiers__price-sign">€</span>
-                <span className="sponsor-tiers__price-amount">{formatPrice(platinum.price)}</span>
-              </div>
-              <span className="sponsor-tiers__price-sub">inversión</span>
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio Platinum`}
-                className="sponsor-tiers__cta sponsor-tiers__cta--gold"
-                aria-label="Contactar sobre el plan Platinum"
+const PricingTable = () => {
+  const [activeMode, setActiveMode] = useState(cityModes[0]);
+  const featuredPlan = plans.find((plan) => plan.featured);
+  const trackPlan = plans.find((plan) => plan.track);
+  const standardPlans = plans.filter((plan) => !plan.featured && !plan.track);
+
+  return (
+    <section className="sponsor-tiers" id="patrocinio" aria-labelledby="sponsor-tiers-heading">
+      <div className="sponsor-tiers__container">
+        <header className="sponsor-tiers__header">
+          <h2 id="sponsor-tiers-heading" className="sponsor-tiers__title">
+            Nuestros Planes de Promoción
+          </h2>
+          <p className="sponsor-tiers__subtitle">
+            Selecciona ciudad para ver precios y beneficios físicos aplicables.
+          </p>
+          <div className="sponsor-tiers__city-tabs" role="tablist" aria-label="Selector de patrocinio por ciudad">
+            {cityModes.map((mode) => (
+              <button
+                key={mode.id}
+                type="button"
+                className={`sponsor-tiers__city-tab${activeMode.id === mode.id ? ' sponsor-tiers__city-tab--active' : ''}`}
+                onClick={() => setActiveMode(mode)}
+                role="tab"
+                aria-selected={activeMode.id === mode.id}
               >
-                Contactar
-              </a>
-            </div>
-            <ul className="sponsor-tiers__features sponsor-tiers__features--grid" aria-label="Beneficios Platinum">
-              {platinum.features.map((f, i) => (
-                <li key={i} className="sponsor-tiers__feature">
-                  <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--gold" aria-hidden="true" />
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
+                {mode.label}
+              </button>
+            ))}
           </div>
-        </div>
-      </AnimationWrapper>
+          <p className="sponsor-tiers__city-copy">
+            {activeMode.copy}
+          </p>
+          <p className="sponsor-tiers__city-note">
+            Tipo de cambio fijo: 1 EUR = {EUR_TO_AED.toFixed(2)} AED y 1 EUR = {EUR_TO_USD.toFixed(2)} USD (redondeo a {ROUND_STEP}).
+          </p>
+        </header>
 
-      {/* Track Sponsor — centered, exclusive */}
-      <AnimationWrapper animation="fade-up" duration={800}>
-        <div className="sponsor-tiers__track-wrap">
-          <div className="sponsor-tiers__track">
-            <div className="sponsor-tiers__exclusive-badge" aria-label="Exclusivo, solo 2 disponibles">
-              <BsStar aria-hidden="true" />
-              EXCLUSIVO · SOLO 2 DISPONIBLES
-            </div>
-            <div className="sponsor-tiers__featured-inner">
-              <div className="sponsor-tiers__tier-side">
-                <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--cyan">
-                  {track.name}
-                </span>
-                <div className="sponsor-tiers__price">
-                  <span className="sponsor-tiers__price-sign">€</span>
-                  <span className="sponsor-tiers__price-amount">{formatPrice(track.price)}</span>
+        {featuredPlan && (
+          <AnimationWrapper animation="fade-up" duration={800}>
+            <div className="sponsor-tiers__featured">
+              <div className="sponsor-tiers__featured-inner">
+                <div className="sponsor-tiers__tier-side">
+                  <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--gold">{featuredPlan.name}</span>
+                  {renderPrice(activeMode.currencySymbol, activeMode.computePrice(featuredPlan.eurPrice))}
+                  <span className="sponsor-tiers__price-sub">{activeMode.currencyCode} · inversión</span>
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${activeMode.subjectPrefix} ${featuredPlan.name}`}
+                    className="sponsor-tiers__cta sponsor-tiers__cta--gold"
+                    aria-label={`Contactar sobre el plan ${featuredPlan.name} en ${activeMode.subjectPrefix}`}
+                  >
+                    Contactar
+                  </a>
                 </div>
-                <span className="sponsor-tiers__price-sub">inversión</span>
+                <ul className="sponsor-tiers__features sponsor-tiers__features--grid" aria-label={`Beneficios ${featuredPlan.name}`}>
+                  {featuredPlan.features.map((feature) => (
+                    <li key={feature} className="sponsor-tiers__feature">
+                      <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--gold" aria-hidden="true" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </AnimationWrapper>
+        )}
+
+        {trackPlan && (
+          <AnimationWrapper animation="fade-up" duration={800}>
+            <div className="sponsor-tiers__track-wrap">
+              <div className="sponsor-tiers__track">
+                <div className="sponsor-tiers__exclusive-badge" aria-label="Exclusivo, solo 2 disponibles">
+                  <BsStar aria-hidden="true" />
+                  EXCLUSIVO · SOLO 2 DISPONIBLES
+                </div>
+                <div className="sponsor-tiers__featured-inner">
+                  <div className="sponsor-tiers__tier-side">
+                    <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--cyan">{trackPlan.name}</span>
+                    {renderPrice(activeMode.currencySymbol, activeMode.computePrice(trackPlan.eurPrice))}
+                    <span className="sponsor-tiers__price-sub">{activeMode.currencyCode} · inversión</span>
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${activeMode.subjectPrefix} ${trackPlan.name}`}
+                      className="sponsor-tiers__cta sponsor-tiers__cta--outline"
+                      aria-label={`Contactar sobre el plan ${trackPlan.name} en ${activeMode.subjectPrefix}`}
+                    >
+                      Contactar
+                    </a>
+                  </div>
+                  <ul className="sponsor-tiers__features" aria-label={`Beneficios ${trackPlan.name}`}>
+                    {trackPlan.features.map((feature) => (
+                      <li key={feature} className="sponsor-tiers__feature">
+                        <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--cyan" aria-hidden="true" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </AnimationWrapper>
+        )}
+
+        <div className="sponsor-tiers__standard-row">
+          {standardPlans.map((plan) => (
+            <AnimationWrapper key={plan.id} animation="fade-up" duration={800}>
+              <div className={`sponsor-tiers__card sponsor-tiers__card--${plan.id}`}>
+                <span className={`sponsor-tiers__tier-label sponsor-tiers__tier-label--${plan.id === 'gold' ? 'amber' : 'slate'}`}>
+                  {plan.name}
+                </span>
+                {renderPrice(activeMode.currencySymbol, activeMode.computePrice(plan.eurPrice))}
+                <span className="sponsor-tiers__price-sub">{activeMode.currencyCode} · inversión</span>
+                <ul className="sponsor-tiers__features" aria-label={`Beneficios ${plan.name}`}>
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="sponsor-tiers__feature">
+                      <BsCheckCircleFill
+                        className={`sponsor-tiers__check sponsor-tiers__check--${plan.id === 'gold' ? 'cyan-dim' : 'slate'}`}
+                        aria-hidden="true"
+                      />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
                 <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio Track Sponsor`}
-                  className="sponsor-tiers__cta sponsor-tiers__cta--outline"
-                  aria-label="Contactar sobre el plan Track Sponsor"
+                  href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${activeMode.subjectPrefix} ${plan.name}`}
+                  className="sponsor-tiers__cta sponsor-tiers__cta--muted"
+                  aria-label={`Contactar sobre el plan ${plan.name} en ${activeMode.subjectPrefix}`}
                 >
                   Contactar
                 </a>
               </div>
-              <ul className="sponsor-tiers__features" aria-label="Beneficios Track Sponsor">
-                {track.features.map((f, i) => (
-                  <li key={i} className="sponsor-tiers__feature">
-                    <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--cyan" aria-hidden="true" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+            </AnimationWrapper>
+          ))}
         </div>
-      </AnimationWrapper>
 
-      {/* Gold / Silver / Virtual-Only */}
-      <div className="sponsor-tiers__standard-row">
-        {standard.map((plan) => (
-          <AnimationWrapper key={plan.id} animation="fade-up" duration={800}>
-            <div className={`sponsor-tiers__card sponsor-tiers__card--${plan.id}`}>
-              <span className={`sponsor-tiers__tier-label sponsor-tiers__tier-label--${plan.id === 'gold' ? 'amber' : 'slate'}`}>
-                {plan.name}
-              </span>
-              <div className="sponsor-tiers__price">
-                <span className="sponsor-tiers__price-sign">€</span>
-                <span className="sponsor-tiers__price-amount">{formatPrice(plan.price)}</span>
-              </div>
-              <span className="sponsor-tiers__price-sub">inversión</span>
-              <ul className="sponsor-tiers__features" aria-label={`Beneficios ${plan.name}`}>
-                {plan.features.map((f, i) => (
-                  <li key={i} className="sponsor-tiers__feature">
-                    <BsCheckCircleFill
-                      className={`sponsor-tiers__check sponsor-tiers__check--${plan.id === 'gold' ? 'cyan-dim' : 'slate'}`}
-                      aria-hidden="true"
-                    />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${plan.name}`}
-                className="sponsor-tiers__cta sponsor-tiers__cta--muted"
-                aria-label={`Contactar sobre el plan ${plan.name}`}
-              >
-                Contactar
-              </a>
-            </div>
-          </AnimationWrapper>
-        ))}
+        <div className="sponsor-tiers__startup">
+          <h3>Startup Pack</h3>
+          <p>
+            Si eres startup, recupera el acceso rápido al formulario de elegibilidad y aplica hoy.
+          </p>
+          <Link to="/startup-pack" className="sponsor-tiers__cta sponsor-tiers__cta--gold">
+            Ir a Startup Pack
+          </Link>
+        </div>
       </div>
-
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default PricingTable;
