@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
 import bgMain from "./assets/bg-main.jpg";
 import { BsCalendar3, BsChevronDown } from 'react-icons/bs';
-import { Route, Routes, Link, NavLink, Navigate } from 'react-router-dom';
+import { Route, Routes, Link, NavLink, Navigate, useLocation } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
@@ -55,6 +55,7 @@ import { useTranslation } from 'react-i18next';
 
 function App() {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
   const { canPrompt, promptInstall } = usePWA();
   const [showCookiePreferences, setShowCookiePreferences] = useState(false);
   const [showTicketModal, setShowTicketModal] = useState(false);
@@ -89,6 +90,8 @@ function App() {
   const handleCloseCookiePreferences = () => {
     setShowCookiePreferences(false);
   };
+
+  const isDubaiEventRoute = location.pathname.startsWith('/events/x-ops-conference-dubai-2026');
 
   return (
   <HelmetProvider>
@@ -243,7 +246,7 @@ function App() {
           <Route path="/speaker/:id" element={<SpeakerPage />} />
           <Route path="/mi-agenda" element={<MyAgenda />} />
 
-          /* Post-Event */
+          {/* Post-Event */}
           <Route path="/post-event" element={<PostEventPage />} />
 
           {/* Analytics Dashboard */}
@@ -285,8 +288,8 @@ function App() {
         <div className="row">
           <div className="col-md-4 mb-3">
             <h5 className='heading'>{t('footer.address')}</h5>
-            <p>{t('footer.addressLine1')}</p>
-            <p>{t('footer.addressLine2')}</p>
+            <p>{isDubaiEventRoute ? t('footer.dubaiAddressLine1') : t('footer.addressLine1')}</p>
+            <p>{isDubaiEventRoute ? t('footer.dubaiAddressLine2') : t('footer.addressLine2')}</p>
           </div>
           <div className="col-md-4 mb-3">
             <h5 className='heading'>{t('footer.contacts')}</h5>

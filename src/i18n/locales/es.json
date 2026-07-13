@@ -25,6 +25,8 @@
     "address": "Dirección",
     "addressLine1": "Universidad Rey Juan Carlos campus Móstoles",
     "addressLine2": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid",
+    "dubaiAddressLine1": "Dubai, Emiratos Árabes Unidos",
+    "dubaiAddressLine2": "Venue por confirmar",
     "contacts": "Contactos",
     "links": "Enlaces",
     "privacyPolicy": "Política de Privacidad",
@@ -527,8 +529,8 @@
   },
   "speakers": {
     "title": "Conoce a Nuestros Ponentes",
-    "metaTitle": "Ponentes de la X-Ops Conference Madrid 2025",
-    "metaDesc": "Descubre a los expertos que compartirán sus conocimientos en DevOps, DevSecOps, AIOps y MLOps en la X-Ops Conference Madrid 2025.",
+    "metaTitle": "X-Ops Conference & Summit 2026 · Madrid y Dubai",
+    "metaDesc": "Descubre el ecosistema X-Ops 2026 en Madrid y Dubai: Summit ejecutivo y Conference técnica.",
     "talk": "Charla"
   }
 }

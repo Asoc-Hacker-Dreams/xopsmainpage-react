@@ -189,7 +189,7 @@ const EditionsSection = () => {
         <AnimationWrapper animation="fade-up" duration={1000}>
           <div className="text-center mb-5">
             <span style={{ color: '#00BCD4', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase' }}>
-              // {t('editions.sectionPrefix')}
+              {t('editions.sectionPrefix')}
             </span>
             <h2 style={{ color: '#ffffff', fontWeight: 800, marginTop: '12px', marginBottom: '16px', fontSize: '2rem' }}>
               {t('editions.title')}
@@ -263,9 +263,9 @@ const EditionsSection = () => {
                 t('editions.dubai.badges.region'),
               ]}
               ctaSummit={t('editions.dubai.cta.summit')}
-              ctaSummitTo="/events/x-ops-conference-dubai-2026"
+              ctaSummitTo="/events/x-ops-conference-dubai-2026#summit-dubai"
               ctaConference={t('editions.dubai.cta.conference')}
-              ctaConferenceTo="/events/x-ops-conference-dubai-2026"
+              ctaConferenceTo="/events/x-ops-conference-dubai-2026#conference-dubai"
               targetDate="2026-10-15T09:00:00"
               animDir="left"
             />

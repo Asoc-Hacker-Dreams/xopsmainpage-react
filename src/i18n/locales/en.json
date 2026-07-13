@@ -25,6 +25,8 @@
     "address": "Address",
     "addressLine1": "Rey Juan Carlos University Móstoles campus",
     "addressLine2": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid",
+    "dubaiAddressLine1": "Dubai, United Arab Emirates",
+    "dubaiAddressLine2": "Venue to be confirmed",
     "contacts": "Contacts",
     "links": "Links",
     "privacyPolicy": "Privacy Policy",
@@ -533,8 +535,8 @@
   },
   "speakers": {
     "title": "Meet Our Speakers",
-    "metaTitle": "Speakers at X-Ops Conference Madrid 2025",
-    "metaDesc": "Discover the experts sharing their knowledge in DevOps, DevSecOps, AIOps and MLOps at X-Ops Conference Madrid 2025.",
+    "metaTitle": "X-Ops Conference & Summit 2026 · Madrid and Dubai",
+    "metaDesc": "Discover the X-Ops 2026 ecosystem in Madrid and Dubai: executive Summit plus technical Conference.",
     "talk": "Talk"
   }
 }
