@@ -159,7 +159,6 @@ export function getDefaultClient(): TriskelGateClient {
 /** Browser-side singleton – reads Vite env vars */
 export const triskelGateClient = new TriskelGateClient({
   baseUrl: (
-    (typeof import.meta !== 'undefined' && (import.meta as Record<string, any>).env?.VITE_TRISKELGATE_URL) ||
     (typeof import.meta !== 'undefined' && (import.meta as Record<string, any>).env?.VITE_TRISKELL_API_BASE_URL) ||
     'http://localhost:3001'
   ),
