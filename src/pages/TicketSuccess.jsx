@@ -63,44 +63,41 @@ const TicketQr = ({ qrCode, ticketNumber, holderName }) => {
   );
 };
 
-const WalletButtons = ({ ticket, apiBase }) => {
-  const walletLinks = {
-    apple:   `/api/tickets/${ticket.id}/apple-wallet`,
-    google:  `/api/tickets/${ticket.id}/google-wallet`,
-    samsung: `/api/tickets/${ticket.id}/samsung-pass`,
+const WalletButtons = ({ ticket, apiBase, walletStatus }) => {
+  const handlers = {
+    apple:   () => { window.location.href = `${apiBase}/api/tickets/${ticket.id}/apple-wallet`; },
+    google:  async () => {
+      const r = await fetch(`${apiBase}/api/tickets/${ticket.id}/google-wallet`);
+      const data = await r.json();
+      if (data?.url) window.open(data.url, '_blank', 'noopener');
+    },
+    samsung: () => { window.location.href = `${apiBase}/api/tickets/${ticket.id}/samsung-pass`; },
   };
-  return (
-    <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
-      <Button
-        as="a"
-        href={`${apiBase}${walletLinks.apple}`}
-        variant="dark"
-        size="sm"
-        target="_blank"
-        rel="noopener"
-      >
+
+  const buttons = [
+    walletStatus.apple?.configured && (
+      <Button key="apple" variant="dark" size="sm" onClick={handlers.apple}>
         <BsApple size={18} className="me-1" /> Apple Wallet
       </Button>
-      <Button
-        as="a"
-        href={`${apiBase}${walletLinks.google}`}
-        variant="outline-secondary"
-        size="sm"
-        target="_blank"
-        rel="noopener"
-      >
+    ),
+    walletStatus.google?.configured && (
+      <Button key="google" variant="outline-secondary" size="sm" onClick={handlers.google}>
         <BsGoogle size={18} className="me-1" /> Google Wallet
       </Button>
-      <Button
-        as="a"
-        href={`${apiBase}${walletLinks.samsung}`}
-        variant="outline-secondary"
-        size="sm"
-        target="_blank"
-        rel="noopener"
-      >
+    ),
+    walletStatus.samsung?.configured && (
+      <Button key="samsung" variant="outline-secondary" size="sm" onClick={handlers.samsung}>
         <BsPhone size={18} className="me-1" /> Samsung Pass
       </Button>
+    ),
+  ].filter(Boolean);
+
+  if (buttons.length === 0) return null;
+
+  return (
+    <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
+      <small className="w-100 text-muted mb-1">Añadir a wallet</small>
+      {buttons}
     </div>
   );
 };
@@ -111,6 +108,20 @@ const TicketSuccess = () => {
   const [orderNumber, setOrderNumber] = useState(null);
   const [ticketsList, setTicketsList] = useState([]);
   const [polling, setPolling] = useState(!!sessionId);
+  const [walletStatus, setWalletStatus] = useState({ apple: { configured: false }, google: { configured: false }, samsung: { configured: false } });
+
+  // Probe which wallet integrations the backend has configured so we
+  // only show the buttons that will actually work.
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${TICKETS_BASE}/api/wallets/status`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!cancelled && data?.data) setWalletStatus(data.data);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     if (!sessionId || sessionId === '{CHECKOUT_SESSION_ID}') {
@@ -197,7 +208,7 @@ const TicketSuccess = () => {
                         ticketNumber={tk.ticketNumber}
                         holderName={tk.holderName}
                       />
-                      <WalletButtons ticket={tk} apiBase={TICKETS_BASE} />
+                      <WalletButtons ticket={tk} apiBase={TICKETS_BASE} walletStatus={walletStatus} />
                     </div>
                   ))}
                 </div>
