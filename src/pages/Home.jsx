@@ -3,14 +3,9 @@ import XOpsSection from "../components/XOpsSection";
 import EcosystemSection from "../components/EcosystemSection";
 import EditionsSection from "../components/EditionsSection";
 import Themes from "../components/Themes";
-import Events from "../components/Events/Events";
 import Ubication from "../components/Ubication";
 import Collaborators from "../components/Collaborators";
 import LastEditionData from "../components/LastEditionData";
-import SpeakersSection from "../components/SpeakersSection";
-import SummitHero from "../components/Summit/SummitHero";
-import ValueProposition from "../components/Summit/ValueProposition";
-import ExecutiveAgenda from "../components/Summit/ExecutiveAgenda";
 import PricingTable from "../components/PricingTable";
 import SEO from "../components/SEO";
 
@@ -20,8 +15,8 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="X-Ops Conference Madrid 2026 · DevOps, DevSecOps, AIOps & MLOps"
-        description="X-Ops Conference: el mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Madrid y Dubai 2026 · Summit ejecutivo + Conference técnica."
+        title="X-Ops Conference & Summit 2026 · Madrid y Dubai"
+        description="X-Ops Conference: el mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en dos ciudades. Madrid y Dubai 2026."
         path="/"
         image="https://xopsconference.com/icon-512x512.png"
         keywords="X-Ops Conference, DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, Ciberseguridad, SecOps, Kubernetes, Madrid, Dubai, conferencia tecnología 2026"
@@ -32,54 +27,32 @@ const Home = () => {
         ]}
         structuredData={{
           "@context": "https://schema.org",
-          "@type": "Event",
-          "name": "X-Ops Conference Madrid 2026",
-          "description": "El mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en España. Summit + Conference.",
-          "startDate": "2026-11-19",
-          "endDate": "2026-11-21",
-          "eventStatus": "https://schema.org/EventScheduled",
-          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-          "location": {
-            "@type": "Place",
-            "name": "URJC Madrid",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Madrid",
-              "addressRegion": "Madrid",
-              "addressCountry": "ES"
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://madrid.xopsconference.com",
+              "name": "X-Ops Madrid 2026"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://dubai.xopsconference.com",
+              "name": "X-Ops Dubai 2026"
             }
-          },
-          "organizer": {
-            "@type": "Organization",
-            "name": "X-Ops Conference",
-            "url": "https://xopsconference.com"
-          },
-          "image": "https://xopsconference.com/icon-512x512.png",
-          "offers": {
-            "@type": "Offer",
-            "url": "https://xopsconference.com/summit",
-            "priceCurrency": "EUR",
-            "availability": "https://schema.org/InStock"
-          }
+          ]
         }}
       />
       <XOpsSection />
       <EcosystemSection />
       <EditionsSection />
 
-      <div className="summit-page">
-        <SummitHero />
-        <ValueProposition />
-        <ExecutiveAgenda />
-      </div>
-
       <Themes />
-      <Events />
       <Ubication />
       <PricingTable />
-      <LastEditionData/>
+      <LastEditionData />
       <Collaborators />
-      <SpeakersSection />
     </>
   );
 };

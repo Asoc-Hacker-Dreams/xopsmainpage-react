@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import AnimationWrapper from './AnimationWrapper';
 
@@ -87,13 +86,13 @@ const VenueRow = ({ label, name, dates, venue }) => (
   </div>
 );
 
-const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaSummit, ctaSummitTo, ctaConference, ctaConferenceTo, targetDate, animDir }) => (
+const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaLabel, ctaTo, targetDate, animDir }) => (
   <AnimationWrapper animation={`fade-${animDir}`} duration={1200}>
     <div style={{
       background: '#16213e',
       borderRadius: '14px',
       padding: '36px',
-      border: '1px solid #2a2a4a',
+      border: '1px solid #2a3a5a',
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -142,39 +141,24 @@ const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, nar
         {badges.map((b) => <Badge key={b} text={b} />)}
       </div>
 
-      {/* CTAs */}
-      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-        <Link
-          to={ctaSummitTo}
+      {/* Single CTA per city - points to subdomain */}
+      <div>
+        <a
+          href={ctaTo}
           style={{
+            display: 'inline-block',
             background: '#FFD600',
             color: '#0A0F2E',
             fontWeight: 700,
             fontSize: '0.8rem',
-            padding: '10px 18px',
+            padding: '12px 22px',
             borderRadius: '8px',
             textDecoration: 'none',
             letterSpacing: '0.04em',
           }}
         >
-          {ctaSummit}
-        </Link>
-        <Link
-          to={ctaConferenceTo}
-          style={{
-            background: 'transparent',
-            color: '#FFD600',
-            fontWeight: 700,
-            fontSize: '0.8rem',
-            padding: '10px 18px',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            border: '1px solid rgba(255,214,0,0.35)',
-            letterSpacing: '0.04em',
-          }}
-        >
-          {ctaConference}
-        </Link>
+          {ctaLabel}
+        </a>
       </div>
     </div>
   </AnimationWrapper>
@@ -189,7 +173,7 @@ const EditionsSection = () => {
         <AnimationWrapper animation="fade-up" duration={1000}>
           <div className="text-center mb-5">
             <span style={{ color: '#00BCD4', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase' }}>
-              // {t('editions.sectionPrefix')}
+              {t('editions.sectionPrefix')}
             </span>
             <h2 style={{ color: '#ffffff', fontWeight: 800, marginTop: '12px', marginBottom: '16px', fontSize: '2rem' }}>
               {t('editions.title')}
@@ -227,10 +211,8 @@ const EditionsSection = () => {
                 t('editions.madrid.badges.edition'),
                 t('editions.madrid.badges.attendees'),
               ]}
-              ctaSummit={t('editions.madrid.cta.summit')}
-              ctaSummitTo="/summit"
-              ctaConference={t('editions.madrid.cta.conference')}
-              ctaConferenceTo="/#events"
+              ctaLabel={t('editions.madrid.cta.verMadrid') || 'Ver Madrid'}
+              ctaTo="https://madrid.xopsconference.com"
               targetDate="2026-11-19T09:00:00"
               animDir="right"
             />
@@ -262,10 +244,8 @@ const EditionsSection = () => {
                 t('editions.dubai.badges.edition'),
                 t('editions.dubai.badges.region'),
               ]}
-              ctaSummit={t('editions.dubai.cta.summit')}
-              ctaSummitTo="/events/x-ops-conference-dubai-2026"
-              ctaConference={t('editions.dubai.cta.conference')}
-              ctaConferenceTo="/events/x-ops-conference-dubai-2026"
+              ctaLabel={t('editions.dubai.cta.verDubai') || 'Ver Dubai'}
+              ctaTo="https://dubai.xopsconference.com"
               targetDate="2026-10-15T09:00:00"
               animDir="left"
             />

@@ -65,3 +65,4 @@ test-results/
 e2e/report/
 playwright-report/
 .impeccable/
+.vercel

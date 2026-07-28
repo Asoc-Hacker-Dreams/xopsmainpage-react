@@ -34,6 +34,44 @@
   line-height: 1.65;
 }
 
+.sponsor-tiers__city-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.sponsor-tiers__city-tab {
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #94a3b8;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.sponsor-tiers__city-tab--active {
+  color: #0A0F2E;
+  background: #FFD600;
+  border-color: #FFD600;
+}
+
+.sponsor-tiers__city-copy {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: #B0BEC5;
+  font-size: 0.9rem;
+}
+
+.sponsor-tiers__city-note {
+  color: #64748b;
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
 /* ── Platinum (featured, full-width) ────────────────────────────── */
 .sponsor-tiers__featured {
   background: #111840;
@@ -284,6 +322,26 @@
 .sponsor-tiers__cta:focus-visible {
   outline: 2px solid #00BCD4;
   outline-offset: 3px;
+}
+
+.sponsor-tiers__startup {
+  margin-top: 28px;
+  border: 1px solid rgba(0, 188, 212, 0.25);
+  border-radius: 16px;
+  padding: 24px;
+  background: #111840;
+  text-align: center;
+}
+
+.sponsor-tiers__startup h3 {
+  color: #f8fafc;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.sponsor-tiers__startup p {
+  color: #B0BEC5;
+  margin-bottom: 16px;
 }
 
 /* ── Responsive ─────────────────────────────────────────────────── */
