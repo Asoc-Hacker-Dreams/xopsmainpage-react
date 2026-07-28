@@ -394,7 +394,8 @@
       },
       "cta": {
         "summit": "Ver Summit Madrid",
-        "conference": "Ver Conference Madrid"
+        "conference": "Ver Conference Madrid",
+        "verMadrid": "Ver Madrid"
       }
     },
     "dubai": {
@@ -421,7 +422,8 @@
       },
       "cta": {
         "summit": "Ver Summit Dubai",
-        "conference": "Ver Conference Dubai"
+        "conference": "Ver Conference Dubai",
+        "verDubai": "Ver Dubai"
       }
     }
   },

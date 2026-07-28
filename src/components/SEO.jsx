@@ -6,6 +6,7 @@ const SEO = ({
   title = 'X-Ops Conference',
   description = 'Conferencia internacional sobre DevOps, DevSecOps, AIOps y MLOps en Madrid.',
   path = '/',
+  baseUrl = 'https://xopsconference.com',
   image = 'https://xopsconference.com/icon-512x512.png',
   keywords = 'X-Ops, DevOps, DevSecOps, AIOps, MLOps, Conferencia, Madrid, Tecnología',
   lang,
@@ -17,7 +18,6 @@ const SEO = ({
   const { i18n } = useTranslation();
   const activeLang = lang || i18n.language || 'es';
 
-  const baseUrl = 'https://xopsconference.com';
   const fullUrl = `${baseUrl}${path}`;
   const ogLocale = activeLang === 'es' ? 'es_ES' : 'en_US';
   const ogLocaleAlternate = activeLang === 'es' ? 'en_US' : 'es_ES';
@@ -68,6 +68,7 @@ SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   path: PropTypes.string,
+  baseUrl: PropTypes.string,
   image: PropTypes.string,
   keywords: PropTypes.string,
   lang: PropTypes.string,

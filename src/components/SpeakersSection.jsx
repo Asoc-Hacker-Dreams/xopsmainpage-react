@@ -36,7 +36,6 @@ import suseLogo from "../assets/logos/suse-logo.png";
 import redhatLogo from "../assets/logos/redhat-logo.png";
 import microsoftLogo from "../assets/logos/microsoft-logo.png";
 import digitaloceanLogo from "../assets/logos/digialocean-logo.png";
-import { Helmet } from 'react-helmet-async';
 
 import AnimationWrapper from "./AnimationWrapper";
 
@@ -44,16 +43,6 @@ const SpeakersSection = () => {
   const { t } = useTranslation();
   return (
     <>
-      <Helmet>
-        <title>{t('speakers.metaTitle')}</title>
-        <meta name="description" content={t('speakers.metaDesc')} />
-        <meta name="keywords" content="X-Ops, DevOps, DevSecOps, AIOps, MLOps, Conferencia Tecnología Madrid, Ponentes, GitOps, SecOps" />
-        <meta property="og:title" content={t('speakers.metaTitle')} />
-        <meta property="og:description" content={t('speakers.metaDesc')} />
-        <meta property="og:url" content="https://xopsconference.com/#ponentes" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
-
       <section id="ponentes" className="speaker-section ">
         <div className="container margin-top">
           <h2 className="text-center">{t('speakers.title')}</h2>

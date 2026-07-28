@@ -41,9 +41,9 @@ import WalletLogin from './pages/wallet/WalletLogin';
 import WalletDashboard from './pages/wallet/WalletDashboard';
 import CheckoutSuccess from './pages/tickets/CheckoutSuccess';
 import CheckoutCancel from './pages/tickets/CheckoutCancel';
-import XOpsHome from './pages/tickets/XOpsHome';
-import XOpsEventDetail from './pages/tickets/XOpsEventDetail';
+import CityEventPage from './pages/CityEventPage';
 import StartupPack from './pages/StartupPack';
+import { getCityFromHostname } from './data/cityEvents';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 import './styles/Summit.css';
@@ -56,6 +56,10 @@ import { useTranslation } from 'react-i18next';
 function App() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const hostnameCity = getCityFromHostname(window.location.hostname);
+  const routeCity = location.pathname === '/madrid' ? 'madrid' : location.pathname === '/dubai' ? 'dubai' : null;
+  const activeCity = hostnameCity || routeCity;
+  const isCityPage = Boolean(activeCity) && ['/', '/madrid', '/dubai'].includes(location.pathname);
   const { canPrompt, promptInstall } = usePWA();
   const [showCookiePreferences, setShowCookiePreferences] = useState(false);
   const [showTicketModal, setShowTicketModal] = useState(false);
@@ -91,7 +95,7 @@ function App() {
     setShowCookiePreferences(false);
   };
 
-  const isDubaiEventRoute = location.pathname.startsWith('/events/x-ops-conference-dubai-2026');
+  const isDubaiContext = activeCity === 'dubai' || location.pathname.startsWith('/events/x-ops-conference-dubai-2026');
 
   return (
   <HelmetProvider>
@@ -112,11 +116,19 @@ function App() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto">
-                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</NavLink>
-                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#conferencia" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</NavLink>
-                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</NavLink>
-                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ediciones" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.editions')}</NavLink>
-                <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#patrocinio" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</NavLink>
+                {isCityPage ? (
+                  <>
+                    <a className="links px-4 fw-bold text-white" href="#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</a>
+                    <a className="links px-4 fw-bold text-white" href="#conference" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</a>
+                    <a className="links px-4 fw-bold text-white" href="#agenda" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('archive.agenda')}</a>
+                    <a className="links px-4 fw-bold text-white" href="#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</a>
+                  </>
+                ) : (
+                  <>
+                    <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ediciones" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.editions')}</NavLink>
+                    <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#patrocinio" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.sponsor')}</NavLink>
+                  </>
+                )}
 
       {/* Menú EVENTOS ANTERIORES */}
       <NavDropdown
@@ -169,47 +181,49 @@ function App() {
         </Navbar.Collapse>
     </Navbar>
 
-    <section
-      id="main-content"
-      className="site-hero"
-      style={{ backgroundImage: `url(${bgMain})` }}
-      aria-label={t('hero.title')}
-    >
-      <div className="site-hero__overlay" aria-hidden="true" />
-      <div className="site-hero__content">
-        <h1 className="site-hero__title">{t('hero.title')}</h1>
-        <p className="site-hero__tagline">{t('hero.description')}</p>
-        <p className="site-hero__date">
-          <BsCalendar3 aria-hidden="true" />
-          <span>{t('hero.date')}</span>
-        </p>
-        <div className="site-hero__ctas">
-          <button
-            className="btn-hero-primary"
-            onClick={() => setShowTicketModal(true)}
-          >
-            {t('hero.buyTicket')}
-          </button>
-          <Link to="/#summit" className="btn-hero-secondary">
-            {t('hero.viewAgenda')}
-          </Link>
+    {!isCityPage && (
+      <section
+        id="main-content"
+        className="site-hero"
+        style={{ backgroundImage: `url(${bgMain})` }}
+        aria-label={t('hero.title')}
+      >
+        <div className="site-hero__overlay" aria-hidden="true" />
+        <div className="site-hero__content">
+          <h1 className="site-hero__title">{t('hero.title')}</h1>
+          <p className="site-hero__tagline">{t('hero.description')}</p>
+          <p className="site-hero__date">
+            <BsCalendar3 aria-hidden="true" />
+            <span>{t('hero.date')}</span>
+          </p>
+          <div className="site-hero__ctas">
+            <button
+              className="btn-hero-primary"
+              onClick={() => setShowTicketModal(true)}
+            >
+              {t('hero.buyTicket')}
+            </button>
+            <Link to="/#ediciones" className="btn-hero-secondary">
+              {t('hero.viewAgenda')}
+            </Link>
+          </div>
+          {canPrompt && (
+            <button onClick={handleInstallClick} className="site-hero__install">
+              {t('hero.installApp')}
+            </button>
+          )}
         </div>
-        {canPrompt && (
-          <button onClick={handleInstallClick} className="site-hero__install">
-            {t('hero.installApp')}
-          </button>
-        )}
-      </div>
-      <div className="site-hero__scroll" aria-hidden="true">
-        <BsChevronDown />
-      </div>
-    </section>
+        <div className="site-hero__scroll" aria-hidden="true">
+          <BsChevronDown />
+        </div>
+      </section>
+    )}
 
       </div>
 
 
       <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={hostnameCity ? <CityEventPage city={hostnameCity} /> : <Home />} />
           <Route path="/Organizer" element={<Organizer />} />
           <Route path="/Organizadores" element={<Organizer />} />
           <Route path="/Team" element={<Organizer />} />
@@ -220,8 +234,8 @@ function App() {
               rather than 404ing them. */}
           <Route path="/Sponsor" element={<Navigate to="/#patrocinio" replace />} />
           <Route path="/Patrocina" element={<Navigate to="/#patrocinio" replace />} />
-          <Route path="/summit" element={<Navigate to="/#summit" replace />} />
-          <Route path="/Summit" element={<Navigate to="/#summit" replace />} />
+          <Route path="/summit" element={<Navigate to="/madrid" replace />} />
+          <Route path="/Summit" element={<Navigate to="/madrid" replace />} />
 
           <Route path="/tickets" element={<Tickets />} />
           <Route path="/tickets/success" element={<TicketSuccess />} />
@@ -271,8 +285,12 @@ function App() {
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/checkout/cancel" element={<CheckoutCancel />} />
           
-          {/* X-Ops public ticket pages */}
-          <Route path="/events/x-ops-conference-dubai-2026" element={<XOpsEventDetail />} />
+          {/* City event pages - host-aware routing */}
+          <Route path="/madrid" element={<CityEventPage city="madrid" />} />
+          <Route path="/dubai" element={<CityEventPage city="dubai" />} />
+
+          {/* X-Ops public ticket pages (legacy - redirect to city pages) */}
+          <Route path="/events/x-ops-conference-dubai-2026" element={<Navigate to="/dubai" replace />} />
           <Route path="/events/x-ops-conference-dubai-2026/buy" element={<Tickets />} />
 
           <Route path="/startup-pack" element={<StartupPack />} />
@@ -288,8 +306,8 @@ function App() {
         <div className="row">
           <div className="col-md-4 mb-3">
             <h5 className='heading'>{t('footer.address')}</h5>
-            <p>{isDubaiEventRoute ? t('footer.dubaiAddressLine1') : t('footer.addressLine1')}</p>
-            <p>{isDubaiEventRoute ? t('footer.dubaiAddressLine2') : t('footer.addressLine2')}</p>
+            <p>{isDubaiContext ? t('footer.dubaiAddressLine1') : t('footer.addressLine1')}</p>
+            <p>{isDubaiContext ? t('footer.dubaiAddressLine2') : t('footer.addressLine2')}</p>
           </div>
           <div className="col-md-4 mb-3">
             <h5 className='heading'>{t('footer.contacts')}</h5>
@@ -299,7 +317,7 @@ function App() {
             <h5 className='heading'>{t('footer.links')}</h5>
             <ul className="list-unstyled">
 
-              <li><Link className="text-white" to="/#events" style={{textDecoration: 'none'}}>{t('nav.event')}</Link></li>
+              <li><Link className="text-white" to="/#ediciones" style={{textDecoration: 'none'}}>{t('nav.event')}</Link></li>
               <li><NavLink className="text-white" to="/Organizer#organizr" style={{textDecoration: 'none'}}>{t('nav.organizers')}</NavLink></li>
               <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</a></li>
               <li><a href="https://sessionize.com/x-ops-conference-mad-2026/" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</a></li>

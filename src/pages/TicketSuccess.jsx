@@ -97,9 +97,9 @@ const TicketSuccess = () => {
               </div>
 
               <div className="success-actions mt-4">
-                <Link to="/summit">
+                <Link to="/madrid">
                   <Button variant="primary" className="me-3">
-                    Volver al Summit
+                    Volver al evento
                   </Button>
                 </Link>
                 <Link to="/agenda">

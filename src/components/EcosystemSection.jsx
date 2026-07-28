@@ -119,7 +119,7 @@ const EcosystemSection = () => {
               audience={t('ecosystem.conference.audience')}
               audienceLabel={t('ecosystem.audienceLabel')}
               cta={t('ecosystem.conference.cta')}
-              to="/#events"
+              to="/#ediciones"
               animDir="right"
             />
           </div>
@@ -132,7 +132,7 @@ const EcosystemSection = () => {
               audience={t('ecosystem.summit.audience')}
               audienceLabel={t('ecosystem.audienceLabel')}
               cta={t('ecosystem.summit.cta')}
-              to="/summit"
+              to="/#ediciones"
               animDir="left"
             />
           </div>
