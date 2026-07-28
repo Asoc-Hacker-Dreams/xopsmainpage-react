@@ -70,6 +70,21 @@ export interface TGCheckoutResponse {
 
 export interface TGCheckoutSessionStatus {
   status: string;
+  orderId?: number;
+  orderNumber?: string;
+  totalAmount?: number;
+  customerEmail?: string;
+  customerName?: string;
+  eventId?: number;
+  tickets?: Array<{
+    id: number;
+    uuid: string;
+    qrCode: string;
+    ticketNumber: string;
+    holderName?: string | null;
+    holderEmail?: string | null;
+    ticketTypeName?: string | null;
+  }>;
 }
 
 /** Standard wrapper the TriskelGate API uses for list endpoints */
