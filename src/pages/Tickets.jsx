@@ -164,7 +164,11 @@ const Tickets = () => {
         if (cancelled) return;
         const active = evList.filter(
           (e) => e.status === 'active' &&
-            (CONFIG_ORGANIZER_ID === null || Number(e.organizerId) === CONFIG_ORGANIZER_ID),
+            (
+              CONFIG_ORGANIZER_ID === null ||
+              e.organizerId == null || // event without organizer matches any configured organizer
+              Number(e.organizerId) === CONFIG_ORGANIZER_ID
+            ),
         );
         const withTT = await Promise.all(
           active.map(async (ev) => {
