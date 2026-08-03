@@ -100,10 +100,19 @@ export class TriskelGateClient {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeoutMs);
 
+    // Only set Content-Type when actually sending a body. Content-Type:
+    // application/json on a bodyless GET turns it into a "non-simple"
+    // CORS request, forcing the browser to run an OPTIONS preflight first —
+    // which this backend/proxy handles unreliably and causes intermittent
+    // net::ERR_ABORTED failures on reads (e.g. /api/events, ticket-types,
+    // and the checkout-status poll). Accept alone is CORS-safelisted and
+    // doesn't trigger a preflight.
     const headers: Record<string, string> = {
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
     };
+    if (body) {
+      headers['Content-Type'] = 'application/json';
+    }
     if (this.apiKey) {
       headers['Authorization'] = `Bearer ${this.apiKey}`;
     }
