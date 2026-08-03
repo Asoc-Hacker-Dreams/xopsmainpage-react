@@ -5,11 +5,11 @@ import './StartupPack.css';
 
 const SYNC_URL = import.meta.env.VITE_HUBSPOT_SYNC_URL || 'http://localhost:3002';
 
+// Only real, documented cities (see src/data/cityEvents.js) — Barcelona
+// and London were never actual X-Ops Conference locations.
 const CITIES = [
   { key: 'madrid', flag: '🇪🇸', name: 'Madrid', price: '€850', currency: 'EUR', amount: 850 },
-  { key: 'barcelona', flag: '🇪🇸', name: 'Barcelona', price: '€950', currency: 'EUR', amount: 950 },
   { key: 'dubai', flag: '🇦🇪', name: 'Dubai', price: 'AED 3.500', currency: 'AED', amount: 3500 },
-  { key: 'london', flag: '🇬🇧', name: 'London', price: '£900', currency: 'GBP', amount: 900 },
 ];
 
 const COUNTRIES = ['España', 'UAE', 'United Kingdom', 'Germany', 'France', 'Netherlands', 'USA', 'Other'];
