@@ -39,6 +39,21 @@ vi.mock('react-bootstrap', () => {
   const ListGroup = ({ children }) => <ul>{children}</ul>;
   ListGroup.Item = ({ children }) => <li>{children}</li>;
 
+  // Renders nothing while closed (matches real react-bootstrap), so
+  // TicketModal — always mounted in App.jsx now, hidden by default in these
+  // tests — never needs its Form.Group/Control/checkout markup exercised here.
+  const Modal = ({ show, children }) => (show ? <div role="dialog">{children}</div> : null);
+  Modal.Header = ({ children }) => <div>{children}</div>;
+  Modal.Title = ({ children }) => <h2>{children}</h2>;
+  Modal.Body = ({ children }) => <div>{children}</div>;
+  Modal.Footer = ({ children }) => <div>{children}</div>;
+
+  const Form = ({ children, ...props }) => <form {...props}>{children}</form>;
+  Form.Group = ({ children }) => <div>{children}</div>;
+  Form.Label = ({ children, ...props }) => <label {...props}>{children}</label>;
+  Form.Control = (props) => <input {...props} />;
+  Form.Text = ({ children }) => <small>{children}</small>;
+
   return {
     Navbar,
     Nav: ({ children }) => <div>{children}</div>,
@@ -49,9 +64,10 @@ vi.mock('react-bootstrap', () => {
     Button: ({ children, onClick, ...props }) => <button onClick={onClick} {...props}>{children}</button>,
     Card,
     ListGroup,
+    Modal,
     Badge: ({ children }) => <span>{children}</span>,
     Alert: ({ children }) => <div role="alert">{children}</div>,
-    Form: ({ children }) => <form>{children}</form>,
+    Form,
     Spinner: () => <div />,
   };
 });

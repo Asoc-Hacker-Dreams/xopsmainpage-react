@@ -34,10 +34,6 @@ vi.mock('../pages/Organizer', () => ({
   default: () => <div data-testid="organizer-page">Organizer Content</div>
 }))
 
-vi.mock('../pages/Sponsor', () => ({
-  default: () => <div data-testid="sponsor-page">Sponsor Content</div>
-}))
-
 vi.mock('../pages/archive/2024/Home2024', () => ({
   default: () => <div data-testid="home-2024-page">Home 2024 Content</div>
 }))
@@ -144,15 +140,18 @@ describe('Integration Tests - Navigation Flow', () => {
     })
   })
 
-  it('navigates to sponsors page when clicking sponsors link', async () => {
+  it('navigates to sponsors section when clicking sponsors link', async () => {
+    // Sponsor content now lives as an anchored section on Home (single-page
+    // site), not a dedicated route/page — PATROCINA links to /#patrocinio.
     const user = userEvent.setup()
     render(<AppWrapper />)
-    
+
     const sponsorsLink = screen.getByText('PATROCINA')
     await user.click(sponsorsLink)
-    
+
     await waitFor(() => {
-      expect(screen.getByTestId('sponsor-page')).toBeInTheDocument()
+      expect(window.location.hash).toBe('#patrocinio')
+      expect(screen.getByTestId('home-page')).toBeInTheDocument()
     })
   })
 
