@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
 import bgMain from "./assets/bg-main.jpg";
 import { BsCalendar3, BsChevronDown } from 'react-icons/bs';
-import { Route, Routes, Link, NavLink, Navigate, useLocation } from 'react-router-dom';
+import { Route, Routes, Link, NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
@@ -27,7 +27,6 @@ import TermsOfService from './pages/TermsOfService';
 import Agenda from './pages/Agenda';
 import SpeakerPage from './pages/Speaker';
 import MyAgenda from './pages/MyAgenda';
-import Tickets from './pages/Tickets';
 import TicketSuccess from './pages/TicketSuccess';
 import PostEventPage from './pages/PostEventPage';
 import AnalyticsPage from './pages/Analytics';
@@ -56,6 +55,7 @@ import { useTranslation } from 'react-i18next';
 function App() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const hostnameCity = getCityFromHostname(window.location.hostname);
   const routeCity = location.pathname === '/madrid' ? 'madrid' : location.pathname === '/dubai' ? 'dubai' : null;
   const activeCity = hostnameCity || routeCity;
@@ -71,6 +71,17 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  // Ticket purchasing lives in TicketModal now, not a dedicated page. Legacy
+  // links (old bookmarks, cancelled-checkout retry) redirect here with
+  // ?openTickets=1 so they still land the user in the purchase flow instead
+  // of on a bare homepage.
+  useEffect(() => {
+    if (new URLSearchParams(location.search).get('openTickets') === '1') {
+      setShowTicketModal(true);
+      navigate(location.pathname + location.hash, { replace: true });
+    }
+  }, [location.search, location.pathname, location.hash, navigate]);
 
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
@@ -237,7 +248,11 @@ function App() {
           <Route path="/summit" element={<Navigate to="/madrid" replace />} />
           <Route path="/Summit" element={<Navigate to="/madrid" replace />} />
 
-          <Route path="/tickets" element={<Tickets />} />
+          {/* Ticket purchasing now happens entirely through TicketModal
+              (loads events/tickets directly from TriskelGate) rather than a
+              dedicated page. Old /tickets links redirect to Home and
+              auto-open the modal instead of 404ing. */}
+          <Route path="/tickets" element={<Navigate to="/?openTickets=1" replace />} />
           <Route path="/tickets/success" element={<TicketSuccess />} />
 
           <Route path="/#ponentes" element={<Home />} />
@@ -291,7 +306,7 @@ function App() {
 
           {/* X-Ops public ticket pages (legacy - redirect to city pages) */}
           <Route path="/events/x-ops-conference-dubai-2026" element={<Navigate to="/dubai" replace />} />
-          <Route path="/events/x-ops-conference-dubai-2026/buy" element={<Tickets />} />
+          <Route path="/events/x-ops-conference-dubai-2026/buy" element={<Navigate to="/?openTickets=1" replace />} />
 
           <Route path="/startup-pack" element={<StartupPack />} />
           <Route path="/startup-pack-application" element={<StartupPack />} />
