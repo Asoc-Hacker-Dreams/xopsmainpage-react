@@ -7,6 +7,20 @@ vi.mock('./AnimationWrapper', () => ({
   default: ({ children }) => <div data-testid="animation-wrapper">{children}</div>
 }))
 
+// Collaborators.jsx reads copy via useTranslation(); without a mock, t()
+// returns raw keys (e.g. "collaborators.collaborators") instead of the real
+// Spanish strings these assertions check for.
+vi.mock('react-i18next', async () => {
+  const es = (await import('../i18n/locales/es.json')).default
+  const t = (key) => {
+    const value = key.split('.').reduce((acc, k) => acc?.[k], es)
+    return value !== undefined ? String(value) : key
+  }
+  return {
+    useTranslation: () => ({ t, i18n: { language: 'es', changeLanguage: vi.fn() } }),
+  }
+})
+
 describe('Collaborators Component', () => {
   it('renders without crashing', () => {
     render(<Collaborators />)

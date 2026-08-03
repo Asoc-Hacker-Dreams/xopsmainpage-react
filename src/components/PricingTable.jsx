@@ -26,6 +26,7 @@ const plans = [
       'Agradecimiento en ceremonia de apertura y clausura',
       '15 entradas completas',
     ],
+    metrics: { reach: '~15K', leads: '150+', impressions: '250K+' },
   },
   {
     id: 'track',
@@ -40,6 +41,7 @@ const plans = [
       'Mención especial al inicio de cada jornada',
       '15 entradas completas',
     ],
+    metrics: { reach: '~10K', leads: '100+', impressions: '180K+' },
   },
   {
     id: 'gold',
@@ -52,6 +54,7 @@ const plans = [
       'Publicación dedicada en redes sociales',
       '10 entradas completas',
     ],
+    metrics: { reach: '~6K', leads: '60+', impressions: '100K+' },
   },
   {
     id: 'silver',
@@ -64,6 +67,7 @@ const plans = [
       'Mención en publicación conjunta en redes sociales',
       '5 entradas completas',
     ],
+    metrics: { reach: '~3K', leads: '30+', impressions: '50K+' },
   },
   {
     id: 'virtual',
@@ -76,6 +80,7 @@ const plans = [
       'Vídeo promocional incrustado',
       'Formulario integrado para captura de leads',
     ],
+    metrics: { reach: '~2K', leads: '20+', impressions: '30K+' },
   },
 ];
 
@@ -113,6 +118,26 @@ const renderPrice = (symbol, amount) => (
   <div className="sponsor-tiers__price">
     <span className="sponsor-tiers__price-sign">{symbol}</span>
     <span className="sponsor-tiers__price-amount">{formatNumber(amount)}</span>
+  </div>
+);
+
+// Estimated reach/leads/impressions per tier — not measured, so always
+// labelled "(est.)" to the visitor.
+const renderMetrics = (metrics) => (
+  <div className="sponsor-tiers__metrics">
+    <div className="sponsor-tiers__metric">
+      <span className="sponsor-tiers__metric-num">{metrics.reach}</span>
+      <span className="sponsor-tiers__metric-label">Alcance</span>
+    </div>
+    <div className="sponsor-tiers__metric">
+      <span className="sponsor-tiers__metric-num">{metrics.leads}</span>
+      <span className="sponsor-tiers__metric-label">Leads</span>
+    </div>
+    <div className="sponsor-tiers__metric">
+      <span className="sponsor-tiers__metric-num">{metrics.impressions}</span>
+      <span className="sponsor-tiers__metric-label">Impresiones</span>
+    </div>
+    <span className="sponsor-tiers__metrics-note">(est.)</span>
   </div>
 );
 
@@ -179,6 +204,7 @@ const PricingTable = () => {
                   ))}
                 </ul>
               </div>
+              {featuredPlan.metrics && renderMetrics(featuredPlan.metrics)}
             </div>
           </AnimationWrapper>
         )}
@@ -213,6 +239,7 @@ const PricingTable = () => {
                     ))}
                   </ul>
                 </div>
+                {trackPlan.metrics && renderMetrics(trackPlan.metrics)}
               </div>
             </div>
           </AnimationWrapper>
@@ -238,6 +265,7 @@ const PricingTable = () => {
                     </li>
                   ))}
                 </ul>
+                {plan.metrics && renderMetrics(plan.metrics)}
                 <a
                   href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${activeMode.subjectPrefix} ${plan.name}`}
                   className="sponsor-tiers__cta sponsor-tiers__cta--muted"
@@ -250,13 +278,36 @@ const PricingTable = () => {
           ))}
         </div>
 
-        <div className="sponsor-tiers__startup">
-          <h3>Startup Pack</h3>
-          <p>
-            Si eres startup, recupera el acceso rápido al formulario de elegibilidad y aplica hoy.
+        {/* Startup Pack — its own tier card (turquoise accent, matching
+            StartupPack.css) rather than a plain text box, so it reads as a
+            sponsorship tier like the ones above instead of an afterthought. */}
+        <div className="sponsor-tiers__card sponsor-tiers__card--startup">
+          <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--startup">
+            🌱 STARTUP PACK
+          </span>
+          <div className="sponsor-tiers__price">
+            <span className="sponsor-tiers__price-amount">€350–€950</span>
+          </div>
+          <span className="sponsor-tiers__price-sub">EUR · según ciudades elegidas</span>
+          <ul className="sponsor-tiers__features" aria-label="Beneficios Startup Pack">
+            {[
+              'Logo en web',
+              'Mención en redes',
+              '1 pase completo',
+              'Stand compartido',
+              'Welcome Pack',
+            ].map((feature) => (
+              <li key={feature} className="sponsor-tiers__feature">
+                <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--startup" aria-hidden="true" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="sponsor-tiers__startup-eligibility">
+            Startups ≤3 años · ≤15 empleados · ARR &lt;€500K
           </p>
-          <Link to="/startup-pack" className="sponsor-tiers__cta sponsor-tiers__cta--gold">
-            Ir a Startup Pack
+          <Link to="/startup-pack" className="sponsor-tiers__cta sponsor-tiers__cta--startup">
+            Aplicar al Startup Pack
           </Link>
         </div>
       </div>

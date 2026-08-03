@@ -12,10 +12,6 @@ vi.mock('./pages/Organizer', () => ({
   default: () => <div data-testid="organizer-page">Organizer Page</div>
 }))
 
-vi.mock('./pages/Sponsor', () => ({
-  default: () => <div data-testid="sponsor-page">Sponsor Page</div>
-}))
-
 // Mock de ScrollHandler
 vi.mock('./ScrollHandler', () => ({
   default: () => null

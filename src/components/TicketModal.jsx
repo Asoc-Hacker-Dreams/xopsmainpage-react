@@ -139,7 +139,7 @@ const TicketModal = ({ show, onHide }) => {
         customerEmail: email,
         customerName:  name,
         successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancelUrl:  `${window.location.origin}/tickets`,
+        cancelUrl:  `${window.location.origin}/?openTickets=1`,
       });
 
       if (!data?.success) {
