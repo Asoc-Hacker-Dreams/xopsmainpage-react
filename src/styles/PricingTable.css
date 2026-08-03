@@ -324,24 +324,82 @@
   outline-offset: 3px;
 }
 
-.sponsor-tiers__startup {
-  margin-top: 28px;
-  border: 1px solid rgba(0, 188, 212, 0.25);
-  border-radius: 16px;
-  padding: 24px;
-  background: #111840;
-  text-align: center;
+/* ── Estimated reach/leads/impressions row ──────────────────────── */
+.sponsor-tiers__metrics {
+  display: flex;
+  gap: 18px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
 }
 
-.sponsor-tiers__startup h3 {
-  color: #f8fafc;
-  margin-bottom: 10px;
+.sponsor-tiers__metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.sponsor-tiers__metric-num {
+  font-family: 'Raleway', sans-serif;
   font-weight: 800;
+  font-size: 1.05rem;
+  color: #f8fafc;
 }
 
-.sponsor-tiers__startup p {
-  color: #B0BEC5;
-  margin-bottom: 16px;
+.sponsor-tiers__metric-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.sponsor-tiers__metrics-note {
+  position: absolute;
+  top: 16px;
+  right: 0;
+  font-size: 0.62rem;
+  font-style: italic;
+  color: #64748b;
+}
+
+/* ── Startup Pack card — own turquoise accent, matching StartupPack.css ── */
+.sponsor-tiers__card--startup {
+  margin-top: 20px;
+  border-color: rgba(20, 184, 166, 0.35);
+}
+
+.sponsor-tiers__card--startup .sponsor-tiers__price-amount {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+.sponsor-tiers__tier-label--startup {
+  color: #14B8A6;
+}
+
+.sponsor-tiers__check--startup {
+  color: #14B8A6;
+}
+
+.sponsor-tiers__startup-eligibility {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0 0 16px;
+}
+
+.sponsor-tiers__cta--startup {
+  background: #14B8A6;
+  color: #0A0F2E;
+  border: 2px solid transparent;
+  width: 100%;
+  margin-top: auto;
+}
+
+.sponsor-tiers__cta--startup:hover {
+  background: #0D9488;
+  color: #0A0F2E;
+  transform: translateY(-1px);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────── */
