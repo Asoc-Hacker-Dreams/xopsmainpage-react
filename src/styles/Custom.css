@@ -380,6 +380,69 @@ border-radius: 10px;
   align-items: center;
   justify-content: center;
   min-height: 150px;
+  position: relative;
+  flex-direction: column;
+}
+
+.speaker-number-badge {
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: rgba(0, 188, 212, 0.15);
+  border: 1px solid rgba(0, 188, 212, 0.4);
+  color: #00BCD4;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.speakers-edition-label {
+  color: #00BCD4;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  margin-top: 0.5rem;
+}
+
+.speaker-bio-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.speaker-bio-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  color: #00BCD4;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.speaker-bio-toggle:hover,
+.speaker-bio-toggle:focus-visible {
+  color: #4dd8ea;
+}
+
+.speaker-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.speaker-social a {
+  color: #00BCD4;
+  font-size: 1.25rem;
+  display: inline-flex;
+}
+
+.speaker-social a:hover,
+.speaker-social a:focus-visible {
+  color: #4dd8ea;
 }
 
 .margin-top{

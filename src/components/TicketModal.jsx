@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Modal,
   Container,
@@ -10,9 +10,11 @@ import {
   Alert,
   Form,
 } from 'react-bootstrap';
-import { BsCheckCircleFill, BsStar, BsCalendar3, BsGeoAlt, BsArrowLeft } from 'react-icons/bs';
+import { BsCheckCircleFill, BsXCircle, BsStar, BsCalendar3, BsGeoAlt, BsArrowLeft } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { triskelGateClient } from '../adapters/triskelgate/client';
+import CountdownTimer from './CountdownTimer';
+import { cityEvents, getCityFromHostname } from '../data/cityEvents';
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -25,6 +27,28 @@ const TIER_STYLE = {
 };
 
 const getTierStyle = (name) => TIER_STYLE[name?.toLowerCase()] ?? TIER_STYLE.standard;
+
+// Placeholder mapping until TriskelGate exposes real exclusions per ticket type
+// (TGTicketType has no `excludedFeatures` field today). One or two example
+// items per tier, framed relative to the other premium tier.
+const EXCLUDED_FEATURES = {
+  vip: ['ticketModal.features.excluded.summitAccess'],
+  summit: ['ticketModal.features.excluded.vipDinner'],
+};
+
+/** Resolves the countdown target date the same way App.jsx resolves the active city
+ *  (getCityFromHostname(window.location.hostname)). Falls back to the closer of the
+ *  two known event dates when the hostname doesn't map to a single city (e.g. root domain). */
+const getCountdownTargetDate = () => {
+  const hostnameCity = getCityFromHostname(window.location.hostname);
+  if (hostnameCity && cityEvents[hostnameCity]?.startDate) {
+    return new Date(cityEvents[hostnameCity].startDate);
+  }
+  const upcoming = Object.values(cityEvents)
+    .map((c) => new Date(c.startDate))
+    .sort((a, b) => a - b);
+  return upcoming[0];
+};
 
 const formatDate = (iso) => {
   if (!iso) return '';
@@ -55,6 +79,8 @@ const TicketModal = ({ show, onHide }) => {
   const [customerEmail, setCustomerEmail] = useState('');
   const [formError, setFormError]       = useState(null);
   const [purchasing, setPurchasing]     = useState(false);
+
+  const countdownTargetDate = useMemo(() => getCountdownTargetDate(), []);
 
   useEffect(() => {
     if (!show || loaded) return;
@@ -273,6 +299,14 @@ const TicketModal = ({ show, onHide }) => {
         <>
           <Modal.Body style={{ ...MODAL_BODY, minHeight: '300px' }}>
             <Container fluid>
+              {countdownTargetDate && (
+                <Row className="justify-content-center text-center mb-4">
+                  <Col xs="auto">
+                    <CountdownTimer targetDate={countdownTargetDate} />
+                  </Col>
+                </Row>
+              )}
+
               <Row className="justify-content-center text-center mb-4">
                 <Col lg={8}>
                   <div
@@ -342,8 +376,13 @@ const TicketModal = ({ show, onHide }) => {
                         <p className="text-muted">{t('ticketModal.noTickets')}</p>
                       </Col>
                     )}
+                    {/* TODO: cuando TriskelGate exponga un tier "combo", renderizarlo aquí igual
+                        que los demás — pendiente de decisión de producto sobre si Summit y
+                        Conference son combinables. */}
                     {ev.ticketTypes.map((tt) => {
                       const style = getTierStyle(tt.name);
+                      const tierKey = tt.name?.toLowerCase();
+                      const excludedFeatures = EXCLUDED_FEATURES[tierKey] ?? [];
                       return (
                         <Col md={6} lg={4} key={tt.id} className="mb-4">
                           <Card
@@ -418,6 +457,12 @@ const TicketModal = ({ show, onHide }) => {
                                     <span>{t('ticketModal.features.vipDinnerAccess')}</span>
                                   </li>
                                 )}
+                                {excludedFeatures.map((key) => (
+                                  <li key={key} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.85rem', color: '#94a3b8' }}>
+                                    <BsXCircle style={{ color: '#e74c3c', flexShrink: 0 }} aria-hidden="true" />
+                                    <span>{t(key)}</span>
+                                  </li>
+                                ))}
                               </ul>
                               <Button
                                 variant={style.ctaVariant}

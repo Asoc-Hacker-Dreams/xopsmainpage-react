@@ -50,8 +50,8 @@ const Home = () => {
 
       <Themes />
       <Ubication />
-      <PricingTable />
       <LastEditionData />
+      <PricingTable />
       <Collaborators />
     </>
   );
