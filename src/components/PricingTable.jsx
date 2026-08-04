@@ -12,6 +12,14 @@ const COMBINED_DISCOUNT = 0.1;
 const roundToStep = (value, step = ROUND_STEP) => Math.round(value / step) * step;
 const formatNumber = (value) => value.toLocaleString('es-ES');
 
+// Note: `plans` below are generic pricing TIERS (Platinum/Track/Gold/Silver/
+// Virtual) offered to prospective sponsors, not a list of confirmed sponsor
+// companies with logos — city selection here is handled by the Madrid/Dubai/
+// Both tabs (`cityModes`), which already apply to whichever tier a sponsor
+// picks. There's no per-company entry to attach a <SponsorFlag /> to in this
+// file; that mechanism lives in Collaborators.jsx, where real, named sponsor
+// logos are rendered. See SponsorFlag.jsx if a future "confirmed sponsors"
+// list is added here.
 const plans = [
   {
     id: 'platinum',

@@ -42,7 +42,7 @@ import CheckoutSuccess from './pages/tickets/CheckoutSuccess';
 import CheckoutCancel from './pages/tickets/CheckoutCancel';
 import CityEventPage from './pages/CityEventPage';
 import StartupPack from './pages/StartupPack';
-import { getCityFromHostname } from './data/cityEvents';
+import { getCityFromHostname, cityEvents } from './data/cityEvents';
 import './styles/Custom.css';
 import './styles/PricingTable.css';
 import './styles/Summit.css';
@@ -214,7 +214,7 @@ function App() {
             >
               {t('hero.buyTicket')}
             </button>
-            <Link to="/#ediciones" className="btn-hero-secondary">
+            <Link to="/agenda" className="btn-hero-secondary">
               {t('hero.viewAgenda')}
             </Link>
           </div>
@@ -310,7 +310,12 @@ function App() {
 
           <Route path="/startup-pack" element={<StartupPack />} />
           <Route path="/startup-pack-application" element={<StartupPack />} />
-          
+
+          {/* Legacy routes - redirect to their current equivalents */}
+          <Route path="/entradas" element={<Navigate to="/?openTickets=1" replace />} />
+          <Route path="/ponentes" element={<Navigate to="/#ponentes" replace />} />
+          <Route path="/eventos-anteriores" element={<Navigate to="/archive/2025/Events2025" replace />} />
+
           <Route path="*" element={<NotFound />} />
 
       </Routes>
@@ -335,7 +340,7 @@ function App() {
               <li><Link className="text-white" to="/#ediciones" style={{textDecoration: 'none'}}>{t('nav.event')}</Link></li>
               <li><NavLink className="text-white" to="/Organizer#organizr" style={{textDecoration: 'none'}}>{t('nav.organizers')}</NavLink></li>
               <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</a></li>
-              <li><a href="https://sessionize.com/x-ops-conference-mad-2026/" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</a></li>
+              <li><a href={cityEvents.madrid.conference.cfpUrl} target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</a></li>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
               <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
               <li><Link to="/politica-de-cookies" className="text-white" style={{textDecoration: 'none'}}>Política de Cookies</Link></li>

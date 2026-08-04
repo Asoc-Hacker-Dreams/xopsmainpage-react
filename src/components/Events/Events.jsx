@@ -98,7 +98,7 @@ const Events = () => {
               <h3>{t('events.comingSoon')}</h3>
               <p className="lead mt-3">{t('events.cfpOpen')}</p>
               <a
-                href="https://sessionize.com/x-ops-conference-mad-2026/"
+                href="https://sessionize.com/x-ops-conference-2026/"
                 className="button menu-btn mt-3"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -33,6 +33,10 @@
     "cookieSettings": "🍪 Gestión de Cookies",
     "copyright": "© 2026 - X-Ops Conference"
   },
+  "cityEvent": {
+    "when": "Cuándo",
+    "where": "Dónde"
+  },
   "archive": {
     "xops2025": "X-Ops Conference Madrid 2025",
     "xops2024": "X-Ops Conference Madrid 2024",
@@ -234,7 +238,11 @@
       "allSessions": "Todas las sesiones",
       "eventMaterial": "Material del evento",
       "summitTierAccess": "Acceso al Summit y a la Conferencia",
-      "vipDinnerAccess": "Acceso a cena con ponentes y patrocinadores"
+      "vipDinnerAccess": "Acceso a cena con ponentes y patrocinadores",
+      "excluded": {
+        "summitAccess": "No incluye acceso al Summit",
+        "vipDinner": "No incluye cena con ponentes y patrocinadores"
+      }
     }
   },
   "tickets": {
@@ -531,6 +539,10 @@
   },
   "speakers": {
     "title": "Conoce a Nuestros Ponentes",
+    "edition2025Label": "Ponentes de nuestra edición 2025 — el line-up 2026 se anunciará próximamente",
+    "speakerLabel": "Speaker {{number}}",
+    "readMore": "Ver más",
+    "readLess": "Ver menos",
     "metaTitle": "X-Ops Conference & Summit 2026 · Madrid y Dubai",
     "metaDesc": "Descubre el ecosistema X-Ops 2026 en Madrid y Dubai: Summit ejecutivo y Conference técnica.",
     "talk": "Charla"

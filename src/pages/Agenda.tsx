@@ -57,8 +57,9 @@ const Agenda: React.FC = () => {
   const [room, setRoom] = useState<string | undefined>();
   const [search, setSearch] = useState('');
 
-  const { talks, loading, days, tracks, rooms } = useAgenda({ day, track, room, search });
+  const { talks, loading, error, days, tracks, rooms } = useAgenda({ day, track, room, search });
   const { isFavorite, toggleFavorite } = useFavorites();
+  const hasActiveFilters = Boolean(day || track || room || search);
 
   return (
     <>
@@ -142,6 +143,8 @@ const Agenda: React.FC = () => {
 
         {loading ? (
           <p className="text-center">Cargando agenda…</p>
+        ) : talks.length === 0 && !hasActiveFilters && error ? (
+          <p className="text-center text-muted">Agenda en construcción — vuelve pronto.</p>
         ) : talks.length === 0 ? (
           <p className="text-center text-muted">No se encontraron charlas con esos filtros.</p>
         ) : (
