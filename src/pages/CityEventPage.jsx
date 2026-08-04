@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { BsAward, BsBullseye, BsCalendar3, BsGeoAlt, BsGraphUp, BsPeople, BsShieldCheck, BsTrophy } from 'react-icons/bs';
 import SEO from '../components/SEO';
 import SpeakersSection from '../components/SpeakersSection';
@@ -17,6 +18,7 @@ const summitBenefits = [
 const agendaTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '15:00', '16:00', '17:00'];
 
 const CityEventPage = ({ city }) => {
+  const { t } = useTranslation();
   const event = cityEvents[city];
   const isMadrid = city === 'madrid';
   const canonicalUrl = cityUrl(city);
@@ -81,8 +83,8 @@ const CityEventPage = ({ city }) => {
               <h3>Liderazgo, estrategia y transformación</h3>
               <p>Una jornada ejecutiva para CTOs, CISOs y Decision Makers que buscan conversación estratégica y networking de alto nivel.</p>
               <dl>
-                <div><dt>Cuándo</dt><dd>{event.summit.dates}</dd></div>
-                <div><dt>Dónde</dt><dd>{event.summit.venue}</dd></div>
+                <div><dt>{t('cityEvent.when')}</dt><dd>{event.summit.dates}</dd></div>
+                <div><dt>{t('cityEvent.where')}</dt><dd>{event.summit.venue}</dd></div>
               </dl>
               <a href="#summit">Explorar Summit <span aria-hidden="true">↓</span></a>
             </article>
@@ -92,8 +94,8 @@ const CityEventPage = ({ city }) => {
               <h3>Comunidad, práctica y conocimiento técnico</h3>
               <p>Charlas y encuentros sobre DevOps, DevSecOps, AIOps, MLOps y Platform Engineering para quienes construyen tecnología.</p>
               <dl>
-                <div><dt>Cuándo</dt><dd>{event.conference.dates}</dd></div>
-                <div><dt>Dónde</dt><dd>{event.conference.venue}</dd></div>
+                <div><dt>{t('cityEvent.when')}</dt><dd>{event.conference.dates}</dd></div>
+                <div><dt>{t('cityEvent.where')}</dt><dd>{event.conference.venue}</dd></div>
               </dl>
               <a href="#conference">Explorar Conference <span aria-hidden="true">↓</span></a>
             </article>

@@ -17,10 +17,12 @@ const CACHE_TTL_MS = 3_600_000; // 1 hour
 export function useAgenda(filters: AgendaFilters = {}) {
   const [talks, setTalks] = useState<Talk[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      let fetchFailed = false;
       try {
         const cached = await dal.getAllTalks();
         const lastFetch = localStorage.getItem('sessionize_talks_fetched');
@@ -35,6 +37,7 @@ export function useAgenda(filters: AgendaFilters = {}) {
         }
       } catch (err) {
         console.warn('Sessionize talks fetch failed, using cached/static data:', err);
+        fetchFailed = true;
         const existing = await dal.getAllTalks();
         if (existing.length === 0) {
           await dal.putTalks(talks2025);
@@ -44,6 +47,7 @@ export function useAgenda(filters: AgendaFilters = {}) {
       const all = await dal.getAllTalks();
       if (!cancelled) {
         setTalks(all);
+        setError(fetchFailed && all.length === 0 ? 'No se pudo cargar la agenda.' : null);
         setLoading(false);
       }
     })();
@@ -69,5 +73,5 @@ export function useAgenda(filters: AgendaFilters = {}) {
   const tracks = useMemo(() => [...new Set(talks.map(t => t.track))].sort(), [talks]);
   const rooms = useMemo(() => [...new Set(talks.map(t => t.room))].sort(), [talks]);
 
-  return { talks: filtered, loading, days, tracks, rooms };
+  return { talks: filtered, loading, error, days, tracks, rooms };
 }

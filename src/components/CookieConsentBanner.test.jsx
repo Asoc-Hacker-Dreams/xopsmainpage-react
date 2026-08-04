@@ -102,7 +102,7 @@ describe('CookieConsentBanner', () => {
 
     const policyLink = screen.getByRole('link', { name: 'Política de Cookies' });
     expect(policyLink).toBeInTheDocument();
-    expect(policyLink).toHaveAttribute('href', '/politica-cookies');
+    expect(policyLink).toHaveAttribute('href', '/politica-de-cookies');
     expect(policyLink).toHaveAttribute('target', '_blank');
   });
 

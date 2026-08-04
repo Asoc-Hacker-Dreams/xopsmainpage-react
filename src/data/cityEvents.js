@@ -18,7 +18,7 @@ export const cityEvents = {
     conference: {
       dates: '20 y 21 de noviembre de 2026',
       venue: 'Universidad Rey Juan Carlos, Campus de Móstoles',
-      cfpUrl: 'https://sessionize.com/x-ops-conference-mad-2026/',
+      cfpUrl: 'https://sessionize.com/x-ops-conference-2026/',
     },
     speakers: 'madrid',
   },
@@ -41,7 +41,7 @@ export const cityEvents = {
     conference: {
       dates: '17 October 2026',
       venue: 'Venue to be confirmed, Dubai',
-      cfpUrl: null,
+      cfpUrl: 'https://sessionize.com/x-ops-conference-2026/',
     },
     speakers: null,
   },

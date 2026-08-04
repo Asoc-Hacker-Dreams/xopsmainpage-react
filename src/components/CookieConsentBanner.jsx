@@ -85,7 +85,7 @@ const CookieConsentBanner = () => {
                 </p>
                 <p className="cookie-text-small">
                   Al continuar navegando, aceptas nuestra{' '}
-                  <a href="/politica-cookies" className="cookie-link" target="_blank" rel="noopener noreferrer">
+                  <a href="/politica-de-cookies" className="cookie-link" target="_blank" rel="noopener noreferrer">
                     Política de Cookies
                   </a>.
                 </p>
@@ -180,7 +180,7 @@ const CookieConsentBanner = () => {
               </p>
               <p className="mb-0">
                 <strong>Más información:</strong>{' '}
-                <a href="/politica-cookies" target="_blank" rel="noopener noreferrer">
+                <a href="/politica-de-cookies" target="_blank" rel="noopener noreferrer">
                   Consulta nuestra Política de Cookies completa
                 </a>
               </p>
