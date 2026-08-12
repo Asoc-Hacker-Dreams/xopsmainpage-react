@@ -34,7 +34,10 @@ describe('Cache Documentation Tests', () => {
     const swPath = path.join(process.cwd(), 'public/sw.js');
     const swContent = readFileSync(swPath, 'utf8');
     
-    expect(swContent).toContain('const CONTENT_CACHE_NAME = \'xops-content-v1\'');
+    // Match the versioning pattern, not one exact version — the cache name
+    // is bumped on every deploy that changes app code, and pinning the
+    // literal here made the test fail on each legitimate bump.
+    expect(swContent).toMatch(/const CONTENT_CACHE_NAME = 'xops-content-v\d+'/);
     expect(swContent).toContain('const contentUrlsToCache = [');
     expect(swContent).toContain('/api/agenda');
     expect(swContent).toContain('/api/ponentes');

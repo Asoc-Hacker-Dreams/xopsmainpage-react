@@ -1,6 +1,12 @@
 // Service Worker for X-Ops Conference PWA
-const SHELL_CACHE_NAME = 'xops-shell-v1';
-const CONTENT_CACHE_NAME = 'xops-content-v1';
+//
+// IMPORTANT: bump these cache names on every deploy that changes app code.
+// The shell cache is Cache First, so a stale entry keeps serving an old
+// JS bundle indefinitely — that is exactly what kept the broken
+// ticket-modal build alive in browsers after the fix shipped. Renaming the
+// cache makes `activate` purge the old one (see WHITELISTED_CACHES below).
+const SHELL_CACHE_NAME = 'xops-shell-v2';
+const CONTENT_CACHE_NAME = 'xops-content-v2';
 const WHITELISTED_CACHES = [SHELL_CACHE_NAME, CONTENT_CACHE_NAME];
 
 const shellUrlsToCache = [
@@ -58,6 +64,34 @@ self.addEventListener('fetch', (event) => {
 
   // Ignore non-GET requests
   if (request.method !== 'GET') {
+    return;
+  }
+
+  // Never serve cross-origin requests from cache — the TriskelGate API
+  // (events / ticket-types) must always hit the network, and caching an
+  // opaque error response would break ticket listing until the cache expires.
+  if (requestUrl.origin !== self.location.origin) {
+    return;
+  }
+
+  // Network First for navigations and the JS/CSS bundles. Cache First here
+  // pinned browsers to a stale index.html + old hashed bundle after each
+  // deploy; falling back to cache only when the network fails keeps the
+  // offline behaviour without serving outdated app code.
+  const isNavigation = request.mode === 'navigate' || request.destination === 'document';
+  const isAppAsset = /\.(js|css)$/.test(requestUrl.pathname);
+  if (isNavigation || isAppAsset) {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+            const copy = networkResponse.clone();
+            caches.open(SHELL_CACHE_NAME).then((cache) => cache.put(request, copy));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(request).then((cached) => cached || caches.match('/'))),
+    );
     return;
   }
 
