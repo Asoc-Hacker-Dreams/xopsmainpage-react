@@ -64,7 +64,7 @@ function SophiaHome() {
         <h2>{t('sophia.home.events')}</h2>
         <div className="sophia-event-card">
           <h3>X-Ops Conference Dubai 2026</h3>
-          <p>Dubai, UAE · October 15-17, 2026</p>
+          <p>Dubai, UAE · November 30 – December 3, 2026</p>
           <Link to="/events/x-ops-conference-dubai-2026" className="sophia-btn-outline">
             {t('tickets.event.viewDetails')}
           </Link>

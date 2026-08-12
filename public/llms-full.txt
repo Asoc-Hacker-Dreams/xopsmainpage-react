@@ -13,13 +13,13 @@ EDITIONS
 2024 (First Edition): ETSISI UPM, Vallecas · 1 day · 1 track
 2025 (Second Edition): URJC Móstoles · 2 days · 3 tracks · 300+ attendees · 4.7/5
 2026 (Third Edition): URJC Madrid · Summit (2 days) + Conference (2 days)
-  Planned expansion: Madrid + Dubai (Q2-Q3 2027) + London (Q3-Q4 2027)
+  2026 editions: Madrid (19-21 Nov 2026) + Dubai (30 Nov - 3 Dec 2026). Planned expansion: London (2027)
 
 2026 EVENT DETAILS
 ------------------
 Format: 2-day Executive Summit (C-Level, Enterprise) + 2-day Technical Conference
 Venue: URJC Madrid
-Date: November/December 2026
+Date: 19-21 November 2026
 Expected attendees: 500+
 Tracks: DevSecOps, Platform Engineering, AIOps/MLOps, SRE, Ciberseguridad
 

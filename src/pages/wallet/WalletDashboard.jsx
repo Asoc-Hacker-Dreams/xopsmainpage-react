@@ -24,7 +24,7 @@ const WalletDashboard = () => {
       id: 1,
       name: 'X-Ops Dubai 2026 Attendee',
       type: 'attendance',
-      issuedAt: '2026-10-15',
+      issuedAt: '2026-11-30',
       eventContext: 'X-Ops Conference Dubai 2026',
     },
     {

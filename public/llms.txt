@@ -6,7 +6,7 @@
 
 X-Ops Conference is an international technology conference held in Madrid, Spain. The event focuses on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE, and Cybersecurity topics.
 
-- **Edition 2026**: Madrid · URJC · November/December 2026
+- **Edition 2026**: Madrid · URJC · 19–21 November 2026 | Dubai · 30 November – 3 December 2026
 - **Format**: 2-day Executive Summit (C-Level) + 2-day Technical Conference
 - **Attendees**: 500+ expected (300+ in 2025)
 - **Rating**: 4.7/5 (2025 edition)

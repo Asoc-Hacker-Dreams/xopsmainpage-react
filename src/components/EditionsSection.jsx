@@ -246,7 +246,7 @@ const EditionsSection = () => {
               ]}
               ctaLabel={t('editions.dubai.cta.verDubai') || 'Ver Dubai'}
               ctaTo="https://dubai.xopsconference.com"
-              targetDate="2026-10-15T09:00:00"
+              targetDate="2026-11-30T09:00:00"
               animDir="left"
             />
           </div>
