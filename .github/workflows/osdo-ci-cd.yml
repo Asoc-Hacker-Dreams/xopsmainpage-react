@@ -175,6 +175,13 @@ jobs:
     name: 🛡️ Static Application Security Testing
     runs-on: ubuntu-latest
     needs: dependency-security-scan
+    # upload-sarif writes to the code-scanning API; without this the job
+    # failed with "Resource not accessible by integration" since the
+    # workflow default is contents: read only.
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -228,6 +235,13 @@ jobs:
         with:
           sarif_file: eslint-results.sarif
           wait-for-processing: true
+        # The ESLint step above is continue-on-error, so a lint crash leaves
+        # no eslint-results.sarif behind and this upload hard-failed the whole
+        # job with "Path does not exist" — which then skipped build and
+        # deploy. Only upload when the file actually exists, and treat an
+        # upload problem as non-fatal (same as the semgrep upload above).
+        if: hashFiles('eslint-results.sarif') != ''
+        continue-on-error: true
 
       # CodeQL Analysis
       - name: Initialize CodeQL
