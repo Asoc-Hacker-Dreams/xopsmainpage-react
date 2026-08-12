@@ -243,14 +243,14 @@ jobs:
         if: hashFiles('eslint-results.sarif') != ''
         continue-on-error: true
 
-      # CodeQL Analysis
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+      # CodeQL runs via GitHub's "default setup" (repo Settings → Code
+      # security), which already covers javascript/typescript and reports as
+      # its own "CodeQL" check on every push. Running an advanced CodeQL
+      # config here as well is rejected by the code-scanning API —
+      # "CodeQL analyses from advanced configurations cannot be processed
+      # when the default setup is enabled" — which failed this job and
+      # skipped the build/deploy stages downstream. Semgrep and ESLint
+      # security rules above still run here.
 
   # Job 4: Análisis de Secretos y Seguridad Avanzada
   secrets-scan:
