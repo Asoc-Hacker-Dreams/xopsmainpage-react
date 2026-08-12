@@ -28,6 +28,33 @@ const TIER_STYLE = {
 
 const getTierStyle = (name) => TIER_STYLE[name?.toLowerCase()] ?? TIER_STYLE.standard;
 
+// Guard against date-only strings (e.g. "2026-09-01") which parse as UTC
+// midnight. End dates without a time component get T23:59:59Z so the sale
+// stays open for the whole day.
+const toDate = (s, endOfDay = false) => {
+  if (!s) return null;
+  return new Date(s.includes('T') ? s : s + (endOfDay ? 'T23:59:59.000Z' : 'T00:00:00.000Z'));
+};
+
+// A tier is only purchasable inside its [saleStartDate, saleEndDate] window.
+// Without this the modal rendered an enabled "Reservar" button for tiers whose
+// sale had not opened yet (both cities open 2026-09-01), and checkout would
+// only fail later at Stripe.
+const isSaleActive = (tt) => {
+  const now = new Date();
+  const start = toDate(tt.saleStartDate);
+  const end = toDate(tt.saleEndDate, true);
+  if (start && now < start) return false;
+  if (end && now > end) return false;
+  return true;
+};
+
+const formatSaleDate = (dateStr, locale) => {
+  const d = toDate(dateStr);
+  if (!d) return null;
+  return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
+};
+
 // Placeholder mapping until TriskelGate exposes real exclusions per ticket type
 // (TGTicketType has no `excludedFeatures` field today). One or two example
 // items per tier, framed relative to the other premium tier.
@@ -65,7 +92,7 @@ const MODAL_FOOTER = { background: '#1a1a2e', borderTop: '1px solid #2a2a4a' };
 const INPUT_STYLE  = { background: '#1e1e3a', border: '1px solid #2a2a4a', color: '#f8fafc' };
 
 const TicketModal = ({ show, onHide }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [events, setEvents]             = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(false);
@@ -97,7 +124,11 @@ const TicketModal = ({ show, onHide }) => {
         const active = evList.filter(
           (e) =>
             e.status === 'active' &&
-            (CONFIG_ORGANIZER_ID === null || e.organizerId === CONFIG_ORGANIZER_ID),
+            (
+              CONFIG_ORGANIZER_ID === null ||
+              e.organizerId == null || // event without organizer matches any configured organizer
+              Number(e.organizerId) === CONFIG_ORGANIZER_ID
+            ),
         );
 
         const withTT = await Promise.all(
@@ -383,6 +414,9 @@ const TicketModal = ({ show, onHide }) => {
                       const style = getTierStyle(tt.name);
                       const tierKey = tt.name?.toLowerCase();
                       const excludedFeatures = EXCLUDED_FEATURES[tierKey] ?? [];
+                      const onSale = isSaleActive(tt);
+                      const notYetOpen = !onSale && toDate(tt.saleStartDate) && new Date() < toDate(tt.saleStartDate);
+                      const saleOpensOn = notYetOpen ? formatSaleDate(tt.saleStartDate, i18n.language || 'es') : null;
                       return (
                         <Col md={6} lg={4} key={tt.id} className="mb-4">
                           <Card
@@ -465,11 +499,16 @@ const TicketModal = ({ show, onHide }) => {
                                 ))}
                               </ul>
                               <Button
-                                variant={style.ctaVariant}
+                                variant={onSale ? style.ctaVariant : 'secondary'}
                                 style={{ width: '100%', fontWeight: 600 }}
-                                onClick={() => openCheckout(ev, tt)}
+                                onClick={() => onSale && openCheckout(ev, tt)}
+                                disabled={!onSale}
                               >
-                                {t('ticketModal.checkout.title')} {tt.name}
+                                {onSale
+                                  ? `${t('ticketModal.checkout.title')} ${tt.name}`
+                                  : saleOpensOn
+                                    ? t('ticketModal.saleOpensOn', { date: saleOpensOn })
+                                    : t('ticketModal.saleClosed')}
                               </Button>
                             </Card.Body>
                           </Card>

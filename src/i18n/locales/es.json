@@ -15,7 +15,7 @@
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
     "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
-    "date": "Madrid: 19, 20 y 21 Nov · Dubai: 15, 16 y 17 Oct 2026",
+    "date": "Madrid: 19, 20 y 21 Nov · Dubai: 30 Nov – 3 Dic 2026",
     "buyTicket": "Reserva tu entrada",
     "viewAgenda": "Ver agenda",
     "cfp": "CFP",
@@ -218,6 +218,8 @@
     "noTickets": "No hay entradas disponibles para este evento.",
     "noEvents": "No se pudieron cargar los eventos. Escríbenos a info@xopsconference.com.",
     "close": "Cerrar",
+    "saleOpensOn": "Venta desde el {{date}}",
+    "saleClosed": "Venta cerrada",
     "checkout": {
       "title": "Reservar Entrada",
       "cancel": "Cancelar",
@@ -408,18 +410,18 @@
     },
     "dubai": {
       "flag": "🇦🇪",
-      "dates": "15 · 16 · 17 OCT",
+      "dates": "30 NOV – 3 DIC",
       "year": "2026",
       "title": "X-Ops Dubai 2026",
       "city": "Dubai, EAU",
       "summit": {
         "label": "X-Ops Summit",
-        "dates": "15 y 16 de octubre",
+        "dates": "30 de noviembre y 1 de diciembre",
         "venue": "Por confirmar"
       },
       "conference": {
         "label": "X-Ops Conference",
-        "dates": "17 de octubre",
+        "dates": "2 y 3 de diciembre",
         "venue": "Por confirmar"
       },
       "narrative": "La primera edición en Oriente Medio. Dubai es el hub tecnológico y financiero del MENA. Llevamos el ADN de X-Ops a un nuevo continente: el mismo formato Summit + Conference, adaptado a un ecosistema donde la transformación digital avanza a velocidad de fórmula 1.",
@@ -454,7 +456,7 @@
     },
     "dubai": {
       "city": "Dubai, EAU",
-      "label": "X-Ops Dubai · 15, 16 y 17 de octubre",
+      "label": "X-Ops Dubai · 30 de noviembre a 3 de diciembre",
       "name": "Venue por confirmar",
       "address": "Dubai, Emiratos Árabes Unidos",
       "tbdNote": "La ubicación exacta se comunicará próximamente. Mantente al tanto."
@@ -481,7 +483,7 @@
     },
     "card2": {
       "title": "¿Dónde y Cuándo?",
-      "text": "X-Ops Conference Madrid 2026 se celebra los días 20 y 21 de noviembre en el Auditorio de la Universidad Rey Juan Carlos, campus Móstoles. X-Ops Dubai 2026 el 17 de octubre. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+      "text": "X-Ops Conference Madrid 2026 se celebra los días 20 y 21 de noviembre en el Auditorio de la Universidad Rey Juan Carlos, campus Móstoles. X-Ops Dubai 2026 del 30 de noviembre al 3 de diciembre. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
     },
     "card3": {
       "title": "El Futuro del Trabajo",
