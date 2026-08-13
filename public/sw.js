@@ -5,8 +5,12 @@
 // JS bundle indefinitely — that is exactly what kept the broken
 // ticket-modal build alive in browsers after the fix shipped. Renaming the
 // cache makes `activate` purge the old one (see WHITELISTED_CACHES below).
-const SHELL_CACHE_NAME = 'xops-shell-v2';
-const CONTENT_CACHE_NAME = 'xops-content-v2';
+//
+// Bump to v3: ticket modal fixes (currency per tier, i18n-aware dates,
+// translated tier descriptions) — the v2 bundle had the old hardcoded €.
+// Bump to v4: ...
+const SHELL_CACHE_NAME = 'xops-shell-v3';
+const CONTENT_CACHE_NAME = 'xops-content-v3';
 const WHITELISTED_CACHES = [SHELL_CACHE_NAME, CONTENT_CACHE_NAME];
 
 const shellUrlsToCache = [

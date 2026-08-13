@@ -245,6 +245,14 @@
         "summitAccess": "No incluye acceso al Summit",
         "vipDinner": "No incluye cena con ponentes y patrocinadores"
       }
+    },
+    "tierDescriptions": {
+      "superEarly": "Reserva con la máxima antelación y ahorra incluso más con esta tarifa no reembolsable de cantidad limitada.",
+      "early": "Asegura tu plaza antes del cierre de la fase anticipada. Tarifa no reembolsable mientras queden plazas.",
+      "daily": "Acceso de un día completo a la Conferencia. Ideal si solo puedes asistir una jornada.",
+      "lastMinute": "Últimas entradas disponibles antes del evento. Tarifa no reembolsable.",
+      "summit": "Pase de dos días para el Summit ejecutivo (19 Nov Madrid / 30 Nov–1 Dic Dubai). No incluye la Conferencia.",
+      "vip": "Acceso completo al evento con prioridad, networking guiado y cena exclusiva con ponentes y patrocinadores."
     }
   },
   "tickets": {

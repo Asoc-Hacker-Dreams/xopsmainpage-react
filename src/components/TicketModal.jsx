@@ -77,13 +77,39 @@ const getCountdownTargetDate = () => {
   return upcoming[0];
 };
 
-const formatDate = (iso) => {
+const formatDate = (iso, locale = 'es') => {
   if (!iso) return '';
-  return new Date(iso).toLocaleDateString('es-ES', {
+  // Map i18n.lang to a BCP-47 locale for Number/DateFormat. English falls back to
+  // en-GB so the "30 November 2026" style matches the rest of the site.
+  const intlLocale = locale?.startsWith('en') ? 'en-GB' : 'es-ES';
+  return new Date(iso).toLocaleDateString(intlLocale, {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   });
+};
+
+const formatPrice = (amount, currency = 'EUR', locale = 'es') => {
+  const intlLocale = locale?.startsWith('en') ? 'en-GB' : 'es-ES';
+  // Madrid uses EUR (€), Dubai uses AED (AED / د.إ). Intl.NumberFormat picks
+  // the right symbol and number grouping for the locale.
+  return new Intl.NumberFormat(intlLocale, {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+  }).format(amount);
+};
+
+// Tier name → i18n key. The API stores tier names in English (e.g. "Super Early
+// Adopter", "Daily Ticket") regardless of UI locale, so we map on the canonical
+// English name instead of the localized label.
+const TIER_DESCRIPTION_KEY = {
+  'super early adopter': 'ticketModal.tierDescriptions.superEarly',
+  'early adopter':       'ticketModal.tierDescriptions.early',
+  'daily ticket':        'ticketModal.tierDescriptions.daily',
+  'last minute':         'ticketModal.tierDescriptions.lastMinute',
+  'summit':              'ticketModal.tierDescriptions.summit',
+  'vip':                 'ticketModal.tierDescriptions.vip',
 };
 
 const MODAL_HEADER = { background: '#1a1a2e', borderBottom: '2px solid #00BCD4' };
@@ -250,7 +276,11 @@ const TicketModal = ({ show, onHide }) => {
                 <BsArrowLeft />
               </button>
               <span style={{ color: '#00BCD4' }}>{selectedTT?.name.toUpperCase()}</span>
-              {selectedTT && <span style={{ color: '#64748b', fontWeight: 400 }}>€{selectedTT.price}</span>}
+              {selectedTT && (
+                <span style={{ color: '#64748b', fontWeight: 400 }}>
+                  {formatPrice(selectedTT.price, selectedTT.currency, i18n.language)}
+                </span>
+              )}
             </>
           ) : (
             <>
@@ -387,8 +417,8 @@ const TicketModal = ({ show, onHide }) => {
                         {ev.startDate && (
                           <span>
                             <BsCalendar3 className="me-1" aria-hidden="true" />
-                            {formatDate(ev.startDate)}
-                            {ev.endDate && ev.endDate !== ev.startDate && ` — ${formatDate(ev.endDate)}`}
+                            {formatDate(ev.startDate, i18n.language)}
+                            {ev.endDate && ev.endDate !== ev.startDate && ` — ${formatDate(ev.endDate, i18n.language)}`}
                           </span>
                         )}
                         {ev.location && (
@@ -458,14 +488,20 @@ const TicketModal = ({ show, onHide }) => {
                               </h3>
                               <div style={{ marginBottom: '12px' }}>
                                 <span style={{ fontSize: '2rem', fontWeight: 800, color: '#00BCD4' }}>
-                                  €{tt.price}
+                                  {formatPrice(tt.price, tt.currency, i18n.language)}
                                 </span>
                               </div>
-                              {tt.description && (
-                                <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '12px' }}>
-                                  {tt.description}
-                                </p>
-                              )}
+                              {(() => {
+                                const tierKey = (tt.name || '').toLowerCase().trim();
+                                const descKey = TIER_DESCRIPTION_KEY[tierKey];
+                                const description = descKey ? t(descKey) : tt.description;
+                                if (!description) return null;
+                                return (
+                                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '12px' }}>
+                                    {description}
+                                  </p>
+                                );
+                              })()}
                               <ul style={{ listStyle: 'none', padding: 0, marginBottom: '16px', flex: 1 }}>
                                 <li style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.85rem' }}>
                                   <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />

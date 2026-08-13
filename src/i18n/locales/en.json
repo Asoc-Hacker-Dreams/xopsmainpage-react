@@ -251,6 +251,14 @@
         "summitAccess": "Does not include Summit access",
         "vipDinner": "Does not include dinner with speakers and sponsors"
       }
+    },
+    "tierDescriptions": {
+      "superEarly": "Book the earliest and save even more with this limited, non-refundable quota.",
+      "early": "Lock your seat before the early phase closes. Non-refundable while seats remain.",
+      "daily": "One full day of Conference access. Ideal if you can only attend a single day.",
+      "lastMinute": "Last seats available before the event. Non-refundable.",
+      "summit": "Two-day pass to the executive Summit (Nov 19 Madrid / Nov 30 – Dec 1 Dubai). Does not include the Conference.",
+      "vip": "Full event access with priority perks, guided networking, and an exclusive dinner with speakers and sponsors."
     }
   },
   "tickets": {
