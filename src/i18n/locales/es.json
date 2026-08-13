@@ -35,7 +35,78 @@
   },
   "cityEvent": {
     "when": "Cuándo",
-    "where": "Dónde"
+    "where": "Dónde",
+    "hero": {
+      "statement": "Una ciudad. Dos experiencias. Un mismo ecosistema tecnológico.",
+      "facts": "Datos del evento",
+      "navLabel": "Navegación de X-Ops {{city}}",
+      "navSummit": "Summit ejecutivo",
+      "navConference": "Conference técnica",
+      "navAgenda": "Agenda",
+      "navSpeakers": "Ponentes"
+    },
+    "program": {
+      "kicker": "El programa de {{city}}",
+      "title": "Dos formatos diseñados para públicos distintos",
+      "subtitle": "Summit y Conference comparten ciudad y visión, pero conservan su propósito, audiencia y ritmo.",
+      "summit": {
+        "h3": "Liderazgo, estrategia y transformación",
+        "text": "Una jornada ejecutiva para CTOs, CISOs y Decision Makers que buscan conversación estratégica y networking de alto nivel.",
+        "cta": "Explorar Summit"
+      },
+      "conference": {
+        "h3": "Comunidad, práctica y conocimiento técnico",
+        "text": "Charlas y encuentros sobre DevOps, DevSecOps, AIOps, MLOps y Platform Engineering para quienes construyen tecnología.",
+        "cta": "Explorar Conference"
+      }
+    },
+    "summit": {
+      "kicker": "Evento ejecutivo",
+      "subtitle": "Programa diseñado para líderes tecnológicos que buscan conectar decisiones de negocio, transformación y futuro.",
+      "benefits": {
+        "strategic": {
+          "title": "Enfoque estratégico",
+          "text": "Contenido para C-levels y directivos, orientado a impacto de negocio y decisiones aplicables."
+        },
+        "networking": {
+          "title": "Networking ejecutivo",
+          "text": "Conversaciones de alto nivel en un formato de aforo limitado que favorece conexiones relevantes."
+        },
+        "roi": {
+          "title": "ROI demostrable",
+          "text": "Casos de adopción DevOps, SecOps y Platform Engineering con métricas y aprendizajes accionables."
+        },
+        "certification": {
+          "title": "Certificación",
+          "text": "Certificado de asistencia emitido por X-Ops Conference."
+        },
+        "exclusivity": {
+          "title": "Exclusividad",
+          "text": "Una experiencia cuidada para líderes tecnológicos y responsables de transformación."
+        }
+      },
+      "agendaTbd": "Por anunciar",
+      "agendaTitle": "Programa ejecutivo",
+      "agendaSubtitle": "Agenda en construcción. Próximamente publicaremos sesiones y ponentes."
+    },
+    "conference": {
+      "kicker": "Conference técnica",
+      "intro": "Un punto de encuentro para compartir experiencia real, patrones de arquitectura, seguridad y operación de plataformas modernas.",
+      "agendaBadge": "Agenda 2026",
+      "agendaTitle": "Ponentes y agenda próximamente",
+      "proposeTalk": "Proponer charla",
+      "cfpComingSoon": "El Call for Papers de {{city}} se anunciará próximamente."
+    },
+    "speakersSoon": {
+      "kicker": "Voces de la edición",
+      "title": "Ponentes de {{city}}",
+      "text": "La selección de ponentes se publicará cuando finalice el proceso de programación."
+    },
+    "finalCta": {
+      "kicker": "Continúa explorando X-Ops",
+      "title": "{{city}} es parte de un ecosistema internacional.",
+      "back": "Volver a xopsconference.com"
+    }
   },
   "archive": {
     "xops2025": "X-Ops Conference Madrid 2025",

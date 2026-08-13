@@ -8,9 +8,12 @@
 //
 // Bump to v3: ticket modal fixes (currency per tier, i18n-aware dates,
 // translated tier descriptions) — the v2 bundle had the old hardcoded €.
-// Bump to v4: ...
-const SHELL_CACHE_NAME = 'xops-shell-v3';
-const CONTENT_CACHE_NAME = 'xops-content-v3';
+// Bump to v4: city subdomains (madrid.xopsconference.com,
+// dubai.xopsconference.com) had every string hardcoded in Spanish; the
+// language toggle existed in the Navbar but had nothing to translate.
+// Bump to v5: ...
+const SHELL_CACHE_NAME = 'xops-shell-v4';
+const CONTENT_CACHE_NAME = 'xops-content-v4';
 const WHITELISTED_CACHES = [SHELL_CACHE_NAME, CONTENT_CACHE_NAME];
 
 const shellUrlsToCache = [

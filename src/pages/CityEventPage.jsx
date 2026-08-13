@@ -7,14 +7,6 @@ import SpeakersSection from '../components/SpeakersSection';
 import { cityEvents, cityUrl } from '../data/cityEvents';
 import './CityEventPage.css';
 
-const summitBenefits = [
-  { icon: BsGraphUp, title: 'Enfoque estratégico', text: 'Contenido para C-levels y directivos, orientado a impacto de negocio y decisiones aplicables.' },
-  { icon: BsPeople, title: 'Networking ejecutivo', text: 'Conversaciones de alto nivel en un formato de aforo limitado que favorece conexiones relevantes.' },
-  { icon: BsTrophy, title: 'ROI demostrable', text: 'Casos de adopción DevOps, SecOps y Platform Engineering con métricas y aprendizajes accionables.' },
-  { icon: BsAward, title: 'Certificación', text: 'Certificado de asistencia emitido por X-Ops Conference.' },
-  { icon: BsShieldCheck, title: 'Exclusividad', text: 'Una experiencia cuidada para líderes tecnológicos y responsables de transformación.' },
-];
-
 const agendaTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '15:00', '16:00', '17:00'];
 
 const CityEventPage = ({ city }) => {
@@ -22,6 +14,11 @@ const CityEventPage = ({ city }) => {
   const event = cityEvents[city];
   const isMadrid = city === 'madrid';
   const canonicalUrl = cityUrl(city);
+
+  // Benefit icons are bound at render time so the rest of the content can be
+  // translated via i18n keys.
+  const summitBenefitKeys = ['strategic', 'networking', 'roi', 'certification', 'exclusivity'];
+  const summitBenefitIcons = [BsGraphUp, BsPeople, BsTrophy, BsAward, BsShieldCheck];
 
   return (
     <main className={`city-page city-page--${city}`} id="main-content">
@@ -55,16 +52,16 @@ const CityEventPage = ({ city }) => {
         <div className="container city-hero__content">
           <p className="city-eyebrow"><span>{event.flag}</span> X-Ops 2026</p>
           <h1 id={`${city}-title`}>{event.city}</h1>
-          <p className="city-hero__statement">Una ciudad. Dos experiencias. Un mismo ecosistema tecnológico.</p>
-          <div className="city-hero__facts" aria-label="Datos del evento">
+          <p className="city-hero__statement">{t('cityEvent.hero.statement')}</p>
+          <div className="city-hero__facts" aria-label={t('cityEvent.hero.facts')}>
             <span><BsCalendar3 aria-hidden="true" /> {event.dateRange}</span>
             <span><BsGeoAlt aria-hidden="true" /> {event.country}</span>
           </div>
-          <nav className="city-hero__nav" aria-label={`Navegación de X-Ops ${event.city}`}>
-            <a href="#summit">Summit ejecutivo</a>
-            <a href="#conference">Conference técnica</a>
-            <a href="#agenda">Agenda</a>
-            {isMadrid && <a href="#ponentes">Ponentes</a>}
+          <nav className="city-hero__nav" aria-label={t('cityEvent.hero.navLabel', { city: event.city })}>
+            <a href="#summit">{t('cityEvent.hero.navSummit')}</a>
+            <a href="#conference">{t('cityEvent.hero.navConference')}</a>
+            <a href="#agenda">{t('cityEvent.hero.navAgenda')}</a>
+            {isMadrid && <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>}
           </nav>
         </div>
       </section>
@@ -72,32 +69,32 @@ const CityEventPage = ({ city }) => {
       <section className="city-program" aria-labelledby="program-title">
         <div className="container">
           <div className="city-section-heading">
-            <p className="city-kicker">El programa de {event.city}</p>
-            <h2 id="program-title">Dos formatos diseñados para públicos distintos</h2>
-            <p>Summit y Conference comparten ciudad y visión, pero conservan su propósito, audiencia y ritmo.</p>
+            <p className="city-kicker">{t('cityEvent.program.kicker', { city: event.city })}</p>
+            <h2 id="program-title">{t('cityEvent.program.title')}</h2>
+            <p>{t('cityEvent.program.subtitle')}</p>
           </div>
           <div className="city-program__tracks">
             <article className="city-track city-track--summit">
               <span className="city-track__number">01</span>
               <p className="city-track__label">Summit</p>
-              <h3>Liderazgo, estrategia y transformación</h3>
-              <p>Una jornada ejecutiva para CTOs, CISOs y Decision Makers que buscan conversación estratégica y networking de alto nivel.</p>
+              <h3>{t('cityEvent.program.summit.h3')}</h3>
+              <p>{t('cityEvent.program.summit.text')}</p>
               <dl>
                 <div><dt>{t('cityEvent.when')}</dt><dd>{event.summit.dates}</dd></div>
                 <div><dt>{t('cityEvent.where')}</dt><dd>{event.summit.venue}</dd></div>
               </dl>
-              <a href="#summit">Explorar Summit <span aria-hidden="true">↓</span></a>
+              <a href="#summit">{t('cityEvent.program.summit.cta')} <span aria-hidden="true">↓</span></a>
             </article>
             <article className="city-track city-track--conference">
               <span className="city-track__number">02</span>
               <p className="city-track__label">Conference</p>
-              <h3>Comunidad, práctica y conocimiento técnico</h3>
-              <p>Charlas y encuentros sobre DevOps, DevSecOps, AIOps, MLOps y Platform Engineering para quienes construyen tecnología.</p>
+              <h3>{t('cityEvent.program.conference.h3')}</h3>
+              <p>{t('cityEvent.program.conference.text')}</p>
               <dl>
                 <div><dt>{t('cityEvent.when')}</dt><dd>{event.conference.dates}</dd></div>
                 <div><dt>{t('cityEvent.where')}</dt><dd>{event.conference.venue}</dd></div>
               </dl>
-              <a href="#conference">Explorar Conference <span aria-hidden="true">↓</span></a>
+              <a href="#conference">{t('cityEvent.program.conference.cta')} <span aria-hidden="true">↓</span></a>
             </article>
           </div>
         </div>
@@ -107,10 +104,10 @@ const CityEventPage = ({ city }) => {
         <div className="container">
           <div className="city-summit__intro">
             <div>
-              <p className="city-kicker city-kicker--gold">Evento ejecutivo</p>
+              <p className="city-kicker city-kicker--gold">{t('cityEvent.summit.kicker')}</p>
               <h2 id="summit-title">X-Ops Summit <strong>{event.city} 2026</strong></h2>
             </div>
-            <p>Programa diseñado para líderes tecnológicos que buscan conectar decisiones de negocio, transformación y futuro.</p>
+            <p>{t('cityEvent.summit.subtitle')}</p>
           </div>
           <div className="city-detail-strip">
             <span><BsCalendar3 aria-hidden="true" /> {event.summit.dates}</span>
@@ -118,13 +115,16 @@ const CityEventPage = ({ city }) => {
             <span><BsBullseye aria-hidden="true" /> {event.summit.attendees}</span>
           </div>
           <div className="city-benefits">
-            {summitBenefits.map(({ icon: Icon, title, text }) => (
-              <article key={title}>
-                <Icon aria-hidden="true" />
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
+            {summitBenefitKeys.map((key, idx) => {
+              const Icon = summitBenefitIcons[idx];
+              return (
+                <article key={key}>
+                  <Icon aria-hidden="true" />
+                  <h3>{t(`cityEvent.summit.benefits.${key}.title`)}</h3>
+                  <p>{t(`cityEvent.summit.benefits.${key}.text`)}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -133,12 +133,12 @@ const CityEventPage = ({ city }) => {
         <div className="container city-agenda__layout">
           <div className="city-agenda__heading">
             <p className="city-kicker city-kicker--gold">{event.summit.agendaDate}</p>
-            <h2 id="agenda-title">Programa ejecutivo</h2>
-            <p>Agenda en construcción. Próximamente publicaremos sesiones y ponentes.</p>
+            <h2 id="agenda-title">{t('cityEvent.summit.agendaTitle')}</h2>
+            <p>{t('cityEvent.summit.agendaSubtitle')}</p>
           </div>
           <ol className="city-agenda__timeline">
             {agendaTimes.map((time) => (
-              <li key={time}><time>{time}</time><span>Por anunciar</span></li>
+              <li key={time}><time>{time}</time><span>{t('cityEvent.summit.agendaTbd')}</span></li>
             ))}
           </ol>
         </div>
@@ -147,18 +147,20 @@ const CityEventPage = ({ city }) => {
       <section className="city-conference" id="conference" aria-labelledby="conference-title">
         <div className="container city-conference__layout">
           <div>
-            <p className="city-kicker">Conference técnica</p>
+            <p className="city-kicker">{t('cityEvent.conference.kicker')}</p>
             <h2 id="conference-title">X-Ops Conference <strong>{event.city} 2026</strong></h2>
-            <p>Un punto de encuentro para compartir experiencia real, patrones de arquitectura, seguridad y operación de plataformas modernas.</p>
+            <p>{t('cityEvent.conference.intro')}</p>
           </div>
           <div className="city-conference__announcement">
             <span aria-hidden="true">●</span>
-            <p>Agenda 2026</p>
-            <h3>Ponentes y agenda próximamente</h3>
+            <p>{t('cityEvent.conference.agendaBadge')}</p>
+            <h3>{t('cityEvent.conference.agendaTitle')}</h3>
             {event.conference.cfpUrl ? (
-              <a href={event.conference.cfpUrl} target="_blank" rel="noopener noreferrer">Proponer charla <span aria-hidden="true">↗</span></a>
+              <a href={event.conference.cfpUrl} target="_blank" rel="noopener noreferrer">
+                {t('cityEvent.conference.proposeTalk')} <span aria-hidden="true">↗</span>
+              </a>
             ) : (
-              <p className="city-conference__status">El Call for Papers de Dubai se anunciará próximamente.</p>
+              <p className="city-conference__status">{t('cityEvent.conference.cfpComingSoon', { city: event.city })}</p>
             )}
           </div>
         </div>
@@ -169,18 +171,18 @@ const CityEventPage = ({ city }) => {
       ) : (
         <section className="city-speakers-soon" id="ponentes" aria-labelledby="speakers-soon-title">
           <div className="container">
-            <p className="city-kicker">Voces de la edición</p>
-            <h2 id="speakers-soon-title">Ponentes de Dubai</h2>
-            <p>La selección de ponentes se publicará cuando finalice el proceso de programación.</p>
+            <p className="city-kicker">{t('cityEvent.speakersSoon.kicker')}</p>
+            <h2 id="speakers-soon-title">{t('cityEvent.speakersSoon.title', { city: event.city })}</h2>
+            <p>{t('cityEvent.speakersSoon.text')}</p>
           </div>
         </section>
       )}
 
       <section className="city-final-cta">
         <div className="container">
-          <p>Continúa explorando X-Ops</p>
-          <h2>{event.city} es parte de un ecosistema internacional.</h2>
-          <Link to="/">Volver a xopsconference.com</Link>
+          <p>{t('cityEvent.finalCta.kicker')}</p>
+          <h2>{t('cityEvent.finalCta.title', { city: event.city })}</h2>
+          <Link to="/">{t('cityEvent.finalCta.back')}</Link>
         </div>
       </section>
     </main>

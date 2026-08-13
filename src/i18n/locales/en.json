@@ -35,7 +35,78 @@
   },
   "cityEvent": {
     "when": "When",
-    "where": "Where"
+    "where": "Where",
+    "hero": {
+      "statement": "One city. Two experiences. One shared technology ecosystem.",
+      "facts": "Event details",
+      "navLabel": "X-Ops {{city}} navigation",
+      "navSummit": "Executive Summit",
+      "navConference": "Technical Conference",
+      "navAgenda": "Agenda",
+      "navSpeakers": "Speakers"
+    },
+    "program": {
+      "kicker": "The {{city}} program",
+      "title": "Two formats designed for different audiences",
+      "subtitle": "The Summit and Conference share the city and the vision, but keep their purpose, audience and pace.",
+      "summit": {
+        "h3": "Leadership, strategy and transformation",
+        "text": "An executive day for CTOs, CISOs and decision makers looking for strategic conversation and high-level networking.",
+        "cta": "Explore Summit"
+      },
+      "conference": {
+        "h3": "Community, practice and technical craft",
+        "text": "Talks and meetups on DevOps, DevSecOps, AIOps, MLOps and Platform Engineering for those who build technology.",
+        "cta": "Explore Conference"
+      }
+    },
+    "summit": {
+      "kicker": "Executive event",
+      "subtitle": "A program designed for technology leaders who want to connect business decisions, transformation and the future.",
+      "benefits": {
+        "strategic": {
+          "title": "Strategic focus",
+          "text": "Content for C-levels and directors, focused on business impact and applicable decisions."
+        },
+        "networking": {
+          "title": "Executive networking",
+          "text": "High-level conversations in a capacity-limited format that favors meaningful connections."
+        },
+        "roi": {
+          "title": "Demonstrable ROI",
+          "text": "DevOps, SecOps and Platform Engineering adoption cases with metrics and actionable lessons."
+        },
+        "certification": {
+          "title": "Certification",
+          "text": "Certificate of attendance issued by X-Ops Conference."
+        },
+        "exclusivity": {
+          "title": "Exclusivity",
+          "text": "A curated experience for technology leaders and transformation owners."
+        }
+      },
+      "agendaTbd": "To be announced",
+      "agendaTitle": "Executive program",
+      "agendaSubtitle": "Agenda in progress. Sessions and speakers will be published soon."
+    },
+    "conference": {
+      "kicker": "Technical Conference",
+      "intro": "A meeting point to share real-world experience, architecture patterns, security and modern platform operations.",
+      "agendaBadge": "Agenda 2026",
+      "agendaTitle": "Speakers and agenda coming soon",
+      "proposeTalk": "Propose a talk",
+      "cfpComingSoon": "The {{city}} Call for Papers will be announced soon."
+    },
+    "speakersSoon": {
+      "kicker": "Voices of the edition",
+      "title": "{{city}} speakers",
+      "text": "The speaker line-up will be published once the programming process is complete."
+    },
+    "finalCta": {
+      "kicker": "Keep exploring X-Ops",
+      "title": "{{city}} is part of an international ecosystem.",
+      "back": "Back to xopsconference.com"
+    }
   },
   "archive": {
     "pastEvents": "Past Events",
