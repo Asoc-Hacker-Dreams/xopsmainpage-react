@@ -4,18 +4,24 @@
 
 import { CONSENT_CATEGORIES } from '../contexts/ConsentContext';
 
+// GA measurement ID — single source of truth across the app.
+// Read from build-time env; falls back to the public ID so analytics still
+// works in local dev if VITE_GA_MEASUREMENT_ID isn't set in .env.
+const GA_MEASUREMENT_ID =
+  import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-0J9VPTTHQT';
+
 // Configuration for third-party scripts
 const SCRIPTS_CONFIG = {
   googleAnalytics: {
     category: CONSENT_CATEGORIES.ANALYTICS,
     id: 'google-analytics',
-    src: 'https://www.googletagmanager.com/gtag/js?id=G-8GQ7ZLB9VK',
+    src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
     init: () => {
       window.dataLayer = window.dataLayer || [];
       window.gtag = function gtag(){window.dataLayer.push(arguments);}
       window.gtag('js', new Date());
-      window.gtag('config', 'G-8GQ7ZLB9VK');
-      console.log('Google Analytics loaded with consent');
+      window.gtag('config', GA_MEASUREMENT_ID);
+      console.log(`Google Analytics (${GA_MEASUREMENT_ID}) loaded with consent`);
     }
   }
   // Add more scripts here as needed (Facebook Pixel, etc.)
