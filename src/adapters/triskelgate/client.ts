@@ -81,13 +81,6 @@ export class TriskelGateClient {
     );
   }
 
-  /** GET /api/orders/:id – get order status */
-  async getOrder(orderId: string): Promise<TGOrder> {
-    return this.breaker.execute(() =>
-      this.request<TGOrder>('GET', `/api/orders/${encodeURIComponent(orderId)}`),
-    );
-  }
-
   /** Expose circuit breaker state for monitoring */
   get circuitState(): string {
     return this.breaker.currentState;

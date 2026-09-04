@@ -310,7 +310,8 @@
         "nameRequired": "Please enter your full name.",
         "emailInvalid": "Please enter a valid email address.",
         "networkError": "Ticket system unavailable. Contact us at info@xopsconference.com."
-      }
+      },
+      "taxIncluded": "Price includes VAT. No additional charges."
     },
     "features": {
       "fullAccess": "Full event access",
@@ -633,5 +634,8 @@
     "metaTitle": "X-Ops Conference & Summit 2026 · Madrid and Dubai",
     "metaDesc": "Discover the X-Ops 2026 ecosystem in Madrid and Dubai: executive Summit plus technical Conference.",
     "talk": "Talk"
+  },
+  "common": {
+    "retry": "Retry"
   }
 }

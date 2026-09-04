@@ -108,6 +108,10 @@ const TicketSuccess = () => {
   const [orderNumber, setOrderNumber] = useState(null);
   const [ticketsList, setTicketsList] = useState([]);
   const [polling, setPolling] = useState(!!sessionId);
+  // Cuando el polling termina sin traer tickets, `polling` queda en false y
+  // `hasTickets=false`; mostramos un estado claro con botón de reintento
+  // en lugar del antiguo "Próximos pasos" que apuntaba a un QR inexistente.
+  const [hasTickets, setHasTickets] = useState(false);
   const [walletStatus, setWalletStatus] = useState({ apple: { configured: false }, google: { configured: false }, samsung: { configured: false } });
 
   // Probe which wallet integrations the backend has configured so we
@@ -128,40 +132,45 @@ const TicketSuccess = () => {
       setPolling(false);
       return;
     }
-    let cancelled = false;
+    const cancelledRef = { current: false };
     let attempts = 0;
-    const MAX_ATTEMPTS = 15;
+    // Ventana mayor (2 min) + backoff. Antes moría a los 30 s sin reintento
+    // y dejaba al comprador con "Guarda el QR de arriba" apuntando a un QR
+    // que nunca llegaba.
+    const MAX_ATTEMPTS = 30;
+    const BASE_DELAY_MS = 2_000;
 
     const poll = async () => {
       try {
         const data = await triskelGateClient.getCheckoutSessionStatus(sessionId);
-        if (data?.success && data.orderNumber) {
-          if (!cancelled) {
-            setOrderNumber(data.orderNumber);
-            if (Array.isArray(data.tickets) && data.tickets.length > 0) {
-              setTicketsList(data.tickets);
-            }
+        if (data?.success && data.orderNumber && !cancelledRef.current) {
+          setOrderNumber(data.orderNumber);
+          if (Array.isArray(data.tickets) && data.tickets.length > 0) {
+            setTicketsList(data.tickets);
+            setHasTickets(true);
           }
         }
-      } catch (_) {
+      } catch { // eslint-disable-line no-unused-vars
         // network blip — keep polling
       } finally {
         attempts++;
-        if (!cancelled && attempts < MAX_ATTEMPTS && ticketsList.length === 0) {
-          setTimeout(poll, 2000);
-        } else if (!cancelled) {
+        if (!cancelledRef.current && attempts < MAX_ATTEMPTS && !hasTickets) {
+          // backoff suave: 2 s, 2.5 s, 3 s, ...
+          const delay = BASE_DELAY_MS + Math.min(attempts * 250, 3_000);
+          setTimeout(poll, delay);
+        } else if (!cancelledRef.current) {
           setPolling(false);
         }
       }
     };
 
     poll();
-    return () => { cancelled = true; };
-  }, [sessionId]);
+    return () => { cancelledRef.current = true; };
+  }, [sessionId, hasTickets]);
 
-  useEffect(() => {
-    if (orderNumber) setPolling(false);
-  }, [orderNumber]);
+  // Nota: el antiguo `useEffect(() => { if (orderNumber) setPolling(false); })`
+  // detenía el polling en cuanto llegaba el número de pedido, dejando al
+  // comprador sin QR si los tickets llegaban después. Eliminado.
 
   return (
     <>
@@ -181,13 +190,13 @@ const TicketSuccess = () => {
               <h1 className="success-title">¡Compra Confirmada!</h1>
 
               <p className="success-message">
-                Gracias por tu compra. Hemos enviado los detalles de tu entrada a tu email.
+                Gracias por tu compra. Te enviamos los detalles de tu entrada a tu email.
               </p>
 
               {polling && ticketsList.length === 0 && (
                 <div className="order-details">
                   <Spinner size="sm" className="me-2" />
-                  <span className="text-muted">Confirmando pedido...</span>
+                  <span className="text-muted">Confirmando pedido…</span>
                 </div>
               )}
 
@@ -214,38 +223,61 @@ const TicketSuccess = () => {
                 </div>
               )}
 
-              <div className="next-steps mt-4">
-                <h4>Próximos pasos</h4>
-                <ul className="steps-list">
-                  <li>
-                    <BsCalendarEvent className="me-2" />
-                    <span>Guarda el QR de arriba o añádelo a tu wallet</span>
-                  </li>
-                  <li>
-                    <BsEnvelope className="me-2" />
-                    <span>También te hemos enviado los detalles por email</span>
-                  </li>
-                </ul>
-
-                <div className="cta-buttons mt-4">
-                  <Link to="/">
-                    <Button variant="primary">
-                      Volver al evento
-                    </Button>
-                  </Link>
-                  <Link to="/agenda">
-                    <Button variant="outline-primary" className="ms-2">
-                      Ver Agenda
-                    </Button>
-                  </Link>
-                </div>
-
-                <div className="contact-support mt-4">
-                  <p>
-                    ¿Tienes preguntas?{' '}
-                    <a href="mailto:info@xopsconference.com">Contáctanos</a>
+              {/* WEB-1: si el polling termina sin tickets, mostramos un estado
+                  claro y un botón de reintento en vez del antiguo "Próximos
+                  pasos" que apuntaba a un QR inexistente. */}
+              {!polling && orderNumber && !hasTickets && (
+                <div className="order-details mt-4" data-testid="ticket-emit-pending">
+                  <p className="text-muted">
+                    Estamos terminando de emitir tu entrada. Normalmente tarda unos segundos;
+                    si sigues sin verla tras un minuto, pulsa reintentar.
                   </p>
+                  <Button
+                    variant="outline-primary"
+                    onClick={() => window.location.reload()}
+                  >
+                    Reintentar
+                  </Button>
                 </div>
+              )}
+
+              {/* WEB-1: el bloque "Próximos pasos" sólo aparece si hay tickets
+                  reales; antes se mostraba siempre y referenciaba un QR que
+                  podía no estar. */}
+              {ticketsList.length > 0 && (
+                <div className="next-steps mt-4">
+                  <h4>Próximos pasos</h4>
+                  <ul className="steps-list">
+                    <li>
+                      <BsCalendarEvent className="me-2" />
+                      <span>Guarda el QR de arriba o añádelo a tu wallet</span>
+                    </li>
+                    <li>
+                      <BsEnvelope className="me-2" />
+                      <span>También te enviamos los detalles por email</span>
+                    </li>
+                  </ul>
+                </div>
+              )}
+
+              <div className="cta-buttons mt-4">
+                <Link to="/">
+                  <Button variant="primary">
+                    Volver al evento
+                  </Button>
+                </Link>
+                <Link to="/agenda">
+                  <Button variant="outline-primary" className="ms-2">
+                    Ver Agenda
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="contact-support mt-4">
+                <p>
+                  ¿Tienes preguntas?{' '}
+                  <a href="mailto:info@xopsconference.com">Contáctanos</a>
+                </p>
               </div>
             </Col>
           </Row>

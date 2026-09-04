@@ -38,7 +38,6 @@ import SophiaAbout from './pages/sophia/SophiaAbout';
 import SophiaPostulateStatus from './pages/sophia/SophiaPostulateStatus';
 import WalletLogin from './pages/wallet/WalletLogin';
 import WalletDashboard from './pages/wallet/WalletDashboard';
-import CheckoutSuccess from './pages/tickets/CheckoutSuccess';
 import CheckoutCancel from './pages/tickets/CheckoutCancel';
 import CityEventPage from './pages/CityEventPage';
 import StartupPack from './pages/StartupPack';
@@ -296,8 +295,7 @@ function App() {
           <Route path="/wallet/login" element={<WalletLogin />} />
           <Route path="/wallet" element={<WalletDashboard />} />
           
-          {/* Checkout routes */}
-          <Route path="/checkout/success" element={<CheckoutSuccess />} />
+          {/* Checkout cancel — el flujo "success" vive en /tickets/success */}
           <Route path="/checkout/cancel" element={<CheckoutCancel />} />
           
           {/* City event pages - host-aware routing */}

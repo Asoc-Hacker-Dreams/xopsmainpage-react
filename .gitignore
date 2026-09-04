@@ -66,3 +66,7 @@ e2e/report/
 playwright-report/
 .impeccable/
 .vercel
+
+# Playwright production run artifacts (29MB traces)
+e2e/report-production/
+pnpm-lock.yaml

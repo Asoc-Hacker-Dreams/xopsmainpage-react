@@ -36,7 +36,7 @@ export interface Ticket {
   name: string;
   description?: string;
   price: number;
-  currency: 'EUR' | 'USD';
+  currency: 'EUR' | 'USD' | 'AED';
   available?: boolean;
   maxQuantity?: number;
   features?: string[];

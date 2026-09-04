@@ -10,14 +10,14 @@ export interface TicketV1 {
   name: string;
   description?: string;
   price: number;
-  currency: 'EUR' | 'USD';
+  currency: 'EUR' | 'USD' | 'AED';
   available?: boolean;
   maxQuantity?: number;
   features?: string[];
   purchaseUrl?: string;
 }
 
-const ALLOWED_CURRENCIES = new Set(['EUR', 'USD']);
+const ALLOWED_CURRENCIES = new Set(['EUR', 'USD', 'AED']);
 
 /**
  * Convert a single TriskelGate ticket type to the v1 Ticket schema.
@@ -38,7 +38,7 @@ export function mapTicketTypeToTicket(tt: TGTicketType): TicketV1 {
     name: tt.name,
     ...(tt.description != null && { description: tt.description }),
     price: Number(tt.price) || 0,
-    currency: currency as 'EUR' | 'USD',
+    currency: currency as 'EUR' | 'USD' | 'AED',
     ...(tt.available != null && { available: tt.available }),
     ...(tt.maxPerOrder != null && { maxQuantity: tt.maxPerOrder }),
     ...(tt.features?.length && { features: tt.features }),

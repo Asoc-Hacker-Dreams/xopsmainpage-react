@@ -157,8 +157,13 @@ const TicketModal = ({ show, onHide }) => {
             ),
         );
 
+        // Madrid (19 nov) antes que Dubai (30 nov): orden cronológico estable.
+        const sorted = [...active].sort(
+          (a, b) => new Date(a.startDate ?? 0) - new Date(b.startDate ?? 0),
+        );
+
         const withTT = await Promise.all(
-          active.map(async (ev) => {
+          sorted.map(async (ev) => {
             try {
               const types = await triskelGateClient.listTicketTypes(ev.id);
               return {
@@ -342,6 +347,9 @@ const TicketModal = ({ show, onHide }) => {
               />
               <Form.Text style={{ color: '#64748b' }}>{t('ticketModal.checkout.emailHint')}</Form.Text>
             </Form.Group>
+            <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginTop: '12px' }}>
+              {t('ticketModal.checkout.taxIncluded')}
+            </p>
           </Modal.Body>
           <Modal.Footer style={MODAL_FOOTER}>
             <Button variant="outline-secondary" onClick={backToSelect}>
@@ -401,7 +409,24 @@ const TicketModal = ({ show, onHide }) => {
               {loadError && (
                 <Row className="justify-content-center mb-4">
                   <Col lg={10}>
-                    <Alert variant="danger">{loadError}</Alert>
+                    <Alert variant="danger">
+                      <div>{loadError}</div>
+                      <Button
+                        variant="outline-light"
+                        size="sm"
+                        className="mt-2"
+                        onClick={() => {
+                          // Cierra y reabre el modal para forzar un nuevo fetch.
+                          // Más limpio: recargar la página si el error persiste.
+                          onHide();
+                          setTimeout(() => {
+                            try { window.location.reload(); } catch (_) {}
+                          }, 50);
+                        }}
+                      >
+                        {t('common.retry')}
+                      </Button>
+                    </Alert>
                   </Col>
                 </Row>
               )}
