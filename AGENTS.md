@@ -1,5 +1,11 @@
 # AI Agent Working Instructions — XOps Conference Website
 
+> **Política global del workspace:** [`../AGENTS.md`](../AGENTS.md) — reglas
+> que aplican a todos los repos de HSM (topología de despliegue, flujo de
+> compra de entradas, límites de R2). Este fichero **no las repite**: sólo
+> añade lo específico de este repositorio.
+
+
 > Guidelines for AI agents working on this codebase.
 
 ---
