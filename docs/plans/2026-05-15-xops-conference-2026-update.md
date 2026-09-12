@@ -8,7 +8,7 @@
 
 **Tech Stack:** React, React Bootstrap, react-i18next, Vite, Vitest + React Testing Library
 
-**Spec:** `docs/superpowers/specs/2026-05-15-xops-conference-2026-update-design.md`
+**Spec:** `docs/specs/2026-05-15-xops-conference-2026-update-design.md`
 
 ---
 
