@@ -617,7 +617,125 @@
   "collaborators": {
     "sponsors": "Patrocinadores",
     "collaborators": "Colaboradores",
-    "collaboratorsDesc": "Gracias a la comunidad y todos los colaboradores que hacen posible este evento"
+    "collaboratorsDesc": "Gracias a la comunidad y todos los colaboradores que hacen posible este evento",
+    "ecosystem": "Nuestro Ecosistema",
+    "ecosystemDesc": "Los partners estratégicos que impulsan el ecosistema X-Ops",
+    "partners": {
+      "consulting": {
+        "role": "Socio Estratégico de Tecnología"
+      },
+      "media": {
+        "role": "Partner de Medios Oficial"
+      },
+      "press": {
+        "role": "Partner Oficial de Prensa y Editorial"
+      }
+    }
+  },
+  "pricingTable": {
+    "title": "Nuestros Planes de Promoción",
+    "subtitle": "Selecciona ciudad para ver precios y beneficios físicos aplicables.",
+    "cityTabsAriaLabel": "Selector de patrocinio por ciudad",
+    "cityTabs": {
+      "madrid": "Patrocina Madrid",
+      "dubai": "Patrocina Dubai",
+      "both": "Patrocina ambas ciudades"
+    },
+    "citySubject": {
+      "madrid": "Madrid",
+      "dubai": "Dubai",
+      "both": "Madrid+Dubai"
+    },
+    "cityCopy": {
+      "madrid": "Beneficios presenciales aplicados a Madrid.",
+      "dubai": "Beneficios presenciales aplicados a Dubai.",
+      "both": "Presencia en Madrid + Dubai con 10% de descuento combinado."
+    },
+    "cityNote": "Tipo de cambio fijo: 1 EUR = {{aed}} AED y 1 EUR = {{usd}} USD (redondeo a {{step}}).",
+    "priceSub": "{{currency}} · inversión",
+    "cta": "Contactar",
+    "contactAriaLabel": "Contactar sobre el plan {{plan}} en {{city}}",
+    "featuresAriaLabel": "Beneficios {{plan}}",
+    "exclusiveBadge": "EXCLUSIVO · SOLO 2 DISPONIBLES",
+    "exclusiveBadgeAriaLabel": "Exclusivo, solo 2 disponibles",
+    "metrics": {
+      "reach": "Alcance",
+      "leads": "Leads",
+      "impressions": "Impresiones",
+      "estimateNote": "(est.)"
+    },
+    "subjectPrefix": "Patrocinio",
+    "plans": {
+      "platinum": {
+        "name": "PLATINUM",
+        "features": [
+          "Todos los beneficios del Track Sponsor",
+          "Charla Principal (Keynote) de 30 minutos",
+          "Stand físico premium en posición estratégica",
+          "Logo en email de bienvenida a asistentes",
+          "Agradecimiento en ceremonia de apertura y clausura",
+          "Programa de bug bounty gratuito",
+          "15 entradas completas"
+        ]
+      },
+      "track": {
+        "name": "TRACK SPONSOR",
+        "features": [
+          "Todos los beneficios del paquete Gold",
+          "Derechos de nomenclatura del track",
+          "Branding exclusivo en sala física",
+          "Logo en cabecera de la agenda del track",
+          "Mención especial al inicio de cada jornada",
+          "Programa de bug bounty gratuito",
+          "15 entradas completas"
+        ]
+      },
+      "gold": {
+        "name": "GOLD",
+        "features": [
+          "Todos los beneficios del paquete Silver",
+          "Charla técnica de 45 minutos",
+          "Logo destacado en posición superior",
+          "Publicación dedicada en redes sociales",
+          "Programa de bug bounty gratuito",
+          "10 entradas completas"
+        ]
+      },
+      "silver": {
+        "name": "SILVER",
+        "features": [
+          "Stand físico de 2x2m con mesa y sillas",
+          "Logo, descripción y enlace web",
+          "Logo en sección 'Silver Sponsors'",
+          "Mención en publicación conjunta en redes sociales",
+          "5 entradas completas"
+        ]
+      },
+      "virtual": {
+        "name": "VIRTUAL-ONLY",
+        "features": [
+          "Stand virtual premium",
+          "Perfil completo en la aplicación web",
+          "Logo, descripción y enlaces a redes sociales",
+          "Vídeo promocional incrustado",
+          "Formulario integrado para captura de leads"
+        ]
+      }
+    },
+    "startupPack": {
+      "label": "🌱 STARTUP PACK",
+      "priceSub": "EUR · según ciudades elegidas",
+      "features": [
+        "Logo en web",
+        "Mención en redes",
+        "1 pase completo",
+        "Stand compartido",
+        "Welcome Pack"
+      ],
+      "featuresAriaLabel": "Beneficios Startup Pack",
+      "eligibility": "Startups ≤3 años · ≤15 empleados · ARR <€500K",
+      "cta": "Aplicar al Startup Pack"
+    }
   },
   "speakers": {
     "title": "Conoce a Nuestros Ponentes",

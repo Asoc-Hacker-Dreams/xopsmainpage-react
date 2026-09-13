@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { BsCheckCircleFill, BsStar } from 'react-icons/bs';
 import AnimationWrapper from './AnimationWrapper';
 
@@ -12,113 +13,68 @@ const COMBINED_DISCOUNT = 0.1;
 const roundToStep = (value, step = ROUND_STEP) => Math.round(value / step) * step;
 const formatNumber = (value) => value.toLocaleString('es-ES');
 
-// Note: `plans` below are generic pricing TIERS (Platinum/Track/Gold/Silver/
+// Note: `planDefs` below are generic pricing TIERS (Platinum/Track/Gold/Silver/
 // Virtual) offered to prospective sponsors, not a list of confirmed sponsor
 // companies with logos — city selection here is handled by the Madrid/Dubai/
-// Both tabs (`cityModes`), which already apply to whichever tier a sponsor
+// Both tabs (`cityModeDefs`), which already apply to whichever tier a sponsor
 // picks. There's no per-company entry to attach a <SponsorFlag /> to in this
 // file; that mechanism lives in Collaborators.jsx, where real, named sponsor
 // logos are rendered. See SponsorFlag.jsx if a future "confirmed sponsors"
 // list is added here.
-const plans = [
+//
+// Names and features are localized via i18n (pricingTable.plans.<id>) —
+// only the non-textual data (price, flags, metrics) lives here.
+const planDefs = [
   {
     id: 'platinum',
-    name: 'PLATINUM',
     eurPrice: 10000,
     featured: true,
-    features: [
-      'Todos los beneficios del Track Sponsor',
-      'Charla Principal (Keynote) de 30 minutos',
-      'Stand físico premium en posición estratégica',
-      'Logo en email de bienvenida a asistentes',
-      'Agradecimiento en ceremonia de apertura y clausura',
-      '15 entradas completas',
-    ],
     metrics: { reach: '~15K', leads: '150+', impressions: '250K+' },
   },
   {
     id: 'track',
-    name: 'TRACK SPONSOR',
     eurPrice: 6000,
     track: true,
-    features: [
-      'Todos los beneficios del paquete Gold',
-      'Derechos de nomenclatura del track',
-      'Branding exclusivo en sala física',
-      'Logo en cabecera de la agenda del track',
-      'Mención especial al inicio de cada jornada',
-      '15 entradas completas',
-    ],
     metrics: { reach: '~10K', leads: '100+', impressions: '180K+' },
   },
   {
     id: 'gold',
-    name: 'GOLD',
     eurPrice: 3000,
-    features: [
-      'Todos los beneficios del paquete Silver',
-      'Charla técnica de 45 minutos',
-      'Logo destacado en posición superior',
-      'Publicación dedicada en redes sociales',
-      '10 entradas completas',
-    ],
     metrics: { reach: '~6K', leads: '60+', impressions: '100K+' },
   },
   {
     id: 'silver',
-    name: 'SILVER',
     eurPrice: 1500,
-    features: [
-      'Stand físico de 2x2m con mesa y sillas',
-      'Logo, descripción y enlace web',
-      "Logo en sección 'Silver Sponsors'",
-      'Mención en publicación conjunta en redes sociales',
-      '5 entradas completas',
-    ],
     metrics: { reach: '~3K', leads: '30+', impressions: '50K+' },
   },
   {
     id: 'virtual',
-    name: 'VIRTUAL-ONLY',
     eurPrice: 1000,
-    features: [
-      'Stand virtual premium',
-      'Perfil completo en la aplicación web',
-      'Logo, descripción y enlaces a redes sociales',
-      'Vídeo promocional incrustado',
-      'Formulario integrado para captura de leads',
-    ],
     metrics: { reach: '~2K', leads: '20+', impressions: '30K+' },
   },
 ];
 
-const cityModes = [
+const cityModeDefs = [
   {
     id: 'madrid',
-    label: 'Patrocina Madrid',
     currencySymbol: '€',
     currencyCode: 'EUR',
-    copy: 'Beneficios presenciales aplicados a Madrid.',
     computePrice: (eur) => eur,
-    subjectPrefix: 'Madrid',
+    subjectPrefixKey: 'madrid',
   },
   {
     id: 'dubai',
-    label: 'Patrocina Dubai',
     currencySymbol: 'AED',
     currencyCode: 'AED',
-    copy: 'Beneficios presenciales aplicados a Dubai.',
     computePrice: (eur) => roundToStep(eur * EUR_TO_AED),
-    subjectPrefix: 'Dubai',
+    subjectPrefixKey: 'dubai',
   },
   {
     id: 'both',
-    label: 'Patrocina ambas ciudades',
     currencySymbol: 'US$',
     currencyCode: 'USD',
-    copy: 'Presencia en Madrid + Dubai con 10% de descuento combinado.',
     computePrice: (eur) => roundToStep(eur * 2 * EUR_TO_USD * (1 - COMBINED_DISCOUNT)),
-    subjectPrefix: 'Madrid+Dubai',
+    subjectPrefixKey: 'both',
   },
 ];
 
@@ -129,49 +85,68 @@ const renderPrice = (symbol, amount) => (
   </div>
 );
 
-// Estimated reach/leads/impressions per tier — not measured, so always
-// labelled "(est.)" to the visitor.
-const renderMetrics = (metrics) => (
-  <div className="sponsor-tiers__metrics">
-    <div className="sponsor-tiers__metric">
-      <span className="sponsor-tiers__metric-num">{metrics.reach}</span>
-      <span className="sponsor-tiers__metric-label">Alcance</span>
-    </div>
-    <div className="sponsor-tiers__metric">
-      <span className="sponsor-tiers__metric-num">{metrics.leads}</span>
-      <span className="sponsor-tiers__metric-label">Leads</span>
-    </div>
-    <div className="sponsor-tiers__metric">
-      <span className="sponsor-tiers__metric-num">{metrics.impressions}</span>
-      <span className="sponsor-tiers__metric-label">Impresiones</span>
-    </div>
-    <span className="sponsor-tiers__metrics-note">(est.)</span>
-  </div>
-);
-
 const PricingTable = () => {
-  const [activeMode, setActiveMode] = useState(cityModes[0]);
+  const { t } = useTranslation();
+  const [activeModeId, setActiveModeId] = useState(cityModeDefs[0].id);
+
+  const cityModes = cityModeDefs.map((mode) => ({
+    ...mode,
+    label: t(`pricingTable.cityTabs.${mode.id}`),
+    copy: t(`pricingTable.cityCopy.${mode.id}`),
+    subjectPrefix: t(`pricingTable.citySubject.${mode.subjectPrefixKey}`),
+  }));
+
+  const plans = planDefs.map((plan) => ({
+    ...plan,
+    name: t(`pricingTable.plans.${plan.id}.name`),
+    features: t(`pricingTable.plans.${plan.id}.features`, { returnObjects: true }),
+  }));
+
+  const activeMode = cityModes.find((mode) => mode.id === activeModeId) || cityModes[0];
   const featuredPlan = plans.find((plan) => plan.featured);
   const trackPlan = plans.find((plan) => plan.track);
   const standardPlans = plans.filter((plan) => !plan.featured && !plan.track);
+
+  // Estimated reach/leads/impressions per tier — not measured, so always
+  // labelled "(est.)" to the visitor.
+  const renderMetrics = (metrics) => (
+    <div className="sponsor-tiers__metrics">
+      <div className="sponsor-tiers__metric">
+        <span className="sponsor-tiers__metric-num">{metrics.reach}</span>
+        <span className="sponsor-tiers__metric-label">{t('pricingTable.metrics.reach')}</span>
+      </div>
+      <div className="sponsor-tiers__metric">
+        <span className="sponsor-tiers__metric-num">{metrics.leads}</span>
+        <span className="sponsor-tiers__metric-label">{t('pricingTable.metrics.leads')}</span>
+      </div>
+      <div className="sponsor-tiers__metric">
+        <span className="sponsor-tiers__metric-num">{metrics.impressions}</span>
+        <span className="sponsor-tiers__metric-label">{t('pricingTable.metrics.impressions')}</span>
+      </div>
+      <span className="sponsor-tiers__metrics-note">{t('pricingTable.metrics.estimateNote')}</span>
+    </div>
+  );
+
+  const mailtoHref = (planName) =>
+    `mailto:${CONTACT_EMAIL}?subject=${t('pricingTable.subjectPrefix')} ${activeMode.subjectPrefix} ${planName}`;
 
   return (
     <section className="sponsor-tiers" id="patrocinio" aria-labelledby="sponsor-tiers-heading">
       <div className="sponsor-tiers__container">
         <header className="sponsor-tiers__header">
           <h2 id="sponsor-tiers-heading" className="sponsor-tiers__title">
-            Nuestros Planes de Promoción
+            {t('pricingTable.title')}
           </h2>
           <p className="sponsor-tiers__subtitle">
-            Selecciona ciudad para ver precios y beneficios físicos aplicables.
+            {t('pricingTable.subtitle')}
           </p>
-          <div className="sponsor-tiers__city-tabs" role="tablist" aria-label="Selector de patrocinio por ciudad">
+          <div className="sponsor-tiers__city-tabs" role="tablist" aria-label={t('pricingTable.cityTabsAriaLabel')}>
             {cityModes.map((mode) => (
               <button
                 key={mode.id}
                 type="button"
                 className={`sponsor-tiers__city-tab${activeMode.id === mode.id ? ' sponsor-tiers__city-tab--active' : ''}`}
-                onClick={() => setActiveMode(mode)}
+                onClick={() => setActiveModeId(mode.id)}
                 role="tab"
                 aria-selected={activeMode.id === mode.id}
               >
@@ -183,7 +158,11 @@ const PricingTable = () => {
             {activeMode.copy}
           </p>
           <p className="sponsor-tiers__city-note">
-            Tipo de cambio fijo: 1 EUR = {EUR_TO_AED.toFixed(2)} AED y 1 EUR = {EUR_TO_USD.toFixed(2)} USD (redondeo a {ROUND_STEP}).
+            {t('pricingTable.cityNote', {
+              aed: EUR_TO_AED.toFixed(2),
+              usd: EUR_TO_USD.toFixed(2),
+              step: ROUND_STEP,
+            })}
           </p>
         </header>
 
@@ -194,16 +173,16 @@ const PricingTable = () => {
                 <div className="sponsor-tiers__tier-side">
                   <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--gold">{featuredPlan.name}</span>
                   {renderPrice(activeMode.currencySymbol, activeMode.computePrice(featuredPlan.eurPrice))}
-                  <span className="sponsor-tiers__price-sub">{activeMode.currencyCode} · inversión</span>
+                  <span className="sponsor-tiers__price-sub">{t('pricingTable.priceSub', { currency: activeMode.currencyCode })}</span>
                   <a
-                    href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${activeMode.subjectPrefix} ${featuredPlan.name}`}
+                    href={mailtoHref(featuredPlan.name)}
                     className="sponsor-tiers__cta sponsor-tiers__cta--gold"
-                    aria-label={`Contactar sobre el plan ${featuredPlan.name} en ${activeMode.subjectPrefix}`}
+                    aria-label={t('pricingTable.contactAriaLabel', { plan: featuredPlan.name, city: activeMode.subjectPrefix })}
                   >
-                    Contactar
+                    {t('pricingTable.cta')}
                   </a>
                 </div>
-                <ul className="sponsor-tiers__features sponsor-tiers__features--grid" aria-label={`Beneficios ${featuredPlan.name}`}>
+                <ul className="sponsor-tiers__features sponsor-tiers__features--grid" aria-label={t('pricingTable.featuresAriaLabel', { plan: featuredPlan.name })}>
                   {featuredPlan.features.map((feature) => (
                     <li key={feature} className="sponsor-tiers__feature">
                       <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--gold" aria-hidden="true" />
@@ -221,24 +200,24 @@ const PricingTable = () => {
           <AnimationWrapper animation="fade-up" duration={800}>
             <div className="sponsor-tiers__track-wrap">
               <div className="sponsor-tiers__track">
-                <div className="sponsor-tiers__exclusive-badge" aria-label="Exclusivo, solo 2 disponibles">
+                <div className="sponsor-tiers__exclusive-badge" aria-label={t('pricingTable.exclusiveBadgeAriaLabel')}>
                   <BsStar aria-hidden="true" />
-                  EXCLUSIVO · SOLO 2 DISPONIBLES
+                  {t('pricingTable.exclusiveBadge')}
                 </div>
                 <div className="sponsor-tiers__featured-inner">
                   <div className="sponsor-tiers__tier-side">
                     <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--cyan">{trackPlan.name}</span>
                     {renderPrice(activeMode.currencySymbol, activeMode.computePrice(trackPlan.eurPrice))}
-                    <span className="sponsor-tiers__price-sub">{activeMode.currencyCode} · inversión</span>
+                    <span className="sponsor-tiers__price-sub">{t('pricingTable.priceSub', { currency: activeMode.currencyCode })}</span>
                     <a
-                      href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${activeMode.subjectPrefix} ${trackPlan.name}`}
+                      href={mailtoHref(trackPlan.name)}
                       className="sponsor-tiers__cta sponsor-tiers__cta--outline"
-                      aria-label={`Contactar sobre el plan ${trackPlan.name} en ${activeMode.subjectPrefix}`}
+                      aria-label={t('pricingTable.contactAriaLabel', { plan: trackPlan.name, city: activeMode.subjectPrefix })}
                     >
-                      Contactar
+                      {t('pricingTable.cta')}
                     </a>
                   </div>
-                  <ul className="sponsor-tiers__features" aria-label={`Beneficios ${trackPlan.name}`}>
+                  <ul className="sponsor-tiers__features" aria-label={t('pricingTable.featuresAriaLabel', { plan: trackPlan.name })}>
                     {trackPlan.features.map((feature) => (
                       <li key={feature} className="sponsor-tiers__feature">
                         <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--cyan" aria-hidden="true" />
@@ -261,8 +240,8 @@ const PricingTable = () => {
                   {plan.name}
                 </span>
                 {renderPrice(activeMode.currencySymbol, activeMode.computePrice(plan.eurPrice))}
-                <span className="sponsor-tiers__price-sub">{activeMode.currencyCode} · inversión</span>
-                <ul className="sponsor-tiers__features" aria-label={`Beneficios ${plan.name}`}>
+                <span className="sponsor-tiers__price-sub">{t('pricingTable.priceSub', { currency: activeMode.currencyCode })}</span>
+                <ul className="sponsor-tiers__features" aria-label={t('pricingTable.featuresAriaLabel', { plan: plan.name })}>
                   {plan.features.map((feature) => (
                     <li key={feature} className="sponsor-tiers__feature">
                       <BsCheckCircleFill
@@ -275,11 +254,11 @@ const PricingTable = () => {
                 </ul>
                 {plan.metrics && renderMetrics(plan.metrics)}
                 <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=Patrocinio ${activeMode.subjectPrefix} ${plan.name}`}
+                  href={mailtoHref(plan.name)}
                   className="sponsor-tiers__cta sponsor-tiers__cta--muted"
-                  aria-label={`Contactar sobre el plan ${plan.name} en ${activeMode.subjectPrefix}`}
+                  aria-label={t('pricingTable.contactAriaLabel', { plan: plan.name, city: activeMode.subjectPrefix })}
                 >
-                  Contactar
+                  {t('pricingTable.cta')}
                 </a>
               </div>
             </AnimationWrapper>
@@ -291,20 +270,14 @@ const PricingTable = () => {
             sponsorship tier like the ones above instead of an afterthought. */}
         <div className="sponsor-tiers__card sponsor-tiers__card--startup">
           <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--startup">
-            🌱 STARTUP PACK
+            {t('pricingTable.startupPack.label')}
           </span>
           <div className="sponsor-tiers__price">
             <span className="sponsor-tiers__price-amount">€350–€950</span>
           </div>
-          <span className="sponsor-tiers__price-sub">EUR · según ciudades elegidas</span>
-          <ul className="sponsor-tiers__features" aria-label="Beneficios Startup Pack">
-            {[
-              'Logo en web',
-              'Mención en redes',
-              '1 pase completo',
-              'Stand compartido',
-              'Welcome Pack',
-            ].map((feature) => (
+          <span className="sponsor-tiers__price-sub">{t('pricingTable.startupPack.priceSub')}</span>
+          <ul className="sponsor-tiers__features" aria-label={t('pricingTable.startupPack.featuresAriaLabel')}>
+            {t('pricingTable.startupPack.features', { returnObjects: true }).map((feature) => (
               <li key={feature} className="sponsor-tiers__feature">
                 <BsCheckCircleFill className="sponsor-tiers__check sponsor-tiers__check--startup" aria-hidden="true" />
                 <span>{feature}</span>
@@ -312,10 +285,10 @@ const PricingTable = () => {
             ))}
           </ul>
           <p className="sponsor-tiers__startup-eligibility">
-            Startups ≤3 años · ≤15 empleados · ARR &lt;€500K
+            {t('pricingTable.startupPack.eligibility')}
           </p>
           <Link to="/startup-pack" className="sponsor-tiers__cta sponsor-tiers__cta--startup">
-            Aplicar al Startup Pack
+            {t('pricingTable.startupPack.cta')}
           </Link>
         </div>
       </div>

@@ -623,7 +623,125 @@
   "collaborators": {
     "sponsors": "Sponsors",
     "collaborators": "Collaborators",
-    "collaboratorsDesc": "Thanks to the community and all collaborators who make this event possible"
+    "collaboratorsDesc": "Thanks to the community and all collaborators who make this event possible",
+    "ecosystem": "Our Ecosystem",
+    "ecosystemDesc": "The strategic partners that power the X-Ops ecosystem",
+    "partners": {
+      "consulting": {
+        "role": "Strategic Technology Partner"
+      },
+      "media": {
+        "role": "Official Media Partner"
+      },
+      "press": {
+        "role": "Official Press & Editorial Partner"
+      }
+    }
+  },
+  "pricingTable": {
+    "title": "Our Sponsorship Plans",
+    "subtitle": "Select a city to see applicable prices and in-person benefits.",
+    "cityTabsAriaLabel": "Sponsorship selector by city",
+    "cityTabs": {
+      "madrid": "Sponsor Madrid",
+      "dubai": "Sponsor Dubai",
+      "both": "Sponsor both cities"
+    },
+    "citySubject": {
+      "madrid": "Madrid",
+      "dubai": "Dubai",
+      "both": "Madrid+Dubai"
+    },
+    "cityCopy": {
+      "madrid": "In-person benefits applied to Madrid.",
+      "dubai": "In-person benefits applied to Dubai.",
+      "both": "Presence in Madrid + Dubai with a 10% combined discount."
+    },
+    "cityNote": "Fixed exchange rate: 1 EUR = {{aed}} AED and 1 EUR = {{usd}} USD (rounded to {{step}}).",
+    "priceSub": "{{currency}} · investment",
+    "cta": "Contact us",
+    "contactAriaLabel": "Contact us about the {{plan}} plan in {{city}}",
+    "featuresAriaLabel": "{{plan}} benefits",
+    "exclusiveBadge": "EXCLUSIVE · ONLY 2 AVAILABLE",
+    "exclusiveBadgeAriaLabel": "Exclusive, only 2 available",
+    "metrics": {
+      "reach": "Reach",
+      "leads": "Leads",
+      "impressions": "Impressions",
+      "estimateNote": "(est.)"
+    },
+    "subjectPrefix": "Sponsorship",
+    "plans": {
+      "platinum": {
+        "name": "PLATINUM",
+        "features": [
+          "All Track Sponsor benefits",
+          "30-minute Keynote talk",
+          "Premium physical booth in a strategic location",
+          "Logo in the attendee welcome email",
+          "Recognition at the opening and closing ceremony",
+          "Free bug bounty program",
+          "15 full passes"
+        ]
+      },
+      "track": {
+        "name": "TRACK SPONSOR",
+        "features": [
+          "All Gold package benefits",
+          "Track naming rights",
+          "Exclusive branding in the physical room",
+          "Logo on the track agenda header",
+          "Special mention at the start of each day",
+          "Free bug bounty program",
+          "15 full passes"
+        ]
+      },
+      "gold": {
+        "name": "GOLD",
+        "features": [
+          "All Silver package benefits",
+          "45-minute technical talk",
+          "Featured logo in a top position",
+          "Dedicated social media post",
+          "Free bug bounty program",
+          "10 full passes"
+        ]
+      },
+      "silver": {
+        "name": "SILVER",
+        "features": [
+          "2x2m physical booth with table and chairs",
+          "Logo, description and web link",
+          "Logo in the 'Silver Sponsors' section",
+          "Mention in a joint social media post",
+          "5 full passes"
+        ]
+      },
+      "virtual": {
+        "name": "VIRTUAL-ONLY",
+        "features": [
+          "Premium virtual booth",
+          "Full profile in the web app",
+          "Logo, description and social media links",
+          "Embedded promotional video",
+          "Integrated lead capture form"
+        ]
+      }
+    },
+    "startupPack": {
+      "label": "🌱 STARTUP PACK",
+      "priceSub": "EUR · depending on chosen cities",
+      "features": [
+        "Logo on the website",
+        "Mention on social media",
+        "1 full pass",
+        "Shared booth",
+        "Welcome Pack"
+      ],
+      "featuresAriaLabel": "Startup Pack benefits",
+      "eligibility": "Startups ≤3 years old · ≤15 employees · ARR <€500K",
+      "cta": "Apply to the Startup Pack"
+    }
   },
   "speakers": {
     "title": "Meet Our Speakers",

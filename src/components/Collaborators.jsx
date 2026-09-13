@@ -13,6 +13,10 @@ import hackbysecurityLogo from "../assets/collaborators/hackbysecurity.png";
 import sirviendoCodigoLogo from "../assets/collaborators/SirviendoCodigologo.png";
 import snykLogo from "../assets/collaborators/snyklogo.png";
 import amaxopLogo from "../assets/collaborators/amaxop.png";
+import graybackLogo from "../assets/collaborators/grayback.png";
+import xopsConsultingLogo from "../assets/collaborators/xopsconsulting.svg";
+import xopsMediaLogo from "../assets/collaborators/xopsmedia.jpeg";
+import xopsPressLogo from "../assets/collaborators/xopspress.png";
 import AnimationWrapper from "./AnimationWrapper";
 import SponsorFlag from "./SponsorFlag";
 
@@ -36,6 +40,7 @@ const SPONSOR_CITIES = {
   madridDevops: ['madrid'],
   hacktricks: ['madrid'],
   sirviendoCodigo: ['madrid'],
+  grayback: ['madrid'],
 };
 
 const Collaborators = () => {
@@ -309,6 +314,90 @@ const Collaborators = () => {
                     />
                   </a>
                   <SponsorFlag cities={SPONSOR_CITIES.sirviendoCodigo} />
+                </AnimationWrapper>
+              </div>
+              <div className="speaker-img">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <a href="https://grayback.es" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={graybackLogo}
+                      alt="Logo de Grayback"
+                      style={{
+                        maxHeight: '150px',
+                        maxWidth: '150px',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </a>
+                  <SponsorFlag cities={SPONSOR_CITIES.grayback} />
+                </AnimationWrapper>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <h2 className="text-center">{t('collaborators.ecosystem')}</h2>
+          <p className="text-center">{t('collaborators.ecosystemDesc')}</p>
+          <div className="speaker-cards margin-top">
+            <div className="speaker1 justify-content-center d-flex justify-around margin-top">
+              <div className="speaker-img ecosystem-partner">
+                <AnimationWrapper animation="fade-right" duration={1500}>
+                  <a href="https://consulting.xopsgroup.com" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={xopsConsultingLogo}
+                      alt="Logo de X-Ops Consulting"
+                      style={{
+                        maxHeight: '110px',
+                        maxWidth: '260px',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </a>
+                  <span className="ecosystem-partner-role">{t('collaborators.partners.consulting.role')}</span>
+                </AnimationWrapper>
+              </div>
+
+              <div className="speaker-img ecosystem-partner">
+                <AnimationWrapper animation="fade-up" duration={1500}>
+                  <a href="https://www.xops.media" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={xopsMediaLogo}
+                      alt="Logo de X-Ops Media"
+                      style={{
+                        maxHeight: '150px',
+                        maxWidth: '150px',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '10px'
+                      }}
+                    />
+                  </a>
+                  <span className="ecosystem-partner-role">{t('collaborators.partners.media.role')}</span>
+                </AnimationWrapper>
+              </div>
+
+              <div className="speaker-img ecosystem-partner">
+                <AnimationWrapper animation="fade-left" duration={1500}>
+                  <a href="https://press.xops.media" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={xopsPressLogo}
+                      alt="Logo de X-Ops Press"
+                      style={{
+                        maxHeight: '150px',
+                        maxWidth: '150px',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </a>
+                  <span className="ecosystem-partner-role">{t('collaborators.partners.press.role')}</span>
                 </AnimationWrapper>
               </div>
             </div>
