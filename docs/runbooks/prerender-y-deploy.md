@@ -13,14 +13,28 @@ entonces entre 5.500 y 14.200 caracteres de texto real por ruta.
 
 ## Cómo desplegar a producción
 
+**Haz merge a `main`.** El workflow `.github/workflows/deploy-production.yml`
+prerenderiza, despliega y verifica producción automáticamente. No hay pasos
+manuales.
+
+El auto-deploy de Vercel para `main` está **desactivado** en `vercel.json`
+(`git.deploymentEnabled.main = false`) porque su build no puede prerenderizar
+y pisaba el despliegue bueno. El workflow es la única vía a producción.
+
+El workflow falla y **no publica** si alguna ruta no se prerenderizó, y falla
+**después** de publicar si alguna ruta no responde 200 o si la home sirve
+menos de 1.000 caracteres sin JS. En ese caso avisa de que hay que revertir.
+
+### Despliegue manual (respaldo)
+
+Si GitHub Actions no está disponible:
+
 ```bash
 npm run deploy:prod
 ```
 
 Equivale a `vercel build --prod && vercel deploy --prebuilt --prod`: construye
 **en local** (donde Playwright sí funciona) y sube el resultado ya construido.
-
-> **El `git push` a `main` NO publica el prerender.** Ver la sección siguiente.
 
 Tras desplegar, verifica que el alias apunta al deploy nuevo:
 
@@ -57,31 +71,41 @@ Por eso `build:vercel` deja el prerender como *best-effort*: si Chromium no
 arranca, **el build no falla** y se publica la SPA sin prerender. Así un push
 nunca tumba el sitio, pero tampoco publica el prerender.
 
-## Consecuencia práctica
+Por eso el auto-deploy de `main` está desactivado y el despliegue lo hace
+GitHub Actions, donde Playwright sí funciona.
 
-| Acción | Resultado |
-|---|---|
-| `git push` a `main` | Deploy automático **sin** prerender |
-| `npm run deploy:prod` | Deploy **con** prerender |
+### Histórico: por qué se desactivó el auto-deploy
 
-Si alguien pushea a `main` después de un `deploy:prod`, el prerender se pierde
-hasta el siguiente `deploy:prod`. Mientras eso siga así, **el último paso tras
-mergear a `main` debe ser `npm run deploy:prod`**.
+Antes de existir el workflow, un push a `main` lanzaba un deploy automático que
+publicaba **sin** prerender y pisaba el despliegue bueno en menos de un minuto
+(detectado porque el contenido sin JS volvía a 0 chars). Ocurrió dos veces.
+`git.deploymentEnabled.main = false` lo elimina de raíz.
 
-Esto ya ocurrió: un push a `main` lanzó un deploy automático que pisó el
-prerender en menos de un minuto (se detectó porque el contenido sin JS volvió
-a 0 chars). Es el modo de fallo esperado, no un caso hipotético. Comprobación
-rápida tras cualquier push:
+Comprobación rápida si se sospecha que producción está sin prerender:
 
 ```bash
 curl -s "https://www.xopsconference.com/summit" | grep -o '<title>[^<]*</title>'
 ```
 
-Si devuelve el título de la home en vez del de `/summit`, producción está sin
-prerender: ejecuta `npm run deploy:prod`.
+Si devuelve el título de la home en vez del de `/summit`, está sin prerender.
 
-Para automatizarlo, lo correcto es un workflow de GitHub Actions que ejecute el
-prerender (donde Playwright sí es fiable) y despliegue con `--prebuilt`.
+## Secretos de GitHub Actions
+
+| Secret | Valor | Sensible |
+|---|---|---|
+| `VERCEL_ORG_ID` | `team_nz5iDr7HebgxPE1IaCMz7YiN` | No |
+| `VERCEL_PROJECT_ID` | `prj_cnKqFKpNChFdqm9JJobNbkQ8jfEI` | No |
+| `VERCEL_TOKEN` | Token de acceso de Vercel | **Sí** |
+
+El token se crea en <https://vercel.com/account/tokens> con alcance al equipo
+`hsm-projects` y se guarda con:
+
+```bash
+gh secret set VERCEL_TOKEN --repo Asoc-Hacker-Dreams/xopsmainpage-react
+```
+
+Usa un token **dedicado** al CI, no el de tu sesión local de la CLI: así se
+puede revocar sin afectar a tu equipo y el alcance queda acotado.
 
 ## Rutas
 

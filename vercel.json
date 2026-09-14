@@ -2,5 +2,10 @@
   "buildCommand": "npm run build:vercel",
   "rewrites": [
     { "source": "/:path*", "destination": "/index.html" }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "main": false
+    }
+  }
 }

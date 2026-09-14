@@ -1,0 +1,225 @@
+name: Deploy a producción (con prerender)
+
+# El auto-deploy de Vercel para `main` está desactivado en vercel.json
+# (git.deploymentEnabled.main = false) porque su build NO puede ejecutar el
+# prerender: Chromium muere con `libnspr4.so: cannot open shared object file`
+# y `playwright install --with-deps` necesita root, que allí no existe.
+#
+# Este workflow es la única vía a producción: prerenderiza en el runner de
+# GitHub (donde Playwright sí funciona) y sube el resultado ya construido.
+# Ver docs/runbooks/prerender-y-deploy.md
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Nunca dos despliegues a la vez sobre producción. Sin cancel-in-progress:
+# cancelar un deploy a medias puede dejar el alias en un estado incoherente.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Prerender y desplegar
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Cachear navegadores de Playwright
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Tests
+        run: npx vitest run
+
+      - name: Instalar Vercel CLI
+        run: npm install --global vercel@59
+
+      - name: Descargar configuración del proyecto
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build con prerender
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      # El prerender es best-effort dentro de build:vercel para que un fallo
+      # no tumbe el deploy. Aquí SÍ debe ser bloqueante: si no se generó el
+      # HTML, publicar dejaría la web ilegible para los crawlers, que es
+      # justo lo que este workflow existe para evitar.
+      - name: Verificar que el prerender se aplicó
+        run: |
+          set -euo pipefail
+          STATIC=".vercel/output/static"
+
+          if [ ! -f "$STATIC/summit/index.html" ]; then
+            echo "::error::No se generó $STATIC/summit/index.html — el prerender no se ejecutó."
+            exit 1
+          fi
+
+          node --input-type=module -e "
+            import fs from 'node:fs';
+            import { ROUTES } from './scripts/prerender-routes.mjs';
+            const STATIC = '.vercel/output/static';
+            const MIN = 200;
+            let fallos = 0;
+            for (const route of ROUTES) {
+              const file = route === '/'
+                ? STATIC + '/index.html'
+                : STATIC + route + '/index.html';
+              if (!fs.existsSync(file)) {
+                console.error('FALTA   ' + route);
+                fallos++;
+                continue;
+              }
+              const html = fs.readFileSync(file, 'utf-8');
+              const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/);
+              const chars = body
+                ? body[1].replace(/<script[\s\S]*?<\/script>/g, '')
+                         .replace(/<[^>]+>/g, ' ')
+                         .replace(/\s+/g, ' ').trim().length
+                : 0;
+              if (chars < MIN) {
+                console.error('VACIA   ' + route + ' (' + chars + ' chars)');
+                fallos++;
+              } else {
+                console.log('ok      ' + route + ' (' + chars + ' chars)');
+              }
+            }
+            if (fallos > 0) {
+              console.error('\n' + fallos + ' ruta(s) sin prerender. No se despliega.');
+              process.exit(1);
+            }
+            console.log('\nTodas las rutas prerenderizadas.');
+          "
+
+      - name: Desplegar a producción
+        id: deploy
+        run: |
+          set -euo pipefail
+          URL=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN")
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Desplegado: $URL"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      # Comprobación contra el dominio real. Cubre los dos fallos que ya
+      # ocurrieron: publicar sin prerender, y romper el routing dejando las
+      # rutas dinámicas (flujo de compra) en 404.
+      - name: Verificar producción
+        run: |
+          set -uo pipefail
+          BASE="https://www.xopsconference.com"
+          sleep 15
+          fallos=0
+
+          echo "--- Rutas (deben responder 200) ---"
+          for r in / /summit /agenda /Sponsor /Team /Organizer /mi-agenda \
+                   /politica-de-privacidad /archive/2025/Speakers2025 \
+                   /tickets /entradas /wallet /sophia /checkout/cancel \
+                   /dubai /madrid /ponentes; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$BASE$r?ci=$GITHUB_RUN_ID")
+            if [ "$code" != "200" ]; then
+              echo "::error::$r devolvió HTTP $code"
+              fallos=$((fallos+1))
+            else
+              echo "ok   $r"
+            fi
+          done
+
+          echo "--- Contenido sin JavaScript ---"
+          for r in / /summit /agenda; do
+            chars=$(curl -s --max-time 20 "$BASE$r?ci=$GITHUB_RUN_ID" \
+              | node -e "
+                  let s='';
+                  process.stdin.on('data', d => s += d).on('end', () => {
+                    const m = s.match(/<body[^>]*>([\s\S]*)<\/body>/);
+                    console.log(m ? m[1].replace(/<script[\s\S]*?<\/script>/g,'')
+                                         .replace(/<[^>]+>/g,' ')
+                                         .replace(/\s+/g,' ').trim().length : 0);
+                  });")
+            if [ "${chars:-0}" -lt 1000 ]; then
+              echo "::error::$r sirve $chars chars sin JS — producción está sin prerender."
+              fallos=$((fallos+1))
+            else
+              echo "ok   $r ($chars chars)"
+            fi
+          done
+
+          echo "--- Superficie para crawlers de IA ---"
+          robots=$(curl -s --max-time 20 "$BASE/robots.txt?ci=$GITHUB_RUN_ID")
+          crawlers=$(printf '%s' "$robots" | grep -c 'GPTBot\|ClaudeBot\|PerplexityBot' || true)
+          if [ "$crawlers" -lt 3 ]; then
+            echo "::error::robots.txt sin los AI crawlers (encontrados: $crawlers)."
+            fallos=$((fallos+1))
+          else
+            echo "ok   robots.txt con $crawlers AI crawlers"
+          fi
+
+          for f in llms.txt sitemap.xml; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$BASE/$f?ci=$GITHUB_RUN_ID")
+            if [ "$code" != "200" ]; then
+              echo "::error::/$f devolvió HTTP $code"
+              fallos=$((fallos+1))
+            else
+              echo "ok   /$f"
+            fi
+          done
+
+          if [ "$fallos" -gt 0 ]; then
+            echo ""
+            echo "::error::$fallos comprobación(es) fallida(s). Revisa producción:"
+            echo "  vercel rollback <deploy-anterior> --yes"
+            exit 1
+          fi
+          echo ""
+          echo "Producción verificada."
+
+      - name: Resumen
+        if: always()
+        run: |
+          {
+            echo "## Despliegue a producción"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Commit | \`${GITHUB_SHA:0:7}\` |"
+            echo "| Deploy | ${{ steps.deploy.outputs.url || '—' }} |"
+            echo "| Resultado | ${{ job.status }} |"
+            echo ""
+            if [ "${{ job.status }}" != "success" ]; then
+              echo "Si el fallo fue en la verificación, producción puede haber quedado"
+              echo "en mal estado. Revierte con \`vercel rollback <deploy-anterior> --yes\`."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
