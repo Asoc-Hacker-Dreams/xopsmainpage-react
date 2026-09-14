@@ -297,6 +297,53 @@
   outline-offset: 4px;
 }
 
+/* Tier-level callout used inside the existing pricing cards. */
+.sponsor-tiers__ecosystem-benefit {
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 11px 12px;
+  background: rgba(148, 163, 184, 0.055);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 11px;
+}
+
+.sponsor-tiers__ecosystem-benefit span {
+  display: block;
+  margin-bottom: 4px;
+  color: #64748b;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sponsor-tiers__ecosystem-benefit strong {
+  display: block;
+  color: #cbd5e1;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.42;
+}
+
+.sponsor-tiers__ecosystem-benefit--gold {
+  background: rgba(255, 214, 0, 0.055);
+  border-color: rgba(255, 214, 0, 0.22);
+}
+
+.sponsor-tiers__ecosystem-benefit--gold strong {
+  color: #ffe666;
+}
+
+.sponsor-tiers__ecosystem-benefit--cyan {
+  background: rgba(0, 188, 212, 0.055);
+  border-color: rgba(0, 188, 212, 0.22);
+}
+
+.sponsor-tiers__ecosystem-benefit--cyan strong {
+  color: #5bd7e6;
+}
+
 @media (max-width: 1020px) {
   .sponsor-ecosystem__pillars {
     grid-template-columns: repeat(2, minmax(0, 1fr));
