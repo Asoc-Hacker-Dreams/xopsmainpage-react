@@ -103,30 +103,24 @@ El token se guarda con:
 gh secret set VERCEL_TOKEN --repo Asoc-Hacker-Dreams/xopsmainpage-react
 ```
 
-### Deuda técnica conocida: el token actual es de sesión
+`VERCEL_TOKEN` es un token dedicado de Vercel (`vcp_…`), creado en
+<https://vercel.com/account/tokens>. Sustituyó al token de sesión de la CLI
+que se usó provisionalmente, que caducaba.
 
-`VERCEL_TOKEN` contiene hoy el token de la **sesión local de la CLI**
-(`~/Library/Application Support/com.vercel.cli/auth.json`), no un token
-dedicado al CI. Se asumió conscientemente, pero tiene dos consecuencias:
+Si el workflow falla con un error de autenticación en `vercel pull`, el token
+ha caducado o ha sido revocado: crea uno nuevo y reemplaza el secret con el
+comando de arriba. No es un fallo del prerender ni del routing.
 
-1. **Caduca.** Ese fichero incluye `expiresAt` y un `refreshToken`. Cuando la
-   sesión expire —o si alguien ejecuta `vercel logout`— el workflow empezará a
-   fallar en el paso `vercel pull` con un error de autenticación. No es un
-   fallo del prerender ni del routing: es el token.
-2. **Alcance total.** Permite operar sobre toda la cuenta de Vercel (los 4
-   dominios y todos los proyectos del equipo), no solo sobre este repositorio.
-   Revocarlo cierra también la sesión local.
+### Nota sobre la cuenta de `gh`
 
-**Arreglo recomendado** (1 minuto, elimina ambos problemas):
+`gh secret set` sobre este repositorio requiere la cuenta **Spectertj**: los
+repos bajo `~/Repos/spectertj/` pertenecen a la organización
+`Asoc-Hacker-Dreams`, donde `antonioemcode` no tiene permisos y devuelve
+`HTTP 403`. Comprueba con `gh auth status -a` y cambia con:
 
 ```bash
-# 1. Crear token en https://vercel.com/account/tokens con scope hsm-projects
-# 2. Reemplazar el secret
-gh secret set VERCEL_TOKEN --repo Asoc-Hacker-Dreams/xopsmainpage-react
+gh auth switch --user Spectertj
 ```
-
-Si el workflow falla con `Error: Not authorized` o similar en `vercel pull`,
-esta es la causa: sustituye el token.
 
 ## Rutas
 
