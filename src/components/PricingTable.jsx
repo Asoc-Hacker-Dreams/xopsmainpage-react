@@ -13,6 +13,28 @@ const COMBINED_DISCOUNT = 0.1;
 const roundToStep = (value, step = ROUND_STEP) => Math.round(value / step) * step;
 const formatNumber = (value) => value.toLocaleString('es-ES');
 
+const ecosystemBenefits = {
+  es: {
+    platinum: '4 X-Ops Ecosystem Credits',
+    track: '2 X-Ops Ecosystem Credits',
+    gold: '1 X-Ops Ecosystem Credit',
+    silver: 'X-Ops Technology Scorecard incluido',
+    virtual: 'Beneficios digitales del ecosistema · sin créditos adicionales',
+  },
+  en: {
+    platinum: '4 X-Ops Ecosystem Credits',
+    track: '2 X-Ops Ecosystem Credits',
+    gold: '1 X-Ops Ecosystem Credit',
+    silver: 'X-Ops Technology Scorecard included',
+    virtual: 'Digital ecosystem benefits · no additional credits',
+  },
+};
+
+const ecosystemBenefitLabels = {
+  es: 'Beneficio X-Ops Ecosystem',
+  en: 'X-Ops Ecosystem benefit',
+};
+
 // Note: `planDefs` below are generic pricing TIERS (Platinum/Track/Gold/Silver/
 // Virtual) offered to prospective sponsors, not a list of confirmed sponsor
 // companies with logos — city selection here is handled by the Madrid/Dubai/
@@ -86,8 +108,9 @@ const renderPrice = (symbol, amount) => (
 );
 
 const PricingTable = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeModeId, setActiveModeId] = useState(cityModeDefs[0].id);
+  const language = i18n.resolvedLanguage?.toLowerCase().startsWith('en') ? 'en' : 'es';
 
   const cityModes = cityModeDefs.map((mode) => ({
     ...mode,
@@ -96,10 +119,20 @@ const PricingTable = () => {
     subjectPrefix: t(`pricingTable.citySubject.${mode.subjectPrefixKey}`),
   }));
 
+  const normalizeFeature = (feature) => {
+    if (/bug bounty/i.test(feature)) {
+      return language === 'en'
+        ? 'X-Ops BugBounty by Grayback included'
+        : 'X-Ops BugBounty by Grayback incluido';
+    }
+    return feature;
+  };
+
   const plans = planDefs.map((plan) => ({
     ...plan,
     name: t(`pricingTable.plans.${plan.id}.name`),
-    features: t(`pricingTable.plans.${plan.id}.features`, { returnObjects: true }),
+    features: t(`pricingTable.plans.${plan.id}.features`, { returnObjects: true }).map(normalizeFeature),
+    ecosystemBenefit: ecosystemBenefits[language][plan.id],
   }));
 
   const activeMode = cityModes.find((mode) => mode.id === activeModeId) || cityModes[0];
@@ -124,6 +157,13 @@ const PricingTable = () => {
         <span className="sponsor-tiers__metric-label">{t('pricingTable.metrics.impressions')}</span>
       </div>
       <span className="sponsor-tiers__metrics-note">{t('pricingTable.metrics.estimateNote')}</span>
+    </div>
+  );
+
+  const renderEcosystemBenefit = (plan, accent = 'slate') => (
+    <div className={`sponsor-tiers__ecosystem-benefit sponsor-tiers__ecosystem-benefit--${accent}`}>
+      <span>{ecosystemBenefitLabels[language]}</span>
+      <strong>{plan.ecosystemBenefit}</strong>
     </div>
   );
 
@@ -174,6 +214,7 @@ const PricingTable = () => {
                   <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--gold">{featuredPlan.name}</span>
                   {renderPrice(activeMode.currencySymbol, activeMode.computePrice(featuredPlan.eurPrice))}
                   <span className="sponsor-tiers__price-sub">{t('pricingTable.priceSub', { currency: activeMode.currencyCode })}</span>
+                  {renderEcosystemBenefit(featuredPlan, 'gold')}
                   <a
                     href={mailtoHref(featuredPlan.name)}
                     className="sponsor-tiers__cta sponsor-tiers__cta--gold"
@@ -209,6 +250,7 @@ const PricingTable = () => {
                     <span className="sponsor-tiers__tier-label sponsor-tiers__tier-label--cyan">{trackPlan.name}</span>
                     {renderPrice(activeMode.currencySymbol, activeMode.computePrice(trackPlan.eurPrice))}
                     <span className="sponsor-tiers__price-sub">{t('pricingTable.priceSub', { currency: activeMode.currencyCode })}</span>
+                    {renderEcosystemBenefit(trackPlan, 'cyan')}
                     <a
                       href={mailtoHref(trackPlan.name)}
                       className="sponsor-tiers__cta sponsor-tiers__cta--outline"
@@ -241,6 +283,7 @@ const PricingTable = () => {
                 </span>
                 {renderPrice(activeMode.currencySymbol, activeMode.computePrice(plan.eurPrice))}
                 <span className="sponsor-tiers__price-sub">{t('pricingTable.priceSub', { currency: activeMode.currencyCode })}</span>
+                {renderEcosystemBenefit(plan, plan.id === 'gold' ? 'cyan' : 'slate')}
                 <ul className="sponsor-tiers__features" aria-label={t('pricingTable.featuresAriaLabel', { plan: plan.name })}>
                   {plan.features.map((feature) => (
                     <li key={feature} className="sponsor-tiers__feature">
