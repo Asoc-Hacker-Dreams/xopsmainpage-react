@@ -97,15 +97,36 @@ Si devuelve el título de la home en vez del de `/summit`, está sin prerender.
 | `VERCEL_PROJECT_ID` | `prj_cnKqFKpNChFdqm9JJobNbkQ8jfEI` | No |
 | `VERCEL_TOKEN` | Token de acceso de Vercel | **Sí** |
 
-El token se crea en <https://vercel.com/account/tokens> con alcance al equipo
-`hsm-projects` y se guarda con:
+El token se guarda con:
 
 ```bash
 gh secret set VERCEL_TOKEN --repo Asoc-Hacker-Dreams/xopsmainpage-react
 ```
 
-Usa un token **dedicado** al CI, no el de tu sesión local de la CLI: así se
-puede revocar sin afectar a tu equipo y el alcance queda acotado.
+### Deuda técnica conocida: el token actual es de sesión
+
+`VERCEL_TOKEN` contiene hoy el token de la **sesión local de la CLI**
+(`~/Library/Application Support/com.vercel.cli/auth.json`), no un token
+dedicado al CI. Se asumió conscientemente, pero tiene dos consecuencias:
+
+1. **Caduca.** Ese fichero incluye `expiresAt` y un `refreshToken`. Cuando la
+   sesión expire —o si alguien ejecuta `vercel logout`— el workflow empezará a
+   fallar en el paso `vercel pull` con un error de autenticación. No es un
+   fallo del prerender ni del routing: es el token.
+2. **Alcance total.** Permite operar sobre toda la cuenta de Vercel (los 4
+   dominios y todos los proyectos del equipo), no solo sobre este repositorio.
+   Revocarlo cierra también la sesión local.
+
+**Arreglo recomendado** (1 minuto, elimina ambos problemas):
+
+```bash
+# 1. Crear token en https://vercel.com/account/tokens con scope hsm-projects
+# 2. Reemplazar el secret
+gh secret set VERCEL_TOKEN --repo Asoc-Hacker-Dreams/xopsmainpage-react
+```
+
+Si el workflow falla con `Error: Not authorized` o similar en `vercel pull`,
+esta es la causa: sustituye el token.
 
 ## Rutas
 
