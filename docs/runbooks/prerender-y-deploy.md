@@ -68,6 +68,18 @@ Si alguien pushea a `main` después de un `deploy:prod`, el prerender se pierde
 hasta el siguiente `deploy:prod`. Mientras eso siga así, **el último paso tras
 mergear a `main` debe ser `npm run deploy:prod`**.
 
+Esto ya ocurrió: un push a `main` lanzó un deploy automático que pisó el
+prerender en menos de un minuto (se detectó porque el contenido sin JS volvió
+a 0 chars). Es el modo de fallo esperado, no un caso hipotético. Comprobación
+rápida tras cualquier push:
+
+```bash
+curl -s "https://www.xopsconference.com/summit" | grep -o '<title>[^<]*</title>'
+```
+
+Si devuelve el título de la home en vez del de `/summit`, producción está sin
+prerender: ejecuta `npm run deploy:prod`.
+
 Para automatizarlo, lo correcto es un workflow de GitHub Actions que ejecute el
 prerender (donde Playwright sí es fiable) y despliegue con `--prebuilt`.
 
