@@ -9,6 +9,7 @@
     "dev": "vite",
     "build": "vite build && npm run prerender",
     "build:no-prerender": "vite build",
+    "build:vercel": "vite build && (npx playwright install chromium && npm run prerender || echo '[build:vercel] prerender omitido; se publica la SPA sin prerender')",
     "prerender": "node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
