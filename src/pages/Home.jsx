@@ -9,6 +9,7 @@ import LastEditionData from "../components/LastEditionData";
 import PricingTable from "../components/PricingTable";
 import SponsorEcosystemBenefits from "../components/SponsorEcosystemBenefits";
 import SEO from "../components/SEO";
+import "../styles/SponsorEcosystemOverrides.css";
 
 
 const Home = () => {
