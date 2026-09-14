@@ -250,6 +250,7 @@ const Collaborators = () => {
                     <img
                       src={devsecconLogo}
                       alt="Logo de DevSecCon"
+                      className="sponsor-logo--white-bg"
                       style={{
                         maxHeight: '150px',
                         maxWidth: '150px',
@@ -268,6 +269,7 @@ const Collaborators = () => {
                     <img
                       src={madridD}
                       alt="Logo de Madrid DevOps"
+                      className="sponsor-logo--white-bg"
                       style={{
                         maxHeight: '150px',
                         maxWidth: '150px',
@@ -286,6 +288,7 @@ const Collaborators = () => {
                     <img
                       src={hacktricksLogo}
                       alt="Logo de HackTricks"
+                      className="sponsor-logo--white-bg"
                       style={{
                         maxHeight: '150px',
                         maxWidth: '150px',
@@ -322,6 +325,7 @@ const Collaborators = () => {
                     <img
                       src={graybackLogo}
                       alt="Logo de Grayback"
+                      className="sponsor-logo--white-bg"
                       style={{
                         maxHeight: '150px',
                         maxWidth: '150px',
@@ -349,6 +353,7 @@ const Collaborators = () => {
                     <img
                       src={xopsConsultingLogo}
                       alt="Logo de X-Ops Consulting"
+                      className="sponsor-logo--white-bg"
                       style={{
                         maxHeight: '110px',
                         maxWidth: '260px',
