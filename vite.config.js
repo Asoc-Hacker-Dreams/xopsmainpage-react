@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import sitemap from 'vite-plugin-sitemap'
+import { ROUTES } from './scripts/prerender-routes.mjs'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,37 +11,12 @@ export default defineConfig({
     tailwindcss(),
     sitemap({
       hostname: 'https://xopsconference.com',
-      dynamicRoutes: [
-        '/',
-        '/summit',
-        '/Summit',
-        '/startup-pack',
-        '/startup-pack-application',
-        '/Sponsor',
-        '/Patrocina',
-        '/Organizer',
-        '/Organizadores',
-        '/Team',
-        '/Equipo',
-        '/agenda',
-        '/mi-agenda',
-        // Rutas de archivo para 2025
-        '/archive/2025/Speakers2025',
-        '/archive/2025/Events2025',
-        '/archive/2025/Sponsor2025',
-        // Rutas de archivo para 2024
-        '/archive/2024/Speakers2024',
-        '/archive/2024/Events2024',
-        '/archive/2024/Sponsor2024',
-        // Rutas de archivo para 2023
-        '/archive/2023/Speakers2023',
-        // Política y legal
-        '/politica-de-privacidad',
-        '/politica-de-cookies',
-        '/terminos-de-servicio',
-      ],
+      dynamicRoutes: ROUTES,
       // Generar sitemap.xml automáticamente
       outDir: 'dist',
+      // public/robots.txt es la fuente de verdad (incluye las reglas de
+      // AI crawlers). El plugin lo sobrescribía con una versión genérica.
+      generateRobotsTxt: false,
     })
   ],
   build: {

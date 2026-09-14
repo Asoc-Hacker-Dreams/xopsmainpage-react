@@ -83,6 +83,22 @@ export default [
     },
   },
 
+  // 3b. Scripts de build en Node (.mjs): entorno Node, no navegador
+  {
+    files: ["scripts/**/*.mjs"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.node,
+      },
+    },
+    rules: {
+      "no-console": "off",
+      "security/detect-non-literal-fs-filename": "off",
+    },
+  },
+
   // 4. Patrones a ignorar
   {
     ignores: ["dist/", "node_modules/", "*.min.js"],
