@@ -314,12 +314,12 @@
       "taxIncluded": "Price includes VAT. No additional charges."
     },
     "tierDescriptions": {
-      "superEarly": "Book the earliest and save even more with this limited, non-refundable quota.",
-      "early": "Lock your seat before the early phase closes. Non-refundable while seats remain.",
-      "daily": "One full day of Conference access. Ideal if you can only attend a single day.",
-      "lastMinute": "Last seats available before the event. Non-refundable.",
-      "summit": "Two-day pass to the executive Summit (Nov 19 Madrid / Nov 30 – Dec 1 Dubai). Does not include the Conference.",
-      "vip": "Full event access with priority perks, guided networking, and an exclusive dinner with speakers and sponsors."
+      "superEarly": "Full 2-day Conference access. All technical sessions, networking and materials included. Exclusive price for the first attendees. Does not include Summit, speakers dinner or premium workshops.",
+      "early": "Full 2-day Conference access. All technical sessions, networking and materials included. Early adopter price. Does not include Summit, speakers dinner or premium workshops.",
+      "daily": "Standard ticket at the regular price. Full 2-day Conference access, all technical sessions, networking and materials included. Does not include Summit, speakers dinner or premium workshops.",
+      "lastMinute": "Full 2-day Conference access. All technical sessions, networking and materials included. Last-minute rate. Does not include Summit, speakers dinner or premium workshops.",
+      "vip": "The full 2 days of Conference PLUS the speakers dinner. Includes all technical sessions, priority networking and VIP area. Does not include Summit or premium workshops.",
+      "summit": "The complete X-Ops experience: executive Summit, the full 2 days of Conference and the speakers dinner. Includes leadership sessions, C-level networking, all technical sessions and materials. Does not include premium workshops."
     },
     "entitlements": {
       "confDay1": "Conference day 1 · full access",

@@ -308,12 +308,12 @@
       "taxIncluded": "Precio con IVA incluido. No se añaden cargos extra."
     },
     "tierDescriptions": {
-      "superEarly": "Reserva con la máxima antelación y ahorra incluso más con esta tarifa no reembolsable de cantidad limitada.",
-      "early": "Asegura tu plaza antes del cierre de la fase anticipada. Tarifa no reembolsable mientras queden plazas.",
-      "daily": "Acceso de un día completo a la Conferencia. Ideal si solo puedes asistir una jornada.",
-      "lastMinute": "Últimas entradas disponibles antes del evento. Tarifa no reembolsable.",
-      "summit": "Pase de dos días para el Summit ejecutivo (19 Nov Madrid / 30 Nov–1 Dic Dubai). No incluye la Conferencia.",
-      "vip": "Acceso completo al evento con prioridad, networking guiado y cena exclusiva con ponentes y patrocinadores."
+      "superEarly": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye Summit, speakers dinner ni workshops premium.",
+      "early": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Precio early adopter. No incluye Summit, speakers dinner ni workshops premium.",
+      "daily": "Entrada estándar al precio regular. Acceso completo a los 2 días de Conference, todas las sesiones técnicas, networking y material incluidos. No incluye Summit, speakers dinner ni workshops premium.",
+      "lastMinute": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Tarifa de último momento. No incluye Summit, speakers dinner ni workshops premium.",
+      "vip": "Los 2 días completos de Conference MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye Summit ni workshops premium.",
+      "summit": "La experiencia X-Ops completa: Summit ejecutivo, los 2 días completos de Conference y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
     },
     "entitlements": {
       "confDay1": "Conference día 1 · acceso completo",

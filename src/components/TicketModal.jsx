@@ -91,6 +91,38 @@ const getEntitlementBreakdown = (tt) => {
   }));
 };
 
+// Idioma en el que TriskelGate almacena `ticket_types.description`.
+// Sólo hay una versión del texto en base de datos (migración 0011).
+const DB_DESCRIPTION_LANG = 'es';
+
+/**
+ * Descripción de una entrada en el idioma del usuario.
+ *
+ * `ticket_types.description` existe ÚNICAMENTE en español, así que usarla tal
+ * cual dejaba el copy sin traducir para el resto de idiomas — visible en la QA
+ * visual: el desglose salía en inglés y la descripción seguía en castellano.
+ * Afecta sobre todo a Dubai, cuyo público es anglófono.
+ *
+ *   - idioma español  -> la descripción de la BD (la fuente de verdad, y la
+ *                        que se edita al cambiar el producto).
+ *   - otro idioma     -> el texto i18n del `tierCode`.
+ *
+ * Los textos i18n se mantienen alineados con la matriz de producto: si cambia
+ * un producto hay que tocar la migración Y `tierDescriptions`. Es el coste de
+ * no tener la columna traducida en base de datos.
+ */
+const getTicketDescription = (tt, t, language) => {
+  const isSpanish = (language || '').toLowerCase().startsWith(DB_DESCRIPTION_LANG);
+  const descKey = TIER_DESCRIPTION_KEY[tt?.tierCode];
+
+  if (isSpanish) return tt?.description || (descKey ? t(descKey) : null);
+
+  // Si el tier no está en el mapa (producto nuevo sin traducir todavía), se
+  // devuelve la descripción de la BD: es preferible mostrarla en español que
+  // dejar la tarjeta sin describir.
+  return descKey ? t(descKey) : tt?.description || null;
+};
+
 /** Resolves the countdown target date the same way App.jsx resolves the active city
  *  (getCityFromHostname(window.location.hostname)). Falls back to the closer of the
  *  two known event dates when the hostname doesn't map to a single city (e.g. root domain). */
@@ -365,9 +397,17 @@ const TicketModal = ({ show, onHide }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px' }}>
                   <strong style={{ color: '#fff' }}>{selectedTT.name}</strong>
                   <span style={{ color: '#00BCD4', fontWeight: 600 }}>
-                    {formatPrice(selectedTT.price, selectedTT.currency)}
+                    {formatPrice(selectedTT.price, selectedTT.currency, i18n.language)}
                   </span>
                 </div>
+                {(() => {
+                  // Descripción también aquí: es el último punto donde el
+                  // comprador puede leer qué incluye antes de ir a Stripe.
+                  const d = getTicketDescription(selectedTT, t, i18n.language);
+                  return d ? (
+                    <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '10px' }}>{d}</p>
+                  ) : null;
+                })()}
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   {getEntitlementBreakdown(selectedTT).map(({ code, i18nKey, included }) => (
                     <li
@@ -591,12 +631,7 @@ const TicketModal = ({ show, onHide }) => {
                                 </span>
                               </div>
                               {(() => {
-                                // La descripción de la BD (migración 0011) ya dice
-                                // explícitamente qué incluye y qué no, así que tiene
-                                // prioridad. El texto i18n queda como respaldo para
-                                // tipos sin descripción propia.
-                                const descKey = TIER_DESCRIPTION_KEY[tt.tierCode];
-                                const description = tt.description || (descKey ? t(descKey) : null);
+                                const description = getTicketDescription(tt, t, i18n.language);
                                 if (!description) return null;
                                 return (
                                   <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '12px' }}>
