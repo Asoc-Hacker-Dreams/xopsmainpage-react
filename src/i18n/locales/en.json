@@ -313,17 +313,6 @@
       },
       "taxIncluded": "Price includes VAT. No additional charges."
     },
-    "features": {
-      "fullAccess": "Full event access",
-      "allSessions": "All sessions",
-      "eventMaterial": "Event materials",
-      "summitTierAccess": "Access to the Summit and the Conference",
-      "vipDinnerAccess": "Access to dinner with speakers and sponsors",
-      "excluded": {
-        "summitAccess": "Does not include Summit access",
-        "vipDinner": "Does not include dinner with speakers and sponsors"
-      }
-    },
     "tierDescriptions": {
       "superEarly": "Book the earliest and save even more with this limited, non-refundable quota.",
       "early": "Lock your seat before the early phase closes. Non-refundable while seats remain.",
