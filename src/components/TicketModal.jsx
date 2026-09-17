@@ -20,13 +20,33 @@ const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
   : null;
 
-const TIER_STYLE = {
-  standard: { badge: null,          ctaVariant: 'outline-primary', highlighted: false },
-  business: { badge: 'MÁS POPULAR', ctaVariant: 'primary',         highlighted: true  },
-  vip:      { badge: 'PREMIUM',     ctaVariant: 'warning',         highlighted: false },
+// Estilo por PRODUCTO canónico, no por el string del nombre.
+//
+// Antes esto era `TIER_STYLE` indexado por `name.toLowerCase()` con claves
+// `standard` / `business` / `vip`. Las dos primeras NO EXISTEN en los datos
+// reales (los tipos se llaman "Super Early Adopter", "Daily Ticket",
+// "Summit"...), así que todo caía al fallback salvo VIP: el estilo dependía
+// de que alguien no renombrara una entrada.
+//
+// Ahora se indexa por `productCode` (CONFERENCE | VIP | SUMMIT), que es el
+// contrato que expone la API (migración 0007/0008).
+const PRODUCT_STYLE = {
+  CONFERENCE: { badge: null,      ctaVariant: 'outline-primary', highlighted: false },
+  VIP:        { badge: 'PREMIUM', ctaVariant: 'warning',         highlighted: false },
+  SUMMIT:     { badge: 'FULL X-OPS EXPERIENCE', ctaVariant: 'primary', highlighted: true },
 };
+const getProductStyle = (tt) =>
+  PRODUCT_STYLE[tt?.productCode] ?? PRODUCT_STYLE.CONFERENCE;
 
-const getTierStyle = (name) => TIER_STYLE[name?.toLowerCase()] ?? TIER_STYLE.standard;
+// Entitlements que puede tener una entrada, en el orden en que se muestran.
+// La fuente de verdad es `ticketType.entitlements` que devuelve la API; esto
+// sólo fija el orden y la etiqueta i18n de cada uno.
+const ENTITLEMENT_LABELS = [
+  { code: 'CONF_D1', i18nKey: 'ticketModal.entitlements.confDay1' },
+  { code: 'CONF_D2', i18nKey: 'ticketModal.entitlements.confDay2' },
+  { code: 'SUMMIT',  i18nKey: 'ticketModal.entitlements.summit' },
+  { code: 'DINNER',  i18nKey: 'ticketModal.entitlements.dinner' },
+];
 
 // Guard against date-only strings (e.g. "2026-09-01") which parse as UTC
 // midnight. End dates without a time component get T23:59:59Z so the sale
@@ -55,12 +75,20 @@ const formatSaleDate = (dateStr, locale) => {
   return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
 };
 
-// Placeholder mapping until TriskelGate exposes real exclusions per ticket type
-// (TGTicketType has no `excludedFeatures` field today). One or two example
-// items per tier, framed relative to the other premium tier.
-const EXCLUDED_FEATURES = {
-  vip: ['ticketModal.features.excluded.summitAccess'],
-  summit: ['ticketModal.features.excluded.vipDinner'],
+// Qué incluye y qué NO incluye una entrada, derivado de sus entitlements
+// reales. Sustituye al antiguo `EXCLUDED_FEATURES`, que era un placeholder
+// hardcodeado —su propio comentario lo admitía— y que además afirmaba que
+// Summit no incluía la speakers dinner, cuando sí la incluye.
+//
+// Ahora TriskelGate expone `entitlements` por tipo de entrada (migración
+// 0007/0008), así que inclusiones y exclusiones se calculan del dato.
+const getEntitlementBreakdown = (tt) => {
+  const granted = Array.isArray(tt?.entitlements) ? tt.entitlements : [];
+  return ENTITLEMENT_LABELS.map(({ code, i18nKey }) => ({
+    code,
+    i18nKey,
+    included: granted.includes(code),
+  }));
 };
 
 /** Resolves the countdown target date the same way App.jsx resolves the active city
@@ -103,13 +131,18 @@ const formatPrice = (amount, currency = 'EUR', locale = 'es') => {
 // Tier name → i18n key. The API stores tier names in English (e.g. "Super Early
 // Adopter", "Daily Ticket") regardless of UI locale, so we map on the canonical
 // English name instead of the localized label.
+// Descripción traducida por TIER canónico, no por el nombre en minúsculas.
+//
+// Antes se indexaba por `name.toLowerCase()`, así que renombrar una entrada en
+// el panel de administración dejaba de traducirla sin previo aviso. `tierCode`
+// lo expone la API (migración 0007/0008) y no depende del texto visible.
 const TIER_DESCRIPTION_KEY = {
-  'super early adopter': 'ticketModal.tierDescriptions.superEarly',
-  'early adopter':       'ticketModal.tierDescriptions.early',
-  'daily ticket':        'ticketModal.tierDescriptions.daily',
-  'last minute':         'ticketModal.tierDescriptions.lastMinute',
-  'summit':              'ticketModal.tierDescriptions.summit',
-  'vip':                 'ticketModal.tierDescriptions.vip',
+  SUPER_EARLY: 'ticketModal.tierDescriptions.superEarly',
+  EARLY:       'ticketModal.tierDescriptions.early',
+  DAILY:       'ticketModal.tierDescriptions.daily',
+  LAST_MINUTE: 'ticketModal.tierDescriptions.lastMinute',
+  SUMMIT:      'ticketModal.tierDescriptions.summit',
+  VIP:         'ticketModal.tierDescriptions.vip',
 };
 
 const MODAL_HEADER = { background: '#1a1a2e', borderBottom: '2px solid #00BCD4' };
@@ -316,6 +349,48 @@ const TicketModal = ({ show, onHide }) => {
                 {formError}
               </Alert>
             )}
+            {/* Resumen de lo que se compra, ANTES de ir a Stripe.
+                Sin esto el comprador sólo veía el nombre del tier y un importe:
+                nada le decía si su entrada incluye el Summit o la cena. El
+                desglose sale de `entitlements`, la misma fuente que usa el
+                check-in, así que lo que se muestra aquí es exactamente lo que
+                se validará en la puerta. */}
+            {selectedTT && (
+              <div
+                style={{
+                  background: '#161625', border: '1px solid #2a2a4a',
+                  borderRadius: '8px', padding: '14px', marginBottom: '20px'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px' }}>
+                  <strong style={{ color: '#fff' }}>{selectedTT.name}</strong>
+                  <span style={{ color: '#00BCD4', fontWeight: 600 }}>
+                    {formatPrice(selectedTT.price, selectedTT.currency)}
+                  </span>
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                  {getEntitlementBreakdown(selectedTT).map(({ code, i18nKey, included }) => (
+                    <li
+                      key={code}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: '8px',
+                        marginBottom: '4px', fontSize: '0.82rem',
+                        color: included ? '#e2e8f0' : '#94a3b8'
+                      }}
+                    >
+                      {included
+                        ? <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
+                        : <BsXCircle style={{ color: '#e74c3c', flexShrink: 0 }} aria-hidden="true" />}
+                      <span>{t(i18nKey)}</span>
+                    </li>
+                  ))}
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: '#94a3b8' }}>
+                    <BsXCircle style={{ color: '#e74c3c', flexShrink: 0 }} aria-hidden="true" />
+                    <span>{t('ticketModal.entitlements.workshops')}</span>
+                  </li>
+                </ul>
+              </div>
+            )}
             <Form.Group className="mb-3">
               <Form.Label htmlFor="tm-name" style={{ color: '#ccc' }}>
                 {t('ticketModal.checkout.fullName')} <span aria-hidden="true">*</span>
@@ -462,13 +537,12 @@ const TicketModal = ({ show, onHide }) => {
                         <p className="text-muted">{t('ticketModal.noTickets')}</p>
                       </Col>
                     )}
-                    {/* TODO: cuando TriskelGate exponga un tier "combo", renderizarlo aquí igual
-                        que los demás — pendiente de decisión de producto sobre si Summit y
-                        Conference son combinables. */}
+                    {/* Decisión de producto 2026-09-17: Summit SÍ incluye Conference
+                        (y la speakers dinner). Ya no hace falta un tier "combo": la
+                        jerarquía vive en `entitlements`, que expone la API. */}
                     {ev.ticketTypes.map((tt) => {
-                      const style = getTierStyle(tt.name);
-                      const tierKey = tt.name?.toLowerCase();
-                      const excludedFeatures = EXCLUDED_FEATURES[tierKey] ?? [];
+                      const style = getProductStyle(tt);
+                      const entitlementBreakdown = getEntitlementBreakdown(tt);
                       const onSale = isSaleActive(tt);
                       const notYetOpen = !onSale && toDate(tt.saleStartDate) && new Date() < toDate(tt.saleStartDate);
                       const saleOpensOn = notYetOpen ? formatSaleDate(tt.saleStartDate, i18n.language || 'es') : null;
@@ -517,9 +591,12 @@ const TicketModal = ({ show, onHide }) => {
                                 </span>
                               </div>
                               {(() => {
-                                const tierKey = (tt.name || '').toLowerCase().trim();
-                                const descKey = TIER_DESCRIPTION_KEY[tierKey];
-                                const description = descKey ? t(descKey) : tt.description;
+                                // La descripción de la BD (migración 0011) ya dice
+                                // explícitamente qué incluye y qué no, así que tiene
+                                // prioridad. El texto i18n queda como respaldo para
+                                // tipos sin descripción propia.
+                                const descKey = TIER_DESCRIPTION_KEY[tt.tierCode];
+                                const description = tt.description || (descKey ? t(descKey) : null);
                                 if (!description) return null;
                                 return (
                                   <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '12px' }}>
@@ -527,37 +604,36 @@ const TicketModal = ({ show, onHide }) => {
                                   </p>
                                 );
                               })()}
+                              {/* Desglose de entitlements: qué incluye y qué NO.
+                                  Antes aquí había tres bullets fijos ("Full event access",
+                                  "todas las sesiones", "material") más condicionales por
+                                  `name.toLowerCase() === 'summit'`. Eso rompía con cualquier
+                                  renombrado y afirmaba lo mismo para un Conference de 45 EUR
+                                  que para un Summit de 200 EUR.
+                                  Ahora sale de `tt.entitlements`, que expone la API. */}
                               <ul style={{ listStyle: 'none', padding: 0, marginBottom: '16px', flex: 1 }}>
-                                <li style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.85rem' }}>
-                                  <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
-                                  <span>{t('ticketModal.features.fullAccess')}</span>
-                                </li>
-                                <li style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.85rem' }}>
-                                  <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
-                                  <span>{t('ticketModal.features.allSessions')}</span>
-                                </li>
-                                <li style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.85rem' }}>
-                                  <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
-                                  <span>{t('ticketModal.features.eventMaterial')}</span>
-                                </li>
-                                {tt.name?.toLowerCase() === 'summit' && (
-                                  <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
-                                    <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
-                                    <span>{t('ticketModal.features.summitTierAccess')}</span>
-                                  </li>
-                                )}
-                                {tt.name?.toLowerCase() === 'vip' && (
-                                  <li style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
-                                    <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
-                                    <span>{t('ticketModal.features.vipDinnerAccess')}</span>
-                                  </li>
-                                )}
-                                {excludedFeatures.map((key) => (
-                                  <li key={key} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.85rem', color: '#94a3b8' }}>
-                                    <BsXCircle style={{ color: '#e74c3c', flexShrink: 0 }} aria-hidden="true" />
-                                    <span>{t(key)}</span>
+                                {entitlementBreakdown.map(({ code, i18nKey, included }) => (
+                                  <li
+                                    key={code}
+                                    style={{
+                                      display: 'flex', alignItems: 'center', gap: '8px',
+                                      marginBottom: '6px', fontSize: '0.85rem',
+                                      color: included ? undefined : '#94a3b8'
+                                    }}
+                                  >
+                                    {included
+                                      ? <BsCheckCircleFill style={{ color: '#27ae60', flexShrink: 0 }} aria-hidden="true" />
+                                      : <BsXCircle style={{ color: '#e74c3c', flexShrink: 0 }} aria-hidden="true" />}
+                                    <span>{t(i18nKey)}</span>
                                   </li>
                                 ))}
+                                {/* Los workshops premium no se venden todavía (producto
+                                    futuro): se muestran siempre como no incluidos para que
+                                    nadie los dé por hecho. */}
+                                <li style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', fontSize: '0.85rem', color: '#94a3b8' }}>
+                                  <BsXCircle style={{ color: '#e74c3c', flexShrink: 0 }} aria-hidden="true" />
+                                  <span>{t('ticketModal.entitlements.workshops')}</span>
+                                </li>
                               </ul>
                               <Button
                                 variant={onSale ? style.ctaVariant : 'secondary'}
