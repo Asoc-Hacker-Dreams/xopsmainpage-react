@@ -307,17 +307,6 @@
       },
       "taxIncluded": "Precio con IVA incluido. No se añaden cargos extra."
     },
-    "features": {
-      "fullAccess": "Acceso completo al evento",
-      "allSessions": "Todas las sesiones",
-      "eventMaterial": "Material del evento",
-      "summitTierAccess": "Acceso al Summit y a la Conferencia",
-      "vipDinnerAccess": "Acceso a cena con ponentes y patrocinadores",
-      "excluded": {
-        "summitAccess": "No incluye acceso al Summit",
-        "vipDinner": "No incluye cena con ponentes y patrocinadores"
-      }
-    },
     "tierDescriptions": {
       "superEarly": "Reserva con la máxima antelación y ahorra incluso más con esta tarifa no reembolsable de cantidad limitada.",
       "early": "Asegura tu plaza antes del cierre de la fase anticipada. Tarifa no reembolsable mientras queden plazas.",
