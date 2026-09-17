@@ -325,6 +325,13 @@
       "lastMinute": "Últimas entradas disponibles antes del evento. Tarifa no reembolsable.",
       "summit": "Pase de dos días para el Summit ejecutivo (19 Nov Madrid / 30 Nov–1 Dic Dubai). No incluye la Conferencia.",
       "vip": "Acceso completo al evento con prioridad, networking guiado y cena exclusiva con ponentes y patrocinadores."
+    },
+    "entitlements": {
+      "confDay1": "Conference día 1 · acceso completo",
+      "confDay2": "Conference día 2 · acceso completo",
+      "summit": "X-Ops Summit ejecutivo",
+      "dinner": "Speakers dinner",
+      "workshops": "Workshops premium (se venden aparte)"
     }
   },
   "tickets": {
