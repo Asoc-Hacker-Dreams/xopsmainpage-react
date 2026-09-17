@@ -1,0 +1,4 @@
+/* X-Ops Press is intentionally excluded from the active ecosystem offer for now. */
+#colaboradores .speaker1 > .ecosystem-partner:nth-child(3) {
+  display: none;
+}
