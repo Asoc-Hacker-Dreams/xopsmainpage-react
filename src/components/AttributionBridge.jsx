@@ -5,6 +5,7 @@ import {
   captureAttribution, clearAttribution, decorateConferenceLink,
 } from '../analytics/attribution';
 import { clearPurchaseLedger, trackPageView } from '../analytics/ga4';
+import { clearCheckoutDeparture } from '../analytics/checkoutJourney';
 
 /**
  * SPA-aware, opt-in-only attribution and pageview instrumentation.
@@ -20,6 +21,7 @@ export default function AttributionBridge() {
     if (!enabled) {
       clearAttribution();
       clearPurchaseLedger();
+      clearCheckoutDeparture();
       return;
     }
     captureAttribution(location.search, true);
