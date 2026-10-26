@@ -26,7 +26,7 @@ const CookiePolicy = () => {
               <Col lg={10} xl={8}>
                 <div className="bg-white rounded-lg p-4 p-md-5 shadow-sm">
                   <h1 className="text-center mb-2 text-primary">Política de Cookies</h1>
-                  <p className="text-center text-muted small mb-5">Última actualización: junio 2025</p>
+                  <p className="text-center text-muted small mb-5">Última actualización: octubre 2026</p>
                   <div className="privacy-content">
 
                     {/* 1. ¿Qué son las Cookies? */}
@@ -53,7 +53,7 @@ const CookiePolicy = () => {
                           </thead>
                           <tbody>
                             <tr>
-                              <td><code>xops_consent</code></td>
+                              <td><code>xopsconf_consent_v2</code> (almacenamiento local)</td>
                               <td>Almacena sus preferencias de consentimiento de cookies</td>
                               <td>1 año</td>
                             </tr>
@@ -80,8 +80,8 @@ const CookiePolicy = () => {
                           <tbody>
                             <tr>
                               <td>Google Analytics / analítica web</td>
-                              <td>Mide el rendimiento y uso del sitio con IP anonimizada. No permite identificar a usuarios individuales.</td>
-                              <td>Máximo 26 meses (datos agregados)</td>
+                              <td>Mide visitas e interacciones tras el consentimiento; las métricas pueden implicar identificadores en línea.</td>
+                              <td>Según la configuración efectiva del proveedor (revisable en sus ajustes de conservación)</td>
                             </tr>
                           </tbody>
                         </table>
@@ -89,7 +89,7 @@ const CookiePolicy = () => {
 
                       <h3 className="h5 mb-2 mt-4">2.3 Cookies de Redes Sociales y Terceros</h3>
                       <p className="text-muted small mb-2">Solo con su consentimiento.</p>
-                      <p>Pueden activarse al interactuar con botones para compartir contenido en redes sociales (LinkedIn, Twitter/X, etc.). Estas cookies son gestionadas por las propias plataformas y están sujetas a sus respectivas políticas de privacidad, sobre las que X-Ops Alliance no tiene control.</p>
+                      <p>Pueden activarse al interactuar con botones para compartir contenido en redes sociales (LinkedIn, Twitter/X, etc.). Estas cookies son gestionadas por las propias plataformas y están sujetas a sus respectivas políticas de privacidad, sobre las que Asociación Hacker Dreams no tiene control.</p>
                     </section>
 
                     {/* 3. ¿Cómo Gestionar las Cookies? */}
@@ -126,15 +126,15 @@ const CookiePolicy = () => {
                           <a href="https://privacy.microsoft.com/es-es/privacystatement" target="_blank" rel="noopener noreferrer">Declaración de privacidad de Microsoft</a>
                         </li>
                       </ul>
-                      <p>X-Ops Alliance no controla las cookies instaladas por estos terceros. Para más información, consulte sus respectivas políticas de privacidad.</p>
+                      <p>Asociación Hacker Dreams no controla las cookies instaladas por estos terceros. Para más información, consulte sus respectivas políticas de privacidad.</p>
                     </section>
 
                     {/* 5. Contacto */}
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">5. Contacto</h2>
                       <div className="bg-light p-3 rounded">
-                        <p className="mb-1"><strong>X-Ops Alliance, S.L.</strong></p>
-                        <p className="mb-1">Email: <a href="mailto:privacy@xopsalliance.com">privacy@xopsalliance.com</a></p>
+                        <p className="mb-1"><strong>Asociación Hacker Dreams, S.L.</strong></p>
+                        <p className="mb-1">Email: <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></p>
                         <p className="mb-1">DPO: <a href="mailto:dpo@xopsalliance.com">dpo@xopsalliance.com</a></p>
                         <p className="mb-0">Autoridad de control: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">AEPD — www.aepd.es</a></p>
                       </div>
@@ -143,7 +143,7 @@ const CookiePolicy = () => {
 
                     <div className="text-center mt-5 pt-4 border-top">
                       <p className="text-muted small">
-                        <strong>Última actualización:</strong> junio 2025 · <strong>Responsable:</strong> X-Ops Alliance, S.L.
+                        <strong>Última actualización:</strong> octubre 2026 · <strong>Responsable:</strong> Asociación Hacker Dreams, S.L.
                       </p>
                     </div>
                   </div>
