@@ -161,7 +161,7 @@ export default function StartupPack() {
           foundedDate,
           docType,
           newsletterConsent: declNewsletter,
-          privacyNoticeVersion: '2026-10-26',
+          privacyNoticeVersion: '2026-10-27',
         }),
       });
       // Do not mistake an SPA HTML fallback for a successful CRM operation.
