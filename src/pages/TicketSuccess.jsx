@@ -135,7 +135,7 @@ const TicketSuccess = () => {
   }, []);
 
   useEffect(() => {
-    if (!sessionId || sessionId === '{CHECKOUT_SESSION_ID}') {
+    if (!sessionId || sessionId === '{CHECKOUT_SESSION_ID}' || hasTickets) {
       setPolling(false);
       return;
     }
