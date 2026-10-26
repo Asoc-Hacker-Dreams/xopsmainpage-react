@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
     <>
       <SEO
         title="Política de Privacidad - X-Ops Conference"
-        description="Política de privacidad y protección de datos de X-Ops Conference. Responsable: X-Ops Alliance, S.L."
+        description="Política de privacidad y protección de datos de X-Ops Conference. Responsable: Asociación Hacker Dreams"
         path="/politica-de-privacidad"
         image="https://xopsconference.com/assets/xops-og.jpg"
         lang="es"
@@ -26,7 +26,7 @@ const PrivacyPolicy = () => {
               <Col lg={10} xl={8}>
                 <div className="bg-white rounded-lg p-4 p-md-5 shadow-sm">
                   <h1 className="text-center mb-2 text-primary">Política de Privacidad</h1>
-                  <p className="text-center text-muted small mb-5">Última actualización: junio 2025 · Versión 2.0</p>
+                  <p className="text-center text-muted small mb-5">Última actualización: octubre 2026 · Versión 3.0</p>
 
                   <div className="privacy-content">
 
@@ -34,10 +34,10 @@ const PrivacyPolicy = () => {
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">1. Responsable del Tratamiento</h2>
                       <div className="bg-light p-3 rounded border-start border-primary border-3">
-                        <p className="mb-1"><strong>X-Ops Alliance, S.L.</strong></p>
-                        <p className="mb-1">Domicilio: Madrid, España</p>
-                        <p className="mb-1">Correo electrónico: <a href="mailto:privacy@xopsalliance.com">privacy@xopsalliance.com</a></p>
-                        <p className="mb-1">Delegado de Protección de Datos (DPO): <a href="mailto:dpo@xopsalliance.com">dpo@xopsalliance.com</a></p>
+                        <p className="mb-1"><strong>Asociación Hacker Dreams</strong></p>
+                        <p className="mb-1">CIF: G56643158 · España; domicilio registral: consultar aviso legal</p>
+                        <p className="mb-1">Correo electrónico: <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></p>
+                        <p className="mb-1">Contacto de privacidad: <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></p>
                         <p className="mb-0">Tratamiento conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).</p>
                       </div>
                     </section>
@@ -81,7 +81,7 @@ const PrivacyPolicy = () => {
                       <h2 className="h4 text-secondary mb-3">4. Plazos de Conservación</h2>
                       <ul>
                         <li><strong>Datos de inscripción y asistencia al evento:</strong> 5 años desde la celebración del evento.</li>
-                        <li><strong>Registros financieros (pagos, facturas):</strong> 7 años (obligación legal fiscal).</li>
+                        <li><strong>Registros financieros (pagos, facturas):</strong> según los plazos mercantiles y tributarios aplicables, habitualmente 6 años para documentación contable.</li>
                         <li><strong>Datos analíticos anónimos:</strong> máximo 26 meses en formato agregado.</li>
                         <li><strong>Preferencias de cookies:</strong> permanecen en su dispositivo hasta que las elimine.</li>
                         <li><strong>Registros de consentimiento:</strong> durante el periodo de tratamiento + 3 años adicionales.</li>
@@ -101,7 +101,7 @@ const PrivacyPolicy = () => {
                         <li><strong>Oposición (Art. 21):</strong> oponerse al tratamiento basado en interés legítimo o para fines de marketing.</li>
                         <li><strong>Revocación del consentimiento:</strong> retirar el consentimiento en cualquier momento sin que afecte a la licitud del tratamiento previo.</li>
                       </ul>
-                      <p>Para ejercer sus derechos, contacte con nosotros en <a href="mailto:privacy@xopsalliance.com">privacy@xopsalliance.com</a>. Responderemos en un plazo máximo de 30 días.</p>
+                      <p>Para ejercer sus derechos, contacte con nosotros en <a href="mailto:info@xopsconference.com">info@xopsconference.com</a>. Responderemos en un plazo máximo de 30 días.</p>
                       <p>También tiene derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong>: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a></p>
                     </section>
 
@@ -117,12 +117,13 @@ const PrivacyPolicy = () => {
                       <h2 className="h4 text-secondary mb-3">7. Terceros y Transferencias Internacionales</h2>
                       <ul>
                         <li><strong>Stripe, Inc.</strong> (procesamiento de pagos) — sujeto a DPA conforme al RGPD.</li>
-                        <li><strong>Microsoft</strong> (autenticación federada de ponentes) — bajo sus propias políticas de privacidad.</li>
+                        <li><strong>Holos CRM / Holos ERP y TriskelGate</strong> — gestión de interesados, entradas y facturación según corresponda.</li><li><strong>Odin Hermes &amp; Danu Technology Solutions LLC</strong> — entidad designada para gestionar cobros a través de Stripe; sus responsabilidades de facturación se identificarán antes del pago.</li><li><strong>Sessionize / Microsoft Forms</strong> — convocatorias de ponentes y voluntariado.</li><li><strong>Microsoft</strong> (autenticación federada de ponentes) — bajo sus propias políticas de privacidad.</li>
                         <li><strong>Proveedores de analítica</strong> (con IP anonimizada y sin identificación personal).</li>
                       </ul>
-                      <p>Las transferencias fuera del Espacio Económico Europeo se realizan mediante garantías adecuadas (cláusulas contractuales tipo aprobadas por la Comisión Europea).</p>
+                      <p>Las transferencias internacionales requieren analizar cada flujo y formalizar las garantías exigibles; no se presume la existencia de cláusulas contractuales tipo sin comprobación.</p>
                     </section>
 
+                    <section className="mb-4"><h2 className="h4 text-secondary mb-3">8. Patrocinadores, imágenes y Dubái</h2><p>No se entregarán listados de asistentes a patrocinadores para marketing autónomo sin base jurídica e información previa suficientes. La mera compra de una entrada no supone consentimiento para ello.</p><p>La fotografía y grabación en el recinto estarán sujetas a información visible y a los derechos sobre la propia imagen; los usos individualizados se autorizarán cuando corresponda.</p><p>Para la edición de Dubái se analizarán además las obligaciones aplicables de la normativa de protección de datos de EAU (PDPL), incluidas las transferencias internacionales y los derechos de los interesados.</p></section>
                     {/* 8. Seguridad */}
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">8. Seguridad</h2>
@@ -133,9 +134,9 @@ const PrivacyPolicy = () => {
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">9. Contacto para Privacidad</h2>
                       <div className="bg-light p-3 rounded">
-                        <p className="mb-1"><strong>X-Ops Alliance, S.L.</strong></p>
-                        <p className="mb-1">Email: <a href="mailto:privacy@xopsalliance.com">privacy@xopsalliance.com</a></p>
-                        <p className="mb-1">DPO: <a href="mailto:dpo@xopsalliance.com">dpo@xopsalliance.com</a></p>
+                        <p className="mb-1"><strong>Asociación Hacker Dreams</strong></p>
+                        <p className="mb-1">Email: <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></p>
+                        <p className="mb-1">DPO: <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></p>
                         <p className="mb-0">Autoridad de control: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">AEPD — www.aepd.es</a></p>
                       </div>
                     </section>
@@ -148,7 +149,7 @@ const PrivacyPolicy = () => {
 
                     <div className="text-center mt-5 pt-4 border-top">
                       <p className="text-muted small">
-                        <strong>Última actualización:</strong> junio 2025 · <strong>Versión:</strong> 2.0
+                        <strong>Última actualización:</strong> octubre 2026 · <strong>Versión:</strong> 3.0
                       </p>
                     </div>
                   </div>
