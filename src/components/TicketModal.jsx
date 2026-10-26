@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Modal,
   Container,
@@ -208,13 +208,22 @@ const TicketModal = ({ show, onHide }) => {
   const [purchasing, setPurchasing]     = useState(false);
 
   const countdownTargetDate = useMemo(() => getCountdownTargetDate(), []);
+  const trackedCheckoutRef = useRef(null);
   const checkoutEdition = editionFromEvent(selectedEvent, typeof window !== 'undefined' ? window.location.hostname : '') || 'madrid';
 
   // A beginning checkout can be counted after a user opts into analytics
   // while already viewing this step. Do not read buyer name/email into GA4.
   useEffect(() => {
-    if (!show || step !== 'checkout' || !selectedEvent || !selectedTT || !analyticsOptIn) return;
-    trackBeginCheckout(selectedEvent, selectedTT, checkoutEdition);
+    if (!show || step !== 'checkout') {
+      trackedCheckoutRef.current = null;
+      return;
+    }
+    if (!selectedEvent || !selectedTT || !analyticsOptIn) return;
+    const key = String(selectedEvent.id) + ':' + String(selectedTT.id);
+    if (trackedCheckoutRef.current === key) return;
+    if (trackBeginCheckout(selectedEvent, selectedTT, checkoutEdition)) {
+      trackedCheckoutRef.current = key;
+    }
   }, [show, step, selectedEvent, selectedTT, analyticsOptIn, checkoutEdition]);
 
   useEffect(() => {
