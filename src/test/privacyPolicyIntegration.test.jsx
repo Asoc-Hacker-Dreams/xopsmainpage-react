@@ -167,7 +167,7 @@ describe('Privacy Policy Integration', () => {
     // Scope to footer to avoid expensive full-document ARIA traversal
     const footerEl = container.querySelector('footer');
     expect(footerEl).not.toBeNull();
-    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad"]');
+    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad/madrid"]');
     expect(privacyLink).toBeInTheDocument();
     expect(privacyLink).toHaveTextContent('Política de Privacidad');
   });
@@ -177,11 +177,11 @@ describe('Privacy Policy Integration', () => {
     const { container } = render(<AppWrapper />);
 
     const footerEl = container.querySelector('footer');
-    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad"]');
+    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad/madrid"]');
     fireEvent.click(privacyLink);
 
     // Check that we navigated to the privacy policy page
-    expect(window.location.pathname).toBe('/politica-de-privacidad');
+    expect(window.location.pathname).toBe('/politica-de-privacidad/madrid');
   });
 
   it('privacy policy page is accessible via direct URL', () => {
