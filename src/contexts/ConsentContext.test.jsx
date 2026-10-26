@@ -84,7 +84,7 @@ describe('ConsentContext', () => {
       expect(screen.getByTestId('show-banner')).toHaveTextContent('false');
       expect(screen.getByTestId('essential-consent')).toHaveTextContent('true');
       expect(screen.getByTestId('analytics-consent')).toHaveTextContent('true');
-      expect(screen.getByTestId('marketing-consent')).toHaveTextContent('true');
+      expect(screen.getByTestId('marketing-consent')).toHaveTextContent('false');
     });
   });
 
