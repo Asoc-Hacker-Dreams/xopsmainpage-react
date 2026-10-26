@@ -24,7 +24,7 @@ export const privacyContent = {
         ]},
         { title: '4. Datos obligatorios y decisiones', paragraphs: [
           'Los campos identificados como obligatorios son necesarios para tramitar la compra o solicitud correspondiente; si no se aportan, puede no ser posible prestar ese servicio. La aceptación de marketing nunca es condición para adquirir una entrada.',
-          'Las herramientas internas de gestión de relaciones pueden facilitar la clasificación de solicitudes y oportunidades; su configuración, y la eventual existencia de decisiones automatizadas con efectos significativos, debe verificarse en cada proceso. No se atribuye a la aceptación de cookies un consentimiento para perfiles comerciales ajenos a las categorías descritas.'
+          'Las herramientas internas de gestión de relaciones pueden facilitar la clasificación de solicitudes y oportunidades; su configuración, y la eventual existencia de decisiones automatizadas con efectos significativos, debe verificarse en cada proceso. No se atribuye a la aceptación de cookies un consentimiento para perfiles comerciales ajenos a las categorías descritas.',
           'Con tu consentimiento de analítica, la web conserva hasta 24 horas en la pestaña parámetros UTM filtrados del primer y último contacto, y puede registrar visitas, selección de entradas, inicios de checkout y compras verificadas en GA4 con identificador de pedido, tipo de entrada, moneda e importe. Nunca se envían nombre, email ni datos de tarjeta a GA4. La asociación de campañas con pedidos en TriskelGate/Holos requiere una integración backend validada.'
         ]},
         { title: '5. Destinatarios y proveedores', paragraphs: [
@@ -78,7 +78,7 @@ export const privacyContent = {
         ]},
         { title: '4. Required fields and decisions', paragraphs: [
           'Fields marked as required are necessary for the corresponding order or application; without them we may be unable to provide that service. Marketing is never a requirement for buying a ticket.',
-          'Internal relationship-management systems may assist in triaging applications and opportunities. Whether any process makes solely automated decisions with significant effects must be assessed for that process. Cookie consent does not authorise unrelated marketing profiling.'
+          'Internal relationship-management systems may assist in triaging applications and opportunities. Whether any process makes solely automated decisions with significant effects must be assessed for that process. Cookie consent does not authorise unrelated marketing profiling.',
           'With analytics consent, the site keeps filtered first/last campaign UTM parameters in this tab for up to 24 hours, and may send page views, ticket selections, checkout starts and server-verified purchases to GA4 with a transaction ID, ticket type, currency and amount. Names, email addresses and card details are never passed to GA4. Joining campaigns to orders in TriskelGate/Holos requires a verified backend integration.'
         ]},
         { title: '5. Recipients and providers', paragraphs: [
@@ -126,7 +126,7 @@ export const privacyContent = {
         ]},
         { title: '3. Categories and sources of personal data', paragraphs: [
           'We may process name, email, company, job title, contact and billing details, selected ticket and entitlements, event attendance and access information, support enquiries and optional communication preferences. Speaker, volunteer and sponsorship applications may contain a biography, portrait, presentation, professional profile or company information.',
-          'Data may be provided directly to this site or through TriskelGate, Sessionize, Microsoft Forms and other services clearly linked from our pages. Payment card data is entered on Stripe, not collected by our website forms.'
+          'Data may be provided directly to this site or through TriskelGate, Sessionize, Microsoft Forms and other services clearly linked from our pages. Payment card data is entered on Stripe, not collected by our website forms.',
           'With analytics consent, the site may keep filtered first/last UTM campaign parameters for up to 24 hours in this tab and send page views, ticket/checkout events and server-verified purchases to GA4. Events can include a transaction ID, tier, currency and amount, never the buyer name or email. Order-level attribution in internal systems is enabled only after the backend supports and verifies it.'
         ]},
         { title: '4. Purposes and processing grounds', paragraphs: [
@@ -172,7 +172,7 @@ export const privacyContent = {
         ]},
         { title: '3. Datos personales y origen', paragraphs: [
           'Podemos tratar datos de identificación y contacto, empresa y cargo, facturación, entrada y derechos de acceso, asistencia, solicitudes de soporte y preferencias opcionales. Las candidaturas de ponentes, voluntarios y patrocinadores pueden incluir biografía, retrato, propuesta, perfiles profesionales o datos de la empresa.',
-          'La información puede llegar directamente o a través de TriskelGate, Sessionize, Microsoft Forms y otros servicios enlazados. Los datos completos de tarjeta se introducen en Stripe, no en formularios de esta web.'
+          'La información puede llegar directamente o a través de TriskelGate, Sessionize, Microsoft Forms y otros servicios enlazados. Los datos completos de tarjeta se introducen en Stripe, no en formularios de esta web.',
           'Con consentimiento de analítica, la web puede conservar en esta pestaña parámetros UTM filtrados del primer y último contacto durante un máximo de 24 horas, y enviar a GA4 páginas vistas, selección de entradas, eventos de checkout y compras verificadas. Estos eventos pueden incluir identificador de transacción, modalidad, moneda e importe, nunca el nombre o correo del comprador. La atribución en nuestros sistemas internos solo se activa al contar con un backend validado.'
         ]},
         { title: '4. Finalidades y legitimación', paragraphs: [
