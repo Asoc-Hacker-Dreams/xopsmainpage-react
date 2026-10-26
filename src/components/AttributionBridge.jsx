@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useConsent } from '../contexts/ConsentContext';
 import {
-  captureAttribution, clearAttribution, decorateConferenceLink,
+  captureAttribution, clearAttribution, decorateConferenceLink, safeAnalyticsPageUrl,
 } from '../analytics/attribution';
 import { clearPurchaseLedger, trackPageView } from '../analytics/ga4';
 import { clearCheckoutDeparture } from '../analytics/checkoutJourney';
@@ -16,6 +16,7 @@ export default function AttributionBridge() {
   const location = useLocation();
   const { consent, hasInteracted } = useConsent();
   const enabled = hasInteracted && consent.analytics === true;
+  const lastPageRef = useRef(null);
 
   useEffect(() => {
     if (!enabled) {
@@ -42,8 +43,16 @@ export default function AttributionBridge() {
   }, [enabled]);
 
   useEffect(() => {
-    if (!enabled || typeof window === 'undefined') return;
-    trackPageView(window.location.href, document.title, document.referrer);
+    if (!enabled || typeof window === 'undefined') {
+      lastPageRef.current = null;
+      return;
+    }
+    // The app strips ?openTickets=1 immediately after rendering. It is not
+    // another real page view. Collapse navigation states with the same safe URL.
+    const safeUrl = safeAnalyticsPageUrl(window.location.href);
+    if (lastPageRef.current === safeUrl) return;
+    lastPageRef.current = safeUrl;
+    trackPageView(safeUrl, document.title, document.referrer);
   }, [enabled, location.pathname, location.search]);
 
   return null;
