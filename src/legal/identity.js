@@ -1,5 +1,5 @@
 // Shared public identity and jurisdiction helpers. These are NOT payment processor credentials.
-export const LEGAL_VERSION = '2026-10-26';
+export const LEGAL_VERSION = '2026-10-27';
 export const ORGANIZER = Object.freeze({
   name: 'Asociación Hacker Dreams',
   taxId: 'G56643158',
