@@ -37,7 +37,7 @@ describe('legal coverage and jurisdiction routing', () => {
         expect(doc.sections.every((section) => section.title && ((section.paragraphs || []).length || (section.bullets || []).length))).toBe(true);
       }
     }
-    expect(JSON.stringify(noticesContent.cookies.es)).toContain('xopsconf_consent_v3');
+    expect(JSON.stringify(noticesContent.cookies.es)).toContain('xopsconf_consent_v4');
   });
 
   it('selects the UAE edition by host, route and checkout event', () => {
