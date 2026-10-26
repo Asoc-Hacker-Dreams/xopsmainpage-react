@@ -11,6 +11,7 @@ import { ConsentProvider } from './contexts/ConsentContext';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import CookiePreferencesManager from './components/CookiePreferencesManager';
 import ScriptManager from './components/ScriptManager';
+import AttributionBridge from './components/AttributionBridge';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
@@ -80,9 +81,13 @@ function App() {
   // ?openTickets=1 so they still land the user in the purchase flow instead
   // of on a bare homepage.
   useEffect(() => {
-    if (new URLSearchParams(location.search).get('openTickets') === '1') {
+    const query = new URLSearchParams(location.search);
+    if (query.get('openTickets') === '1') {
       setShowTicketModal(true);
-      navigate(location.pathname + location.hash, { replace: true });
+      query.delete('openTickets');
+      // Do not lose consented campaign tags while resolving legacy ticket links.
+      const rest = query.toString();
+      navigate(location.pathname + (rest ? '?' + rest : '') + location.hash, { replace: true });
     }
   }, [location.search, location.pathname, location.hash, navigate]);
 
@@ -117,6 +122,7 @@ function App() {
       <>
       <a href="#main-content" className="skip-link">Saltar al contenido</a>
       <ScriptManager />
+      <AttributionBridge />
       <CookieConsentBanner />
 
 <ScrollHandler />
