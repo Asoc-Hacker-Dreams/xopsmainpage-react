@@ -49,7 +49,7 @@ export default function ExternalApplicationNotice({ type }) {
   const [params] = useSearchParams();
   const lang = (i18n.resolvedLanguage || i18n.language || 'es').startsWith('en') ? 'en' : 'es';
   const copy = texts[type]?.[lang] || texts.speaker[lang];
-  const city = params.get('city') === 'dubai' ? 'dubai' : 'madrid';
+  const city = params.get('city') === 'dubai' || (params.get('city') !== 'madrid' && typeof window !== 'undefined' && window.location.hostname === 'dubai.xopsconference.com') ? 'dubai' : 'madrid';
   return (
     <main id="main-content" className="xops-legal">
       <SEO title={copy.title} description={copy.lead} path={type === 'volunteer' ? '/voluntariado' : '/convocatoria-ponentes'} lang={lang} />
