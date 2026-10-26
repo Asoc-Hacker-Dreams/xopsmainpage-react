@@ -21,6 +21,7 @@ import Speakers2025 from './pages/archive/2025/Speakers2025';
 import Sponsor2025 from './pages/archive/2025/Sponsor2025';
 import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import LegalNotice from './pages/LegalNotice';
 import CookiePolicy from './pages/CookiePolicy';
 import TermsOfService from './pages/TermsOfService';
 import Agenda from './pages/Agenda';
@@ -279,6 +280,7 @@ function App() {
           <Route path="/analytics" element={<AnalyticsPage />} />
 
           {/* Privacy Policy */}
+          <Route path="/aviso-legal" element={<LegalNotice />} />
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
           <Route path="/politica-de-cookies" element={<CookiePolicy />} />
           <Route path="/terminos-de-servicio" element={<TermsOfService />} />
@@ -338,6 +340,7 @@ function App() {
               <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</a></li>
               <li><a href={cityEvents.madrid.conference.cfpUrl} target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</a></li>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
+              <li><Link to="/aviso-legal" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Legal notice' : 'Aviso legal'}</Link></li>
               <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
               <li><Link to="/politica-de-cookies" className="text-white" style={{textDecoration: 'none'}}>Política de Cookies</Link></li>
               <li><Link to="/terminos-de-servicio" className="text-white" style={{textDecoration: 'none'}}>Términos de Servicio</Link></li>
