@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { triskelGateClient } from '../adapters/triskelgate/client';
 import CountdownTimer from './CountdownTimer';
 import { cityEvents, getCityFromHostname } from '../data/cityEvents';
+import { LEGAL_VERSION, editionFromEvent } from '../legal/identity';
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -296,6 +297,16 @@ const TicketModal = ({ show, onHide }) => {
         customerName:  name,
         successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
         cancelUrl:  `${window.location.origin}/?openTickets=1`,
+        // Optional until TriskelGate validates + persists this versioned evidence.
+        ...(import.meta.env.VITE_TRISKELL_LEGAL_METADATA_ENABLED === 'true' ? {
+          legalAcceptance: {
+            accepted: true,
+            edition: checkoutEdition,
+            legalVersion: LEGAL_VERSION,
+            acceptedAtClient: new Date().toISOString(),
+            locale: i18n.language,
+          },
+        } : {}),
       });
 
       if (!data?.success) {
@@ -327,6 +338,9 @@ const TicketModal = ({ show, onHide }) => {
   };
 
   const isCheckout = step === 'checkout';
+  const checkoutEdition = editionFromEvent(selectedEvent, typeof window !== 'undefined' ? window.location.hostname : '') || 'madrid';
+  const termsUrl = '/terminos-de-servicio/' + checkoutEdition;
+  const privacyUrl = '/politica-de-privacidad/' + checkoutEdition;
 
   return (
     <Modal
@@ -465,20 +479,31 @@ const TicketModal = ({ show, onHide }) => {
               />
               <Form.Text style={{ color: '#64748b' }}>{t('ticketModal.checkout.emailHint')}</Form.Text>
             </Form.Group>
-            <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginTop: '12px' }}>
-              {t('ticketModal.checkout.taxIncluded')}
+            <p style={{ color: '#c4d1df', fontSize: '0.82rem', marginTop: '12px' }}>
+              {checkoutEdition === 'dubai'
+                ? t('ticketModal.checkout.dubaiTax')
+                : t('ticketModal.checkout.madridTax')}
             </p>
-            <div style={{color:'#e2e8f0',fontSize:'0.84rem',padding:'12px',background:'#1c2032',borderRadius:8}}>
-              <p style={{marginBottom:6}}>{t('ticketModal.checkout.organizerNotice')}</p>
-              <p style={{marginBottom:6}}>{t('ticketModal.checkout.paymentNotice')}</p>
-              <p style={{marginBottom:8}}>{t('ticketModal.checkout.withdrawalNotice')}</p>
-              <p style={{marginBottom:0}}>
-                <a target="_blank" rel="noreferrer" href="/aviso-legal">{t('ticketModal.checkout.legalNotice')}</a> ·{' '}
-                <a target="_blank" rel="noreferrer" href="/terminos-de-servicio">{t('ticketModal.checkout.termsLink')}</a> ·{' '}
-                <a target="_blank" rel="noreferrer" href="/politica-de-privacidad">{t('ticketModal.checkout.privacyLink')}</a>
-              </p>
+            <div id="tm-legal-disclosure" style={{color:'#e2e8f0',fontSize:'0.84rem',padding:'14px',background:'#1c2032',border:'1px solid #46536a',borderRadius:8}}>
+              <strong style={{display:'block',color:'#fff',marginBottom:9}}>{t('ticketModal.checkout.preContractHeading')}</strong>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.organizerNotice')}</p>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.paymentNotice')}</p>
+              <p style={{marginBottom:8}}>{checkoutEdition === 'dubai'
+                ? t('ticketModal.checkout.withdrawalDubai')
+                : t('ticketModal.checkout.withdrawalMadrid')}</p>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.sponsorDisclosure')}</p>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.filmingDisclosure')}</p>
+              <p style={{marginBottom:8,color:'#c8d6e5'}}>{t('ticketModal.checkout.versionLabel')}: {LEGAL_VERSION}</p>
+              <nav aria-label={t('ticketModal.checkout.preContractHeading')} style={{display:'flex',gap:12,flexWrap:'wrap'}}>
+                <a target="_blank" rel="noopener noreferrer" href="/aviso-legal">{t('ticketModal.checkout.legalNotice')}</a>
+                <a target="_blank" rel="noopener noreferrer" href={termsUrl}>{t('ticketModal.checkout.termsLink')}</a>
+                <a target="_blank" rel="noopener noreferrer" href={privacyUrl}>{t('ticketModal.checkout.privacyLink')}</a>
+                <a target="_blank" rel="noopener noreferrer" href="/privacidad-patrocinadores">{t('ticketModal.checkout.sponsorLink')}</a>
+                <a target="_blank" rel="noopener noreferrer" href="/fotografia-y-video">{t('ticketModal.checkout.filmingLink')}</a>
+              </nav>
             </div>
             <Form.Check className="mt-3" type="checkbox" id="tm-terms" required
+              aria-describedby="tm-legal-disclosure"
               checked={acceptedTerms} onChange={e => setAcceptedTerms(e.target.checked)}
               label={t('ticketModal.checkout.acceptTerms')} style={{color:'#e2e8f0',fontSize:'0.85rem'}} />
           </Modal.Body>
