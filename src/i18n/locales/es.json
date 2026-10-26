@@ -303,9 +303,17 @@
       "errors": {
         "nameRequired": "Por favor introduce tu nombre completo.",
         "emailInvalid": "Por favor introduce un email válido.",
-        "networkError": "Sistema de entradas no disponible. Escríbenos a info@xopsconference.com."
+        "networkError": "Sistema de entradas no disponible. Escríbenos a info@xopsconference.com.",
+        "termsRequired": "Debes aceptar las condiciones antes de continuar al pago."
       },
-      "taxIncluded": "Precio con IVA incluido. No se añaden cargos extra."
+      "taxIncluded": "Precio con IVA incluido. No se añaden cargos extra.",
+      "organizerNotice": "Organiza: Asociación Hacker Dreams (CIF G56643158).",
+      "paymentNotice": "Cobro gestionado mediante Odin Hermes & Danu Technology Solutions LLC. Stripe facilita el pago. Consulta el aviso legal para los roles de cada entidad.",
+      "withdrawalNotice": "Entradas para evento con fecha concreta: puede no existir derecho de desistimiento de 14 días (art. 103.l RDL 1/2007); sin perjuicio de derechos legales por cancelaciones o cambios.",
+      "legalNotice": "Aviso legal",
+      "termsLink": "Condiciones de compra",
+      "privacyLink": "Privacidad",
+      "acceptTerms": "He leído y acepto las condiciones de compra y el aviso sobre desistimiento (obligatorio)."
     },
     "tierDescriptions": {
       "superEarly": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye Summit, speakers dinner ni workshops premium.",
