@@ -189,8 +189,7 @@ export default function StartupPack() {
         <div className="stk-main stk-success">
           <div className="stk-success-icon">✅</div>
           <h2>{t('¡Solicitud enviada!', 'Application submitted!')}</h2>
-          <p>{t('Revisaremos tu solicitud y te contactaremos por correo electrónico.', 'We\'ll contact you within 48h to confirm your eligibility.')}</p>
-          <p style={{ marginTop: '0.5rem' }}><strong>✓ {t('Solicitud enviada — Te contactamos en <48h', 'Application sent — We\'ll contact you in <48h')}</strong></p>
+          <p>{t('Revisaremos tu solicitud y te contactaremos por correo electrónico.', 'We will review your application and contact you by email.')}</p>
           <Link to="/Sponsor" style={{ color: '#00BCD4', display: 'inline-block', marginTop: '1.5rem' }}>
             ← {t('Volver al dossier', 'Back to dossier')}
           </Link>
