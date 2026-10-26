@@ -365,6 +365,11 @@ jobs:
           npx @cyclonedx/cyclonedx-npm --output-file sbom.json
           npx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
 
+      # npm run build includes Playwright prerender. Without an installed
+      # headless Chromium binary the Vite build succeeds but CI fails here.
+      - name: Install Playwright Chromium for prerender
+        run: npx playwright install --with-deps chromium
+
       - name: Build application
         run: npm run build
 
