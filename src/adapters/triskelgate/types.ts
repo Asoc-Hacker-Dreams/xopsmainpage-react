@@ -57,6 +57,14 @@ export interface TGCheckoutPayload {
   customerName?: string;
   successUrl?: string;
   cancelUrl?: string;
+  /** Enabled only after backend support; server must verify and audit this evidence. */
+  legalAcceptance?: {
+    accepted: true;
+    edition: 'madrid' | 'dubai';
+    legalVersion: string;
+    acceptedAtClient: string;
+    locale: string;
+  };
 }
 
 export interface TGCheckoutResponse {
