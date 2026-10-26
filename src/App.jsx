@@ -23,6 +23,10 @@ import Events2025 from './pages/archive/2025/Events2025';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import LegalNotice from './pages/LegalNotice';
 import CookiePolicy from './pages/CookiePolicy';
+import PhotographyPolicy from './pages/PhotographyPolicy';
+import SponsorPrivacy from './pages/SponsorPrivacy';
+import ExternalApplicationNotice from './pages/ExternalApplicationNotice';
+import { ORGANIZER, PAYMENT_COLLECTOR } from './legal/identity';
 import TermsOfService from './pages/TermsOfService';
 import Agenda from './pages/Agenda';
 import SpeakerPage from './pages/Speaker';
@@ -282,8 +286,14 @@ function App() {
           {/* Privacy Policy */}
           <Route path="/aviso-legal" element={<LegalNotice />} />
           <Route path="/politica-de-privacidad" element={<PrivacyPolicy />} />
+          <Route path="/politica-de-privacidad/:edition" element={<PrivacyPolicy />} />
           <Route path="/politica-de-cookies" element={<CookiePolicy />} />
           <Route path="/terminos-de-servicio" element={<TermsOfService />} />
+          <Route path="/terminos-de-servicio/:edition" element={<TermsOfService />} />
+          <Route path="/fotografia-y-video" element={<PhotographyPolicy />} />
+          <Route path="/privacidad-patrocinadores" element={<SponsorPrivacy />} />
+          <Route path="/voluntariado" element={<ExternalApplicationNotice type="volunteer" />} />
+          <Route path="/convocatoria-ponentes" element={<ExternalApplicationNotice type="speaker" />} />
           
           {/* Sophia Metapolis routes */}
           <Route path="/sophia" element={<SophiaHome />} />
@@ -337,13 +347,17 @@ function App() {
 
               <li><Link className="text-white" to="/#ediciones" style={{textDecoration: 'none'}}>{t('nav.event')}</Link></li>
               <li><NavLink className="text-white" to="/Organizer#organizr" style={{textDecoration: 'none'}}>{t('nav.organizers')}</NavLink></li>
-              <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EaWMGDgsSEi09sqLCPLFFUHOFUdEMtRPqJBa35Bh2thURUtLTkZURlhTRFFJUlZDTTk5ODcyNTFBMi4u&embed=true" target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</a></li>
-              <li><a href={cityEvents.madrid.conference.cfpUrl} target="_blank" rel="noopener noreferrer" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</a></li>
+              <li><Link to="/voluntariado" className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</Link></li>
+              <li><Link to="/convocatoria-ponentes" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</Link></li>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
               <li><Link to="/aviso-legal" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Legal notice' : 'Aviso legal'}</Link></li>
               <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
-              <li><Link to="/politica-de-cookies" className="text-white" style={{textDecoration: 'none'}}>Política de Cookies</Link></li>
-              <li><Link to="/terminos-de-servicio" className="text-white" style={{textDecoration: 'none'}}>Términos de Servicio</Link></li>
+              <li><Link to="/politica-de-privacidad/madrid" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'EU Privacy Policy' : 'Privacidad UE'}</Link></li>
+              <li><Link to="/politica-de-privacidad/dubai" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'UAE Privacy Policy' : 'Privacidad EAU'}</Link></li>
+              <li><Link to="/politica-de-cookies" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Cookie Policy' : 'Política de Cookies'}</Link></li>
+              <li><Link to="/terminos-de-servicio" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Purchase terms' : 'Condiciones de compra'}</Link></li>
+              <li><Link to="/privacidad-patrocinadores" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Sponsor and lead privacy' : 'Patrocinios y datos de contacto'}</Link></li>
+              <li><Link to="/fotografia-y-video" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Photography and video' : 'Fotografía y vídeo'}</Link></li>
               <li>
                 <button 
                   onClick={handleShowCookiePreferences}
@@ -359,6 +373,7 @@ function App() {
       </div>
       <div className="text-center py-3">
         <p>{t('footer.copyright')}</p>
+        <p style={{fontSize:'0.82rem'}}>{i18n.language.startsWith('en') ? 'Organised by' : 'Organiza'}: {ORGANIZER.name} · CIF {ORGANIZER.taxId}. {i18n.language.startsWith('en') ? 'Collections via' : 'Cobros mediante'} {PAYMENT_COLLECTOR.name}.</p>
         <p>Teléfono: <a href="tel:+34744644873" className="text-white">+34744644873</a> / <a href="tel:+34693814098" className="text-white">+34693814098</a></p>
       </div>
     </footer>
