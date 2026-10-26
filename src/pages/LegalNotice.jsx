@@ -1,44 +1,87 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Container } from 'react-bootstrap';
-import SEO from '../components/SEO';
-import { LEGAL_VERSION, ORGANIZER, PAYMENT_COLLECTOR } from '../legal/identity';
+import LegalDocument from '../legal/LegalDocument';
+import { ORGANIZER, PAYMENT_COLLECTOR } from '../legal/identity';
+
+// Registry and registered-office fields are deliberately configuration-driven.
+// They MUST be verified and populated before promotion to production.
+const addressES = ORGANIZER.registeredAddress
+  ? 'Domicilio registral: ' + ORGANIZER.registeredAddress
+  : 'La dirección registral exacta debe verificarse y completarse antes de publicar esta versión.';
+const addressEN = ORGANIZER.registeredAddress
+  ? 'Registered office: ' + ORGANIZER.registeredAddress
+  : 'The exact registered office must be verified and completed before publishing this version.';
+const registryES = ORGANIZER.associationRegistry
+  ? 'Registro de asociaciones: ' + ORGANIZER.associationRegistry
+  : 'Los datos del registro de asociaciones deben verificarse y completarse antes de publicar esta versión.';
+const registryEN = ORGANIZER.associationRegistry
+  ? 'Associations register: ' + ORGANIZER.associationRegistry
+  : 'Association registry details must be verified and completed before publishing this version.';
+const collectorAddressES = PAYMENT_COLLECTOR.registeredAddress
+  ? 'Domicilio de la entidad recaudadora: ' + PAYMENT_COLLECTOR.registeredAddress
+  : 'El domicilio completo de la entidad recaudadora está sujeto a verificación documental antes de publicación.';
+const collectorAddressEN = PAYMENT_COLLECTOR.registeredAddress
+  ? 'Collection entity registered office: ' + PAYMENT_COLLECTOR.registeredAddress
+  : 'The collection entity registered address must be verified before publication.';
+
+const document = {
+  es: {
+    title: 'Aviso legal e identificación del organizador',
+    subtitle: 'Información sobre quién organiza X-Ops Conference, quién gestiona los cobros y qué normas rigen el acceso a la web.',
+    sections: [
+      { title: '1. Titular y responsable de la web', paragraphs: [
+        'Titular y organizador: ' + ORGANIZER.name + ' · CIF: ' + ORGANIZER.taxId + '. País: ' + ORGANIZER.country + '.',
+        addressES, registryES,
+        'Contacto público: ' + ORGANIZER.contactEmail + '. Contacto para protección de datos: ' + ORGANIZER.privacyEmail + '.'
+      ]},
+      { title: '2. Identidad de las entidades de cobro', paragraphs: [
+        PAYMENT_COLLECTOR.name + ' (Delaware, Estados Unidos) es la entidad designada para gestionar cobros mediante Stripe. Stripe facilita la tecnología de pago. Esta diferenciación no constituye por sí sola una afirmación sobre quién es el vendedor contractual ni el emisor de una factura concreta.',
+        collectorAddressES,
+        'La identificación del vendedor, los impuestos y el emisor de factura deberán coincidir con la información contractual y de pago efectivamente facilitada en la compra de la edición correspondiente.'
+      ]},
+      { title: '3. Ámbito del sitio y ediciones', paragraphs: [
+        'Este aviso afecta a xopsconference.com, madrid.xopsconference.com y dubai.xopsconference.com. La información facilitada sobre Fundación Juan XXIII, la Universidad Rey Juan Carlos u otras sedes se refiere a los lugares de celebración, no al domicilio social del titular.',
+        'Madrid y Dubái pueden estar sujetos a normas territoriales distintas en contratación, protección de datos y comercio. Las políticas y condiciones específicas de cada edición están disponibles en el pie de página.'
+      ]},
+      { title: '4. Propiedad intelectual, uso responsable y enlaces', paragraphs: [
+        'Las marcas, textos, gráficos, imágenes y materiales de terceros pertenecen a sus respectivos titulares. Los enlaces a Sessionize, Microsoft Forms y servicios de pago dirigen a proveedores ajenos que pueden publicar sus propios avisos.',
+        'No están permitidos accesos no autorizados, actuaciones fraudulentas ni usos que infrinjan derechos de terceros. Se respetarán los derechos irrenunciables de consumidores y usuarios en los términos de la legislación aplicable.'
+      ]},
+      { title: '5. Condiciones y protección de datos', paragraphs: [
+        'La navegación por la web no equivale a aceptar una compra. Antes de solicitar el pago se facilitan las condiciones de contratación y se exige la aceptación expresa correspondiente.',
+        'Las condiciones de Madrid y Dubái, la privacidad UE y EAU, el uso de cookies y los avisos sobre patrocinadores y fotografías están disponibles en la sección de información legal.'
+      ]}
+    ]
+  },
+  en: {
+    title: 'Legal notice and organiser identity',
+    subtitle: 'Who organises X-Ops Conference, who handles collections and which rules apply to the website.',
+    sections: [
+      { title: '1. Website operator and event organiser', paragraphs: [
+        'Operator and organiser: ' + ORGANIZER.name + ' · Spanish tax ID: ' + ORGANIZER.taxId + '. Country: ' + ORGANIZER.country + '.',
+        addressEN, registryEN,
+        'General contact: ' + ORGANIZER.contactEmail + '. Privacy contact: ' + ORGANIZER.privacyEmail + '.'
+      ]},
+      { title: '2. Payment collection entities', paragraphs: [
+        PAYMENT_COLLECTOR.name + ' (Delaware, United States) is designated to handle collections through Stripe. Stripe provides payment technology. This distinction does not establish the contractual seller or invoice issuer for any particular transaction.',
+        collectorAddressEN,
+        'The merchant, applicable taxes and invoice issuer must match the actual contract and payment disclosures presented for the chosen event edition.'
+      ]},
+      { title: '3. Website and event editions', paragraphs: [
+        'This notice covers xopsconference.com, madrid.xopsconference.com and dubai.xopsconference.com. Fundación Juan XXIII, Universidad Rey Juan Carlos and any other announced venues are event locations, not the registered office of the website operator.',
+        'Madrid and Dubai can be subject to different territorial rules on contracts, personal data and e-commerce. Edition-specific notices and terms are accessible from the footer.'
+      ]},
+      { title: '4. Intellectual property and external links', paragraphs: [
+        'Marks, copy, graphics, images and third-party materials remain the property of their respective rights holders. Links to Sessionize, Microsoft Forms and payment providers lead to independent services with their own notices.',
+        'Unauthorised access, fraud and infringements of third-party rights are prohibited. Mandatory consumer and user rights are preserved by applicable law.'
+      ]},
+      { title: '5. Terms and privacy', paragraphs: [
+        'Browsing alone does not constitute agreement to buy a ticket. The relevant purchase terms are displayed before requesting payment and require explicit acceptance.',
+        'Madrid and Dubai terms, EU and UAE privacy policies, cookies, sponsorship leads and photography notices are linked in the legal information section.'
+      ]}
+    ]
+  }
+};
 
 export default function LegalNotice() {
-  const { i18n } = useTranslation();
-  const en = i18n.language.startsWith('en');
-  const L = (es, english) => en ? english : es;
-  return (
-    <>
-      <SEO title={L('Aviso legal - X-Ops Conference', 'Legal notice - X-Ops Conference')}
-        description={L('Identificación del organizador y condiciones legales del sitio.', 'Legal identity of the event organiser and site information.')}
-        path="/aviso-legal" lang={en ? 'en' : 'es'} />
-      <section className="py-5" style={{ background: '#f8f9fa', minHeight: '100vh' }}>
-        <Container style={{ maxWidth: 920 }}>
-          <article className="bg-white rounded p-4 p-md-5 shadow-sm text-dark">
-            <h1>{L('Aviso legal', 'Legal notice')}</h1>
-            <p className="text-muted">{L('Actualizado', 'Updated')}: {LEGAL_VERSION}</p>
-            <h2 className="h4 mt-4">{L('Titular y organizador', 'Website operator and event organiser')}</h2>
-            <p><strong>{ORGANIZER.name}</strong> · {L('CIF', 'Spanish tax ID')}: {ORGANIZER.taxId} · {ORGANIZER.country}</p>
-            <p>{L('Correo de contacto', 'Contact email')}: <a href={'mailto:' + ORGANIZER.contactEmail}>{ORGANIZER.contactEmail}</a></p>
-            {ORGANIZER.registeredAddress
-              ? <p>{L('Domicilio registral', 'Registered address')}: {ORGANIZER.registeredAddress}</p>
-              : <p>{L('El domicilio registral está pendiente de validación documental. Solicite el contacto postal al correo indicado; este dato debe completarse antes de publicar esta versión.', 'Registered address awaits documentary validation. Request postal contact at the above email; this field must be completed before publishing this version.')}</p>}
-            {ORGANIZER.associationRegistry
-              ? <p>{L('Registro de asociaciones', 'Associations register')}: {ORGANIZER.associationRegistry}</p>
-              : <p>{L('Los datos de inscripción en el registro de asociaciones deben incorporarse tras su comprobación documental.', 'Association registration details must be completed once documentary verification is finished.')}</p>}
-            <h2 className="h4 mt-4">{L('Pagos y entidad recaudadora', 'Payments and collection entity')}</h2>
-            <p>{L('La organización del evento corresponde a la asociación. La entidad indicada para la gestión de cobros a través de Stripe es', 'The association organises the event. The entity designated to handle collections through Stripe is')} <strong>{PAYMENT_COLLECTOR.name}</strong> ({PAYMENT_COLLECTOR.jurisdiction}).</p>
-            <p>{L('Stripe suministra la pasarela técnica de pago. El nombre que aparece en el extracto o en la pantalla de cobro no debe confundirse automáticamente con el organizador. El emisor de la factura y la contraparte contractual deben coincidir con los datos comunicados antes de pagar.', 'Stripe supplies payment-processing technology. A card statement descriptor or payment screen name does not automatically identify the organiser. The invoice issuer and contracting business must match the details disclosed before payment.')}</p>
-            <h2 className="h4 mt-4">{L('Ediciones y alcance territorial', 'Event editions and territorial scope')}</h2>
-            <p>{L('Este aviso se aplica a xopsconference.com y a madrid.xopsconference.com y dubai.xopsconference.com. La información sobre el recinto no constituye el domicilio social del organizador.', 'This notice covers xopsconference.com, madrid.xopsconference.com and dubai.xopsconference.com. A venue address is not the organiser’s registered address.')}</p>
-            <p>{L('Para Dubái pueden resultar aplicables normas adicionales de EAU. El uso de una entidad de cobro estadounidense no significa que exista una licencia comercial o establecimiento registrado en EAU.', 'Additional UAE rules may apply to Dubai. The use of a US collection entity does not imply a UAE commercial licence or registered establishment.')}</p>
-            <h2 className="h4 mt-4">{L('Propiedad intelectual y responsabilidad', 'Intellectual property and liability')}</h2>
-            <p>{L('Las marcas, contenidos y materiales pertenecen a sus respectivos titulares. Su uso no autorizado puede vulnerar derechos de terceros. Los enlaces externos se proporcionan para facilitar el acceso a servicios de otros operadores.', 'Marks, content and materials belong to their respective owners. Unauthorised use may infringe third-party rights. External links are provided for access to third-party services.')}</p>
-            <p>{L('Consulte las', 'See the')} <a href="/terminos-de-servicio">{L('condiciones de contratación', 'terms of service')}</a>, <a href="/politica-de-privacidad">{L('privacidad', 'privacy notice')}</a> {L('y', 'and')} <a href="/politica-de-cookies">{L('cookies', 'cookie notice')}</a>.</p>
-          </article>
-        </Container>
-      </section>
-    </>
-  );
+  return <LegalDocument document={document} />;
 }
