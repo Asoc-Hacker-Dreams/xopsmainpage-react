@@ -8,6 +8,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 import QRCode from 'qrcode';
 import SEO from '../components/SEO';
 import { triskelGateClient } from '../adapters/triskelgate/client';
+import { useConsent } from '../contexts/ConsentContext';
+import { emitVerifiedPurchase, purchaseFromVerifiedStatus } from '../analytics/ga4';
 
 const TICKETS_BASE = (import.meta.env.VITE_TRISKELL_API_BASE_URL || 'https://triskelgate-api.greensea-3f1bb7ef.uksouth.azurecontainerapps.io').replace(/\/$/, '');
 
@@ -103,9 +105,13 @@ const WalletButtons = ({ ticket, apiBase, walletStatus }) => {
 };
 
 const TicketSuccess = () => {
+  const { consent, hasInteracted } = useConsent();
+  const analyticsOptIn = hasInteracted && consent.analytics === true;
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const [orderNumber, setOrderNumber] = useState(null);
+  const [paymentVerified, setPaymentVerified] = useState(false);
+  const [verifiedEcommerce, setVerifiedEcommerce] = useState(null);
   const [ticketsList, setTicketsList] = useState([]);
   const [polling, setPolling] = useState(!!sessionId);
   // Cuando el polling termina sin traer tickets, `polling` queda en false y
@@ -141,21 +147,34 @@ const TicketSuccess = () => {
     const BASE_DELAY_MS = 2_000;
 
     const poll = async () => {
+      let stop = false;
       try {
         const data = await triskelGateClient.getCheckoutSessionStatus(sessionId);
-        if (data?.success && data.orderNumber && !cancelledRef.current) {
+        if (cancelledRef.current) return;
+        // A Stripe success URL (even one with a valid session_id) does not
+        // establish payment. TriskelGate must have verified Stripe server-side.
+        const confirmed = data?.success === true &&
+          ['paid', 'completed'].includes(data.status) &&
+          typeof data.orderNumber === 'string' && data.orderNumber.length > 0;
+        if (confirmed) {
+          setPaymentVerified(true);
           setOrderNumber(data.orderNumber);
+          // Use ONLY server-priced, server-verified ecommerce fields; never
+          // reconstruct a purchase from local ticket price/URL/query params.
+          if (purchaseFromVerifiedStatus(data)) setVerifiedEcommerce(data);
           if (Array.isArray(data.tickets) && data.tickets.length > 0) {
             setTicketsList(data.tickets);
             setHasTickets(true);
+            stop = true;
           }
+        } else if (['expired', 'canceled', 'cancelled', 'failed'].includes(data?.status)) {
+          stop = true;
         }
-      } catch { // eslint-disable-line no-unused-vars
-        // network blip — keep polling
+      } catch {
+        // Network interruption: retry rather than inventing a purchase.
       } finally {
         attempts++;
-        if (!cancelledRef.current && attempts < MAX_ATTEMPTS && !hasTickets) {
-          // backoff suave: 2 s, 2.5 s, 3 s, ...
+        if (!cancelledRef.current && !stop && attempts < MAX_ATTEMPTS && !hasTickets) {
           const delay = BASE_DELAY_MS + Math.min(attempts * 250, 3_000);
           setTimeout(poll, delay);
         } else if (!cancelledRef.current) {
@@ -168,6 +187,10 @@ const TicketSuccess = () => {
     return () => { cancelledRef.current = true; };
   }, [sessionId, hasTickets]);
 
+  useEffect(() => {
+    if (analyticsOptIn && verifiedEcommerce) emitVerifiedPurchase(verifiedEcommerce);
+  }, [analyticsOptIn, verifiedEcommerce]);
+
   // Nota: el antiguo `useEffect(() => { if (orderNumber) setPolling(false); })`
   // detenía el polling en cuanto llegaba el número de pedido, dejando al
   // comprador sin QR si los tickets llegaban después. Eliminado.
@@ -175,8 +198,8 @@ const TicketSuccess = () => {
   return (
     <>
       <SEO
-        title="Compra Confirmada - X-Ops Summit"
-        description="Tu compra de entrada ha sido confirmada."
+        title={paymentVerified ? 'Compra confirmada - X-Ops Conference' : 'Verificando compra - X-Ops Conference'}
+        description="Estado de verificación de una compra de entradas en X-Ops Conference."
         path="/tickets/success"
       />
       <div className="ticket-success-page">
@@ -184,13 +207,20 @@ const TicketSuccess = () => {
           <Row className="justify-content-center">
             <Col lg={8} className="text-center">
               <div className="success-icon-wrapper">
-                <BsCheckCircleFill className="success-icon" />
+                {paymentVerified
+                  ? <BsCheckCircleFill className="success-icon" />
+                  : <Spinner animation="border" role="status" aria-label="Verificando pago" />}
               </div>
 
-              <h1 className="success-title">¡Compra Confirmada!</h1>
+              <h1 className="success-title">
+                {paymentVerified ? '¡Compra confirmada!'
+                  : polling ? 'Verificando el pago…' : 'Compra pendiente de verificación'}
+              </h1>
 
-              <p className="success-message">
-                Gracias por tu compra. Te enviamos los detalles de tu entrada a tu email.
+              <p className="success-message" aria-live="polite">
+                {paymentVerified
+                  ? 'Tu pago está confirmado. Consulta los detalles de tus entradas y la confirmación por correo.'
+                  : 'Solo confirmaremos la compra cuando el sistema de entradas valide el pago con Stripe. Si la verificación tarda o falla, contacta con soporte.'}
               </p>
 
               {polling && ticketsList.length === 0 && (
