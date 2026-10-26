@@ -761,5 +761,10 @@
   },
   "common": {
     "retry": "Reintentar"
+  },
+  "legalLinks": {
+    "privacy": "Política de privacidad",
+    "media": "Fotografía, vídeo y derechos de imagen",
+    "sponsors": "Privacidad del networking"
   }
 }
