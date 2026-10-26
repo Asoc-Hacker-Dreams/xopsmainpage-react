@@ -9,8 +9,7 @@ const CookieConsentBanner = () => {
   const [preferences, setPreferences] = useState({
     [CONSENT_CATEGORIES.ESSENTIAL]: true,
     [CONSENT_CATEGORIES.ANALYTICS]: false,
-    [CONSENT_CATEGORIES.MARKETING]: false,
-    [CONSENT_CATEGORIES.NEWSLETTERS]: false
+    [CONSENT_CATEGORIES.MARKETING]: false
   });
 
   if (!showBanner) {
@@ -48,8 +47,6 @@ const CookieConsentBanner = () => {
         return 'Nos ayudan a entender cómo los visitantes interactúan con el sitio web, recopilando información de forma anónima (Google Analytics).';
       case CONSENT_CATEGORIES.MARKETING:
         return 'Se utilizan para mostrar anuncios relevantes y medir la efectividad de las campañas publicitarias.';
-      case CONSENT_CATEGORIES.NEWSLETTERS:
-        return 'Permiten el envío de comunicaciones y novedades de X-Ops Conference a tu correo electrónico.';
       default:
         return '';
     }
@@ -63,8 +60,6 @@ const CookieConsentBanner = () => {
         return 'Cookies Analíticas';
       case CONSENT_CATEGORIES.MARKETING:
         return 'Cookies de Marketing';
-      case CONSENT_CATEGORIES.NEWSLETTERS:
-        return 'Newsletter';
       default:
         return category;
     }
@@ -73,7 +68,7 @@ const CookieConsentBanner = () => {
   return (
     <>
       {/* Cookie Consent Banner */}
-      <div className="cookie-consent-banner">
+      <div className="cookie-consent-banner" role="region" aria-label="Preferencias de cookies">
         <Container>
           <Row className="align-items-center">
             <Col lg={8} md={7} sm={12}>
@@ -84,17 +79,15 @@ const CookieConsentBanner = () => {
                   Puedes aceptar todas las cookies, rechazar las no esenciales o personalizar tus preferencias.
                 </p>
                 <p className="cookie-text-small">
-                  Al continuar navegando, aceptas nuestra{' '}
-                  <a href="/politica-de-cookies" className="cookie-link" target="_blank" rel="noopener noreferrer">
-                    Política de Cookies
-                  </a>.
+                  Solo activaremos las categorías no esenciales si nos autorizas expresamente. Consulta la{' '}
+                  <a href="/politica-de-cookies" className="cookie-link" target="_blank" rel="noopener noreferrer">Política de Cookies</a>.
                 </p>
               </div>
             </Col>
             <Col lg={4} md={5} sm={12}>
               <div className="cookie-buttons">
                 <Button 
-                  variant="success" 
+                  variant="primary" 
                   size="sm" 
                   onClick={acceptAll}
                   className="me-2"
@@ -102,7 +95,7 @@ const CookieConsentBanner = () => {
                   Aceptar Todo
                 </Button>
                 <Button 
-                  variant="outline-secondary" 
+                  variant="primary" 
                   size="sm" 
                   onClick={rejectAll}
                   className="me-2"
