@@ -8,7 +8,7 @@ const TermsOfService = () => {
     <>
       <SEO
         title="Términos de Servicio - X-Ops Conference"
-        description="Términos y condiciones de uso del sitio web y servicios de X-Ops Conference. Organizado por X-Ops Alliance, S.L."
+        description="Términos y condiciones de uso del sitio web y servicios de X-Ops Conference. Organizado por Asociación Hacker Dreams"
         path="/terminos-de-servicio"
         image="https://xopsconference.com/assets/xops-og.jpg"
         lang="es"
@@ -26,13 +26,13 @@ const TermsOfService = () => {
               <Col lg={10} xl={8}>
                 <div className="bg-white rounded-lg p-4 p-md-5 shadow-sm">
                   <h1 className="text-center mb-2 text-primary">Términos de Servicio</h1>
-                  <p className="text-center text-muted small mb-5">Última actualización: junio 2025</p>
+                  <p className="text-center text-muted small mb-5">Última actualización: octubre 2026</p>
                   <div className="privacy-content">
 
                     {/* 1. Objeto */}
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">1. Objeto</h2>
-                      <p>Los presentes Términos de Servicio regulan el acceso y uso del sitio web <strong>xopsconference.com</strong> y los servicios relacionados con el evento <strong>X-Ops Conference</strong>, organizado por <strong>X-Ops Alliance, S.L.</strong>, con domicilio en Madrid, España.</p>
+                      <p>Las condiciones de contratación se facilitan antes del pago y su aceptación se solicita expresamente. Los presentes Términos de Servicio regulan el acceso y uso del sitio web <strong>xopsconference.com</strong> y los servicios relacionados con el evento <strong>X-Ops Conference</strong>, organizado por <strong>Asociación Hacker Dreams</strong>, con domicilio en Madrid, España.</p>
                       <p>El acceso al sitio web implica la aceptación plena y sin reservas de estos términos. Si no está de acuerdo con alguna de las condiciones aquí establecidas, le rogamos que no utilice este sitio web ni sus servicios.</p>
                     </section>
 
@@ -52,11 +52,11 @@ const TermsOfService = () => {
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">3. Compra de Entradas y Reservas</h2>
                       <ul>
-                        <li>La compra de entradas es definitiva. No se admiten cancelaciones ni reembolsos por parte del asistente, salvo en caso de cancelación del evento por parte del organizador.</li>
-                        <li>En caso de cancelación del evento por causa imputable a X-Ops Alliance, S.L., se procederá al reembolso íntegro del importe abonado en un plazo máximo de <strong>14 días hábiles</strong> desde la comunicación oficial de la cancelación.</li>
+                        <li>Las entradas para actividades de esparcimiento con fecha específica pueden quedar exceptuadas del derecho de desistimiento de 14 días conforme al art. 103.l de la Ley General para la Defensa de los Consumidores y Usuarios, cuando resulte aplicable. Las solicitudes de cancelación y devolución se resolverán según las condiciones publicadas antes del pago y los derechos imperativos de la legislación aplicable.</li>
+                        <li>En caso de cancelación del evento por causa imputable a Asociación Hacker Dreams, se procederá al reembolso íntegro del importe abonado en un plazo máximo de <strong>14 días hábiles</strong> desde la comunicación oficial de la cancelación.</li>
                         <li>Las entradas son <strong>nominales y no transferibles</strong> a terceros sin autorización expresa y por escrito de la organización.</li>
                         <li>La organización se reserva el derecho de solicitar identificación oficial en el acceso al evento para verificar la titularidad de la entrada.</li>
-                        <li>Los pagos se procesan de forma segura a través de <strong>Stripe</strong>. X-Ops Alliance no almacena datos de tarjeta bancaria.</li>
+                        <li>La recaudación se gestiona mediante <strong>Odin Hermes &amp; Danu Technology Solutions LLC</strong> y los pagos se procesan a través de <strong>Stripe</strong>. Asociación Hacker Dreams no almacena datos de tarjeta bancaria.</li>
                       </ul>
                     </section>
 
@@ -65,35 +65,35 @@ const TermsOfService = () => {
                       <h2 className="h4 text-secondary mb-3">4. Ponentes y Contenidos</h2>
                       <ul>
                         <li>Los ponentes confirman que poseen todos los derechos necesarios sobre sus presentaciones y materiales, y que estos no infringen derechos de propiedad intelectual de terceros.</li>
-                        <li>X-Ops Alliance, S.L. podrá grabar y difundir las ponencias con fines de archivo y promoción del evento, previa obtención del consentimiento expreso del ponente correspondiente.</li>
-                        <li>Los ponentes son responsables del contenido de sus presentaciones. X-Ops Alliance no asume responsabilidad por las opiniones expresadas por los ponentes durante el evento.</li>
+                        <li>Asociación Hacker Dreams podrá grabar y difundir las ponencias con fines de archivo y promoción del evento, previa obtención del consentimiento expreso del ponente correspondiente.</li>
+                        <li>Los ponentes son responsables del contenido de sus presentaciones. Asociación Hacker Dreams no asume responsabilidad por las opiniones expresadas por los ponentes durante el evento.</li>
                       </ul>
                     </section>
 
                     {/* 5. Propiedad Intelectual */}
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">5. Propiedad Intelectual</h2>
-                      <p>El contenido del sitio web — incluyendo, sin carácter limitativo, logotipos, diseño gráfico, textos, fotografías, vídeos y código fuente — es propiedad de <strong>X-Ops Alliance, S.L.</strong> o de sus licenciantes y está protegido por la legislación española e internacional sobre propiedad intelectual e industrial.</p>
-                      <p>Queda expresamente prohibida su reproducción, distribución, comunicación pública o transformación, total o parcial, sin la autorización previa y por escrito de X-Ops Alliance, S.L., salvo en los supuestos legalmente permitidos.</p>
+                      <p>El contenido del sitio web — incluyendo, sin carácter limitativo, logotipos, diseño gráfico, textos, fotografías, vídeos y código fuente — es propiedad de <strong>Asociación Hacker Dreams</strong> o de sus licenciantes y está protegido por la legislación española e internacional sobre propiedad intelectual e industrial.</p>
+                      <p>Queda expresamente prohibida su reproducción, distribución, comunicación pública o transformación, total o parcial, sin la autorización previa y por escrito de Asociación Hacker Dreams, salvo en los supuestos legalmente permitidos.</p>
                     </section>
 
                     {/* 6. Limitación de Responsabilidad */}
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">6. Limitación de Responsabilidad</h2>
-                      <p>X-Ops Alliance, S.L. no será responsable de:</p>
+                      <p>Asociación Hacker Dreams no será responsable de:</p>
                       <ul>
                         <li>Daños indirectos, incidentales o consecuentes derivados del uso o la imposibilidad de uso del sitio web.</li>
                         <li>Pérdida de beneficios, datos o ingresos esperados.</li>
                         <li>Interrupciones del servicio por causas técnicas ajenas a su control.</li>
                         <li>Contenidos de sitios web de terceros enlazados desde xopsconference.com.</li>
                       </ul>
-                      <p>La limitación anterior no se aplica en casos de dolo o negligencia grave por parte de X-Ops Alliance, S.L., ni en aquellos supuestos en que la legislación aplicable no permita dicha limitación.</p>
+                      <p>La limitación anterior no se aplica en casos de dolo o negligencia grave por parte de Asociación Hacker Dreams, ni en aquellos supuestos en que la legislación aplicable no permita dicha limitación.</p>
                     </section>
 
                     {/* 7. Cancelación del Evento */}
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">7. Cancelación o Modificación del Evento</h2>
-                      <p>En caso de fuerza mayor, circunstancias extraordinarias o causas ajenas a la voluntad del organizador, X-Ops Alliance, S.L. se reserva el derecho de:</p>
+                      <p>En caso de fuerza mayor, circunstancias extraordinarias o causas ajenas a la voluntad del organizador, Asociación Hacker Dreams se reserva el derecho de:</p>
                       <ul>
                         <li>Modificar el formato del evento (presencial a virtual o híbrido).</li>
                         <li>Cambiar la fecha o el lugar de celebración.</li>
@@ -105,7 +105,7 @@ const TermsOfService = () => {
                     {/* 8. Modificaciones de los Términos */}
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">8. Modificaciones de los Términos</h2>
-                      <p>X-Ops Alliance, S.L. se reserva el derecho de actualizar o modificar estos Términos de Servicio en cualquier momento. Los cambios se publicarán en el sitio web con al menos <strong>30 días de antelación</strong> a su entrada en vigor. El uso continuado del sitio web tras la publicación de los cambios implica la aceptación de los nuevos términos.</p>
+                      <p>Asociación Hacker Dreams se reserva el derecho de actualizar o modificar estos Términos de Servicio en cualquier momento. Los cambios se publicarán en el sitio web con al menos <strong>30 días de antelación</strong> a su entrada en vigor. Los cambios posteriores no alterarán retroactivamente los contratos ya celebrados sin acuerdo o fundamento legal.</p>
                     </section>
 
                     {/* 9. Ley Aplicable y Jurisdicción */}
@@ -119,16 +119,16 @@ const TermsOfService = () => {
                     <section className="mb-4">
                       <h2 className="h4 text-secondary mb-3">10. Contacto</h2>
                       <div className="bg-light p-3 rounded">
-                        <p className="mb-1"><strong>X-Ops Alliance, S.L.</strong></p>
-                        <p className="mb-1">Domicilio: Madrid, España</p>
-                        <p className="mb-1">Email legal/privacidad: <a href="mailto:privacy@xopsalliance.com">privacy@xopsalliance.com</a></p>
+                        <p className="mb-1"><strong>Asociación Hacker Dreams</strong></p>
+                        <p className="mb-1">CIF G56643158. Domicilio: consultar Aviso Legal.</p>
+                        <p className="mb-1">Email legal/privacidad: <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></p>
                         <p className="mb-0">Email del evento: <a href="mailto:info@xopsconference.com">info@xopsconference.com</a></p>
                       </div>
                     </section>
 
                     <div className="text-center mt-5 pt-4 border-top">
                       <p className="text-muted small">
-                        <strong>Última actualización:</strong> junio 2025 · <strong>Responsable:</strong> X-Ops Alliance, S.L.
+                        <strong>Última actualización:</strong> octubre 2026 · <strong>Responsable:</strong> Asociación Hacker Dreams
                       </p>
                     </div>
                   </div>
