@@ -120,7 +120,7 @@ export default function StartupPack() {
   const isIneligible = agePass === false || (agePass !== null && empPass === false && arrPass === false);
   const isPartial = !isEligible && !isIneligible && (agePass !== null || empPass !== null || arrPass !== null);
 
-  const discount = selectedCities.length >= 3 ? 30 : selectedCities.length === 2 ? 20 : 0;
+  const discount = selectedCities.length === 2 ? 20 : 0;
   const breakdown = priceBreakdown(selectedCities, discount);
 
   const toggleCity = (key) => {
@@ -212,7 +212,7 @@ export default function StartupPack() {
     <div className="stk-wrap">
       <SEO
         title="Startup Pack — X-Ops Conference 2026"
-        description="Startup Pack de X-Ops Conference: visibilidad en el mayor evento de DevOps y DevSecOps de España para startups de hasta 3 años, 15 empleados y ARR &lt;€500K. Desde €350."
+        description="Startup Pack de X-Ops Conference: visibilidad en el mayor evento de DevOps y DevSecOps de España para startups de hasta 3 años, 15 empleados y ARR &lt;€500K. Madrid desde €850 y Dubái desde AED 3.500."
         path="/startup-pack"
         keywords="Startup Pack, X-Ops Conference, startup DevOps, patrocinio startup, Madrid 2026"
         lang="es"
@@ -226,7 +226,7 @@ export default function StartupPack() {
           "name": "X-Ops Conference Startup Pack",
           "description": "Sponsorship package for early-stage startups (≤3 years, ≤15 employees, ARR <€500K). Includes web visibility, social mention, 1 full pass, shared booth.",
           "priceCurrency": "EUR",
-          "price": "350",
+          "price": "850",
           "url": "https://xopsconference.com/startup-pack",
           "seller": {
             "@type": "Organization",
