@@ -7,21 +7,18 @@ const translations = {
     title: 'Preferencias de privacidad', intro: 'Puedes activar o desactivar cada finalidad opcional. Las cookies esenciales siempre permanecen activas.',
     essential: 'Necesarias', essentialsText: 'Guardan tu elección de privacidad y permiten prestar funciones técnicas solicitadas.',
     analytics: 'Analítica', analyticsText: 'Google Analytics: medición de visitas e interacciones solo tras autorización.',
-    marketing: 'Marketing', marketingText: 'Reserva esta preferencia para futuras etiquetas publicitarias. No implica alta en boletines por correo.',
     accept: 'Aceptar todo', reject: 'Rechazar todo', save: 'Guardar selección', more: 'Consultar política de cookies',
   },
   en: {
     title: 'Privacy preferences', intro: 'Enable or disable each optional purpose. Essential storage is always active.',
     essential: 'Essential', essentialsText: 'Remembers your privacy choice and supports technically necessary requested features.',
     analytics: 'Analytics', analyticsText: 'Google Analytics: measuring visits and interactions only after opt-in.',
-    marketing: 'Marketing', marketingText: 'Reserves this choice for future advertising tags. It does not subscribe you to email newsletters.',
     accept: 'Accept all', reject: 'Reject all', save: 'Save selection', more: 'Read cookie policy',
   },
 };
 const categories = [
   { id: CONSENT_CATEGORIES.ESSENTIAL, key: 'essential', label: 'essentialsText' },
   { id: CONSENT_CATEGORIES.ANALYTICS, key: 'analytics', label: 'analyticsText' },
-  { id: CONSENT_CATEGORIES.MARKETING, key: 'marketing', label: 'marketingText' },
 ];
 
 export default function CookiePreferencesDialog({ show, onHide, language = 'es' }) {
