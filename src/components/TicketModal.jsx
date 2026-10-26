@@ -20,6 +20,7 @@ import { useConsent, CONSENT_POLICY_VERSION } from '../contexts/ConsentContext';
 import { buildAttributionForCheckout, captureAttribution } from '../analytics/attribution';
 import { ticketGa4Item, trackGa4Event, trackBeginCheckout, trackCheckoutRedirect } from '../analytics/ga4';
 import scriptManager from '../services/scriptManager';
+import { rememberCheckoutDeparture } from '../analytics/checkoutJourney';
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -322,7 +323,7 @@ const TicketModal = ({ show, onHide }) => {
         customerEmail: email,
         customerName:  name,
         successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancelUrl:  `${window.location.origin}/?openTickets=1`,
+        cancelUrl:  `${window.location.origin}/checkout/cancel`,
         ...(attributionEnabled && attribution ? {
           attribution: {
             ...attribution,
@@ -350,6 +351,9 @@ const TicketModal = ({ show, onHide }) => {
         throw new Error(t('ticketModal.checkout.errors.networkError'));
       }
 
+      // Marker contains no buyer identity; only an analytics-consented return
+      // from Stripe can be counted as checkout_cancel.
+      rememberCheckoutDeparture(checkoutEdition, String(selectedTT.id), analyticsOptIn);
       // This measures an intended payment redirect, never a successful purchase.
       await trackCheckoutRedirect(selectedEvent, selectedTT, checkoutEdition);
       setStep('select');
