@@ -11,7 +11,6 @@ import { ConsentProvider } from './contexts/ConsentContext';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import CookiePreferencesManager from './components/CookiePreferencesManager';
 import ScriptManager from './components/ScriptManager';
-import Analytics from './components/Analytics';
 import Home from './pages/Home';
 import Organizer from './pages/Organizer';
 import Speakers2023 from './pages/archive/2023/Speakers2023';
@@ -112,7 +111,6 @@ function App() {
     <ConsentProvider>
       <>
       <a href="#main-content" className="skip-link">Saltar al contenido</a>
-      <Analytics />
       <ScriptManager />
       <CookieConsentBanner />
 
