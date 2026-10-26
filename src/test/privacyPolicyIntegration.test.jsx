@@ -101,7 +101,6 @@ vi.mock('../contexts/ConsentContext', () => ({
     ESSENTIAL: 'essential',
     ANALYTICS: 'analytics',
     MARKETING: 'marketing',
-    NEWSLETTERS: 'newsletters',
   },
 }));
 
@@ -203,7 +202,7 @@ describe('Privacy Policy Integration', () => {
     expect(screen.getByText(/Contacto para Privacidad/i)).toBeInTheDocument();
     
     // Check for contact email (there will be multiple instances)
-    const emailElements = screen.getAllByText(/privacy@xopsalliance.com/i);
+    const emailElements = screen.getAllByText(/info@xopsconference.com/i);
     expect(emailElements.length).toBeGreaterThan(0);
   });
 
@@ -212,8 +211,8 @@ describe('Privacy Policy Integration', () => {
     const { container } = render(<AppWrapper />);
 
     // Use querySelector to avoid expensive full-document ARIA traversal
-    const emailLinks = container.querySelectorAll('a[href="mailto:privacy@xopsalliance.com"]');
+    const emailLinks = container.querySelectorAll('a[href="mailto:info@xopsconference.com"]');
     expect(emailLinks.length).toBeGreaterThan(0);
-    expect(emailLinks[0]).toHaveAttribute('href', 'mailto:privacy@xopsalliance.com');
+    expect(emailLinks[0]).toHaveAttribute('href', 'mailto:info@xopsconference.com');
   });
 });
