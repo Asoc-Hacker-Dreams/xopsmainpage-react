@@ -131,14 +131,14 @@ describe('ConsentContext', () => {
     fireEvent.click(screen.getByTestId('accept-all'));
 
     await waitFor(() => {
-      const stored = mockLocalStorage.getItem('xopsconf_consent_v1');
+      const stored = mockLocalStorage.getItem('xopsconf_consent_v2');
       expect(stored).toBeTruthy();
       
       const parsed = JSON.parse(stored);
       expect(parsed.consent.essential).toBe(true);
       expect(parsed.consent.analytics).toBe(true);
       expect(parsed.consent.marketing).toBe(true);
-      expect(parsed.version).toBe('1.0');
+      expect(parsed.version).toBe('2.0');
       expect(parsed.timestamp).toBeTruthy();
     });
   });
@@ -152,9 +152,9 @@ describe('ConsentContext', () => {
         marketing: false
       },
       timestamp: new Date().toISOString(),
-      version: '1.0'
+      version: '2.0'
     };
-    mockLocalStorage.setItem('xopsconf_consent_v1', JSON.stringify(consentData));
+    mockLocalStorage.setItem('xopsconf_consent_v2', JSON.stringify(consentData));
 
     render(
       <ConsentProvider>
@@ -181,9 +181,9 @@ describe('ConsentContext', () => {
         marketing: true
       },
       timestamp: expiredDate.toISOString(),
-      version: '1.0'
+      version: '2.0'
     };
-    mockLocalStorage.setItem('xopsconf_consent_v1', JSON.stringify(consentData));
+    mockLocalStorage.setItem('xopsconf_consent_v2', JSON.stringify(consentData));
 
     render(
       <ConsentProvider>
