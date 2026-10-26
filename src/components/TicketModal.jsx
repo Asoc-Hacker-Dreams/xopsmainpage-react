@@ -16,6 +16,10 @@ import { triskelGateClient } from '../adapters/triskelgate/client';
 import CountdownTimer from './CountdownTimer';
 import { cityEvents, getCityFromHostname } from '../data/cityEvents';
 import { LEGAL_VERSION, editionFromEvent } from '../legal/identity';
+import { useConsent, CONSENT_POLICY_VERSION } from '../contexts/ConsentContext';
+import { buildAttributionForCheckout, captureAttribution } from '../analytics/attribution';
+import { ticketGa4Item, trackGa4Event, trackBeginCheckout, trackCheckoutRedirect } from '../analytics/ga4';
+import scriptManager from '../services/scriptManager';
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -185,6 +189,8 @@ const INPUT_STYLE  = { background: '#1e1e3a', border: '1px solid #2a2a4a', color
 
 const TicketModal = ({ show, onHide }) => {
   const { t, i18n } = useTranslation();
+  const { consent, hasInteracted } = useConsent();
+  const analyticsOptIn = hasInteracted && consent.analytics === true;
 
   const [events, setEvents]             = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(false);
@@ -201,6 +207,14 @@ const TicketModal = ({ show, onHide }) => {
   const [purchasing, setPurchasing]     = useState(false);
 
   const countdownTargetDate = useMemo(() => getCountdownTargetDate(), []);
+  const checkoutEdition = editionFromEvent(selectedEvent, typeof window !== 'undefined' ? window.location.hostname : '') || 'madrid';
+
+  // A beginning checkout can be counted after a user opts into analytics
+  // while already viewing this step. Do not read buyer name/email into GA4.
+  useEffect(() => {
+    if (!show || step !== 'checkout' || !selectedEvent || !selectedTT || !analyticsOptIn) return;
+    trackBeginCheckout(selectedEvent, selectedTT, checkoutEdition);
+  }, [show, step, selectedEvent, selectedTT, analyticsOptIn, checkoutEdition]);
 
   useEffect(() => {
     if (!show || loaded) return;
@@ -259,6 +273,11 @@ const TicketModal = ({ show, onHide }) => {
   }, [show, loaded, t]);
 
   const openCheckout = (event, ticketType) => {
+    const item = ticketGa4Item(event, ticketType);
+    if (item) trackGa4Event('select_item', {
+      item_list_name: 'X-Ops tickets', items: [item],
+      xops_edition: editionFromEvent(event, window.location.hostname) || 'madrid',
+    });
     setSelectedEvent(event);
     setSelectedTT(ticketType);
     setCustomerName('');
@@ -289,6 +308,13 @@ const TicketModal = ({ show, onHide }) => {
     setFormError(null);
 
     try {
+      const attributionEnabled = import.meta.env.VITE_TRISKELL_ATTRIBUTION_ENABLED === 'true';
+      const attribution = analyticsOptIn
+        ? (captureAttribution(window.location.search, true), buildAttributionForCheckout())
+        : null;
+      const gaIdentifiers = attributionEnabled && attribution && analyticsOptIn
+        ? await scriptManager.getIdentifiers() : {};
+
       const data = await triskelGateClient.createCheckout({
         eventId:       selectedEvent.id,
         ticketTypeId:  selectedTT.id,
@@ -297,6 +323,13 @@ const TicketModal = ({ show, onHide }) => {
         customerName:  name,
         successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
         cancelUrl:  `${window.location.origin}/?openTickets=1`,
+        ...(attributionEnabled && attribution ? {
+          attribution: {
+            ...attribution,
+            ...gaIdentifiers,
+            analyticsConsentVersion: CONSENT_POLICY_VERSION,
+          },
+        } : {}),
         // Optional until TriskelGate validates + persists this versioned evidence.
         ...(import.meta.env.VITE_TRISKELL_LEGAL_METADATA_ENABLED === 'true' ? {
           legalAcceptance: {
@@ -312,10 +345,16 @@ const TicketModal = ({ show, onHide }) => {
       if (!data?.success) {
         throw new Error(data?.message || data?.error || t('ticketModal.checkout.errors.networkError'));
       }
+      const stripeUrl = data.sessionUrl || data.redirectUrl;
+      if (!stripeUrl || !/^https:\/\/checkout\.stripe\.com\//.test(stripeUrl)) {
+        throw new Error(t('ticketModal.checkout.errors.networkError'));
+      }
 
+      // This measures an intended payment redirect, never a successful purchase.
+      await trackCheckoutRedirect(selectedEvent, selectedTT, checkoutEdition);
       setStep('select');
       onHide();
-      window.location.href = data.sessionUrl || `${window.location.origin}/tickets/success`;
+      window.location.assign(stripeUrl);
     } catch (err) {
       const isNetworkError =
         err.name === 'TypeError' ||
@@ -338,7 +377,6 @@ const TicketModal = ({ show, onHide }) => {
   };
 
   const isCheckout = step === 'checkout';
-  const checkoutEdition = editionFromEvent(selectedEvent, typeof window !== 'undefined' ? window.location.hostname : '') || 'madrid';
   const termsUrl = '/terminos-de-servicio/' + checkoutEdition;
   const privacyUrl = '/politica-de-privacidad/' + checkoutEdition;
 
