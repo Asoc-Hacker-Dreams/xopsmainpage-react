@@ -18,11 +18,11 @@ export const noticesContent = {
           'La analítica no es necesaria para obtener información del evento ni comprar una entrada. No se carga el script de Google Analytics antes del consentimiento expresamente otorgado desde el panel.'
         ]},
         { title: '4. Marketing y terceros', paragraphs: [
-          'La categoría de marketing permanece desactivada por defecto. Esta web no debe cargar etiquetas de publicidad o seguimiento comercial sin habilitación específica e información actualizada de sus proveedores. Si se incorporan nuevos proveedores, deberán declararse y bloquearse hasta contar con consentimiento.',
+          'Actualmente no se cargan etiquetas de publicidad ni se solicita consentimiento anticipado para proveedores de marketing futuros. Si se incorporan, deberá actualizarse el inventario, la política y el panel de consentimiento antes de activarlas.',
           'Los enlaces externos a Sessionize, Stripe, Microsoft Forms, LinkedIn u otras plataformas llevan a servicios con políticas y tecnologías propias. Un enlace simple no equivale a cargar sus cookies en nuestra página.'
         ]},
         { title: '5. Cómo aceptar, rechazar, cambiar o retirar el consentimiento', paragraphs: [
-          'En el aviso inicial puedes Aceptar todo, Rechazar todo o Personalizar. Rechazar todo mantiene únicamente las tecnologías necesarias. Aceptar y rechazar se ofrecen en la misma capa y con visibilidad equivalente.',
+          'En el aviso inicial puedes Aceptar todo, Rechazar todo o Personalizar la analítica opcional. Rechazar todo mantiene únicamente las tecnologías necesarias. Aceptar y rechazar se ofrecen en la misma capa y con visibilidad equivalente.',
           'Puedes abrir de nuevo el panel desde “Gestionar cookies” en el pie de página. Retirar el consentimiento impide nuevas cargas de los scripts correspondientes y el sitio procura eliminar los identificadores de analítica que controla. Las cookies gestionadas por terceros también pueden requerir borrado desde el navegador.'
         ]},
         { title: '6. Cambios y contacto', paragraphs: [
@@ -49,11 +49,11 @@ export const noticesContent = {
           'Analytics is not required to view the event or buy tickets. The Google Analytics script is not loaded before you explicitly authorise the analytics category.'
         ]},
         { title: '4. Marketing and external services', paragraphs: [
-          'Marketing tracking is disabled by default. This site should not load ad or commercial tracking tags unless they are specifically enabled and the provider information is updated. Any new vendor must be disclosed and blocked pending valid consent.',
+          'No advertising tags are currently loaded and we do not ask for advance consent to unknown future marketing vendors. If vendors are added, the inventory, policy and consent controls must be updated before activation.',
           'Links to Sessionize, Stripe, Microsoft Forms, LinkedIn and other external websites lead to providers with their own tracking practices. A normal outbound link does not itself load their cookies on our site.'
         ]},
         { title: '5. Accepting, rejecting and withdrawing', paragraphs: [
-          'The first layer offers Accept all, Reject all and Customise with equivalent prominence for accept and reject. Reject all preserves strictly essential storage only.',
+          'The first layer offers Accept all, Reject all and Customise analytics with equivalent prominence for accept and reject. Reject all preserves strictly essential storage only.',
           'Open “Manage cookies” in the footer at any time. Withdrawal prevents subsequent loads of the corresponding scripts and the site attempts to remove analytics identifiers under its control. Third-party cookies may also need to be cleared in the browser.'
         ]},
         { title: '6. Changes and contact', paragraphs: [
