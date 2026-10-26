@@ -51,6 +51,8 @@ export function readAttribution(storage = storageSafe(), now = Date.now()) {
     const value = raw ? JSON.parse(raw) : null;
     if (value?.version !== ATTRIBUTION_VERSION ||
         !Number.isFinite(value?.updatedAt) ||
+        !Number.isFinite(value?.firstCapturedAt) ||
+        value.firstCapturedAt > value.updatedAt ||
         now - value.updatedAt > ATTRIBUTION_TTL_MS ||
         now < value.updatedAt ||
         !value?.firstTouch || !value?.lastTouch) {
