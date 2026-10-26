@@ -16,7 +16,7 @@ describe('PrivacyPolicy bilingual edition notices', () => {
     expect(screen.getByRole('heading', { name: /Responsable del tratamiento/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /Finalidades y bases jurídicas/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /Transferencias internacionales/i })).toBeInTheDocument();
-    expect(screen.getByText(/G56643158/)).toBeInTheDocument();
+    expect(screen.getAllByText(/G56643158/).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('link', {name: /info@xopsconference.com/i}).length).toBeGreaterThan(0);
   });
 
