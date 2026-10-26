@@ -218,6 +218,20 @@ const TicketModal = ({ show, onHide }) => {
   }, [show, step, selectedEvent, selectedTT, analyticsOptIn, checkoutEdition]);
 
   useEffect(() => {
+    if (!show || !loaded || step !== 'select' || !analyticsOptIn) return;
+    for (const event of events) {
+      const items = (event.ticketTypes || []).map(ticket => ticketGa4Item(event, ticket))
+        .filter(Boolean).slice(0, 50);
+      if (!items.length) continue;
+      trackGa4Event('view_item_list', {
+        item_list_name: 'X-Ops tickets',
+        items,
+        xops_edition: editionFromEvent(event, window.location.hostname) || 'madrid',
+      });
+    }
+  }, [show, loaded, step, events, analyticsOptIn]);
+
+  useEffect(() => {
     if (!show || loaded) return;
 
     let cancelled = false;
