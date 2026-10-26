@@ -14,7 +14,8 @@ export const noticesContent = {
           'Cookies técnicas de autenticación o seguridad: pueden ser utilizadas por los servicios externos de entradas o autenticación cuando sea indispensable para la función solicitada.'
         ]},
         { title: '3. Analítica opcional', paragraphs: [
-          'Google Analytics (Google LLC) puede instalar identificadores como _ga o _ga_* para medir uso e interacciones cuando se autorice la categoría de analítica. La duración concreta depende de la configuración efectiva del proveedor y puede ser consultada en sus políticas.',
+          'Google Analytics (Google LLC) puede instalar identificadores como _ga o _ga_* cuando autorizas la analítica. Si aceptas, medimos páginas vistas, selección de entrada, inicio y abandono del checkout y compras confirmadas mediante transacción única, moneda, importe y tipo de entrada; no enviamos nombre, correo ni datos completos de tarjeta. La duración de las cookies depende de la configuración del proveedor.',
+          'La atribución opcional de campañas usa utm_source, utm_medium, utm_campaign, utm_id, utm_content y utm_term, filtrados para excluir datos personales visibles. xops_utm_attribution_v1 (sessionStorage, máximo 24 horas y hasta el cierre de la pestaña) conserva el primer y el último contacto. xops_checkout_departure_v1 (sessionStorage, máximo 2 horas) evita contar cancelaciones que no proceden de Stripe. xops_ga4_purchase_v1 (localStorage, máximo 30 días) evita duplicar compras. Solo se crean tras consentir analítica y se eliminan al retirarla.' ,
           'La analítica no es necesaria para obtener información del evento ni comprar una entrada. No se carga el script de Google Analytics antes del consentimiento expresamente otorgado desde el panel.'
         ]},
         { title: '4. Marketing y terceros', paragraphs: [
@@ -45,7 +46,8 @@ export const noticesContent = {
           'Authentication and security cookies may be set by external ticketing or sign-in services where technically necessary for the requested function.'
         ]},
         { title: '3. Optional analytics', paragraphs: [
-          'Google Analytics (Google LLC) may set identifiers such as _ga and _ga_* to measure visits and interactions after analytics opt-in. Exact expiry depends on the provider’s effective configuration and can be checked against its documentation.',
+          'Google Analytics (Google LLC) may set identifiers such as _ga and _ga_* after analytics opt-in. With your consent we measure page views, ticket selection, checkout initiation/cancellation and purchases confirmed with a unique transaction ID, currency, amount and ticket type. We never send your name, email or full payment card details. Cookie duration depends on the provider’s configuration.',
+          'Optional campaign attribution uses filtered utm_source, utm_medium, utm_campaign, utm_id, utm_content and utm_term. xops_utm_attribution_v1 (sessionStorage, up to 24 hours or tab close) keeps first and last touches. xops_checkout_departure_v1 (sessionStorage, up to 2 hours) avoids attributing arbitrary page visits as Stripe cancellations. xops_ga4_purchase_v1 (localStorage, up to 30 days) prevents duplicate purchases. All three are created only after analytics consent and removed if it is withdrawn.',
           'Analytics is not required to view the event or buy tickets. The Google Analytics script is not loaded before you explicitly authorise the analytics category.'
         ]},
         { title: '4. Marketing and external services', paragraphs: [
