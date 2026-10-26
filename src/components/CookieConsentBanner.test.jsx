@@ -34,7 +34,7 @@ describe('CookieConsentBanner', () => {
     expect(screen.getByText('🍪 Gestión de Cookies')).toBeInTheDocument();
     expect(screen.getByText(/Utilizamos cookies para mejorar/)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Aceptar Todo' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Solo esenciales' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Rechazar Todo' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Personalizar' })).toBeInTheDocument();
   });
 
