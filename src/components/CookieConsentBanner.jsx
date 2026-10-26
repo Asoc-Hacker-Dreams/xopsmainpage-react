@@ -8,13 +8,13 @@ import './CookieConsentBanner.css';
 const copy = {
   es: {
     title: 'Privacidad y cookies',
-    text: 'Usamos almacenamiento necesario para que esta web funcione. La analítica y cualquier medición comercial opcional permanecen desactivadas hasta que elijas expresamente.',
+    text: 'Usamos almacenamiento necesario para que esta web funcione. La analítica opcional permanece desactivada hasta que la autorices expresamente. No utilizamos etiquetas de marketing en esta web.',
     detail: 'Rechazar no impide consultar el programa ni comprar entradas.',
     accept: 'Aceptar todo', reject: 'Rechazar todo', custom: 'Personalizar', link: 'Política de cookies',
   },
   en: {
     title: 'Privacy and cookies',
-    text: 'We use essential storage to run the website. Optional analytics and commercial tracking remain disabled until you actively choose otherwise.',
+    text: 'We use essential storage to run the website. Optional analytics is disabled until you actively opt in. We do not use marketing tags on this website.',
     detail: 'Rejecting optional cookies does not prevent viewing the programme or buying tickets.',
     accept: 'Accept all', reject: 'Reject all', custom: 'Customise', link: 'Cookie policy',
   },
