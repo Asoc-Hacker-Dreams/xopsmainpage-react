@@ -6,8 +6,8 @@ export const CONSENT_CATEGORIES = Object.freeze({
   ANALYTICS: 'analytics',
 });
 
-export const CONSENT_STORAGE_KEY = 'xopsconf_consent_v3';
-export const CONSENT_POLICY_VERSION = '2026-10-26';
+export const CONSENT_STORAGE_KEY = 'xopsconf_consent_v4';
+export const CONSENT_POLICY_VERSION = '2026-10-27';
 export const CONSENT_EXPIRY_MONTHS = 12;
 export const DEFAULT_CONSENT = Object.freeze({
   essential: true,
