@@ -347,8 +347,8 @@ function App() {
 
               <li><Link className="text-white" to="/#ediciones" style={{textDecoration: 'none'}}>{t('nav.event')}</Link></li>
               <li><NavLink className="text-white" to="/Organizer#organizr" style={{textDecoration: 'none'}}>{t('nav.organizers')}</NavLink></li>
-              <li><Link to="/voluntariado" className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</Link></li>
-              <li><Link to="/convocatoria-ponentes" className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</Link></li>
+              <li><Link to={isDubaiContext ? "/voluntariado?city=dubai" : "/voluntariado?city=madrid"} className="text-white" style={{textDecoration: 'none'}}>{t('nav.volunteer')}</Link></li>
+              <li><Link to={isDubaiContext ? "/convocatoria-ponentes?city=dubai" : "/convocatoria-ponentes?city=madrid"} className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</Link></li>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
               <li><Link to="/aviso-legal" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Legal notice' : 'Aviso legal'}</Link></li>
               <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
