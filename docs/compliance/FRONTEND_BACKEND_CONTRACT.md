@@ -122,3 +122,11 @@ Backend owner should:
 Keep screenshots of first-layer CMP and custom controls, test request logs before/after consent, legal text versions, checkout acceptance evidence, vendor DPA and transfer assessment inventory, a copy of Stripe merchant identity by country, and one successful/failed application test per edition.
 
 Any new tracker, sponsor integration, payment company, event location or contractual offer must trigger revalidation of the **frontend disclosures and the backend processing configuration**. The frontend and backend should be released together only after their contracts are proven.
+
+## 6. Campaign UTMs, GA4 revenue and checkout traceability
+
+The frontend now implements consent-gated first/last-touch UTMs, GA4 SPA/funnel events and the paid-only purchase event contract. Detailed payloads, testing, GA4 Admin configuration and responsibility boundaries are in **[GA4_UTM_CHECKOUT_HANDOFF.md](./GA4_UTM_CHECKOUT_HANDOFF.md)**.
+
+**Backend release blocker:** `POST /api/payment/create-session` must accept optional `attribution` and persist it on the order before `VITE_TRISKELL_ATTRIBUTION_ENABLED=true`. Its response must be bound to a verified payment. `GET /api/checkout/sessions/:id/status` must return `success:true`, `status:paid|completed`, a non-empty stable `orderNumber`, and a verified `ecommerce` object with the same `transaction_id`, net item `value`, `currency`, tax and item details before the browser emits GA4 `purchase`.
+
+For stronger post-payment coverage, the backend should make the Stripe paid webhook the source of truth and send consented Measurement Protocol purchases with idempotency. Switch `VITE_GA4_PURCHASE_MODE=server` when that exists to avoid a competing client purchase emitter. Never expose GA4 API secrets in Vite variables.
