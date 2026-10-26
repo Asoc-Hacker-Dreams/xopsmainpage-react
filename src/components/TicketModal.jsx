@@ -196,6 +196,7 @@ const TicketModal = ({ show, onHide }) => {
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [formError, setFormError]       = useState(null);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [purchasing, setPurchasing]     = useState(false);
 
   const countdownTargetDate = useMemo(() => getCountdownTargetDate(), []);
@@ -262,6 +263,7 @@ const TicketModal = ({ show, onHide }) => {
     setCustomerName('');
     setCustomerEmail('');
     setFormError(null);
+    setAcceptedTerms(false);
     setStep('checkout');
   };
 
@@ -281,6 +283,7 @@ const TicketModal = ({ show, onHide }) => {
       return;
     }
 
+    if (!acceptedTerms) { setFormError(t('ticketModal.checkout.errors.termsRequired')); return; }
     setPurchasing(true);
     setFormError(null);
 
@@ -465,6 +468,19 @@ const TicketModal = ({ show, onHide }) => {
             <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginTop: '12px' }}>
               {t('ticketModal.checkout.taxIncluded')}
             </p>
+            <div style={{color:'#e2e8f0',fontSize:'0.84rem',padding:'12px',background:'#1c2032',borderRadius:8}}>
+              <p style={{marginBottom:6}}>{t('ticketModal.checkout.organizerNotice')}</p>
+              <p style={{marginBottom:6}}>{t('ticketModal.checkout.paymentNotice')}</p>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.withdrawalNotice')}</p>
+              <p style={{marginBottom:0}}>
+                <a target="_blank" rel="noreferrer" href="/aviso-legal">{t('ticketModal.checkout.legalNotice')}</a> ·{' '}
+                <a target="_blank" rel="noreferrer" href="/terminos-de-servicio">{t('ticketModal.checkout.termsLink')}</a> ·{' '}
+                <a target="_blank" rel="noreferrer" href="/politica-de-privacidad">{t('ticketModal.checkout.privacyLink')}</a>
+              </p>
+            </div>
+            <Form.Check className="mt-3" type="checkbox" id="tm-terms" required
+              checked={acceptedTerms} onChange={e => setAcceptedTerms(e.target.checked)}
+              label={t('ticketModal.checkout.acceptTerms')} style={{color:'#e2e8f0',fontSize:'0.85rem'}} />
           </Modal.Body>
           <Modal.Footer style={MODAL_FOOTER}>
             <Button variant="outline-secondary" onClick={backToSelect}>
@@ -472,7 +488,7 @@ const TicketModal = ({ show, onHide }) => {
             </Button>
             <Button
               type="submit"
-              disabled={purchasing}
+              disabled={purchasing || !acceptedTerms}
               style={{ background: '#00BCD4', border: 'none', color: '#0A0F2E', fontWeight: 700 }}
             >
               {purchasing ? <Spinner size="sm" /> : t('ticketModal.checkout.submit')}
