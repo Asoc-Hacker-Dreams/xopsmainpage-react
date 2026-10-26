@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export const CONSENT_CATEGORIES = Object.freeze({
   ESSENTIAL: 'essential',
   ANALYTICS: 'analytics',
-  MARKETING: 'marketing',
 });
 
 export const CONSENT_STORAGE_KEY = 'xopsconf_consent_v3';
@@ -13,14 +12,12 @@ export const CONSENT_EXPIRY_MONTHS = 12;
 export const DEFAULT_CONSENT = Object.freeze({
   essential: true,
   analytics: false,
-  marketing: false,
 });
 
 function sanitizeConsent(value) {
   return {
     essential: true,
     analytics: value?.analytics === true,
-    marketing: value?.marketing === true,
   };
 }
 function loadConsent() {
@@ -62,7 +59,7 @@ export function ConsentProvider({ children }) {
     setState({ consent: validated, hasInteracted: true, showBanner: false });
   };
 
-  const acceptAll = () => setDecision({ essential: true, analytics: true, marketing: true }, 'accept-all');
+  const acceptAll = () => setDecision({ essential: true, analytics: true }, 'accept-all');
   const rejectAll = () => setDecision(DEFAULT_CONSENT, 'reject-all');
   const savePreferences = (newConsent) => setDecision(newConsent, 'custom');
   const updateCategory = (category, enabled) => {
