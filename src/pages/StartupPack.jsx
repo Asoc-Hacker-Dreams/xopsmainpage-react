@@ -158,6 +158,8 @@ export default function StartupPack() {
           jobTitle,
           linkedin,
           productDesc,
+          foundedDate,
+          docType,
           newsletterConsent: declNewsletter,
           privacyNoticeVersion: '2026-10-26',
         }),
@@ -187,7 +189,7 @@ export default function StartupPack() {
         <div className="stk-main stk-success">
           <div className="stk-success-icon">✅</div>
           <h2>{t('¡Solicitud enviada!', 'Application submitted!')}</h2>
-          <p>{t('Te contactamos en menos de 48h para confirmar tu elegibilidad.', 'We\'ll contact you within 48h to confirm your eligibility.')}</p>
+          <p>{t('Revisaremos tu solicitud y te contactaremos por correo electrónico.', 'We\'ll contact you within 48h to confirm your eligibility.')}</p>
           <p style={{ marginTop: '0.5rem' }}><strong>✓ {t('Solicitud enviada — Te contactamos en <48h', 'Application sent — We\'ll contact you in <48h')}</strong></p>
           <Link to="/Sponsor" style={{ color: '#00BCD4', display: 'inline-block', marginTop: '1.5rem' }}>
             ← {t('Volver al dossier', 'Back to dossier')}
@@ -504,6 +506,29 @@ export default function StartupPack() {
             )}
           </div>
 
+          <section className="stk-section" aria-label={t('Información sobre privacidad', 'Privacy information')}>
+            <div className="stk-section-title">{t('Cómo utilizaremos los datos de tu solicitud', 'How we use your application data')}</div>
+            <p style={{fontSize:'0.88rem',lineHeight:1.6}}>
+              {t(
+                'Responsable: Asociación Hacker Dreams (CIF G56643158). Usaremos los datos profesionales y de empresa para comprobar los requisitos del Startup Pack, responder y valorar una posible colaboración; la gestión se realiza en Holos CRM. No compartimos automáticamente estos contactos con patrocinadores externos.',
+                'Controller: Asociación Hacker Dreams (Spanish tax ID G56643158). We use company and professional details to assess Startup Pack eligibility, contact you and discuss a possible partnership; applications are managed in Holos CRM. We do not automatically provide these contacts to external sponsors.'
+              )}
+            </p>
+            <p style={{fontSize:'0.85rem',lineHeight:1.6}}>
+              {t('Puedes ejercer tus derechos escribiendo a ', 'To exercise your rights contact ')}
+              <a href="mailto:info@xopsconference.com">info@xopsconference.com</a>.
+              {' '}<Link to="/politica-de-privacidad/madrid">{t('Privacidad UE', 'EU privacy')}</Link> ·{' '}
+              <Link to="/politica-de-privacidad/dubai">{t('Privacidad EAU', 'UAE privacy')}</Link> ·{' '}
+              <Link to="/privacidad-patrocinadores">{t('Patrocinios y datos de contacto', 'Sponsorship and lead privacy')}</Link>
+            </p>
+            <p style={{fontSize:'0.84rem'}}>
+              {t(
+                'La suscripción a novedades es opcional y está separada de esta solicitud. No envíes datos sensibles ni documentos de identidad en el texto libre.',
+                'Marketing subscription is optional and separate from this application. Do not include sensitive personal information or ID documents in free text.'
+              )}
+            </p>
+          </section>
+
           {/* ── Section 7: Declarations ── */}
           <div className="stk-section">
             <div className="stk-section-title">{t('6. Declaraciones', '6. Declarations')}</div>
@@ -532,8 +557,8 @@ export default function StartupPack() {
               <input type="checkbox" checked={declTerms} onChange={e => setDeclTerms(e.target.checked)} />
               <span>
                 {t(
-                  'He leído y acepto los términos y condiciones del Startup Pack. *',
-                  'I have read and accept the Startup Pack terms and conditions. *'
+                  'He leído los criterios publicados y solicito que se revise mi elegibilidad para el Startup Pack. *',
+                  'I have read the published criteria and request assessment of my Startup Pack eligibility. *'
                 )}
               </span>
             </label>
@@ -551,7 +576,7 @@ export default function StartupPack() {
 
           {submitError && (
             <p style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
-              {t('Error al enviar la solicitud. Inténtalo de nuevo.', 'Submission error. Please try again.')}
+              {t('No se ha podido registrar la solicitud. Inténtalo de nuevo o escribe a info@xopsconference.com.', 'Your application could not be saved. Please try again or email info@xopsconference.com.')}
             </p>
           )}
           <button type="submit" className="stk-submit-btn" disabled={!formValid || submitting}>
