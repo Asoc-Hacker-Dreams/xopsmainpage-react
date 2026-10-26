@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useConsent, CONSENT_CATEGORIES } from '../contexts/ConsentContext';
 
 const CookiePreferencesManager = ({ show, onHide }) => {
   const { consent, savePreferences, acceptAll, rejectAll } = useConsent();
   const [preferences, setPreferences] = useState(consent);
+  useEffect(() => { if (show) setPreferences({ ...consent }); }, [show, consent]);
 
   const handlePreferenceChange = (category, enabled) => {
     if (category === CONSENT_CATEGORIES.ESSENTIAL) {
@@ -113,7 +114,7 @@ const CookiePreferencesManager = ({ show, onHide }) => {
             </p>
             <p className="mb-0">
               <strong>Más información:</strong>{' '}
-              <a href="/politica-cookies" target="_blank" rel="noopener noreferrer">
+              <a href="/politica-de-cookies" target="_blank" rel="noopener noreferrer">
                 Consulta nuestra Política de Cookies completa
               </a>
             </p>
