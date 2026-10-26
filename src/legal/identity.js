@@ -1,6 +1,4 @@
-// Identidades comprobadas: Asociación Hacker Dreams (CIF: G56643158)
-// y Odin Hermes & Danu Technology Solutions LLC (Delaware, Estados Unidos).
-// Las direcciones registrales deben verificarse documentalmente antes del lanzamiento.
+// Shared public identity and jurisdiction helpers. These are NOT payment processor credentials.
 export const LEGAL_VERSION = '2026-10-26';
 export const ORGANIZER = Object.freeze({
   name: 'Asociación Hacker Dreams',
@@ -13,9 +11,31 @@ export const ORGANIZER = Object.freeze({
 });
 export const PAYMENT_COLLECTOR = Object.freeze({
   name: 'Odin Hermes & Danu Technology Solutions LLC',
-  jurisdiction: 'Delaware, Estados Unidos',
+  jurisdiction: 'Delaware, United States',
   registeredAddress: import.meta.env.VITE_ODIN_LEGAL_ADDRESS || '',
 });
-// Stripe es el proveedor técnico de pagos; el organizador y la entidad de
-// recaudación NO deben describirse indistintamente como el vendedor.
-// Verificar el merchant of record de cada edición antes de publicar.
+// The collector, legal merchant of record, and invoice issuer may differ.
+// The backend must explicitly confirm merchant of record and invoice issuer
+// for each edition; no frontend value can prove either relationship.
+export const editionFromHost = (hostname = '') => {
+  const host = String(hostname).toLowerCase().split(':')[0];
+  return host === 'dubai.xopsconference.com' ? 'dubai' :
+    host === 'madrid.xopsconference.com' ? 'madrid' : null;
+};
+export const editionFromEvent = (event, host = '') => {
+  const evidence = [event?.name, event?.slug, event?.location, event?.city]
+    .filter(Boolean).join(' ').toLowerCase();
+  if (/dubai|دبي|الإمارات/.test(evidence)) return 'dubai';
+  if (/madrid|móstoles|mostoles/.test(evidence)) return 'madrid';
+  return editionFromHost(host);
+};
+export const resolveLegalEdition = (pathname = '', hostname = '') => {
+  if (/\/(?:dubai|ae)(?:\/|$)/i.test(pathname)) return 'dubai';
+  if (/\/(?:madrid|eu)(?:\/|$)/i.test(pathname)) return 'madrid';
+  return editionFromHost(hostname) || 'madrid';
+};
+export const requiredPublicLegalMetadata = () => ({
+  registeredOffice: Boolean(ORGANIZER.registeredAddress.trim()),
+  associationRegistry: Boolean(ORGANIZER.associationRegistry.trim()),
+  collectionEntityAddress: Boolean(PAYMENT_COLLECTOR.registeredAddress.trim()),
+});
