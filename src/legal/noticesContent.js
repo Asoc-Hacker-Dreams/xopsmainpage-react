@@ -9,7 +9,7 @@ export const noticesContent = {
           'Las cookies no necesarias para prestar el servicio solicitado no se activan sin consentimiento previo, libre, específico e informado. Continuar navegando, desplazar la página o cerrar el aviso no equivale a consentir.'
         ]},
         { title: '2. Tecnologías necesarias', bullets: [
-          'xopsconf_consent_v3 (localStorage, del propio sitio): guarda las categorías de consentimiento elegidas y su fecha, durante un máximo de doce meses. Necesaria para recordar y aplicar tu decisión.',
+          'xopsconf_consent_v4 (localStorage, del propio sitio): guarda las categorías de consentimiento elegidas y su fecha, durante un máximo de doce meses. Necesaria para recordar y aplicar tu decisión.',
           'Preferencias de idioma, tema, agenda u otras configuraciones locales: permiten recordar decisiones sobre el funcionamiento y presentación de la web; pueden variar según el módulo.',
           'Cookies técnicas de autenticación o seguridad: pueden ser utilizadas por los servicios externos de entradas o autenticación cuando sea indispensable para la función solicitada.'
         ]},
@@ -41,7 +41,7 @@ export const noticesContent = {
           'Technologies not essential to a service you request remain inactive until free, specific and informed prior consent. Continued browsing, scrolling or closing the banner does not mean consent.'
         ]},
         { title: '2. Essential storage', bullets: [
-          'xopsconf_consent_v3 (first-party localStorage): records the chosen consent categories and timestamp for no longer than twelve months. Required to remember and enforce your decision.',
+          'xopsconf_consent_v4 (first-party localStorage): records the chosen consent categories and timestamp for no longer than twelve months. Required to remember and enforce your decision.',
           'Language, theme, agenda and other functional browser preferences: remember presentation and feature choices, depending on which module you use.',
           'Authentication and security cookies may be set by external ticketing or sign-in services where technically necessary for the requested function.'
         ]},
