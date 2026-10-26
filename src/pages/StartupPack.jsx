@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import './StartupPack.css';
 
-const SYNC_URL = import.meta.env.VITE_HUBSPOT_SYNC_URL || 'http://localhost:3002';
+// Server-side integration only: never expose Holos API credentials in VITE_ variables.
 
 // Only real, documented cities (see src/data/cityEvents.js) — Barcelona
 // and London were never actual X-Ops Conference locations.
@@ -141,13 +141,13 @@ export default function StartupPack() {
     setSubmitting(true);
     setSubmitError(false);
     try {
-      const res = await fetch(`${SYNC_URL}/webhooks/startup-application`, {
+      const res = await fetch('/api/startup-application', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
-          firstname: firstName,
-          lastname: lastName,
+          firstName,
+          lastName,
           companyName,
           website,
           country,
@@ -159,6 +159,7 @@ export default function StartupPack() {
           linkedin,
           productDesc,
           newsletterConsent: declNewsletter,
+          privacyNoticeVersion: '2026-10-26',
         }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
