@@ -62,7 +62,7 @@ describe('CookieConsentBanner', () => {
     expect(screen.getByText('Preferencias de privacidad')).toBeInTheDocument();
     expect(screen.getByText('Necesarias')).toBeInTheDocument();
     expect(screen.getByText('Analítica')).toBeInTheDocument();
-    expect(screen.getByText('Marketing')).toBeInTheDocument();
+    expect(screen.queryByText('Marketing')).not.toBeInTheDocument();
   });
 
   it('should show correct descriptions for cookie categories', () => {
