@@ -1,6 +1,7 @@
 // Basic Consent Mode v2: no Google script, pings or conversion events before opt-in.
 // Shared across the main site and the Madrid/Dubai subdomains.
 import { CONSENT_CATEGORIES } from '../contexts/ConsentContext';
+import { safeAnalyticsPageUrl } from '../analytics/attribution';
 export const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-0J9VPTTHQT';
 const CONFERENCE_HOSTS = ['xopsconference.com', 'madrid.xopsconference.com', 'dubai.xopsconference.com'];
 const DENIED = Object.freeze({
@@ -57,6 +58,7 @@ class ScriptManager {
     window.gtag('js', new Date());
     window.gtag('config', GA4_MEASUREMENT_ID, {
       send_page_view: false, // SPA page views are sanitised manually.
+      page_location: safeAnalyticsPageUrl(window.location.href),
       anonymize_ip: true,
       allow_google_signals: false,
       allow_ad_personalization_signals: false,
