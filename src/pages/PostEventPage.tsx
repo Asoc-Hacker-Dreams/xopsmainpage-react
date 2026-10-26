@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import PhotoGallery from '../components/PhotoGallery';
 import VideoReplay from '../components/VideoReplay';
 import FeedbackSummary from '../components/FeedbackSummary';
@@ -84,6 +85,14 @@ const PostEventPage: React.FC = () => {
           </p>
         </section>
 
+        <section className="content-section" aria-label="Derechos sobre imagen y grabaciones">
+          <p className="text-center">
+            La difusión de fotografías, testimonios y grabaciones respeta los derechos sobre la propia imagen
+            y las autorizaciones correspondientes. {' '}
+            <Link to="/fotografia-y-video">Aviso de fotografía y vídeo y solicitudes de retirada</Link>.
+          </p>
+        </section>
+
         {/* Content Tabs */}
         <section className="content-section">
           <div className="content-tabs">
@@ -119,7 +128,7 @@ const PostEventPage: React.FC = () => {
           <div className="cta-content">
             <h2>¿Te lo perdiste o quieres repetir?</h2>
             <p>
-              Todas las grabaciones estarán disponibles para los asistentes.
+              Las grabaciones se publicarán únicamente cuando existan las autorizaciones necesarias.
               Si no pudiste venir, suscríbete para enterarte de la próxima edición.
             </p>
             <div className="cta-buttons">
