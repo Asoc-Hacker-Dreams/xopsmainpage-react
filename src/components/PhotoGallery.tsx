@@ -30,7 +30,8 @@ const categories = [
 ];
 
 const PhotoGallery: React.FC = () => {
-  const [photos] = useState<Photo[]>(demoPhotos);
+  // Demo placeholders must never be presented to the public as real event media.
+  const [photos] = useState<Photo[]>(import.meta.env.DEV ? demoPhotos : []);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -114,7 +115,7 @@ const PhotoGallery: React.FC = () => {
 
       {filteredPhotos.length === 0 && (
         <div className="no-photos">
-          <p>No hay fotos en esta categoría</p>
+          <p>No hay fotografías publicadas en esta categoría. Solo se mostrarán imágenes autorizadas.</p>
         </div>
       )}
 
