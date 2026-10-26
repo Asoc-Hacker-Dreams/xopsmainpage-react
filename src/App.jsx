@@ -351,11 +351,11 @@ function App() {
               <li><Link to={isDubaiContext ? "/convocatoria-ponentes?city=dubai" : "/convocatoria-ponentes?city=madrid"} className="text-white" style={{textDecoration: 'none'}}>{t('hero.cfp')}</Link></li>
               <li><a href="https://xopsconference.com" target="_blank" rel="noopener noreferrer" className="text-white">www.xopsconference.com</a></li>
               <li><Link to="/aviso-legal" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Legal notice' : 'Aviso legal'}</Link></li>
-              <li><Link to="/politica-de-privacidad" className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
+              <li><Link to={isDubaiContext ? "/politica-de-privacidad/dubai" : "/politica-de-privacidad/madrid"} className="text-white" style={{textDecoration: 'none'}}>{t('footer.privacyPolicy')}</Link></li>
               <li><Link to="/politica-de-privacidad/madrid" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'EU Privacy Policy' : 'Privacidad UE'}</Link></li>
               <li><Link to="/politica-de-privacidad/dubai" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'UAE Privacy Policy' : 'Privacidad EAU'}</Link></li>
               <li><Link to="/politica-de-cookies" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Cookie Policy' : 'Política de Cookies'}</Link></li>
-              <li><Link to="/terminos-de-servicio" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Purchase terms' : 'Condiciones de compra'}</Link></li>
+              <li><Link to={isDubaiContext ? "/terminos-de-servicio/dubai" : "/terminos-de-servicio/madrid"} className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Purchase terms' : 'Condiciones de compra'}</Link></li>
               <li><Link to="/privacidad-patrocinadores" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Sponsor and lead privacy' : 'Patrocinios y datos de contacto'}</Link></li>
               <li><Link to="/fotografia-y-video" className="text-white" style={{textDecoration: 'none'}}>{i18n.language.startsWith('en') ? 'Photography and video' : 'Fotografía y vídeo'}</Link></li>
               <li>
