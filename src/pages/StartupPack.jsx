@@ -164,7 +164,13 @@ export default function StartupPack() {
           privacyNoticeVersion: '2026-10-26',
         }),
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      // Do not mistake an SPA HTML fallback for a successful CRM operation.
+      // The backend owner must return JSON { success: true } only after persistence.
+      if (!res.ok || !res.headers.get('content-type')?.includes('application/json')) {
+        throw new Error(`Startup application not persisted (HTTP ${res.status})`);
+      }
+      const result = await res.json();
+      if (result?.success !== true) throw new Error('Missing CRM persistence confirmation');
       setSubmitted(true);
     } catch (err) {
       console.error('Startup Pack submission error:', err);
