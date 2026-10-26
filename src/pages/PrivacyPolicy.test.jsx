@@ -37,12 +37,12 @@ describe('PrivacyPolicy Component', () => {
   it('includes contact email for privacy inquiries', () => {
     renderWithRouter(<PrivacyPolicy />);
     
-    const emailLinks = screen.getAllByText(/privacy@xopsalliance.com/i);
+    const emailLinks = screen.getAllByText(/info@xopsconference.com/i);
     expect(emailLinks.length).toBeGreaterThan(0);
     
     // Check that at least one is a mailto link
-    const mailtoLinks = screen.getAllByRole('link', { name: /privacy@xopsalliance.com/i });
-    expect(mailtoLinks[0]).toHaveAttribute('href', 'mailto:privacy@xopsalliance.com');
+    const mailtoLinks = screen.getAllByRole('link', { name: /info@xopsconference.com/i });
+    expect(mailtoLinks[0]).toHaveAttribute('href', 'mailto:info@xopsconference.com');
   });
 
   it('mentions GDPR rights', () => {
