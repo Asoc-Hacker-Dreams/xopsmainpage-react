@@ -10,6 +10,7 @@ import SEO from '../components/SEO';
 import { triskelGateClient } from '../adapters/triskelgate/client';
 import { useConsent } from '../contexts/ConsentContext';
 import { emitVerifiedPurchase, purchaseFromVerifiedStatus } from '../analytics/ga4';
+import { clearCheckoutDeparture } from '../analytics/checkoutJourney';
 
 const TICKETS_BASE = (import.meta.env.VITE_TRISKELL_API_BASE_URL || 'https://triskelgate-api.greensea-3f1bb7ef.uksouth.azurecontainerapps.io').replace(/\/$/, '');
 
@@ -159,6 +160,7 @@ const TicketSuccess = () => {
         if (confirmed) {
           setPaymentVerified(true);
           setOrderNumber(data.orderNumber);
+          clearCheckoutDeparture();
           // Use ONLY server-priced, server-verified ecommerce fields; never
           // reconstruct a purchase from local ticket price/URL/query params.
           if (purchaseFromVerifiedStatus(data)) setVerifiedEcommerce(data);
