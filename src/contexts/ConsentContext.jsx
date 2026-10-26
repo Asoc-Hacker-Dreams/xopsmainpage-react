@@ -6,18 +6,16 @@ export const CONSENT_CATEGORIES = {
   ESSENTIAL: 'essential',
   ANALYTICS: 'analytics', 
   MARKETING: 'marketing',
-  NEWSLETTERS: 'newsletters'
 };
 
 // Default consent state (GDPR compliant - all denied except essential)
 const DEFAULT_CONSENT = {
   [CONSENT_CATEGORIES.ESSENTIAL]: true,  // Always required
   [CONSENT_CATEGORIES.ANALYTICS]: false,
-  [CONSENT_CATEGORIES.MARKETING]: false,
-  [CONSENT_CATEGORIES.NEWSLETTERS]: false
+  [CONSENT_CATEGORIES.MARKETING]: false
 };
 
-const CONSENT_STORAGE_KEY = 'xopsconf_consent_v1';
+const CONSENT_STORAGE_KEY = 'xopsconf_consent_v2';
 const CONSENT_EXPIRY_MONTHS = 12;
 
 const ConsentContext = createContext();
@@ -47,7 +45,7 @@ export const ConsentProvider = ({ children }) => {
           const expiryDate = new Date(timestamp);
           expiryDate.setMonth(expiryDate.getMonth() + CONSENT_EXPIRY_MONTHS);
           
-          if (new Date() < expiryDate && version === '1.0') {
+          if (new Date() < expiryDate && version === '2.0') {
             setConsent(storedConsent);
             setHasInteracted(true);
             setShowBanner(false);
@@ -72,7 +70,7 @@ export const ConsentProvider = ({ children }) => {
         consent: newConsent,
         timestamp: new Date().toISOString(),
         method: 'banner',
-        version: '1.0'
+        version: '2.0'
       };
       localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentData));
       // TODO: sync to API (gdpr-6)
@@ -87,8 +85,7 @@ export const ConsentProvider = ({ children }) => {
     const newConsent = {
       [CONSENT_CATEGORIES.ESSENTIAL]: true,
       [CONSENT_CATEGORIES.ANALYTICS]: true,
-      [CONSENT_CATEGORIES.MARKETING]: true,
-      [CONSENT_CATEGORIES.NEWSLETTERS]: true
+      [CONSENT_CATEGORIES.MARKETING]: true
     };
     setConsent(newConsent);
     setHasInteracted(true);
