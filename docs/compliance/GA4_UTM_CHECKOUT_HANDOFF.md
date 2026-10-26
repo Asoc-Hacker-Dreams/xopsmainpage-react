@@ -53,7 +53,7 @@ Keep the existing `POST /api/payment/create-session` request shape and add this 
     "lastCapturedAt": "2026-10-27T12:45:00.000Z",
     "gaClientId": "123456789.987654321",
     "gaSessionId": "1793040000",
-    "analyticsConsentVersion": "2026-10-26"
+    "analyticsConsentVersion": "2026-10-27"
   }
 }
 ```
