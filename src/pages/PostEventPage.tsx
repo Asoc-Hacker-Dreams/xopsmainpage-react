@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import PhotoGallery from '../components/PhotoGallery';
 import VideoReplay from '../components/VideoReplay';
 import FeedbackSummary from '../components/FeedbackSummary';
-import CountdownTimer from '../components/CountdownTimer';
 import './PostEventPage.css';
 
 interface EventStats {
@@ -19,17 +18,13 @@ const PostEventPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'gallery' | 'videos' | 'feedback'>('gallery');
 
   // These would come from API in production
-  const stats: EventStats = {
+  const stats: EventStats | null = import.meta.env.DEV ? {
     attendees: 850,
     sessions: 45,
     speakers: 52,
     sponsors: 28,
     satisfaction: 4.7,
-  };
-
-  // Next event date (example: 1 year from now)
-  const nextEventDate = new Date();
-  nextEventDate.setFullYear(nextEventDate.getFullYear() + 1);
+  } : null;
 
   return (
     <>
@@ -48,7 +43,7 @@ const PostEventPage: React.FC = () => {
             </p>
 
             {/* Event Stats */}
-            <div className="event-stats">
+            {stats && <div className="event-stats">
               <div className="stat">
                 <span className="stat-value">{stats.attendees.toLocaleString()}</span>
                 <span className="stat-label">Asistentes</span>
@@ -69,26 +64,20 @@ const PostEventPage: React.FC = () => {
                 <span className="stat-value">{stats.satisfaction}/5</span>
                 <span className="stat-label">Satisfacción</span>
               </div>
-            </div>
+            </div>}
           </div>
         </section>
 
-        {/* Countdown to Next Event */}
         <section className="next-event-section">
-          <h2>Nos vemos el próximo año</h2>
-          <CountdownTimer targetDate={nextEventDate} />
-          <p className="newsletter-cta">
-            ¿Quieres enterarte antes que nadie?{' '}
-            <a href="#newsletter" className="newsletter-link">
-              Suscríbete a nuestra newsletter
-            </a>
-          </p>
+          <h2>Próximas ediciones de X-Ops Conference</h2>
+          <p>Consulta las fechas y sedes confirmadas en la web oficial.</p>
+          <Link className="newsletter-link" to="/">Ver próximas ediciones</Link>
         </section>
 
         <section className="content-section" aria-label="Derechos sobre imagen y grabaciones">
           <p className="text-center">
             La difusión de fotografías, testimonios y grabaciones respeta los derechos sobre la propia imagen
-            y las autorizaciones correspondientes. {' '}
+            y las autorizaciones correspondientes.{' '}
             <Link to="/fotografia-y-video">Aviso de fotografía y vídeo y solicitudes de retirada</Link>.
           </p>
         </section>
@@ -132,9 +121,9 @@ const PostEventPage: React.FC = () => {
               Si no pudiste venir, suscríbete para enterarte de la próxima edición.
             </p>
             <div className="cta-buttons">
-              <a href="#newsletter" className="cta-btn primary">
-                Suscribirme a la Newsletter
-              </a>
+              <Link to="/" className="cta-btn primary">
+                Ver próximas ediciones
+              </Link>
               <a href="https://twitter.com/xopsconference" target="_blank" rel="noreferrer" className="cta-btn secondary">
                 Seguir en Twitter
               </a>
