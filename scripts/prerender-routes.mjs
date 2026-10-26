@@ -25,7 +25,16 @@ export const ROUTES = [
   // Rutas de archivo para 2023
   '/archive/2023/Speakers2023',
   // Política y legal
+  '/aviso-legal',
   '/politica-de-privacidad',
+  '/politica-de-privacidad/madrid',
+  '/politica-de-privacidad/dubai',
   '/politica-de-cookies',
   '/terminos-de-servicio',
+  '/terminos-de-servicio/madrid',
+  '/terminos-de-servicio/dubai',
+  '/privacidad-patrocinadores',
+  '/fotografia-y-video',
+  '/voluntariado',
+  '/convocatoria-ponentes',
 ];
