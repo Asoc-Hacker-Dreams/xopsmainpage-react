@@ -21,10 +21,11 @@ describe('consent-gated UTM attribution', () => {
   });
   it('retains first/last campaign touch through checkout and SPA navigation', () => {
     const storage = memoryStorage();
-    captureAttribution('?utm_source=linkedin&utm_medium=social&utm_campaign=launch', true, storage, 1000);
-    captureAttribution('?q=agenda', true, storage, 2000);
-    captureAttribution('?utm_source=newsletter&utm_campaign=reminder', true, storage, 3000);
-    const record = readAttribution(storage, 3001);
+    const now = Date.now();
+    captureAttribution('?utm_source=linkedin&utm_medium=social&utm_campaign=launch', true, storage, now - 2000);
+    captureAttribution('?q=agenda', true, storage, now - 1000);
+    captureAttribution('?utm_source=newsletter&utm_campaign=reminder', true, storage, now);
+    const record = readAttribution(storage, now + 1);
     expect(record.firstTouch).toMatchObject({utm_source:'linkedin',utm_campaign:'launch'});
     expect(record.lastTouch).toMatchObject({utm_source:'newsletter',utm_campaign:'reminder'});
     const checkout = buildAttributionForCheckout(storage);
