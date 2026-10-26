@@ -43,7 +43,7 @@ export const privacyContent = {
           'También puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es). El ejercicio de derechos no exige aceptar newsletters ni ofrecer datos innecesarios.'
         ]},
         { title: '9. Cookies y comunicaciones comerciales', paragraphs: [
-          'Las categorías analíticas y publicitarias no esenciales están desactivadas hasta que el usuario las acepta; la configuración puede modificarse desde el pie de página. La navegación por sí sola no implica consentimiento. El consentimiento de cookies no equivale al de recibir correos comerciales.',
+          'La analítica no esencial está desactivada hasta que el usuario la acepta; la configuración puede modificarse desde el pie de página. La navegación por sí sola no implica consentimiento. El consentimiento de cookies no equivale al de recibir correos comerciales.',
           'Los correos operativos relacionados con una compra o solicitud son distintos de la newsletter. Cada formulario que proponga suscripción comercial debe incorporar una opción separada, no premarcada.'
         ]},
         { title: '10. Fotografía, vídeo y ponentes', paragraphs: [
@@ -96,7 +96,7 @@ export const privacyContent = {
           'You may complain to Spain’s supervisory authority, the Agencia Española de Protección de Datos (www.aepd.es). You do not have to subscribe to marketing to exercise your rights.'
         ]},
         { title: '9. Cookies and marketing', paragraphs: [
-          'Non-essential analytics and advertising categories remain off until expressly accepted; you can change your selection in the footer. Browsing does not constitute consent. Cookie consent is not email-marketing consent.',
+          'Non-essential analytics remains off until expressly accepted; you can change your selection in the footer. Browsing does not constitute consent. Cookie consent is not email-marketing consent.',
           'Transactional emails about an order or enquiry differ from newsletters; optional marketing subscriptions must use a separate unticked control.'
         ]},
         { title: '10. Photography, video and speakers', paragraphs: [
