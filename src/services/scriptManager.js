@@ -1,158 +1,84 @@
-/**
- * Service for managing conditional loading of third-party scripts based on cookie consent
- */
-
+// Consent-aware, single-source third-party script loader.
+// NOTE: Google Analytics is NOT a necessary cookie and must never load pre-consent.
 import { CONSENT_CATEGORIES } from '../contexts/ConsentContext';
+const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-0J9VPTTHQT';
 
-// GA measurement ID — single source of truth across the app.
-// Read from build-time env; falls back to the public ID so analytics still
-// works in local dev if VITE_GA_MEASUREMENT_ID isn't set in .env.
-const GA_MEASUREMENT_ID =
-  import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-0J9VPTTHQT';
-
-// Configuration for third-party scripts
-const SCRIPTS_CONFIG = {
-  googleAnalytics: {
-    category: CONSENT_CATEGORIES.ANALYTICS,
-    id: 'google-analytics',
-    src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
-    init: () => {
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function gtag(){window.dataLayer.push(arguments);}
-      window.gtag('js', new Date());
-      window.gtag('config', GA_MEASUREMENT_ID);
-      console.log(`Google Analytics (${GA_MEASUREMENT_ID}) loaded with consent`);
+function clearAnalyticsCookies() {
+  if (typeof document === 'undefined') return;
+  const host = window.location.hostname;
+  const parts = host.split('.');
+  const domains = ['', host, '.' + host, parts.length >= 2 ? '.' + parts.slice(-2).join('.') : ''];
+  const cookies = document.cookie.split(';').map(s => s.split('=')[0].trim());
+  for (const name of cookies) {
+    if (!/^_ga(?:_|$)|^_gid$|^_gat(?:_|$)/.test(name)) continue;
+    for (const domain of domains) {
+      const suffix = domain ? '; domain=' + domain : '';
+      document.cookie = encodeURIComponent(name) + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + suffix + '; SameSite=Lax';
     }
   }
-  // Add more scripts here as needed (Facebook Pixel, etc.)
-};
-
+}
 class ScriptManager {
   constructor() {
     this.loadedScripts = new Set();
+    this.pending = null;
+    this.analyticsAllowed = false;
   }
-
-  /**
-   * Load a script if consent is given for its category
-   * @param {string} scriptName - Name of script from SCRIPTS_CONFIG
-   * @param {Object} consent - Current consent state
-   */
-  loadScript(scriptName, consent) {
-    const config = SCRIPTS_CONFIG[scriptName];
-    if (!config) {
-      console.warn(`Unknown script: ${scriptName}`);
-      return;
+  updateScripts(consent) {
+    const allowed = consent?.[CONSENT_CATEGORIES.ANALYTICS] === true;
+    this.analyticsAllowed = allowed;
+    if (allowed) this.loadAnalytics();
+    else this.removeScript('googleAnalytics');
+  }
+  loadScript(name, consent) {
+    if (name === 'googleAnalytics' && consent?.analytics === true) {
+      this.analyticsAllowed = true;
+      this.loadAnalytics();
     }
-
-    // Check if consent is given for this script's category
-    if (!consent[config.category]) {
-      console.log(`Consent not given for ${scriptName} (${config.category})`);
-      return;
-    }
-
-    // Check if script is already loaded
-    if (this.loadedScripts.has(scriptName)) {
-      console.log(`Script ${scriptName} already loaded`);
-      return;
-    }
-
-    // Load the script
-    this.injectScript(config)
-      .then(() => {
-        this.loadedScripts.add(scriptName);
-        if (config.init) {
-          config.init();
-        }
-      })
-      .catch((error) => {
-        console.error(`Failed to load ${scriptName}:`, error);
+  }
+  loadAnalytics() {
+    if (typeof document === 'undefined' || !this.analyticsAllowed || this.pending || this.loadedScripts.has('googleAnalytics')) return;
+    const script = document.createElement('script');
+    script.id = 'google-analytics';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID);
+    this.pending = script;
+    script.onload = () => {
+      if (!this.analyticsAllowed || this.pending !== script) { script.remove(); return; }
+      this.pending = null;
+      this.loadedScripts.add('googleAnalytics');
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', GA_ID, {
+        anonymize_ip: true,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
       });
+    };
+    script.onerror = () => {
+      if (this.pending === script) this.pending = null;
+      script.remove();
+    };
+    document.head.appendChild(script);
   }
-
-  /**
-   * Remove a script if consent is revoked
-   * @param {string} scriptName - Name of script to remove
-   */
-  removeScript(scriptName) {
-    const config = SCRIPTS_CONFIG[scriptName];
-    if (!config) {
-      return;
+  removeScript(name) {
+    if (name !== 'googleAnalytics' || typeof document === 'undefined') return;
+    if (this.pending) {
+      this.pending.onload = null;
+      this.pending.onerror = null;
+      this.pending.remove();
+      this.pending = null;
     }
-
-    // Remove script element
-    const existingScript = document.getElementById(config.id);
-    if (existingScript) {
-      existingScript.remove();
-    }
-
-    // Clean up global variables for Google Analytics
-    if (scriptName === 'googleAnalytics') {
-      if (window.gtag) {
-        delete window.gtag;
-      }
-      if (window.dataLayer) {
-        window.dataLayer = [];
-      }
-    }
-
-    this.loadedScripts.delete(scriptName);
-    console.log(`Script ${scriptName} removed due to consent revocation`);
+    document.getElementById('google-analytics')?.remove();
+    this.loadedScripts.delete('googleAnalytics');
+    try { if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'denied' }); } catch { /* ignore */ }
+    delete window.gtag;
+    delete window.dataLayer;
+    clearAnalyticsCookies();
   }
-
-  /**
-   * Inject script element into document head
-   * @param {Object} config - Script configuration
-   * @returns {Promise} - Resolves when script loads
-   */
-  injectScript(config) {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.id = config.id;
-      script.src = config.src;
-      script.async = true;
-      
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error(`Failed to load script: ${config.src}`));
-      
-      document.head.appendChild(script);
-    });
-  }
-
-  /**
-   * Update scripts based on current consent state
-   * @param {Object} consent - Current consent state
-   * @param {Object} previousConsent - Previous consent state
-   */
-  updateScripts(consent, previousConsent = {}) {
-    Object.keys(SCRIPTS_CONFIG).forEach(scriptName => {
-      const config = SCRIPTS_CONFIG[scriptName];
-      const hasConsent = consent[config.category];
-      const hadConsent = previousConsent[config.category];
-
-      if (hasConsent && !hadConsent) {
-        // Consent was granted, load script
-        this.loadScript(scriptName, consent);
-      } else if (!hasConsent && hadConsent) {
-        // Consent was revoked, remove script
-        this.removeScript(scriptName);
-      }
-    });
-  }
-
-  /**
-   * Get list of scripts that would be loaded for given consent
-   * @param {Object} consent - Consent state to check
-   * @returns {Array} - Array of script names that would be loaded
-   */
   getEnabledScripts(consent) {
-    return Object.keys(SCRIPTS_CONFIG).filter(scriptName => {
-      const config = SCRIPTS_CONFIG[scriptName];
-      return consent[config.category];
-    });
+    return consent?.analytics ? ['googleAnalytics'] : [];
   }
 }
-
-// Export singleton instance
 export const scriptManager = new ScriptManager();
-
 export default scriptManager;
