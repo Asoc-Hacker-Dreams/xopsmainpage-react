@@ -309,9 +309,17 @@
       "errors": {
         "nameRequired": "Please enter your full name.",
         "emailInvalid": "Please enter a valid email address.",
-        "networkError": "Ticket system unavailable. Contact us at info@xopsconference.com."
+        "networkError": "Ticket system unavailable. Contact us at info@xopsconference.com.",
+        "termsRequired": "Please accept the terms before continuing to payment."
       },
-      "taxIncluded": "Price includes VAT. No additional charges."
+      "taxIncluded": "Price includes VAT. No additional charges.",
+      "organizerNotice": "Organised by: Asociación Hacker Dreams (Spanish tax ID G56643158).",
+      "paymentNotice": "Collections handled through Odin Hermes & Danu Technology Solutions LLC. Stripe provides the payment gateway. See our legal notice for entity roles.",
+      "withdrawalNotice": "Fixed-date event tickets: the 14-day withdrawal right may not apply (Spain's RDL 1/2007 Art. 103(l)); mandatory rights concerning cancellation or material changes remain.",
+      "legalNotice": "Legal notice",
+      "termsLink": "Purchase terms",
+      "privacyLink": "Privacy",
+      "acceptTerms": "I have read and accept the purchase terms and withdrawal notice (required)."
     },
     "tierDescriptions": {
       "superEarly": "Full 2-day Conference access. All technical sessions, networking and materials included. Exclusive price for the first attendees. Does not include Summit, speakers dinner or premium workshops.",
