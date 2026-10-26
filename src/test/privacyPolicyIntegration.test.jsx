@@ -198,8 +198,8 @@ describe('Privacy Policy Integration', () => {
     render(<AppWrapper />);
     
     // Check for GDPR sections
-    expect(screen.getByText(/Sus Derechos bajo el RGPD/i)).toBeInTheDocument();
-    expect(screen.getByText(/Contacto para Privacidad/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: /Derechos y reclamaciones/i})).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: /Responsable del tratamiento/i})).toBeInTheDocument();
     
     // Check for contact email (there will be multiple instances)
     const emailElements = screen.getAllByText(/info@xopsconference.com/i);
