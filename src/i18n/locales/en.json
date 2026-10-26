@@ -767,5 +767,10 @@
   },
   "common": {
     "retry": "Retry"
+  },
+  "legalLinks": {
+    "privacy": "Privacy notice",
+    "media": "Photography, video and image rights",
+    "sponsors": "Networking privacy"
   }
 }
