@@ -304,3 +304,20 @@
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
+/* Uniform visual weight: accepting and rejecting have the same size and contrast. */
+.xops-cmp-banner-layout{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.5rem;align-items:center}
+.cookie-consent-banner{border-top:3px solid #45b9ce;background:#102238}
+.cookie-title{font-size:1.05rem;font-weight:750}
+.cookie-text,.cookie-text-small{max-width:80ch;line-height:1.65}
+.cookie-link{color:#9ee7f1;text-decoration:underline}
+.cookie-buttons{justify-content:flex-end;gap:.6rem;max-width:360px}
+.cookie-buttons .btn,.cookie-preferences-modal .xops-cmp-actions .btn{font-weight:650;min-height:44px;flex:1 1 auto}
+.cookie-buttons .xops-cmp-equal,.cookie-preferences-modal .xops-cmp-equal{background:#14668d;border-color:#9ad9e8;color:#fff}
+.cookie-buttons .xops-cmp-equal:hover,.cookie-preferences-modal .xops-cmp-equal:hover{background:#0d526f;border-color:#b6f0fb;color:#fff}
+.cookie-preferences-modal .modal-body,.cookie-preferences-modal .modal-footer{color:#192d41}
+.cookie-preferences-modal .cookie-category{margin-bottom:.7rem}
+.cookie-preferences-modal .cookie-category-title{margin:0 0 .35rem}
+.cookie-preferences-modal .cookie-category-description{color:#495f72}
+.xops-cmp-actions{display:flex;gap:.6rem}
+@media(max-width:900px){.xops-cmp-banner-layout{grid-template-columns:1fr}.cookie-buttons{max-width:none;justify-content:start}}
+@media(max-width:520px){.cookie-buttons{display:grid;grid-template-columns:1fr 1fr}.cookie-buttons .btn:last-child{grid-column:1/-1}.xops-cmp-actions{flex-wrap:wrap}}
