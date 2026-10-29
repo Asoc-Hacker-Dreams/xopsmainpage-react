@@ -31,10 +31,10 @@ describe('CookieConsentBanner', () => {
       </ConsentProvider>
     );
 
-    expect(screen.getByText('🍪 Gestión de Cookies')).toBeInTheDocument();
-    expect(screen.getByText(/Utilizamos cookies para mejorar/)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Aceptar Todo' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Solo esenciales' })).toBeInTheDocument();
+    expect(screen.getByText('Privacidad y cookies')).toBeInTheDocument();
+    expect(screen.getByText(/Usamos almacenamiento necesario/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Aceptar todo' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Rechazar todo' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Personalizar' })).toBeInTheDocument();
   });
 
@@ -59,10 +59,10 @@ describe('CookieConsentBanner', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Personalizar' }));
 
-    expect(screen.getByText('🍪 Preferencias de Cookies')).toBeInTheDocument();
-    expect(screen.getByText('Cookies Esenciales')).toBeInTheDocument();
-    expect(screen.getByText('Cookies Analíticas')).toBeInTheDocument();
-    expect(screen.getByText('Cookies de Marketing')).toBeInTheDocument();
+    expect(screen.getByText('Preferencias de privacidad')).toBeInTheDocument();
+    expect(screen.getByText('Necesarias')).toBeInTheDocument();
+    expect(screen.getByText('Analítica')).toBeInTheDocument();
+    expect(screen.queryByText('Marketing')).not.toBeInTheDocument();
   });
 
   it('should show correct descriptions for cookie categories', () => {
@@ -74,9 +74,8 @@ describe('CookieConsentBanner', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Personalizar' }));
 
-    expect(screen.getByText(/Necesarias para el funcionamiento básico/)).toBeInTheDocument();
-    expect(screen.getByText(/Nos ayudan a entender cómo los visitantes/)).toBeInTheDocument();
-    expect(screen.getByText(/Se utilizan para mostrar anuncios relevantes/)).toBeInTheDocument();
+    expect(screen.getByText(/Guardan tu elección de privacidad/)).toBeInTheDocument();
+    expect(screen.getByText(/Google Analytics: medición de visitas/)).toBeInTheDocument();
   });
 
   it('should have essential cookies disabled by default', () => {
@@ -88,7 +87,7 @@ describe('CookieConsentBanner', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Personalizar' }));
 
-    const essentialCheckbox = screen.getByRole('checkbox', { name: /Cookies Esenciales/i });
+    const essentialCheckbox = screen.getByRole('checkbox', { name: /Necesarias/i });
     expect(essentialCheckbox).toBeChecked();
     expect(essentialCheckbox).toBeDisabled();
   });
@@ -100,7 +99,7 @@ describe('CookieConsentBanner', () => {
       </ConsentProvider>
     );
 
-    const policyLink = screen.getByRole('link', { name: 'Política de Cookies' });
+    const policyLink = screen.getByRole('link', { name: 'Política de cookies' });
     expect(policyLink).toBeInTheDocument();
     expect(policyLink).toHaveAttribute('href', '/politica-de-cookies');
     expect(policyLink).toHaveAttribute('target', '_blank');

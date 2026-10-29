@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import SpeakersSection from '../components/SpeakersSection';
 import Events from '../components/Events/Events';
 import { cityEvents, cityUrl } from '../data/cityEvents';
+import { ORGANIZER } from '../legal/identity';
 import './CityEventPage.css';
 
 const agendaTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '15:00', '16:00', '17:00'];
@@ -43,7 +44,7 @@ const CityEventPage = ({ city }) => {
             name: event.conference.venue,
             address: { '@type': 'PostalAddress', addressLocality: event.city, addressCountry: event.country },
           },
-          organizer: { '@type': 'Organization', name: 'X-Ops Conference', url: 'https://xopsconference.com' },
+          organizer: { '@type': 'Organization', name: ORGANIZER.name, url: 'https://xopsconference.com' },
           url: canonicalUrl,
         }}
       />
@@ -168,9 +169,9 @@ const CityEventPage = ({ city }) => {
               <p>{t('cityEvent.conference.agendaBadge')}</p>
               <h3>{t('cityEvent.conference.agendaTitle')}</h3>
               {event.conference.cfpUrl ? (
-                <a href={event.conference.cfpUrl} target="_blank" rel="noopener noreferrer">
+                <Link to={"/convocatoria-ponentes?city=" + city}>
                   {t('cityEvent.conference.proposeTalk')} <span aria-hidden="true">↗</span>
-                </a>
+                </Link>
               ) : (
                 <p className="city-conference__status">{t('cityEvent.conference.cfpComingSoon', { city: event.city })}</p>
               )}
@@ -183,6 +184,7 @@ const CityEventPage = ({ city }) => {
             </div>
           )}
         </div>
+      <p className="small mt-4"><Link to="/politica-de-privacidad">{t('legalLinks.privacy', { defaultValue: 'Privacy notice / Privacidad' })}</Link> · <Link to="/fotografia-y-video">{t('legalLinks.media', { defaultValue: 'Recording & image rights / Fotografía y vídeo' })}</Link></p>
       </section>
 
       {isMadrid ? (

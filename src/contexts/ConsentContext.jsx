@@ -1,169 +1,82 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
-// Cookie consent categories
-export const CONSENT_CATEGORIES = {
+export const CONSENT_CATEGORIES = Object.freeze({
   ESSENTIAL: 'essential',
-  ANALYTICS: 'analytics', 
-  MARKETING: 'marketing',
-  NEWSLETTERS: 'newsletters'
-};
+  ANALYTICS: 'analytics',
+});
 
-// Default consent state (GDPR compliant - all denied except essential)
-const DEFAULT_CONSENT = {
-  [CONSENT_CATEGORIES.ESSENTIAL]: true,  // Always required
-  [CONSENT_CATEGORIES.ANALYTICS]: false,
-  [CONSENT_CATEGORIES.MARKETING]: false,
-  [CONSENT_CATEGORIES.NEWSLETTERS]: false
-};
+export const CONSENT_STORAGE_KEY = 'xopsconf_consent_v4';
+export const CONSENT_POLICY_VERSION = '2026-10-27';
+export const CONSENT_EXPIRY_MONTHS = 12;
+export const DEFAULT_CONSENT = Object.freeze({
+  essential: true,
+  analytics: false,
+});
 
-const CONSENT_STORAGE_KEY = 'xopsconf_consent_v1';
-const CONSENT_EXPIRY_MONTHS = 12;
-
-const ConsentContext = createContext();
-
-export const useConsent = () => {
-  const context = useContext(ConsentContext);
-  if (!context) {
-    throw new Error('useConsent must be used within a ConsentProvider');
+function sanitizeConsent(value) {
+  return {
+    essential: true,
+    analytics: value?.analytics === true,
+  };
+}
+function loadConsent() {
+  const absent = { consent: { ...DEFAULT_CONSENT }, hasInteracted: false, showBanner: true };
+  if (typeof window === 'undefined' || !window.localStorage) return absent;
+  try {
+    const stored = JSON.parse(window.localStorage.getItem(CONSENT_STORAGE_KEY) || 'null');
+    if (!stored || stored.version !== CONSENT_POLICY_VERSION || !stored.timestamp) return absent;
+    const date = new Date(stored.timestamp);
+    if (!Number.isFinite(date.getTime()) || date.getTime() > Date.now()) return absent;
+    const expires = new Date(date);
+    expires.setMonth(expires.getMonth() + CONSENT_EXPIRY_MONTHS);
+    if (Date.now() >= expires.getTime()) return absent;
+    return { consent: sanitizeConsent(stored.consent), hasInteracted: true, showBanner: false };
+  } catch {
+    return absent;
   }
+}
+
+const ConsentContext = createContext(null);
+export function useConsent() {
+  const context = useContext(ConsentContext);
+  if (!context) throw new Error('useConsent must be used within a ConsentProvider');
   return context;
-};
+}
 
-export const ConsentProvider = ({ children }) => {
-  const [consent, setConsent] = useState(DEFAULT_CONSENT);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const [showBanner, setShowBanner] = useState(false);
+export function ConsentProvider({ children }) {
+  const [state, setState] = useState(loadConsent);
 
-  // Load consent from localStorage on mount
-  useEffect(() => {
-    const loadStoredConsent = () => {
-      try {
-        const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
-        if (stored) {
-          const { consent: storedConsent, timestamp, version } = JSON.parse(stored);
-          
-          // Check if consent is still valid (not expired)
-          const expiryDate = new Date(timestamp);
-          expiryDate.setMonth(expiryDate.getMonth() + CONSENT_EXPIRY_MONTHS);
-          
-          if (new Date() < expiryDate && version === '1.0') {
-            setConsent(storedConsent);
-            setHasInteracted(true);
-            setShowBanner(false);
-            return;
-          }
-        }
-      } catch (error) {
-        console.warn('Error loading stored consent:', error);
-      }
-      
-      // If no valid stored consent, show banner
-      setShowBanner(true);
-    };
-
-    loadStoredConsent();
-  }, []);
-
-  // Save consent to localStorage
-  const saveConsent = (newConsent) => {
+  const setDecision = (newConsent, method) => {
+    const validated = sanitizeConsent(newConsent);
     try {
-      const consentData = {
-        consent: newConsent,
+      window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify({
+        consent: validated,
         timestamp: new Date().toISOString(),
-        method: 'banner',
-        version: '1.0'
-      };
-      localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentData));
-      // TODO: sync to API (gdpr-6)
-      // if (user) fetch('/api/v1/me/consents', { method: 'POST', body: JSON.stringify(consentData) })
-    } catch (error) {
-      console.error('Error saving consent:', error);
-    }
+        method, version: CONSENT_POLICY_VERSION,
+      }));
+    } catch { /* storage may be unavailable; session choice still takes effect */ }
+    setState({ consent: validated, hasInteracted: true, showBanner: false });
   };
 
-  // Accept all cookies
-  const acceptAll = () => {
-    const newConsent = {
-      [CONSENT_CATEGORIES.ESSENTIAL]: true,
-      [CONSENT_CATEGORIES.ANALYTICS]: true,
-      [CONSENT_CATEGORIES.MARKETING]: true,
-      [CONSENT_CATEGORIES.NEWSLETTERS]: true
-    };
-    setConsent(newConsent);
-    setHasInteracted(true);
-    setShowBanner(false);
-    saveConsent(newConsent);
-  };
-
-  // Reject all non-essential cookies
-  const rejectAll = () => {
-    const newConsent = DEFAULT_CONSENT;
-    setConsent(newConsent);
-    setHasInteracted(true);
-    setShowBanner(false);
-    saveConsent(newConsent);
-  };
-
-  // Save custom preferences
-  const savePreferences = (newConsent) => {
-    // Always enforce essential: true regardless of what was passed
-    const validatedConsent = { ...newConsent, [CONSENT_CATEGORIES.ESSENTIAL]: true };
-    setConsent(validatedConsent);
-    setHasInteracted(true);
-    setShowBanner(false);
-    saveConsent(validatedConsent);
-  };
-
-  // Update specific category
+  const acceptAll = () => setDecision({ essential: true, analytics: true }, 'accept-all');
+  const rejectAll = () => setDecision(DEFAULT_CONSENT, 'reject-all');
+  const savePreferences = (newConsent) => setDecision(newConsent, 'custom');
   const updateCategory = (category, enabled) => {
-    if (category === CONSENT_CATEGORIES.ESSENTIAL) {
-      return; // Essential cookies cannot be disabled
-    }
-    
-    const newConsent = { ...consent, [category]: enabled };
-    setConsent(newConsent);
-    saveConsent(newConsent);
+    if (category === CONSENT_CATEGORIES.ESSENTIAL || !Object.values(CONSENT_CATEGORIES).includes(category)) return;
+    setDecision({ ...state.consent, [category]: enabled }, 'custom');
   };
-
-  // Show preferences modal (used by footer link)
-  const showPreferences = () => {
-    // This will be handled by the modal component
-    return true;
-  };
-
-  // Reset consent (for testing/debugging)
   const resetConsent = () => {
-    localStorage.removeItem(CONSENT_STORAGE_KEY);
-    setConsent(DEFAULT_CONSENT);
-    setHasInteracted(false);
-    setShowBanner(true);
+    try { window.localStorage.removeItem(CONSENT_STORAGE_KEY); } catch { /* ignore */ }
+    setState({ consent: { ...DEFAULT_CONSENT }, hasInteracted: false, showBanner: true });
   };
 
-  const value = {
-    consent,
-    hasInteracted,
-    showBanner,
-    acceptAll,
-    rejectAll,
-    savePreferences,
-    updateCategory,
-    showPreferences,
-    resetConsent,
-    // Utility functions
-    hasConsent: (category) => consent[category] === true,
-    isEssential: (category) => category === CONSENT_CATEGORIES.ESSENTIAL
-  };
-
-  return (
-    <ConsentContext.Provider value={value}>
-      {children}
-    </ConsentContext.Provider>
-  );
-};
-
-ConsentProvider.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
+  const value = useMemo(() => ({
+    ...state, acceptAll, rejectAll, savePreferences, updateCategory, resetConsent,
+    hasConsent: (category) => state.hasInteracted && state.consent[category] === true,
+    isEssential: (category) => category === CONSENT_CATEGORIES.ESSENTIAL,
+  }), [state]);
+  return <ConsentContext.Provider value={value}>{children}</ConsentContext.Provider>;
+}
+ConsentProvider.propTypes = { children: PropTypes.node.isRequired };
 export default ConsentContext;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import './StartupPack.css';
 
-const SYNC_URL = import.meta.env.VITE_HUBSPOT_SYNC_URL || 'http://localhost:3002';
+// Server-side integration only: never expose Holos API credentials in VITE_ variables.
 
 // Only real, documented cities (see src/data/cityEvents.js) — Barcelona
 // and London were never actual X-Ops Conference locations.
@@ -120,7 +120,7 @@ export default function StartupPack() {
   const isIneligible = agePass === false || (agePass !== null && empPass === false && arrPass === false);
   const isPartial = !isEligible && !isIneligible && (agePass !== null || empPass !== null || arrPass !== null);
 
-  const discount = selectedCities.length >= 3 ? 30 : selectedCities.length === 2 ? 20 : 0;
+  const discount = selectedCities.length === 2 ? 20 : 0;
   const breakdown = priceBreakdown(selectedCities, discount);
 
   const toggleCity = (key) => {
@@ -141,13 +141,13 @@ export default function StartupPack() {
     setSubmitting(true);
     setSubmitError(false);
     try {
-      const res = await fetch(`${SYNC_URL}/webhooks/startup-application`, {
+      const res = await fetch('/api/startup-application', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
-          firstname: firstName,
-          lastname: lastName,
+          firstName,
+          lastName,
           companyName,
           website,
           country,
@@ -158,10 +158,19 @@ export default function StartupPack() {
           jobTitle,
           linkedin,
           productDesc,
+          foundedDate,
+          docType,
           newsletterConsent: declNewsletter,
+          privacyNoticeVersion: '2026-10-27',
         }),
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      // Do not mistake an SPA HTML fallback for a successful CRM operation.
+      // The backend owner must return JSON { success: true } only after persistence.
+      if (!res.ok || !res.headers.get('content-type')?.includes('application/json')) {
+        throw new Error(`Startup application not persisted (HTTP ${res.status})`);
+      }
+      const result = await res.json();
+      if (result?.success !== true) throw new Error('Missing CRM persistence confirmation');
       setSubmitted(true);
     } catch (err) {
       console.error('Startup Pack submission error:', err);
@@ -186,8 +195,7 @@ export default function StartupPack() {
         <div className="stk-main stk-success">
           <div className="stk-success-icon">✅</div>
           <h2>{t('¡Solicitud enviada!', 'Application submitted!')}</h2>
-          <p>{t('Te contactamos en menos de 48h para confirmar tu elegibilidad.', 'We\'ll contact you within 48h to confirm your eligibility.')}</p>
-          <p style={{ marginTop: '0.5rem' }}><strong>✓ {t('Solicitud enviada — Te contactamos en <48h', 'Application sent — We\'ll contact you in <48h')}</strong></p>
+          <p>{t('Revisaremos tu solicitud y te contactaremos por correo electrónico.', 'We will review your application and contact you by email.')}</p>
           <Link to="/Sponsor" style={{ color: '#00BCD4', display: 'inline-block', marginTop: '1.5rem' }}>
             ← {t('Volver al dossier', 'Back to dossier')}
           </Link>
@@ -204,7 +212,7 @@ export default function StartupPack() {
     <div className="stk-wrap">
       <SEO
         title="Startup Pack — X-Ops Conference 2026"
-        description="Startup Pack de X-Ops Conference: visibilidad en el mayor evento de DevOps y DevSecOps de España para startups de hasta 3 años, 15 empleados y ARR &lt;€500K. Desde €350."
+        description="Startup Pack de X-Ops Conference: visibilidad en el mayor evento de DevOps y DevSecOps de España para startups de hasta 3 años, 15 empleados y ARR &lt;€500K. Madrid desde €850 y Dubái desde AED 3.500."
         path="/startup-pack"
         keywords="Startup Pack, X-Ops Conference, startup DevOps, patrocinio startup, Madrid 2026"
         lang="es"
@@ -218,7 +226,7 @@ export default function StartupPack() {
           "name": "X-Ops Conference Startup Pack",
           "description": "Sponsorship package for early-stage startups (≤3 years, ≤15 employees, ARR <€500K). Includes web visibility, social mention, 1 full pass, shared booth.",
           "priceCurrency": "EUR",
-          "price": "350",
+          "price": "850",
           "url": "https://xopsconference.com/startup-pack",
           "seller": {
             "@type": "Organization",
@@ -503,6 +511,29 @@ export default function StartupPack() {
             )}
           </div>
 
+          <section className="stk-section" aria-label={t('Información sobre privacidad', 'Privacy information')}>
+            <div className="stk-section-title">{t('Cómo utilizaremos los datos de tu solicitud', 'How we use your application data')}</div>
+            <p style={{fontSize:'0.88rem',lineHeight:1.6}}>
+              {t(
+                'Responsable: Asociación Hacker Dreams (CIF G56643158). Usaremos los datos profesionales y de empresa para comprobar los requisitos del Startup Pack, responder y valorar una posible colaboración; la gestión se realiza en Holos CRM. No compartimos automáticamente estos contactos con patrocinadores externos.',
+                'Controller: Asociación Hacker Dreams (Spanish tax ID G56643158). We use company and professional details to assess Startup Pack eligibility, contact you and discuss a possible partnership; applications are managed in Holos CRM. We do not automatically provide these contacts to external sponsors.'
+              )}
+            </p>
+            <p style={{fontSize:'0.85rem',lineHeight:1.6}}>
+              {t('Puedes ejercer tus derechos escribiendo a ', 'To exercise your rights contact ')}
+              <a href="mailto:info@xopsconference.com">info@xopsconference.com</a>.
+              {' '}<Link to="/politica-de-privacidad/madrid">{t('Privacidad UE', 'EU privacy')}</Link> ·{' '}
+              <Link to="/politica-de-privacidad/dubai">{t('Privacidad EAU', 'UAE privacy')}</Link> ·{' '}
+              <Link to="/privacidad-patrocinadores">{t('Patrocinios y datos de contacto', 'Sponsorship and lead privacy')}</Link>
+            </p>
+            <p style={{fontSize:'0.84rem'}}>
+              {t(
+                'La suscripción a novedades es opcional y está separada de esta solicitud. No envíes datos sensibles ni documentos de identidad en el texto libre.',
+                'Marketing subscription is optional and separate from this application. Do not include sensitive personal information or ID documents in free text.'
+              )}
+            </p>
+          </section>
+
           {/* ── Section 7: Declarations ── */}
           <div className="stk-section">
             <div className="stk-section-title">{t('6. Declaraciones', '6. Declarations')}</div>
@@ -531,8 +562,8 @@ export default function StartupPack() {
               <input type="checkbox" checked={declTerms} onChange={e => setDeclTerms(e.target.checked)} />
               <span>
                 {t(
-                  'He leído y acepto los términos y condiciones del Startup Pack. *',
-                  'I have read and accept the Startup Pack terms and conditions. *'
+                  'He leído los criterios publicados y solicito que se revise mi elegibilidad para el Startup Pack. *',
+                  'I have read the published criteria and request assessment of my Startup Pack eligibility. *'
                 )}
               </span>
             </label>
@@ -550,7 +581,7 @@ export default function StartupPack() {
 
           {submitError && (
             <p style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
-              {t('Error al enviar la solicitud. Inténtalo de nuevo.', 'Submission error. Please try again.')}
+              {t('No se ha podido registrar la solicitud. Inténtalo de nuevo o escribe a info@xopsconference.com.', 'Your application could not be saved. Please try again or email info@xopsconference.com.')}
             </p>
           )}
           <button type="submit" className="stk-submit-btn" disabled={!formValid || submitting}>

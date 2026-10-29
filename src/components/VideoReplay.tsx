@@ -65,7 +65,8 @@ const demoVideos: Video[] = [
 ];
 
 const VideoReplay: React.FC = () => {
-  const [videos] = useState<Video[]>(demoVideos);
+  // The placeholder talks are demo data, not evidence of speaker recording rights.
+  const [videos] = useState<Video[]>(import.meta.env.DEV ? demoVideos : []);
   const [selectedTrack, setSelectedTrack] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
@@ -142,7 +143,7 @@ const VideoReplay: React.FC = () => {
 
       {filteredVideos.length === 0 && (
         <div className="no-videos">
-          <p>No se encontraron videos con esos criterios</p>
+          <p>No hay grabaciones autorizadas publicadas para estos criterios.</p>
         </div>
       )}
 
@@ -170,12 +171,7 @@ const VideoReplay: React.FC = () => {
                 <p className="description">{selectedVideo.description}</p>
               )}
               <div className="video-actions">
-                <button className="action-btn">
-                  ⬇️ Descargar
-                </button>
-                <button className="action-btn">
-                  🔗 Compartir
-                </button>
+                <a className="action-btn" href="/fotografia-y-video">Derechos de grabación y difusión</a>
               </div>
             </div>
           </div>

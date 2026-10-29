@@ -320,9 +320,25 @@
       "errors": {
         "nameRequired": "Please enter your full name.",
         "emailInvalid": "Please enter a valid email address.",
-        "networkError": "Ticket system unavailable. Contact us at info@xopsconference.com."
+        "networkError": "Ticket system unavailable. Contact us at info@xopsconference.com.",
+        "termsRequired": "Please accept the terms before continuing to payment."
       },
-      "taxIncluded": "Price includes VAT. No additional charges."
+      "organizerNotice": "Organised by: Asociación Hacker Dreams (Spanish tax ID G56643158).",
+      "paymentNotice": "Collections handled through Odin Hermes & Danu Technology Solutions LLC. Stripe provides the payment gateway. See our legal notice for entity roles.",
+      "legalNotice": "Legal notice",
+      "termsLink": "Purchase terms",
+      "privacyLink": "Privacy",
+      "acceptTerms": "I have read and accept the terms for this edition and the cancellation/withdrawal disclosures above. (required)",
+      "preContractHeading": "Important contract information before payment",
+      "madridTax": "Check the full price, applicable VAT and mandatory fees before authorising the charge on Stripe. The seller must disclose any mandatory charges.",
+      "dubaiTax": "Check the total, currency, applicable taxes, fees and any exchange-rate conversion before paying on Stripe. UAE tax treatment cannot be assumed from the currency.",
+      "withdrawalMadrid": "Madrid: fixed-date event tickets may be outside the 14-day withdrawal right (Spain's RDL 1/2007 Art. 103(l)), without removing mandatory remedies for cancellation, non-performance or material changes.",
+      "withdrawalDubai": "Dubai: cancellation, refund and consumer rights depend on the ticket terms and mandatory law applicable to the transaction. The Spanish withdrawal exception is not automatically applicable.",
+      "sponsorDisclosure": "Buying a ticket does not give sponsors your details for their marketing. Sharing information voluntarily at an exhibitor stand is a separate choice.",
+      "filmingDisclosure": "General event photography and filming may take place; interviews and individual promotional uses require the appropriate permissions.",
+      "versionLabel": "Legal notice version",
+      "sponsorLink": "Sponsors and leads",
+      "filmingLink": "Photography and video"
     },
     "tierDescriptions": {
       "superEarly": "Full 2-day Conference access. All technical sessions, networking and materials included. Exclusive price for the first attendees. Does not include Summit, speakers dinner or premium workshops.",
@@ -773,5 +789,10 @@
   },
   "common": {
     "retry": "Retry"
+  },
+  "legalLinks": {
+    "privacy": "Privacy notice",
+    "media": "Photography, video and image rights",
+    "sponsors": "Networking privacy"
   }
 }

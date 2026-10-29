@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Container, Row, Col, Form, Badge, ListGroup, Button, Alert } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { FiFilter, FiCalendar, FiUsers, FiCheck } from 'react-icons/fi';
 import AttendeeCard from '../components/Networking/AttendeeCard';
 import MeetingScheduler from '../components/Networking/MeetingScheduler';
@@ -93,6 +94,12 @@ const Networking = () => {
             </div>
           </div>
 
+          <Alert variant="info" className="mb-4" role="note">
+            El directorio público requiere la participación voluntaria de cada profesional y no equivale
+            a una base de contactos comercial para patrocinadores. Los QR únicamente se muestran cuando
+            su titular ha autorizado expresamente el intercambio.
+            {' '}<Link to="/privacidad-patrocinadores">Privacidad del networking y patrocinio</Link>.
+          </Alert>
           {viewMode === 'directory' ? (
             <>
               {/* Filters */}

@@ -73,13 +73,11 @@ const AttendeeCard = ({ attendee, onScheduleMeeting, onShowQR }) => {
             <FiCalendar className="me-1" />
             Reunión
           </Button>
-          <Button 
-            variant="outline-secondary" 
-            size="sm"
-            onClick={() => onShowQR(attendee)}
-          >
-            QR
-          </Button>
+          {attendee.consentToShare === true && (
+            <Button variant="outline-secondary" size="sm" onClick={() => onShowQR(attendee)}>
+              QR
+            </Button>
+          )}
         </div>
       </Card.Body>
     </Card>

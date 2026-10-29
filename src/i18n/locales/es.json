@@ -314,9 +314,25 @@
       "errors": {
         "nameRequired": "Por favor introduce tu nombre completo.",
         "emailInvalid": "Por favor introduce un email válido.",
-        "networkError": "Sistema de entradas no disponible. Escríbenos a info@xopsconference.com."
+        "networkError": "Sistema de entradas no disponible. Escríbenos a info@xopsconference.com.",
+        "termsRequired": "Debes aceptar las condiciones antes de continuar al pago."
       },
-      "taxIncluded": "Precio con IVA incluido. No se añaden cargos extra."
+      "organizerNotice": "Organiza: Asociación Hacker Dreams (CIF G56643158).",
+      "paymentNotice": "Cobro gestionado mediante Odin Hermes & Danu Technology Solutions LLC. Stripe facilita el pago. Consulta el aviso legal para los roles de cada entidad.",
+      "legalNotice": "Aviso legal",
+      "termsLink": "Condiciones de compra",
+      "privacyLink": "Privacidad",
+      "acceptTerms": "He leído y acepto las condiciones de esta edición y la información de cancelaciones/desistimiento mostrada arriba. (obligatorio)",
+      "preContractHeading": "Información contractual antes del pago",
+      "madridTax": "Comprueba el precio final y el IVA aplicable antes de autorizar el cargo en Stripe. Los impuestos y cargos obligatorios deben figurar en el desglose del vendedor.",
+      "dubaiTax": "Comprueba el total, la moneda, las posibles tasas, impuestos y cambios de divisa antes de autorizar el pago en Stripe. No se presupone el tratamiento fiscal de EAU.",
+      "withdrawalMadrid": "Madrid: las entradas para un evento en fecha concreta pueden estar exceptuadas del desistimiento de 14 días (art. 103.l RDL 1/2007); se mantienen los derechos imperativos por cancelación, incumplimiento o cambios sustanciales.",
+      "withdrawalDubai": "Dubái: las cancelaciones, devoluciones y derechos de consumidores se determinarán por las condiciones de la entrada y la normativa imperativa aplicable. La excepción española al desistimiento no se presume aplicable.",
+      "sponsorDisclosure": "La compra no incluye cesión de tus datos a patrocinadores para su marketing. Compartir tus datos voluntariamente en un stand es una decisión distinta.",
+      "filmingDisclosure": "Durante el evento puede haber fotografía y grabación general; entrevistas y usos promocionales individualizados requieren los permisos correspondientes.",
+      "versionLabel": "Versión de información legal",
+      "sponsorLink": "Patrocinios y datos",
+      "filmingLink": "Fotografía y vídeo"
     },
     "tierDescriptions": {
       "superEarly": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye Summit, speakers dinner ni workshops premium.",
@@ -767,5 +783,10 @@
   },
   "common": {
     "retry": "Reintentar"
+  },
+  "legalLinks": {
+    "privacy": "Política de privacidad",
+    "media": "Fotografía, vídeo y derechos de imagen",
+    "sponsors": "Privacidad del networking"
   }
 }

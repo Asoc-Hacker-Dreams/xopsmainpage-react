@@ -116,10 +116,6 @@ const PricingTable = () => {
         <span className="sponsor-tiers__metric-label">{t('pricingTable.metrics.reach')}</span>
       </div>
       <div className="sponsor-tiers__metric">
-        <span className="sponsor-tiers__metric-num">{metrics.leads}</span>
-        <span className="sponsor-tiers__metric-label">{t('pricingTable.metrics.leads')}</span>
-      </div>
-      <div className="sponsor-tiers__metric">
         <span className="sponsor-tiers__metric-num">{metrics.impressions}</span>
         <span className="sponsor-tiers__metric-label">{t('pricingTable.metrics.impressions')}</span>
       </div>
@@ -140,6 +136,7 @@ const PricingTable = () => {
           <p className="sponsor-tiers__subtitle">
             {t('pricingTable.subtitle')}
           </p>
+          <p><Link to="/privacidad-patrocinadores" style={{color:'#6ee7f6',textDecoration:'underline'}}>{t('legalLinks.sponsors')}</Link></p>
           <div className="sponsor-tiers__city-tabs" role="tablist" aria-label={t('pricingTable.cityTabsAriaLabel')}>
             {cityModes.map((mode) => (
               <button

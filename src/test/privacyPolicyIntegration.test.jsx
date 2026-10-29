@@ -101,7 +101,6 @@ vi.mock('../contexts/ConsentContext', () => ({
     ESSENTIAL: 'essential',
     ANALYTICS: 'analytics',
     MARKETING: 'marketing',
-    NEWSLETTERS: 'newsletters',
   },
 }));
 
@@ -168,7 +167,7 @@ describe('Privacy Policy Integration', () => {
     // Scope to footer to avoid expensive full-document ARIA traversal
     const footerEl = container.querySelector('footer');
     expect(footerEl).not.toBeNull();
-    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad"]');
+    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad/madrid"]');
     expect(privacyLink).toBeInTheDocument();
     expect(privacyLink).toHaveTextContent('Política de Privacidad');
   });
@@ -178,11 +177,11 @@ describe('Privacy Policy Integration', () => {
     const { container } = render(<AppWrapper />);
 
     const footerEl = container.querySelector('footer');
-    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad"]');
+    const privacyLink = footerEl.querySelector('a[href="/politica-de-privacidad/madrid"]');
     fireEvent.click(privacyLink);
 
     // Check that we navigated to the privacy policy page
-    expect(window.location.pathname).toBe('/politica-de-privacidad');
+    expect(window.location.pathname).toBe('/politica-de-privacidad/madrid');
   });
 
   it('privacy policy page is accessible via direct URL', () => {
@@ -199,11 +198,11 @@ describe('Privacy Policy Integration', () => {
     render(<AppWrapper />);
     
     // Check for GDPR sections
-    expect(screen.getByText(/Sus Derechos bajo el RGPD/i)).toBeInTheDocument();
-    expect(screen.getByText(/Contacto para Privacidad/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: /Derechos y reclamaciones/i})).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: /Responsable del tratamiento/i})).toBeInTheDocument();
     
     // Check for contact email (there will be multiple instances)
-    const emailElements = screen.getAllByText(/privacy@xopsalliance.com/i);
+    const emailElements = screen.getAllByText(/info@xopsconference.com/i);
     expect(emailElements.length).toBeGreaterThan(0);
   });
 
@@ -212,8 +211,8 @@ describe('Privacy Policy Integration', () => {
     const { container } = render(<AppWrapper />);
 
     // Use querySelector to avoid expensive full-document ARIA traversal
-    const emailLinks = container.querySelectorAll('a[href="mailto:privacy@xopsalliance.com"]');
+    const emailLinks = container.querySelectorAll('a[href="mailto:info@xopsconference.com"]');
     expect(emailLinks.length).toBeGreaterThan(0);
-    expect(emailLinks[0]).toHaveAttribute('href', 'mailto:privacy@xopsalliance.com');
+    expect(emailLinks[0]).toHaveAttribute('href', 'mailto:info@xopsconference.com');
   });
 });

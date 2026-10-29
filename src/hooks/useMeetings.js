@@ -77,7 +77,8 @@ export function useAttendees() {
     const loadAttendees = async () => {
       try {
         // For now, use mock data - in production would fetch from API/DB
-        setAttendees(MOCK_ATTENDEES);
+        // Production directory stays empty until backend enforces explicit opt-in.
+        setAttendees(import.meta.env.DEV ? MOCK_ATTENDEES : []);
       } catch (error) {
         console.error('Error loading attendees:', error);
       } finally {

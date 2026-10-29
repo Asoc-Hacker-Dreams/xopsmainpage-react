@@ -15,6 +15,12 @@ import { useTranslation } from 'react-i18next';
 import { triskelGateClient } from '../adapters/triskelgate/client';
 import CountdownTimer from './CountdownTimer';
 import { cityEvents, getCityFromHostname } from '../data/cityEvents';
+import { LEGAL_VERSION, editionFromEvent } from '../legal/identity';
+import { useConsent, CONSENT_POLICY_VERSION } from '../contexts/ConsentContext';
+import { buildAttributionForCheckout, captureAttribution } from '../analytics/attribution';
+import { ticketGa4Item, trackGa4Event, trackBeginCheckout, trackCheckoutRedirect } from '../analytics/ga4';
+import scriptManager from '../services/scriptManager';
+import { rememberCheckoutDeparture } from '../analytics/checkoutJourney';
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -184,6 +190,8 @@ const INPUT_STYLE  = { background: '#1e1e3a', border: '1px solid #2a2a4a', color
 
 const TicketModal = ({ show, onHide }) => {
   const { t, i18n } = useTranslation();
+  const { consent, hasInteracted } = useConsent();
+  const analyticsOptIn = hasInteracted && consent.analytics === true;
 
   const [events, setEvents]             = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(false);
@@ -201,9 +209,41 @@ const TicketModal = ({ show, onHide }) => {
   const [validatingDiscount, setValidatingDiscount] = useState(false);
   const discountValidationNonce = useRef(0);
   const [formError, setFormError]       = useState(null);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [purchasing, setPurchasing]     = useState(false);
 
   const countdownTargetDate = useMemo(() => getCountdownTargetDate(), []);
+  const trackedCheckoutRef = useRef(null);
+  const checkoutEdition = editionFromEvent(selectedEvent, typeof window !== 'undefined' ? window.location.hostname : '') || 'madrid';
+
+  // A beginning checkout can be counted after a user opts into analytics
+  // while already viewing this step. Do not read buyer name/email into GA4.
+  useEffect(() => {
+    if (!show || step !== 'checkout') {
+      trackedCheckoutRef.current = null;
+      return;
+    }
+    if (!selectedEvent || !selectedTT || !analyticsOptIn) return;
+    const key = String(selectedEvent.id) + ':' + String(selectedTT.id);
+    if (trackedCheckoutRef.current === key) return;
+    if (trackBeginCheckout(selectedEvent, selectedTT, checkoutEdition)) {
+      trackedCheckoutRef.current = key;
+    }
+  }, [show, step, selectedEvent, selectedTT, analyticsOptIn, checkoutEdition]);
+
+  useEffect(() => {
+    if (!show || !loaded || step !== 'select' || !analyticsOptIn) return;
+    for (const event of events) {
+      const items = (event.ticketTypes || []).map(ticket => ticketGa4Item(event, ticket))
+        .filter(Boolean).slice(0, 50);
+      if (!items.length) continue;
+      trackGa4Event('view_item_list', {
+        item_list_name: 'X-Ops tickets',
+        items,
+        xops_edition: editionFromEvent(event, window.location.hostname) || 'madrid',
+      });
+    }
+  }, [show, loaded, step, events, analyticsOptIn]);
 
   useEffect(() => {
     if (!show || loaded) return;
@@ -262,6 +302,11 @@ const TicketModal = ({ show, onHide }) => {
   }, [show, loaded, t]);
 
   const openCheckout = (event, ticketType) => {
+    const item = ticketGa4Item(event, ticketType);
+    if (item) trackGa4Event('select_item', {
+      item_list_name: 'X-Ops tickets', items: [item],
+      xops_edition: editionFromEvent(event, window.location.hostname) || 'madrid',
+    });
     discountValidationNonce.current += 1;
     setValidatingDiscount(false);
     setSelectedEvent(event);
@@ -272,6 +317,7 @@ const TicketModal = ({ show, onHide }) => {
     setDiscountPreview(null);
     setDiscountError(null);
     setFormError(null);
+    setAcceptedTerms(false);
     setStep('checkout');
   };
 
@@ -336,6 +382,7 @@ const TicketModal = ({ show, onHide }) => {
       return;
     }
 
+    if (!acceptedTerms) { setFormError(t('ticketModal.checkout.errors.termsRequired')); return; }
     setPurchasing(true);
     setFormError(null);
 
@@ -347,6 +394,14 @@ const TicketModal = ({ show, onHide }) => {
         const quote = await applyDiscount();
         if (!quote) return;
       }
+
+      const attributionEnabled = import.meta.env.VITE_TRISKELL_ATTRIBUTION_ENABLED === 'true';
+      const attribution = analyticsOptIn
+        ? (captureAttribution(window.location.search, true), buildAttributionForCheckout())
+        : null;
+      const gaIdentifiers = attributionEnabled && attribution && analyticsOptIn
+        ? await scriptManager.getIdentifiers() : {};
+
       const data = await triskelGateClient.createCheckout({
         eventId:       selectedEvent.id,
         ticketTypeId:  selectedTT.id,
@@ -355,16 +410,42 @@ const TicketModal = ({ show, onHide }) => {
         customerEmail: email,
         customerName:  name,
         successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancelUrl:  `${window.location.origin}/?openTickets=1`,
+        cancelUrl:  `${window.location.origin}/checkout/cancel`,
+        ...(attributionEnabled && attribution ? {
+          attribution: {
+            ...attribution,
+            ...gaIdentifiers,
+            analyticsConsentVersion: CONSENT_POLICY_VERSION,
+          },
+        } : {}),
+        // Optional until TriskelGate validates + persists this versioned evidence.
+        ...(import.meta.env.VITE_TRISKELL_LEGAL_METADATA_ENABLED === 'true' ? {
+          legalAcceptance: {
+            accepted: true,
+            edition: checkoutEdition,
+            legalVersion: LEGAL_VERSION,
+            acceptedAtClient: new Date().toISOString(),
+            locale: i18n.language,
+          },
+        } : {}),
       });
 
       if (!data?.success) {
         throw new Error(data?.message || data?.error || t('ticketModal.checkout.errors.networkError'));
       }
+      const stripeUrl = data.sessionUrl || data.redirectUrl;
+      if (!stripeUrl || !/^https:\/\/checkout\.stripe\.com\//.test(stripeUrl)) {
+        throw new Error(t('ticketModal.checkout.errors.networkError'));
+      }
 
+      // Marker contains no buyer identity; only an analytics-consented return
+      // from Stripe can be counted as checkout_cancel.
+      rememberCheckoutDeparture(checkoutEdition, String(selectedTT.id), analyticsOptIn);
+      // This measures an intended payment redirect, never a successful purchase.
+      await trackCheckoutRedirect(selectedEvent, selectedTT, checkoutEdition);
       setStep('select');
       onHide();
-      window.location.href = data.sessionUrl || `${window.location.origin}/tickets/success`;
+      window.location.assign(stripeUrl);
     } catch (err) {
       const isNetworkError =
         err.name === 'TypeError' ||
@@ -389,6 +470,8 @@ const TicketModal = ({ show, onHide }) => {
   };
 
   const isCheckout = step === 'checkout';
+  const termsUrl = '/terminos-de-servicio/' + checkoutEdition;
+  const privacyUrl = '/politica-de-privacidad/' + checkoutEdition;
 
   return (
     <Modal
@@ -577,9 +660,33 @@ const TicketModal = ({ show, onHide }) => {
                 </Alert>
               )}
             </Form.Group>
-            <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginTop: '12px' }}>
-              {t('ticketModal.checkout.taxIncluded')}
+            <p style={{ color: '#c4d1df', fontSize: '0.82rem', marginTop: '12px' }}>
+              {checkoutEdition === 'dubai'
+                ? t('ticketModal.checkout.dubaiTax')
+                : t('ticketModal.checkout.madridTax')}
             </p>
+            <div id="tm-legal-disclosure" style={{color:'#e2e8f0',fontSize:'0.84rem',padding:'14px',background:'#1c2032',border:'1px solid #46536a',borderRadius:8}}>
+              <strong style={{display:'block',color:'#fff',marginBottom:9}}>{t('ticketModal.checkout.preContractHeading')}</strong>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.organizerNotice')}</p>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.paymentNotice')}</p>
+              <p style={{marginBottom:8}}>{checkoutEdition === 'dubai'
+                ? t('ticketModal.checkout.withdrawalDubai')
+                : t('ticketModal.checkout.withdrawalMadrid')}</p>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.sponsorDisclosure')}</p>
+              <p style={{marginBottom:8}}>{t('ticketModal.checkout.filmingDisclosure')}</p>
+              <p style={{marginBottom:8,color:'#c8d6e5'}}>{t('ticketModal.checkout.versionLabel')}: {LEGAL_VERSION}</p>
+              <nav aria-label={t('ticketModal.checkout.preContractHeading')} style={{display:'flex',gap:12,flexWrap:'wrap'}}>
+                <a target="_blank" rel="noopener noreferrer" href="/aviso-legal">{t('ticketModal.checkout.legalNotice')}</a>
+                <a target="_blank" rel="noopener noreferrer" href={termsUrl}>{t('ticketModal.checkout.termsLink')}</a>
+                <a target="_blank" rel="noopener noreferrer" href={privacyUrl}>{t('ticketModal.checkout.privacyLink')}</a>
+                <a target="_blank" rel="noopener noreferrer" href="/privacidad-patrocinadores">{t('ticketModal.checkout.sponsorLink')}</a>
+                <a target="_blank" rel="noopener noreferrer" href="/fotografia-y-video">{t('ticketModal.checkout.filmingLink')}</a>
+              </nav>
+            </div>
+            <Form.Check className="mt-3" type="checkbox" id="tm-terms" required
+              aria-describedby="tm-legal-disclosure"
+              checked={acceptedTerms} onChange={e => setAcceptedTerms(e.target.checked)}
+              label={t('ticketModal.checkout.acceptTerms')} style={{color:'#e2e8f0',fontSize:'0.85rem'}} />
           </Modal.Body>
           <Modal.Footer style={MODAL_FOOTER}>
             <Button variant="outline-secondary" onClick={backToSelect}>
@@ -587,7 +694,7 @@ const TicketModal = ({ show, onHide }) => {
             </Button>
             <Button
               type="submit"
-              disabled={purchasing || validatingDiscount}
+              disabled={purchasing || !acceptedTerms || validatingDiscount}
               style={{ background: '#00BCD4', border: 'none', color: '#0A0F2E', fontWeight: 700 }}
             >
               {purchasing ? <Spinner size="sm" /> : t('ticketModal.checkout.submit')}
