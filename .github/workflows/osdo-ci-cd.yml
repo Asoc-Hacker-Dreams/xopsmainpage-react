@@ -345,7 +345,13 @@ jobs:
   # Job 5: Build Security & SBOM
   build-security:
     name: 🏗️ Secure Build & SBOM Generation
-    runs-on: ubuntu-latest
+    # Pinned (not ubuntu-latest): this job runs `playwright install --with-deps
+    # chromium` for the prerender step. ubuntu-latest promoted to ubuntu-26.04
+    # on 2026-10-29 and @playwright/test ^1.60.0 doesn't support it yet
+    # ("Playwright does not support chromium on ubuntu26.04-x64"), breaking
+    # this job on every PR since. Repin to 24.04 until Playwright adds
+    # support or the dependency is upgraded.
+    runs-on: ubuntu-24.04
     needs: [test-and-quality, dependency-security-scan, static-analysis, secrets-scan]
     steps:
       - name: Checkout code
