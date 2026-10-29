@@ -573,15 +573,18 @@
     "cfpCta": "Proponer charla",
     "scheduleTitle": "Agenda del Evento 2026",
     "noSessions": "No hay sesiones programadas para este día y track.",
+    "pendingTitle": "Charlas aceptadas pendientes de horario",
+    "pendingExplanation": "Estas propuestas siguen aceptadas, pero la disponibilidad de una sola sala para Conference el viernes y el sábado impide programarlas sin ampliar el horario, añadir otro espacio o reorganizar el programa. No se han cancelado ni trasladado al Summit.",
+    "pendingTime": "Horario por asignar",
     "provisional": "Horario provisional",
-    "durationUnconfirmed": "Duración propuesta; falta confirmación en Sessionize",
-    "durationUnconfirmedDetail": " (pendiente de confirmar)",
+    "durationUnconfirmed": "50 minutos asignados por la organización (duración no especificada en Sessionize)",
+    "durationUnconfirmedDetail": " (duración fijada por organización)",
     "tracks": {
       "all": "Todos los Tracks",
       "main": "Aula magna",
       "hyperscalers": "Hyperscalers",
       "secondary": "Sala 2 (por confirmar)",
-      "bsides": "Bsides Madrid"
+      "bsides": "Sala 2 · BSides Madrid"
     },
     "place": "Lugar",
     "details": "Más Detalles",
