@@ -29,14 +29,14 @@ export const cityEvents = {
     flag: '🇦🇪',
     city: 'Dubai',
     country: 'United Arab Emirates',
-    dateRange: '30 November – 3 December 2026',
-    startDate: '2026-11-30',
+    dateRange: '1–3 December 2026',
+    startDate: '2026-12-01',
     endDate: '2026-12-03',
     summit: {
-      dates: '30 November and 1 December 2026',
+      dates: '1 December 2026',
       venue: 'Venue to be confirmed, Dubai',
       attendees: 'Limited executive capacity',
-      agendaDate: '30 Nov – 1 Dec',
+      agendaDate: '1 Dec',
     },
     conference: {
       dates: '2 and 3 December 2026',

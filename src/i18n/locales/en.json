@@ -15,7 +15,7 @@
   "hero": {
     "title": "JOIN THE X-OPS REVOLUTION!",
     "description": "The world of IT is changing. Join us at X-Ops Conference, where you will discover how the right technology and people are driving change.",
-    "date": "Madrid: Nov 19, 20 & 21 · Dubai: Nov 30 – Dec 3, 2026",
+    "date": "Madrid: 19–21 Nov · Dubai: 1–3 Dec 2026",
     "buyTicket": "Reserve your spot",
     "viewAgenda": "View agenda",
     "cfp": "CFP",
@@ -520,13 +520,13 @@
     },
     "dubai": {
       "flag": "🇦🇪",
-      "dates": "NOV 30 – DEC 3",
+      "dates": "DEC 1 · 2 · 3",
       "year": "2026",
       "title": "X-Ops Dubai 2026",
       "city": "Dubai, UAE",
       "summit": {
         "label": "X-Ops Summit",
-        "dates": "November 30 & December 1",
+        "dates": "December 1",
         "venue": "To be confirmed"
       },
       "conference": {
@@ -566,7 +566,7 @@
     },
     "dubai": {
       "city": "Dubai, UAE",
-      "label": "X-Ops Dubai · November 30 – December 3",
+      "label": "X-Ops Dubai · December 1–3",
       "name": "Venue to be confirmed",
       "address": "Dubai, United Arab Emirates",
       "tbdNote": "The exact venue will be announced soon. Stay tuned."
@@ -593,7 +593,7 @@
     },
     "card2": {
       "title": "Where & When?",
-      "text": "X-Ops Conference Madrid 2026 takes place on 20 and 21 November at the Universidad Rey Juan Carlos Auditorium, Móstoles Campus. X-Ops Dubai 2026 runs 30 November – 3 December. The agenda covers automation, continuous integration, continuous delivery, monitoring and secure architectures."
+      "text": "X-Ops Conference Madrid 2026 takes place on 20 and 21 November at the Universidad Rey Juan Carlos Auditorium, Móstoles Campus. X-Ops Dubai 2026 runs 1–3 December. The agenda covers automation, continuous integration, continuous delivery, monitoring and secure architectures."
     },
     "card3": {
       "title": "The Future of Work",

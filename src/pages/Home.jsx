@@ -7,7 +7,9 @@ import Ubication from "../components/Ubication";
 import Collaborators from "../components/Collaborators";
 import LastEditionData from "../components/LastEditionData";
 import PricingTable from "../components/PricingTable";
+import SponsorEcosystemBenefits from "../components/SponsorEcosystemBenefits";
 import SEO from "../components/SEO";
+import "../styles/SponsorEcosystemOverrides.css";
 
 
 const Home = () => {
@@ -52,6 +54,7 @@ const Home = () => {
       <Ubication />
       <LastEditionData />
       <PricingTable />
+      <SponsorEcosystemBenefits />
       <Collaborators />
     </>
   );

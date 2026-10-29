@@ -15,7 +15,7 @@
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
     "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
-    "date": "Madrid: 19, 20 y 21 Nov · Dubai: 30 Nov – 3 Dic 2026",
+    "date": "Madrid: 19, 20 y 21 Nov · Dubai: 1, 2 y 3 Dic 2026",
     "buyTicket": "Reserva tu entrada",
     "viewAgenda": "Ver agenda",
     "cfp": "CFP",
@@ -514,13 +514,13 @@
     },
     "dubai": {
       "flag": "🇦🇪",
-      "dates": "30 NOV – 3 DIC",
+      "dates": "1 · 2 · 3 DIC",
       "year": "2026",
       "title": "X-Ops Dubai 2026",
       "city": "Dubai, EAU",
       "summit": {
         "label": "X-Ops Summit",
-        "dates": "30 de noviembre y 1 de diciembre",
+        "dates": "1 de diciembre",
         "venue": "Por confirmar"
       },
       "conference": {
@@ -560,7 +560,7 @@
     },
     "dubai": {
       "city": "Dubai, EAU",
-      "label": "X-Ops Dubai · 30 de noviembre a 3 de diciembre",
+      "label": "X-Ops Dubai · 1 a 3 de diciembre",
       "name": "Venue por confirmar",
       "address": "Dubai, Emiratos Árabes Unidos",
       "tbdNote": "La ubicación exacta se comunicará próximamente. Mantente al tanto."
@@ -587,7 +587,7 @@
     },
     "card2": {
       "title": "¿Dónde y Cuándo?",
-      "text": "X-Ops Conference Madrid 2026 se celebra los días 20 y 21 de noviembre en el Auditorio de la Universidad Rey Juan Carlos, campus Móstoles. X-Ops Dubai 2026 del 30 de noviembre al 3 de diciembre. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+      "text": "X-Ops Conference Madrid 2026 se celebra los días 20 y 21 de noviembre en el Auditorio de la Universidad Rey Juan Carlos, campus Móstoles. X-Ops Dubai 2026 se celebra del 1 al 3 de diciembre. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
     },
     "card3": {
       "title": "El Futuro del Trabajo",
