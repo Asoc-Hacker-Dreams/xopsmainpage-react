@@ -6,9 +6,9 @@ import scheduleData from '../../data/schedule2026.json';
 
 const trackFilters = {
   all: () => true,
-  main: (event) => event.track === 'main' || event.type === 'break',
-  hyperscalers: (event) => event.track === 'hyperscalers' || event.type === 'break',
-  bsides: (event) => event.track === 'bsides' || event.type === 'break',
+  main: (event) => event.track === 'main',
+  hyperscalers: (event) => event.track === 'hyperscalers',
+  bsides: (event) => event.track === 'bsides',
 };
 
 const Events = () => {
@@ -56,26 +56,18 @@ const Events = () => {
     return `${time} h`;
   };
 
-  const { leftColumnEvents, rightColumnEvents, showTwoColumns, singleColumnEvents } = useMemo(() => {
+  const { trackColumns, singleColumnEvents } = useMemo(() => {
     const dayEvents = scheduleData
       .filter(event => event.timeISO.startsWith(selectedDay))
       .filter(trackFilters[selectedTrack])
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
-
-    const breaks = dayEvents.filter(event => event.type === 'break' && (event.track === 'main' || selectedTrack === 'bsides'));
-    const bsidesBreaks = dayEvents.filter(event => event.type === 'break' && event.track === 'bsides');
-    const regularEvents = dayEvents.filter(event => event.type !== 'break');
-
-    const left = regularEvents.filter(event => event.track === 'main');
-    const right = regularEvents.filter(event => event.track !== 'main');
-
-    const leftColumnEvents = [...left, ...breaks].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
-    const rightColumnEvents = [...right, ...breaks, ...bsidesBreaks].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
-    const singleColumnEvents = [...dayEvents].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
-
-    const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
-
-    return { leftColumnEvents, rightColumnEvents, showTwoColumns, singleColumnEvents };
+    const trackColumns = ['main', 'hyperscalers', 'bsides']
+      .map(track => ({
+        track,
+        events: dayEvents.filter(event => event.track === track),
+      }))
+      .filter(column => column.events.length > 0);
+    return { trackColumns, singleColumnEvents: dayEvents };
   }, [selectedDay, selectedTrack]);
 
   const handleShowModal = (event) => {
@@ -130,6 +122,7 @@ const Events = () => {
             {event.speakerProfiles?.length > 0 && <div className="d-flex flex-wrap gap-2 mb-2">{event.speakerProfiles.map((speaker) => <img key={speaker.name} src={speaker.photo} alt={speaker.name} loading="lazy" width="52" height="52" style={{borderRadius:'50%',objectFit:'cover',background:'#152443'}} />)}</div>}
             <p><strong>{event.speaker}</strong></p>
             {event.provisional && <small className="text-warning">Horario provisional</small>}
+            {event.durationProposed && <small className="text-warning">Duración propuesta; falta confirmación en Sessionize</small>}
             <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
               {t('events.details')}
             </button>
@@ -173,14 +166,18 @@ const Events = () => {
 
           <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
 
-          {showTwoColumns ? (
+          {singleColumnEvents.length === 0 ? (
+            <p className="text-center py-4">
+              No hay sesiones programadas para este día y track.
+            </p>
+          ) : selectedTrack === 'all' && trackColumns.length > 1 ? (
             <Row className="mt-5">
-              <Col md={6}>
-                {leftColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
-              <Col md={6}>
-                {rightColumnEvents.map((event, index) => renderEventCard(event, index))}
-              </Col>
+              {trackColumns.map(column => (
+                <Col key={column.track} md={6} lg={trackColumns.length >= 3 ? 4 : 6}>
+                  <h3 className="text-center mb-4">{trackLabels[column.track]}</h3>
+                  {column.events.map((event, index) => renderEventCard(event, index))}
+                </Col>
+              ))}
             </Row>
           ) : (
             <Row className="mt-5 justify-content-center">
@@ -199,7 +196,7 @@ const Events = () => {
                 <p><strong>{t('events.modal.speaker')}:</strong> {selectedEvent.speaker}</p>
                 {selectedEvent.speakerProfiles?.map((speaker) => <p key={speaker.name}><img src={speaker.photo} alt={speaker.name} width="60" height="60" loading="lazy" style={{borderRadius:'50%',objectFit:'cover',marginRight:'10px'}} />{speaker.tagline} {speaker.linkedin && <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}</p>)}
                 <p><strong>{t('events.modal.place')}:</strong> {selectedEvent.room}</p>
-                <p><strong>{t('events.modal.duration')}:</strong> {selectedEvent.durationHuman}</p>
+                <p><strong>{t('events.modal.duration')}:</strong> {selectedEvent.durationHuman}{selectedEvent.durationProposed ? ' (pendiente de confirmar)' : ''}</p>
                 <p><strong>{t('events.modal.time')}:</strong> {formatTime(selectedEvent.timeISO)}</p>
                 <hr />
                 <p style={{whiteSpace:'pre-line'}}>{selectedEvent.description}</p>
