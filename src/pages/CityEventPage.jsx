@@ -165,7 +165,7 @@ const CityEventPage = ({ city }) => {
             )}
           </div>}
         </div>
-        {isMadrid && <div className="container"><p className="text-center">Programa provisional · 20 y 21 de noviembre · Hora de Madrid (CET). Los horarios y salas pueden cambiar.</p><Events /></div>}
+        {isMadrid && <div className="container"><p className="text-center">{t('cityEvent.conference.preliminaryScheduleNotice')}</p><Events /></div>}
       </section>
 
       {isMadrid ? (
