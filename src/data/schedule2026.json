@@ -28,38 +28,8 @@
     "language": "en",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
-  },
-  {
-    "id": "1322293",
-    "sessionId": "1322293",
-    "talk": "AI-Assisted Development at Scale: Keeping Product Decisions, Specs, and Agents Aligned",
-    "description": "AI-SDLC creates a traceability problem that becomes expensive as products evolve. A product decision changes, while the delivery specifications, security requirements, test cases, and agent instructions built around its previous version remain unchanged.\r\n \r\nProduct Definition as Code is a recently proposed, open framework for tackling this problem. It keeps accepted product decisions versioned and connected, so delivery work, agent instructions, and checks can cite them instead of restating or reinterpreting them. This also reduces the repeated prose and supporting material that spec-driven workflows tend to accumulate.\r\n \r\nWe will follow one product rule from a versioned product definition into a delivery specification, GitHub Copilot instructions, security and quality requirements, and CI checks. Then we will change that rule and show how the workflow identifies consumers that are now relying on stale context.\r\n \r\nThe session combines product-definition traceability with secure AI-assisted engineering. It covers what can be checked mechanically, what coding agents can surface, and where human judgement remains essential.\r\n \r\nAttendees will leave with a concrete way to accelerate AI-assisted delivery without letting outdated assumptions, product drift, or security gaps move silently into production.",
-    "speaker": "Juan G Carmona",
-    "speakerProfiles": [
-      {
-        "name": "Juan G Carmona",
-        "tagline": "Software Architect | AI Strategist | Critical & Secure Systems | Software Development Engineer at Plain Concepts",
-        "photo": "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg",
-        "linkedin": "https://www.linkedin.com/in/juangcarmona/",
-        "sessionize": "https://sessionize.com/juangcarmona"
-      }
-    ],
-    "speakerImages": [
-      "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg"
-    ],
-    "room": "Sala 2 (por confirmar)",
-    "track": "hyperscalers",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-20T15:30",
-    "endTimeISO": "2026-11-20T16:20",
-    "durationMinutes": 50,
-    "durationHuman": "50 min",
-    "sessionFormat": "Session 50min",
-    "language": "en",
-    "type": "talk",
-    "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1273270",
@@ -90,54 +60,8 @@
     "language": "en",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
-  },
-  {
-    "id": "1256602",
-    "sessionId": "1256602",
-    "talk": "AI agent workflows with n8n and Microsoft Foundry",
-    "description": "Discover how to combine n8n and Microsoft Foundry to build intelligent, AI-powered automations.\r\n\r\nIn this session, we’ll explore how to orchestrate workflows, connect tools and APIs, and create autonomous AI agents capable of reasoning, decision-making, and task execution.\r\n\r\nThrough a practical, marketing-focused demo, we’ll showcase an AI-powered automation workflow designed to create LinkedIn marketing content. The workflow uses Azure OpenAI models to identify trending and relevant topics, generate compelling marketing copy, and create engaging social media posts with Microsoft Foundry models.\r\n\r\nYou’ll see how to automate the full content creation process, from ideation and post generation to approval flows and publishing. While the demo will focus on LinkedIn, the same approach can be easily adapted and scaled to other social media platforms and marketing channels.",
-    "speaker": "Patricia Rodríguez Vaquero, Stefania Celine Fulgori, Verónica Rivas Remiseiro",
-    "speakerProfiles": [
-      {
-        "name": "Patricia Rodríguez Vaquero",
-        "tagline": "Data Architect - MDW",
-        "photo": "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
-        "linkedin": "https://www.linkedin.com/in/patricia-rodr%C3%ADguez-vaquero/",
-        "sessionize": "https://sessionize.com/patricia-rodriguez-vaquero"
-      },
-      {
-        "name": "Stefania Celine Fulgori",
-        "tagline": "International Marketing BP - Solera",
-        "photo": "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
-        "linkedin": "https://www.linkedin.com/in/stefaniaceline-fulgori/",
-        "sessionize": ""
-      },
-      {
-        "name": "Verónica Rivas Remiseiro",
-        "tagline": "Microsoft MVP Copilot - Tech & Lead Projects - IA & Cibersecurity ",
-        "photo": "https://cdn.sessionize.com/image/64fd-400o400o1-VihPDNcunZYv4mUf1SnjHs.png",
-        "linkedin": "https://www.linkedin.com/in/verorivasremiseiro",
-        "sessionize": "https://sessionize.com/vronik"
-      }
-    ],
-    "speakerImages": [
-      "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
-      "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
-      "https://cdn.sessionize.com/image/64fd-400o400o1-VihPDNcunZYv4mUf1SnjHs.png"
-    ],
-    "room": "Sala 2 (por confirmar)",
-    "track": "hyperscalers",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-20T16:20",
-    "endTimeISO": "2026-11-20T17:10",
-    "durationMinutes": 50,
-    "durationHuman": "50 min",
-    "sessionFormat": "Session 50min",
-    "language": "es",
-    "type": "talk",
-    "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1320642",
@@ -176,7 +100,8 @@
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "block-2026-20-main-0",
@@ -194,37 +119,6 @@
     "durationHuman": "20 min",
     "type": "break",
     "provisional": true
-  },
-  {
-    "id": "1346394",
-    "sessionId": "1346394",
-    "talk": "Securing Your Supply Chain Without Slowing Down Your Dev Team",
-    "description": "This session is not just a theoretical warning.\r\n\r\nOver the past year, npm has evolved from a place where supply chain attacks occur to a place where they occur on a schedule. S1ngularity in August: Then, in September, there was Chalk and Debug, which affected 18 packages and involved billions of weekly downloads. Then came Shai-Hulud, a self-replicating worm that scans machines for secrets and publishes them to a public repository.\r\n\r\nSecurity researchers no longer call this a spike. They call it the new baseline.\r\n\r\nIn nearly every one of these attacks, nothing appeared to be wrong. The pipeline stayed green. The tests passed. Developers had no idea that their CI secrets, cloud credentials, and deployment tokens had already been exfiltrated. Many still don't know if a compromised version is sitting in their lockfile right now.\r\nEvery day, millions of developers run npm install without a second thought. It's muscle memory. That's how modern software is built. It's also how attackers get in.\r\n\r\nThis talk will show you exactly how, with a live demo of a single malicious package silently draining secrets while everything appears normal. Then, we break down the attack vectors.\r\n\r\nFinally, Florian present the part that most security talks skip: a practical, actionable playbook for securing an Azure DevOps pipeline using existing tools, with no additional budget and no measurable impact on your team's velocity.",
-    "speaker": "Florian Lenz",
-    "speakerProfiles": [
-      {
-        "name": "Florian Lenz",
-        "tagline": "Fractional Principal Architect · Microsoft Azure MVP · Building Azure platforms .NET teams actually love",
-        "photo": "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png",
-        "linkedin": "https://www.linkedin.com/in/techworldofflorian/",
-        "sessionize": "https://sessionize.com/florianlenz"
-      }
-    ],
-    "speakerImages": [
-      "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png"
-    ],
-    "room": "Sala 2 (por confirmar)",
-    "track": "hyperscalers",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-20T17:30",
-    "endTimeISO": "2026-11-20T18:20",
-    "durationMinutes": 50,
-    "durationHuman": "50 min",
-    "sessionFormat": "Session 50min",
-    "language": "en",
-    "type": "talk",
-    "provisional": true,
-    "durationProposed": false
   },
   {
     "id": "1317947",
@@ -255,7 +149,8 @@
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1279507",
@@ -275,8 +170,8 @@
     "speakerImages": [
       "https://cdn.sessionize.com/image/e84a-400o400o1-JjCSbW7dhft5myy4gVvaU.jpg"
     ],
-    "room": "Sala 2 (por confirmar)",
-    "track": "hyperscalers",
+    "room": "Aula magna",
+    "track": "main",
     "audience": "X-Ops Conference Madrid",
     "timeISO": "2026-11-20T18:20",
     "endTimeISO": "2026-11-20T18:50",
@@ -286,29 +181,13 @@
     "language": "en",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "block-2026-20-main-1",
-    "talk": "Encuentro abierto y networking",
-    "description": "Espacio abierto sin ponencia asignada",
-    "speaker": "",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "Aula magna",
-    "track": "main",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-20T18:20",
-    "endTimeISO": "2026-11-20T18:50",
-    "durationMinutes": 30,
-    "durationHuman": "30 min",
-    "type": "break",
-    "provisional": true
-  },
-  {
-    "id": "block-2026-20-main-2",
     "talk": "Cierre del viernes",
-    "description": "Cierre de la primera jornada técnica",
+    "description": "Cierre del programa del viernes",
     "speaker": "",
     "speakerProfiles": [],
     "speakerImages": [],
@@ -323,26 +202,26 @@
     "provisional": true
   },
   {
-    "id": "block-2026-21-bsides-7",
-    "talk": "Apertura BSides Madrid 2026",
+    "id": "block-2026-21-bsides-5",
+    "talk": "Apertura BSides Madrid",
     "description": "Bienvenida al track de seguridad",
     "speaker": "",
     "speakerProfiles": [],
     "speakerImages": [],
-    "room": "BSides Madrid",
+    "room": "Sala 2",
     "track": "bsides",
     "audience": "BSides Madrid",
     "timeISO": "2026-11-21T10:00",
-    "endTimeISO": "2026-11-21T10:15",
-    "durationMinutes": 15,
-    "durationHuman": "15 min",
+    "endTimeISO": "2026-11-21T10:10",
+    "durationMinutes": 10,
+    "durationHuman": "10 min",
     "type": "break",
     "provisional": true
   },
   {
-    "id": "block-2026-21-main-3",
+    "id": "block-2026-21-main-2",
     "talk": "Bienvenida al segundo día",
-    "description": "Introducción al programa del sábado",
+    "description": "Apertura del programa del sábado",
     "speaker": "",
     "speakerProfiles": [],
     "speakerImages": [],
@@ -357,26 +236,26 @@
     "provisional": true
   },
   {
-    "id": "1345498",
-    "sessionId": "1345498",
-    "talk": "Cuatro preguntas, cero atajos: gobernando agentes de IA en Kubernetes",
-    "description": "Un tweet movió 3.000 millones de tokens sin que nadie lo autorizara.\r\n\r\nLa cadena de fallos no tuvo ningún 0-day: una membresía NFT desbloqueó un toolset sin aprobación humana, el payload viajó en código Morse porque el filtro solo miraba inglés, un bot tradujo el mensaje en público y etiquetó al objetivo, y un segundo bot leyó ese tuit verificado como una orden autenticada. Cuatro controles que existían, ninguno hablando con el otro.\r\n\r\nHoy 24.008 secretos de servidores MCP siguen filtrados en GitHub y 1.800+ servidores corren sin autenticación. Cuando tu agente de IA en Kubernetes haga algo parecido, hay cuatro preguntas que te van a hacer:\r\n\r\n1. ¿Quién era el agente?\r\n2. ¿Tenía permiso para hacer eso?\r\n3. ¿Estaba protegido el tráfico y la ejecución?\r\n4. ¿Puedes probarlo con evidencia, no con un log que tú mismo escribiste?\r\n\r\nEsta charla responde las cuatro con piezas reales de Kubernetes, no con el marketing del ecosistema:\r\n\r\nIdentidad: por qué una API key no alcanza, y cómo Keycloak (AuthN) junto a un modelo de relaciones tipo Zanzibar (AuthZ fina, ReBAC) dan delegación, expiración y revocación instantánea a un agente, no solo a un humano.\r\n\r\nPermiso: kgateway (control plane sobre Envoy, no Istio) y Kuadrant aplicando políticas declarativas de autorización y de rate-limiting por tokens reales de LLM, no por requests.\r\n\r\nProtección: agentgateway como proxy especializado para tráfico LLM/MCP/A2A, más los límites reales de aislamiento en Kubernetes: qué frontera contiene a un agente comprometido y cuál falla, con datos medidos, incluyendo un CVE real con nombre propio (CVSS 9.1, ~1,9M pulls de la imagen afectada) y el hallazgo incómodo de que la persistencia en el workspace del agente hoy no la detiene ningún control del stack.\r\n\r\nPrueba: kagent y kmcp como el agente y su servidor MCP definidos como recursos de Kubernetes (CRDs), y qué exige ya el EU AI Act en materia de registros verificables, más allá del logging tradicional.\r\n\r\nkgateway y agentgateway hoy son proyectos hermanos con gobernanza separada, no un módulo integrado de fábrica: te lo muestro en vivo, sin vender una integración más madura de la que existe.\r\n\r\nTe vas con un marco de cuatro preguntas que puedes usar para auditar cualquier plataforma de agentes, aunque no uses ninguna de estas piezas específicas.",
-    "speaker": "Jean Paul López",
+    "id": "1238855",
+    "sessionId": "1238855",
+    "talk": "Agentes bajo fuego: cómo romperlos antes de que los malos lo hagan",
+    "description": "Montar un agente de IA mola. Ponerlo en producción sin saber cómo se comporta ante prompt injection, fuga de datos o entradas chungas es jugar a la ruleta rusa con tu plataforma.\r\n\r\nEn esta charla bajamos al barro de la seguridad aplicada a agentes con Azure AI Foundry: guardrails, evaluación de riesgo, red teaming automatizado y una demo en vivo para ver cuándo el agente responde, bloquea, filtra… o se la pega.\r\n\r\nUna sesión práctica, gamberra y muy X-Ops para perfiles SecOps, DevSecOps, AIOps y cualquiera que no quiera que su agente acabe siendo el becario del atacante.\r\n",
+    "speaker": "Gabriel Naranjo Lituma",
     "speakerProfiles": [
       {
-        "name": "Jean Paul López",
-        "tagline": "Red Hat, Senior Consultant",
-        "photo": "https://cdn.sessionize.com/image/6f1e-400o400o1-hg17gVVBppqgBPWCHdN1JG.png",
-        "linkedin": "https://www.linkedin.com/in/jean-paul-lopez/",
-        "sessionize": "https://sessionize.com/jean-paul-lopez"
+        "name": "Gabriel Naranjo Lituma",
+        "tagline": " Sr. Cloud Solutions Architect - Europe Hybrid CoE",
+        "photo": "https://cdn.sessionize.com/image/d817-400o400o1-snN7tWK2fr7Nn3tNrEgZCY.jpg",
+        "linkedin": "https://www.linkedin.com/in/gnl/",
+        "sessionize": "https://sessionize.com/gabrielnaranjo"
       }
     ],
     "speakerImages": [
-      "https://cdn.sessionize.com/image/6f1e-400o400o1-hg17gVVBppqgBPWCHdN1JG.png"
+      "https://cdn.sessionize.com/image/d817-400o400o1-snN7tWK2fr7Nn3tNrEgZCY.jpg"
     ],
-    "room": "Sala 2 (por confirmar)",
-    "track": "hyperscalers",
-    "audience": "X-Ops Conference Madrid",
+    "room": "Sala 2",
+    "track": "bsides",
+    "audience": "BSides Madrid",
     "timeISO": "2026-11-21T10:10",
     "endTimeISO": "2026-11-21T11:00",
     "durationMinutes": 50,
@@ -385,7 +264,8 @@
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1267233",
@@ -416,38 +296,8 @@
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
-  },
-  {
-    "id": "1238855",
-    "sessionId": "1238855",
-    "talk": "Agentes bajo fuego: cómo romperlos antes de que los malos lo hagan",
-    "description": "Montar un agente de IA mola. Ponerlo en producción sin saber cómo se comporta ante prompt injection, fuga de datos o entradas chungas es jugar a la ruleta rusa con tu plataforma.\r\n\r\nEn esta charla bajamos al barro de la seguridad aplicada a agentes con Azure AI Foundry: guardrails, evaluación de riesgo, red teaming automatizado y una demo en vivo para ver cuándo el agente responde, bloquea, filtra… o se la pega.\r\n\r\nUna sesión práctica, gamberra y muy X-Ops para perfiles SecOps, DevSecOps, AIOps y cualquiera que no quiera que su agente acabe siendo el becario del atacante.\r\n",
-    "speaker": "Gabriel Naranjo Lituma",
-    "speakerProfiles": [
-      {
-        "name": "Gabriel Naranjo Lituma",
-        "tagline": " Sr. Cloud Solutions Architect - Europe Hybrid CoE",
-        "photo": "https://cdn.sessionize.com/image/d817-400o400o1-snN7tWK2fr7Nn3tNrEgZCY.jpg",
-        "linkedin": "https://www.linkedin.com/in/gnl/",
-        "sessionize": "https://sessionize.com/gabrielnaranjo"
-      }
-    ],
-    "speakerImages": [
-      "https://cdn.sessionize.com/image/d817-400o400o1-snN7tWK2fr7Nn3tNrEgZCY.jpg"
-    ],
-    "room": "BSides Madrid",
-    "track": "bsides",
-    "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T10:15",
-    "endTimeISO": "2026-11-21T11:05",
-    "durationMinutes": 50,
-    "durationHuman": "50 min",
-    "sessionFormat": "Session 50min",
-    "language": "es",
-    "type": "talk",
-    "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1311118",
@@ -467,18 +317,19 @@
     "speakerImages": [
       "https://cdn.sessionize.com/image/3bdf-400o400o1-Dp9ro3foaHU4UsyrdmepUi.jpg"
     ],
-    "room": "BSides Madrid",
+    "room": "Sala 2",
     "track": "bsides",
     "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T11:05",
-    "endTimeISO": "2026-11-21T11:55",
+    "timeISO": "2026-11-21T11:00",
+    "endTimeISO": "2026-11-21T11:50",
     "durationMinutes": 50,
     "durationHuman": "50 min",
     "sessionFormat": "Session 50min",
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1296044",
@@ -501,15 +352,16 @@
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T11:10",
-    "endTimeISO": "2026-11-21T11:40",
+    "timeISO": "2026-11-21T11:00",
+    "endTimeISO": "2026-11-21T11:30",
     "durationMinutes": 30,
     "durationHuman": "30 min",
     "sessionFormat": "Lightning talk 30min",
     "language": "en",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1303559",
@@ -532,30 +384,82 @@
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T11:45",
-    "endTimeISO": "2026-11-21T12:15",
+    "timeISO": "2026-11-21T11:30",
+    "endTimeISO": "2026-11-21T12:00",
     "durationMinutes": 30,
     "durationHuman": "30 min",
     "sessionFormat": "Lightning talk 30min",
     "language": "en",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
-    "id": "block-2026-21-bsides-8",
+    "id": "block-2026-21-bsides-6",
     "talk": "Coffee break BSides",
-    "description": "Pausa para café",
+    "description": "Pausa para café y networking",
     "speaker": "",
     "speakerProfiles": [],
     "speakerImages": [],
     "room": "Zona de networking",
     "track": "bsides",
     "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T11:55",
-    "endTimeISO": "2026-11-21T12:15",
+    "timeISO": "2026-11-21T11:50",
+    "endTimeISO": "2026-11-21T12:10",
     "durationMinutes": 20,
     "durationHuman": "20 min",
+    "type": "break",
+    "provisional": true
+  },
+  {
+    "id": "block-2026-21-main-3",
+    "talk": "Coffee break",
+    "description": "Pausa para café y networking",
+    "speaker": "",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Zona de networking",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": "2026-11-21T12:00",
+    "endTimeISO": "2026-11-21T12:10",
+    "durationMinutes": 10,
+    "durationHuman": "10 min",
+    "type": "break",
+    "provisional": true
+  },
+  {
+    "id": "block-2026-21-bsides-7",
+    "talk": "Pausa para comer BSides",
+    "description": "Una hora completa de almuerzo compartida con X-Ops Conference",
+    "speaker": "",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Zona de catering",
+    "track": "bsides",
+    "audience": "BSides Madrid",
+    "timeISO": "2026-11-21T12:10",
+    "endTimeISO": "2026-11-21T13:10",
+    "durationMinutes": 60,
+    "durationHuman": "60 min",
+    "type": "break",
+    "provisional": true
+  },
+  {
+    "id": "block-2026-21-main-4",
+    "talk": "Pausa para comer",
+    "description": "Una hora completa de almuerzo compartida con BSides",
+    "speaker": "",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Zona de catering",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": "2026-11-21T12:10",
+    "endTimeISO": "2026-11-21T13:10",
+    "durationMinutes": 60,
+    "durationHuman": "60 min",
     "type": "break",
     "provisional": true
   },
@@ -577,131 +481,68 @@
     "speakerImages": [
       "https://cdn.sessionize.com/image/04de-400o400o1-Xp63tivgEqQUqSNBsPetSq.jpg"
     ],
-    "room": "BSides Madrid",
+    "room": "Sala 2",
     "track": "bsides",
     "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T12:15",
-    "endTimeISO": "2026-11-21T13:05",
+    "timeISO": "2026-11-21T13:10",
+    "endTimeISO": "2026-11-21T14:00",
     "durationMinutes": 50,
     "durationHuman": "50 min",
     "sessionFormat": "Session 50min",
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
-    "id": "block-2026-21-main-4",
-    "talk": "Coffee break",
-    "description": "Pausa para café y networking",
-    "speaker": "",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "Zona de networking",
-    "track": "main",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T12:15",
-    "endTimeISO": "2026-11-21T12:35",
-    "durationMinutes": 20,
-    "durationHuman": "20 min",
-    "type": "break",
-    "provisional": true
-  },
-  {
-    "id": "1305431",
-    "sessionId": "1305431",
-    "talk": "Descenso al infierno documental: apócrifo del sysadmin que dijo NO",
-    "description": "Hay sistemas que no fallan de golpe. Se van condenando poco a poco.\r\nPrimero fue un PDF guardado donde no debía. Después, un BLOB creciendo en silencio dentro de MySQL.\r\nEntonces llegó una propuesta envuelta en luz: nueva herramienta, nuevo sistema, promesa de redención. Como si bastara con invocar a un dios del storage para purgar años de deuda técnica y sacar las facturas del inframundo.\r\nPero el infierno documental no se derrota con una herramienta.\r\nSe derrota con arquitectura.\r\nPorque guardar fuera de MySQL no basta. Una carpeta no custodia. Un backup no demuestra recuperación. Un DELETE mal permitido puede abrir una puerta que ninguna auditoría va a cerrar por ti. Y una factura definitiva que todavía acepta cambios no es definitiva: solo está esperando a que alguien la descubra.\r\nEsta ponencia baja a ese infierno: BLOBs, carpetas, objetos, hashes, permisos, restores y promesas de proveedor que suenan bien… hasta que alguien pregunta si pueden demostrarse.\r\nY de ahí sale algo más fuerte que una herramienta: un sistema pensado para que el documento tenga memoria, la factura deje huella y lo definitivo no dependa de la buena fe.\r\nPorque en documentación fiscal, el monstruo no siempre es perder una factura.\r\nEl verdadero monstruo es no poder demostrar qué pasó con ella.",
-    "speaker": "Marta Gonzalez Arnaiz",
+    "id": "1345498",
+    "sessionId": "1345498",
+    "talk": "Cuatro preguntas, cero atajos: gobernando agentes de IA en Kubernetes",
+    "description": "Un tweet movió 3.000 millones de tokens sin que nadie lo autorizara.\r\n\r\nLa cadena de fallos no tuvo ningún 0-day: una membresía NFT desbloqueó un toolset sin aprobación humana, el payload viajó en código Morse porque el filtro solo miraba inglés, un bot tradujo el mensaje en público y etiquetó al objetivo, y un segundo bot leyó ese tuit verificado como una orden autenticada. Cuatro controles que existían, ninguno hablando con el otro.\r\n\r\nHoy 24.008 secretos de servidores MCP siguen filtrados en GitHub y 1.800+ servidores corren sin autenticación. Cuando tu agente de IA en Kubernetes haga algo parecido, hay cuatro preguntas que te van a hacer:\r\n\r\n1. ¿Quién era el agente?\r\n2. ¿Tenía permiso para hacer eso?\r\n3. ¿Estaba protegido el tráfico y la ejecución?\r\n4. ¿Puedes probarlo con evidencia, no con un log que tú mismo escribiste?\r\n\r\nEsta charla responde las cuatro con piezas reales de Kubernetes, no con el marketing del ecosistema:\r\n\r\nIdentidad: por qué una API key no alcanza, y cómo Keycloak (AuthN) junto a un modelo de relaciones tipo Zanzibar (AuthZ fina, ReBAC) dan delegación, expiración y revocación instantánea a un agente, no solo a un humano.\r\n\r\nPermiso: kgateway (control plane sobre Envoy, no Istio) y Kuadrant aplicando políticas declarativas de autorización y de rate-limiting por tokens reales de LLM, no por requests.\r\n\r\nProtección: agentgateway como proxy especializado para tráfico LLM/MCP/A2A, más los límites reales de aislamiento en Kubernetes: qué frontera contiene a un agente comprometido y cuál falla, con datos medidos, incluyendo un CVE real con nombre propio (CVSS 9.1, ~1,9M pulls de la imagen afectada) y el hallazgo incómodo de que la persistencia en el workspace del agente hoy no la detiene ningún control del stack.\r\n\r\nPrueba: kagent y kmcp como el agente y su servidor MCP definidos como recursos de Kubernetes (CRDs), y qué exige ya el EU AI Act en materia de registros verificables, más allá del logging tradicional.\r\n\r\nkgateway y agentgateway hoy son proyectos hermanos con gobernanza separada, no un módulo integrado de fábrica: te lo muestro en vivo, sin vender una integración más madura de la que existe.\r\n\r\nTe vas con un marco de cuatro preguntas que puedes usar para auditar cualquier plataforma de agentes, aunque no uses ninguna de estas piezas específicas.",
+    "speaker": "Jean Paul López",
     "speakerProfiles": [
       {
-        "name": "Marta Gonzalez Arnaiz",
-        "tagline": "Arquitecta de soluciones híbridas y cloud especializada en operaciones, ciberseguridad y observabilidad",
-        "photo": "https://cdn.sessionize.com/image/b622-400o400o1-PV6ZwrRZyEGW9WNqyVW87E.png",
-        "linkedin": "https://www.linkedin.com/in/maaartaa-g?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
-        "sessionize": ""
+        "name": "Jean Paul López",
+        "tagline": "Red Hat, Senior Consultant",
+        "photo": "https://cdn.sessionize.com/image/6f1e-400o400o1-hg17gVVBppqgBPWCHdN1JG.png",
+        "linkedin": "https://www.linkedin.com/in/jean-paul-lopez/",
+        "sessionize": "https://sessionize.com/jean-paul-lopez"
       }
     ],
     "speakerImages": [
-      "https://cdn.sessionize.com/image/b622-400o400o1-PV6ZwrRZyEGW9WNqyVW87E.png"
+      "https://cdn.sessionize.com/image/6f1e-400o400o1-hg17gVVBppqgBPWCHdN1JG.png"
     ],
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T12:35",
-    "endTimeISO": "2026-11-21T13:05",
-    "durationMinutes": 30,
-    "durationHuman": "30 min",
-    "sessionFormat": "Lightning talk 30min",
-    "language": "es",
-    "type": "talk",
-    "provisional": true,
-    "durationProposed": false
-  },
-  {
-    "id": "block-2026-21-bsides-9",
-    "talk": "Pausa para comer BSides",
-    "description": "Pausa de una hora para comer",
-    "speaker": "",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "Zona de catering",
-    "track": "bsides",
-    "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T13:05",
-    "endTimeISO": "2026-11-21T14:05",
-    "durationMinutes": 60,
-    "durationHuman": "60 min",
-    "type": "break",
-    "provisional": true
-  },
-  {
-    "id": "block-2026-21-main-5",
-    "talk": "Pausa para comer",
-    "description": "Pausa de una hora para comer y hacer networking",
-    "speaker": "",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "Zona de catering",
-    "track": "main",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T13:05",
-    "endTimeISO": "2026-11-21T14:05",
-    "durationMinutes": 60,
-    "durationHuman": "60 min",
-    "type": "break",
-    "provisional": true
-  },
-  {
-    "id": "1305707",
-    "sessionId": "1305707",
-    "talk": "Hacking my employer's Google Cloud through GitLab CI/CD and OpenTofu",
-    "description": "In this talk I'll explain how I got myself organization admin privileges in my employer's Google Cloud organization by abusing GitLab's CI/CD pipelines.\r\n\r\nWe had done everything by the book: Set up Workload Identity Federation on Google Cloud, merge requests on GitLab required approval. Still I found my way in - and I'll show you how.",
-    "speaker": "Gunnar Hartung",
-    "speakerProfiles": [
-      {
-        "name": "Gunnar Hartung",
-        "tagline": "Security Architect, Engineer and Cryptographer",
-        "photo": "https://cdn.sessionize.com/image/e440-400o400o1-Q6uCQjAq3Pmm4CnaKekEgo.png",
-        "linkedin": "",
-        "sessionize": ""
-      }
-    ],
-    "speakerImages": [
-      "https://cdn.sessionize.com/image/e440-400o400o1-Q6uCQjAq3Pmm4CnaKekEgo.png"
-    ],
-    "room": "BSides Madrid",
-    "track": "bsides",
-    "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T14:05",
-    "endTimeISO": "2026-11-21T14:55",
+    "timeISO": "2026-11-21T13:10",
+    "endTimeISO": "2026-11-21T14:00",
     "durationMinutes": 50,
     "durationHuman": "50 min",
     "sessionFormat": "Session 50min",
-    "language": "en",
+    "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
+  },
+  {
+    "id": "block-2026-21-bsides-8",
+    "talk": "Transición de sala",
+    "description": "Preparación técnica",
+    "speaker": "",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Sala 2",
+    "track": "bsides",
+    "audience": "BSides Madrid",
+    "timeISO": "2026-11-21T14:00",
+    "endTimeISO": "2026-11-21T14:10",
+    "durationMinutes": 10,
+    "durationHuman": "10 min",
+    "type": "break",
+    "provisional": true
   },
   {
     "id": "1318352",
@@ -724,63 +565,48 @@
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T14:05",
-    "endTimeISO": "2026-11-21T14:35",
+    "timeISO": "2026-11-21T14:00",
+    "endTimeISO": "2026-11-21T14:30",
     "durationMinutes": 30,
     "durationHuman": "30 min",
     "sessionFormat": "Lightning talk 30min",
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
-    "id": "block-2026-21-main-6",
-    "talk": "Networking y preguntas abiertas",
-    "description": "Espacio de encuentro sin ponencia asignada",
-    "speaker": "",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "Zona de networking",
-    "track": "main",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T14:35",
-    "endTimeISO": "2026-11-21T15:10",
-    "durationMinutes": 35,
-    "durationHuman": "35 min",
-    "type": "break",
-    "provisional": true
-  },
-  {
-    "id": "1305284",
-    "sessionId": "1305284",
-    "talk": "How to create your own framework",
-    "description": "When you inherit a security the temptation is to pick ISO 27001, NIST, CIS Controls, take them together, and hope the tailoring happens later. It rarely does. What you end up with is a framework designed for everyone that serves no one particularly well.\r\n\r\nThis talk is about a different approach: building your own.\r\n\r\nNot from a blank page, but from the deliberate composition of principles, controls, and operational practices that reflect the specific shape of your business, your risk appetite, and your people. Drawing on ongoing work developing a tailored operations and information security framework for a UK-domiciled insurance group operating across multiple jurisdictions, this session walks through the real decisions, trade-offs, and lessons learned along the way.",
-    "speaker": "Gonzalo Lópe franco",
+    "id": "1305707",
+    "sessionId": "1305707",
+    "talk": "Hacking my employer's Google Cloud through GitLab CI/CD and OpenTofu",
+    "description": "In this talk I'll explain how I got myself organization admin privileges in my employer's Google Cloud organization by abusing GitLab's CI/CD pipelines.\r\n\r\nWe had done everything by the book: Set up Workload Identity Federation on Google Cloud, merge requests on GitLab required approval. Still I found my way in - and I'll show you how.",
+    "speaker": "Gunnar Hartung",
     "speakerProfiles": [
       {
-        "name": "Gonzalo Lópe franco",
-        "tagline": "Information Security Analyst - SRG",
-        "photo": "https://cdn.sessionize.com/image/4b1c-400o400o1-wuN5BkpMgzjPT2vPU55P84.jpg",
-        "linkedin": "Https://linkedin.com/in/ankeorum",
+        "name": "Gunnar Hartung",
+        "tagline": "Security Architect, Engineer and Cryptographer",
+        "photo": "https://cdn.sessionize.com/image/e440-400o400o1-Q6uCQjAq3Pmm4CnaKekEgo.png",
+        "linkedin": "",
         "sessionize": ""
       }
     ],
     "speakerImages": [
-      "https://cdn.sessionize.com/image/4b1c-400o400o1-wuN5BkpMgzjPT2vPU55P84.jpg"
+      "https://cdn.sessionize.com/image/e440-400o400o1-Q6uCQjAq3Pmm4CnaKekEgo.png"
     ],
-    "room": "BSides Madrid",
+    "room": "Sala 2",
     "track": "bsides",
     "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T15:05",
-    "endTimeISO": "2026-11-21T15:55",
+    "timeISO": "2026-11-21T14:10",
+    "endTimeISO": "2026-11-21T15:00",
     "durationMinutes": 50,
     "durationHuman": "50 min",
     "sessionFormat": "Session 50min",
-    "language": "es",
+    "language": "en",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1335926",
@@ -803,6 +629,55 @@
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
+    "timeISO": "2026-11-21T14:30",
+    "endTimeISO": "2026-11-21T15:20",
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
+    "sessionFormat": "Session 50min",
+    "language": "es",
+    "type": "talk",
+    "provisional": true,
+    "durationProposed": false,
+    "unscheduled": false
+  },
+  {
+    "id": "block-2026-21-bsides-9",
+    "talk": "Transición de sala",
+    "description": "Preparación técnica",
+    "speaker": "",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Sala 2",
+    "track": "bsides",
+    "audience": "BSides Madrid",
+    "timeISO": "2026-11-21T15:00",
+    "endTimeISO": "2026-11-21T15:10",
+    "durationMinutes": 10,
+    "durationHuman": "10 min",
+    "type": "break",
+    "provisional": true
+  },
+  {
+    "id": "1305284",
+    "sessionId": "1305284",
+    "talk": "How to create your own framework",
+    "description": "When you inherit a security the temptation is to pick ISO 27001, NIST, CIS Controls, take them together, and hope the tailoring happens later. It rarely does. What you end up with is a framework designed for everyone that serves no one particularly well.\r\n\r\nThis talk is about a different approach: building your own.\r\n\r\nNot from a blank page, but from the deliberate composition of principles, controls, and operational practices that reflect the specific shape of your business, your risk appetite, and your people. Drawing on ongoing work developing a tailored operations and information security framework for a UK-domiciled insurance group operating across multiple jurisdictions, this session walks through the real decisions, trade-offs, and lessons learned along the way.",
+    "speaker": "Gonzalo Lópe franco",
+    "speakerProfiles": [
+      {
+        "name": "Gonzalo Lópe franco",
+        "tagline": "Information Security Analyst - SRG",
+        "photo": "https://cdn.sessionize.com/image/4b1c-400o400o1-wuN5BkpMgzjPT2vPU55P84.jpg",
+        "linkedin": "Https://linkedin.com/in/ankeorum",
+        "sessionize": ""
+      }
+    ],
+    "speakerImages": [
+      "https://cdn.sessionize.com/image/4b1c-400o400o1-wuN5BkpMgzjPT2vPU55P84.jpg"
+    ],
+    "room": "Sala 2",
+    "track": "bsides",
+    "audience": "BSides Madrid",
     "timeISO": "2026-11-21T15:10",
     "endTimeISO": "2026-11-21T16:00",
     "durationMinutes": 50,
@@ -811,47 +686,8 @@
     "language": "es",
     "type": "talk",
     "provisional": true,
-    "durationProposed": false
-  },
-  {
-    "id": "block-2026-21-bsides-10",
-    "talk": "Networking y comunidad BSides",
-    "description": "Bloque abierto de comunidad, sin charla aceptada programada",
-    "speaker": "",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "BSides Madrid",
-    "track": "bsides",
-    "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T15:55",
-    "endTimeISO": "2026-11-21T17:00",
-    "durationMinutes": 65,
-    "durationHuman": "65 min",
-    "type": "break",
-    "provisional": true
-  },
-  {
-    "id": "1363429",
-    "sessionId": "1363429",
-    "talk": "LLM de Troya",
-    "description": "Un simple «hola, ¿qué tal?» puede iniciar algo más que una conversación. Esta charla explora cómo un entrenamiento o fine-tuning malicioso puede incorporar comportamientos ocultos en los pesos de un LLM: responder con normalidad mientras intenta extraer información del contexto y enviarla a un servidor controlado por un atacante.\r\nVeremos cómo estas conductas pueden activarse ante determinadas condiciones y aprovechar las herramientas que la aplicación concede al modelo llamadas a APIs, navegación o ejecución de código para intentar materializar la filtración. Un recorrido por las puertas traseras en modelos y el riesgo de integrar una IA aparentemente fiable en sistemas con acceso a datos sensibles.",
-    "speaker": "Ponente pendiente de asignación",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "Sala 2 (por confirmar)",
-    "track": "hyperscalers",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T16:00",
-    "endTimeISO": "2026-11-21T17:00",
-    "durationMinutes": 60,
-    "durationHuman": "60 min",
-    "sessionFormat": "No indicado en Sessionize",
-    "language": "es",
-    "type": "talk",
-    "provisional": true,
-    "durationProposed": true,
-    "sourceTrack": "BSides",
-    "reassignmentPendingInSessionize": true
+    "durationProposed": false,
+    "unscheduled": false
   },
   {
     "id": "1363437",
@@ -874,16 +710,212 @@
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T16:00",
-    "endTimeISO": "2026-11-21T17:00",
-    "durationMinutes": 60,
-    "durationHuman": "60 min",
+    "timeISO": "2026-11-21T15:20",
+    "endTimeISO": "2026-11-21T16:10",
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
     "sessionFormat": "No indicado en Sessionize",
     "language": "Por confirmar",
     "type": "talk",
     "provisional": true,
     "durationProposed": true,
     "sourceTrack": "BSides",
-    "reassignmentPendingInSessionize": true
+    "reassignmentPendingInSessionize": true,
+    "unscheduled": false,
+    "durationOverrideByOrganizer": true
+  },
+  {
+    "id": "block-2026-21-bsides-10",
+    "talk": "Networking y comunidad",
+    "description": "Bloque comunitario sin nuevas charlas aceptadas",
+    "speaker": "",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Sala 2",
+    "track": "bsides",
+    "audience": "BSides Madrid",
+    "timeISO": "2026-11-21T16:00",
+    "endTimeISO": "2026-11-21T17:00",
+    "durationMinutes": 60,
+    "durationHuman": "60 min",
+    "type": "break",
+    "provisional": true
+  },
+  {
+    "id": "1363429",
+    "sessionId": "1363429",
+    "talk": "LLM de Troya",
+    "description": "Un simple «hola, ¿qué tal?» puede iniciar algo más que una conversación. Esta charla explora cómo un entrenamiento o fine-tuning malicioso puede incorporar comportamientos ocultos en los pesos de un LLM: responder con normalidad mientras intenta extraer información del contexto y enviarla a un servidor controlado por un atacante.\r\nVeremos cómo estas conductas pueden activarse ante determinadas condiciones y aprovechar las herramientas que la aplicación concede al modelo llamadas a APIs, navegación o ejecución de código para intentar materializar la filtración. Un recorrido por las puertas traseras en modelos y el riesgo de integrar una IA aparentemente fiable en sistemas con acceso a datos sensibles.",
+    "speaker": "Ponente pendiente de asignación",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Aula magna",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": "2026-11-21T16:10",
+    "endTimeISO": "2026-11-21T17:00",
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
+    "sessionFormat": "No indicado en Sessionize",
+    "language": "es",
+    "type": "talk",
+    "provisional": true,
+    "durationProposed": true,
+    "sourceTrack": "BSides",
+    "reassignmentPendingInSessionize": true,
+    "unscheduled": false,
+    "durationOverrideByOrganizer": true
+  },
+  {
+    "id": "1256602",
+    "sessionId": "1256602",
+    "talk": "AI agent workflows with n8n and Microsoft Foundry",
+    "description": "Discover how to combine n8n and Microsoft Foundry to build intelligent, AI-powered automations.\r\n\r\nIn this session, we’ll explore how to orchestrate workflows, connect tools and APIs, and create autonomous AI agents capable of reasoning, decision-making, and task execution.\r\n\r\nThrough a practical, marketing-focused demo, we’ll showcase an AI-powered automation workflow designed to create LinkedIn marketing content. The workflow uses Azure OpenAI models to identify trending and relevant topics, generate compelling marketing copy, and create engaging social media posts with Microsoft Foundry models.\r\n\r\nYou’ll see how to automate the full content creation process, from ideation and post generation to approval flows and publishing. While the demo will focus on LinkedIn, the same approach can be easily adapted and scaled to other social media platforms and marketing channels.",
+    "speaker": "Patricia Rodríguez Vaquero, Stefania Celine Fulgori, Verónica Rivas Remiseiro",
+    "speakerProfiles": [
+      {
+        "name": "Patricia Rodríguez Vaquero",
+        "tagline": "Data Architect - MDW",
+        "photo": "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
+        "linkedin": "https://www.linkedin.com/in/patricia-rodr%C3%ADguez-vaquero/",
+        "sessionize": "https://sessionize.com/patricia-rodriguez-vaquero"
+      },
+      {
+        "name": "Stefania Celine Fulgori",
+        "tagline": "International Marketing BP - Solera",
+        "photo": "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
+        "linkedin": "https://www.linkedin.com/in/stefaniaceline-fulgori/",
+        "sessionize": ""
+      },
+      {
+        "name": "Verónica Rivas Remiseiro",
+        "tagline": "Microsoft MVP Copilot - Tech & Lead Projects - IA & Cibersecurity ",
+        "photo": "https://cdn.sessionize.com/image/64fd-400o400o1-VihPDNcunZYv4mUf1SnjHs.png",
+        "linkedin": "https://www.linkedin.com/in/verorivasremiseiro",
+        "sessionize": "https://sessionize.com/vronik"
+      }
+    ],
+    "speakerImages": [
+      "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
+      "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
+      "https://cdn.sessionize.com/image/64fd-400o400o1-VihPDNcunZYv4mUf1SnjHs.png"
+    ],
+    "room": "Aula magna",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": null,
+    "endTimeISO": null,
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
+    "sessionFormat": "Session 50min",
+    "language": "es",
+    "type": "unscheduled",
+    "provisional": true,
+    "durationProposed": false,
+    "unscheduled": true,
+    "schedulingStatus": "Accepted — pending a programme slot",
+    "schedulingReason": "Single-room Conference capacity; organizer review required"
+  },
+  {
+    "id": "1305431",
+    "sessionId": "1305431",
+    "talk": "Descenso al infierno documental: apócrifo del sysadmin que dijo NO",
+    "description": "Hay sistemas que no fallan de golpe. Se van condenando poco a poco.\r\nPrimero fue un PDF guardado donde no debía. Después, un BLOB creciendo en silencio dentro de MySQL.\r\nEntonces llegó una propuesta envuelta en luz: nueva herramienta, nuevo sistema, promesa de redención. Como si bastara con invocar a un dios del storage para purgar años de deuda técnica y sacar las facturas del inframundo.\r\nPero el infierno documental no se derrota con una herramienta.\r\nSe derrota con arquitectura.\r\nPorque guardar fuera de MySQL no basta. Una carpeta no custodia. Un backup no demuestra recuperación. Un DELETE mal permitido puede abrir una puerta que ninguna auditoría va a cerrar por ti. Y una factura definitiva que todavía acepta cambios no es definitiva: solo está esperando a que alguien la descubra.\r\nEsta ponencia baja a ese infierno: BLOBs, carpetas, objetos, hashes, permisos, restores y promesas de proveedor que suenan bien… hasta que alguien pregunta si pueden demostrarse.\r\nY de ahí sale algo más fuerte que una herramienta: un sistema pensado para que el documento tenga memoria, la factura deje huella y lo definitivo no dependa de la buena fe.\r\nPorque en documentación fiscal, el monstruo no siempre es perder una factura.\r\nEl verdadero monstruo es no poder demostrar qué pasó con ella.",
+    "speaker": "Marta Gonzalez Arnaiz",
+    "speakerProfiles": [
+      {
+        "name": "Marta Gonzalez Arnaiz",
+        "tagline": "Arquitecta de soluciones híbridas y cloud especializada en operaciones, ciberseguridad y observabilidad",
+        "photo": "https://cdn.sessionize.com/image/b622-400o400o1-PV6ZwrRZyEGW9WNqyVW87E.png",
+        "linkedin": "https://www.linkedin.com/in/maaartaa-g?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+        "sessionize": ""
+      }
+    ],
+    "speakerImages": [
+      "https://cdn.sessionize.com/image/b622-400o400o1-PV6ZwrRZyEGW9WNqyVW87E.png"
+    ],
+    "room": "Aula magna",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": null,
+    "endTimeISO": null,
+    "durationMinutes": 30,
+    "durationHuman": "30 min",
+    "sessionFormat": "Lightning talk 30min",
+    "language": "es",
+    "type": "unscheduled",
+    "provisional": true,
+    "durationProposed": false,
+    "unscheduled": true,
+    "schedulingStatus": "Accepted — pending a programme slot",
+    "schedulingReason": "Single-room Conference capacity; organizer review required"
+  },
+  {
+    "id": "1322293",
+    "sessionId": "1322293",
+    "talk": "AI-Assisted Development at Scale: Keeping Product Decisions, Specs, and Agents Aligned",
+    "description": "AI-SDLC creates a traceability problem that becomes expensive as products evolve. A product decision changes, while the delivery specifications, security requirements, test cases, and agent instructions built around its previous version remain unchanged.\r\n \r\nProduct Definition as Code is a recently proposed, open framework for tackling this problem. It keeps accepted product decisions versioned and connected, so delivery work, agent instructions, and checks can cite them instead of restating or reinterpreting them. This also reduces the repeated prose and supporting material that spec-driven workflows tend to accumulate.\r\n \r\nWe will follow one product rule from a versioned product definition into a delivery specification, GitHub Copilot instructions, security and quality requirements, and CI checks. Then we will change that rule and show how the workflow identifies consumers that are now relying on stale context.\r\n \r\nThe session combines product-definition traceability with secure AI-assisted engineering. It covers what can be checked mechanically, what coding agents can surface, and where human judgement remains essential.\r\n \r\nAttendees will leave with a concrete way to accelerate AI-assisted delivery without letting outdated assumptions, product drift, or security gaps move silently into production.",
+    "speaker": "Juan G Carmona",
+    "speakerProfiles": [
+      {
+        "name": "Juan G Carmona",
+        "tagline": "Software Architect | AI Strategist | Critical & Secure Systems | Software Development Engineer at Plain Concepts",
+        "photo": "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg",
+        "linkedin": "https://www.linkedin.com/in/juangcarmona/",
+        "sessionize": "https://sessionize.com/juangcarmona"
+      }
+    ],
+    "speakerImages": [
+      "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg"
+    ],
+    "room": "Aula magna",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": null,
+    "endTimeISO": null,
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
+    "sessionFormat": "Session 50min",
+    "language": "en",
+    "type": "unscheduled",
+    "provisional": true,
+    "durationProposed": false,
+    "unscheduled": true,
+    "schedulingStatus": "Accepted — pending a programme slot",
+    "schedulingReason": "Single-room Conference capacity; organizer review required"
+  },
+  {
+    "id": "1346394",
+    "sessionId": "1346394",
+    "talk": "Securing Your Supply Chain Without Slowing Down Your Dev Team",
+    "description": "This session is not just a theoretical warning.\r\n\r\nOver the past year, npm has evolved from a place where supply chain attacks occur to a place where they occur on a schedule. S1ngularity in August: Then, in September, there was Chalk and Debug, which affected 18 packages and involved billions of weekly downloads. Then came Shai-Hulud, a self-replicating worm that scans machines for secrets and publishes them to a public repository.\r\n\r\nSecurity researchers no longer call this a spike. They call it the new baseline.\r\n\r\nIn nearly every one of these attacks, nothing appeared to be wrong. The pipeline stayed green. The tests passed. Developers had no idea that their CI secrets, cloud credentials, and deployment tokens had already been exfiltrated. Many still don't know if a compromised version is sitting in their lockfile right now.\r\nEvery day, millions of developers run npm install without a second thought. It's muscle memory. That's how modern software is built. It's also how attackers get in.\r\n\r\nThis talk will show you exactly how, with a live demo of a single malicious package silently draining secrets while everything appears normal. Then, we break down the attack vectors.\r\n\r\nFinally, Florian present the part that most security talks skip: a practical, actionable playbook for securing an Azure DevOps pipeline using existing tools, with no additional budget and no measurable impact on your team's velocity.",
+    "speaker": "Florian Lenz",
+    "speakerProfiles": [
+      {
+        "name": "Florian Lenz",
+        "tagline": "Fractional Principal Architect · Microsoft Azure MVP · Building Azure platforms .NET teams actually love",
+        "photo": "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png",
+        "linkedin": "https://www.linkedin.com/in/techworldofflorian/",
+        "sessionize": "https://sessionize.com/florianlenz"
+      }
+    ],
+    "speakerImages": [
+      "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png"
+    ],
+    "room": "Aula magna",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": null,
+    "endTimeISO": null,
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
+    "sessionFormat": "Session 50min",
+    "language": "en",
+    "type": "unscheduled",
+    "provisional": true,
+    "durationProposed": false,
+    "unscheduled": true,
+    "schedulingStatus": "Accepted — pending a programme slot",
+    "schedulingReason": "Single-room Conference capacity; organizer review required"
   }
 ]
