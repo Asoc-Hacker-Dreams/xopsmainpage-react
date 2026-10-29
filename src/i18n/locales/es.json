@@ -292,6 +292,13 @@
     "saleOpensOn": "Venta desde el {{date}}",
     "saleClosed": "Venta cerrada",
     "checkout": {
+      "discountLabel": "Código promocional (opcional)",
+      "discountPlaceholder": "Ej.: X-OPS+URJC",
+      "applyDiscount": "Aplicar",
+      "discountApplied": "Código aplicado",
+      "saving": "Ahorras",
+      "invalidDiscount": "Código no válido para esta entrada o sin disponibilidad.",
+
       "title": "Reservar Entrada",
       "cancel": "Cancelar",
       "submit": "Continuar al Pago",
