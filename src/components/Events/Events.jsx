@@ -27,7 +27,7 @@ const Events = () => {
   const trackLabels = {
     all: t('events.tracks.all'),
     main: t('events.tracks.main'),
-    hyperscalers: t('events.tracks.hyperscalers'),
+    hyperscalers: t('events.tracks.secondary'),
     bsides: t('events.tracks.bsides'),
   };
 
@@ -121,8 +121,8 @@ const Events = () => {
             <p className="flex-grow-1">{event.talk}</p>
             {event.speakerProfiles?.length > 0 && <div className="d-flex flex-wrap gap-2 mb-2">{event.speakerProfiles.map((speaker) => <img key={speaker.name} src={speaker.photo} alt={speaker.name} loading="lazy" width="52" height="52" style={{borderRadius:'50%',objectFit:'cover',background:'#152443'}} />)}</div>}
             <p><strong>{event.speaker}</strong></p>
-            {event.provisional && <small className="text-warning">Horario provisional</small>}
-            {event.durationProposed && <small className="text-warning">Duración propuesta; falta confirmación en Sessionize</small>}
+            {event.provisional && <small className="text-warning">{t('events.provisional')}</small>}
+            {event.durationProposed && <small className="text-warning">{t('events.durationUnconfirmed')}</small>}
             <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
               {t('events.details')}
             </button>
@@ -168,7 +168,7 @@ const Events = () => {
 
           {singleColumnEvents.length === 0 ? (
             <p className="text-center py-4">
-              No hay sesiones programadas para este día y track.
+              {t('events.noSessions')}
             </p>
           ) : selectedTrack === 'all' && trackColumns.length > 1 ? (
             <Row className="mt-5">
@@ -196,7 +196,7 @@ const Events = () => {
                 <p><strong>{t('events.modal.speaker')}:</strong> {selectedEvent.speaker}</p>
                 {selectedEvent.speakerProfiles?.map((speaker) => <p key={speaker.name}><img src={speaker.photo} alt={speaker.name} width="60" height="60" loading="lazy" style={{borderRadius:'50%',objectFit:'cover',marginRight:'10px'}} />{speaker.tagline} {speaker.linkedin && <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}</p>)}
                 <p><strong>{t('events.modal.place')}:</strong> {selectedEvent.room}</p>
-                <p><strong>{t('events.modal.duration')}:</strong> {selectedEvent.durationHuman}{selectedEvent.durationProposed ? ' (pendiente de confirmar)' : ''}</p>
+                <p><strong>{t('events.modal.duration')}:</strong> {selectedEvent.durationHuman}{selectedEvent.durationProposed ? t('events.durationUnconfirmedDetail') : ''}</p>
                 <p><strong>{t('events.modal.time')}:</strong> {formatTime(selectedEvent.timeISO)}</p>
                 <hr />
                 <p style={{whiteSpace:'pre-line'}}>{selectedEvent.description}</p>
