@@ -130,6 +130,7 @@ const Events = () => {
             {event.speakerProfiles?.length > 0 && <div className="d-flex flex-wrap gap-2 mb-2">{event.speakerProfiles.map((speaker) => <img key={speaker.name} src={speaker.photo} alt={speaker.name} loading="lazy" width="52" height="52" style={{borderRadius:'50%',objectFit:'cover',background:'#152443'}} />)}</div>}
             <p><strong>{event.speaker}</strong></p>
             {event.provisional && !event.unscheduled && <small className="text-warning">{t('events.provisional')}</small>}
+            {event.extendedHoursApprovalPending && <p className="text-warning fw-bold" role="status">{t('events.extensionPendingLabel')}</p>}
             {event.durationProposed && <small className="text-warning">{t('events.durationUnconfirmed')}</small>}
             <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
               {t('events.details')}
@@ -173,6 +174,11 @@ const Events = () => {
           </div>
 
           <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
+          {selectedDay === '2026-11-21' && selectedTrack !== 'bsides' && (
+            <div className="alert alert-warning" role="alert" style={{maxWidth: '900px', margin: '24px auto'}}>
+              {t('events.extendedHoursNotice')}
+            </div>
+          )}
 
           {singleColumnEvents.length === 0 ? (
             <p className="text-center py-4">
@@ -220,6 +226,7 @@ const Events = () => {
                 {!selectedEvent.unscheduled && <p><strong>{t('events.modal.place')}:</strong> {selectedEvent.room}</p>}
                 <p><strong>{t('events.modal.duration')}:</strong> {selectedEvent.durationHuman}{selectedEvent.durationProposed ? t('events.durationUnconfirmedDetail') : ''}</p>
                 <p><strong>{t('events.modal.time')}:</strong> {formatTime(selectedEvent.timeISO)}</p>
+                {selectedEvent.extendedHoursApprovalPending && <p className="text-warning fw-bold">{t('events.extensionPendingLabel')}</p>}
                 <hr />
                 <p style={{whiteSpace:'pre-line'}}>{selectedEvent.description}</p>
               </Modal.Body>
