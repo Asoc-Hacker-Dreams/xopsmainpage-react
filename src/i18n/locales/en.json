@@ -491,7 +491,8 @@
       "cta": {
         "summit": "View Madrid Summit",
         "conference": "View Madrid Conference",
-        "verMadrid": "View Madrid"
+        "verMadrid": "View Madrid",
+        "verAgenda": "View Madrid schedule"
       }
     },
     "dubai": {
