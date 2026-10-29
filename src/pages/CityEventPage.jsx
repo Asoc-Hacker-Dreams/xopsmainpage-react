@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { BsAward, BsBullseye, BsCalendar3, BsGeoAlt, BsGraphUp, BsPeople, BsShieldCheck, BsTrophy } from 'react-icons/bs';
 import SEO from '../components/SEO';
 import SpeakersSection from '../components/SpeakersSection';
+import Events from '../components/Events/Events';
 import { cityEvents, cityUrl } from '../data/cityEvents';
 import './CityEventPage.css';
 
@@ -151,7 +152,7 @@ const CityEventPage = ({ city }) => {
             <h2 id="conference-title">X-Ops Conference <strong>{event.city} 2026</strong></h2>
             <p>{t('cityEvent.conference.intro')}</p>
           </div>
-          <div className="city-conference__announcement">
+          {!isMadrid && <div className="city-conference__announcement">
             <span aria-hidden="true">●</span>
             <p>{t('cityEvent.conference.agendaBadge')}</p>
             <h3>{t('cityEvent.conference.agendaTitle')}</h3>
@@ -162,8 +163,9 @@ const CityEventPage = ({ city }) => {
             ) : (
               <p className="city-conference__status">{t('cityEvent.conference.cfpComingSoon', { city: event.city })}</p>
             )}
-          </div>
+          </div>}
         </div>
+        {isMadrid && <div className="container"><p className="text-center">Programa provisional · 20 y 21 de noviembre · Hora de Madrid (CET). Los horarios y salas pueden cambiar.</p><Events /></div>}
       </section>
 
       {isMadrid ? (
