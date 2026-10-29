@@ -268,12 +268,26 @@
     "unscheduled": false
   },
   {
-    "id": "1267233",
-    "sessionId": "1267233",
-    "talk": "Tu sistema habla y un copilot: IaOps real con Grafana Free",
-    "description": "Existe una promesa implícita en IaOps que rara vez se cumple: que la IA va a reducir el ruido de alertas, anticipar problemas antes de que ocurran y ayudar a investigar incidentes más rápido. \r\nEl inconveniente es que casi siempre viene acompañada de una factura considerable, en esta charla rompemos ese mito, con una cuenta gratuita de Grafana, un agente de métricas y ganas de experimentar, puedes tener tu información en menos de una hora, con demo en vivo para demostrarlo",
-    "speaker": "Verónica Rivas Remiseiro",
+    "id": "1256602",
+    "sessionId": "1256602",
+    "talk": "AI agent workflows with n8n and Microsoft Foundry",
+    "description": "Discover how to combine n8n and Microsoft Foundry to build intelligent, AI-powered automations.\r\n\r\nIn this session, we’ll explore how to orchestrate workflows, connect tools and APIs, and create autonomous AI agents capable of reasoning, decision-making, and task execution.\r\n\r\nThrough a practical, marketing-focused demo, we’ll showcase an AI-powered automation workflow designed to create LinkedIn marketing content. The workflow uses Azure OpenAI models to identify trending and relevant topics, generate compelling marketing copy, and create engaging social media posts with Microsoft Foundry models.\r\n\r\nYou’ll see how to automate the full content creation process, from ideation and post generation to approval flows and publishing. While the demo will focus on LinkedIn, the same approach can be easily adapted and scaled to other social media platforms and marketing channels.",
+    "speaker": "Patricia Rodríguez Vaquero, Stefania Celine Fulgori, Verónica Rivas Remiseiro",
     "speakerProfiles": [
+      {
+        "name": "Patricia Rodríguez Vaquero",
+        "tagline": "Data Architect - MDW",
+        "photo": "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
+        "linkedin": "https://www.linkedin.com/in/patricia-rodr%C3%ADguez-vaquero/",
+        "sessionize": "https://sessionize.com/patricia-rodriguez-vaquero"
+      },
+      {
+        "name": "Stefania Celine Fulgori",
+        "tagline": "International Marketing BP - Solera",
+        "photo": "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
+        "linkedin": "https://www.linkedin.com/in/stefaniaceline-fulgori/",
+        "sessionize": ""
+      },
       {
         "name": "Verónica Rivas Remiseiro",
         "tagline": "Microsoft MVP Copilot - Tech & Lead Projects - IA & Cibersecurity ",
@@ -283,6 +297,8 @@
       }
     ],
     "speakerImages": [
+      "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
+      "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
       "https://cdn.sessionize.com/image/64fd-400o400o1-VihPDNcunZYv4mUf1SnjHs.png"
     ],
     "room": "Aula magna",
@@ -297,7 +313,9 @@
     "type": "talk",
     "provisional": true,
     "durationProposed": false,
-    "unscheduled": false
+    "unscheduled": false,
+    "extendedHoursApprovalPending": false,
+    "schedulingChangeReason": "Replaces Verónica Rivas's solo talk at 10:10 by organiser request; Verónica remains a co-presenter."
   },
   {
     "id": "1311118",
@@ -690,6 +708,89 @@
     "unscheduled": false
   },
   {
+    "id": "1322293",
+    "sessionId": "1322293",
+    "talk": "AI-Assisted Development at Scale: Keeping Product Decisions, Specs, and Agents Aligned",
+    "description": "AI-SDLC creates a traceability problem that becomes expensive as products evolve. A product decision changes, while the delivery specifications, security requirements, test cases, and agent instructions built around its previous version remain unchanged.\r\n \r\nProduct Definition as Code is a recently proposed, open framework for tackling this problem. It keeps accepted product decisions versioned and connected, so delivery work, agent instructions, and checks can cite them instead of restating or reinterpreting them. This also reduces the repeated prose and supporting material that spec-driven workflows tend to accumulate.\r\n \r\nWe will follow one product rule from a versioned product definition into a delivery specification, GitHub Copilot instructions, security and quality requirements, and CI checks. Then we will change that rule and show how the workflow identifies consumers that are now relying on stale context.\r\n \r\nThe session combines product-definition traceability with secure AI-assisted engineering. It covers what can be checked mechanically, what coding agents can surface, and where human judgement remains essential.\r\n \r\nAttendees will leave with a concrete way to accelerate AI-assisted delivery without letting outdated assumptions, product drift, or security gaps move silently into production.",
+    "speaker": "Juan G Carmona",
+    "speakerProfiles": [
+      {
+        "name": "Juan G Carmona",
+        "tagline": "Software Architect | AI Strategist | Critical & Secure Systems | Software Development Engineer at Plain Concepts",
+        "photo": "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg",
+        "linkedin": "https://www.linkedin.com/in/juangcarmona/",
+        "sessionize": "https://sessionize.com/juangcarmona"
+      }
+    ],
+    "speakerImages": [
+      "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg"
+    ],
+    "room": "Aula magna",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": "2026-11-21T15:20",
+    "endTimeISO": "2026-11-21T16:10",
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
+    "sessionFormat": "Session 50min",
+    "language": "en",
+    "type": "talk",
+    "provisional": true,
+    "durationProposed": false,
+    "unscheduled": false,
+    "extendedHoursApprovalPending": false
+  },
+  {
+    "id": "block-2026-21-bsides-10",
+    "talk": "Networking y comunidad",
+    "description": "Bloque comunitario sin nuevas charlas aceptadas",
+    "speaker": "",
+    "speakerProfiles": [],
+    "speakerImages": [],
+    "room": "Sala 2",
+    "track": "bsides",
+    "audience": "BSides Madrid",
+    "timeISO": "2026-11-21T16:00",
+    "endTimeISO": "2026-11-21T17:00",
+    "durationMinutes": 60,
+    "durationHuman": "60 min",
+    "type": "break",
+    "provisional": true
+  },
+  {
+    "id": "1346394",
+    "sessionId": "1346394",
+    "talk": "Securing Your Supply Chain Without Slowing Down Your Dev Team",
+    "description": "This session is not just a theoretical warning.\r\n\r\nOver the past year, npm has evolved from a place where supply chain attacks occur to a place where they occur on a schedule. S1ngularity in August: Then, in September, there was Chalk and Debug, which affected 18 packages and involved billions of weekly downloads. Then came Shai-Hulud, a self-replicating worm that scans machines for secrets and publishes them to a public repository.\r\n\r\nSecurity researchers no longer call this a spike. They call it the new baseline.\r\n\r\nIn nearly every one of these attacks, nothing appeared to be wrong. The pipeline stayed green. The tests passed. Developers had no idea that their CI secrets, cloud credentials, and deployment tokens had already been exfiltrated. Many still don't know if a compromised version is sitting in their lockfile right now.\r\nEvery day, millions of developers run npm install without a second thought. It's muscle memory. That's how modern software is built. It's also how attackers get in.\r\n\r\nThis talk will show you exactly how, with a live demo of a single malicious package silently draining secrets while everything appears normal. Then, we break down the attack vectors.\r\n\r\nFinally, Florian present the part that most security talks skip: a practical, actionable playbook for securing an Azure DevOps pipeline using existing tools, with no additional budget and no measurable impact on your team's velocity.",
+    "speaker": "Florian Lenz",
+    "speakerProfiles": [
+      {
+        "name": "Florian Lenz",
+        "tagline": "Fractional Principal Architect · Microsoft Azure MVP · Building Azure platforms .NET teams actually love",
+        "photo": "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png",
+        "linkedin": "https://www.linkedin.com/in/techworldofflorian/",
+        "sessionize": "https://sessionize.com/florianlenz"
+      }
+    ],
+    "speakerImages": [
+      "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png"
+    ],
+    "room": "Aula magna",
+    "track": "main",
+    "audience": "X-Ops Conference Madrid",
+    "timeISO": "2026-11-21T16:10",
+    "endTimeISO": "2026-11-21T17:00",
+    "durationMinutes": 50,
+    "durationHuman": "50 min",
+    "sessionFormat": "Session 50min",
+    "language": "en",
+    "type": "talk",
+    "provisional": true,
+    "durationProposed": false,
+    "unscheduled": false,
+    "extendedHoursApprovalPending": false
+  },
+  {
     "id": "1363437",
     "sessionId": "1363437",
     "talk": "Cómo montar un CTF de Hardware Hacking a gran escala",
@@ -710,8 +811,8 @@
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T15:20",
-    "endTimeISO": "2026-11-21T16:10",
+    "timeISO": "2026-11-21T17:00",
+    "endTimeISO": "2026-11-21T17:50",
     "durationMinutes": 50,
     "durationHuman": "50 min",
     "sessionFormat": "No indicado en Sessionize",
@@ -722,24 +823,9 @@
     "sourceTrack": "BSides",
     "reassignmentPendingInSessionize": true,
     "unscheduled": false,
-    "durationOverrideByOrganizer": true
-  },
-  {
-    "id": "block-2026-21-bsides-10",
-    "talk": "Networking y comunidad",
-    "description": "Bloque comunitario sin nuevas charlas aceptadas",
-    "speaker": "",
-    "speakerProfiles": [],
-    "speakerImages": [],
-    "room": "Sala 2",
-    "track": "bsides",
-    "audience": "BSides Madrid",
-    "timeISO": "2026-11-21T16:00",
-    "endTimeISO": "2026-11-21T17:00",
-    "durationMinutes": 60,
-    "durationHuman": "60 min",
-    "type": "break",
-    "provisional": true
+    "durationOverrideByOrganizer": true,
+    "extendedHoursApprovalPending": true,
+    "scheduleExtendedUntil": "18:40"
   },
   {
     "id": "1363429",
@@ -752,8 +838,8 @@
     "room": "Aula magna",
     "track": "main",
     "audience": "X-Ops Conference Madrid",
-    "timeISO": "2026-11-21T16:10",
-    "endTimeISO": "2026-11-21T17:00",
+    "timeISO": "2026-11-21T17:50",
+    "endTimeISO": "2026-11-21T18:40",
     "durationMinutes": 50,
     "durationHuman": "50 min",
     "sessionFormat": "No indicado en Sessionize",
@@ -764,29 +850,17 @@
     "sourceTrack": "BSides",
     "reassignmentPendingInSessionize": true,
     "unscheduled": false,
-    "durationOverrideByOrganizer": true
+    "durationOverrideByOrganizer": true,
+    "extendedHoursApprovalPending": true,
+    "scheduleExtendedUntil": "18:40"
   },
   {
-    "id": "1256602",
-    "sessionId": "1256602",
-    "talk": "AI agent workflows with n8n and Microsoft Foundry",
-    "description": "Discover how to combine n8n and Microsoft Foundry to build intelligent, AI-powered automations.\r\n\r\nIn this session, we’ll explore how to orchestrate workflows, connect tools and APIs, and create autonomous AI agents capable of reasoning, decision-making, and task execution.\r\n\r\nThrough a practical, marketing-focused demo, we’ll showcase an AI-powered automation workflow designed to create LinkedIn marketing content. The workflow uses Azure OpenAI models to identify trending and relevant topics, generate compelling marketing copy, and create engaging social media posts with Microsoft Foundry models.\r\n\r\nYou’ll see how to automate the full content creation process, from ideation and post generation to approval flows and publishing. While the demo will focus on LinkedIn, the same approach can be easily adapted and scaled to other social media platforms and marketing channels.",
-    "speaker": "Patricia Rodríguez Vaquero, Stefania Celine Fulgori, Verónica Rivas Remiseiro",
+    "id": "1267233",
+    "sessionId": "1267233",
+    "talk": "Tu sistema habla y un copilot: IaOps real con Grafana Free",
+    "description": "Existe una promesa implícita en IaOps que rara vez se cumple: que la IA va a reducir el ruido de alertas, anticipar problemas antes de que ocurran y ayudar a investigar incidentes más rápido. \r\nEl inconveniente es que casi siempre viene acompañada de una factura considerable, en esta charla rompemos ese mito, con una cuenta gratuita de Grafana, un agente de métricas y ganas de experimentar, puedes tener tu información en menos de una hora, con demo en vivo para demostrarlo",
+    "speaker": "Verónica Rivas Remiseiro",
     "speakerProfiles": [
-      {
-        "name": "Patricia Rodríguez Vaquero",
-        "tagline": "Data Architect - MDW",
-        "photo": "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
-        "linkedin": "https://www.linkedin.com/in/patricia-rodr%C3%ADguez-vaquero/",
-        "sessionize": "https://sessionize.com/patricia-rodriguez-vaquero"
-      },
-      {
-        "name": "Stefania Celine Fulgori",
-        "tagline": "International Marketing BP - Solera",
-        "photo": "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
-        "linkedin": "https://www.linkedin.com/in/stefaniaceline-fulgori/",
-        "sessionize": ""
-      },
       {
         "name": "Verónica Rivas Remiseiro",
         "tagline": "Microsoft MVP Copilot - Tech & Lead Projects - IA & Cibersecurity ",
@@ -796,8 +870,6 @@
       }
     ],
     "speakerImages": [
-      "https://cdn.sessionize.com/image/2056-400o400o1-QqWdmJU1oxNnByyyviYzpS.jpg",
-      "https://cdn.sessionize.com/image/2fd5-400o400o1-NVxWL8oB8Q43FUJRgE29hk.jpg",
       "https://cdn.sessionize.com/image/64fd-400o400o1-VihPDNcunZYv4mUf1SnjHs.png"
     ],
     "room": "Aula magna",
@@ -814,7 +886,8 @@
     "durationProposed": false,
     "unscheduled": true,
     "schedulingStatus": "Accepted — pending a programme slot",
-    "schedulingReason": "Single-room Conference capacity; organizer review required"
+    "schedulingReason": "Replaced at 10:10 by the accepted multi-speaker AI agent workflows session; no free slot in the authorised programme.",
+    "extendedHoursApprovalPending": false
   },
   {
     "id": "1305431",
@@ -843,74 +916,6 @@
     "durationHuman": "30 min",
     "sessionFormat": "Lightning talk 30min",
     "language": "es",
-    "type": "unscheduled",
-    "provisional": true,
-    "durationProposed": false,
-    "unscheduled": true,
-    "schedulingStatus": "Accepted — pending a programme slot",
-    "schedulingReason": "Single-room Conference capacity; organizer review required"
-  },
-  {
-    "id": "1322293",
-    "sessionId": "1322293",
-    "talk": "AI-Assisted Development at Scale: Keeping Product Decisions, Specs, and Agents Aligned",
-    "description": "AI-SDLC creates a traceability problem that becomes expensive as products evolve. A product decision changes, while the delivery specifications, security requirements, test cases, and agent instructions built around its previous version remain unchanged.\r\n \r\nProduct Definition as Code is a recently proposed, open framework for tackling this problem. It keeps accepted product decisions versioned and connected, so delivery work, agent instructions, and checks can cite them instead of restating or reinterpreting them. This also reduces the repeated prose and supporting material that spec-driven workflows tend to accumulate.\r\n \r\nWe will follow one product rule from a versioned product definition into a delivery specification, GitHub Copilot instructions, security and quality requirements, and CI checks. Then we will change that rule and show how the workflow identifies consumers that are now relying on stale context.\r\n \r\nThe session combines product-definition traceability with secure AI-assisted engineering. It covers what can be checked mechanically, what coding agents can surface, and where human judgement remains essential.\r\n \r\nAttendees will leave with a concrete way to accelerate AI-assisted delivery without letting outdated assumptions, product drift, or security gaps move silently into production.",
-    "speaker": "Juan G Carmona",
-    "speakerProfiles": [
-      {
-        "name": "Juan G Carmona",
-        "tagline": "Software Architect | AI Strategist | Critical & Secure Systems | Software Development Engineer at Plain Concepts",
-        "photo": "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg",
-        "linkedin": "https://www.linkedin.com/in/juangcarmona/",
-        "sessionize": "https://sessionize.com/juangcarmona"
-      }
-    ],
-    "speakerImages": [
-      "https://cdn.sessionize.com/image/1e9c-400o400o1-9aBFSy2EuUx28kfUUZj4ys.jpg"
-    ],
-    "room": "Aula magna",
-    "track": "main",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": null,
-    "endTimeISO": null,
-    "durationMinutes": 50,
-    "durationHuman": "50 min",
-    "sessionFormat": "Session 50min",
-    "language": "en",
-    "type": "unscheduled",
-    "provisional": true,
-    "durationProposed": false,
-    "unscheduled": true,
-    "schedulingStatus": "Accepted — pending a programme slot",
-    "schedulingReason": "Single-room Conference capacity; organizer review required"
-  },
-  {
-    "id": "1346394",
-    "sessionId": "1346394",
-    "talk": "Securing Your Supply Chain Without Slowing Down Your Dev Team",
-    "description": "This session is not just a theoretical warning.\r\n\r\nOver the past year, npm has evolved from a place where supply chain attacks occur to a place where they occur on a schedule. S1ngularity in August: Then, in September, there was Chalk and Debug, which affected 18 packages and involved billions of weekly downloads. Then came Shai-Hulud, a self-replicating worm that scans machines for secrets and publishes them to a public repository.\r\n\r\nSecurity researchers no longer call this a spike. They call it the new baseline.\r\n\r\nIn nearly every one of these attacks, nothing appeared to be wrong. The pipeline stayed green. The tests passed. Developers had no idea that their CI secrets, cloud credentials, and deployment tokens had already been exfiltrated. Many still don't know if a compromised version is sitting in their lockfile right now.\r\nEvery day, millions of developers run npm install without a second thought. It's muscle memory. That's how modern software is built. It's also how attackers get in.\r\n\r\nThis talk will show you exactly how, with a live demo of a single malicious package silently draining secrets while everything appears normal. Then, we break down the attack vectors.\r\n\r\nFinally, Florian present the part that most security talks skip: a practical, actionable playbook for securing an Azure DevOps pipeline using existing tools, with no additional budget and no measurable impact on your team's velocity.",
-    "speaker": "Florian Lenz",
-    "speakerProfiles": [
-      {
-        "name": "Florian Lenz",
-        "tagline": "Fractional Principal Architect · Microsoft Azure MVP · Building Azure platforms .NET teams actually love",
-        "photo": "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png",
-        "linkedin": "https://www.linkedin.com/in/techworldofflorian/",
-        "sessionize": "https://sessionize.com/florianlenz"
-      }
-    ],
-    "speakerImages": [
-      "https://cdn.sessionize.com/image/e747-400o400o1-fhEGsag52qVkbtwJDn8Yms.png"
-    ],
-    "room": "Aula magna",
-    "track": "main",
-    "audience": "X-Ops Conference Madrid",
-    "timeISO": null,
-    "endTimeISO": null,
-    "durationMinutes": 50,
-    "durationHuman": "50 min",
-    "sessionFormat": "Session 50min",
-    "language": "en",
     "type": "unscheduled",
     "provisional": true,
     "durationProposed": false,
