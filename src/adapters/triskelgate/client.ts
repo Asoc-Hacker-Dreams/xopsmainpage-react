@@ -11,6 +11,8 @@ import type {
   TGValidateResponse,
   TGCheckoutPayload,
   TGCheckoutResponse,
+  TGDiscountValidationPayload,
+  TGDiscountValidationResponse,
   TGCheckoutSessionStatus,
   TGApiResponse,
   TGOrder,
@@ -61,6 +63,13 @@ export class TriskelGateClient {
   async validateTicket(payload: TGValidatePayload): Promise<TGValidateResponse> {
     return this.breaker.execute(() =>
       this.request<TGValidateResponse>('POST', '/api/validate', payload),
+    );
+  }
+
+  /** Authoritative preview, scoped to the chosen event and ticket type. */
+  async validateDiscount(payload: TGDiscountValidationPayload): Promise<TGDiscountValidationResponse> {
+    return this.breaker.execute(() =>
+      this.request<TGDiscountValidationResponse>('POST', '/api/discounts/validate', payload),
     );
   }
 
