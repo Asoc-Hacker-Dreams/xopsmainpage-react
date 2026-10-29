@@ -86,9 +86,8 @@ const VenueRow = ({ label, name, dates, venue }) => (
   </div>
 );
 
-const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaLabel, ctaTo, agendaLabel, agendaTo, targetDate, animDir }) => (
-  <AnimationWrapper animation={`fade-${animDir}`} duration={1200}>
-    <div style={{
+const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaLabel, ctaTo, agendaLabel, agendaTo, targetDate }) => (
+  <div style={{
       background: '#16213e',
       borderRadius: '14px',
       padding: '36px',
@@ -178,8 +177,7 @@ const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, nar
           </a>
         )}
       </div>
-    </div>
-  </AnimationWrapper>
+  </div>
 );
 
 const EditionsSection = () => {
@@ -234,7 +232,6 @@ const EditionsSection = () => {
               agendaLabel={t('editions.madrid.cta.verAgenda')}
               agendaTo="https://madrid.xopsconference.com/#conference-schedule"
               targetDate="2026-11-19T09:00:00"
-              animDir="right"
             />
           </div>
 
@@ -267,7 +264,6 @@ const EditionsSection = () => {
               ctaLabel={t('editions.dubai.cta.verDubai') || 'Ver Dubai'}
               ctaTo="https://dubai.xopsconference.com"
               targetDate="2026-11-30T09:00:00"
-              animDir="left"
             />
           </div>
         </div>
