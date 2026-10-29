@@ -579,15 +579,18 @@
     "cfpCta": "Submit a talk",
     "scheduleTitle": "Event Schedule 2026",
     "noSessions": "There are no sessions scheduled for this day and track.",
+    "pendingTitle": "Accepted talks awaiting a time slot",
+    "pendingExplanation": "These proposals remain accepted, but a single Conference room on Friday and Saturday does not have enough capacity. Additional time, another room, or programme adjustments are needed. None has been cancelled or moved to the Summit.",
+    "pendingTime": "Time slot not assigned",
     "provisional": "Provisional schedule",
-    "durationUnconfirmed": "Proposed duration; awaiting Sessionize confirmation",
-    "durationUnconfirmedDetail": " (subject to confirmation)",
+    "durationUnconfirmed": "50 minutes assigned by the organisers (no duration specified in Sessionize)",
+    "durationUnconfirmedDetail": " (organiser-assigned duration)",
     "tracks": {
       "all": "All Tracks",
       "main": "Main Hall",
       "hyperscalers": "Hyperscalers",
       "secondary": "Room 2 (TBC)",
-      "bsides": "Bsides Madrid"
+      "bsides": "Room 2 · BSides Madrid"
     },
     "place": "Venue",
     "details": "More Details",
