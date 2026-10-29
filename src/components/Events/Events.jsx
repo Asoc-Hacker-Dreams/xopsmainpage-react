@@ -10,9 +10,6 @@ const trackFilters = {
   bsides: (event) => event.track === 'bsides',
 };
 
-// Accepted proposals that cannot yet fit within the one-hall Conference timetable.
-const pendingTalks = scheduleData.filter(event => event.type === 'unscheduled');
-
 const Events = () => {
   const { t, i18n } = useTranslation();
 
@@ -174,11 +171,6 @@ const Events = () => {
           </div>
 
           <h2 className="text-center margin-top">{formatDayTitle(selectedDay)}</h2>
-          {selectedDay === '2026-11-21' && selectedTrack !== 'bsides' && (
-            <div className="alert alert-warning" role="alert" style={{maxWidth: '900px', margin: '24px auto'}}>
-              {t('events.extendedHoursNotice')}
-            </div>
-          )}
 
           {singleColumnEvents.length === 0 ? (
             <p className="text-center py-4">
@@ -199,20 +191,6 @@ const Events = () => {
                 {singleColumnEvents.map((event, index) => renderEventCard(event, index))}
               </Col>
             </Row>
-          )}
-
-          {pendingTalks.length > 0 && (selectedTrack === 'all' || selectedTrack === 'main') && (
-            <section aria-labelledby="pending-sessions-heading" className="mt-5 pt-4">
-              <h3 id="pending-sessions-heading">{t('events.pendingTitle')} ({pendingTalks.length})</h3>
-              <p className="mb-4">{t('events.pendingExplanation')}</p>
-              <Row>
-                {pendingTalks.map((event, index) => (
-                  <Col key={event.id} md={6} lg={6}>
-                    {renderEventCard(event, index)}
-                  </Col>
-                ))}
-              </Row>
-            </section>
           )}
 
           {selectedEvent && (
