@@ -195,6 +195,10 @@ const TicketModal = ({ show, onHide }) => {
   const [selectedTT, setSelectedTT]     = useState(null);
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
+  const [discountCode, setDiscountCode] = useState('');
+  const [discountPreview, setDiscountPreview] = useState(null);
+  const [discountError, setDiscountError] = useState(null);
+  const [validatingDiscount, setValidatingDiscount] = useState(false);
   const [formError, setFormError]       = useState(null);
   const [purchasing, setPurchasing]     = useState(false);
 
@@ -261,6 +265,9 @@ const TicketModal = ({ show, onHide }) => {
     setSelectedTT(ticketType);
     setCustomerName('');
     setCustomerEmail('');
+    setDiscountCode('');
+    setDiscountPreview(null);
+    setDiscountError(null);
     setFormError(null);
     setStep('checkout');
   };
@@ -268,6 +275,42 @@ const TicketModal = ({ show, onHide }) => {
   const backToSelect = () => {
     setStep('select');
     setFormError(null);
+  };
+
+  const applyDiscount = async () => {
+    const code = discountCode.trim().toUpperCase();
+    if (!code || !selectedEvent || !selectedTT) return null;
+    setValidatingDiscount(true);
+    setDiscountError(null);
+    try {
+      const result = await triskelGateClient.validateDiscount({
+        code,
+        eventId: selectedEvent.id,
+        ticketTypeId: selectedTT.id,
+        quantity: 1,
+      });
+      if (!result?.success || !result.discount ||
+          result.discount.code !== code ||
+          Number(result.discount.ticketTypeId) !== Number(selectedTT.id)) {
+        throw new Error(t('ticketModal.checkout.invalidDiscount'));
+      }
+      setDiscountPreview(result.discount);
+      return result.discount;
+    } catch (error) {
+      let message = t('ticketModal.checkout.invalidDiscount');
+      if (typeof error?.body === 'string') {
+        try {
+          message = JSON.parse(error.body).message || message;
+        } catch {
+          // User-safe generic copy if upstream response is not JSON.
+        }
+      }
+      setDiscountPreview(null);
+      setDiscountError(message);
+      return null;
+    } finally {
+      setValidatingDiscount(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -285,10 +328,18 @@ const TicketModal = ({ show, onHide }) => {
     setFormError(null);
 
     try {
+      // Preview is informational; backend revalidates in the order
+      // transaction. Never submit a raw unvalidated code as if priced.
+      const code = discountCode.trim().toUpperCase();
+      if (code && discountPreview?.code !== code) {
+        const quote = await applyDiscount();
+        if (!quote) return;
+      }
       const data = await triskelGateClient.createCheckout({
         eventId:       selectedEvent.id,
         ticketTypeId:  selectedTT.id,
         quantity:      1,
+        ...(discountCode.trim() ? { discountCode: discountCode.trim().toUpperCase() } : {}),
         customerEmail: email,
         customerName:  name,
         successUrl: `${window.location.origin}/tickets/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -348,7 +399,12 @@ const TicketModal = ({ show, onHide }) => {
               <span style={{ color: '#00BCD4' }}>{selectedTT?.name.toUpperCase()}</span>
               {selectedTT && (
                 <span style={{ color: '#64748b', fontWeight: 400 }}>
-                  {formatPrice(selectedTT.price, selectedTT.currency, i18n.language)}
+                  {discountPreview ? (
+                    <>
+                      <s>{formatPrice(selectedTT.price, selectedTT.currency, i18n.language)}</s>
+                      {' → '}{formatPrice(discountPreview.finalAmount, discountPreview.currency, i18n.language)}
+                    </>
+                  ) : formatPrice(selectedTT.price, selectedTT.currency, i18n.language)}
                 </span>
               )}
             </>
@@ -397,7 +453,9 @@ const TicketModal = ({ show, onHide }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px' }}>
                   <strong style={{ color: '#fff' }}>{selectedTT.name}</strong>
                   <span style={{ color: '#00BCD4', fontWeight: 600 }}>
-                    {formatPrice(selectedTT.price, selectedTT.currency, i18n.language)}
+                    {discountPreview
+                      ? formatPrice(discountPreview.finalAmount, discountPreview.currency, i18n.language)
+                      : formatPrice(selectedTT.price, selectedTT.currency, i18n.language)}
                   </span>
                 </div>
                 {(() => {
@@ -462,6 +520,47 @@ const TicketModal = ({ show, onHide }) => {
               />
               <Form.Text style={{ color: '#64748b' }}>{t('ticketModal.checkout.emailHint')}</Form.Text>
             </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="tm-discount" style={{ color: '#ccc' }}>
+                {t('ticketModal.checkout.discountLabel')}
+              </Form.Label>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Form.Control
+                  id="tm-discount"
+                  type="text"
+                  autoComplete="off"
+                  spellCheck={false}
+                  maxLength={32}
+                  placeholder={t('ticketModal.checkout.discountPlaceholder')}
+                  value={discountCode}
+                  onChange={(e) => {
+                    setDiscountCode(e.target.value.toUpperCase());
+                    setDiscountPreview(null);
+                    setDiscountError(null);
+                  }}
+                  disabled={purchasing || validatingDiscount}
+                  style={INPUT_STYLE}
+                />
+                <Button type="button" variant="outline-info" onClick={applyDiscount}
+                  disabled={!discountCode.trim() || purchasing || validatingDiscount}>
+                  {validatingDiscount ? <Spinner size="sm" /> : t('ticketModal.checkout.applyDiscount')}
+                </Button>
+              </div>
+              {discountError && <div role="alert" style={{ color: '#fca5a5', marginTop: '8px' }}>{discountError}</div>}
+              {discountPreview && (
+                <Alert variant="success" role="status" style={{ marginTop: '12px' }}>
+                  <strong>{discountPreview.code}</strong>
+                  {' · '}{t('ticketModal.checkout.discountApplied')}
+                  <div>
+                    <s>{formatPrice(discountPreview.originalAmount, discountPreview.currency, i18n.language)}</s>
+                    {' → '}
+                    <strong>{formatPrice(discountPreview.finalAmount, discountPreview.currency, i18n.language)}</strong>
+                    {' · '}{t('ticketModal.checkout.saving')}{' '}
+                    {formatPrice(discountPreview.discountAmount, discountPreview.currency, i18n.language)}
+                  </div>
+                </Alert>
+              )}
+            </Form.Group>
             <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginTop: '12px' }}>
               {t('ticketModal.checkout.taxIncluded')}
             </p>
@@ -472,7 +571,7 @@ const TicketModal = ({ show, onHide }) => {
             </Button>
             <Button
               type="submit"
-              disabled={purchasing}
+              disabled={purchasing || validatingDiscount}
               style={{ background: '#00BCD4', border: 'none', color: '#0A0F2E', fontWeight: 700 }}
             >
               {purchasing ? <Spinner size="sm" /> : t('ticketModal.checkout.submit')}
