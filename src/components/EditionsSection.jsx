@@ -86,7 +86,7 @@ const VenueRow = ({ label, name, dates, venue }) => (
   </div>
 );
 
-const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaLabel, ctaTo, targetDate, animDir }) => (
+const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaLabel, ctaTo, agendaLabel, agendaTo, targetDate, animDir }) => (
   <AnimationWrapper animation={`fade-${animDir}`} duration={1200}>
     <div style={{
       background: '#16213e',
@@ -141,8 +141,8 @@ const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, nar
         {badges.map((b) => <Badge key={b} text={b} />)}
       </div>
 
-      {/* Single CTA per city - points to subdomain */}
-      <div>
+      {/* Select a city, or open its published Conference timetable directly. */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px' }}>
         <a
           href={ctaTo}
           style={{
@@ -159,6 +159,24 @@ const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, nar
         >
           {ctaLabel}
         </a>
+        {agendaTo && (
+          <a
+            href={agendaTo}
+            style={{
+              display: 'inline-block',
+              padding: '11px 18px',
+              borderRadius: '8px',
+              border: '1px solid #00BCD4',
+              color: '#00BCD4',
+              fontWeight: 700,
+              fontSize: '0.8rem',
+              textDecoration: 'none',
+              letterSpacing: '0.04em',
+            }}
+          >
+            {agendaLabel}
+          </a>
+        )}
       </div>
     </div>
   </AnimationWrapper>
@@ -168,7 +186,7 @@ const EditionsSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="ediciones" style={{ background: '#0f0f1a', padding: '80px 0 60px' }}>
+    <section id="ediciones" style={{ background: '#0f0f1a', padding: '80px 0 60px', scrollMarginTop: '90px' }}>
       <div className="container">
         <AnimationWrapper animation="fade-up" duration={1000}>
           <div className="text-center mb-5">
@@ -213,6 +231,8 @@ const EditionsSection = () => {
               ]}
               ctaLabel={t('editions.madrid.cta.verMadrid') || 'Ver Madrid'}
               ctaTo="https://madrid.xopsconference.com"
+              agendaLabel={t('editions.madrid.cta.verAgenda')}
+              agendaTo="https://madrid.xopsconference.com/#conference-schedule"
               targetDate="2026-11-19T09:00:00"
               animDir="right"
             />
