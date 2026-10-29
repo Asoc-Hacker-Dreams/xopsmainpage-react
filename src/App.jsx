@@ -130,7 +130,7 @@ function App() {
                   <>
                     <a className="links px-4 fw-bold text-white" href="#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</a>
                     <a className="links px-4 fw-bold text-white" href="#conference" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</a>
-                    <a className="links px-4 fw-bold text-white" href="#agenda" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('archive.agenda')}</a>
+                    <a className="links px-4 fw-bold text-white" href={activeCity === 'madrid' ? '#conference-schedule' : '#conference'} style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('archive.agenda')}</a>
                     <a className="links px-4 fw-bold text-white" href="#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</a>
                   </>
                 ) : (
@@ -213,7 +213,8 @@ function App() {
             >
               {t('hero.buyTicket')}
             </button>
-            <Link to="/agenda" className="btn-hero-secondary">
+            {/* The 2026 programme lives on each city's page. Choose a city first. */}
+            <Link to="/#ediciones" className="btn-hero-secondary">
               {t('hero.viewAgenda')}
             </Link>
           </div>
