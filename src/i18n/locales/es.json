@@ -94,6 +94,10 @@
       "intro": "Un punto de encuentro para compartir experiencia real, patrones de arquitectura, seguridad y operación de plataformas modernas.",
       "agendaBadge": "Agenda 2026",
       "agendaTitle": "Ponentes y agenda próximamente",
+      "agendaPublishedTitle": "Agenda técnica de Madrid disponible",
+      "agendaPublishedText": "Consulta el programa provisional de X-Ops Conference y BSides Madrid 2026, con horarios, ponentes, fotografías y detalles de cada sesión.",
+      "viewAgenda": "Ver agenda técnica",
+      "preliminaryScheduleNotice": "Programa provisional de Madrid: viernes 20, 15:00–19:00, solo Aula Magna. Sábado 21: BSides 10:00–17:00 en Sala 2; Conference 10:00–18:40 en Aula Magna, con la extensión de 17:00 a 18:40 pendiente de autorización. Comida 12:10–13:10. Horarios CET.",
       "proposeTalk": "Proponer charla",
       "cfpComingSoon": "El Call for Papers de {{city}} se anunciará próximamente."
     },
@@ -292,6 +296,13 @@
     "saleOpensOn": "Venta desde el {{date}}",
     "saleClosed": "Venta cerrada",
     "checkout": {
+      "discountLabel": "Código promocional (opcional)",
+      "discountPlaceholder": "Ej.: X-OPS+URJC",
+      "applyDiscount": "Aplicar",
+      "discountApplied": "Código aplicado",
+      "saving": "Ahorras",
+      "invalidDiscount": "Código no válido para esta entrada o sin disponibilidad.",
+
       "title": "Reservar Entrada",
       "cancel": "Cancelar",
       "submit": "Continuar al Pago",
@@ -307,24 +318,20 @@
       },
       "taxIncluded": "Precio con IVA incluido. No se añaden cargos extra."
     },
-    "features": {
-      "fullAccess": "Acceso completo al evento",
-      "allSessions": "Todas las sesiones",
-      "eventMaterial": "Material del evento",
-      "summitTierAccess": "Acceso al Summit y a la Conferencia",
-      "vipDinnerAccess": "Acceso a cena con ponentes y patrocinadores",
-      "excluded": {
-        "summitAccess": "No incluye acceso al Summit",
-        "vipDinner": "No incluye cena con ponentes y patrocinadores"
-      }
-    },
     "tierDescriptions": {
-      "superEarly": "Reserva con la máxima antelación y ahorra incluso más con esta tarifa no reembolsable de cantidad limitada.",
-      "early": "Asegura tu plaza antes del cierre de la fase anticipada. Tarifa no reembolsable mientras queden plazas.",
-      "daily": "Acceso de un día completo a la Conferencia. Ideal si solo puedes asistir una jornada.",
-      "lastMinute": "Últimas entradas disponibles antes del evento. Tarifa no reembolsable.",
-      "summit": "Pase de dos días para el Summit ejecutivo (19 Nov Madrid / 30 Nov–1 Dic Dubai). No incluye la Conferencia.",
-      "vip": "Acceso completo al evento con prioridad, networking guiado y cena exclusiva con ponentes y patrocinadores."
+      "superEarly": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye Summit, speakers dinner ni workshops premium.",
+      "early": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Precio early adopter. No incluye Summit, speakers dinner ni workshops premium.",
+      "daily": "Entrada estándar al precio regular. Acceso completo a los 2 días de Conference, todas las sesiones técnicas, networking y material incluidos. No incluye Summit, speakers dinner ni workshops premium.",
+      "lastMinute": "Acceso completo a los 2 días de Conference. Todas las sesiones técnicas, networking y material incluidos. Tarifa de último momento. No incluye Summit, speakers dinner ni workshops premium.",
+      "vip": "Los 2 días completos de Conference MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye Summit ni workshops premium.",
+      "summit": "La experiencia X-Ops completa: Summit ejecutivo, los 2 días completos de Conference y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
+    },
+    "entitlements": {
+      "confDay1": "Conference día 1 · acceso completo",
+      "confDay2": "Conference día 2 · acceso completo",
+      "summit": "X-Ops Summit ejecutivo",
+      "dinner": "Speakers dinner",
+      "workshops": "Workshops premium (se venden aparte)"
     }
   },
   "tickets": {
@@ -485,7 +492,8 @@
       "cta": {
         "summit": "Ver Summit Madrid",
         "conference": "Ver Conference Madrid",
-        "verMadrid": "Ver Madrid"
+        "verMadrid": "Ver Madrid",
+        "verAgenda": "Ver agenda Madrid"
       }
     },
     "dubai": {
@@ -576,11 +584,21 @@
     "cfpOpen": "¡El Call for Papers está abierto!",
     "cfpCta": "Proponer charla",
     "scheduleTitle": "Agenda del Evento 2026",
+    "noSessions": "No hay sesiones programadas para este día y track.",
+    "pendingTitle": "Charlas aceptadas pendientes de horario",
+    "pendingExplanation": "Estas propuestas continúan aceptadas, pero todavía no tienen horario asignado en el Aula Magna. No se han cancelado ni trasladado al Summit. Su incorporación requiere reorganizar o ampliar de nuevo la programación.",
+    "extensionPendingLabel": "Franja después de las 17:00 pendiente de aprobación",
+    "extendedHoursNotice": "Atención: la propuesta de Conference del sábado se prolonga hasta las 18:40. Las charlas de David Regueira (17:00–17:50) y LLM de Troya (17:50–18:40) requieren autorización para ampliar el cierre previamente previsto a las 17:00. BSides sigue terminando a las 17:00.",
+    "pendingTime": "Horario por asignar",
+    "provisional": "Horario provisional",
+    "durationUnconfirmed": "50 minutos asignados por la organización (duración no especificada en Sessionize)",
+    "durationUnconfirmedDetail": " (duración fijada por organización)",
     "tracks": {
       "all": "Todos los Tracks",
       "main": "Aula magna",
       "hyperscalers": "Hyperscalers",
-      "bsides": "Bsides Madrid"
+      "secondary": "Sala 2 (por confirmar)",
+      "bsides": "Sala 2 · BSides Madrid"
     },
     "place": "Lugar",
     "details": "Más Detalles",

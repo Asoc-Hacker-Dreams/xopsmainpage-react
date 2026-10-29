@@ -365,6 +365,12 @@ jobs:
           npx @cyclonedx/cyclonedx-npm --output-file sbom.json
           npx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
 
+      # npm run build invokes Playwright prerender; npm ci only installs its
+      # Node package, not the Chromium executable. Without this, OSDO's
+      # build-security job fails independently of source changes.
+      - name: Install browser for prerender
+        run: npx playwright install --with-deps chromium
+
       - name: Build application
         run: npm run build
 

@@ -412,6 +412,42 @@
   font-weight: 800;
 }
 
+/* The published Madrid timetable is part of the city Conference layout,
+   but spans both columns so speaker cards remain readable on all screens. */
+.city-conference__schedule {
+  grid-column: 1 / -1;
+  min-width: 0;
+  scroll-margin-top: 7rem;
+}
+
+.city-conference__schedule .event-schedule-section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.city-conference__schedule .event-schedule-section .container {
+  max-width: 100%;
+  padding-inline: 0;
+}
+
+.city-conference__schedule-notice {
+  max-width: 110ch;
+  margin: 0 auto 2.5rem;
+  color: var(--city-muted);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.city-conference__announcement--published {
+  border-color: var(--city-cyan);
+}
+
+.city-conference__announcement--published a {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .city-conference__status {
   color: var(--city-muted) !important;
   font-size: 1rem !important;

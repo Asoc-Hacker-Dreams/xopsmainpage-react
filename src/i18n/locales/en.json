@@ -94,6 +94,10 @@
       "intro": "A meeting point to share real-world experience, architecture patterns, security and modern platform operations.",
       "agendaBadge": "Agenda 2026",
       "agendaTitle": "Speakers and agenda coming soon",
+      "agendaPublishedTitle": "Madrid technical programme available",
+      "agendaPublishedText": "Browse the provisional X-Ops Conference and BSides Madrid 2026 schedule, including times, speakers, photographs and session details.",
+      "viewAgenda": "View technical schedule",
+      "preliminaryScheduleNotice": "Provisional Madrid programme: Friday 20, 15:00–19:00, Main Hall only. Saturday 21: BSides 10:00–17:00 in Room 2; Conference 10:00–18:40 in the Main Hall, with the extension from 17:00 to 18:40 subject to approval. Lunch 12:10–13:10. All times CET.",
       "proposeTalk": "Propose a talk",
       "cfpComingSoon": "The {{city}} Call for Papers will be announced soon."
     },
@@ -298,6 +302,13 @@
     "saleOpensOn": "On sale from {{date}}",
     "saleClosed": "Sales closed",
     "checkout": {
+      "discountLabel": "Promo code (optional)",
+      "discountPlaceholder": "E.g. X-OPS+URJC",
+      "applyDiscount": "Apply",
+      "discountApplied": "Code applied",
+      "saving": "You save",
+      "invalidDiscount": "Code unavailable or invalid for this ticket.",
+
       "title": "Reserve Ticket",
       "cancel": "Cancel",
       "submit": "Proceed to Payment",
@@ -313,24 +324,20 @@
       },
       "taxIncluded": "Price includes VAT. No additional charges."
     },
-    "features": {
-      "fullAccess": "Full event access",
-      "allSessions": "All sessions",
-      "eventMaterial": "Event materials",
-      "summitTierAccess": "Access to the Summit and the Conference",
-      "vipDinnerAccess": "Access to dinner with speakers and sponsors",
-      "excluded": {
-        "summitAccess": "Does not include Summit access",
-        "vipDinner": "Does not include dinner with speakers and sponsors"
-      }
-    },
     "tierDescriptions": {
-      "superEarly": "Book the earliest and save even more with this limited, non-refundable quota.",
-      "early": "Lock your seat before the early phase closes. Non-refundable while seats remain.",
-      "daily": "One full day of Conference access. Ideal if you can only attend a single day.",
-      "lastMinute": "Last seats available before the event. Non-refundable.",
-      "summit": "Two-day pass to the executive Summit (Nov 19 Madrid / Nov 30 – Dec 1 Dubai). Does not include the Conference.",
-      "vip": "Full event access with priority perks, guided networking, and an exclusive dinner with speakers and sponsors."
+      "superEarly": "Full 2-day Conference access. All technical sessions, networking and materials included. Exclusive price for the first attendees. Does not include Summit, speakers dinner or premium workshops.",
+      "early": "Full 2-day Conference access. All technical sessions, networking and materials included. Early adopter price. Does not include Summit, speakers dinner or premium workshops.",
+      "daily": "Standard ticket at the regular price. Full 2-day Conference access, all technical sessions, networking and materials included. Does not include Summit, speakers dinner or premium workshops.",
+      "lastMinute": "Full 2-day Conference access. All technical sessions, networking and materials included. Last-minute rate. Does not include Summit, speakers dinner or premium workshops.",
+      "vip": "The full 2 days of Conference PLUS the speakers dinner. Includes all technical sessions, priority networking and VIP area. Does not include Summit or premium workshops.",
+      "summit": "The complete X-Ops experience: executive Summit, the full 2 days of Conference and the speakers dinner. Includes leadership sessions, C-level networking, all technical sessions and materials. Does not include premium workshops."
+    },
+    "entitlements": {
+      "confDay1": "Conference day 1 · full access",
+      "confDay2": "Conference day 2 · full access",
+      "summit": "X-Ops Executive Summit",
+      "dinner": "Speakers dinner",
+      "workshops": "Premium workshops (sold separately)"
     }
   },
   "tickets": {
@@ -491,7 +498,8 @@
       "cta": {
         "summit": "View Madrid Summit",
         "conference": "View Madrid Conference",
-        "verMadrid": "View Madrid"
+        "verMadrid": "View Madrid",
+        "verAgenda": "View Madrid schedule"
       }
     },
     "dubai": {
@@ -582,11 +590,21 @@
     "cfpOpen": "The Call for Papers is open!",
     "cfpCta": "Submit a talk",
     "scheduleTitle": "Event Schedule 2026",
+    "noSessions": "There are no sessions scheduled for this day and track.",
+    "pendingTitle": "Accepted talks awaiting a time slot",
+    "pendingExplanation": "These proposals remain accepted but have not been assigned a time slot in the Main Hall. They have not been cancelled or moved to the Summit. Further programme adjustments or an additional extension would be needed.",
+    "extensionPendingLabel": "Time slot after 17:00 requires approval",
+    "extendedHoursNotice": "Please note: the proposed Saturday Conference programme extends to 18:40. David Regueira (17:00–17:50) and LLM de Troya (17:50–18:40) require approval to extend the previously agreed 17:00 finish. BSides still ends at 17:00.",
+    "pendingTime": "Time slot not assigned",
+    "provisional": "Provisional schedule",
+    "durationUnconfirmed": "50 minutes assigned by the organisers (no duration specified in Sessionize)",
+    "durationUnconfirmedDetail": " (organiser-assigned duration)",
     "tracks": {
       "all": "All Tracks",
       "main": "Main Hall",
       "hyperscalers": "Hyperscalers",
-      "bsides": "Bsides Madrid"
+      "secondary": "Room 2 (TBC)",
+      "bsides": "Room 2 · BSides Madrid"
     },
     "place": "Venue",
     "details": "More Details",

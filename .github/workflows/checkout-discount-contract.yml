@@ -1,0 +1,29 @@
+name: Public checkout discount contract
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/components/TicketModal.jsx'
+      - 'src/adapters/triskelgate/**'
+      - 'src/i18n/locales/en.json'
+      - 'src/i18n/locales/es.json'
+      - '.github/workflows/checkout-discount-contract.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  checkout-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - name: Unit and integration tests (no live payments)
+        run: npm run test:run
+      - name: Browser bundle build
+        run: npm run build:no-prerender
