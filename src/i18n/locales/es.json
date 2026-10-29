@@ -572,10 +572,15 @@
     "cfpOpen": "¡El Call for Papers está abierto!",
     "cfpCta": "Proponer charla",
     "scheduleTitle": "Agenda del Evento 2026",
+    "noSessions": "No hay sesiones programadas para este día y track.",
+    "provisional": "Horario provisional",
+    "durationUnconfirmed": "Duración propuesta; falta confirmación en Sessionize",
+    "durationUnconfirmedDetail": " (pendiente de confirmar)",
     "tracks": {
       "all": "Todos los Tracks",
       "main": "Aula magna",
       "hyperscalers": "Hyperscalers",
+      "secondary": "Sala 2 (por confirmar)",
       "bsides": "Bsides Madrid"
     },
     "place": "Lugar",
