@@ -298,6 +298,13 @@
     "saleOpensOn": "On sale from {{date}}",
     "saleClosed": "Sales closed",
     "checkout": {
+      "discountLabel": "Promo code (optional)",
+      "discountPlaceholder": "E.g. X-OPS+URJC",
+      "applyDiscount": "Apply",
+      "discountApplied": "Code applied",
+      "saving": "You save",
+      "invalidDiscount": "Code unavailable or invalid for this ticket.",
+
       "title": "Reserve Ticket",
       "cancel": "Cancel",
       "submit": "Proceed to Payment",
