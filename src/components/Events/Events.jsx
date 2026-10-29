@@ -7,9 +7,11 @@ import scheduleData from '../../data/schedule2026.json';
 const trackFilters = {
   all: () => true,
   main: (event) => event.track === 'main',
-  hyperscalers: (event) => event.track === 'hyperscalers',
   bsides: (event) => event.track === 'bsides',
 };
+
+// Accepted proposals that cannot yet fit within the one-hall Conference timetable.
+const pendingTalks = scheduleData.filter(event => event.type === 'unscheduled');
 
 const Events = () => {
   const { t, i18n } = useTranslation();
@@ -20,14 +22,13 @@ const Events = () => {
   const [showModal, setShowModal] = useState(false);
 
   const availableDays = useMemo(() => {
-    const days = [...new Set(scheduleData.map(event => event.timeISO.split('T')[0]))];
+    const days = [...new Set(scheduleData.filter(event => Boolean(event.timeISO)).map(event => event.timeISO.split('T')[0]))];
     return days.sort();
   }, []);
 
   const trackLabels = {
     all: t('events.tracks.all'),
     main: t('events.tracks.main'),
-    hyperscalers: t('events.tracks.secondary'),
     bsides: t('events.tracks.bsides'),
   };
 
@@ -52,16 +53,17 @@ const Events = () => {
   };
 
   const formatTime = (timeISO) => {
+    if (!timeISO) return t('events.pendingTime');
     const [, time] = timeISO.split('T');
     return `${time} h`;
   };
 
   const { trackColumns, singleColumnEvents } = useMemo(() => {
     const dayEvents = scheduleData
-      .filter(event => event.timeISO.startsWith(selectedDay))
+      .filter(event => event.timeISO && event.timeISO.startsWith(selectedDay))
       .filter(trackFilters[selectedTrack])
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
-    const trackColumns = ['main', 'hyperscalers', 'bsides']
+    const trackColumns = ['main', 'bsides']
       .map(track => ({
         track,
         events: dayEvents.filter(event => event.track === track),
@@ -110,18 +112,24 @@ const Events = () => {
     const cardClass = event.type === 'break' ? 'cardgranV' : 'cardcuatroT';
 
     return (
-      <div className="col-12 mb-4" key={`${event.timeISO}-${index}`}>
+      <div className="col-12 mb-4" key={event.id}>
         <div className={`card ${cardClass} h-100`}>
           <div className="overlay"></div>
           <div className="card-body text-white d-flex flex-column">
             <h5 className="card-title">
-              <span className="heading">{t('events.place')}: </span>{event.room}
+              {event.unscheduled
+                ? t('events.pendingTime')
+                : <><span className="heading">{t('events.place')}: </span>{event.room}</>}
             </h5>
-            <p className="card-text">{formatTime(event.timeISO)} – {event.endTimeISO?.split('T')[1]} · {event.durationHuman}</p>
+            <p className="card-text">
+              {event.timeISO
+                ? `${formatTime(event.timeISO)} – ${event.endTimeISO?.split('T')[1]} · ${event.durationHuman}`
+                : event.durationHuman}
+            </p>
             <p className="flex-grow-1">{event.talk}</p>
             {event.speakerProfiles?.length > 0 && <div className="d-flex flex-wrap gap-2 mb-2">{event.speakerProfiles.map((speaker) => <img key={speaker.name} src={speaker.photo} alt={speaker.name} loading="lazy" width="52" height="52" style={{borderRadius:'50%',objectFit:'cover',background:'#152443'}} />)}</div>}
             <p><strong>{event.speaker}</strong></p>
-            {event.provisional && <small className="text-warning">{t('events.provisional')}</small>}
+            {event.provisional && !event.unscheduled && <small className="text-warning">{t('events.provisional')}</small>}
             {event.durationProposed && <small className="text-warning">{t('events.durationUnconfirmed')}</small>}
             <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
               {t('events.details')}
@@ -187,6 +195,20 @@ const Events = () => {
             </Row>
           )}
 
+          {pendingTalks.length > 0 && (selectedTrack === 'all' || selectedTrack === 'main') && (
+            <section aria-labelledby="pending-sessions-heading" className="mt-5 pt-4">
+              <h3 id="pending-sessions-heading">{t('events.pendingTitle')} ({pendingTalks.length})</h3>
+              <p className="mb-4">{t('events.pendingExplanation')}</p>
+              <Row>
+                {pendingTalks.map((event, index) => (
+                  <Col key={event.id} md={6} lg={6}>
+                    {renderEventCard(event, index)}
+                  </Col>
+                ))}
+              </Row>
+            </section>
+          )}
+
           {selectedEvent && (
             <Modal show={showModal} onHide={handleCloseModal}>
               <Modal.Header closeButton>
@@ -195,7 +217,7 @@ const Events = () => {
               <Modal.Body>
                 <p><strong>{t('events.modal.speaker')}:</strong> {selectedEvent.speaker}</p>
                 {selectedEvent.speakerProfiles?.map((speaker) => <p key={speaker.name}><img src={speaker.photo} alt={speaker.name} width="60" height="60" loading="lazy" style={{borderRadius:'50%',objectFit:'cover',marginRight:'10px'}} />{speaker.tagline} {speaker.linkedin && <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}</p>)}
-                <p><strong>{t('events.modal.place')}:</strong> {selectedEvent.room}</p>
+                {!selectedEvent.unscheduled && <p><strong>{t('events.modal.place')}:</strong> {selectedEvent.room}</p>}
                 <p><strong>{t('events.modal.duration')}:</strong> {selectedEvent.durationHuman}{selectedEvent.durationProposed ? t('events.durationUnconfirmedDetail') : ''}</p>
                 <p><strong>{t('events.modal.time')}:</strong> {formatTime(selectedEvent.timeISO)}</p>
                 <hr />
@@ -209,7 +231,7 @@ const Events = () => {
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <p className="card-text" style={{ margin: '0', padding: '0' }}>
-                    {formatTime(selectedEvent.timeISO)} - {selectedEvent.durationHuman}
+                    {selectedEvent.timeISO ? `${formatTime(selectedEvent.timeISO)} - ${selectedEvent.durationHuman}` : t('events.pendingTime')}
                   </p>
                 </div>
               </Modal.Footer>
