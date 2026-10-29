@@ -578,10 +578,15 @@
     "cfpOpen": "The Call for Papers is open!",
     "cfpCta": "Submit a talk",
     "scheduleTitle": "Event Schedule 2026",
+    "noSessions": "There are no sessions scheduled for this day and track.",
+    "provisional": "Provisional schedule",
+    "durationUnconfirmed": "Proposed duration; awaiting Sessionize confirmation",
+    "durationUnconfirmedDetail": " (subject to confirmation)",
     "tracks": {
       "all": "All Tracks",
       "main": "Main Hall",
       "hyperscalers": "Hyperscalers",
+      "secondary": "Room 2 (TBC)",
       "bsides": "Bsides Madrid"
     },
     "place": "Venue",
