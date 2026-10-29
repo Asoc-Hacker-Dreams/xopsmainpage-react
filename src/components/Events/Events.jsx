@@ -14,7 +14,7 @@ const trackFilters = {
 const Events = () => {
   const { t, i18n } = useTranslation();
 
-  const [selectedDay, setSelectedDay] = useState('2025-11-21');
+  const [selectedDay, setSelectedDay] = useState('2026-11-20');
   const [selectedTrack, setSelectedTrack] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -62,14 +62,15 @@ const Events = () => {
       .filter(trackFilters[selectedTrack])
       .sort((a, b) => a.timeISO.localeCompare(b.timeISO));
 
-    const breaks = dayEvents.filter(event => event.type === 'break');
+    const breaks = dayEvents.filter(event => event.type === 'break' && (event.track === 'main' || selectedTrack === 'bsides'));
+    const bsidesBreaks = dayEvents.filter(event => event.type === 'break' && event.track === 'bsides');
     const regularEvents = dayEvents.filter(event => event.type !== 'break');
 
     const left = regularEvents.filter(event => event.track === 'main');
     const right = regularEvents.filter(event => event.track !== 'main');
 
     const leftColumnEvents = [...left, ...breaks].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
-    const rightColumnEvents = [...right, ...breaks].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
+    const rightColumnEvents = [...right, ...breaks, ...bsidesBreaks].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
     const singleColumnEvents = [...dayEvents].sort((a, b) => a.timeISO.localeCompare(b.timeISO));
 
     const showTwoColumns = selectedTrack === 'all' && left.length > 0 && right.length > 0;
@@ -124,9 +125,11 @@ const Events = () => {
             <h5 className="card-title">
               <span className="heading">{t('events.place')}: </span>{event.room}
             </h5>
-            <p className="card-text">{formatTime(event.timeISO)} - {event.durationHuman}</p>
+            <p className="card-text">{formatTime(event.timeISO)} – {event.endTimeISO?.split('T')[1]} · {event.durationHuman}</p>
             <p className="flex-grow-1">{event.talk}</p>
+            {event.speakerProfiles?.length > 0 && <div className="d-flex flex-wrap gap-2 mb-2">{event.speakerProfiles.map((speaker) => <img key={speaker.name} src={speaker.photo} alt={speaker.name} loading="lazy" width="52" height="52" style={{borderRadius:'50%',objectFit:'cover',background:'#152443'}} />)}</div>}
             <p><strong>{event.speaker}</strong></p>
+            {event.provisional && <small className="text-warning">Horario provisional</small>}
             <button onClick={() => handleShowModal(event)} className="button menu-btn mt-auto">
               {t('events.details')}
             </button>
@@ -194,11 +197,12 @@ const Events = () => {
               </Modal.Header>
               <Modal.Body>
                 <p><strong>{t('events.modal.speaker')}:</strong> {selectedEvent.speaker}</p>
+                {selectedEvent.speakerProfiles?.map((speaker) => <p key={speaker.name}><img src={speaker.photo} alt={speaker.name} width="60" height="60" loading="lazy" style={{borderRadius:'50%',objectFit:'cover',marginRight:'10px'}} />{speaker.tagline} {speaker.linkedin && <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}</p>)}
                 <p><strong>{t('events.modal.place')}:</strong> {selectedEvent.room}</p>
                 <p><strong>{t('events.modal.duration')}:</strong> {selectedEvent.durationHuman}</p>
                 <p><strong>{t('events.modal.time')}:</strong> {formatTime(selectedEvent.timeISO)}</p>
                 <hr />
-                <p>{selectedEvent.description}</p>
+                <p style={{whiteSpace:'pre-line'}}>{selectedEvent.description}</p>
               </Modal.Body>
               <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div>
