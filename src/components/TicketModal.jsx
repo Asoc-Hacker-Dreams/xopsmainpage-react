@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Modal,
   Container,
@@ -199,6 +199,7 @@ const TicketModal = ({ show, onHide }) => {
   const [discountPreview, setDiscountPreview] = useState(null);
   const [discountError, setDiscountError] = useState(null);
   const [validatingDiscount, setValidatingDiscount] = useState(false);
+  const discountValidationNonce = useRef(0);
   const [formError, setFormError]       = useState(null);
   const [purchasing, setPurchasing]     = useState(false);
 
@@ -261,6 +262,8 @@ const TicketModal = ({ show, onHide }) => {
   }, [show, loaded, t]);
 
   const openCheckout = (event, ticketType) => {
+    discountValidationNonce.current += 1;
+    setValidatingDiscount(false);
     setSelectedEvent(event);
     setSelectedTT(ticketType);
     setCustomerName('');
@@ -273,6 +276,8 @@ const TicketModal = ({ show, onHide }) => {
   };
 
   const backToSelect = () => {
+    discountValidationNonce.current += 1;
+    setValidatingDiscount(false);
     setStep('select');
     setFormError(null);
   };
@@ -280,6 +285,9 @@ const TicketModal = ({ show, onHide }) => {
   const applyDiscount = async () => {
     const code = discountCode.trim().toUpperCase();
     if (!code || !selectedEvent || !selectedTT) return null;
+    const nonce = ++discountValidationNonce.current;
+    const targetEvent = Number(selectedEvent.id);
+    const targetTicket = Number(selectedTT.id);
     setValidatingDiscount(true);
     setDiscountError(null);
     try {
@@ -289,14 +297,18 @@ const TicketModal = ({ show, onHide }) => {
         ticketTypeId: selectedTT.id,
         quantity: 1,
       });
+      if (nonce !== discountValidationNonce.current) return null;
       if (!result?.success || !result.discount ||
           result.discount.code !== code ||
-          Number(result.discount.ticketTypeId) !== Number(selectedTT.id)) {
+          Number(result.discount.ticketTypeId) !== targetTicket ||
+          Number(selectedEvent.id) !== targetEvent ||
+          Number(result.discount.quantity) !== 1) {
         throw new Error(t('ticketModal.checkout.invalidDiscount'));
       }
       setDiscountPreview(result.discount);
       return result.discount;
     } catch (error) {
+      if (nonce !== discountValidationNonce.current) return null;
       let message = t('ticketModal.checkout.invalidDiscount');
       if (typeof error?.body === 'string') {
         try {
@@ -309,7 +321,7 @@ const TicketModal = ({ show, onHide }) => {
       setDiscountError(message);
       return null;
     } finally {
-      setValidatingDiscount(false);
+      if (nonce === discountValidationNonce.current) setValidatingDiscount(false);
     }
   };
 
@@ -369,6 +381,8 @@ const TicketModal = ({ show, onHide }) => {
   };
 
   const handleHide = () => {
+    discountValidationNonce.current += 1;
+    setValidatingDiscount(false);
     setStep('select');
     setFormError(null);
     onHide();
@@ -534,6 +548,8 @@ const TicketModal = ({ show, onHide }) => {
                   placeholder={t('ticketModal.checkout.discountPlaceholder')}
                   value={discountCode}
                   onChange={(e) => {
+                    discountValidationNonce.current += 1;
+                    setValidatingDiscount(false);
                     setDiscountCode(e.target.value.toUpperCase());
                     setDiscountPreview(null);
                     setDiscountError(null);
