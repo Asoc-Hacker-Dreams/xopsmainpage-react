@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { BsAward, BsBullseye, BsCalendar3, BsGeoAlt, BsGraphUp, BsPeople, BsShieldCheck, BsTrophy } from 'react-icons/bs';
 import SEO from '../components/SEO';
 import SpeakersSection from '../components/SpeakersSection';
+import Events from '../components/Events/Events';
 import { cityEvents, cityUrl } from '../data/cityEvents';
 import { ORGANIZER } from '../legal/identity';
 import './CityEventPage.css';
@@ -61,7 +62,7 @@ const CityEventPage = ({ city }) => {
           <nav className="city-hero__nav" aria-label={t('cityEvent.hero.navLabel', { city: event.city })}>
             <a href="#summit">{t('cityEvent.hero.navSummit')}</a>
             <a href="#conference">{t('cityEvent.hero.navConference')}</a>
-            <a href="#agenda">{t('cityEvent.hero.navAgenda')}</a>
+            <a href={isMadrid ? '#conference-schedule' : '#conference'}>{t('cityEvent.hero.navAgenda')}</a>
             {isMadrid && <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>}
           </nav>
         </div>
@@ -152,18 +153,36 @@ const CityEventPage = ({ city }) => {
             <h2 id="conference-title">X-Ops Conference <strong>{event.city} 2026</strong></h2>
             <p>{t('cityEvent.conference.intro')}</p>
           </div>
-          <div className="city-conference__announcement">
-            <span aria-hidden="true">●</span>
-            <p>{t('cityEvent.conference.agendaBadge')}</p>
-            <h3>{t('cityEvent.conference.agendaTitle')}</h3>
-            {event.conference.cfpUrl ? (
-              <Link to={"/convocatoria-ponentes?city=" + city}>
-                {t('cityEvent.conference.proposeTalk')} <span aria-hidden="true">↗</span>
-              </Link>
-            ) : (
-              <p className="city-conference__status">{t('cityEvent.conference.cfpComingSoon', { city: event.city })}</p>
-            )}
-          </div>
+          {isMadrid ? (
+            <div className="city-conference__announcement city-conference__announcement--published">
+              <span aria-hidden="true">●</span>
+              <p>{t('cityEvent.conference.agendaBadge')}</p>
+              <h3>{t('cityEvent.conference.agendaPublishedTitle')}</h3>
+              <p className="city-conference__status">{t('cityEvent.conference.agendaPublishedText')}</p>
+              <a href="#conference-schedule">
+                {t('cityEvent.conference.viewAgenda')} <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          ) : (
+            <div className="city-conference__announcement">
+              <span aria-hidden="true">●</span>
+              <p>{t('cityEvent.conference.agendaBadge')}</p>
+              <h3>{t('cityEvent.conference.agendaTitle')}</h3>
+              {event.conference.cfpUrl ? (
+                <Link to={"/convocatoria-ponentes?city=" + city}>
+                  {t('cityEvent.conference.proposeTalk')} <span aria-hidden="true">↗</span>
+                </Link>
+              ) : (
+                <p className="city-conference__status">{t('cityEvent.conference.cfpComingSoon', { city: event.city })}</p>
+              )}
+            </div>
+          )}
+          {isMadrid && (
+            <div id="conference-schedule" className="city-conference__schedule">
+              <p className="city-conference__schedule-notice">{t('cityEvent.conference.preliminaryScheduleNotice')}</p>
+              <Events />
+            </div>
+          )}
         </div>
       <p className="small mt-4"><Link to="/politica-de-privacidad">{t('legalLinks.privacy', { defaultValue: 'Privacy notice / Privacidad' })}</Link> · <Link to="/fotografia-y-video">{t('legalLinks.media', { defaultValue: 'Recording & image rights / Fotografía y vídeo' })}</Link></p>
       </section>

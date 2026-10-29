@@ -11,6 +11,8 @@ import type {
   TGValidateResponse,
   TGCheckoutPayload,
   TGCheckoutResponse,
+  TGDiscountValidationPayload,
+  TGDiscountValidationResponse,
   TGCheckoutSessionStatus,
   TGApiResponse,
   TGOrder,
@@ -62,6 +64,13 @@ export class TriskelGateClient {
     return this.breaker.execute(() =>
       this.request<TGValidateResponse>('POST', '/api/validate', payload),
     );
+  }
+
+  /** Authoritative preview, scoped to the chosen event and ticket type. */
+  async validateDiscount(payload: TGDiscountValidationPayload): Promise<TGDiscountValidationResponse> {
+    // Expected 400 (invalid/expired/exhausted code) is a business decision,
+    // not an outage. Do not trip the shared checkout circuit breaker.
+    return this.request<TGDiscountValidationResponse>('POST', '/api/discounts/validate', payload);
   }
 
   /** POST /api/payment/create-session – create a Stripe checkout session */

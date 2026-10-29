@@ -49,10 +49,41 @@ export interface TGValidateResponse {
   message?: string;
 }
 
+export interface TGDiscountValidationPayload {
+  code: string;
+  eventId: number | string;
+  ticketTypeId: number | string;
+  quantity: number;
+}
+
+export interface TGDiscountQuote {
+  id: number;
+  code: string;
+  type: string;
+  value: number;
+  currency: string;
+  ticketTypeId: number;
+  quantity: number;
+  originalAmount: number;
+  discountAmount: number;
+  finalAmount: number;
+  originalTotalCents: number;
+  discountCents: number;
+  finalCents: number;
+}
+
+export interface TGDiscountValidationResponse {
+  success: boolean;
+  discount?: TGDiscountQuote;
+  message?: string;
+  error?: string;
+}
+
 export interface TGCheckoutPayload {
   eventId: number | string;
   ticketTypeId: number | string;
   quantity: number;
+  discountCode?: string;
   customerEmail: string;
   customerName?: string;
   successUrl?: string;

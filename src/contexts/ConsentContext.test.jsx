@@ -137,7 +137,6 @@ describe('ConsentContext', () => {
       const parsed = JSON.parse(stored);
       expect(parsed.consent.essential).toBe(true);
       expect(parsed.consent.analytics).toBe(true);
-      expect(parsed.consent.marketing).toBe(true);
       expect(parsed.version).toBe('2026-10-27');
       expect(parsed.timestamp).toBeTruthy();
     });

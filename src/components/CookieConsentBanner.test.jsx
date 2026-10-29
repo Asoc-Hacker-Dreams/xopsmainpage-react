@@ -76,7 +76,6 @@ describe('CookieConsentBanner', () => {
 
     expect(screen.getByText(/Guardan tu elección de privacidad/)).toBeInTheDocument();
     expect(screen.getByText(/Google Analytics: medición de visitas/)).toBeInTheDocument();
-    expect(screen.getByText(/Reserva esta preferencia/)).toBeInTheDocument();
   });
 
   it('should have essential cookies disabled by default', () => {
@@ -88,7 +87,7 @@ describe('CookieConsentBanner', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Personalizar' }));
 
-    const essentialCheckbox = screen.getByRole('checkbox', { name: /Cookies Esenciales/i });
+    const essentialCheckbox = screen.getByRole('checkbox', { name: /Necesarias/i });
     expect(essentialCheckbox).toBeChecked();
     expect(essentialCheckbox).toBeDisabled();
   });

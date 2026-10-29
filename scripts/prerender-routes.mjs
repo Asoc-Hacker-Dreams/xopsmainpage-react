@@ -2,6 +2,9 @@
 // (scripts/prerender.mjs). Duplicar esta lista garantiza que diverja.
 export const ROUTES = [
   '/',
+  // City pages are canonical on their dedicated hostnames, but also need static /city fallback.
+  '/madrid',
+  '/dubai',
   '/summit',
   '/Summit',
   '/startup-pack',
