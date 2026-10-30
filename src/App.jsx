@@ -7,6 +7,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import ScrollHandler from './ScrollHandler';
 import { usePWA } from './hooks/usePWA';
 import AddToHomeScreen from './components/AddToHomeScreen';
+import OptimizedImage from './components/OptimizedImage';
 import { ConsentProvider } from './contexts/ConsentContext';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import CookiePreferencesManager from './components/CookiePreferencesManager';
@@ -120,7 +121,15 @@ function App() {
 <div className="root home-main-section">
         <Navbar expand="lg" className='header'>
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center" style={{ textDecoration: 'none' }}>
-          <img src={logo} alt="X-Ops Logo" style={{ height: '51px', width: '56px', marginRight: '15px' }} />
+          <OptimizedImage
+            src={logo}
+            alt="X-Ops Logo"
+            style={{ height: '51px', width: '56px', marginRight: '15px' }}
+            width={56}
+            height={51}
+            priority={true}
+            loading="eager"
+          />
           <span className='text-white font-weight-bold navbar-brand-text'>X-OPS CONFERENCE</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>

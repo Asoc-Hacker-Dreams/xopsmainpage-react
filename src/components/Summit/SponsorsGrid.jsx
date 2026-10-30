@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import OptimizedImage from '../OptimizedImage';
 import { sponsors, getSponsorsByTier } from '../../dal/sponsors';
 
 const tierConfig = {
@@ -41,12 +42,12 @@ const SponsorCard = ({ sponsor, config }) => {
     >
       <div className="sponsor-logo-wrapper">
         {sponsor.logoUrl ? (
-          <Image
+          <OptimizedImage
             src={sponsor.logoUrl}
             alt={`${sponsor.name} logo`}
             className="sponsor-logo"
             style={{ maxHeight: config.logoHeight }}
-            fluid
+            loading="lazy"
           />
         ) : (
           <div className="sponsor-logo-placeholder" style={{ height: config.logoHeight }}>

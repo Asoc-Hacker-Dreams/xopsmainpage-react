@@ -55,6 +55,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icon-512x512.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/icon-512x512.png" />
 
+    <!-- Preload LCP image (src/assets/xops.png, consumido por HeroSection).
+         En dev Vite sirve /src/assets/xops.avif; en build el asset se hashea
+         (dist/assets/xops-<hash>.avif) y el preloader queda huérfano → 404
+         silencioso, sin coste de render. Ver informe del port: los <source>
+         derivados por OptimizedImage tampoco resuelven tras el hasheo. -->
+    <link rel="preload" as="image" type="image/avif" href="/src/assets/xops.avif" />
+    <link rel="preload" as="image" type="image/webp" href="/src/assets/xops.webp" />
+
     <!-- Structured data for search engines and AI assistants -->
     <script type="application/ld+json">
     {
