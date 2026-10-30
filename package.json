@@ -31,7 +31,9 @@
     "osdo:sast": "chmod +x .osdo/tools/sast.sh && ./.osdo/tools/sast.sh",
     "test:e2e": "playwright test --config e2e/playwright.config.ts",
     "test:e2e:headed": "playwright test --config e2e/playwright.config.ts --headed",
-    "test:e2e:report": "playwright show-report e2e/report"
+    "test:e2e:report": "playwright show-report e2e/report",
+    "convert:images": "node scripts/convert-images.js",
+    "convert:images:force": "node scripts/convert-images.js --force"
   },
   "dependencies": {
     "ajv": "^8.18.0",
@@ -76,6 +78,7 @@
     "jsdom": "^23.0.0",
     "license-checker": "^25.0.1",
     "postcss": "^8.5.11",
+    "sharp": "^0.34.5",
     "stripe": "^22.2.0",
     "tailwindcss": "^4.2.4",
     "tsx": "^4.21.0",
