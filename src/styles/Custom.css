@@ -1021,6 +1021,22 @@ p, li, span {
   color: #e0e0e0;
 }
 
+/* Bootstrap's <Modal> renders a white .modal-content by default. Without an
+   override here, the unscoped p/li/span/h3/h4 colors above — tuned for the
+   site's dark sections — leak into every Modal in the app (talk details,
+   cookie preferences, tickets, surveys, QR, meeting scheduler…) as
+   near-invisible light text on that white background. `inherit` restores
+   the modal's own ambient color: Bootstrap's default dark text for a plain
+   white modal, or TicketModal's intentional light-on-dark (its MODAL_BODY
+   inline style), whichever the modal actually set. */
+.modal-body p,
+.modal-body li,
+.modal-body span,
+.modal-body h3,
+.modal-body h4 {
+  color: inherit;
+}
+
 .xops-section h2 {
   color: #ffffff;
   letter-spacing: 1px;

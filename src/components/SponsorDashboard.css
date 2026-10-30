@@ -291,7 +291,7 @@
   position: relative;
 }
 
-.modal-close {
+.sponsor-modal .modal-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -310,53 +310,53 @@
   z-index: 1;
 }
 
-.modal-close:hover {
+.sponsor-modal .modal-close:hover {
   background: var(--border-color, #dee2e6);
 }
 
-.modal-content {
+.sponsor-modal .modal-content {
   padding: 2rem;
 }
 
-.modal-header {
+.sponsor-modal .modal-header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.modal-logo {
+.sponsor-modal .modal-logo {
   flex-shrink: 0;
 }
 
-.modal-logo img {
+.sponsor-modal .modal-logo img {
   width: 100px;
   height: 100px;
   object-fit: contain;
   border-radius: 12px;
 }
 
-.modal-title h2 {
+.sponsor-modal .modal-title h2 {
   margin: 0 0 0.5rem;
   font-size: 1.5rem;
   color: var(--text-primary, #212529);
 }
 
-.modal-body {
+.sponsor-modal .modal-body {
   color: var(--text-secondary, #495057);
 }
 
-.modal-section {
+.sponsor-modal .modal-section {
   margin-bottom: 1.5rem;
 }
 
-.modal-section h4 {
+.sponsor-modal .modal-section h4 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
   color: var(--text-primary, #212529);
 }
 
-.modal-section p {
+.sponsor-modal .modal-section p {
   margin: 0;
   line-height: 1.6;
 }
@@ -408,12 +408,12 @@
     grid-template-columns: 1fr;
   }
 
-  .modal-header {
+  .sponsor-modal .modal-header {
     flex-direction: column;
     text-align: center;
   }
 
-  .modal-content {
+  .sponsor-modal .modal-content {
     padding: 1.5rem;
   }
 }
