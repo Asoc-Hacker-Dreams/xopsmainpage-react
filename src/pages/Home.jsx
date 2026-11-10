@@ -17,8 +17,8 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="X-Ops Conference & Summit 2026 · Madrid y Dubai"
-        description="X-Ops Conference: el mayor evento de DevOps, DevSecOps, AIOps, MLOps y Platform Engineering en dos ciudades. Madrid y Dubai 2026."
+        title="X-Ops Conference 2026 · Madrid aplazado, Dubái sigue adelante"
+        description="Aviso oficial: X-Ops Madrid 2026 se aplaza, nueva fecha por confirmar. X-Ops Dubai 2026 continúa adelante."
         path="/"
         image="https://xopsconference.com/icon-512x512.png"
         keywords="X-Ops Conference, DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, Ciberseguridad, SecOps, Kubernetes, Madrid, Dubai, conferencia tecnología 2026"

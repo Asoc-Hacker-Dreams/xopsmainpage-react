@@ -30,61 +30,16 @@ function Ubication() {
           </div>
         </AnimationWrapper>
 
-        {/* Madrid */}
-        <AnimationWrapper animation="fade-up" duration={1000}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
-            <span style={{ fontSize: '1.6rem' }}>🇪🇸</span>
-            <h3 style={{ color: '#ffffff', fontWeight: 800, fontSize: '1.2rem', margin: 0 }}>{t('ubication.madrid.city')}</h3>
-          </div>
-        </AnimationWrapper>
-
+        {/* Madrid dates and venues are no longer valid. */}
         <div className="row g-4 mb-5">
-          <div className="col-md-6">
-            <AnimationWrapper animation="fade-right" duration={1200}>
-              <div style={{ background: '#16213e', borderRadius: '12px', border: '1px solid #2a2a4a', overflow: 'hidden', height: '100%' }}>
-                <div style={{ padding: '20px 20px 16px' }}>
-                  <VenueBlock
-                    label={t('ubication.madrid.summit.label')}
-                    name={t('ubication.madrid.summit.name')}
-                    address={t('ubication.madrid.summit.address')}
-                  />
-                </div>
-                <iframe
-                  src="https://maps.google.com/maps?q=Fundaci%C3%B3n+Juan+XXIII+Roncalli+Madrid&output=embed"
-                  width="100%"
-                  height="280"
-                  style={{ border: 0, display: 'block' }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Fundación Juan XXIII Roncalli, Madrid"
-                />
-              </div>
-            </AnimationWrapper>
-          </div>
-
-          <div className="col-md-6">
-            <AnimationWrapper animation="fade-left" duration={1200}>
-              <div style={{ background: '#16213e', borderRadius: '12px', border: '1px solid #2a2a4a', overflow: 'hidden', height: '100%' }}>
-                <div style={{ padding: '20px 20px 16px' }}>
-                  <VenueBlock
-                    label={t('ubication.madrid.conference.label')}
-                    name={t('ubication.madrid.conference.name')}
-                    address={t('ubication.madrid.conference.address')}
-                  />
-                </div>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3043.6529659675674!2d-3.8775690232329794!3d40.335414571434226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418fc5ceff7897%3A0x811e3f75ccc3b6fb!2sUniversidad%20Rey%20Juan%20Carlos%2C%20Campus%20de%20M%C3%B3stoles!5e0!3m2!1ses!2ses!4v1737632400000!5m2!1ses!2ses"
-                  width="100%"
-                  height="280"
-                  style={{ border: 0, display: 'block' }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Universidad Rey Juan Carlos, Campus Móstoles"
-                />
-              </div>
-            </AnimationWrapper>
+          <div className="col-12">
+            <div style={{ background: '#16213e', borderRadius: '12px', border: '1px solid #00BCD4', padding: '24px' }}>
+              <h3 style={{ color: '#fff', fontSize: '1.15rem', fontWeight: 800 }}>{t('announcement.status')}</h3>
+              <p style={{ color: '#bdc9d6', marginBottom: '12px' }}>{t('announcement.venue')}</p>
+              <a href="https://madrid.xopsconference.com/" style={{ color: '#70eaf5', fontWeight: 700 }}>
+                {t('announcement.ctaMadrid')}
+              </a>
+            </div>
           </div>
         </div>
 

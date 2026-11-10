@@ -15,7 +15,7 @@
   "hero": {
     "title": "JOIN THE X-OPS REVOLUTION!",
     "description": "The world of IT is changing. Join us at X-Ops Conference, where you will discover how the right technology and people are driving change.",
-    "date": "Madrid: 19–21 Nov · Dubai: 1–3 Dec 2026",
+    "date": "Madrid: postponed · Dubai: 1–3 December 2026",
     "buyTicket": "Reserve your spot",
     "viewAgenda": "View agenda",
     "cfp": "CFP",
@@ -308,7 +308,6 @@
       "discountApplied": "Code applied",
       "saving": "You save",
       "invalidDiscount": "Code unavailable or invalid for this ticket.",
-
       "title": "Reserve Ticket",
       "cancel": "Cancel",
       "submit": "Proceed to Payment",
@@ -491,30 +490,30 @@
     },
     "madrid": {
       "flag": "🇪🇸",
-      "dates": "19 · 20 · 21 NOV",
-      "year": "2026",
+      "dates": "POSTPONED",
+      "year": "NEW DATE TO BE CONFIRMED",
       "title": "X-Ops Madrid 2026",
       "city": "Madrid, Spain",
       "summit": {
         "label": "X-Ops Summit",
-        "dates": "November 19",
-        "venue": "Fundación Juan XXIII Roncalli"
+        "dates": "New date to be confirmed",
+        "venue": "Venue to be confirmed"
       },
       "conference": {
         "label": "X-Ops Conference",
-        "dates": "November 20 & 21",
-        "venue": "Universidad Rey Juan Carlos, Móstoles Campus"
+        "dates": "New date to be confirmed",
+        "venue": "Venue to be confirmed"
       },
-      "narrative": "The consolidated edition. Madrid has been the home of the X-Ops movement since the beginning. In 2026 we expand the format: one day of executive Summit at Fundación Juan XXIII and two days of technical Conference at URJC. One city, a complete ecosystem.",
+      "narrative": "Madrid 2026 has been postponed. X-Ops Summit, X-Ops Conference and BSides Madrid will not take place on their original dates (19–21 November). New dates will be announced later.",
       "badges": {
-        "format": "Summit + Conference",
+        "format": "Postponed",
         "edition": "Consolidated edition",
-        "attendees": "500+ attendees"
+        "attendees": "New date TBC"
       },
       "cta": {
         "summit": "View Madrid Summit",
         "conference": "View Madrid Conference",
-        "verMadrid": "View Madrid",
+        "verMadrid": "Read the Madrid announcement",
         "verAgenda": "View Madrid schedule"
       }
     },
@@ -550,7 +549,7 @@
   "ubication": {
     "sectionPrefix": "Where to find us",
     "title": "2026 Venues",
-    "subtitle": "Two cities, three spaces. Each venue has been selected to reflect the spirit of the event it hosts.",
+    "subtitle": "Madrid has been postponed pending new dates and venues. Dubai is proceeding as planned.",
     "madrid": {
       "city": "Madrid, Spain",
       "summit": {
@@ -791,5 +790,22 @@
     "privacy": "Privacy notice",
     "media": "Photography, video and image rights",
     "sponsors": "Networking privacy"
+  },
+  "announcement": {
+    "eyebrow": "Official announcement · 10 November 2026",
+    "nav": "Official notice",
+    "title": "X-Ops Madrid 2026 has been postponed",
+    "lead": "The Madrid edition, originally scheduled for 19–21 November 2026, will not take place on those dates.",
+    "scope": "The postponement covers X-Ops Summit, X-Ops Conference and BSides Madrid.",
+    "newDate": "A new date has not yet been confirmed. Updates will be announced through our official channels.",
+    "buyers": "Ticket holders will be contacted individually with information about their tickets, available options and any applicable refunds.",
+    "dubaiHeading": "Dubai is going ahead",
+    "dubai": "X-Ops Dubai 2026 is proceeding as planned. The Madrid postponement does not affect the Dubai event.",
+    "ctaMadrid": "Read the Madrid announcement",
+    "ctaDubai": "View X-Ops Dubai 2026",
+    "contact": "Ticket enquiries:",
+    "venue": "The Madrid dates and venues will be rescheduled. Please do not travel to the previously announced venues.",
+    "status": "Madrid 2026 · postponed",
+    "salesSuspended": "Madrid ticket sales have been suspended due to the postponement."
   }
 }

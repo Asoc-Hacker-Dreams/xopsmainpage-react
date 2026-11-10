@@ -133,7 +133,7 @@ const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, nar
       </p>
 
       {/* Countdown */}
-      <CountdownDisplay targetDate={targetDate} />
+      {targetDate && <CountdownDisplay targetDate={targetDate} />}
 
       {/* Badges */}
       <div style={{ marginBottom: '24px' }}>
@@ -229,9 +229,8 @@ const EditionsSection = () => {
               ]}
               ctaLabel={t('editions.madrid.cta.verMadrid') || 'Ver Madrid'}
               ctaTo="https://madrid.xopsconference.com"
-              agendaLabel={t('editions.madrid.cta.verAgenda')}
-              agendaTo="https://madrid.xopsconference.com/#conference-schedule"
-              targetDate="2026-11-19T09:00:00"
+              agendaLabel={null}
+              agendaTo={null}
             />
           </div>
 

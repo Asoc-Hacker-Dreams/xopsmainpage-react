@@ -1,12 +1,12 @@
 # X-Ops Conference
 
-> X-Ops Conference es el mayor evento de DevOps, DevSecOps, AIOps, MLOps, Platform Engineering y Ciberseguridad en España. Se celebra en Madrid con formato Summit + Conference.
+> X-Ops Conference es un evento internacional de tecnología. Madrid 2026 está aplazado y no se celebrará del 19 al 21 de noviembre; Dubái 2026 continúa adelante. Nueva fecha de Madrid por confirmar.
 
 ## About
 
 X-Ops Conference is an international technology conference held in Madrid, Spain. The event focuses on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE, and Cybersecurity topics.
 
-- **Edition 2026**: Madrid · URJC · 19–21 November 2026 | Dubai · 30 November – 3 December 2026
+- **Edition 2026**: Madrid · postponed (originally 19–21 November 2026; new dates TBC) | Dubai · 1–3 December 2026, proceeding as planned
 - **Format**: 2-day Executive Summit (C-Level) + 2-day Technical Conference
 - **Attendees**: 500+ expected (300+ in 2025)
 - **Rating**: 4.7/5 (2025 edition)
@@ -42,7 +42,7 @@ Phone: +34 744 644 873
 
 ## Sponsorship
 
-Sponsorship packages available for Madrid, Dubai, and London editions. Tiers: Platinum (€8,000+), Track Sponsor (€6,000), Gold (€3,000), Silver (€2,000), Welcome Pack (€350), Startup Pack (€350–€950).
+Dubai sponsorship remains available; Madrid sponsorship arrangements are subject to rescheduling. Tiers: Platinum (€8,000+), Track Sponsor (€6,000), Gold (€3,000), Silver (€2,000), Welcome Pack (€350), Startup Pack (€350–€950).
 Contact: info@xopsconference.com
 
 ## Optional

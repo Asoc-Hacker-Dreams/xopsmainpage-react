@@ -134,10 +134,11 @@ const getTicketDescription = (tt, t, language) => {
  *  two known event dates when the hostname doesn't map to a single city (e.g. root domain). */
 const getCountdownTargetDate = () => {
   const hostnameCity = getCityFromHostname(window.location.hostname);
-  if (hostnameCity && cityEvents[hostnameCity]?.startDate) {
+  if (hostnameCity && cityEvents[hostnameCity]?.startDate && cityEvents[hostnameCity]?.status !== 'postponed') {
     return new Date(cityEvents[hostnameCity].startDate);
   }
   const upcoming = Object.values(cityEvents)
+    .filter((c) => c.status !== 'postponed')
     .map((c) => new Date(c.startDate))
     .sort((a, b) => a - b);
   return upcoming[0];
@@ -260,6 +261,7 @@ const TicketModal = ({ show, onHide }) => {
         const active = evList.filter(
           (e) =>
             e.status === 'active' &&
+            editionFromEvent(e, '') !== 'madrid' &&
             (
               CONFIG_ORGANIZER_ID === null ||
               e.organizerId == null || // event without organizer matches any configured organizer
@@ -373,6 +375,10 @@ const TicketModal = ({ show, onHide }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (editionFromEvent(selectedEvent, '') === 'madrid') {
+      setFormError(t('announcement.salesSuspended'));
+      return;
+    }
     const name  = customerName.trim();
     const email = customerEmail.trim();
 
