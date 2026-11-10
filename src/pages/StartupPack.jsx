@@ -5,10 +5,8 @@ import './StartupPack.css';
 
 // Server-side integration only: never expose Holos API credentials in VITE_ variables.
 
-// Only real, documented cities (see src/data/cityEvents.js) — Barcelona
-// and London were never actual X-Ops Conference locations.
+// Only Dubai currently accepts 2026 Startup Pack applications; Madrid is postponed.
 const CITIES = [
-  { key: 'madrid', flag: '🇪🇸', name: 'Madrid', price: '€850', currency: 'EUR', amount: 850 },
   { key: 'dubai', flag: '🇦🇪', name: 'Dubai', price: 'AED 3.500', currency: 'AED', amount: 3500 },
 ];
 
@@ -212,9 +210,9 @@ export default function StartupPack() {
     <div className="stk-wrap">
       <SEO
         title="Startup Pack — X-Ops Conference 2026"
-        description="Startup Pack de X-Ops Conference: visibilidad en el mayor evento de DevOps y DevSecOps de España para startups de hasta 3 años, 15 empleados y ARR &lt;€500K. Madrid desde €850 y Dubái desde AED 3.500."
+        description="Startup Pack de X-Ops Dubai 2026: solicitudes de patrocinio para startups. Madrid 2026 está aplazado; nueva fecha por confirmar."
         path="/startup-pack"
-        keywords="Startup Pack, X-Ops Conference, startup DevOps, patrocinio startup, Madrid 2026"
+        keywords="Startup Pack, X-Ops Dubai 2026, startup DevOps, patrocinio startup"
         lang="es"
         alternates={[
           { hrefLang: 'es', href: 'https://xopsconference.com/startup-pack' },
@@ -225,8 +223,8 @@ export default function StartupPack() {
           "@type": "Offer",
           "name": "X-Ops Conference Startup Pack",
           "description": "Sponsorship package for early-stage startups (≤3 years, ≤15 employees, ARR <€500K). Includes web visibility, social mention, 1 full pass, shared booth.",
-          "priceCurrency": "EUR",
-          "price": "850",
+          "priceCurrency": "AED",
+          "price": "3500",
           "url": "https://xopsconference.com/startup-pack",
           "seller": {
             "@type": "Organization",

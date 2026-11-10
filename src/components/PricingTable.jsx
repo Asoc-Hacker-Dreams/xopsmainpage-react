@@ -8,7 +8,6 @@ const CONTACT_EMAIL = 'info@xopsconference.com';
 const EUR_TO_AED = 4.0;
 const EUR_TO_USD = 1.1;
 const ROUND_STEP = 50;
-const COMBINED_DISCOUNT = 0.1;
 
 const roundToStep = (value, step = ROUND_STEP) => Math.round(value / step) * step;
 const formatNumber = (value) => value.toLocaleString('es-ES');
@@ -37,12 +36,9 @@ const ecosystemBenefitLabels = {
 
 // Note: `planDefs` below are generic pricing TIERS (Platinum/Track/Gold/Silver/
 // Virtual) offered to prospective sponsors, not a list of confirmed sponsor
-// companies with logos — city selection here is handled by the Madrid/Dubai/
-// Both tabs (`cityModeDefs`), which already apply to whichever tier a sponsor
-// picks. There's no per-company entry to attach a <SponsorFlag /> to in this
-// file; that mechanism lives in Collaborators.jsx, where real, named sponsor
-// logos are rendered. See SponsorFlag.jsx if a future "confirmed sponsors"
-// list is added here.
+// companies with logos — city selection currently offers Dubai only while
+// Madrid 2026 is postponed. There's no per-company entry to attach a
+// <SponsorFlag /> here; confirmed sponsors are handled in Collaborators.jsx.
 //
 // Names and features are localized via i18n (pricingTable.plans.<id>) —
 // only the non-textual data (price, flags, metrics) lives here.
@@ -78,25 +74,11 @@ const planDefs = [
 
 const cityModeDefs = [
   {
-    id: 'madrid',
-    currencySymbol: '€',
-    currencyCode: 'EUR',
-    computePrice: (eur) => eur,
-    subjectPrefixKey: 'madrid',
-  },
-  {
     id: 'dubai',
     currencySymbol: 'AED',
     currencyCode: 'AED',
     computePrice: (eur) => roundToStep(eur * EUR_TO_AED),
     subjectPrefixKey: 'dubai',
-  },
-  {
-    id: 'both',
-    currencySymbol: 'US$',
-    currencyCode: 'USD',
-    computePrice: (eur) => roundToStep(eur * 2 * EUR_TO_USD * (1 - COMBINED_DISCOUNT)),
-    subjectPrefixKey: 'both',
   },
 ];
 

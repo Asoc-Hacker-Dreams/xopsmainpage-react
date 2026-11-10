@@ -681,7 +681,7 @@
       "dubai": "Beneficios presenciales aplicados a Dubai.",
       "both": "Presencia en Madrid + Dubai con 10% de descuento combinado."
     },
-    "cityNote": "Tipo de cambio fijo: 1 EUR = {{aed}} AED y 1 EUR = {{usd}} USD (redondeo a {{step}}).",
+    "cityNote": "Referencia de conversión para los paquetes de Dubái: 1 EUR = {{aed}} AED (importes aproximados, redondeados a {{step}}).",
     "priceSub": "{{currency}} · inversión",
     "cta": "Contactar",
     "contactAriaLabel": "Contactar sobre el plan {{plan}} en {{city}}",

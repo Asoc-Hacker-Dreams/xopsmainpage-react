@@ -687,7 +687,7 @@
       "dubai": "In-person benefits applied to Dubai.",
       "both": "Presence in Madrid + Dubai with a 10% combined discount."
     },
-    "cityNote": "Fixed exchange rate: 1 EUR = {{aed}} AED and 1 EUR = {{usd}} USD (rounded to {{step}}).",
+    "cityNote": "Reference conversion for Dubai sponsorship packages: 1 EUR = {{aed}} AED (approximate amounts, rounded to {{step}}).",
     "priceSub": "{{currency}} · investment",
     "cta": "Contact us",
     "contactAriaLabel": "Contact us about the {{plan}} plan in {{city}}",
