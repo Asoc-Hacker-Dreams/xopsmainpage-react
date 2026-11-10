@@ -15,7 +15,7 @@
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
     "description": "El mundo de las IT está cambiando. Únete a nosotros en la X-Ops Conference, donde descubrirás cómo la tecnología y las personas adecuadas están impulsando el cambio.",
-    "date": "Madrid: 19, 20 y 21 Nov · Dubai: 1, 2 y 3 Dic 2026",
+    "date": "Madrid: aplazado · Dubái: 1, 2 y 3 dic 2026",
     "buyTicket": "Reserva tu entrada",
     "viewAgenda": "Ver agenda",
     "cfp": "CFP",
@@ -302,7 +302,6 @@
       "discountApplied": "Código aplicado",
       "saving": "Ahorras",
       "invalidDiscount": "Código no válido para esta entrada o sin disponibilidad.",
-
       "title": "Reservar Entrada",
       "cancel": "Cancelar",
       "submit": "Continuar al Pago",
@@ -485,30 +484,30 @@
     },
     "madrid": {
       "flag": "🇪🇸",
-      "dates": "19 · 20 · 21 NOV",
-      "year": "2026",
+      "dates": "APLAZADO",
+      "year": "NUEVA FECHA POR CONFIRMAR",
       "title": "X-Ops Madrid 2026",
       "city": "Madrid, España",
       "summit": {
         "label": "X-Ops Summit",
-        "dates": "19 de noviembre",
-        "venue": "Fundación Juan XXIII Roncalli"
+        "dates": "Sin fecha confirmada",
+        "venue": "Sede por confirmar"
       },
       "conference": {
         "label": "X-Ops Conference",
-        "dates": "20 y 21 de noviembre",
-        "venue": "Universidad Rey Juan Carlos, Campus Móstoles"
+        "dates": "Sin fecha confirmada",
+        "venue": "Sede por confirmar"
       },
-      "narrative": "La edición consolidada. Madrid es el hogar del movimiento X-Ops desde sus inicios. En 2026 ampliamos el formato: un día de Summit ejecutivo en la Fundación Juan XXIII y dos días de Conference técnica en la URJC. Una ciudad, un ecosistema completo.",
+      "narrative": "Madrid 2026 se aplaza. X-Ops Summit, X-Ops Conference y BSides Madrid no se celebrarán en las fechas inicialmente previstas (19–21 de noviembre). Nueva fecha pendiente de confirmar.",
       "badges": {
-        "format": "Summit + Conference",
+        "format": "Evento aplazado",
         "edition": "Edición consolidada",
-        "attendees": "500+ asistentes"
+        "attendees": "Fecha por confirmar"
       },
       "cta": {
         "summit": "Ver Summit Madrid",
         "conference": "Ver Conference Madrid",
-        "verMadrid": "Ver Madrid",
+        "verMadrid": "Leer el comunicado de Madrid",
         "verAgenda": "Ver agenda Madrid"
       }
     },
@@ -544,7 +543,7 @@
   "ubication": {
     "sectionPrefix": "Dónde nos encontramos",
     "title": "Sedes 2026",
-    "subtitle": "Dos ciudades, tres espacios. Cada venue ha sido seleccionado para reflejar el espíritu del evento que acoge.",
+    "subtitle": "Madrid ha sido aplazado y está pendiente de nuevas fechas y sedes. Dubái continúa adelante.",
     "madrid": {
       "city": "Madrid, España",
       "summit": {
@@ -682,7 +681,7 @@
       "dubai": "Beneficios presenciales aplicados a Dubai.",
       "both": "Presencia en Madrid + Dubai con 10% de descuento combinado."
     },
-    "cityNote": "Tipo de cambio fijo: 1 EUR = {{aed}} AED y 1 EUR = {{usd}} USD (redondeo a {{step}}).",
+    "cityNote": "Referencia de conversión para los paquetes de Dubái: 1 EUR = {{aed}} AED (importes aproximados, redondeados a {{step}}).",
     "priceSub": "{{currency}} · inversión",
     "cta": "Contactar",
     "contactAriaLabel": "Contactar sobre el plan {{plan}} en {{city}}",
@@ -785,5 +784,22 @@
     "privacy": "Política de privacidad",
     "media": "Fotografía, vídeo y derechos de imagen",
     "sponsors": "Privacidad del networking"
+  },
+  "announcement": {
+    "eyebrow": "Comunicado oficial · 10 de noviembre de 2026",
+    "nav": "Comunicado oficial",
+    "title": "X-Ops Madrid 2026 se aplaza",
+    "lead": "La edición de Madrid, prevista del 19 al 21 de noviembre de 2026, no se celebrará en esas fechas.",
+    "scope": "El aplazamiento afecta a X-Ops Summit, X-Ops Conference y BSides Madrid.",
+    "newDate": "Por el momento no hay una nueva fecha confirmada. Informaremos de cualquier novedad a través de nuestros canales oficiales.",
+    "buyers": "Las personas que hayan adquirido entradas recibirán una comunicación individual con información sobre la gestión de sus entradas, las opciones disponibles y el reembolso que corresponda.",
+    "dubaiHeading": "Dubái sigue adelante",
+    "dubai": "X-Ops Dubai 2026 continúa con su programación prevista. El aplazamiento de Madrid no afecta al evento de Dubái.",
+    "ctaMadrid": "Leer el comunicado de Madrid",
+    "ctaDubai": "Ver X-Ops Dubái 2026",
+    "contact": "Consultas sobre entradas:",
+    "venue": "Las fechas y sedes de Madrid quedan pendientes de reprogramación. No acudas a las ubicaciones anteriormente anunciadas.",
+    "status": "Madrid 2026 · edición aplazada",
+    "salesSuspended": "La venta de entradas de Madrid está suspendida por el aplazamiento."
   }
 }

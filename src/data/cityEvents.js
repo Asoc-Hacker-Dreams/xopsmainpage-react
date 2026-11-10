@@ -6,7 +6,8 @@ export const cityEvents = {
     flag: '🇪🇸',
     city: 'Madrid',
     country: 'España',
-    dateRange: '19–21 noviembre 2026',
+    status: 'postponed',
+    dateRange: 'Aplazado · nueva fecha por confirmar',
     startDate: '2026-11-19',
     endDate: '2026-11-21',
     summit: {
