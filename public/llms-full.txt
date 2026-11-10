@@ -14,12 +14,13 @@ EDITIONS
 2025 (Second Edition): URJC Móstoles · 2 days · 3 tracks · 300+ attendees · 4.7/5
 2026: Madrid edition postponed (originally planned 19–21 November; replacement date TBC).
   Madrid postponement includes Summit, Conference, and BSides Madrid.
-  Dubai edition continues, 1–3 December 2026. Planned expansion: London (2027)
+  Dubai edition continues: Summit on 30 November and Conference on 1 December 2026. Planned expansion: London (2027)
 
 2026 EVENT DETAILS
 ------------------
 Madrid: postponed. Dates and venues pending reprogramming; do not attend the original venues.
-Dubai: event continues, Summit and technical Conference, 1–3 December 2026.
+Dubai: Summit on Monday 30 November 2026 and technical Conference on Tuesday 1 December 2026.
+Programme status: preliminary topics and timing; named speakers to be confirmed. All times Gulf Standard Time (UTC+4).
 Expected attendees: to be confirmed
 Tracks: DevSecOps, Platform Engineering, AIOps/MLOps, SRE, Ciberseguridad
 

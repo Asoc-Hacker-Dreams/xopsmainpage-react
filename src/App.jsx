@@ -30,7 +30,7 @@ import SponsorPrivacy from './pages/SponsorPrivacy';
 import ExternalApplicationNotice from './pages/ExternalApplicationNotice';
 import { ORGANIZER, PAYMENT_COLLECTOR } from './legal/identity';
 import TermsOfService from './pages/TermsOfService';
-import Agenda from './pages/Agenda';
+
 import SpeakerPage from './pages/Speaker';
 import MyAgenda from './pages/MyAgenda';
 import TicketSuccess from './pages/TicketSuccess';
@@ -154,7 +154,7 @@ function App() {
                   <>
                     <a className="links px-4 fw-bold text-white" href="#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</a>
                     <a className="links px-4 fw-bold text-white" href="#conference" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</a>
-                    <a className="links px-4 fw-bold text-white" href={activeCity === 'madrid' ? '#conference-schedule' : '#conference'} style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('archive.agenda')}</a>
+                    <a className="links px-4 fw-bold text-white" href={activeCity === 'dubai' ? '#conference-schedule' : '#main-content'} style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('archive.agenda')}</a>
                     <a className="links px-4 fw-bold text-white" href="#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</a>
                   </>
                 ) : (
@@ -303,7 +303,7 @@ function App() {
           <Route path="/archive/2023/Speakers2023" element={<Speakers2023 />} />
           
           {/* Agenda, Speaker, MyAgenda */}
-          <Route path="/agenda" element={<Agenda />} />
+          <Route path="/agenda" element={<Navigate to="/dubai#conference-schedule" replace />} />
           <Route path="/speaker/:id" element={<SpeakerPage />} />
           <Route path="/mi-agenda" element={<MyAgenda />} />
 

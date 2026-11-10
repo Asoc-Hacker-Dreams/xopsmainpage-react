@@ -262,6 +262,8 @@ const EditionsSection = () => {
               ]}
               ctaLabel={t('editions.dubai.cta.verDubai') || 'Ver Dubai'}
               ctaTo="https://dubai.xopsconference.com"
+              agendaLabel={t("cityEvent.conference.viewAgenda")}
+              agendaTo="https://dubai.xopsconference.com/#conference-schedule"
               targetDate="2026-11-30T09:00:00"
             />
           </div>

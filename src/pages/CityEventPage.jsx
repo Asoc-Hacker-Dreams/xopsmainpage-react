@@ -6,11 +6,11 @@ import SEO from '../components/SEO';
 import MadridPostponementNotice from '../components/MadridPostponementNotice';
 import SpeakersSection from '../components/SpeakersSection';
 import Events from '../components/Events/Events';
+import DubaiProgrammeTimeline from '../components/DubaiProgrammeTimeline';
+import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
 import { cityEvents, cityUrl } from '../data/cityEvents';
 import { ORGANIZER } from '../legal/identity';
 import './CityEventPage.css';
-
-const agendaTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '15:00', '16:00', '17:00'];
 
 const CityEventPage = ({ city }) => {
   const { t } = useTranslation();
@@ -89,7 +89,7 @@ const CityEventPage = ({ city }) => {
           <nav className="city-hero__nav" aria-label={t('cityEvent.hero.navLabel', { city: event.city })}>
             <a href="#summit">{t('cityEvent.hero.navSummit')}</a>
             <a href="#conference">{t('cityEvent.hero.navConference')}</a>
-            <a href={isMadrid ? '#conference-schedule' : '#conference'}>{t('cityEvent.hero.navAgenda')}</a>
+            <a href="#conference-schedule">{t('cityEvent.hero.navAgenda')}</a>
             {isMadrid && <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>}
           </nav>
         </div>
@@ -165,11 +165,7 @@ const CityEventPage = ({ city }) => {
             <h2 id="agenda-title">{t('cityEvent.summit.agendaTitle')}</h2>
             <p>{t('cityEvent.summit.agendaSubtitle')}</p>
           </div>
-          <ol className="city-agenda__timeline">
-            {agendaTimes.map((time) => (
-              <li key={time}><time>{time}</time><span>{t('cityEvent.summit.agendaTbd')}</span></li>
-            ))}
-          </ol>
+          <DubaiProgrammeTimeline sessions={dubaiProgramme2026.summit.items} variant="summit" />
         </div>
       </section>
 
@@ -180,36 +176,18 @@ const CityEventPage = ({ city }) => {
             <h2 id="conference-title">X-Ops Conference <strong>{event.city} 2026</strong></h2>
             <p>{t('cityEvent.conference.intro')}</p>
           </div>
-          {isMadrid ? (
-            <div className="city-conference__announcement city-conference__announcement--published">
-              <span aria-hidden="true">●</span>
-              <p>{t('cityEvent.conference.agendaBadge')}</p>
-              <h3>{t('cityEvent.conference.agendaPublishedTitle')}</h3>
-              <p className="city-conference__status">{t('cityEvent.conference.agendaPublishedText')}</p>
-              <a href="#conference-schedule">
-                {t('cityEvent.conference.viewAgenda')} <span aria-hidden="true">↓</span>
-              </a>
-            </div>
-          ) : (
-            <div className="city-conference__announcement">
-              <span aria-hidden="true">●</span>
-              <p>{t('cityEvent.conference.agendaBadge')}</p>
-              <h3>{t('cityEvent.conference.agendaTitle')}</h3>
-              {event.conference.cfpUrl ? (
-                <Link to={"/convocatoria-ponentes?city=" + city}>
-                  {t('cityEvent.conference.proposeTalk')} <span aria-hidden="true">↗</span>
-                </Link>
-              ) : (
-                <p className="city-conference__status">{t('cityEvent.conference.cfpComingSoon', { city: event.city })}</p>
-              )}
-            </div>
-          )}
-          {isMadrid && (
-            <div id="conference-schedule" className="city-conference__schedule">
-              <p className="city-conference__schedule-notice">{t('cityEvent.conference.preliminaryScheduleNotice')}</p>
-              <Events />
-            </div>
-          )}
+          <div className="city-conference__announcement city-conference__announcement--published">
+            <span aria-hidden="true">●</span>
+            <p>{t('cityEvent.conference.agendaBadge')}</p>
+            <h3>{t('cityEvent.dubaiProgramme.conferenceTitle')}</h3>
+            <p className="city-conference__status">{t('cityEvent.dubaiProgramme.conferenceIntro')}</p>
+            <a href="#conference-schedule">
+              {t('cityEvent.conference.viewAgenda')} <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+          <div id="conference-schedule" className="city-conference__schedule">
+            <DubaiProgrammeTimeline sessions={dubaiProgramme2026.conference.items} variant="conference" />
+          </div>
         </div>
       <p className="small mt-4"><Link to="/politica-de-privacidad">{t('legalLinks.privacy', { defaultValue: 'Privacy notice / Privacidad' })}</Link> · <Link to="/fotografia-y-video">{t('legalLinks.media', { defaultValue: 'Recording & image rights / Fotografía y vídeo' })}</Link></p>
       </section>

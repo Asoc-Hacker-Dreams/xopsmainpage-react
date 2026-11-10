@@ -1,0 +1,83 @@
+.dubai-programme {
+  min-width: 0;
+  width: 100%;
+}
+.dubai-programme__timezone {
+  margin: 0 0 .8rem;
+  color: var(--city-ink);
+  font-weight: 700;
+}
+.dubai-programme__disclaimer {
+  margin: 0 0 1.3rem;
+  padding: .85rem 1rem;
+  background: rgba(0, 188, 212, .09);
+  border-left: 3px solid var(--city-cyan);
+  color: var(--city-muted);
+  line-height: 1.55;
+}
+.dubai-programme--summit .dubai-programme__disclaimer {
+  background: rgba(255, 214, 0, .08);
+  border-color: var(--city-gold);
+}
+.dubai-programme__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dubai-programme__item {
+  display: grid;
+  grid-template-columns: minmax(7.25rem, 8.2rem) minmax(0, 1fr);
+  gap: 1.35rem;
+  padding: 1.1rem .5rem;
+  border-bottom: 1px solid var(--city-line);
+}
+.dubai-programme__item:first-child {
+  border-top: 1px solid var(--city-line);
+}
+.dubai-programme__time {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: .24rem;
+  color: var(--city-cyan);
+  font: 700 .9rem/1.6 Poppins, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.dubai-programme--summit .dubai-programme__time {
+  color: var(--city-gold);
+}
+.dubai-programme__details { min-width: 0; }
+.dubai-programme__type {
+  font-size: .67rem;
+  letter-spacing: .12em;
+  color: var(--city-cyan);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.dubai-programme--summit .dubai-programme__type { color: var(--city-gold); }
+.dubai-programme__details h3 {
+  margin: .25rem 0;
+  color: var(--city-ink);
+  font-size: clamp(1rem, 1.7vw, 1.22rem);
+  line-height: 1.35;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+.dubai-programme__speaker {
+  margin: .3rem 0 0;
+  color: var(--city-muted);
+  font-size: .8rem;
+}
+.dubai-programme__item--networking .dubai-programme__details h3,
+.dubai-programme__item--opening .dubai-programme__details h3,
+.dubai-programme__item--closing .dubai-programme__details h3 {
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .dubai-programme__item {
+    grid-template-columns: 1fr;
+    gap: .3rem;
+    padding: 1rem .25rem;
+  }
+  .dubai-programme__time { font-size: .85rem; }
+}
