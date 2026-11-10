@@ -15,7 +15,7 @@
   "hero": {
     "title": "JOIN THE X-OPS REVOLUTION!",
     "description": "The world of IT is changing. Join us at X-Ops Conference, where you will discover how the right technology and people are driving change.",
-    "date": "Madrid: postponed · Dubai: 1–3 December 2026",
+    "date": "Madrid: postponed · Dubai: 30 Nov–1 Dec 2026",
     "buyTicket": "Reserve your spot",
     "viewAgenda": "View agenda",
     "cfp": "CFP",
@@ -34,6 +34,23 @@
     "copyright": "© 2026 - X-Ops Conference"
   },
   "cityEvent": {
+    "dubaiProgramme": {
+      "timezone": "Dubai local time · GST (UTC+4)",
+      "disclaimer": "Preliminary programme: topics, times, formats and speakers are subject to confirmation. This is not a list of accepted talks.",
+      "listLabel": "Dubai session programme",
+      "speakerPending": "Speaker(s) to be announced",
+      "conferenceTitle": "Dubai technical agenda · 1 December",
+      "conferenceIntro": "One-day technical programme. Session speakers and final titles will be announced as they are confirmed.",
+      "types": {
+        "topic": "Technical / topic session",
+        "panel": "Panel",
+        "roundtable": "Roundtable",
+        "networking": "Networking / break",
+        "opening": "Opening",
+        "closing": "Closing",
+        "community": "Community"
+      }
+    },
     "when": "When",
     "where": "Where",
     "hero": {
@@ -87,7 +104,7 @@
       },
       "agendaTbd": "To be announced",
       "agendaTitle": "Executive program",
-      "agendaSubtitle": "Agenda in progress. Sessions and speakers will be published soon."
+      "agendaSubtitle": "Preliminary executive agenda: roundtables, times and participants subject to confirmation."
     },
     "conference": {
       "kicker": "Technical Conference",
@@ -519,18 +536,18 @@
     },
     "dubai": {
       "flag": "🇦🇪",
-      "dates": "DEC 1 · 2 · 3",
+      "dates": "NOV 30 · DEC 1",
       "year": "2026",
       "title": "X-Ops Dubai 2026",
       "city": "Dubai, UAE",
       "summit": {
         "label": "X-Ops Summit",
-        "dates": "December 1",
+        "dates": "November 30",
         "venue": "To be confirmed"
       },
       "conference": {
         "label": "X-Ops Conference",
-        "dates": "December 2 &amp; 3",
+        "dates": "December 1",
         "venue": "To be confirmed"
       },
       "narrative": "The first edition in the Middle East. Dubai is the technology and financial hub of MENA. We bring the X-Ops DNA to a new continent: the same Summit + Conference format, adapted to an ecosystem where digital transformation moves at Formula 1 speed.",
@@ -565,7 +582,7 @@
     },
     "dubai": {
       "city": "Dubai, UAE",
-      "label": "X-Ops Dubai · December 1–3",
+      "label": "X-Ops Dubai · November 30 – December 1",
       "name": "Venue to be confirmed",
       "address": "Dubai, United Arab Emirates",
       "tbdNote": "The exact venue will be announced soon. Stay tuned."
@@ -592,7 +609,7 @@
     },
     "card2": {
       "title": "Where & When?",
-      "text": "X-Ops Conference Madrid 2026 takes place on 20 and 21 November at the Universidad Rey Juan Carlos Auditorium, Móstoles Campus. X-Ops Dubai 2026 runs 1–3 December. The agenda covers automation, continuous integration, continuous delivery, monitoring and secure architectures."
+      "text": "X-Ops Madrid 2026 has been postponed; new dates have yet to be announced. X-Ops Dubai 2026 runs November 30 (Summit) and December 1 (Conference). The agenda covers automation, continuous integration, continuous delivery, monitoring and secure architectures."
     },
     "card3": {
       "title": "The Future of Work",
