@@ -46,6 +46,7 @@ import WalletLogin from './pages/wallet/WalletLogin';
 import WalletDashboard from './pages/wallet/WalletDashboard';
 import CheckoutCancel from './pages/tickets/CheckoutCancel';
 import CityEventPage from './pages/CityEventPage';
+import MadridPostponementNotice from './components/MadridPostponementNotice';
 import StartupPack from './pages/StartupPack';
 import { getCityFromHostname, cityEvents } from './data/cityEvents';
 import './styles/Custom.css';
@@ -144,7 +145,12 @@ function App() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className='navbar-toggler-custom'/>
         <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-between">
             <Nav className="mx-auto">
-                {isCityPage ? (
+                {isCityPage && activeCity === 'madrid' ? (
+                  <a className="links px-4 fw-bold text-white" href="#comunicado-madrid"
+                    style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>
+                    {t('announcement.nav')}
+                  </a>
+                ) : isCityPage ? (
                   <>
                     <a className="links px-4 fw-bold text-white" href="#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</a>
                     <a className="links px-4 fw-bold text-white" href="#conference" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</a>
@@ -197,6 +203,12 @@ function App() {
             {t('language.switch')}
           </button>
           
+          {activeCity === 'madrid' ? (
+            <a className="button menu-btn" href="https://dubai.xopsconference.com/"
+              style={{ textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: '10px' }}>
+              {t('announcement.ctaDubai')}
+            </a>
+          ) : (
           <button
             className="button menu-btn"
             style={{ textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: "10px", cursor: 'pointer' }}
@@ -204,11 +216,13 @@ function App() {
           >
             {t('nav.tickets')}
           </button>
+          )}
         </div>
 
         </Navbar.Collapse>
     </Navbar>
 
+    {!hostnameCity && location.pathname === '/' && <MadridPostponementNotice />}
     {!isCityPage && (
       <section
         id="main-content"

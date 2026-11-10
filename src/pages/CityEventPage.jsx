@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BsAward, BsBullseye, BsCalendar3, BsGeoAlt, BsGraphUp, BsPeople, BsShieldCheck, BsTrophy } from 'react-icons/bs';
 import SEO from '../components/SEO';
+import MadridPostponementNotice from '../components/MadridPostponementNotice';
 import SpeakersSection from '../components/SpeakersSection';
 import Events from '../components/Events/Events';
 import { cityEvents, cityUrl } from '../data/cityEvents';
@@ -21,6 +22,32 @@ const CityEventPage = ({ city }) => {
   // translated via i18n keys.
   const summitBenefitKeys = ['strategic', 'networking', 'roi', 'certification', 'exclusivity'];
   const summitBenefitIcons = [BsGraphUp, BsPeople, BsTrophy, BsAward, BsShieldCheck];
+
+  // Madrid is postponed; never present its former programme or venues as current.
+  if (isMadrid) {
+    return (
+      <main className="city-page city-page--madrid" id="main-content">
+        <SEO
+          title="X-Ops Madrid 2026 aplazado · Comunicado oficial"
+          description="La edición de Madrid del 19 al 21 de noviembre de 2026 se aplaza. X-Ops Dubai 2026 sigue adelante. Nueva fecha de Madrid por confirmar."
+          path="/"
+          baseUrl={canonicalUrl}
+          lang="es"
+          structuredData={{
+            '@context': 'https://schema.org',
+            '@type': 'Event',
+            name: 'X-Ops Madrid 2026',
+            startDate: event.startDate,
+            endDate: event.endDate,
+            eventStatus: 'https://schema.org/EventPostponed',
+            organizer: { '@type': 'Organization', name: ORGANIZER.name, url: 'https://xopsconference.com' },
+            url: canonicalUrl,
+          }}
+        />
+        <MadridPostponementNotice expanded />
+      </main>
+    );
+  }
 
   return (
     <main className={`city-page city-page--${city}`} id="main-content">
