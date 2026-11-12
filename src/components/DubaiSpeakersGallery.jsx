@@ -55,6 +55,12 @@ const DubaiSpeakersGallery = () => {
                         </a>
                       )}
                     </div>
+                    {person.bio && (
+                      <details className="dubai-speakers__bio">
+                        <summary>{t('cityEvent.dubaiSpeakers.viewBio')}</summary>
+                        <p>{person.bio}</p>
+                      </details>
+                    )}
                   </div>
                 </article>
               ))}
