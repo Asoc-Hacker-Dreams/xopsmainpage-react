@@ -34,16 +34,71 @@
     "copyright": "© 2026 - X-Ops Conference"
   },
   "cityEvent": {
+    "experience": {
+      "lineupSummary": "X-Ops Dubai 2026 at a glance",
+      "acceptedTalks": "accepted talks",
+      "speakers": "speakers",
+      "days": "event days",
+      "summitLabel": "30 November · Strategy + business",
+      "summitTitle": "Executive Summit",
+      "summitDescription": "Nine accepted talks, a focused discussion of AI risk and platform strategy, executive boardrooms and opt-in B2B connections.",
+      "viewSummit": "Explore Summit agenda",
+      "conferenceLabel": "1 December · Engineering + community",
+      "conferenceTitle": "Technical Conference",
+      "conferenceDescription": "Ten accepted talks with original abstracts, speaker portraits and deep technical insights into cloud, AI, security and data.",
+      "viewConference": "Explore Conference agenda",
+      "getTickets": "Explore tickets",
+      "venuePending": "Dubai venue details to be announced",
+      "connectionsKicker": "BEYOND THE STAGE",
+      "connectionsTitle": "Make the conversations count",
+      "connectionsIntro": "The aim is more than stage time: a focused setting to discuss technology decisions, compare real delivery experience and meet people with complementary challenges.",
+      "connections": {
+        "learn": {
+          "title": "Learn from real work",
+          "text": "Accepted sessions preserve their technical depth, original titles and allocated time for practical lessons."
+        },
+        "discuss": {
+          "title": "Challenge decisions",
+          "text": "Proposed executive panels and facilitated boardrooms explore risk, cost and accountability. Participants are announced after accepting those roles."
+        },
+        "connect": {
+          "title": "Meet the right people",
+          "text": "Opt-in introductions and a scheduled B2B block create room for potential partnerships. Meetings are not guaranteed."
+        }
+      },
+      "connectionsNotice": "Panelists, moderators, boardroom facilitators, meeting arrangements, catering and venue are still being coordinated. No executive introductions or commercial outcomes are guaranteed."
+    },
+    "dubaiSpeakers": {
+      "kicker": "MEET THE SPEAKERS",
+      "title": "Dubai 2026 speakers",
+      "intro": "The accepted Dubai sessions now have their original titles, times, speaker photos and professional profiles. Summit panelists and roundtable facilitators are separate, optional roles and will be announced after acceptance.",
+      "summit": "Summit speakers",
+      "conference": "Conference speakers",
+      "speakerCount": "{{count}} speakers",
+      "viewTalk": "View session",
+      "viewBio": "Speaker biography"
+    },
     "dubaiProgramme": {
-      "summitDisclaimer": "Preliminary executive programme. Session formats and timings are proposed. Panelists, moderators and boardroom hosts will be announced only after they accept Dubai Summit participation. All times GST (UTC+4).",
+      "summitDisclaimer": "Accepted Dubai Summit talks are listed with their speakers and original durations. Timings may change. Panelists and boardroom facilitators will be announced separately once they accept those additional roles. All times GST (UTC+4).",
       "facilitatorPending": "Boardroom facilitator(s) to be announced",
+      "panelPending": "Panelists and moderator to be announced",
+      "hostPending": "Session host to be announced",
+      "profileLink": "Speaker profile",
+      "viewProfileOf": "View the professional profile of {{name}}",
+      "viewAbstract": "Read session abstract",
+      "sessionInSpanish": "Session submitted in Spanish. Any language change will be announced.",
+      "duration": "{{count}} min",
+      "talkCount_one": "{{count}} accepted talk",
+      "talkCount_other": "{{count}} accepted talks",
+      "downloadCalendar": "Add programme to calendar (.ics)",
       "timezone": "Dubai local time · GST (UTC+4)",
-      "disclaimer": "Preliminary programme: topics, times, formats and speakers are subject to confirmation. This is not a list of accepted talks.",
+      "disclaimer": "The accepted one-day Dubai Conference schedule is published with speakers and session abstracts. Timings may change. One session was submitted in Spanish; any language update will be announced. All times GST (UTC+4).",
       "listLabel": "Dubai session programme",
       "speakerPending": "Speaker(s) to be announced",
       "conferenceTitle": "Dubai technical agenda · 1 December",
-      "conferenceIntro": "One-day technical programme. Session speakers and final titles will be announced as they are confirmed.",
+      "conferenceIntro": "Explore the 10 accepted technical talks scheduled for Tuesday, 1 December, with speaker photographs, original titles and abstracts.",
       "types": {
+        "talk": "Accepted talk",
         "keynote": "Opening keynote",
         "fireside": "Executive fireside",
         "briefing": "Executive insights",
@@ -112,7 +167,7 @@
       },
       "agendaTbd": "To be announced",
       "agendaTitle": "Executive program",
-      "agendaSubtitle": "Executive conversations, facilitated boardrooms, measurable business cases and curated B2B meetings. Speaker participation to be announced."
+      "agendaSubtitle": "Nine accepted talks, expert discussions and curated B2B connections. Panel and roundtable participants will be announced separately."
     },
     "conference": {
       "kicker": "Technical Conference",

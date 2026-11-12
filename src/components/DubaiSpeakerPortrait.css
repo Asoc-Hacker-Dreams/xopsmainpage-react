@@ -1,0 +1,40 @@
+.dubai-portrait {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 3.15rem;
+  height: 3.15rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--city-surface-raised, #343552);
+  border: 2px solid var(--city-line, #555);
+}
+.dubai-portrait--large {
+  width: 5rem;
+  height: 5rem;
+}
+.dubai-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.dubai-portrait__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--city-ink, #fff);
+  font: 800 .9rem/1 Raleway, sans-serif;
+  background: linear-gradient(145deg, #394265, #214e67);
+}
+.dubai-portrait--large .dubai-portrait__fallback {
+  font-size: 1.2rem;
+}
+@media(max-width: 600px){
+ .dubai-portrait--large{width:4rem;height:4rem;}
+}

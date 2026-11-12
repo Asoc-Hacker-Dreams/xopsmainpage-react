@@ -1,36 +1,126 @@
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { dubaiAcceptedSessions2026, dubaiSpeakers2026 } from '../data/dubaiAcceptedSessions2026';
+import DubaiSpeakerPortrait from './DubaiSpeakerPortrait';
+import { downloadDubaiIcs } from '../utils/dubaiCalendar';
 import './DubaiProgrammeTimeline.css';
 
 const DubaiProgrammeTimeline = ({ sessions, variant = 'conference' }) => {
   const { t, i18n } = useTranslation();
   const language = i18n.language?.startsWith('es') ? 'es' : 'en';
   const isSummit = variant === 'summit';
-  const summitSpeakerFormats = ['keynote', 'fireside', 'panel', 'case', 'debate', 'clinic'];
-  const conferenceSpeakerFormats = ['topic', 'panel', 'community'];
+  const day = isSummit ? '2026-11-30' : '2026-12-01';
+  const sessionCount = sessions.filter((slot) => slot.sessionId).length;
+  const downloadAgenda = () => downloadDubaiIcs({
+    date: day,
+    slots: sessions,
+    label: isSummit ? 'X-Ops Executive Summit Dubai 2026' : 'X-Ops Technical Conference Dubai 2026',
+    filename: isSummit ? 'XOps-Dubai-Summit-Nov-30-2026.ics' : 'XOps-Dubai-Conference-Dec-01-2026.ics',
+    language,
+  });
 
   return (
     <div className={`dubai-programme dubai-programme--${variant}`}>
-      <p className="dubai-programme__timezone">{t('cityEvent.dubaiProgramme.timezone')}</p>
-      <p className="dubai-programme__disclaimer" role="note">{t(isSummit ? 'cityEvent.dubaiProgramme.summitDisclaimer' : 'cityEvent.dubaiProgramme.disclaimer')}</p>
+      <div className="dubai-programme__toolbar">
+        <div className="dubai-programme__toolbar-heading">
+          <p className="dubai-programme__timezone">{t('cityEvent.dubaiProgramme.timezone')}</p>
+          <p className="dubai-programme__count">{t('cityEvent.dubaiProgramme.talkCount', { count: sessionCount })}</p>
+        </div>
+        <button type="button" className="dubai-programme__calendar-button" onClick={downloadAgenda}>
+          <span aria-hidden="true">↓</span> {t('cityEvent.dubaiProgramme.downloadCalendar')}
+        </button>
+      </div>
+      <p className="dubai-programme__disclaimer" role="note">
+        {t(isSummit ? 'cityEvent.dubaiProgramme.summitDisclaimer' : 'cityEvent.dubaiProgramme.disclaimer')}
+      </p>
       <ol className="dubai-programme__list" aria-label={t('cityEvent.dubaiProgramme.listLabel')}>
-        {sessions.map((session) => (
-          <li key={`${session.start}-${session.end}`} className={`dubai-programme__item dubai-programme__item--${session.type}`}>
-            <time className="dubai-programme__time" dateTime={session.start}>
-              {session.start}<span aria-hidden="true">–</span>{session.end}
-            </time>
-            <div className="dubai-programme__details">
-              <span className="dubai-programme__type">{t(`cityEvent.dubaiProgramme.types.${session.type}`)}</span>
-              <h3>{session.topic[language]}</h3>
-              {session.details?.[language] ? <p className="dubai-programme__summary">{session.details[language]}</p> : null}
-              {session.type === 'roundtable' && isSummit ? (
-                <p className="dubai-programme__speaker">{t('cityEvent.dubaiProgramme.facilitatorPending')}</p>
-              ) : (isSummit ? summitSpeakerFormats : conferenceSpeakerFormats).includes(session.type) ? (
-                <p className="dubai-programme__speaker">{t('cityEvent.dubaiProgramme.speakerPending')}</p>
-              ) : null}
-            </div>
-          </li>
-        ))}
+        {sessions.map((slot) => {
+          const acceptedTalk = slot.sessionId ? dubaiAcceptedSessions2026[slot.sessionId] : null;
+          const title = acceptedTalk ? acceptedTalk.title : slot.topic?.[language];
+          const speakers = acceptedTalk
+            ? acceptedTalk.speakers.map((id) => dubaiSpeakers2026[id]).filter(Boolean)
+            : [];
+          const showPanelNotice = slot.type === 'panel' || slot.type === 'roundtable';
+          return (
+            <li
+              key={`${slot.start}-${slot.end}`}
+              id={acceptedTalk ? `talk-${acceptedTalk.id}` : undefined}
+              className={`dubai-programme__item dubai-programme__item--${slot.type}`}
+            >
+              <time className="dubai-programme__time" dateTime={slot.start}>
+                {slot.start}<span aria-hidden="true">–</span>{slot.end}
+              </time>
+              <div className="dubai-programme__details">
+                <div className="dubai-programme__topline">
+                  <span className="dubai-programme__type">
+                    {t(`cityEvent.dubaiProgramme.types.${slot.type}`)}
+                  </span>
+                  {acceptedTalk && (
+                    <span className="dubai-programme__duration">
+                      {t('cityEvent.dubaiProgramme.duration', { count: acceptedTalk.durationMinutes })}
+                    </span>
+                  )}
+                </div>
+                <h3>{title}</h3>
+                {acceptedTalk ? (
+                  <>
+                    <div className="dubai-programme__people">
+                      {speakers.map((person) => (
+                        <div className="dubai-programme__person" key={person.id}>
+                          <DubaiSpeakerPortrait speaker={person} />
+                          <div className="dubai-programme__person-info">
+                            <span className="dubai-programme__person-name">{person.name}</span>
+                            {person.role && <span className="dubai-programme__person-role">{person.role}</span>}
+                            {(person.linkedIn || person.sessionizeProfile) && (
+                              <a
+                                href={person.linkedIn || person.sessionizeProfile}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="dubai-programme__profile-link"
+                                aria-label={t('cityEvent.dubaiProgramme.viewProfileOf', { name: person.name })}
+                              >
+                                {t('cityEvent.dubaiProgramme.profileLink')}
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {acceptedTalk.language === 'Spanish' && (
+                      <p className="dubai-programme__language-note">
+                        {t('cityEvent.dubaiProgramme.sessionInSpanish')}
+                      </p>
+                    )}
+                    {acceptedTalk.description && (
+                      <details className="dubai-programme__abstract">
+                        <summary>{t('cityEvent.dubaiProgramme.viewAbstract')}</summary>
+                        <p>{acceptedTalk.description}</p>
+                      </details>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {slot.details?.[language] && (
+                      <p className="dubai-programme__summary">{slot.details[language]}</p>
+                    )}
+                    {showPanelNotice && (
+                      <p className="dubai-programme__speaker">
+                        {t(slot.type === 'roundtable'
+                          ? 'cityEvent.dubaiProgramme.facilitatorPending'
+                          : 'cityEvent.dubaiProgramme.panelPending')}
+                      </p>
+                    )}
+                    {slot.type === 'keynote' && (
+                      <p className="dubai-programme__speaker">
+                        {t('cityEvent.dubaiProgramme.hostPending')}
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
+            </li>
+          );
+        })}
       </ol>
     </div>
   );
@@ -41,7 +131,8 @@ DubaiProgrammeTimeline.propTypes = {
     start: PropTypes.string.isRequired,
     end: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    topic: PropTypes.shape({ en: PropTypes.string.isRequired, es: PropTypes.string.isRequired }).isRequired,
+    sessionId: PropTypes.string,
+    topic: PropTypes.shape({ en: PropTypes.string.isRequired, es: PropTypes.string.isRequired }),
     details: PropTypes.shape({ en: PropTypes.string.isRequired, es: PropTypes.string.isRequired }),
   })).isRequired,
   variant: PropTypes.oneOf(['summit', 'conference']),
