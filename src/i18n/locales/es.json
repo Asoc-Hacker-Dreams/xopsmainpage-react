@@ -34,6 +34,40 @@
     "copyright": "© 2026 - X-Ops Conference"
   },
   "cityEvent": {
+    "experience": {
+      "lineupSummary": "X-Ops Dubái 2026 de un vistazo",
+      "acceptedTalks": "charlas aceptadas",
+      "speakers": "ponentes",
+      "days": "jornadas",
+      "summitLabel": "30 de noviembre · Estrategia + negocio",
+      "summitTitle": "Executive Summit",
+      "summitDescription": "Nueve charlas aceptadas, conversaciones sobre riesgo de IA y estrategia de plataformas, mesas ejecutivas y conexiones B2B voluntarias.",
+      "viewSummit": "Explorar agenda del Summit",
+      "conferenceLabel": "1 de diciembre · Ingeniería + comunidad",
+      "conferenceTitle": "Technical Conference",
+      "conferenceDescription": "Diez charlas aceptadas, con descripciones originales, fotografías y contenido técnico de nube, IA, seguridad y datos.",
+      "viewConference": "Explorar agenda de la Conference",
+      "getTickets": "Consultar entradas",
+      "venuePending": "Sede de Dubái pendiente de anuncio",
+      "connectionsKicker": "MÁS ALLÁ DEL ESCENARIO",
+      "connectionsTitle": "Conversaciones con propósito",
+      "connectionsIntro": "La meta no es acumular ponencias: buscamos un entorno enfocado en decisiones tecnológicas, intercambio de experiencias reales y contactos entre personas que afrontan retos complementarios.",
+      "connections": {
+        "learn": {
+          "title": "Aprender de casos reales",
+          "text": "Las charlas aceptadas conservan su profundidad técnica, título original y tiempo asignado para extraer aprendizajes prácticos."
+        },
+        "discuss": {
+          "title": "Contrastar decisiones",
+          "text": "Los paneles y mesas propuestos analizarán riesgo, coste y responsabilidad. Los participantes se anunciarán cuando acepten esos roles."
+        },
+        "connect": {
+          "title": "Encontrar contactos relevantes",
+          "text": "Las presentaciones voluntarias y el bloque B2B crean oportunidades de colaboración. No se garantizan reuniones."
+        }
+      },
+      "connectionsNotice": "Panelistas, moderadores, facilitadores, reuniones, catering y sede siguen en coordinación. No se garantizan presentaciones ejecutivas ni resultados comerciales."
+    },
     "dubaiSpeakers": {
       "kicker": "CONOCE A LOS PONENTES",
       "title": "Ponentes de Dubái 2026",
