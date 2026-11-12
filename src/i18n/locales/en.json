@@ -41,7 +41,8 @@
       "summit": "Summit speakers",
       "conference": "Conference speakers",
       "speakerCount": "{{count}} speakers",
-      "viewTalk": "View session"
+      "viewTalk": "View session",
+      "viewBio": "Speaker biography"
     },
     "dubaiProgramme": {
       "summitDisclaimer": "Accepted Dubai Summit talks are listed with their speakers and original durations. Timings may change. Panelists and boardroom facilitators will be announced separately once they accept those additional roles. All times GST (UTC+4).",
