@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { BsAward, BsBullseye, BsCalendar3, BsGeoAlt, BsGraphUp, BsPeople, BsShieldCheck, BsTrophy } from 'react-icons/bs';
 import SEO from '../components/SEO';
 import MadridPostponementNotice from '../components/MadridPostponementNotice';
-import SpeakersSection from '../components/SpeakersSection';
 import Events from '../components/Events/Events';
 import DubaiProgrammeTimeline from '../components/DubaiProgrammeTimeline';
+import DubaiSpeakersGallery from '../components/DubaiSpeakersGallery';
 import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
 import { cityEvents, cityUrl } from '../data/cityEvents';
 import { ORGANIZER } from '../legal/identity';
@@ -90,7 +90,7 @@ const CityEventPage = ({ city }) => {
             <a href="#summit">{t('cityEvent.hero.navSummit')}</a>
             <a href="#conference">{t('cityEvent.hero.navConference')}</a>
             <a href="#conference-schedule">{t('cityEvent.hero.navAgenda')}</a>
-            {isMadrid && <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>}
+            <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>
           </nav>
         </div>
       </section>
@@ -192,17 +192,7 @@ const CityEventPage = ({ city }) => {
       <p className="small mt-4"><Link to="/politica-de-privacidad">{t('legalLinks.privacy', { defaultValue: 'Privacy notice / Privacidad' })}</Link> · <Link to="/fotografia-y-video">{t('legalLinks.media', { defaultValue: 'Recording & image rights / Fotografía y vídeo' })}</Link></p>
       </section>
 
-      {isMadrid ? (
-        <SpeakersSection />
-      ) : (
-        <section className="city-speakers-soon" id="ponentes" aria-labelledby="speakers-soon-title">
-          <div className="container">
-            <p className="city-kicker">{t('cityEvent.speakersSoon.kicker')}</p>
-            <h2 id="speakers-soon-title">{t('cityEvent.speakersSoon.title', { city: event.city })}</h2>
-            <p>{t('cityEvent.speakersSoon.text')}</p>
-          </div>
-        </section>
-      )}
+      <DubaiSpeakersGallery />
 
       <section className="city-final-cta">
         <div className="container">
