@@ -34,16 +34,33 @@
     "copyright": "© 2026 - X-Ops Conference"
   },
   "cityEvent": {
+    "dubaiSpeakers": {
+      "kicker": "CONOCE A LOS PONENTES",
+      "title": "Ponentes de Dubái 2026",
+      "intro": "Las sesiones aceptadas para Dubái ya incluyen títulos originales, horarios, fotografías y perfiles profesionales. Los paneles y las mesas redondas son participaciones adicionales que se anunciarán tras su aceptación.",
+      "summit": "Ponentes del Summit",
+      "conference": "Ponentes de la Conference",
+      "speakerCount": "{{count}} ponentes",
+      "viewTalk": "Ver charla"
+    },
     "dubaiProgramme": {
-      "summitDisclaimer": "Programa ejecutivo preliminar. Formatos y horarios propuestos. Panelistas, moderadores y facilitadores se anunciarán únicamente tras confirmar su participación en el Summit de Dubái. Todos los horarios en GST (UTC+4).",
+      "summitDisclaimer": "Las charlas aceptadas para Dubai Summit aparecen con sus ponentes y duraciones originales. Los horarios pueden cambiar. Panelistas y facilitadores de mesas se anunciarán por separado cuando acepten esos roles adicionales. Todos los horarios en GST (UTC+4).",
       "facilitatorPending": "Facilitador(es) de mesa por confirmar",
+      "panelPending": "Panelistas y moderación por confirmar",
+      "hostPending": "Anfitrión de la sesión por confirmar",
+      "profileLink": "Perfil del ponente",
+      "viewProfileOf": "Ver perfil profesional de {{name}}",
+      "viewAbstract": "Leer descripción completa",
+      "sessionInSpanish": "Charla presentada en español. Cualquier cambio de idioma se anunciará.",
+      "duration": "{{count}} min",
       "timezone": "Hora local de Dubái · GST (UTC+4)",
-      "disclaimer": "Programa provisional: los temas, los horarios, los formatos y los ponentes están sujetos a confirmación. No representa un listado de charlas aceptadas.",
+      "disclaimer": "Se publica la agenda de un día de Dubai Conference con sus charlas aceptadas, ponentes y descripciones. Los horarios pueden cambiar. Una sesión se presentó en español; cualquier cambio de idioma se anunciará. Horarios GST (UTC+4).",
       "listLabel": "Programa de sesiones de Dubái",
       "speakerPending": "Ponente(s) por confirmar",
       "conferenceTitle": "Agenda técnica de Dubái · 1 de diciembre",
-      "conferenceIntro": "Programa técnico de un solo día. Ponentes y títulos definitivos pendientes de anuncio.",
+      "conferenceIntro": "Consulta las diez charlas técnicas aceptadas para el martes 1 de diciembre, con fotografías de los ponentes, títulos originales y descripciones.",
       "types": {
+        "talk": "Charla aceptada",
         "keynote": "Keynote estratégica",
         "fireside": "Conversación ejecutiva",
         "briefing": "Conclusiones ejecutivas",
@@ -112,7 +129,7 @@
       },
       "agendaTbd": "Por anunciar",
       "agendaTitle": "Programa ejecutivo",
-      "agendaSubtitle": "Conversaciones ejecutivas, mesas facilitadas, casos de negocio medibles y reuniones B2B dirigidas. Participación de ponentes por confirmar."
+      "agendaSubtitle": "Nueve charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Panelistas y participantes de las mesas se anunciarán por separado."
     },
     "conference": {
       "kicker": "Conference técnica",
