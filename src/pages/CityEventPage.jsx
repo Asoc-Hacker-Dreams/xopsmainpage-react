@@ -122,7 +122,6 @@ const CityEventPage = ({ city }) => {
           }),
         }}
       />
-      />
 
       <section className="city-hero" aria-labelledby={`${city}-title`}>
         <div className="city-hero__grid" aria-hidden="true" />
