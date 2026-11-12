@@ -34,6 +34,40 @@
     "copyright": "© 2026 - X-Ops Conference"
   },
   "cityEvent": {
+    "experience": {
+      "lineupSummary": "X-Ops Dubai 2026 at a glance",
+      "acceptedTalks": "accepted talks",
+      "speakers": "speakers",
+      "days": "event days",
+      "summitLabel": "30 November · Strategy + business",
+      "summitTitle": "Executive Summit",
+      "summitDescription": "Nine accepted talks, a focused discussion of AI risk and platform strategy, executive boardrooms and opt-in B2B connections.",
+      "viewSummit": "Explore Summit agenda",
+      "conferenceLabel": "1 December · Engineering + community",
+      "conferenceTitle": "Technical Conference",
+      "conferenceDescription": "Ten accepted talks with original abstracts, speaker portraits and deep technical insights into cloud, AI, security and data.",
+      "viewConference": "Explore Conference agenda",
+      "getTickets": "Explore tickets",
+      "venuePending": "Dubai venue details to be announced",
+      "connectionsKicker": "BEYOND THE STAGE",
+      "connectionsTitle": "Make the conversations count",
+      "connectionsIntro": "The aim is more than stage time: a focused setting to discuss technology decisions, compare real delivery experience and meet people with complementary challenges.",
+      "connections": {
+        "learn": {
+          "title": "Learn from real work",
+          "text": "Accepted sessions preserve their technical depth, original titles and allocated time for practical lessons."
+        },
+        "discuss": {
+          "title": "Challenge decisions",
+          "text": "Proposed executive panels and facilitated boardrooms explore risk, cost and accountability. Participants are announced after accepting those roles."
+        },
+        "connect": {
+          "title": "Meet the right people",
+          "text": "Opt-in introductions and a scheduled B2B block create room for potential partnerships. Meetings are not guaranteed."
+        }
+      },
+      "connectionsNotice": "Panelists, moderators, boardroom facilitators, meeting arrangements, catering and venue are still being coordinated. No executive introductions or commercial outcomes are guaranteed."
+    },
     "dubaiSpeakers": {
       "kicker": "MEET THE SPEAKERS",
       "title": "Dubai 2026 speakers",
