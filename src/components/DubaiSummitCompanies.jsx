@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { dubaiSummitSpeakerCompanies2026 } from '../data/dubaiSummitSpeakerCompanies2026';
 import { dubaiSpeakers2026 } from '../data/dubaiAcceptedSessions2026';
@@ -19,8 +20,6 @@ const CompanyLogo = ({ company }) => {
     </div>
   );
 };
-
-import PropTypes from 'prop-types';
 
 CompanyLogo.propTypes = {
   company: PropTypes.shape({ name: PropTypes.string.isRequired, logo: PropTypes.string }).isRequired,
