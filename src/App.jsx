@@ -277,8 +277,8 @@ function App() {
               rather than 404ing them. */}
           <Route path="/Sponsor" element={<Navigate to="/#patrocinio" replace />} />
           <Route path="/Patrocina" element={<Navigate to="/#patrocinio" replace />} />
-          <Route path="/summit" element={<Navigate to="/madrid" replace />} />
-          <Route path="/Summit" element={<Navigate to="/madrid" replace />} />
+          <Route path="/summit" element={<Navigate to="/dubai#agenda" replace />} />
+          <Route path="/Summit" element={<Navigate to="/dubai#agenda" replace />} />
 
           {/* Ticket purchasing now happens entirely through TicketModal
               (loads events/tickets directly from TriskelGate) rather than a
@@ -351,7 +351,7 @@ function App() {
 
           {/* Legacy routes - redirect to their current equivalents */}
           <Route path="/entradas" element={<Navigate to="/?openTickets=1" replace />} />
-          <Route path="/ponentes" element={<Navigate to="/#ponentes" replace />} />
+          <Route path="/ponentes" element={<Navigate to="/dubai#ponentes" replace />} />
           <Route path="/eventos-anteriores" element={<Navigate to="/archive/2025/Events2025" replace />} />
 
           <Route path="*" element={<NotFound />} />
