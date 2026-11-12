@@ -41,7 +41,8 @@
       "summit": "Ponentes del Summit",
       "conference": "Ponentes de la Conference",
       "speakerCount": "{{count}} ponentes",
-      "viewTalk": "Ver charla"
+      "viewTalk": "Ver charla",
+      "viewBio": "Biografía del ponente"
     },
     "dubaiProgramme": {
       "summitDisclaimer": "Las charlas aceptadas para Dubai Summit aparecen con sus ponentes y duraciones originales. Los horarios pueden cambiar. Panelistas y facilitadores de mesas se anunciarán por separado cuando acepten esos roles adicionales. Todos los horarios en GST (UTC+4).",
