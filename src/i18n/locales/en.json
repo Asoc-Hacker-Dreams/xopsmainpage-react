@@ -34,6 +34,17 @@
     "copyright": "© 2026 - X-Ops Conference"
   },
   "cityEvent": {
+    "summitCompanies": {
+      "kicker": "THE SUMMIT ECOSYSTEM",
+      "title": "Companies represented by our speakers",
+      "intro": "Discover the organizations where X-Ops Executive Summit Dubai 2026 speakers work or which they have founded. Brand marks link to corporate websites when reliably identifiable.",
+      "navLabel": "Companies",
+      "representedBy": "Speaker(s): {{names}}",
+      "website": "Visit website",
+      "websitePending": "Official website not yet verified",
+      "visitWebsite": "Visit {{company}} website",
+      "disclaimer": "A company appearing here only identifies a professional affiliation reported by its speakers through Sessionize. It does not imply sponsorship, institutional partnership, corporate endorsement, or formal company representation at X-Ops."
+    },
     "experience": {
       "lineupSummary": "X-Ops Dubai 2026 at a glance",
       "acceptedTalks": "accepted talks",
