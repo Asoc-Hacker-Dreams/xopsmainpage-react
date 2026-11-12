@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 import MadridPostponementNotice from '../components/MadridPostponementNotice';
 import DubaiProgrammeTimeline from '../components/DubaiProgrammeTimeline';
 import DubaiSpeakersGallery from '../components/DubaiSpeakersGallery';
+import DubaiSummitCompanies from '../components/DubaiSummitCompanies';
 import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
 import { dubaiAcceptedSessions2026, dubaiSpeakers2026 } from '../data/dubaiAcceptedSessions2026';
 import { cityEvents, cityUrl } from '../data/cityEvents';
@@ -138,6 +139,7 @@ const CityEventPage = ({ city }) => {
             <a href="#conference">{t('cityEvent.hero.navConference')}</a>
             <a href="#conference-schedule">{t('cityEvent.hero.navAgenda')}</a>
             <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>
+            <a href="#empresas-summit">{t('cityEvent.summitCompanies.navLabel')}</a>
           </nav>
           <div className="city-hero__lineup" aria-label={t('cityEvent.experience.lineupSummary')}>
             <div className="city-hero__lineup-stat">
@@ -251,6 +253,8 @@ const CityEventPage = ({ city }) => {
           <DubaiProgrammeTimeline sessions={dubaiProgramme2026.summit.items} variant="summit" />
         </div>
       </section>
+
+      <DubaiSummitCompanies />
 
       <section className="city-conference" id="conference" aria-labelledby="conference-title">
         <div className="container city-conference__layout">
