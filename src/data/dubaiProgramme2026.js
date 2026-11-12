@@ -1,5 +1,3 @@
-// Public-facing provisional programmes for Dubai 2026.
-// Summit themes have been benchmarked to regional executive programmes; named speakers are NOT confirmed for this city.
 // Do not publish proposed candidates as booked Summit speakers without explicit acceptance and travel/format checks.
 export const dubaiProgramme2026 = {
   "edition": "dubai",
@@ -83,8 +81,8 @@ export const dubaiProgramme2026 = {
           "es": "Café y conexiones ejecutivas dirigidas"
         },
         "details": {
-          "en": "Optional short introductions arranged by shared business challenges.",
-          "es": "Conexiones breves organizadas según retos empresariales comunes."
+          "en": "Curated introductions. A respectful 11:30 pause for UAE Commemoration Day, following venue protocol.",
+          "es": "Presentaciones dirigidas. Pausa respetuosa a las 11:30 por el Día de Conmemoración de EAU, según el protocolo del recinto."
         }
       },
       {
