@@ -5,11 +5,14 @@ import './DubaiProgrammeTimeline.css';
 const DubaiProgrammeTimeline = ({ sessions, variant = 'conference' }) => {
   const { t, i18n } = useTranslation();
   const language = i18n.language?.startsWith('es') ? 'es' : 'en';
+  const isSummit = variant === 'summit';
+  const summitSpeakerFormats = ['keynote', 'fireside', 'panel', 'case', 'debate', 'clinic'];
+  const conferenceSpeakerFormats = ['topic', 'panel', 'community'];
 
   return (
     <div className={`dubai-programme dubai-programme--${variant}`}>
       <p className="dubai-programme__timezone">{t('cityEvent.dubaiProgramme.timezone')}</p>
-      <p className="dubai-programme__disclaimer" role="note">{t('cityEvent.dubaiProgramme.disclaimer')}</p>
+      <p className="dubai-programme__disclaimer" role="note">{t(isSummit ? 'cityEvent.dubaiProgramme.summitDisclaimer' : 'cityEvent.dubaiProgramme.disclaimer')}</p>
       <ol className="dubai-programme__list" aria-label={t('cityEvent.dubaiProgramme.listLabel')}>
         {sessions.map((session) => (
           <li key={`${session.start}-${session.end}`} className={`dubai-programme__item dubai-programme__item--${session.type}`}>
@@ -19,7 +22,10 @@ const DubaiProgrammeTimeline = ({ sessions, variant = 'conference' }) => {
             <div className="dubai-programme__details">
               <span className="dubai-programme__type">{t(`cityEvent.dubaiProgramme.types.${session.type}`)}</span>
               <h3>{session.topic[language]}</h3>
-              {session.type === 'topic' || session.type === 'panel' || session.type === 'roundtable' || session.type === 'community' ? (
+              {session.details?.[language] ? <p className="dubai-programme__summary">{session.details[language]}</p> : null}
+              {session.type === 'roundtable' && isSummit ? (
+                <p className="dubai-programme__speaker">{t('cityEvent.dubaiProgramme.facilitatorPending')}</p>
+              ) : (isSummit ? summitSpeakerFormats : conferenceSpeakerFormats).includes(session.type) ? (
                 <p className="dubai-programme__speaker">{t('cityEvent.dubaiProgramme.speakerPending')}</p>
               ) : null}
             </div>
@@ -36,6 +42,7 @@ DubaiProgrammeTimeline.propTypes = {
     end: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     topic: PropTypes.shape({ en: PropTypes.string.isRequired, es: PropTypes.string.isRequired }).isRequired,
+    details: PropTypes.shape({ en: PropTypes.string.isRequired, es: PropTypes.string.isRequired }),
   })).isRequired,
   variant: PropTypes.oneOf(['summit', 'conference']),
 };
