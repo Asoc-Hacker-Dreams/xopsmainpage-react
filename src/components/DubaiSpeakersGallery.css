@@ -1,0 +1,101 @@
+.dubai-speakers {
+  padding: clamp(4rem, 8vw, 7.5rem) 0;
+  background: var(--city-surface);
+  scroll-margin-top: 6.5rem;
+}
+.dubai-speakers__heading {
+  max-width: 64rem;
+  margin-bottom: 2.8rem;
+}
+.dubai-speakers__heading h2 {
+  margin: .5rem 0 1rem;
+  font: 800 clamp(2.15rem, 5vw, 4.4rem)/1.05 Raleway, sans-serif;
+  color: var(--city-ink);
+}
+.dubai-speakers__heading > p:last-child {
+  max-width: 65ch;
+  color: var(--city-muted);
+  line-height: 1.7;
+}
+.dubai-speakers__group + .dubai-speakers__group {
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+.dubai-speakers__group-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: .95rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--city-line);
+}
+.dubai-speakers__group-heading h3 {
+  margin: 0;
+  color: var(--city-gold);
+  font: 800 clamp(1.4rem, 3vw, 2.1rem)/1.2 Raleway,sans-serif;
+}
+.dubai-speakers__group--conference .dubai-speakers__group-heading h3 {
+  color: var(--city-cyan);
+}
+.dubai-speakers__group-heading span {
+  color: var(--city-muted);
+  font-size: .85rem;
+}
+.dubai-speakers__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 1rem;
+}
+.dubai-speakers__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.3rem;
+  background: var(--city-stage);
+  border: 1px solid var(--city-line);
+  border-radius: 1.1rem;
+  min-width: 0;
+}
+.dubai-speakers__card-details {
+  min-width: 0;
+  flex: 1;
+}
+.dubai-speakers__card h4 {
+  margin: .05rem 0 .4rem;
+  color: var(--city-ink);
+  font: 800 1.02rem/1.2 Raleway,sans-serif;
+}
+.dubai-speakers__role {
+  color: var(--city-muted);
+  font: .76rem/1.45 Lato,sans-serif;
+  overflow-wrap: anywhere;
+  margin: 0 0 .85rem;
+}
+.dubai-speakers__talk {
+  color: var(--city-ink);
+  font: 600 .83rem/1.45 Lato,sans-serif;
+  margin: 0 0 .9rem;
+}
+.dubai-speakers__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+}
+.dubai-speakers__links a {
+  color: var(--city-cyan);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  font: 700 .78rem/1.5 Lato,sans-serif;
+}
+.dubai-speakers__group--summit .dubai-speakers__links a {
+  color: var(--city-gold);
+}
+.dubai-speakers__links a:hover,
+.dubai-speakers__links a:focus-visible {
+  text-decoration-thickness: 2px;
+}
+@media(max-width: 600px) {
+ .dubai-speakers__card {padding: 1.05rem; }
+ .dubai-speakers__grid {grid-template-columns: 1fr; }
+}
