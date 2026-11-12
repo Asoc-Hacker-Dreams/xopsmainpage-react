@@ -179,3 +179,49 @@
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
+
+
+/* Curated event programme controls. Calendars export UTC timestamps for GST slots. */
+.dubai-programme__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: .7rem 1.25rem;
+  margin: .1rem 0 1.15rem;
+}
+.dubai-programme__toolbar-heading {
+  display: flex;
+  flex-direction: column;
+  gap: .18rem;
+}
+.dubai-programme__toolbar .dubai-programme__timezone { margin: 0; }
+.dubai-programme__count {
+  margin: 0;
+  color: var(--city-muted);
+  font: 700 .76rem/1.4 Lato, sans-serif;
+}
+.dubai-programme__calendar-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .72rem 1.05rem;
+  min-height: 44px;
+  border: 1px solid var(--city-cyan);
+  border-radius: .75rem;
+  color: var(--city-ink);
+  background: transparent;
+  font: 700 .81rem/1.3 Lato, sans-serif;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.dubai-programme--summit .dubai-programme__calendar-button { border-color: var(--city-gold); }
+.dubai-programme__calendar-button:hover,
+.dubai-programme__calendar-button:focus-visible {
+  background: rgba(112, 211, 230, .12);
+  outline-offset: 3px;
+}
+.dubai-programme--summit .dubai-programme__calendar-button:hover,
+.dubai-programme--summit .dubai-programme__calendar-button:focus-visible { background: rgba(255, 213, 84, .12); }
