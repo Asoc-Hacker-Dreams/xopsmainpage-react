@@ -35,6 +35,8 @@
   },
   "cityEvent": {
     "dubaiProgramme": {
+      "summitDisclaimer": "Preliminary executive programme. Session formats and timings are proposed. Panelists, moderators and boardroom hosts will be announced only after they accept Dubai Summit participation. All times GST (UTC+4).",
+      "facilitatorPending": "Boardroom facilitator(s) to be announced",
       "timezone": "Dubai local time · GST (UTC+4)",
       "disclaimer": "Preliminary programme: topics, times, formats and speakers are subject to confirmation. This is not a list of accepted talks.",
       "listLabel": "Dubai session programme",
@@ -42,6 +44,12 @@
       "conferenceTitle": "Dubai technical agenda · 1 December",
       "conferenceIntro": "One-day technical programme. Session speakers and final titles will be announced as they are confirmed.",
       "types": {
+        "keynote": "Opening keynote",
+        "fireside": "Executive fireside",
+        "briefing": "Executive insights",
+        "case": "Customer case study",
+        "debate": "Executive debate",
+        "clinic": "Solution clinic",
         "topic": "Technical / topic session",
         "panel": "Panel",
         "roundtable": "Roundtable",
@@ -104,7 +112,7 @@
       },
       "agendaTbd": "To be announced",
       "agendaTitle": "Executive program",
-      "agendaSubtitle": "Preliminary executive agenda: roundtables, times and participants subject to confirmation."
+      "agendaSubtitle": "Executive conversations, facilitated boardrooms, measurable business cases and curated B2B meetings. Speaker participation to be announced."
     },
     "conference": {
       "kicker": "Technical Conference",
