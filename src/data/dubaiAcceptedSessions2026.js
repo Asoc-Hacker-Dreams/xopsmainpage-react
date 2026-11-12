@@ -1,7 +1,6 @@
-// X-Ops Dubai 2026 accepted sessions and public speaker photos.
-// Source: organiser's accepted-session XLSX (12 Nov 2026) and public Sessionize API /view/All.
-// Personal emails, attendance flags and private application notes are deliberately excluded.
-// The organiser placed four accepted Conference talks on Summit day; panel/boardroom roles remain unassigned.
+// Public Dubai 2026 accepted-session details and speaker photos + biographies.
+// Source: organiser's 12 Nov 2026 accepted-session export plus the public Sessionize /view/All feed.
+// Private emails and attendance flags intentionally excluded; panel roles have not been assigned.
 export const dubaiAcceptedSessions2026 = {
   "1289422": {
     "id": "1289422",
@@ -224,7 +223,8 @@ export const dubaiSpeakers2026 = {
     "role": "Founder at Percona",
     "photo": "https://cdn.sessionize.com/image/a536-400o400o1-nPMPmRZNHrDnUNTyDZBz8b.png",
     "linkedIn": "https://linkedin.com/in/peterzaitsev/",
-    "sessionizeProfile": "https://sessionize.com/peter-zaitsev"
+    "sessionizeProfile": "https://sessionize.com/peter-zaitsev",
+    "bio": "Peter Zaitsev is an entrepreneur and co-founder of Percona, Coroot and other tech companies. As one of the leading experts in Open Source strategy and database optimization, Peter has applied his technical knowledge and entrepreneurial drive to contribute as a board member and advisor to several open source startups. Additionally, Peter is the co-author of the book \"High Performance MySQL: Optimization, Backup and Replication,\" one of the most popular books on MySQL performance."
   },
   "4cc63fd4-a20e-4d0f-b29f-7cc04d62efdc": {
     "id": "4cc63fd4-a20e-4d0f-b29f-7cc04d62efdc",
@@ -232,7 +232,8 @@ export const dubaiSpeakers2026 = {
     "role": "CNCF KubeStellar Maintainer | Docker Captain | LFX Mentor | 2× GSoC | SRE at Obmondo",
     "photo": "https://cdn.sessionize.com/image/4da7-400o400o1-TtTkhHjoeH1d1JZnu6aP4s.jpg",
     "linkedIn": "https://www.linkedin.com/in/rishi-mondal-5238b2282/",
-    "sessionizeProfile": "https://sessionize.com/rishi-mondal"
+    "sessionizeProfile": "https://sessionize.com/rishi-mondal",
+    "bio": "Rishi Mondal is a SRE at Obmondo , CNCF KubeStellar Maintainer, and Docker Captain . A Linux Foundation Mentor, GSoC Mentor at CNCF, and OWASP Mentor he uniquely progressed from LFX Mentee to Maintainer to Mentor within a single year. A regular cloud-native speaker at multiple events across Asia . he was personally featured by the CNCF CEO at Kubecon India for community impact . Harvard HPAIR Delegate and LIFT Scholar."
   },
   "51a51018-7f7a-4795-af84-34cb562ad4a0": {
     "id": "51a51018-7f7a-4795-af84-34cb562ad4a0",
@@ -240,7 +241,8 @@ export const dubaiSpeakers2026 = {
     "role": "Co-Founder, RankRabbit.ai | Coozmoo - Cloud and AI Engineering",
     "photo": "https://cdn.sessionize.com/image/8a67-400o400o1-MsMKrTqhNiWxhs3EjpFAHR.png",
     "linkedIn": "https://www.linkedin.com/in/hastimaljangid/",
-    "sessionizeProfile": "https://sessionize.com/hastimal-jangid"
+    "sessionizeProfile": "https://sessionize.com/hastimal-jangid",
+    "bio": "Hastimal Jangid is a Cloud, Data, and AI technology leader, enterprise architect, researcher, and technical speaker with 15+ years of experience designing large-scale distributed, data-intensive, and AI-powered systems. He is 10× AWS, 7× GCP, 3×Azure, Kubernetes, Snowflake, Databricks, GenAI, GitHub, and Anthropic MCP Certified, combining deep multi-cloud expertise with emerging AI technologies.\n\nHis work and research focus on Large Language Models (LLMs), Agentic AI, AI Search and Retrieval, RAG, Model Context Protocol (MCP), cloud-native AI infrastructure, real-time data engineering, AI security, and responsible AI, with particular interest in applications across healthcare and biomedical systems.\n\nAs Co-founder of RankRabbit AI, Hastimal explores how LLMs and AI agents discover, retrieve, rank, reason over, and recommend information across platforms such as Gemini, ChatGPT, Claude, Perplexity, and Google’s AI-powered search experiences. His research interests include LLM retrieval and grounding, multi-agent systems, AI search, information quality, explainable AI (xAI), knowledge-base poisoning, AI security, and trustworthy AI systems.\n\nHis engineering background spans AWS, Google Cloud, Microsoft Azure, Kubernetes, distributed systems, Big Data, machine learning, MLOps, real-time streaming architectures, and AI agent infrastructure. He has designed and delivered enterprise technology initiatives across healthcare, financial services, retail, travel, media, and digital commerce.\n\nAs a technical speaker, Hastimal translates emerging AI research into practical architectures and hands-on demonstrations. His talks explore the intersection of LLMs, AI agents, MCP, cloud infrastructure, K8, search, security, and healthcare AI—explaining how modern AI systems work, where they fail, and how engineers can build them securely, responsibly, and at scale."
   },
   "88d5d1b5-f49d-48ae-8024-643ab74ece57": {
     "id": "88d5d1b5-f49d-48ae-8024-643ab74ece57",
@@ -248,7 +250,8 @@ export const dubaiSpeakers2026 = {
     "role": "Director - Engineering & Products - Coozmoo |Co-Founder - RankRabbit.ai",
     "photo": "https://cdn.sessionize.com/image/0c55-400o400o1-SLy8WmBhmBHCegTuhhQkZw.jpg",
     "linkedIn": "https://www.linkedin.com/in/harsh-jangid/",
-    "sessionizeProfile": "https://sessionize.com/harsh-from-rankrabbit"
+    "sessionizeProfile": "https://sessionize.com/harsh-from-rankrabbit",
+    "bio": "Harsh Jangid is a product and technology leader and the driving force behind RankRabbit.ai at Coozmoo Digital Solutions. He focuses on turning emerging AI technologies into practical solutions that help businesses improve visibility, automate operations, and accelerate growth.\n\nWith more than 12 years of experience spanning cloud architecture, data engineering, automation, and artificial intelligence, Harsh has helped organizations turn complex technologies into scalable products and business solutions. From building enterprise-grade platforms and modern data ecosystems to developing AI-powered products, his work has consistently focused on delivering measurable business impact.\n\nAs an AWS-certified architect and product leader, Harsh brings together technical depth, strategic thinking, and a strong focus on business outcomes. He leads the development of AI-powered products that help organizations automate operations, improve customer engagement, and drive sustainable growth in an increasingly AI-driven world."
   },
   "5ac283fc-1b39-4b82-b695-1e39cf3e5dff": {
     "id": "5ac283fc-1b39-4b82-b695-1e39cf3e5dff",
@@ -256,7 +259,8 @@ export const dubaiSpeakers2026 = {
     "role": "Texas A&M University, Kingsville",
     "photo": "https://cdn.sessionize.com/image/e7b1-400o400o1-GYGL7EcuCTqnVBoKCB1uio.jpg",
     "linkedIn": "https://www.linkedin.com/in/chetan-p-6b52358a",
-    "sessionizeProfile": "https://sessionize.com/chetan-hansrajbhai-padshala"
+    "sessionizeProfile": "https://sessionize.com/chetan-hansrajbhai-padshala",
+    "bio": "Chetan Hansrajbhai Padshala is a senior network engineer and Texas A&M University alumnus (M.S., Electrical Engineering) with more than a decade of experience designing, leading, and optimizing enterprise-grade network infrastructure across multi-vendor environments. He has led large-scale network transformation initiatives supporting thousands of geographically distributed sites and multiple data centers across the United States and Canada, with a focus on delivering robust, redundant, and highly available connectivity at scale.\nOver his career, Chetan has architected and supported multi-vendor infrastructure spanning Cisco, Meraki, Palo Alto, Aruba, Juniper, SonicWall, Check Point, Cradlepoint, and Cumulus Linux platforms across large enterprise and retail network environments. He specializes in traffic engineering, IP strategy, LAN/WAN architecture, and high-availability network design for geographically distributed environments and has driven automation and monitoring initiatives using Python, Ansible, SolarWinds, Infoblox, and NetBrain.\nChetan holds a Cisco Certified Network Professional (CCNP) – Enterprise certification, along with CCNA and two Cisco Enterprise Specialist certifications. He earned his Master of Science in Electrical Engineering from Texas A&M University, building on a foundation in electronics and telecommunications engineering."
   },
   "7035748c-ceda-43d5-bfca-ee5fea7dc8ab": {
     "id": "7035748c-ceda-43d5-bfca-ee5fea7dc8ab",
@@ -264,7 +268,8 @@ export const dubaiSpeakers2026 = {
     "role": "Lead Consultant",
     "photo": "https://cdn.sessionize.com/image/ca5e-400o400o1-NkE8XN5Qvce6xipbmhr2Bt.jpg",
     "linkedIn": "https://www.linkedin.com/in/connectsaurabhmishra/",
-    "sessionizeProfile": "https://sessionize.com/saurabh-mishra"
+    "sessionizeProfile": "https://sessionize.com/saurabh-mishra",
+    "bio": "Saurabh Mishra is a Cloud Evangelist and technology enthusiast specializing in cloud architecture, DevOps, automation, and Agentic AI. Through active community engagement, he shares practical knowledge on cloud-native solutions, AI-powered workflows, security best practices, and multi-cloud ecosystems. As a seasoned speaker and mentor, Saurabh has presented at conferences, meetups, and workshops, empowering teams to drive innovation, modernize their platforms, and unlock business value through cloud and AI technologies"
   },
   "a672edd6-607c-4079-aba7-0f998e409451": {
     "id": "a672edd6-607c-4079-aba7-0f998e409451",
@@ -272,7 +277,8 @@ export const dubaiSpeakers2026 = {
     "role": "Senior Software Engineer, Chime Financials",
     "photo": "https://cdn.sessionize.com/image/2388-400o400o1-RrXvFVxJV8EgmaNJjN6QE9.jpg",
     "linkedIn": "https://www.linkedin.com/in/anchoorisanthosh",
-    "sessionizeProfile": "https://sessionize.com/santhosh-anchoori"
+    "sessionizeProfile": "https://sessionize.com/santhosh-anchoori",
+    "bio": "Santhoshkumar Anchoori is a Senior Software Engineer at Chime Financial with over 15 years of expertise in cloud technologies, data transformation, and security automation. He has established a sustained record of original contributions spanning large-scale data platform architecture, real-time AI-driven analytics systems, and cost-optimized machine learning pipelines across the fintech and technology sectors.\n\nAt Chime Financial, Santhoshkumar architected and leads the Data Transformation Services (DTS) platform, an innovative self-serve internal ETL solution that manages over 1,800 pipelines, including 200 business-critical ones, and serves more than 50 internal teams. The platform processes petabytes of financial data for real-time fraud detection, machine learning feature-store pipelines, transactional processing, and analytics. Through his design of optimized CloudWatch log monitoring, the platform has delivered $500,000 in annual cost savings. He leads a team of six engineers in the continued development and maintenance of DTS and presented its fraud detection capabilities at AWS re: Invent 2023.\n\nBefore Chime, Santhoshkumar engineered high-impact data systems at leading technology organizations. At Roku's AdTech division, he designed the Privacy-Preserving Data Matching Framework within the Clean Room system, establishing a new class of AI-driven, privacy-compliant data architecture that multiple ad-exchange and measurement partners subsequently adopted. At Morgan Stanley's Fusion Center, he architected the Federated Ingestion Layer and real-time data pipelines capable of processing millions of events daily for the firm's global data operations.\n\nEarlier in his career, Santhoshkumar held data engineering roles at PayPal, where he led the development of a Centralized Customer Data Lake and automated data pipelines for marketing insights, and at additional organizations where he built foundational expertise in distributed cloud infrastructure and stream processing systems.\n\nHis scholarly contributions include research published in the International Journal of Computer Engineering and Technology (IJCET), with an impact factor of 18.59, examining optimized real-time data pipelines for financial fraud detection. He is the recipient of the TITAN Innovation Award at the Platinum level for 2024, an internationally recognized honor for professionals who demonstrate exceptional innovation and measurable business impact in technology."
   },
   "b29d5315-2fec-4dd6-8a91-30efcd6d0a68": {
     "id": "b29d5315-2fec-4dd6-8a91-30efcd6d0a68",
@@ -280,7 +286,8 @@ export const dubaiSpeakers2026 = {
     "role": "Automation and Observability Lead, MetLife",
     "photo": "https://cdn.sessionize.com/image/de38-400o400o1-GtwspcZQa5sa9Q2N5V12o8.jpg",
     "linkedIn": "https://www.linkedin.com/in/helloharmeet/",
-    "sessionizeProfile": "https://sessionize.com/harmeet-singh"
+    "sessionizeProfile": "https://sessionize.com/harmeet-singh",
+    "bio": "Harmeet Singh is the Automation and Observability Lead at MetLife, leading engineering teams building automation and observability platforms across the EMEA region. His work sits at the intersection of infrastructure automation, security observability, and compliance across regulated European environments. Over the past decade, he has worked in platform engineering and large-scale infrastructure automation, focused on systems that reduce manual intervention and improve operational reliability."
   },
   "8ea2939d-46a5-419e-918c-957367d62c1c": {
     "id": "8ea2939d-46a5-419e-918c-957367d62c1c",
@@ -288,7 +295,8 @@ export const dubaiSpeakers2026 = {
     "role": "Cloudynamics, DevOps Architect",
     "photo": "https://cdn.sessionize.com/image/048a-400o400o1-BHa6U5VvRCAo11nn5ecEr2.jpg",
     "linkedIn": "https://www.linkedin.com/in/ravindra-verma-b16a494b/",
-    "sessionizeProfile": "https://sessionize.com/RavindraVerma"
+    "sessionizeProfile": "https://sessionize.com/RavindraVerma",
+    "bio": "Founder at Cloudynamics with hands-on experience in DevOps and SRE. Specialises in building and operating cloud-native systems, agentic AI pipelines, and production-grade reliability engineering. Passionate about sharing real-world lessons from the infrastructure and AI trenches."
   },
   "3fef7201-a441-4056-9ea3-95d9c67ab28f": {
     "id": "3fef7201-a441-4056-9ea3-95d9c67ab28f",
@@ -296,7 +304,8 @@ export const dubaiSpeakers2026 = {
     "role": "Offensive Security Engineer - Founder Member Hackén Cybersecurity Conference",
     "photo": "https://cdn.sessionize.com/image/efb5-400o400o1-H7PBHgjcvFoJqDNDKfq2WT.jpg",
     "linkedIn": "https://www.linkedin.com/in/davidpadillaalvarado/",
-    "sessionizeProfile": "https://sessionize.com/david-padilla-alvarado"
+    "sessionizeProfile": "https://sessionize.com/david-padilla-alvarado",
+    "bio": "Offensive Security Engineer | Founder Member at @Hackén Cybersecurity Congress | x3 Cybersecurity Master Degree | x8 CVE | MBA | OSCP | CRTO | BSCP | PNPT | eWPT | eCPPTv2 | eJPT | CAP | CSX | CCNA | x8 Hall of Fame"
   },
   "5b2f8725-1067-4d4c-928a-e165cf75be20": {
     "id": "5b2f8725-1067-4d4c-928a-e165cf75be20",
@@ -304,7 +313,8 @@ export const dubaiSpeakers2026 = {
     "role": "CTO at Grayback | Cybersecurity Evaluator | Offensive Security Researcher",
     "photo": "https://cdn.sessionize.com/image/3b17-400o400o1-fy1q8sFq2VFEuxB5pvqzFK.png",
     "linkedIn": "https://www.linkedin.com/in/v%C3%ADctor-p%C3%A9rez-562177151/",
-    "sessionizeProfile": null
+    "sessionizeProfile": null,
+    "bio": "I am the Chief Technology Officer (CTO) at Grayback, a bug bounty platform dedicated to helping organizations identify and remediate security vulnerabilities through ethical hacking. I also work as a Cybersecurity Evaluator at Jtsec, where I assess the security of products under internationally recognized certification schemes.\nWith several years of experience in cybersecurity and computer networks, I specialize in penetration testing, vulnerability research, secure system evaluation, and offensive security. I am passionate about improving the security of modern infrastructures and actively contribute to the cybersecurity community through research and technical events."
   },
   "df8487c4-3a65-4301-8a0a-3ae6759e981a": {
     "id": "df8487c4-3a65-4301-8a0a-3ae6759e981a",
@@ -312,7 +322,8 @@ export const dubaiSpeakers2026 = {
     "role": "Founder and CISO - Superuser OÜ, CBIT FZCO",
     "photo": "https://cdn.sessionize.com/image/5768-400o400o1-SVtecpA1UuW8ky6VRv98HG.jpg",
     "linkedIn": "https://www.linkedin.com/in/hannahsuarez",
-    "sessionizeProfile": "https://sessionize.com/hannah-suarez"
+    "sessionizeProfile": "https://sessionize.com/hannah-suarez",
+    "bio": "Hannah Suarez has worked in the information security industry for nearly a decade spanning roles in the software, entertainment, telecommunications and aviation industries. She brings forward a unique insight as a global cyber security entrepreneur that has worked in several countries, who is also a career-changer from the creative industries. \n\nHannah Suarez has previously spoken on cybersecurity in Germany, including the Berlin Bsides 2023 keynote at https://www.superuser.space/latest-news-blog/bsides-berlin-2023-keynote"
   },
   "5eb76b84-6b55-451a-8a4c-875764f92aec": {
     "id": "5eb76b84-6b55-451a-8a4c-875764f92aec",
@@ -320,7 +331,8 @@ export const dubaiSpeakers2026 = {
     "role": "Cisco",
     "photo": "https://cdn.sessionize.com/image/594c-400o400o1-wZYSYq1R2LzZFxgFqCWuYJ.jpg",
     "linkedIn": "https://www.linkedin.com/in/rahul-muralinath-2b280717/",
-    "sessionizeProfile": "https://sessionize.com/muralinathrahul"
+    "sessionizeProfile": "https://sessionize.com/muralinathrahul",
+    "bio": "Rahul Muralinath is a Software Engineering Manager with 14+ years of experience building and scaling high-performing platform engineering organizations. He has a proven track record of growing distributed teams, driving cross-org alignment, and delivering mission-critical platform infrastructure used by hundreds of engineers enterprise-wide, supporting $50M+ in ARR.\nHe currently serves as Software Engineering Manager for Splunk Cloud Platform (Splunk, acquired by Cisco), where he leads and scales a distributed team of 8+ direct reports across US East/West and Canada, including senior and staff-level engineers. He defined the team charter, operating model, and 3-year strategic roadmap for Splunk Cloud's Internal Developer Platform (IDP) and Notifications infrastructure. He influenced and secured leadership buy-in to adopt Backstage as Splunk's golden paved path for platform services, delivering a 10x reduction in engineering effort and impacting 200+ engineers across multiple business units. He owns and operates the core Notifications platform for Splunk Cloud, enabling 5,000+ enterprise customers to configure and deliver 100M+ notifications per week with 99.99% uptime and strict SLA/SLO compliance. He championed org-wide AI adoption under director-level sponsorship, achieving 100% AI integration across the SDLC.\nHe holds 2 US patents: Autoscaling in Stateful Systems (US12020077B1) and Cloud-Based Service for Customer Enterprise (US12461738B1). He holds a Master of Science in Computer Science from the University of Southern California (December 2014)."
   },
   "84dc4d90-ecc5-4381-9397-9f8a3dff4c46": {
     "id": "84dc4d90-ecc5-4381-9397-9f8a3dff4c46",
@@ -328,7 +340,8 @@ export const dubaiSpeakers2026 = {
     "role": "Senior Product Manager, Tabby",
     "photo": "https://cdn.sessionize.com/image/33be-400o400o1-HP43LmTnq19rdVS95uQma3.jpg",
     "linkedIn": "https://www.linkedin.com/in/daria-sova/",
-    "sessionizeProfile": null
+    "sessionizeProfile": null,
+    "bio": "Daria Kasatkina is a Senior Product Manager at Tabby, the Gulf's first fintech unicorn. She leads Tabby's in-house CRM platform, which replaces several third-party tools for back-office teams with one system built for AI automation. Before Tabby she built products at Avito, Tinkoff Bank and Modulbank, including LLM-based tools for customer support at Avito. She runs vibe-coding workshops for non-technical professionals and writes on HackerNoon about AI-first product work and experimentation on small user bases."
   },
   "dcbdeeda-0642-4650-85cd-beef78f8f83c": {
     "id": "dcbdeeda-0642-4650-85cd-beef78f8f83c",
@@ -336,7 +349,8 @@ export const dubaiSpeakers2026 = {
     "role": "CTO at Obmondo · maintainer of KubeAid and LinuxAid",
     "photo": "https://cdn.sessionize.com/image/b472-400o400o1-9oE9ftC5hFCk4QerkxPP3Q.jpg",
     "linkedIn": "https://www.linkedin.com/in/ashish1099/",
-    "sessionizeProfile": "https://sessionize.com/ashish1099"
+    "sessionizeProfile": "https://sessionize.com/ashish1099",
+    "bio": "Ashish Jaiswal is CTO at Obmondo, a Danish company and member of DOSL (Danish Open Source Suppliers) that runs self-hosted Kubernetes and Linux infrastructure for organisations that need to keep control of their own platforms, and leads a team of 40+ there. Ashish has worked in infrastructure since 2011, spent part of that time at Red Hat, and has been with Obmondo since 2015, rising from engineer to team lead to CTO. Ashish maintains KubeAid, the open-source GitOps application platform for Kubernetes, kubeaid-cli, its single-binary cluster orchestrator, and LinuxAid for Linux configuration management. Ashish brings deep experience in system design and architecture, with a strong focus on engineering mindset: reasoning a design through and catching its errors before anything is deployed. Day to day that means architecture reviews, pulling clusters out of hyperscalers and onto bare metal, and building an AIOps layer so operations need fewer humans at three in the morning. Ashish writes about Kubernetes, Go and self-hosted LLMs at ashish1099.me, is ashish1099 on GitHub, and is a proud father."
   },
   "ad33b7c3-12ab-4b20-8618-63b713f5bb9c": {
     "id": "ad33b7c3-12ab-4b20-8618-63b713f5bb9c",
@@ -344,7 +358,8 @@ export const dubaiSpeakers2026 = {
     "role": "CEO of Obmondo.com",
     "photo": "https://cdn.sessionize.com/image/b3ed-400o400o1-S5RuUV5J2Dd45dQJEeRdXA.jpg",
     "linkedIn": "https://www.linkedin.com/in/klavsklavsen/",
-    "sessionizeProfile": "https://sessionize.com/klavs-klavsen"
+    "sessionizeProfile": "https://sessionize.com/klavs-klavsen",
+    "bio": "Head of Obmondo.com - We develop open source to help ensure security and reliability of your Linux and K8s on on-prem or *cloud, enabling cost-savings through a unique customer cost-sharing model, so you can focus on your business."
   },
   "be6a6aa1-b9f3-4c11-a22b-593cad466590": {
     "id": "be6a6aa1-b9f3-4c11-a22b-593cad466590",
@@ -352,7 +367,8 @@ export const dubaiSpeakers2026 = {
     "role": "Senior Technical Trainer / Content Developer",
     "photo": "https://cdn.sessionize.com/image/ce2d-400o400o1-aUBAMU39DPPSEoA5QTJfZF.svg",
     "linkedIn": null,
-    "sessionizeProfile": null
+    "sessionizeProfile": null,
+    "bio": "Victor Isakov has worked as a Data Architect / Data Engineer / Evangelist / Trainer with a variety of Data Platforms for over 30 years. He has authored a number of books on database engines, and spoken a conferences/community events for 20 years. Having worked globally in a variety of sectors and projects, he has plenty of experience and deep technical knowledge that he is passionate about sharing."
   },
   "5605121f-ff48-4c86-935d-54b1aa97b52f": {
     "id": "5605121f-ff48-4c86-935d-54b1aa97b52f",
@@ -360,7 +376,8 @@ export const dubaiSpeakers2026 = {
     "role": "PostgreSQL Enthusiast (PostgreSQL DBA, Percona)",
     "photo": "https://cdn.sessionize.com/image/7534-400o400o1-aZSxyR2xGjeGyVozhEdbER.jpg",
     "linkedIn": "https://www.linkedin.com/in/sonia-valeja-69517a140/",
-    "sessionizeProfile": "https://sessionize.com/sonia-valeja"
+    "sessionizeProfile": "https://sessionize.com/sonia-valeja",
+    "bio": "Sonia Valeja has been passionate about data and databases since her university days. She began working with PostgreSQL since the year 2012 at her first company and has taken on various roles, including PostgreSQL DBA, PL/pgSQL Developer, Database Lead, and Migration Lead. She is the co-author of PostgreSQL for JobSeekers, published in June 2023, and has created a LinkedIn Learning course on PostgreSQL’s backup tool, pgBackRest, which was launched in April 2024."
   },
   "69847f86-aad4-4b6c-b0ef-12493f2cee46": {
     "id": "69847f86-aad4-4b6c-b0ef-12493f2cee46",
@@ -368,7 +385,8 @@ export const dubaiSpeakers2026 = {
     "role": "Staff Software Engineer, Walmart Global Tech",
     "photo": "https://cdn.sessionize.com/image/33f3-400o400o1-TEYG7JdXcAHM4amkXW1V8G.jpg",
     "linkedIn": "https://www.linkedin.com/in/manpreet-singh-s-59862116/",
-    "sessionizeProfile": "https://sessionize.com/manpreet-singh-sachdeva"
+    "sessionizeProfile": "https://sessionize.com/manpreet-singh-sachdeva",
+    "bio": "Manpreet Singh Sachdeva is an accomplished DevSecOps, Infrastructure, and AI Specialist with extensive expertise in software engineering practices such as DevSecOps, MLOps, and SRE. He holds a B.Tech in Electronics Engineering and a Post Graduate Diploma in Business Management, with a proven track record in cloud infrastructure security, automation, and AI/ML deployments across a wide range of applications including web, mobile, IoT, and client-server systems. Currently serving as a Technical Duty Officer at Walmart Global Tech, Manpreet is responsible for incident management, service restoration, and ensuring the availability of cloud infrastructure during critical business outages. His previous roles include MLOps Cloud Solution Architect at Domino Data Lab and DevSecOps SRE Lead at Verizon, where he built and maintained scalable machine learning pipelines, optimized cloud resources, and integrated AI models for real-time analytics. Manpreet has been instrumental in projects related to security, compliance, and incident management, with a focus on enhancing operational excellence through automation and cloud-native solutions. He holds several certifications, including AWS DevOps Engineer, Kubernetes Security Specialist, and Prometheus Certified Associate."
   },
   "33d51b02-9c30-43e6-ad0e-c4944a05e7c2": {
     "id": "33d51b02-9c30-43e6-ad0e-c4944a05e7c2",
@@ -376,7 +394,8 @@ export const dubaiSpeakers2026 = {
     "role": "Graduate Researcher - Carnegie Mellon University",
     "photo": "https://cdn.sessionize.com/image/9fdc-400o400o1-hZQoVbFXvy2D13RDjT6pdT.png",
     "linkedIn": "https://linkedin.com/in/bdas1201",
-    "sessionizeProfile": "https://sessionize.com/bodhisattva-das"
+    "sessionizeProfile": "https://sessionize.com/bodhisattva-das",
+    "bio": "Bodhisattva Das is a Graduate Researcher at Carnegie Mellon University and a Security Researcher at RUDRA Cybersecurity, focused on securing non-human identities, AI agents, and automated workloads across cloud environments. He specialises in open-source threat detection using Wazuh and builds practical solutions for identity governance and AI-driven security operations. Driven by a passion for digital rights and responsible AI governance, he strives to build secure systems that protect people as technology evolves. Outside of work, he enjoys traveling and exchanging ideas with global tech communities."
   },
   "1f3078c9-65db-4737-b166-7b6479c99588": {
     "id": "1f3078c9-65db-4737-b166-7b6479c99588",
@@ -384,7 +403,8 @@ export const dubaiSpeakers2026 = {
     "role": "Founder at Solanica",
     "photo": "https://cdn.sessionize.com/image/7aa8-400o400o1-h2VpFps5yMUgYPjWZpoh85.png",
     "linkedIn": "https://www.linkedin.com/in/sergeypronin/",
-    "sessionizeProfile": null
+    "sessionizeProfile": null,
+    "bio": "Sergey is a product leader focusing on delivering robust open-source solutions. After having consistently contributed to the growth of Percona and its product open source culture as a VP of Product, he is now leading the Everest open source database platform. Digital nomad, who enjoys spreading the word about data on Kubernetes. He loves playing tennis and hockey, but his major passions are his family, three kids and a dog."
   },
   "3047a4f7-f794-49a5-85db-94e63e2af22c": {
     "id": "3047a4f7-f794-49a5-85db-94e63e2af22c",
@@ -392,6 +412,7 @@ export const dubaiSpeakers2026 = {
     "role": "Product Marketing for PostgreSQL, MySQL and MongoDB at Percona",
     "photo": "https://cdn.sessionize.com/image/cc5d-400o400o1-RzkP9kU11m27vWwxa4CfJq.jpg",
     "linkedIn": "https://www.linkedin.com/in/valeriia-bogatyreva/",
-    "sessionizeProfile": "https://sessionize.com/valeria-bogatyreva"
+    "sessionizeProfile": "https://sessionize.com/valeria-bogatyreva",
+    "bio": "Valeria works closely with community users of PostgreSQL, MySQL and MongoDB, analyzing their adoption patterns and demonstrating the transformative value open source databases bring to businesses. Her understanding of the technical and business aspects of multi-model database capabilities and extensibility helps her articulate its benefits to C-level executives and other key stakeholders."
   }
 };
