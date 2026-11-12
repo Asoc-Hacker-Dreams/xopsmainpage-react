@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BsAward, BsBullseye, BsCalendar3, BsGeoAlt, BsGraphUp, BsPeople, BsShieldCheck, BsTrophy } from 'react-icons/bs';
 import SEO from '../components/SEO';
 import MadridPostponementNotice from '../components/MadridPostponementNotice';
-import Events from '../components/Events/Events';
 import DubaiProgrammeTimeline from '../components/DubaiProgrammeTimeline';
 import DubaiSpeakersGallery from '../components/DubaiSpeakersGallery';
 import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
@@ -15,12 +16,26 @@ import './CityEventPage.css';
 
 const CityEventPage = ({ city }) => {
   const { t } = useTranslation();
+  const location = useLocation();
   const event = cityEvents[city];
   const isMadrid = city === 'madrid';
   const canonicalUrl = cityUrl(city);
   const summitTalkCount = dubaiProgramme2026.summit.items.filter((slot) => slot.sessionId).length;
   const conferenceTalkCount = dubaiProgramme2026.conference.items.filter((slot) => slot.sessionId).length;
   const fullLineupSize = Object.keys(dubaiSpeakers2026).length;
+  const eventTracks = [
+    { key: 'summit', name: 'X-Ops Executive Summit Dubai 2026', date: '2026-11-30', end: '18:00', anchor: '#agenda' },
+    { key: 'conference', name: 'X-Ops Technical Conference Dubai 2026', date: '2026-12-01', end: '17:50', anchor: '#conference-schedule' },
+  ];
+  // Deep links to individual sessions and speakers must work on initial SPA load.
+  useEffect(() => {
+    if (isMadrid || !location.hash) return undefined;
+    const id = decodeURIComponent(location.hash.slice(1));
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [isMadrid, location.hash]);
 
   // Benefit icons are bound at render time so the rest of the content can be
   // translated via i18n keys.
@@ -65,19 +80,48 @@ const CityEventPage = ({ city }) => {
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'Event',
-          name: `X-Ops ${event.city} 2026`,
-          startDate: event.startDate,
-          endDate: event.endDate,
+          name: 'X-Ops Dubai 2026 — Executive Summit + Technical Conference',
+          description: '30 Nov Executive Summit and 1 Dec Technical Conference: 19 accepted talks, AI, DevSecOps, cloud, data platforms and engineering.',
+          startDate: '2026-11-30T09:00:00+04:00',
+          endDate: '2026-12-01T17:50:00+04:00',
           eventStatus: 'https://schema.org/EventScheduled',
           eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
           location: {
             '@type': 'Place',
-            name: event.conference.venue,
-            address: { '@type': 'PostalAddress', addressLocality: event.city, addressCountry: event.country },
+            name: 'Dubai, United Arab Emirates',
+            address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
           },
           organizer: { '@type': 'Organization', name: ORGANIZER.name, url: 'https://xopsconference.com' },
           url: canonicalUrl,
+          subEvent: eventTracks.map((track) => {
+            const accepted = dubaiProgramme2026[track.key].items
+              .filter((slot) => slot.sessionId)
+              .map((slot) => dubaiAcceptedSessions2026[slot.sessionId]);
+            const speakers = [...new Set(accepted.flatMap((session) => session.speakers))]
+              .map((id) => dubaiSpeakers2026[id]).filter(Boolean);
+            return {
+              '@type': 'Event',
+              name: track.name,
+              startDate: `${track.date}T09:00:00+04:00`,
+              endDate: `${track.date}T${track.end}:00+04:00`,
+              eventStatus: 'https://schema.org/EventScheduled',
+              eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+              url: `${canonicalUrl}${track.anchor}`,
+              location: {
+                '@type': 'Place',
+                name: 'Dubai, United Arab Emirates',
+                address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
+              },
+              performer: speakers.map((speaker) => ({
+                '@type': 'Person',
+                name: speaker.name,
+                image: speaker.photo,
+                ...(speaker.linkedIn ? { sameAs: speaker.linkedIn } : {}),
+              })),
+            };
+          }),
         }}
+      />
       />
 
       <section className="city-hero" aria-labelledby={`${city}-title`}>
