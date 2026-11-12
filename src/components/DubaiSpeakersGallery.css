@@ -99,3 +99,22 @@
  .dubai-speakers__card {padding: 1.05rem; }
  .dubai-speakers__grid {grid-template-columns: 1fr; }
 }
+
+
+.dubai-speakers__bio { margin-top: .8rem; }
+.dubai-speakers__bio summary {
+  width: fit-content;
+  color: var(--city-muted);
+  cursor: pointer;
+  font-size: .79rem;
+  font-weight: 700;
+}
+.dubai-speakers__bio summary:hover,
+.dubai-speakers__bio summary:focus-visible { color: var(--city-ink); text-decoration: underline; }
+.dubai-speakers__bio p {
+  color: var(--city-muted);
+  margin: .5rem 0 0;
+  font: .78rem/1.6 Lato, sans-serif;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
