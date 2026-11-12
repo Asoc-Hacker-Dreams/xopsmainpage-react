@@ -567,3 +567,214 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Dubai 2026: two distinct experiences, one event journey. */
+.city-hero__lineup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem clamp(1.1rem, 3vw, 3rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(1.15rem, 2vw, 1.65rem);
+  border-top: 1px solid var(--city-line);
+}
+.city-hero__lineup-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .55rem;
+}
+.city-hero__lineup-stat strong {
+  color: var(--city-ink);
+  font: 800 clamp(1.45rem, 3vw, 2rem)/1 Raleway, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.city-hero__lineup-stat span {
+  color: var(--city-muted);
+  font-size: .83rem;
+}
+.city-hero__experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(.85rem, 2vw, 1.4rem);
+  margin-top: 1.45rem;
+}
+.city-hero__experience {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: clamp(1.3rem, 3vw, 2.25rem);
+  border: 1px solid var(--city-line);
+  border-radius: 1.2rem;
+  background: linear-gradient(140deg, rgba(255,255,255,.05), rgba(255,255,255,.012));
+  box-shadow: 0 12px 28px rgba(7, 10, 31, .12);
+}
+.city-hero__experience--summit { border-color: rgba(255, 218, 94, .37); }
+.city-hero__experience--conference { border-color: rgba(91, 210, 228, .37); }
+.city-hero__experience-date {
+  display: inline-flex;
+  padding: .3rem .65rem;
+  border-radius: .4rem;
+  background: rgba(255, 218, 94, .1);
+  color: var(--city-gold);
+  font: 800 .75rem/1.4 Lato, sans-serif;
+  letter-spacing: .1em;
+}
+.city-hero__experience--conference .city-hero__experience-date {
+  background: rgba(91, 210, 228, .1);
+  color: var(--city-cyan);
+}
+.city-hero__experience-label {
+  margin: 1.3rem 0 .3rem;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  color: var(--city-muted);
+  text-transform: uppercase;
+}
+.city-hero__experience h2 {
+  font: 800 clamp(1.65rem, 3.3vw, 2.4rem)/1.1 Raleway, sans-serif;
+  color: var(--city-ink);
+  margin: 0 0 .85rem;
+}
+.city-hero__experience > p:not(.city-hero__experience-label) {
+  color: var(--city-muted);
+  font: .94rem/1.65 Lato, sans-serif;
+  margin-bottom: 1.2rem;
+  max-width: 48ch;
+}
+.city-hero__experience a {
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  gap: .55rem;
+  font: 800 .87rem/1.3 Lato, sans-serif;
+  color: var(--city-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.city-hero__experience--conference a { color: var(--city-cyan); }
+.city-hero__experience a:hover,
+.city-hero__experience a:focus-visible { text-decoration-thickness: 2px; }
+.city-hero__ticket-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem 1.5rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+.city-hero__ticket-link, .city-connections__cta,
+.city-final-cta__actions .city-final-cta__primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7rem;
+  min-height: 46px;
+  border-radius: .7rem;
+  padding: .8rem 1.4rem;
+  background: var(--city-gold);
+  color: var(--city-stage);
+  font: 800 .87rem/1.3 Lato, sans-serif;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.city-hero__ticket-link:hover, .city-connections__cta:hover,
+.city-final-cta__actions .city-final-cta__primary:hover,
+.city-hero__ticket-link:focus-visible, .city-connections__cta:focus-visible,
+.city-final-cta__actions .city-final-cta__primary:focus-visible {
+  color: var(--city-stage);
+  background: #fff4b2;
+  transform: translateY(-2px);
+}
+.city-hero__ticket-row > span { color: var(--city-muted); font-size: .79rem; }
+.city-connections {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  background:
+    radial-gradient(circle at 90% 20%, rgba(110, 209, 230, .075), transparent 30%),
+    var(--city-stage);
+}
+.city-connections__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: start;
+  gap: 1.5rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+.city-connections__intro h2 {
+  max-width: 18ch;
+  color: var(--city-ink);
+  font: 800 clamp(2rem, 4.6vw, 3.65rem)/1.08 Raleway, sans-serif;
+  margin: 0;
+}
+.city-connections__intro p {
+  color: var(--city-muted);
+  line-height: 1.7;
+  max-width: 52ch;
+}
+.city-connections__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.city-connections__grid article {
+  min-width: 0;
+  padding: clamp(1.3rem, 3vw, 2rem);
+  border: 1px solid var(--city-line);
+  border-radius: 1.05rem;
+  background: rgba(255,255,255,.025);
+}
+.city-connections__number {
+  color: var(--city-gold);
+  font: 800 .9rem/1 Lato, sans-serif;
+}
+.city-connections__grid h3 {
+  margin: .8rem 0 .65rem;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--city-ink);
+}
+.city-connections__grid p {
+  color: var(--city-muted);
+  line-height: 1.65;
+  font-size: .9rem;
+  margin: 0;
+}
+.city-connections__notice {
+  max-width: 85ch;
+  color: var(--city-muted);
+  margin: 1.35rem 0 1.2rem;
+  font: .81rem/1.6 Lato, sans-serif;
+}
+.city-final-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+}
+.city-final-cta__actions .city-final-cta__secondary {
+  border-radius: .7rem;
+  padding: .8rem 1.15rem;
+  min-height: 46px;
+  background: transparent;
+  border: 1px solid var(--city-line);
+  color: var(--city-ink);
+  font: 700 .87rem/1.3 Lato, sans-serif;
+  text-decoration: none;
+}
+.city-final-cta__actions .city-final-cta__secondary:hover,
+.city-final-cta__actions .city-final-cta__secondary:focus-visible {
+  border-color: var(--city-cyan);
+  color: var(--city-cyan);
+}
+@media(max-width: 800px) {
+  .city-hero__experience-grid,
+  .city-connections__intro { grid-template-columns: 1fr; }
+  .city-connections__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media(max-width: 550px) {
+  .city-connections__grid { grid-template-columns: 1fr; }
+  .city-hero__lineup { gap: 1rem 1.1rem; }
+  .city-hero__experience { padding: 1.25rem; }
+  .city-hero__ticket-link { width: 100%; }
+  .city-final-cta__actions { flex-direction: column; align-items: stretch; }
+}
