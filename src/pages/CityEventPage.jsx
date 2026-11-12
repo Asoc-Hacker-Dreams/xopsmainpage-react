@@ -8,6 +8,7 @@ import Events from '../components/Events/Events';
 import DubaiProgrammeTimeline from '../components/DubaiProgrammeTimeline';
 import DubaiSpeakersGallery from '../components/DubaiSpeakersGallery';
 import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
+import { dubaiAcceptedSessions2026, dubaiSpeakers2026 } from '../data/dubaiAcceptedSessions2026';
 import { cityEvents, cityUrl } from '../data/cityEvents';
 import { ORGANIZER } from '../legal/identity';
 import './CityEventPage.css';
@@ -17,6 +18,9 @@ const CityEventPage = ({ city }) => {
   const event = cityEvents[city];
   const isMadrid = city === 'madrid';
   const canonicalUrl = cityUrl(city);
+  const summitTalkCount = dubaiProgramme2026.summit.items.filter((slot) => slot.sessionId).length;
+  const conferenceTalkCount = dubaiProgramme2026.conference.items.filter((slot) => slot.sessionId).length;
+  const fullLineupSize = Object.keys(dubaiSpeakers2026).length;
 
   // Benefit icons are bound at render time so the rest of the content can be
   // translated via i18n keys.
@@ -52,8 +56,8 @@ const CityEventPage = ({ city }) => {
   return (
     <main className={`city-page city-page--${city}`} id="main-content">
       <SEO
-        title={`X-Ops ${event.city} 2026 · Summit + Conference`}
-        description={`X-Ops ${event.city} 2026 reúne un Summit ejecutivo y una Conference técnica en una única experiencia organizada por ciudad.`}
+        title={`X-Ops Dubai 2026 · 30 Nov Summit + 1 Dec Conference · ${summitTalkCount + conferenceTalkCount} talks`}
+        description={`X-Ops Dubai 2026: Executive Summit 30 November, Technical Conference 1 December. ${summitTalkCount + conferenceTalkCount} accepted talks, ${fullLineupSize} speakers, AI, DevSecOps, platforms and networking.`}
         path="/"
         baseUrl={canonicalUrl}
         keywords={`X-Ops ${event.city}, DevOps, DevSecOps, AIOps, Platform Engineering, Summit, Conference 2026`}
@@ -92,6 +96,42 @@ const CityEventPage = ({ city }) => {
             <a href="#conference-schedule">{t('cityEvent.hero.navAgenda')}</a>
             <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>
           </nav>
+          <div className="city-hero__lineup" aria-label={t('cityEvent.experience.lineupSummary')}>
+            <div className="city-hero__lineup-stat">
+              <strong>{summitTalkCount + conferenceTalkCount}</strong>
+              <span>{t('cityEvent.experience.acceptedTalks')}</span>
+            </div>
+            <div className="city-hero__lineup-stat">
+              <strong>{fullLineupSize}</strong>
+              <span>{t('cityEvent.experience.speakers')}</span>
+            </div>
+            <div className="city-hero__lineup-stat">
+              <strong>02</strong>
+              <span>{t('cityEvent.experience.days')}</span>
+            </div>
+          </div>
+          <div className="city-hero__experience-grid">
+            <article className="city-hero__experience city-hero__experience--summit">
+              <span className="city-hero__experience-date">30 NOV · MON</span>
+              <p className="city-hero__experience-label">{t('cityEvent.experience.summitLabel')}</p>
+              <h2>{t('cityEvent.experience.summitTitle')}</h2>
+              <p>{t('cityEvent.experience.summitDescription')}</p>
+              <a href="#agenda">{t('cityEvent.experience.viewSummit')} <span aria-hidden="true">↘</span></a>
+            </article>
+            <article className="city-hero__experience city-hero__experience--conference">
+              <span className="city-hero__experience-date">01 DEC · TUE</span>
+              <p className="city-hero__experience-label">{t('cityEvent.experience.conferenceLabel')}</p>
+              <h2>{t('cityEvent.experience.conferenceTitle')}</h2>
+              <p>{t('cityEvent.experience.conferenceDescription')}</p>
+              <a href="#conference-schedule">{t('cityEvent.experience.viewConference')} <span aria-hidden="true">↘</span></a>
+            </article>
+          </div>
+          <div className="city-hero__ticket-row">
+            <Link className="city-hero__ticket-link" to="/dubai?openTickets=1">
+              {t('cityEvent.experience.getTickets')} <span aria-hidden="true">↗</span>
+            </Link>
+            <span>{t('cityEvent.experience.venuePending')}</span>
+          </div>
         </div>
       </section>
 
@@ -192,13 +232,40 @@ const CityEventPage = ({ city }) => {
       <p className="small mt-4"><Link to="/politica-de-privacidad">{t('legalLinks.privacy', { defaultValue: 'Privacy notice / Privacidad' })}</Link> · <Link to="/fotografia-y-video">{t('legalLinks.media', { defaultValue: 'Recording & image rights / Fotografía y vídeo' })}</Link></p>
       </section>
 
+      <section className="city-connections" id="connections" aria-labelledby="connections-heading">
+        <div className="container">
+          <p className="city-kicker city-kicker--gold">{t('cityEvent.experience.connectionsKicker')}</p>
+          <div className="city-connections__intro">
+            <h2 id="connections-heading">{t('cityEvent.experience.connectionsTitle')}</h2>
+            <p>{t('cityEvent.experience.connectionsIntro')}</p>
+          </div>
+          <div className="city-connections__grid">
+            {['learn', 'discuss', 'connect'].map((key, idx) => (
+              <article key={key}>
+                <span className="city-connections__number">0{idx + 1}</span>
+                <h3>{t(`cityEvent.experience.connections.${key}.title`)}</h3>
+                <p>{t(`cityEvent.experience.connections.${key}.text`)}</p>
+              </article>
+            ))}
+          </div>
+          <p className="city-connections__notice">{t('cityEvent.experience.connectionsNotice')}</p>
+          <Link className="city-connections__cta" to="/dubai?openTickets=1">
+            {t('cityEvent.experience.getTickets')} <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      </section>
+
       <DubaiSpeakersGallery />
 
       <section className="city-final-cta">
         <div className="container">
           <p>{t('cityEvent.finalCta.kicker')}</p>
           <h2>{t('cityEvent.finalCta.title', { city: event.city })}</h2>
-          <Link to="/">{t('cityEvent.finalCta.back')}</Link>
+          <div className="city-final-cta__actions">
+            <Link to="/dubai?openTickets=1" className="city-final-cta__primary">{t('cityEvent.experience.getTickets')}</Link>
+            <a href="#agenda" className="city-final-cta__secondary">{t('cityEvent.experience.viewSummit')}</a>
+            <a href="#conference-schedule" className="city-final-cta__secondary">{t('cityEvent.experience.viewConference')}</a>
+          </div>
         </div>
       </section>
     </main>
