@@ -2,16 +2,34 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { dubaiAcceptedSessions2026, dubaiSpeakers2026 } from '../data/dubaiAcceptedSessions2026';
 import DubaiSpeakerPortrait from './DubaiSpeakerPortrait';
+import { downloadDubaiIcs } from '../utils/dubaiCalendar';
 import './DubaiProgrammeTimeline.css';
 
 const DubaiProgrammeTimeline = ({ sessions, variant = 'conference' }) => {
   const { t, i18n } = useTranslation();
   const language = i18n.language?.startsWith('es') ? 'es' : 'en';
   const isSummit = variant === 'summit';
+  const day = isSummit ? '2026-11-30' : '2026-12-01';
+  const sessionCount = sessions.filter((slot) => slot.sessionId).length;
+  const downloadAgenda = () => downloadDubaiIcs({
+    date: day,
+    slots: sessions,
+    label: isSummit ? 'X-Ops Executive Summit Dubai 2026' : 'X-Ops Technical Conference Dubai 2026',
+    filename: isSummit ? 'XOps-Dubai-Summit-Nov-30-2026.ics' : 'XOps-Dubai-Conference-Dec-01-2026.ics',
+    language,
+  });
 
   return (
     <div className={`dubai-programme dubai-programme--${variant}`}>
-      <p className="dubai-programme__timezone">{t('cityEvent.dubaiProgramme.timezone')}</p>
+      <div className="dubai-programme__toolbar">
+        <div className="dubai-programme__toolbar-heading">
+          <p className="dubai-programme__timezone">{t('cityEvent.dubaiProgramme.timezone')}</p>
+          <p className="dubai-programme__count">{t('cityEvent.dubaiProgramme.talkCount', { count: sessionCount })}</p>
+        </div>
+        <button type="button" className="dubai-programme__calendar-button" onClick={downloadAgenda}>
+          <span aria-hidden="true">↓</span> {t('cityEvent.dubaiProgramme.downloadCalendar')}
+        </button>
+      </div>
       <p className="dubai-programme__disclaimer" role="note">
         {t(isSummit ? 'cityEvent.dubaiProgramme.summitDisclaimer' : 'cityEvent.dubaiProgramme.disclaimer')}
       </p>
