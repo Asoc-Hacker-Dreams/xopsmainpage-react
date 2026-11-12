@@ -35,6 +35,8 @@
   },
   "cityEvent": {
     "dubaiProgramme": {
+      "summitDisclaimer": "Programa ejecutivo preliminar. Formatos y horarios propuestos. Panelistas, moderadores y facilitadores se anunciarán únicamente tras confirmar su participación en el Summit de Dubái. Todos los horarios en GST (UTC+4).",
+      "facilitatorPending": "Facilitador(es) de mesa por confirmar",
       "timezone": "Hora local de Dubái · GST (UTC+4)",
       "disclaimer": "Programa provisional: los temas, los horarios, los formatos y los ponentes están sujetos a confirmación. No representa un listado de charlas aceptadas.",
       "listLabel": "Programa de sesiones de Dubái",
@@ -42,6 +44,12 @@
       "conferenceTitle": "Agenda técnica de Dubái · 1 de diciembre",
       "conferenceIntro": "Programa técnico de un solo día. Ponentes y títulos definitivos pendientes de anuncio.",
       "types": {
+        "keynote": "Keynote estratégica",
+        "fireside": "Conversación ejecutiva",
+        "briefing": "Conclusiones ejecutivas",
+        "case": "Caso empresarial",
+        "debate": "Debate ejecutivo",
+        "clinic": "Clínica de soluciones",
         "topic": "Sesión técnica / temática",
         "panel": "Panel",
         "roundtable": "Mesa redonda",
@@ -104,7 +112,7 @@
       },
       "agendaTbd": "Por anunciar",
       "agendaTitle": "Programa ejecutivo",
-      "agendaSubtitle": "Agenda ejecutiva preliminar: mesas, horarios y participantes sujetos a confirmación."
+      "agendaSubtitle": "Conversaciones ejecutivas, mesas facilitadas, casos de negocio medibles y reuniones B2B dirigidas. Participación de ponentes por confirmar."
     },
     "conference": {
       "kicker": "Conference técnica",

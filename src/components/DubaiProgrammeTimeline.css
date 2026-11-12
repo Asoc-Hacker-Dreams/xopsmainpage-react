@@ -63,6 +63,13 @@
   font-weight: 750;
   overflow-wrap: anywhere;
 }
+.dubai-programme__summary {
+  margin: .45rem 0 .35rem;
+  color: var(--city-muted);
+  font-size: .86rem;
+  line-height: 1.52;
+  max-width: 62ch;
+}
 .dubai-programme__speaker {
   margin: .3rem 0 0;
   color: var(--city-muted);

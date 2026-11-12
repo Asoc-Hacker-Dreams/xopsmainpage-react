@@ -1,5 +1,4 @@
-// Provisional Dubai 2026 programmes. These are thematic placeholders, NOT accepted speaker sessions.
-// Do not attach real speaker identities until each speaker and city have been confirmed.
+// Do not publish proposed candidates as booked Summit speakers without explicit acceptance and travel/format checks.
 export const dubaiProgramme2026 = {
   "edition": "dubai",
   "status": "provisional",
@@ -13,125 +12,220 @@ export const dubaiProgramme2026 = {
         "end": "09:30",
         "type": "networking",
         "topic": {
-          "en": "Registration & welcome coffee",
-          "es": "Acreditación y café de bienvenida"
+          "en": "Registration & Curated Welcome Introductions",
+          "es": "Acreditación y conexiones dirigidas de bienvenida"
+        },
+        "details": {
+          "en": "Pre-arranged introductions between enterprise leaders, founders and technology partners.",
+          "es": "Presentaciones previamente seleccionadas entre directivos, fundadores y empresas tecnológicas."
         }
       },
       {
         "start": "09:30",
-        "end": "09:50",
+        "end": "09:42",
         "type": "opening",
         "topic": {
-          "en": "Opening: X-Ops leadership in the MENA ecosystem",
-          "es": "Apertura: liderazgo X-Ops en el ecosistema MENA"
+          "en": "Welcome to the X-Ops Executive Summit",
+          "es": "Bienvenida al X-Ops Executive Summit"
+        },
+        "details": {
+          "en": "Objectives, discussion ground rules and expected outcomes of the day.",
+          "es": "Objetivos, reglas de participación y resultados esperados de la jornada."
         }
       },
       {
-        "start": "09:50",
-        "end": "10:35",
-        "type": "topic",
+        "start": "09:42",
+        "end": "10:02",
+        "type": "keynote",
         "topic": {
-          "en": "Enterprise AI governance and measurable ROI",
-          "es": "Gobierno de IA empresarial y retorno medible"
+          "en": "Why X-Ops, Why Now: The AI-Native Operating Model",
+          "es": "Por qué X-Ops, por qué ahora: el modelo operativo AI-native"
+        },
+        "details": {
+          "en": "A strategic opening on shared accountability across technology, security, operations and business.",
+          "es": "Apertura estratégica sobre la responsabilidad compartida entre tecnología, seguridad, operaciones y negocio."
         }
       },
       {
-        "start": "10:35",
-        "end": "11:20",
+        "start": "10:02",
+        "end": "10:30",
+        "type": "fireside",
+        "topic": {
+          "en": "From AI Pilots to Business Results: The GCC Enterprise Challenge",
+          "es": "De pilotos de IA a resultados: el reto empresarial del Golfo"
+        },
+        "details": {
+          "en": "A buyer-side conversation about adoption barriers, spending, governance and evidence of impact.",
+          "es": "Conversación desde la perspectiva de quien adopta IA: barreras, inversión, gobierno y resultados."
+        }
+      },
+      {
+        "start": "10:30",
+        "end": "11:10",
         "type": "panel",
         "topic": {
-          "en": "Executive panel: AI security, resilience and trust",
-          "es": "Panel ejecutivo: seguridad de IA, resiliencia y confianza"
+          "en": "Who Owns AI Risk? CIO, CISO, Product and Engineering",
+          "es": "¿Quién asume el riesgo de la IA? CIO, CISO, producto e ingeniería"
+        },
+        "details": {
+          "en": "Clear decisions on responsibility, agent permissions, risk controls and operational resilience.",
+          "es": "Decisiones sobre responsables, permisos de agentes, controles de riesgo y resiliencia operativa."
         }
       },
       {
-        "start": "11:20",
-        "end": "11:40",
+        "start": "11:10",
+        "end": "11:35",
         "type": "networking",
         "topic": {
-          "en": "Coffee break & executive introductions",
-          "es": "Pausa para café y contactos ejecutivos"
+          "en": "Coffee & Curated Executive Connections",
+          "es": "Café y conexiones ejecutivas dirigidas"
+        },
+        "details": {
+          "en": "Curated introductions. A respectful 11:30 pause for UAE Commemoration Day, following venue protocol.",
+          "es": "Presentaciones dirigidas. Pausa respetuosa a las 11:30 por el Día de Conmemoración de EAU, según el protocolo del recinto."
         }
       },
       {
-        "start": "11:40",
+        "start": "11:35",
         "end": "12:25",
-        "type": "topic",
+        "type": "roundtable",
         "topic": {
-          "en": "Data sovereignty, risk and responsible AI adoption",
-          "es": "Soberanía de datos, riesgo y adopción responsable de IA"
+          "en": "Executive Boardrooms I: Leadership, AI Trust & Sovereignty",
+          "es": "Mesas ejecutivas I: liderazgo, confianza en IA y soberanía"
+        },
+        "details": {
+          "en": "Facilitated small groups: operating models, AI governance, cloud control, platform ownership and executive metrics.",
+          "es": "Grupos reducidos con facilitadores: modelos operativos, gobierno de IA, nube, plataformas y métricas ejecutivas."
         }
       },
       {
         "start": "12:25",
-        "end": "13:15",
-        "type": "roundtable",
+        "end": "12:40",
+        "type": "briefing",
         "topic": {
-          "en": "Executive roundtable: cloud, platforms and operating models",
-          "es": "Mesa redonda: cloud, plataformas y modelos operativos"
+          "en": "Boardroom Pulse: Key Lessons Without Attribution",
+          "es": "Conclusiones de las mesas: aprendizajes sin atribución"
+        },
+        "details": {
+          "en": "Short anonymised synthesis of the strongest decisions and unresolved questions.",
+          "es": "Síntesis anónima de decisiones clave y preguntas pendientes."
         }
       },
       {
-        "start": "13:15",
-        "end": "14:15",
+        "start": "12:40",
+        "end": "13:05",
+        "type": "case",
+        "topic": {
+          "en": "The Business Case: What Changed, What Worked and What Failed",
+          "es": "Caso empresarial: qué cambió, qué funcionó y qué falló"
+        },
+        "details": {
+          "en": "A customer-led case requires verifiable outcomes, costs, constraints and lessons learned.",
+          "es": "Un caso presentado por la organización que lo ejecutó, con resultados, costes y aprendizajes verificables."
+        }
+      },
+      {
+        "start": "13:05",
+        "end": "14:05",
         "type": "networking",
         "topic": {
-          "en": "Executive networking lunch",
+          "en": "Executive Networking Lunch",
           "es": "Almuerzo ejecutivo y networking"
+        },
+        "details": {
+          "en": "Conversation tables arranged by AI governance, cloud, platforms, cybersecurity and growth.",
+          "es": "Mesas de conversación sobre gobierno de IA, nube, plataformas, ciberseguridad y crecimiento."
         }
       },
       {
-        "start": "14:15",
-        "end": "15:00",
-        "type": "topic",
-        "topic": {
-          "en": "Platform Engineering, FinOps and business outcomes",
-          "es": "Platform Engineering, FinOps y resultados de negocio"
-        }
-      },
-      {
-        "start": "15:00",
-        "end": "15:45",
+        "start": "14:05",
+        "end": "14:45",
         "type": "panel",
         "topic": {
-          "en": "MENA–Europe technology partnerships and growth opportunities",
-          "es": "Alianzas tecnológicas MENA–Europa y oportunidades de crecimiento"
+          "en": "Cloud, Control & Cost: Sovereign Platforms Without Lock-In",
+          "es": "Nube, control y costes: plataformas soberanas sin dependencia"
+        },
+        "details": {
+          "en": "Practical trade-offs between sovereign infrastructure, open source, resilience and total cost.",
+          "es": "Compromisos reales entre soberanía, código abierto, resiliencia y coste total."
         }
       },
       {
-        "start": "15:45",
-        "end": "16:00",
+        "start": "14:45",
+        "end": "15:15",
+        "type": "debate",
+        "topic": {
+          "en": "Move Fast or Govern First? Agentic AI in Production",
+          "es": "¿Avanzar rápido o gobernar primero? Agentes de IA en producción"
+        },
+        "details": {
+          "en": "Two opposing, evidence-based viewpoints; audience poll and questions.",
+          "es": "Dos posiciones contrapuestas basadas en evidencias, preguntas y votación."
+        }
+      },
+      {
+        "start": "15:15",
+        "end": "15:30",
         "type": "networking",
         "topic": {
-          "en": "Networking break",
-          "es": "Pausa de networking"
+          "en": "Coffee Reset & Transition",
+          "es": "Pausa y cambio de sesión"
+        },
+        "details": {
+          "en": "A short break ahead of the action-oriented boardrooms.",
+          "es": "Descanso antes de las mesas orientadas a la ejecución."
         }
       },
       {
-        "start": "16:00",
-        "end": "16:50",
+        "start": "15:30",
+        "end": "16:20",
         "type": "roundtable",
         "topic": {
-          "en": "Curated executive roundtables: priorities for 2027",
-          "es": "Mesas ejecutivas dirigidas: prioridades para 2027"
+          "en": "Executive Boardrooms II: Decisions for the Next 90 Days",
+          "es": "Mesas ejecutivas II: decisiones para los próximos 90 días"
+        },
+        "details": {
+          "en": "Every group identifies one action, an accountable owner, a metric and its first milestone.",
+          "es": "Cada mesa propone una acción, un responsable, una métrica y un primer hito."
         }
       },
       {
-        "start": "16:50",
-        "end": "17:30",
-        "type": "networking",
+        "start": "16:20",
+        "end": "16:40",
+        "type": "clinic",
         "topic": {
-          "en": "B2B introductions & partnership conversations",
-          "es": "Presentaciones B2B y conversaciones de colaboración"
+          "en": "X-Ops Solution Clinic: Bring the Problem, Not the Pitch",
+          "es": "Clínica X-Ops: trae un problema, no un discurso comercial"
+        },
+        "details": {
+          "en": "One real organizational challenge, openly examined by a cross-functional expert group.",
+          "es": "Un reto real de una empresa analizado por especialistas de distintas disciplinas."
         }
       },
       {
-        "start": "17:30",
-        "end": "18:00",
+        "start": "16:40",
+        "end": "17:00",
         "type": "closing",
         "topic": {
-          "en": "Summit wrap-up & next steps",
-          "es": "Conclusiones del Summit y siguientes pasos"
+          "en": "Executive Assembly & 90-Day Commitments",
+          "es": "Asamblea ejecutiva y compromisos a 90 días"
+        },
+        "details": {
+          "en": "An anonymised executive brief and actionable follow-up proposals, subject to participant consent.",
+          "es": "Resumen ejecutivo anónimo y propuestas de seguimiento, respetando el consentimiento de los participantes."
+        }
+      },
+      {
+        "start": "17:00",
+        "end": "18:00",
+        "type": "networking",
+        "topic": {
+          "en": "Curated B2B Connections & Partnership Meetings",
+          "es": "Conexiones B2B y reuniones de colaboración"
+        },
+        "details": {
+          "en": "Opt-in introductions between technology buyers, solution builders, founders and partners.",
+          "es": "Presentaciones voluntarias entre compradores, proveedores, fundadores y colaboradores."
         }
       },
       {
@@ -139,10 +233,22 @@ export const dubaiProgramme2026 = {
         "end": "21:00",
         "type": "networking",
         "topic": {
-          "en": "Executive networking dinner (arrangements to be confirmed)",
-          "es": "Cena ejecutiva de networking (organización por confirmar)"
+          "en": "Executive Networking Dinner — Arrangements TBC",
+          "es": "Cena ejecutiva de networking — organización por confirmar"
+        },
+        "details": {
+          "en": "Optional evening slot; venue, participation and catering arrangements are not yet confirmed.",
+          "es": "Franja vespertina provisional; pendientes sede, participación y contratación de la cena."
         }
       }
+    ],
+    "format": "executive-curated",
+    "regionalFocus": [
+      "Enterprise AI adoption and ROI",
+      "AI security and governance",
+      "Cloud sovereignty and vendor-neutral platforms",
+      "Executive operating models",
+      "B2B partnerships across MENA and Europe"
     ]
   },
   "conference": {
@@ -287,7 +393,7 @@ export const dubaiProgramme2026 = {
     ]
   },
   "disclaimer": {
-    "en": "Preliminary thematic agenda. All session titles, slots, speakers and formats are subject to confirmation. Timezone: Gulf Standard Time (GST, UTC+4).",
-    "es": "Programa temático provisional. Los títulos, horarios, ponentes y formatos están sujetos a confirmación. Zona horaria: Dubái (GST, UTC+4)."
+    "en": "Preliminary executive programme. Topics, time slots, moderators, roundtable hosts and participation are subject to confirmation. Speaker names are published only after explicit Dubai Summit acceptance. All times GST (UTC+4).",
+    "es": "Programa ejecutivo preliminar. Temas, horarios, moderadores, facilitadores y participantes sujetos a confirmación. Solo se publicarán nombres de ponentes que acepten expresamente participar en el Summit de Dubái. Horarios GST (UTC+4)."
   }
 };
