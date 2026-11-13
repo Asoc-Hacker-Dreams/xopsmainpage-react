@@ -95,7 +95,7 @@ export const termsContent = {
           'Odin Hermes & Danu Technology Solutions LLC (Delaware, United States) is the identified collection entity and Stripe facilitates card payments. Being a collector does not automatically establish the contractual seller, UAE establishment or tax treatment. The seller and invoice issuer must be clearly identified in the live checkout.'
         ]},
         { title: '2. Event dates, programme and entitlements', paragraphs: [
-          'The published Dubai programme has Summit on 30 November–1 December 2026 and Conference on 2–3 December 2026. Venues are announced as to be confirmed where applicable; please check the latest venue and any material changes before purchasing travel.',
+          'The published Dubai programme has Summit on 30 November 2026 and Conference on 1 December 2026. Venues are announced as to be confirmed where applicable; please check the latest venue and any material changes before purchasing travel.',
           'A Conference pass covers the two technical Conference days; VIP adds the speakers dinner but not executive Summit; the Summit package covers Summit and Conference and the dinner, subject to the specific ticket description. Premium workshops are not included unless explicitly stated.'
         ]},
         { title: '3. Prices, currency, taxes and checkout', paragraphs: [
@@ -133,7 +133,7 @@ export const termsContent = {
           'Odin Hermes & Danu Technology Solutions LLC (Delaware, Estados Unidos) es la entidad identificada para la gestión de cobros y Stripe facilita los pagos. Su condición de recaudadora no acredita por sí sola la identidad del vendedor, establecimiento en EAU o tratamiento fiscal. El vendedor y emisor de factura deben identificarse en el checkout efectivo.'
         ]},
         { title: '2. Programa y derechos de acceso', paragraphs: [
-          'El programa publicado contempla Summit el 30 de noviembre y 1 de diciembre de 2026 y Conference el 2 y 3 de diciembre de 2026. Las sedes marcadas como pendientes de confirmación aún no son definitivas; comprueba posibles cambios antes de contratar viajes.',
+          'El programa publicado contempla Summit el 30 de noviembre de 2026 y Conference el 1 de diciembre de 2026. Las sedes marcadas como pendientes de confirmación aún no son definitivas; comprueba posibles cambios antes de contratar viajes.',
           'La entrada Conference incluye los dos días técnicos; VIP añade la cena con ponentes pero no Summit; Summit comprende Summit, Conference y cena, sujeto a la descripción individual del producto. Los talleres premium se venden aparte salvo indicación expresa.'
         ]},
         { title: '3. Precio, moneda, impuestos y pago', paragraphs: [
