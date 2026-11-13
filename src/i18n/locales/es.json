@@ -432,12 +432,25 @@
       "vip": "Los 2 días completos de Conference MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye Summit ni workshops premium.",
       "summit": "La experiencia X-Ops completa: Summit ejecutivo, los 2 días completos de Conference y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
     },
+    "tierDescriptionsDubai": {
+      "superEarly": "Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día). Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "early": "Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día). Todas las sesiones técnicas, networking y material incluidos. Precio early adopter. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "daily": "Entrada estándar al precio regular. Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día), todas las sesiones técnicas, networking y material incluidos. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "lastMinute": "Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día). Todas las sesiones técnicas, networking y material incluidos. Tarifa de último momento. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "vip": "La Conference del martes 1 de diciembre de 2026 MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye el Summit del 30 de noviembre ni workshops premium.",
+      "summit": "La experiencia X-Ops completa, válida los dos días: Summit ejecutivo el lunes 30 de noviembre, Conference el martes 1 de diciembre de 2026 y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
+    },
     "entitlements": {
       "confDay1": "Conference día 1 · acceso completo",
       "confDay2": "Conference día 2 · acceso completo",
       "summit": "X-Ops Summit ejecutivo",
       "dinner": "Speakers dinner",
       "workshops": "Workshops premium (se venden aparte)"
+    },
+    "entitlementsDubai": {
+      "summit": "X-Ops Summit ejecutivo · lunes 30 de noviembre",
+      "conference": "X-Ops Conference · martes 1 de diciembre",
+      "legacyDay": "Acceso adicional · lunes 30 de noviembre"
     }
   },
   "tickets": {

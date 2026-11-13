@@ -96,7 +96,7 @@ export const termsContent = {
         ]},
         { title: '2. Event dates, programme and entitlements', paragraphs: [
           'The published Dubai programme has Summit on 30 November 2026 and Conference on 1 December 2026. Venues are announced as to be confirmed where applicable; please check the latest venue and any material changes before purchasing travel.',
-          'A Conference pass covers the two technical Conference days; VIP adds the speakers dinner but not executive Summit; the Summit package covers Summit and Conference and the dinner, subject to the specific ticket description. Premium workshops are not included unless explicitly stated.'
+          'A Conference pass is valid only on Tuesday 1 December 2026 (one technical day). VIP adds the speakers dinner to the Conference day but not the executive Summit. The Summit pass is valid on both days: Summit on Monday 30 November and Conference on Tuesday 1 December, plus the speakers dinner, subject to the specific ticket description. Tickets are not valid on any other date. Premium workshops are not included unless explicitly stated.'
         ]},
         { title: '3. Prices, currency, taxes and checkout', paragraphs: [
           'The selected ticket price and currency are shown before proceeding to Stripe. Applicable taxes, fees, any currency conversion and the total to be charged must be presented before payment authorisation. An AED listing alone is not proof of the applicable UAE tax treatment.',
@@ -134,7 +134,7 @@ export const termsContent = {
         ]},
         { title: '2. Programa y derechos de acceso', paragraphs: [
           'El programa publicado contempla Summit el 30 de noviembre de 2026 y Conference el 1 de diciembre de 2026. Las sedes marcadas como pendientes de confirmación aún no son definitivas; comprueba posibles cambios antes de contratar viajes.',
-          'La entrada Conference incluye los dos días técnicos; VIP añade la cena con ponentes pero no Summit; Summit comprende Summit, Conference y cena, sujeto a la descripción individual del producto. Los talleres premium se venden aparte salvo indicación expresa.'
+          'La entrada Conference solo es válida el martes 1 de diciembre de 2026 (una jornada técnica). VIP añade la cena con ponentes a la jornada de Conference, pero no incluye el Summit. La entrada Summit es válida los dos días: Summit el lunes 30 de noviembre y Conference el martes 1 de diciembre, más la cena con ponentes, sujeto a la descripción individual del producto. Ninguna entrada es válida en otras fechas. Los talleres premium se venden aparte salvo indicación expresa.'
         ]},
         { title: '3. Precio, moneda, impuestos y pago', paragraphs: [
           'El precio y la moneda se muestran antes de acceder a Stripe. Los impuestos, cargos, conversiones y el total exigible deben estar identificados antes de autorizar el pago. Un importe en AED no acredita por sí mismo el tratamiento fiscal que proceda en EAU.',
