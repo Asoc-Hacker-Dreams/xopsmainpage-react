@@ -47,4 +47,17 @@ describe('legal coverage and jurisdiction routing', () => {
     expect(editionFromEvent({name:'X-Ops Dubai 2026'}, 'xopsconference.com')).toBe('dubai');
     expect(editionFromEvent({name:'X-Ops Madrid 2026'}, 'xopsconference.com')).toBe('madrid');
   });
+
+  it('Dubai terms: Conference only 1 December, Summit valid 30 November and 1 December (TG-43)', () => {
+    const es = JSON.stringify(termsContent.dubai.es);
+    const en = JSON.stringify(termsContent.dubai.en);
+    expect(es).toMatch(/Conference solo es válida el martes 1 de diciembre de 2026/);
+    expect(es).toMatch(/Summit es válida los dos días/);
+    expect(en).toMatch(/Conference pass is valid only on Tuesday 1 December 2026/);
+    expect(en).toMatch(/Summit pass is valid on both days/);
+    for (const text of [es, en]) {
+      expect(text).not.toMatch(/dos días técnicos|two technical Conference days/);
+      expect(text).not.toMatch(/[23] de diciembre|[23] December/);
+    }
+  });
 });

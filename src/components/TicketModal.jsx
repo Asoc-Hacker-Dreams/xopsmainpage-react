@@ -88,13 +88,29 @@ const formatSaleDate = (dateStr, locale) => {
 //
 // Ahora TriskelGate expone `entitlements` por tipo de entrada (migración
 // 0007/0008), así que inclusiones y exclusiones se calculan del dato.
-const getEntitlementBreakdown = (tt) => {
+// TG-43 (Opción A, 2026-11-13): en Dubái cada derecho es un DÍA concreto —
+// Summit el lunes 30 de noviembre y Conference el martes 1 de diciembre (una
+// sola jornada técnica); la entrada Summit vale los dos días. Allí no existe
+// un "día 2 de Conference", así que el desglose lo nombra por fecha y no
+// muestra CONF_D2 salvo que una entrada antigua lo tenga concedido.
+// Madrid (aplazado) conserva sus etiquetas.
+const DUBAI_ENTITLEMENT_LABELS = [
+  { code: 'SUMMIT',  i18nKey: 'ticketModal.entitlementsDubai.summit' },
+  { code: 'CONF_D1', i18nKey: 'ticketModal.entitlementsDubai.conference' },
+  { code: 'CONF_D2', i18nKey: 'ticketModal.entitlementsDubai.legacyDay', onlyIfGranted: true },
+  { code: 'DINNER',  i18nKey: 'ticketModal.entitlements.dinner' },
+];
+
+const getEntitlementBreakdown = (tt, edition = null) => {
   const granted = Array.isArray(tt?.entitlements) ? tt.entitlements : [];
-  return ENTITLEMENT_LABELS.map(({ code, i18nKey }) => ({
-    code,
-    i18nKey,
-    included: granted.includes(code),
-  }));
+  const labels = edition === 'dubai' ? DUBAI_ENTITLEMENT_LABELS : ENTITLEMENT_LABELS;
+  return labels
+    .filter(({ code, onlyIfGranted }) => !onlyIfGranted || granted.includes(code))
+    .map(({ code, i18nKey }) => ({
+      code,
+      i18nKey,
+      included: granted.includes(code),
+    }));
 };
 
 // Idioma en el que TriskelGate almacena `ticket_types.description`.
@@ -117,9 +133,14 @@ const DB_DESCRIPTION_LANG = 'es';
  * un producto hay que tocar la migración Y `tierDescriptions`. Es el coste de
  * no tener la columna traducida en base de datos.
  */
-const getTicketDescription = (tt, t, language) => {
+const getTicketDescription = (tt, t, language, edition = null) => {
   const isSpanish = (language || '').toLowerCase().startsWith(DB_DESCRIPTION_LANG);
-  const descKey = TIER_DESCRIPTION_KEY[tt?.tierCode];
+  // TG-43: Dubái tiene su propio copy (Summit 30-nov, Conference 1-dic);
+  // el genérico describe la Conference de dos días de Madrid.
+  const baseKey = TIER_DESCRIPTION_KEY[tt?.tierCode];
+  const descKey = baseKey && edition === 'dubai'
+    ? baseKey.replace('ticketModal.tierDescriptions.', 'ticketModal.tierDescriptionsDubai.')
+    : baseKey;
 
   if (isSpanish) return tt?.description || (descKey ? t(descKey) : null);
 
@@ -564,13 +585,13 @@ const TicketModal = ({ show, onHide }) => {
                 {(() => {
                   // Descripción también aquí: es el último punto donde el
                   // comprador puede leer qué incluye antes de ir a Stripe.
-                  const d = getTicketDescription(selectedTT, t, i18n.language);
+                  const d = getTicketDescription(selectedTT, t, i18n.language, checkoutEdition);
                   return d ? (
                     <p style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '10px' }}>{d}</p>
                   ) : null;
                 })()}
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {getEntitlementBreakdown(selectedTT).map(({ code, i18nKey, included }) => (
+                  {getEntitlementBreakdown(selectedTT, checkoutEdition).map(({ code, i18nKey, included }) => (
                     <li
                       key={code}
                       style={{
@@ -810,7 +831,7 @@ const TicketModal = ({ show, onHide }) => {
                         jerarquía vive en `entitlements`, que expone la API. */}
                     {ev.ticketTypes.map((tt) => {
                       const style = getProductStyle(tt);
-                      const entitlementBreakdown = getEntitlementBreakdown(tt);
+                      const entitlementBreakdown = getEntitlementBreakdown(tt, editionFromEvent(ev, ''));
                       const onSale = isSaleActive(tt);
                       const notYetOpen = !onSale && toDate(tt.saleStartDate) && new Date() < toDate(tt.saleStartDate);
                       const saleOpensOn = notYetOpen ? formatSaleDate(tt.saleStartDate, i18n.language || 'es') : null;
@@ -859,7 +880,7 @@ const TicketModal = ({ show, onHide }) => {
                                 </span>
                               </div>
                               {(() => {
-                                const description = getTicketDescription(tt, t, i18n.language);
+                                const description = getTicketDescription(tt, t, i18n.language, editionFromEvent(ev, ''));
                                 if (!description) return null;
                                 return (
                                   <p style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '12px' }}>
