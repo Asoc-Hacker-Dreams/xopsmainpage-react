@@ -197,6 +197,13 @@
       "title": "{{city}} speakers",
       "text": "The speaker line-up will be published once the programming process is complete."
     },
+    "mediaPartners": {
+      "kicker": "Official media",
+      "title": "Media Partners",
+      "intro": "X-Ops Dubai 2026 collaborates with leading media outlets through reciprocal, non-paid partnerships: they help us spread the word about the event and their logos link back to their official websites.",
+      "visitWebsite": "Visit {{partner}} website",
+      "disclaimer": "Reciprocal non-paid media partnerships. Logos link to each outlet's official website."
+    },
     "finalCta": {
       "kicker": "Keep exploring X-Ops",
       "title": "{{city}} is part of an international ecosystem.",

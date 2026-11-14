@@ -197,6 +197,13 @@
       "title": "Ponentes de {{city}}",
       "text": "La selección de ponentes se publicará cuando finalice el proceso de programación."
     },
+    "mediaPartners": {
+      "kicker": "Medios oficiales",
+      "title": "Media Partners",
+      "intro": "X-Ops Dubái 2026 colabora con medios de referencia mediante acuerdos recíprocos no pagados: nos ayudan a difundir el evento y sus logotipos enlazan a sus sitios oficiales.",
+      "visitWebsite": "Visitar el sitio de {{partner}}",
+      "disclaimer": "Acuerdos de medios recíprocos y no pagados. Los logotipos enlazan al sitio oficial de cada medio."
+    },
     "finalCta": {
       "kicker": "Continúa explorando X-Ops",
       "title": "{{city}} es parte de un ecosistema internacional.",

@@ -1,0 +1,91 @@
+.dubai-media-partners {
+  padding: clamp(3rem, 6vw, 5.5rem) 0;
+  background: var(--city-stage);
+  scroll-margin-top: 6rem;
+}
+.dubai-media-partners__heading { max-width: 76ch; margin-bottom: 2.2rem; }
+.dubai-media-partners__heading h2 {
+  font: 800 clamp(1.8rem, 4vw, 3rem)/1.1 Raleway, sans-serif;
+  color: var(--city-ink);
+  margin: 0 0 .9rem;
+}
+.dubai-media-partners__heading > p:last-child {
+  font: .98rem/1.7 Lato, sans-serif;
+  color: var(--city-muted);
+  max-width: 76ch;
+}
+.dubai-media-partners__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (max-width: 992px) {
+  .dubai-media-partners__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+  .dubai-media-partners__grid { grid-template-columns: 1fr; }
+}
+.dubai-media-partners__card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--city-surface);
+  border: 1px solid var(--city-line);
+  border-radius: 1.05rem;
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.dubai-media-partners__card:focus-within,
+.dubai-media-partners__card:hover {
+  border-color: var(--city-gold);
+  transform: translateY(-2px);
+}
+.dubai-media-partners__logo-link { display: block; text-decoration: none; }
+.dubai-media-partners__logo-link:focus-visible { outline: 3px solid var(--city-gold); outline-offset: -3px; }
+.dubai-media-partners__logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 116px;
+  padding: 1.35rem;
+  background: #fff;
+}
+.dubai-media-partners__logo-area img {
+  display: block;
+  max-width: min(100%, 235px);
+  width: auto;
+  max-height: 70px;
+  height: auto;
+  object-fit: contain;
+}
+.dubai-media-partners__wordmark {
+  font: 800 clamp(1.1rem, 2vw, 1.6rem)/1.15 Raleway, sans-serif;
+  color: #1b2741;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.dubai-media-partners__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.1rem 1.25rem 1.35rem;
+}
+.dubai-media-partners__body h3 {
+  font: 800 1.05rem/1.3 Raleway, sans-serif;
+  color: var(--city-ink);
+  margin: 0 0 .45rem;
+}
+.dubai-media-partners__website {
+  color: var(--city-gold);
+  margin-top: auto;
+  font: 700 .85rem/1.4 Lato, sans-serif;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.dubai-media-partners__website:hover { text-decoration: underline; }
+.dubai-media-partners__disclaimer {
+  margin-top: 1.6rem;
+  color: var(--city-muted);
+  font: .8rem/1.6 Lato, sans-serif;
+}
