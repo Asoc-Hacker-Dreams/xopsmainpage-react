@@ -76,6 +76,27 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     }
   });
 
+  test('Summit includes the Daedoryx organiser presentation after closing, without moving confirmed talks', () => {
+    const pres = summit.find((x) => x.type === 'presentation');
+    expect(pres).toBeDefined();
+    expect(pres.start).toBe('17:20');
+    expect(pres.end).toBe('17:50');
+    expect(pres.topic.en).toBe('Daedoryx');
+    expect(pres.topic.es).toBe('Daedoryx');
+    expect(pres.details.en).toContain('Antonio Juanilla');
+    expect(pres.details.es).toContain('Antonio Juanilla');
+    // la clausura sigue terminando a las 17:20 y el networking B2B empieza después
+    const closing = summit.find((x) => x.type === 'closing');
+    expect(closing.end).toBe('17:20');
+    const b2b = summit.find((x) => x.type === 'networking' && /B2B/.test(x.topic.en));
+    expect(b2b.start).toBe('17:50');
+    expect(b2b.end).toBe('18:30');
+    // ninguna charla confirmada cambia: Zaitsev sigue 16:20–17:10
+    const zaitsev = summit.find((x) => x.sessionId === '1322885');
+    expect(zaitsev.start).toBe('16:20');
+    expect(zaitsev.end).toBe('17:10');
+  });
+
   test('Spanish-language session is labelled and jointly presented', () => {
     const game=conferenceTalks.find((x)=>x.sessionId==='1289422');
     expect(game).toBeDefined();

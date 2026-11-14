@@ -4,7 +4,7 @@ import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
 
 describe('Dubai calendar exports', () => {
   test.each([
-    ['2026-11-30', 'summit', 20, 9, '20261130T050000Z'],
+    ['2026-11-30', 'summit', 21, 9, '20261130T050000Z'],
     ['2026-12-01', 'conference', 16, 10, '20261201T050000Z'],
   ])('exports %s %s in true GST/UTC and skips provisional evening dinner', (date, track, totalSlots, talks, firstUtc) => {
     const slots = dubaiProgramme2026[track].items;
