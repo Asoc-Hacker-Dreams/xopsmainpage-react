@@ -179,7 +179,20 @@ export const dubaiProgramme2026 = {
       },
       {
         "start": "17:20",
-        "end": "18:00",
+        "end": "17:50",
+        "type": "presentation",
+        "topic": {
+          "en": "Daedoryx",
+          "es": "Daedoryx"
+        },
+        "details": {
+          "en": "Daedoryx presentation by Antonio Juanilla.",
+          "es": "Presentación de Daedoryx a cargo de Antonio Juanilla."
+        }
+      },
+      {
+        "start": "17:50",
+        "end": "18:30",
         "type": "networking",
         "topic": {
           "en": "Curated B2B Matchmaking & Partner Meetings",
