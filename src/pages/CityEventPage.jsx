@@ -9,6 +9,7 @@ import MadridPostponementNotice from '../components/MadridPostponementNotice';
 import DubaiProgrammeTimeline from '../components/DubaiProgrammeTimeline';
 import DubaiSpeakersGallery from '../components/DubaiSpeakersGallery';
 import DubaiSummitCompanies from '../components/DubaiSummitCompanies';
+import DubaiMediaPartners from '../components/DubaiMediaPartners';
 import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
 import { dubaiAcceptedSessions2026, dubaiSpeakers2026 } from '../data/dubaiAcceptedSessions2026';
 import { cityEvents, cityUrl } from '../data/cityEvents';
@@ -303,6 +304,8 @@ const CityEventPage = ({ city }) => {
       </section>
 
       <DubaiSpeakersGallery />
+
+      {city === 'dubai' && <DubaiMediaPartners />}
 
       <section className="city-final-cta">
         <div className="container">
