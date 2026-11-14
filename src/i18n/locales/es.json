@@ -45,6 +45,24 @@
       "visitWebsite": "Visitar la web de {{company}}",
       "disclaimer": "La aparición de una empresa en esta sección identifica únicamente la vinculación profesional indicada por sus ponentes en Sessionize. No supone patrocinio, colaboración institucional, aprobación corporativa ni representación oficial de la empresa en X-Ops."
     },
+    "mediaPartners": {
+      "kicker": "MEDIOS PARTNERS OFICIALES",
+      "title": "Medios partners oficiales de X-Ops Dubái 2026",
+      "intro": "Estas publicaciones apoyan X-Ops Dubái 2026 con listado, cobertura y promoción del evento ante sus audiencias. Como parte del acuerdo, cada logo enlaza a su web oficial.",
+      "navLabel": "Media Partners",
+      "visitWebsite": "Visitar la web de {{partner}}",
+      "partners": {
+        "security-middle-east": {
+          "role": "Revista líder de seguridad en inglés de Oriente Medio · Revista oficial de Intersec Dubai desde 1994"
+        },
+        "coinnewsspan": {
+          "role": "Plataforma de medios sobre blockchain, criptomonedas y fintech"
+        },
+        "times-of-ai": {
+          "role": "Plataforma sobre inteligencia artificial, machine learning y tecnologías emergentes"
+        }
+      }
+    },
     "experience": {
       "lineupSummary": "X-Ops Dubái 2026 de un vistazo",
       "acceptedTalks": "charlas aceptadas",
@@ -134,7 +152,8 @@
       "navSummit": "Summit ejecutivo",
       "navConference": "Conference técnica",
       "navAgenda": "Agenda",
-      "navSpeakers": "Ponentes"
+      "navSpeakers": "Ponentes",
+      "navMediaPartners": "Media Partners"
     },
     "program": {
       "kicker": "El programa de {{city}}",

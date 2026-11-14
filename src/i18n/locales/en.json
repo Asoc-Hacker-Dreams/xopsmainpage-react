@@ -45,6 +45,24 @@
       "visitWebsite": "Visit {{company}} website",
       "disclaimer": "A company appearing here only identifies a professional affiliation reported by its speakers through Sessionize. It does not imply sponsorship, institutional partnership, corporate endorsement, or formal company representation at X-Ops."
     },
+    "mediaPartners": {
+      "kicker": "OFFICIAL MEDIA PARTNERS",
+      "title": "Official Media Partners of X-Ops Dubai 2026",
+      "intro": "These publications support X-Ops Dubai 2026 with event listings, coverage and promotion across their audiences. As part of the partnership, each logo links to its official website.",
+      "navLabel": "Media Partners",
+      "visitWebsite": "Visit {{partner}} website",
+      "partners": {
+        "security-middle-east": {
+          "role": "Leading English-language security magazine in the Middle East · Official magazine of Intersec Dubai since 1994"
+        },
+        "coinnewsspan": {
+          "role": "Media platform covering blockchain, cryptocurrency and fintech"
+        },
+        "times-of-ai": {
+          "role": "Platform covering artificial intelligence, machine learning and emerging technologies"
+        }
+      }
+    },
     "experience": {
       "lineupSummary": "X-Ops Dubai 2026 at a glance",
       "acceptedTalks": "accepted talks",
@@ -134,7 +152,8 @@
       "navSummit": "Executive Summit",
       "navConference": "Technical Conference",
       "navAgenda": "Agenda",
-      "navSpeakers": "Speakers"
+      "navSpeakers": "Speakers",
+      "navMediaPartners": "Media Partners"
     },
     "program": {
       "kicker": "The {{city}} program",
