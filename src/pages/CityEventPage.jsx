@@ -26,7 +26,7 @@ const CityEventPage = ({ city }) => {
   const conferenceTalkCount = dubaiProgramme2026.conference.items.filter((slot) => slot.sessionId).length;
   const fullLineupSize = Object.keys(dubaiSpeakers2026).length;
   const eventTracks = [
-    { key: 'summit', name: 'X-Ops Executive Summit Dubai 2026', date: '2026-11-30', end: '18:00', anchor: '#agenda' },
+    { key: 'summit', name: 'X-Ops Executive Summit Dubai 2026', date: '2026-11-30', end: '18:30', anchor: '#agenda' },
     { key: 'conference', name: 'X-Ops Technical Conference Dubai 2026', date: '2026-12-01', end: '17:50', anchor: '#conference-schedule' },
   ];
   // Deep links to individual sessions and speakers must work on initial SPA load.
