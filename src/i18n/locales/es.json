@@ -23,8 +23,8 @@
   },
   "footer": {
     "address": "Dirección",
-    "addressLine1": "Universidad Rey Juan Carlos campus Móstoles",
-    "addressLine2": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles, Madrid",
+    "addressLine1": "Sede por confirmar, Madrid",
+    "addressLine2": "Madrid, España",
     "dubaiAddressLine1": "Dubai, Emiratos Árabes Unidos",
     "dubaiAddressLine2": "Venue por confirmar",
     "contacts": "Contactos",
@@ -222,13 +222,13 @@
   "summit": {
     "title": "X-Ops Summit Madrid 2026",
     "subtitle": "Evento Ejecutivo para Decision Makers",
-    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. 19 de noviembre de 2026, Madrid. Networking de alto nivel y contenido estratégico.",
+    "description": "El evento exclusivo para CTOs, CISOs y líderes tecnológicos. Madrid, edición aplazada: nueva fecha por confirmar. Networking de alto nivel y contenido estratégico.",
     "hero": {
       "badge": "EVENTO EJECUTIVO",
       "title": "X-Ops Summit",
       "subtitle": "El evento exclusivo para líderes tecnológicos",
-      "date": "19 de noviembre de 2026",
-      "venue": "Fundación Juan XXIII Roncalli, Madrid",
+      "date": "Aplazado · nueva fecha por confirmar",
+      "venue": "Sede por confirmar, Madrid",
       "attendees": "Máximo 90 asistentes",
       "description": "Un programa ejecutivo diseñado para CTOs, CISOs y Decision Makers que buscan networking de alto nivel y contenido estratégico."
     },
@@ -659,14 +659,14 @@
     "madrid": {
       "city": "Madrid, España",
       "summit": {
-        "label": "X-Ops Summit · 19 de noviembre",
-        "name": "Fundación Juan XXIII Roncalli",
+        "label": "X-Ops Summit · fecha por confirmar",
+        "name": "Sede por confirmar, Madrid",
         "address": "Madrid"
       },
       "conference": {
-        "label": "X-Ops Conference · 20 y 21 de noviembre",
-        "name": "Universidad Rey Juan Carlos, Campus Móstoles",
-        "address": "Av. del Alcalde de Móstoles, s/n, 28933 Móstoles"
+        "label": "X-Ops Conference · fecha por confirmar",
+        "name": "Sede por confirmar, Madrid",
+        "address": "Madrid, España"
       }
     },
     "dubai": {

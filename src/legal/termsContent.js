@@ -2,15 +2,17 @@ export const termsContent = {
   madrid: {
     es: {
       title: 'Condiciones de compra y participación · Madrid',
-      subtitle: 'Aplicables a la contratación de nuevas entradas para X-Ops Conference Madrid 2026. La versión aceptada en el momento de la compra rige ese contrato.',
+      subtitle: 'Aplicables a la contratación de entradas para X-Ops Conference Madrid 2026, edición APLAZADA. La versión aceptada en el momento de la compra rige ese contrato y las condiciones vigentes son las de esta página.',
       sections: [
         { title: '1. Organizador, contratación y cobro', paragraphs: [
           'X-Ops Conference Madrid está organizado por Asociación Hacker Dreams (CIF G56643158), con contacto info@xopsconference.com. Los datos registrales del titular se encuentran en el Aviso Legal.',
           'Los pagos se facilitan mediante Stripe y la gestión de recaudación indicada por la organización corresponde a Odin Hermes & Danu Technology Solutions LLC. La entidad que aparezca como comerciante en Stripe y el emisor de la factura deberán ser coherentes con la información identificada en el resumen precontractual y el justificante. El cobro no convierte automáticamente a la entidad recaudadora en organizadora.'
         ]},
         { title: '2. Programa y alcance de cada entrada', paragraphs: [
-          'Madrid 2026 comprende un Summit ejecutivo el 19 de noviembre y una Conference técnica los días 20 y 21 de noviembre. La entrada Conference incluye los dos días técnicos; la VIP incluye los dos días de Conference y la cena con ponentes, pero no el Summit; la Summit incluye los tres días y la cena con ponentes. Los talleres premium solo están incluidos cuando se indiquen expresamente en el producto.',
-          'Las fases Super Early, Early Adopter, Daily Ticket y Last Minute son tarifas para el mismo acceso técnico de Conference, no entradas para días diferentes. La descripción individual y las acreditaciones de la API de entradas determinan el acceso contratado y deben mostrarse antes de pagar.'
+          'La edición de Madrid 2026 (Summit, Conference y BSides Madrid) está APLAZADA: no se celebrará del 19 al 21 de noviembre de 2026 y no hay nueva fecha ni sede confirmadas. El programa descrito a continuación corresponde al calendario previsto antes del aplazamiento y se publica únicamente a efectos informativos y de claridad sobre qué englobaba cada tipo de entrada.',
+          'Según el calendario previsto, Madrid 2026 comprendía un Summit ejecutivo el 19 de noviembre y una Conference técnica los días 20 y 21 de noviembre. La entrada Conference incluía los dos días técnicos; la VIP incluía los dos días de Conference y la cena con ponentes, pero no el Summit; la Summit incluía los tres días y la cena con ponentes. Los talleres premium solo estaban incluidos cuando se indicaban expresamente en el producto.',
+          'Las fases Super Early, Early Adopter, Daily Ticket y Last Minute eran tarifas para el mismo acceso técnico de Conference, no entradas para días diferentes. La descripción individual y las acreditaciones de la API de entradas determinan el acceso contratado y deben mostrarse antes de pagar.',
+          'No se comercializan nuevas entradas de Madrid mientras la edición esté aplazada. Quien ya posea una entrada de Madrid puede solicitar información sobre su situación y las opciones aplicables a través de info@xopsconference.com; toda comunicación sobre el aplazamiento y sus efectos se realiza por los canales oficiales de la organización.'
         ]},
         { title: '3. Precio, impuestos y pago', paragraphs: [
           'El precio final se muestra junto al tipo de entrada antes de continuar a Stripe, con la moneda e impuestos aplicables informados en el flujo de compra. Cualquier comisión o suplemento obligatorio debe quedar identificado antes de la autorización final de pago. Comprueba el importe, la identidad del vendedor y el resumen de Stripe antes de confirmar.',
@@ -44,15 +46,17 @@ export const termsContent = {
     },
     en: {
       title: 'Purchase and attendance terms · Madrid',
-      subtitle: 'For new X-Ops Conference Madrid 2026 ticket purchases. The version accepted at checkout applies to that purchase.',
+      subtitle: 'For X-Ops Conference Madrid 2026 ticket purchases, an edition that is POSTPONED. The version accepted at checkout applies to that purchase, and the terms in force are those on this page.',
       sections: [
         { title: '1. Organiser, seller and collection', paragraphs: [
           'X-Ops Conference Madrid is organised by Asociación Hacker Dreams (Spanish tax ID G56643158), contact info@xopsconference.com. The Legal Notice contains the organiser’s registry details.',
           'Stripe facilitates payments and Odin Hermes & Danu Technology Solutions LLC is identified as the collection entity. The seller shown at final payment and invoice issuer must match the contractual disclosures. Collecting payment does not automatically make the collector the event organiser.'
         ]},
         { title: '2. Event and ticket entitlements', paragraphs: [
-          'Madrid 2026 has an executive Summit on 19 November and technical Conference on 20–21 November. Conference passes cover both technical days; VIP adds the speakers dinner but not Summit; Summit includes all three days and the speakers dinner. Premium workshops are separate unless expressly listed.',
-          'Super Early, Early Adopter, Daily Ticket and Last Minute are price phases of the same two-day Conference pass, not separate single-day products. The specific API-backed ticket description and entitlement summary shown before payment define the purchase.'
+          'The Madrid 2026 edition (Summit, Conference and BSides Madrid) is POSTPONED: it will not take place from 19 to 21 November 2026 and no new date or venue has been confirmed. The programme described below corresponds to the calendar planned before the postponement and is published for information purposes only, so that the scope of each ticket type remains clear.',
+          'Under the planned calendar, Madrid 2026 comprised an executive Summit on 19 November and a technical Conference on 20–21 November. Conference passes covered both technical days; VIP added the speakers dinner but not Summit; Summit included all three days and the speakers dinner. Premium workshops were separate unless expressly listed.',
+          'Super Early, Early Adopter, Daily Ticket and Last Minute are price phases of the same two-day Conference pass, not separate single-day products. The specific API-backed ticket description and entitlement summary shown before payment define the purchase.',
+          'No new Madrid tickets are being sold while the edition is postponed. Anyone who already holds a Madrid ticket can contact info@xopsconference.com for information about their situation and the applicable options; all communication about the postponement and its effects is carried out through the organisation’s official channels.'
         ]},
         { title: '3. Pricing, taxes and payment', paragraphs: [
           'The price, currency and applicable taxes are shown before redirecting to Stripe. Any mandatory fees must be disclosed before final payment authorisation. Review the total and the identified seller at Stripe before confirming.',
