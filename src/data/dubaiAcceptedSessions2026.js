@@ -14,17 +14,6 @@ export const dubaiAcceptedSessions2026 = {
     ],
     "sourceTrack": "Conference"
   },
-  "1291014": {
-    "id": "1291014",
-    "title": "Designing Low-Latency Online Data Stores for AI-Driven Financial Services",
-    "description": "Financial institutions face mounting pressure to deliver real-time, personalized insights through AI systems while simultaneously ingesting and processing high-velocity transaction streams. Most existing data architectures cannot meet sub-100ms latency demands while handling over 100,000 events per second, creating a critical gap between AI system requirements and infrastructure capability, a challenge familiar to DataOps and MLOps teams operating at scale.\nThis presentation introduces a production-proven online data store architecture combining a Hybrid Transactional and Analytical Processing (HTAP) database (TiDB), Redis as a low-latency cache, Kafka and Kafka Streams for streaming ingestion and materialized views, and Spark for batch pre-aggregation of metrics. The system achieves p95 read latencies at or below 30ms, p99 latencies at or below 100ms, streaming ingestion throughput exceeding 100,000 events per second, and data freshness under one second for critical events. This architecture was implemented at Chime Financial to power AI bots serving real-time member financial insights.\nThe design employs a read-through cache strategy, event-driven cache invalidation via Kafka Streams, exactly-once semantics for stream processing, and a two-tier ML feature pipeline supporting both real-time model scoring and batch training workflows, an operational pattern central to modern AIOps and MLOps practice. Security and compliance controls including PCI/PII tokenization, encryption in transit and at rest, and immutable audit logging are built into every architectural layer, reflecting the SecOps and DevSecOps priorities operations teams increasingly own.\nAttendees will gain practical blueprints for building scalable, low-latency data stores for AI applications, including data modeling patterns for TiDB and Redis, cache invalidation strategies, capacity planning across four deployment tiers from small-scale to hyperscale, and integration patterns directly applicable to fraud detection, real-time risk scoring, and personalized customer engagement systems.",
-    "language": "English",
-    "durationMinutes": 30,
-    "speakers": [
-      "a672edd6-607c-4079-aba7-0f998e409451"
-    ],
-    "sourceTrack": "Conference"
-  },
   "1297939": {
     "id": "1297939",
     "title": "Teaching AI Agents Like Guide Dogs: A Progressive Trust Framework",
@@ -158,17 +147,6 @@ export const dubaiAcceptedSessions2026 = {
     ],
     "sourceTrack": "Conference"
   },
-  "1340359": {
-    "id": "1340359",
-    "title": "Internal Developer Platforms as Force Multipliers for DevOps and SecOps Teams",
-    "description": "As organizations scale from dozens to hundreds or thousands of services, the operational overhead of onboarding each new service, configuring CI/CD pipelines, wiring up observability, enforcing security scanning, and satisfying compliance baselines grows from a minor inconvenience into a systemic bottleneck. This session examines internal developer platforms as the industry's primary response to that challenge, a discipline that increasingly sits at the intersection of DevOps, SecOps, DataOps, MLOps, and AIOps rather than serving any single team in isolation. Drawing on the open source Backstage project and the Cloud Native Computing Foundation's platform engineering guidance as concrete, well documented reference points, the talk covers the golden path concept: standardized scaffolding that takes a developer from a request to a production credible service, paired with a software catalog that serves as a queryable source of truth for ownership and metadata across the estate.\n\nThe session examines why baking observability, security, and compliance controls into that path by default shifts these guarantees left, so they hold by construction rather than by audit, a principle equally relevant to SecOps and DevSecOps practitioners hardening pipelines and to MLOps and AIOps teams operationalizing models at scale. It also argues that technical scaffolding alone is insufficient: platforms succeed only when operated with product management discipline and adopted through demonstrated developer value rather than mandate, drawing on Team Topologies for the organizational lens and the Platform Engineering community's State of Platform Engineering research for adoption evidence.\n\nImpact measurement is grounded in established frameworks: time to first deploy, the SPACE framework's five dimensions of developer productivity, and the DORA metrics of deployment frequency, lead time for changes, change failure rate, and time to restore service. Attendees across every Ops discipline will leave with a model for converting platform investment into measurable delivery performance and organizational health.",
-    "language": "English",
-    "durationMinutes": 30,
-    "speakers": [
-      "5eb76b84-6b55-451a-8a4c-875764f92aec"
-    ],
-    "sourceTrack": "Conference"
-  },
   "1341342": {
     "id": "1341342",
     "title": "Non-engineers in production: when product managers write database migrations with coding agents",
@@ -271,15 +249,6 @@ export const dubaiSpeakers2026 = {
     "sessionizeProfile": "https://sessionize.com/saurabh-mishra",
     "bio": "Saurabh Mishra is a Cloud Evangelist and technology enthusiast specializing in cloud architecture, DevOps, automation, and Agentic AI. Through active community engagement, he shares practical knowledge on cloud-native solutions, AI-powered workflows, security best practices, and multi-cloud ecosystems. As a seasoned speaker and mentor, Saurabh has presented at conferences, meetups, and workshops, empowering teams to drive innovation, modernize their platforms, and unlock business value through cloud and AI technologies"
   },
-  "a672edd6-607c-4079-aba7-0f998e409451": {
-    "id": "a672edd6-607c-4079-aba7-0f998e409451",
-    "name": "Santhosh Anchoori",
-    "role": "Senior Software Engineer, Chime Financials",
-    "photo": "https://cdn.sessionize.com/image/2388-400o400o1-RrXvFVxJV8EgmaNJjN6QE9.jpg",
-    "linkedIn": "https://www.linkedin.com/in/anchoorisanthosh",
-    "sessionizeProfile": "https://sessionize.com/santhosh-anchoori",
-    "bio": "Santhoshkumar Anchoori is a Senior Software Engineer at Chime Financial with over 15 years of expertise in cloud technologies, data transformation, and security automation. He has established a sustained record of original contributions spanning large-scale data platform architecture, real-time AI-driven analytics systems, and cost-optimized machine learning pipelines across the fintech and technology sectors.\n\nAt Chime Financial, Santhoshkumar architected and leads the Data Transformation Services (DTS) platform, an innovative self-serve internal ETL solution that manages over 1,800 pipelines, including 200 business-critical ones, and serves more than 50 internal teams. The platform processes petabytes of financial data for real-time fraud detection, machine learning feature-store pipelines, transactional processing, and analytics. Through his design of optimized CloudWatch log monitoring, the platform has delivered $500,000 in annual cost savings. He leads a team of six engineers in the continued development and maintenance of DTS and presented its fraud detection capabilities at AWS re: Invent 2023.\n\nBefore Chime, Santhoshkumar engineered high-impact data systems at leading technology organizations. At Roku's AdTech division, he designed the Privacy-Preserving Data Matching Framework within the Clean Room system, establishing a new class of AI-driven, privacy-compliant data architecture that multiple ad-exchange and measurement partners subsequently adopted. At Morgan Stanley's Fusion Center, he architected the Federated Ingestion Layer and real-time data pipelines capable of processing millions of events daily for the firm's global data operations.\n\nEarlier in his career, Santhoshkumar held data engineering roles at PayPal, where he led the development of a Centralized Customer Data Lake and automated data pipelines for marketing insights, and at additional organizations where he built foundational expertise in distributed cloud infrastructure and stream processing systems.\n\nHis scholarly contributions include research published in the International Journal of Computer Engineering and Technology (IJCET), with an impact factor of 18.59, examining optimized real-time data pipelines for financial fraud detection. He is the recipient of the TITAN Innovation Award at the Platinum level for 2024, an internationally recognized honor for professionals who demonstrate exceptional innovation and measurable business impact in technology."
-  },
   "b29d5315-2fec-4dd6-8a91-30efcd6d0a68": {
     "id": "b29d5315-2fec-4dd6-8a91-30efcd6d0a68",
     "name": "Harmeet Singh",
@@ -324,15 +293,6 @@ export const dubaiSpeakers2026 = {
     "linkedIn": "https://www.linkedin.com/in/hannahsuarez",
     "sessionizeProfile": "https://sessionize.com/hannah-suarez",
     "bio": "Hannah Suarez has worked in the information security industry for nearly a decade spanning roles in the software, entertainment, telecommunications and aviation industries. She brings forward a unique insight as a global cyber security entrepreneur that has worked in several countries, who is also a career-changer from the creative industries. \n\nHannah Suarez has previously spoken on cybersecurity in Germany, including the Berlin Bsides 2023 keynote at https://www.superuser.space/latest-news-blog/bsides-berlin-2023-keynote"
-  },
-  "5eb76b84-6b55-451a-8a4c-875764f92aec": {
-    "id": "5eb76b84-6b55-451a-8a4c-875764f92aec",
-    "name": "Rahul Muralinath",
-    "role": "Cisco",
-    "photo": "https://cdn.sessionize.com/image/594c-400o400o1-wZYSYq1R2LzZFxgFqCWuYJ.jpg",
-    "linkedIn": "https://www.linkedin.com/in/rahul-muralinath-2b280717/",
-    "sessionizeProfile": "https://sessionize.com/muralinathrahul",
-    "bio": "Rahul Muralinath is a Software Engineering Manager with 14+ years of experience building and scaling high-performing platform engineering organizations. He has a proven track record of growing distributed teams, driving cross-org alignment, and delivering mission-critical platform infrastructure used by hundreds of engineers enterprise-wide, supporting $50M+ in ARR.\nHe currently serves as Software Engineering Manager for Splunk Cloud Platform (Splunk, acquired by Cisco), where he leads and scales a distributed team of 8+ direct reports across US East/West and Canada, including senior and staff-level engineers. He defined the team charter, operating model, and 3-year strategic roadmap for Splunk Cloud's Internal Developer Platform (IDP) and Notifications infrastructure. He influenced and secured leadership buy-in to adopt Backstage as Splunk's golden paved path for platform services, delivering a 10x reduction in engineering effort and impacting 200+ engineers across multiple business units. He owns and operates the core Notifications platform for Splunk Cloud, enabling 5,000+ enterprise customers to configure and deliver 100M+ notifications per week with 99.99% uptime and strict SLA/SLO compliance. He championed org-wide AI adoption under director-level sponsorship, achieving 100% AI integration across the SDLC.\nHe holds 2 US patents: Autoscaling in Stateful Systems (US12020077B1) and Cloud-Based Service for Customer Enterprise (US12461738B1). He holds a Master of Science in Computer Science from the University of Southern California (December 2014)."
   },
   "84dc4d90-ecc5-4381-9397-9f8a3dff4c46": {
     "id": "84dc4d90-ecc5-4381-9397-9f8a3dff4c46",

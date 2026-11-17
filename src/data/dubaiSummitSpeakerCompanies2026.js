@@ -77,17 +77,6 @@ export const dubaiSummitSpeakerCompanies2026 = [
     "verified": true
   },
   {
-    "id": "cisco",
-    "name": "Cisco",
-    "url": "https://www.cisco.com/",
-    "logo": "https://brand-assets.security.cisco.com/cisco-dark.svg",
-    "speakers": [
-      "5eb76b84-6b55-451a-8a4c-875764f92aec"
-    ],
-    "verified": true,
-    "needs": "brand-authorization"
-  },
-  {
     "id": "cbit-fzco",
     "name": "CBIT FZCO",
     "url": null,
