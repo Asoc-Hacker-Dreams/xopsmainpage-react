@@ -14,17 +14,17 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
   const summitTalks = summit.filter((x) => x.sessionId);
   const conferenceTalks = conference.filter((x) => x.sessionId);
 
-  test('correct dates and 19 unique accepted talks', () => {
+  test('correct dates and 17 unique accepted talks', () => {
     expect(dubaiProgramme2026.summit.date).toBe('2026-11-30');
     expect(dubaiProgramme2026.conference.date).toBe('2026-12-01');
     expect(dubaiProgramme2026.timezone).toBe('Asia/Dubai');
-    expect(summitTalks).toHaveLength(9);
-    expect(conferenceTalks).toHaveLength(10);
-    expect(new Set([...summitTalks,...conferenceTalks].map((x) => x.sessionId)).size).toBe(19);
-    expect(Object.keys(dubaiAcceptedSessions2026)).toHaveLength(19);
+    expect(summitTalks).toHaveLength(8);
+    expect(conferenceTalks).toHaveLength(9);
+    expect(new Set([...summitTalks,...conferenceTalks].map((x) => x.sessionId)).size).toBe(17);
+    expect(Object.keys(dubaiAcceptedSessions2026)).toHaveLength(17);
   });
 
-  test.each([['Summit',summit,290],['Conference',conference,400]])(
+  test.each([['Summit',summit,260],['Conference',conference,370]])(
     '%s preserves durations and has no overlapping slots',
     (_label, slots, expected) => {
       let lastEnd='00:00'; let total=0;
@@ -46,8 +46,8 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     },
   );
 
-  test('four Conference talks are displayed as original Summit talks, without duplicates', () => {
-    for(const id of ['1319799','1340359','1318615','1339445']) {
+  test('three Conference talks are displayed as original Summit talks, without duplicates', () => {
+    for(const id of ['1319799','1318615','1339445']) {
       expect(summitTalks.filter((x) => x.sessionId===id)).toHaveLength(1);
       expect(conferenceTalks.some((x) => x.sessionId===id)).toBe(false);
       expect(dubaiAcceptedSessions2026[id].durationMinutes).toBe(30);
@@ -55,10 +55,10 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     }
   });
 
-  test('all 22 public speakers have a verified Sessionize photo path', () => {
+  test('all 20 public speakers have a verified Sessionize photo path', () => {
     const speakerIds=new Set(Object.values(dubaiAcceptedSessions2026).flatMap((x)=>x.speakers));
-    expect(speakerIds.size).toBe(22);
-    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(22);
+    expect(speakerIds.size).toBe(20);
+    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(20);
     for(const id of speakerIds) {
       const p=dubaiSpeakers2026[id];
       expect(p?.name).toBeTruthy();

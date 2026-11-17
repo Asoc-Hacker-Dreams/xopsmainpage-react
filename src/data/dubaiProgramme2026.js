@@ -122,7 +122,15 @@ export const dubaiProgramme2026 = {
         "start": "14:10",
         "end": "14:40",
         "type": "talk",
-        "sessionId": "1340359"
+        "sessionId": null,
+        "topic": {
+          "en": "Open slot — speaker announcement pending",
+          "es": "Espacio abierto — ponente por anunciar"
+        },
+        "details": {
+          "en": "A 30-minute slot is available on the Executive Summit track. Speaker to be announced.",
+          "es": "Hay un espacio de 30 minutos disponible en el track del Summit. Ponente por anunciar."
+        }
       },
       {
         "start": "14:40",
@@ -306,7 +314,15 @@ export const dubaiProgramme2026 = {
         "start": "14:40",
         "end": "15:10",
         "type": "talk",
-        "sessionId": "1291014"
+        "sessionId": null,
+        "topic": {
+          "en": "Open slot — speaker announcement pending",
+          "es": "Espacio abierto — ponente por anunciar"
+        },
+        "details": {
+          "en": "A 30-minute slot is available on the Technical Conference track. Speaker to be announced.",
+          "es": "Hay un espacio de 30 minutos disponible en el track de la Conference. Ponente por anunciar."
+        }
       },
       {
         "start": "15:10",
@@ -347,7 +363,7 @@ export const dubaiProgramme2026 = {
     ]
   },
   "disclaimer": {
-    "en": "Nineteen accepted Dubai talks are scheduled across two days. Session times may change. Participation in panels and roundtables requires separate acceptance; no unconfirmed panelists are advertised.",
-    "es": "Las 19 charlas aceptadas para Dubái están programadas en dos jornadas. Los horarios pueden cambiar. La participación en paneles y mesas requiere aceptación independiente; no se anuncian panelistas sin confirmar."
+    "en": "Seventeen accepted Dubai talks are scheduled across two days, with two 30-minute slots currently open for speakers to be announced. Session times may change. Participation in panels and roundtables requires separate acceptance; no unconfirmed panelists are advertised.",
+    "es": "Diecisiete charlas aceptadas para Dubái están programadas en dos jornadas, con dos espacios de 30 minutos abiertos a la espera de anunciar ponente. Los horarios pueden cambiar. La participación en paneles y mesas requiere aceptación independiente; no se anuncian panelistas sin confirmar."
   }
 };

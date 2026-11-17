@@ -9,11 +9,11 @@ const speakerIds = [...new Set(dubaiProgramme2026.summit.items
   .flatMap((slot) => dubaiAcceptedSessions2026[slot.sessionId].speakers))];
 
 describe('Dubai Summit company affiliations', () => {
-  test('all ten accepted Summit speakers are represented', () => {
-    expect(dubaiSummitSpeakerCompanies2026).toHaveLength(9);
-    expect(speakerIds).toHaveLength(10);
+  test('all nine accepted Summit speakers are represented', () => {
+    expect(dubaiSummitSpeakerCompanies2026).toHaveLength(8);
+    expect(speakerIds).toHaveLength(9);
     const mapped = ids(dubaiSummitSpeakerCompanies2026.flatMap((company) => company.speakers));
-    expect(mapped.size).toBe(10);
+    expect(mapped.size).toBe(9);
     for (const id of speakerIds) {
       expect(mapped.has(id)).toBe(true);
       expect(dubaiSpeakers2026[id]?.name).toBeTruthy();
@@ -21,7 +21,7 @@ describe('Dubai Summit company affiliations', () => {
   });
 
   test('the same company is listed only once even when two speakers share an employer', () => {
-    expect(ids(dubaiSummitSpeakerCompanies2026.map((company) => company.id)).size).toBe(9);
+    expect(ids(dubaiSummitSpeakerCompanies2026.map((company) => company.id)).size).toBe(8);
     for (const id of ['percona', 'obmondo']) {
       const companies = dubaiSummitSpeakerCompanies2026.filter((company) => company.id === id);
       expect(companies).toHaveLength(1);
@@ -30,8 +30,8 @@ describe('Dubai Summit company affiliations', () => {
   });
 
   test('uses company homepages, not invented sponsorship URLs or personal profiles', () => {
-    expect(dubaiSummitSpeakerCompanies2026.filter((company) => company.url)).toHaveLength(8);
-    expect(dubaiSummitSpeakerCompanies2026.filter((company) => company.logo)).toHaveLength(8);
+    expect(dubaiSummitSpeakerCompanies2026.filter((company) => company.url)).toHaveLength(7);
+    expect(dubaiSummitSpeakerCompanies2026.filter((company) => company.logo)).toHaveLength(7);
     for (const company of dubaiSummitSpeakerCompanies2026) {
       expect(company.name).toBeTruthy();
       expect(company.speakers.length).toBeGreaterThanOrEqual(1);
