@@ -1,5 +1,6 @@
 import coinnewsspanLogo from '../assets/media-partners/coinnewsspan.svg';
 import cryptomoonpressLogo from '../assets/media-partners/cryptomoonpress.svg';
+import cryptokenMediaLogo from '../assets/media-partners/cryptoken-media.png';
 import securityMiddleEastLogo from '../assets/media-partners/security-middle-east.png';
 import timesOfAiLogo from '../assets/media-partners/timesofai.svg';
 
@@ -13,7 +14,8 @@ import timesOfAiLogo from '../assets/media-partners/timesofai.svg';
  * Regla: no añadir un medio sin partnership confirmado por correo
  * (hilo en info@xopsconference.com). Orden: relevancia editorial.
  * Fuentes: securitymiddleeastmag.com, timesofai.com, coinnewsspan.com,
- * cryptomoonpress.com (logos oficiales descargados 2026-11-14).
+ * cryptomoonpress.com, cryptoken.media (logos oficiales descargados 2026-11-14;
+ * el de Cryptoken Media, 2026-11-18).
  */
 export const dubaiMediaPartners2026 = [
   {
@@ -39,5 +41,11 @@ export const dubaiMediaPartners2026 = [
     name: 'CryptoMoonPress',
     url: 'https://cryptomoonpress.com/',
     logo: cryptomoonpressLogo,
+  },
+  {
+    id: 'cryptoken-media',
+    name: 'Cryptoken Media',
+    url: 'https://cryptoken.media/',
+    logo: cryptokenMediaLogo,
   },
 ];
