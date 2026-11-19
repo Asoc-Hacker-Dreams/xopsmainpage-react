@@ -410,6 +410,7 @@
       "rateLimited": "Too many code checks in a row. Wait a minute and try again.",
       "saleEnded": "This ticket is not on sale.",
       "saleNotStarted": "Sales for this ticket have not started yet.",
+      "discountUnavailable": "We couldn't check this code. Please try again in a moment.",
       "title": "Reserve Ticket",
       "cancel": "Cancel",
       "submit": "Proceed to Payment",

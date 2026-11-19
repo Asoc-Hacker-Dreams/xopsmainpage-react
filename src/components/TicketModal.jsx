@@ -352,8 +352,9 @@ const TicketModal = ({ show, onHide }) => {
     setFormError(null);
   };
 
-  // Muestra la causa real del fallo (rate limit, venta cerrada o código no
-  // válido). Nunca usa "código no válido" para un 429 ni para una venta cerrada.
+  // Muestra la causa real del fallo (rate limit, venta cerrada, código no
+  // válido o no se pudo comprobar). Nunca usa "código no válido" para un 429,
+  // una venta cerrada ni un fallo de red / 5xx.
   const showDiscountFailure = (reason) => {
     setDiscountPreview(null);
     setDiscountError(t(discountFailureMessageKey(reason)));
@@ -381,8 +382,9 @@ const TicketModal = ({ show, onHide }) => {
           Number(result.discount.ticketTypeId) !== targetTicket ||
           Number(selectedEvent.id) !== targetEvent ||
           Number(result.discount.quantity) !== 1) {
-        // 200 con success:false (p.ej. SALE_ENDED) o respuesta que no encaja.
-        return showDiscountFailure(classifyDiscountFailure({ body: result }));
+        // Llegó una respuesta 2xx con success:false (p.ej. SALE_ENDED) o que no encaja:
+        // el servicio sí respondió, así que un cuerpo sin código conocido es "invalid".
+        return showDiscountFailure(classifyDiscountFailure({ status: 200, body: result }));
       }
       setDiscountPreview(result.discount);
       return result.discount;

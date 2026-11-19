@@ -51,7 +51,7 @@ describe('classifyDiscountFailure (regresión: el 429 no es un código inválido
       .toBe('sale_not_started');
   });
 
-  it('código realmente inválido sigue siendo "invalid"', () => {
+  it('código de negocio desconocido en un 400 sigue siendo "invalid"', () => {
     expect(classifyDiscountFailure({
       status: 400, body: '{"error":"CODE_EXHAUSTED","message":"Quota exceeded"}',
     })).toBe('invalid');
@@ -59,16 +59,59 @@ describe('classifyDiscountFailure (regresión: el 429 no es un código inválido
       .toBe('invalid');
   });
 
-  it('texto libre en error (no es un código) no se confunde con rate limit', () => {
+  it('4xx de negocio desconocidos (caducado, no válido para entrada/evento, cantidad) son "invalid"', () => {
+    expect(classifyDiscountFailure({ status: 400, body: '{"error":"CODE_EXPIRED"}' })).toBe('invalid');
+    expect(classifyDiscountFailure({ status: 422, body: '{"error":"INVALID_QUANTITY"}' })).toBe('invalid');
+    expect(classifyDiscountFailure({ status: 400, body: '{"error":"CODE_NOT_VALID_FOR_TICKET"}' }))
+      .toBe('invalid');
+    expect(classifyDiscountFailure({ status: 404, body: '{"error":"CODE_NOT_VALID_FOR_EVENT"}' }))
+      .toBe('invalid');
+  });
+
+  it('texto libre en error (no es un código) en un 400 es "invalid"', () => {
     expect(classifyDiscountFailure({ status: 400, body: { error: 'Something went wrong.' } }))
       .toBe('invalid');
   });
 
-  it('cuerpo no JSON, vacío o ausente cae en "invalid" sin lanzar', () => {
-    expect(classifyDiscountFailure({ status: 400, body: 'Bad Gateway <html>' })).toBe('invalid');
-    expect(classifyDiscountFailure({ status: 400, body: '' })).toBe('invalid');
-    expect(classifyDiscountFailure({})).toBe('invalid');
-    expect(classifyDiscountFailure({ body: null })).toBe('invalid');
+  it('200 con success:false y código desconocido es "invalid": la respuesta sí llegó', () => {
+    expect(classifyDiscountFailure({ status: 200, body: { success: false, error: 'CODE_EXPIRED' } }))
+      .toBe('invalid');
+    expect(classifyDiscountFailure({ status: 200, body: { success: false } })).toBe('invalid');
+  });
+});
+
+describe('classifyDiscountFailure (regresión: un fallo del servicio NUNCA es código inválido)', () => {
+  it('rechazo de red (TypeError de fetch, sin status ni body) es "unavailable", no "invalid"', () => {
+    const networkError: { status?: number; body?: string } = new TypeError('Failed to fetch');
+    expect(classifyDiscountFailure({ status: networkError.status, body: networkError.body }))
+      .toBe('unavailable');
+    expect(classifyDiscountFailure({})).toBe('unavailable');
+    expect(classifyDiscountFailure({ body: null })).toBe('unavailable');
+  });
+
+  it('HTTP 5xx es "unavailable", con cuerpo JSON sin código, HTML o vacío', () => {
+    expect(classifyDiscountFailure({ status: 500, body: '{"error":"Internal error"}' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 502, body: 'Bad Gateway <html>' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 503, body: '' })).toBe('unavailable');
+  });
+
+  it('cuerpo no JSON es "unavailable" aunque el status sea 4xx (no es una respuesta de negocio)', () => {
+    expect(classifyDiscountFailure({ status: 400, body: 'Bad Gateway <html>' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 400, body: '' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 404, body: 'Not Found' })).toBe('unavailable');
+  });
+
+  it('200 sin cuerpo utilizable es "unavailable": no es prueba de que el código sea inválido', () => {
+    expect(classifyDiscountFailure({ status: 200, body: null })).toBe('unavailable');
+  });
+
+  it('un código de negocio explícito gana al status: 5xx con SALE_ENDED es venta cerrada', () => {
+    expect(classifyDiscountFailure({ status: 500, body: '{"error":"SALE_ENDED"}' })).toBe('sale_ended');
+  });
+
+  it('error de TriskelGateApiError 5xx es "unavailable"', () => {
+    const err = new TriskelGateApiError(503, 'Service Unavailable', VALIDATE_URL);
+    expect(classifyDiscountFailure({ status: err.status, body: err.body })).toBe('unavailable');
   });
 });
 
@@ -82,6 +125,7 @@ describe('discountFailureMessageKey', () => {
     expect(discountFailureMessageKey('sale_ended')).toBe('ticketModal.checkout.saleEnded');
     expect(discountFailureMessageKey('sale_not_started')).toBe('ticketModal.checkout.saleNotStarted');
     expect(discountFailureMessageKey('invalid')).toBe('ticketModal.checkout.invalidDiscount');
+    expect(discountFailureMessageKey('unavailable')).toBe('ticketModal.checkout.discountUnavailable');
   });
 
   it('cada clave existe en es y en con un texto que describe su causa', () => {
@@ -90,6 +134,7 @@ describe('discountFailureMessageKey', () => {
       sale_ended: { es: /a la venta/i, en: /on sale/i },
       sale_not_started: { es: /aún no ha comenzado/i, en: /not started yet/i },
       invalid: { es: /no válido/i, en: /invalid/i },
+      unavailable: { es: /no hemos podido comprobar/i, en: /couldn't check/i },
     };
 
     for (const [reason, rx] of Object.entries(expectations) as [DiscountFailureReason, { es: RegExp; en: RegExp }][]) {
@@ -101,6 +146,12 @@ describe('discountFailureMessageKey', () => {
 
   it('el texto de rate limit nunca dice "código no válido"', () => {
     const key = discountFailureMessageKey('rate_limited');
+    expect(textAt(es, key)).not.toMatch(/no válido/i);
+    expect(textAt(en, key)).not.toMatch(/invalid/i);
+  });
+
+  it('el texto de "no se pudo comprobar" nunca dice "código no válido"', () => {
+    const key = discountFailureMessageKey('unavailable');
     expect(textAt(es, key)).not.toMatch(/no válido/i);
     expect(textAt(en, key)).not.toMatch(/invalid/i);
   });

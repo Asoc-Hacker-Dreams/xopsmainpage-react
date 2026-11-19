@@ -404,6 +404,7 @@
       "rateLimited": "Demasiadas comprobaciones de código seguidas. Espera un minuto y vuelve a intentarlo.",
       "saleEnded": "Esta entrada no está a la venta.",
       "saleNotStarted": "La venta de esta entrada aún no ha comenzado.",
+      "discountUnavailable": "No hemos podido comprobar el código. Inténtalo de nuevo en un momento.",
       "title": "Reservar Entrada",
       "cancel": "Cancelar",
       "submit": "Continuar al Pago",
