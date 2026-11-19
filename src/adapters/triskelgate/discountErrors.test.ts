@@ -18,7 +18,7 @@ const EXPECTED = { code: 'X-OPS', ticketTypeId: 1, quantity: 1 };
 const quote = (overrides = {}) => ({
   id: 9,
   code: 'X-OPS',
-  type: 'percent',
+  type: 'percentage',
   value: 10,
   currency: 'EUR',
   ticketTypeId: 1,
@@ -374,6 +374,38 @@ describe('discountResponseFailure: un success:true que no cumple el contrato del
         discountCents: 10000, finalCents: 0,
       }),
     }, EXPECTED)).toBeNull();
+  });
+});
+
+describe('discountResponseFailure: la moneda debe ser utilizable por Intl.NumberFormat (TG-47 ronda 5)', () => {
+  // Intl acepta sólo 3 letras ASCII: "NOPE", "EU" o "EUROS" lanzan RangeError en el render.
+  it.each(['NOPE', 'EU', 'EUROS', 'EUR ', ' EUR', 'EÜR', 'E1R', 'US$', 'EU R'])(
+    'moneda %j (no es un código de 3 letras) es "unavailable", nunca "invalid"',
+    (currency) => {
+      expect(discountResponseFailure({ success: true, discount: quote({ currency }) }, EXPECTED))
+        .toBe('unavailable');
+    },
+  );
+
+  it.each(['EUR', 'AED', 'XYZ', 'usd'])(
+    'moneda %s (3 letras ASCII, que Intl acepta) se acepta aunque no sea del negocio',
+    (currency) => {
+      expect(discountResponseFailure({ success: true, discount: quote({ currency }) }, EXPECTED)).toBeNull();
+    },
+  );
+});
+
+describe('discountResponseFailure: el tipo del quote debe ser uno de los que produce el backend (TG-47 ronda 5)', () => {
+  // Lista de src/routes/discounts.js (isIn) y de src/services/discountPricing.js.
+  it.each(['nonsense', 'percent', 'Percentage', 'fixedd'])(
+    'tipo %j no soportado es "unavailable"',
+    (type) => {
+      expect(discountResponseFailure({ success: true, discount: quote({ type }) }, EXPECTED)).toBe('unavailable');
+    },
+  );
+
+  it.each(['percentage', 'fixed', 'target_price'])('tipo %s real se acepta', (type) => {
+    expect(discountResponseFailure({ success: true, discount: quote({ type }) }, EXPECTED)).toBeNull();
   });
 });
 

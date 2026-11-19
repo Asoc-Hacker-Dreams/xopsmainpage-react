@@ -207,7 +207,7 @@ describe('TicketModal · aplicar cupón: causa real del fallo', () => {
     mockClient.validateDiscount.mockResolvedValue({
       success: true,
       discount: {
-        id: 1, code: 'X-OPSSPEAKERS', type: 'percent', value: 10, currency: 'AED',
+        id: 1, code: 'X-OPSSPEAKERS', type: 'percentage', value: 10, currency: 'AED',
         ticketTypeId: 999, quantity: 1, originalAmount: 200, discountAmount: 20, finalAmount: 180,
         originalTotalCents: 20000, discountCents: 2000, finalCents: 18000,
       },
@@ -274,7 +274,7 @@ describe('TicketModal · aplicar cupón: idioma inglés', () => {
 
 // Cupón válido completo (contrato TGDiscountQuote) para la entrada Summit (id 11), cantidad 1.
 const VALID_QUOTE = {
-  id: 42, code: 'X-OPSSPEAKERS', type: 'percent', value: 10, currency: 'AED',
+  id: 42, code: 'X-OPSSPEAKERS', type: 'percentage', value: 10, currency: 'AED',
   ticketTypeId: 11, quantity: 1, originalAmount: 200, discountAmount: 20, finalAmount: 180,
   originalTotalCents: 20000, discountCents: 2000, finalCents: 18000,
 };
@@ -307,6 +307,22 @@ describe('TicketModal · cupón: flujo completo (regresión)', () => {
 
     expect(await screen.findByText(/Código aplicado/)).toBeInTheDocument();
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('un quote con moneda inutilizable ("NOPE") NO revienta el render: muestra "no hemos podido comprobar"', async () => {
+    // Antes: la moneda pasaba la validación y formatPrice (Intl) lanzaba RangeError al pintar.
+    mockClient.validateDiscount.mockResolvedValue({
+      success: true, discount: { ...VALID_QUOTE, currency: 'NOPE' },
+    });
+    render(<TicketModal show onHide={() => {}} />);
+    await startCheckout();
+
+    applyCode('X-OPSSPEAKERS');
+
+    const alert = await screen.findByRole('alert');
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountUnavailable);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+    expect(screen.queryByText(/Código aplicado/)).not.toBeInTheDocument();
   });
 
   it('el payload a validateDiscount lleva el eventId, el ticketTypeId y quantity 1 seleccionados', async () => {

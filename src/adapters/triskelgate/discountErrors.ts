@@ -124,6 +124,21 @@ const BUSINESS_KEYS = ['error', 'message', 'success'];
 const HALF_CENT = 0.005;
 
 /**
+ * Forma de código de moneda que Intl.NumberFormat acepta sin lanzar RangeError:
+ * exactamente 3 letras ASCII. Intl no mira si la moneda existe ("XYZ" pasa), así que
+ * no hay lista blanca de monedas del negocio: sólo se garantiza que el render no cae.
+ */
+const CURRENCY_CODE = /^[A-Za-z]{3}$/;
+
+/**
+ * Tipos de descuento que produce el backend: los mismos que valida la creación
+ * (src/routes/discounts.js, isIn) y los que aplica src/services/discountPricing.js.
+ * Un tipo fuera de esta lista no es un descuento que sepamos interpretar.
+ * @type {ReadonlySet<string>}
+ */
+const DISCOUNT_TYPES = new Set(['percentage', 'fixed', 'target_price']);
+
+/**
  * Devuelve el cuerpo como objeto de negocio, o null. Acepta string JSON u objeto
  * ya parseado; rechaza arrays, primitivos y objetos sin claves de negocio.
  * @param {unknown} body
@@ -214,24 +229,28 @@ function isPositiveInteger(value) {
 }
 
 /**
+ * Moneda utilizable por Intl.NumberFormat (ver CURRENCY_CODE): el render la formatea.
  * @param {unknown} value
  * @returns {boolean}
  */
-function isText(value) {
-  return typeof value === 'string' && value.trim() !== '';
+function isCurrencyCode(value) {
+  return typeof value === 'string' && CURRENCY_CODE.test(value);
 }
 
 /**
  * ¿El quote cumple el contrato TGDiscountQuote completo y es el pedido?
- * Valida tipos de cada campo, que los importes en mayores sean los céntimos / 100
- * y que el total cuadre (final = original − descuento, en céntimos exactos).
+ * Valida tipos de cada campo, que la moneda sea utilizable (no sólo texto: el render la
+ * formatea con Intl), que el tipo sea uno de los del backend (DISCOUNT_TYPES), que los
+ * importes en mayores sean los céntimos / 100, y que el total cuadre (final = original −
+ * descuento, en céntimos exactos).
  * @param {Record<string, unknown>} quote
  * @param {ExpectedDiscount} expected
  * @returns {boolean}
  */
 function quoteMatchesContract(quote, expected) {
-  if (!isPositiveInteger(quote.id) || !isText(quote.type) || !isAmount(quote.value)) return false;
-  if (quote.code !== expected.code || !isText(quote.currency)) return false;
+  if (!isPositiveInteger(quote.id) || typeof quote.type !== 'string' || !DISCOUNT_TYPES.has(quote.type)) return false;
+  if (!isAmount(quote.value)) return false;
+  if (quote.code !== expected.code || !isCurrencyCode(quote.currency)) return false;
   if (!isPositiveInteger(quote.ticketTypeId) || quote.ticketTypeId !== Number(expected.ticketTypeId)) return false;
   if (!isPositiveInteger(quote.quantity) || quote.quantity !== expected.quantity) return false;
 
