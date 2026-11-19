@@ -55,16 +55,27 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     }
   });
 
-  test('all 20 public speakers have a verified Sessionize photo path', () => {
+  test('all 19 public speakers are attributed; photos are Sessionize paths when present', () => {
     const speakerIds=new Set(Object.values(dubaiAcceptedSessions2026).flatMap((x)=>x.speakers));
-    expect(speakerIds.size).toBe(20);
-    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(20);
+    expect(speakerIds.size).toBe(19);
+    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(19);
     for(const id of speakerIds) {
       const p=dubaiSpeakers2026[id];
       expect(p?.name).toBeTruthy();
-      expect(p?.photo).toMatch(/^https:\/\/cdn\.sessionize\.com\/image\//);
+      // sin foto oficial verificada el retrato cae a iniciales (como el resto del fallback)
+      if(p.photo!==null) expect(p.photo).toMatch(/^https:\/\/cdn\.sessionize\.com\/image\//);
       expect(p.email).toBeUndefined();
     }
+  });
+
+  test('Beyond RAG (1343214) is presented by Jay Prajapat alone; Hastimal and Harsh Jangid are no longer listed', () => {
+    const session=dubaiAcceptedSessions2026['1343214'];
+    expect(session.speakers).toHaveLength(1);
+    const jay=dubaiSpeakers2026[session.speakers[0]];
+    expect(jay.name).toBe('Jay Prajapat');
+    expect(jay.role).toBe('RankRabbit');
+    expect(JSON.stringify(dubaiSpeakers2026)).not.toMatch(/Hastimal|Harsh/);
+    expect(JSON.stringify(dubaiAcceptedSessions2026)).not.toMatch(/51a51018|88d5d1b5/);
   });
 
   test('no unaccepted panel/boardroom speakers are attributed', () => {
