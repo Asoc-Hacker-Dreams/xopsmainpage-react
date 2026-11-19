@@ -44,51 +44,60 @@
  * El 429 real del backend trae sólo `{"error": "..."}` (sin `message`), así
  * que el código se busca tanto en `error` como en `message`, y el cuerpo puede
  * venir como string JSON o ya parseado.
+ *
+ * Nota de tipos: este fichero es .ts (convención del repo para adaptadores) pero
+ * no usa sintaxis de tipos, porque el ESLint del repo no tiene parser de
+ * TypeScript. Los tipos van en JSDoc. En un .ts TypeScript NO comprueba esos tags:
+ * son documentación. La garantía real es la validación en tiempo de ejecución y
+ * sus tests.
  */
 
-export type DiscountFailureReason =
-  | 'rate_limited'
-  | 'sale_ended'
-  | 'sale_not_started'
-  | 'code_expired'
-  | 'code_not_started'
-  | 'code_not_for_ticket'
-  | 'code_not_for_organizer'
-  | 'wrong_selection'
-  | 'invalid'
-  | 'unavailable';
+/**
+ * Causa de fallo de un cupón (ver la cabecera del módulo).
+ * @typedef {'rate_limited' | 'sale_ended' | 'sale_not_started' | 'code_expired' |
+ *   'code_not_started' | 'code_not_for_ticket' | 'code_not_for_organizer' |
+ *   'wrong_selection' | 'invalid' | 'unavailable'} DiscountFailureReason
+ */
 
-export interface DiscountFailureInput {
-  /** Status HTTP si hubo respuesta; undefined si no la hubo (red, timeout). */
-  status?: number;
-  body?: unknown;
-}
+/**
+ * Entrada de `classifyDiscountFailure`.
+ * @typedef {Object} DiscountFailureInput
+ * @property {number} [status] Status HTTP si hubo respuesta; undefined si no la hubo (red, timeout).
+ * @property {unknown} [body] Cuerpo de la respuesta: string JSON u objeto ya parseado.
+ */
 
-export interface ExpectedDiscount {
-  code: string;
-  ticketTypeId: number | string;
-  quantity: number;
-}
+/**
+ * Lo que el comprador pidió validar; el quote debe coincidir con ello.
+ * @typedef {Object} ExpectedDiscount
+ * @property {string} code
+ * @property {number | string} ticketTypeId
+ * @property {number} quantity
+ */
 
 const ERROR_CODE = /^[A-Z][A-Z0-9_]*$/;
 
-/** Códigos de negocio del backend con causa propia. Cualquier otro es "invalid". */
-const BUSINESS_CODE_REASONS: Record<string, DiscountFailureReason> = {
-  RATE_LIMITED: 'rate_limited',
-  SALE_ENDED: 'sale_ended',
-  SALE_NOT_STARTED: 'sale_not_started',
-  CODE_EXPIRED: 'code_expired',
-  CODE_NOT_STARTED: 'code_not_started',
-  CODE_NOT_VALID_FOR_TICKET: 'code_not_for_ticket',
-  CODE_NOT_VALID_FOR_EVENT: 'code_not_for_ticket',
-  CODE_NOT_VALID_FOR_ORGANIZER: 'code_not_for_organizer',
-  INVALID_TICKET_TYPE: 'wrong_selection',
+/**
+ * Códigos de negocio del backend con causa propia. Cualquier otro es "invalid".
+ * Es un Map (no un objeto) para no hacer acceso dinámico a propiedades con un código
+ * que viene del servidor.
+ * @type {Map<string, DiscountFailureReason>}
+ */
+const BUSINESS_CODE_REASONS = new Map([
+  ['RATE_LIMITED', 'rate_limited'],
+  ['SALE_ENDED', 'sale_ended'],
+  ['SALE_NOT_STARTED', 'sale_not_started'],
+  ['CODE_EXPIRED', 'code_expired'],
+  ['CODE_NOT_STARTED', 'code_not_started'],
+  ['CODE_NOT_VALID_FOR_TICKET', 'code_not_for_ticket'],
+  ['CODE_NOT_VALID_FOR_EVENT', 'code_not_for_ticket'],
+  ['CODE_NOT_VALID_FOR_ORGANIZER', 'code_not_for_organizer'],
+  ['INVALID_TICKET_TYPE', 'wrong_selection'],
   // La cantidad va fijada a 1: si el backend la rechaza es defecto de integración, no del cupón.
-  INVALID_QUANTITY: 'unavailable',
-};
+  ['INVALID_QUANTITY', 'unavailable'],
+]);
 
 /** Claves que identifican un cuerpo como respuesta de negocio de TriskelGate. */
-const BUSINESS_KEYS = ['error', 'message', 'success'] as const;
+const BUSINESS_KEYS = ['error', 'message', 'success'];
 
 /** Medio céntimo: tolerancia sólo para la representación en coma flotante de los importes. */
 const HALF_CENT = 0.005;
@@ -96,9 +105,11 @@ const HALF_CENT = 0.005;
 /**
  * Devuelve el cuerpo como objeto de negocio, o null. Acepta string JSON u objeto
  * ya parseado; rechaza arrays, primitivos y objetos sin claves de negocio.
+ * @param {unknown} body
+ * @returns {Record<string, unknown> | null}
  */
-function parseBody(body: unknown): Record<string, unknown> | null {
-  let data: unknown = body;
+function parseBody(body) {
+  let data = body;
   if (typeof body === 'string') {
     try {
       data = JSON.parse(body);
@@ -107,23 +118,34 @@ function parseBody(body: unknown): Record<string, unknown> | null {
     }
   }
   if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
-  const record = data as Record<string, unknown>;
+  const record = /** @type {Record<string, unknown>} */ (data);
   return BUSINESS_KEYS.some((key) => key in record) ? record : null;
 }
 
-/** Código de error del backend (p.ej. SALE_ENDED), o null si el cuerpo no trae ninguno. */
-function errorCode(data: Record<string, unknown>): string | null {
+/**
+ * Código de error del backend (p.ej. SALE_ENDED), o null si el cuerpo no trae ninguno.
+ * @param {Record<string, unknown>} data
+ * @returns {string | null}
+ */
+function errorCode(data) {
   for (const field of [data.error, data.message]) {
     if (typeof field === 'string' && ERROR_CODE.test(field)) return field;
   }
   return null;
 }
 
-export function classifyDiscountFailure({ status, body }: DiscountFailureInput): DiscountFailureReason {
+/**
+ * Clasifica un fallo de validación según la tabla de reglas de la cabecera.
+ * @param {DiscountFailureInput} input
+ * @returns {DiscountFailureReason}
+ */
+export function classifyDiscountFailure(input) {
+  const { status, body } = input;
   const data = parseBody(body);
   const code = data ? errorCode(data) : null;
   if (status === 429 || code === 'RATE_LIMITED') return 'rate_limited';
-  if (code && code in BUSINESS_CODE_REASONS) return BUSINESS_CODE_REASONS[code];
+  const businessReason = code ? BUSINESS_CODE_REASONS.get(code) : undefined;
+  if (businessReason) return businessReason;
   // Sin status no hubo respuesta del servicio (red, timeout): no es culpa del cupón.
   if (typeof status !== 'number') return 'unavailable';
   if (status >= 500) return 'unavailable';
@@ -133,22 +155,38 @@ export function classifyDiscountFailure({ status, body }: DiscountFailureInput):
   return 'unavailable';
 }
 
-/** Número finito y no negativo: importes en mayores y `value` del descuento. */
-function isAmount(value: unknown): value is number {
+/**
+ * Número finito y no negativo: importes en mayores y `value` del descuento.
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function isAmount(value) {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0;
 }
 
-/** Céntimos: entero seguro no negativo. */
-function isCents(value: unknown): value is number {
+/**
+ * Céntimos: entero seguro no negativo.
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function isCents(value) {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 }
 
-/** Entero seguro positivo: ids, ticketTypeId y quantity. */
-function isPositiveInteger(value: unknown): value is number {
+/**
+ * Entero seguro positivo: ids, ticketTypeId y quantity.
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function isPositiveInteger(value) {
   return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
 }
 
-function isText(value: unknown): value is string {
+/**
+ * @param {unknown} value
+ * @returns {boolean}
+ */
+function isText(value) {
   return typeof value === 'string' && value.trim() !== '';
 }
 
@@ -156,8 +194,11 @@ function isText(value: unknown): value is string {
  * ¿El quote cumple el contrato TGDiscountQuote completo y es el pedido?
  * Valida tipos de cada campo, que los importes en mayores sean los céntimos / 100
  * y que el total cuadre (final = original − descuento, en céntimos exactos).
+ * @param {Record<string, unknown>} quote
+ * @param {ExpectedDiscount} expected
+ * @returns {boolean}
  */
-function quoteMatchesContract(quote: Record<string, unknown>, expected: ExpectedDiscount): boolean {
+function quoteMatchesContract(quote, expected) {
   if (!isPositiveInteger(quote.id) || !isText(quote.type) || !isAmount(quote.value)) return false;
   if (quote.code !== expected.code || !isText(quote.currency)) return false;
   if (!isPositiveInteger(quote.ticketTypeId) || quote.ticketTypeId !== Number(expected.ticketTypeId)) return false;
@@ -181,8 +222,11 @@ function quoteMatchesContract(quote: Record<string, unknown>, expected: Expected
  * Evalúa la respuesta 2xx de POST /api/discounts/validate frente a lo pedido.
  * Devuelve null si el cupón es válido para ese código, entrada y cantidad;
  * si no, la causa para mostrar al comprador.
+ * @param {unknown} result
+ * @param {ExpectedDiscount} expected
+ * @returns {DiscountFailureReason | null}
  */
-export function discountResponseFailure(result: unknown, expected: ExpectedDiscount): DiscountFailureReason | null {
+export function discountResponseFailure(result, expected) {
   const data = parseBody(result);
   if (!data) return 'unavailable';
   // success:false es un rechazo explícito: se clasifica por su código de negocio.
@@ -191,11 +235,16 @@ export function discountResponseFailure(result: unknown, expected: ExpectedDisco
   const discount = data.discount;
   if (!discount || typeof discount !== 'object' || Array.isArray(discount)) return 'unavailable';
   // success:true con un quote incompleto, incoherente o que no es el pedido: fallo del servicio.
-  return quoteMatchesContract(discount as Record<string, unknown>, expected) ? null : 'unavailable';
+  const quote = /** @type {Record<string, unknown>} */ (discount);
+  return quoteMatchesContract(quote, expected) ? null : 'unavailable';
 }
 
-/** Clave i18n (bajo ticketModal.checkout) con el texto para cada causa. */
-export function discountFailureMessageKey(reason: DiscountFailureReason): string {
+/**
+ * Clave i18n (bajo ticketModal.checkout) con el texto para cada causa.
+ * @param {DiscountFailureReason} reason
+ * @returns {string}
+ */
+export function discountFailureMessageKey(reason) {
   switch (reason) {
     case 'rate_limited':
       return 'ticketModal.checkout.rateLimited';

@@ -6,7 +6,6 @@ import {
   classifyDiscountFailure,
   discountFailureMessageKey,
   discountResponseFailure,
-  type DiscountFailureReason,
 } from './discountErrors';
 
 const VALIDATE_URL = 'https://tg.test.local/api/discounts/validate';
@@ -16,7 +15,7 @@ const RATE_LIMIT_BODY = '{"error":"Too many discount validation requests."}';
 
 const EXPECTED = { code: 'X-OPS', ticketTypeId: 1, quantity: 1 };
 
-const quote = (overrides: Record<string, unknown> = {}) => ({
+const quote = (overrides = {}) => ({
   id: 9,
   code: 'X-OPS',
   type: 'percent',
@@ -139,7 +138,7 @@ describe('classifyDiscountFailure (regresión: el 429 no es un código inválido
 
 describe('classifyDiscountFailure (regresión: un fallo del servicio NUNCA es código inválido)', () => {
   it('rechazo de red (TypeError de fetch, sin status ni body) es "unavailable", no "invalid"', () => {
-    const networkError: { status?: number; body?: string } = new TypeError('Failed to fetch');
+    const networkError = new TypeError('Failed to fetch');
     expect(classifyDiscountFailure({ status: networkError.status, body: networkError.body }))
       .toBe('unavailable');
     expect(classifyDiscountFailure({})).toBe('unavailable');
@@ -240,8 +239,7 @@ describe('discountResponseFailure: un success:true que no cumple el contrato del
   });
 
   it.each(QUOTE_FIELDS)('discount sin el campo %s es "unavailable"', (field) => {
-    const incomplete = quote();
-    delete incomplete[field];
+    const incomplete = Object.fromEntries(Object.entries(quote()).filter(([key]) => key !== field));
     expect(discountResponseFailure({ success: true, discount: incomplete }, EXPECTED)).toBe('unavailable');
   });
 
@@ -306,8 +304,9 @@ describe('discountResponseFailure: un success:true que no cumple el contrato del
 
 describe('discountFailureMessageKey', () => {
   // Lee una clave con puntos (p.ej. ticketModal.checkout.saleEnded) de un locale.
-  const textAt = (locale: object, key: string): string =>
-    key.split('.').reduce<unknown>((node, part) => (node as Record<string, unknown>)?.[part], locale) as string;
+  // Las claves usadas aquí son todas ticketModal.checkout.<nombre>: se busca <nombre> en un Map.
+  const textAt = (locale, key) =>
+    new Map(Object.entries(locale.ticketModal.checkout)).get(key.replace(/^ticketModal\.checkout\./, ''));
 
   it('mapea cada causa a su clave i18n bajo ticketModal.checkout', () => {
     expect(discountFailureMessageKey('rate_limited')).toBe('ticketModal.checkout.rateLimited');
@@ -323,7 +322,7 @@ describe('discountFailureMessageKey', () => {
   });
 
   it('cada causa tiene una clave propia (las causas concretas no se funden con "invalid")', () => {
-    const reasons: DiscountFailureReason[] = [
+    const reasons = [
       'rate_limited', 'sale_ended', 'sale_not_started', 'code_expired',
       'code_not_started', 'code_not_for_ticket', 'code_not_for_organizer', 'wrong_selection',
       'invalid', 'unavailable',
@@ -333,7 +332,7 @@ describe('discountFailureMessageKey', () => {
   });
 
   it('cada clave existe en es y en con un texto que describe su causa', () => {
-    const expectations: Record<DiscountFailureReason, { es: RegExp; en: RegExp }> = {
+    const expectations = {
       rate_limited: { es: /espera/i, en: /wait/i },
       sale_ended: { es: /a la venta/i, en: /on sale/i },
       sale_not_started: { es: /aún no ha comenzado/i, en: /not started yet/i },
@@ -346,7 +345,7 @@ describe('discountFailureMessageKey', () => {
       unavailable: { es: /no hemos podido comprobar/i, en: /couldn't check/i },
     };
 
-    for (const [reason, rx] of Object.entries(expectations) as [DiscountFailureReason, { es: RegExp; en: RegExp }][]) {
+    for (const [reason, rx] of Object.entries(expectations)) {
       const key = discountFailureMessageKey(reason);
       expect(textAt(es, key), `es ${key}`).toMatch(rx.es);
       expect(textAt(en, key), `en ${key}`).toMatch(rx.en);
@@ -366,7 +365,7 @@ describe('discountFailureMessageKey', () => {
   });
 
   it('los textos de caducado y no vigente no dicen "no válido" ni "sin disponibilidad"', () => {
-    for (const reason of ['code_expired', 'code_not_started', 'code_not_for_ticket'] as const) {
+    for (const reason of ['code_expired', 'code_not_started', 'code_not_for_ticket']) {
       const key = discountFailureMessageKey(reason);
       expect(textAt(es, key), `es ${key}`).not.toMatch(/sin disponibilidad/i);
       expect(textAt(en, key), `en ${key}`).not.toMatch(/unavailable/i);
