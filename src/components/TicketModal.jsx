@@ -13,6 +13,7 @@ import {
 import { BsCheckCircleFill, BsXCircle, BsStar, BsCalendar3, BsGeoAlt, BsArrowLeft } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { triskelGateClient } from '../adapters/triskelgate/client';
+import { classifyDiscountFailure, discountFailureMessageKey } from '../adapters/triskelgate/discountErrors';
 import CountdownTimer from './CountdownTimer';
 import { cityEvents, getCityFromHostname } from '../data/cityEvents';
 import { LEGAL_VERSION, editionFromEvent } from '../legal/identity';
@@ -351,6 +352,14 @@ const TicketModal = ({ show, onHide }) => {
     setFormError(null);
   };
 
+  // Muestra la causa real del fallo (rate limit, venta cerrada o código no
+  // válido). Nunca usa "código no válido" para un 429 ni para una venta cerrada.
+  const showDiscountFailure = (reason) => {
+    setDiscountPreview(null);
+    setDiscountError(t(discountFailureMessageKey(reason)));
+    return null;
+  };
+
   const applyDiscount = async () => {
     const code = discountCode.trim().toUpperCase();
     if (!code || !selectedEvent || !selectedTT) return null;
@@ -372,23 +381,15 @@ const TicketModal = ({ show, onHide }) => {
           Number(result.discount.ticketTypeId) !== targetTicket ||
           Number(selectedEvent.id) !== targetEvent ||
           Number(result.discount.quantity) !== 1) {
-        throw new Error(t('ticketModal.checkout.invalidDiscount'));
+        // 200 con success:false (p.ej. SALE_ENDED) o respuesta que no encaja.
+        return showDiscountFailure(classifyDiscountFailure({ body: result }));
       }
       setDiscountPreview(result.discount);
       return result.discount;
     } catch (error) {
       if (nonce !== discountValidationNonce.current) return null;
-      let message = t('ticketModal.checkout.invalidDiscount');
-      if (typeof error?.body === 'string') {
-        try {
-          message = JSON.parse(error.body).message || message;
-        } catch {
-          // User-safe generic copy if upstream response is not JSON.
-        }
-      }
-      setDiscountPreview(null);
-      setDiscountError(message);
-      return null;
+      // TriskelGateApiError: status (429, 400…) y body (string JSON) del backend.
+      return showDiscountFailure(classifyDiscountFailure({ status: error?.status, body: error?.body }));
     } finally {
       if (nonce === discountValidationNonce.current) setValidatingDiscount(false);
     }
