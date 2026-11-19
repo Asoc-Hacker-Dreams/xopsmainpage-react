@@ -626,6 +626,14 @@ const TicketModal = ({ show, onHide }) => {
                 {formError}
               </Alert>
             )}
+            {/* TG-48: si ya hay un pedido gratuito completado en esta sesion, el boton
+                de compra queda bloqueado. Sin este aviso el usuario ve un boton gris
+                sin saber por que, y podria pensar que la compra fallo. */}
+            {freeOrderLocked && !freeOutcome && (
+              <Alert variant="info" role="status">
+                {t('ticketModal.checkout.success.freeAlreadyRegistered')}
+              </Alert>
+            )}
             {freeOutcome && (
               <Alert variant="success" role="status">
                 {t('ticketModal.checkout.success.freeRegistered')}

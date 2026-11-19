@@ -423,7 +423,8 @@
       },
       "success": {
         "freeRegistered": "Registration complete! Your free ticket order is confirmed. We have emailed your ticket to you.",
-        "freeConfirmationUnavailable": "Your free order is already registered. We couldn't show you the confirmation page; if you don't receive your ticket by email, write to info@xopsconference.com."
+        "freeConfirmationUnavailable": "Your free order is already registered. We couldn't show you the confirmation page; if you don't receive your ticket by email, write to info@xopsconference.com.",
+        "freeAlreadyRegistered": "You already have a free order registered in this session. If you need another ticket, write to info@xopsconference.com."
       },
       "organizerNotice": "Organised by: Asociación Hacker Dreams (Spanish tax ID G56643158).",
       "paymentNotice": "Collections handled through Odin Hermes & Danu Technology Solutions LLC. Stripe provides the payment gateway. See our legal notice for entity roles.",

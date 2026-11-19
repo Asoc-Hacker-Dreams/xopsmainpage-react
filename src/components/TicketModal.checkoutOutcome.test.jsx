@@ -292,6 +292,27 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
     expect(submitButton()).toBeDisabled();
   });
 
+  it('pedido gratuito ya registrado: el botón bloqueado explica por qué', async () => {
+    // Un botón deshabilitado sin explicación parece una compra fallida: el usuario
+    // no debe ver un botón gris sin saber que su pedido ya está registrado.
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
+    const onHide = vi.fn();
+    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    await fillCheckoutAndSubmit();
+    expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
+
+    fireEvent.click(closeHeaderButton());
+    rerender(<TicketModal show={false} onHide={onHide} />);
+    rerender(<TicketModal show onHide={onHide} />);
+
+    // Tras reabrir, el modal vuelve al paso 'select': hay que volver al checkout
+    // para ver el botón bloqueado y su aviso.
+    await fillCheckoutAndSubmit();
+
+    expect(submitButton()).toBeDisabled();
+    expect(await screen.findByText('ticketModal.checkout.success.freeAlreadyRegistered')).toBeInTheDocument();
+  });
+
   it('recargar la página (nuevo montaje) vuelve a permitir comprar', async () => {
     triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
     const first = render(<TicketModal show onHide={() => {}} />);
