@@ -4,12 +4,20 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import TicketModal from './TicketModal';
 import { triskelGateClient } from '../adapters/triskelgate/client';
 import { trackCheckoutRedirect } from '../analytics/ga4';
+import { rememberCheckoutDeparture } from '../analytics/checkoutJourney';
 
 /*
- * TG-48 — fija en el componente el comportamiento tras createCheckout:
- *  - pedido gratuito: éxito (sin mensaje de error), sin redirigir a Stripe;
+ * TG-48 — fija en el componente el comportamiento tras createCheckout.
+ *
+ * Qué NO puede fijar jsdom: que `location.assign` navegue. Por eso el mock de
+ * assign registra qué hay en pantalla en el MOMENTO de la navegación. Así el test
+ * comprueba el orden real: la confirmación se pinta primero y la navegación se
+ * pide después, con un retardo.
+ *  - pedido gratuito con URL de confianza: confirmación visible → navegación;
+ *  - pedido gratuito sin URL de confianza: confirmación + aviso, SIN navegar y
+ *    sin el mensaje de "sistema no disponible";
  *  - pago Stripe: redirige a Stripe como antes;
- *  - host no permitido o fallo real del backend: error con el mensaje correcto.
+ *  - fallo real del backend: su mensaje, no el genérico.
  */
 
 vi.mock('../adapters/triskelgate/client', () => ({
@@ -98,9 +106,17 @@ afterEach(() => {
   vi.clearAllMocks();
 });
 
+// Tiempo máximo que esperamos a la navegación diferida (el modal usa 1500 ms).
+const NAVIGATION_TIMEOUT = { timeout: 4000 };
+
 describe('TG-48 TicketModal tras createCheckout', () => {
-  it('pedido gratuito: éxito, mensaje de registro completado y SIN mensaje de error', async () => {
+  it('pedido gratuito: la confirmación está en pantalla ANTES de pedir la navegación', async () => {
     const freeUrl = `${PAGE_ORIGIN}/tickets/success?session_id=cs_free_abc`;
+    let alertVisibleAtNavigation = null;
+    // Simula la navegación: en ese instante, ¿el usuario ve ya la confirmación?
+    assignMock.mockImplementation(() => {
+      alertVisibleAtNavigation = screen.queryByText('ticketModal.checkout.success.freeRegistered') !== null;
+    });
     triskelGateClient.createCheckout.mockResolvedValue({
       success: true, mode: 'free', sessionUrl: freeUrl, totalAmount: 0,
     });
@@ -108,10 +124,57 @@ describe('TG-48 TicketModal tras createCheckout', () => {
     await reachCheckoutForm();
 
     expect(await screen.findByText('ticketModal.checkout.success.freeRegistered')).toBeInTheDocument();
+    expect(assignMock).not.toHaveBeenCalled();
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(freeUrl), NAVIGATION_TIMEOUT);
+    expect(alertVisibleAtNavigation).toBe(true);
     expect(screen.queryByText('ticketModal.checkout.errors.networkError')).toBeNull();
-    expect(assignMock).toHaveBeenCalledWith(freeUrl);
-    // No es una redirección de pago: no se mide como "intento de pago".
+  });
+
+  it('pedido gratuito: el botón de compra queda bloqueado mientras se confirma y redirige', async () => {
+    const freeUrl = `${PAGE_ORIGIN}/tickets/success?session_id=cs_free_abc`;
+    triskelGateClient.createCheckout.mockResolvedValue({
+      success: true, mode: 'free', sessionUrl: freeUrl, totalAmount: 0,
+    });
+
+    await reachCheckoutForm();
+    await screen.findByText('ticketModal.checkout.success.freeRegistered');
+
+    const submit = document.querySelector('button[type="submit"]');
+    expect(submit).not.toBeNull();
+    expect(submit).toBeDisabled();
+    expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(freeUrl), NAVIGATION_TIMEOUT);
+  });
+
+  it('pedido gratuito: no cuenta como intento de pago ni como salida a Stripe', async () => {
+    const freeUrl = `${PAGE_ORIGIN}/tickets/success?session_id=cs_free_abc`;
+    triskelGateClient.createCheckout.mockResolvedValue({
+      success: true, mode: 'free', sessionUrl: freeUrl, totalAmount: 0,
+    });
+
+    await reachCheckoutForm();
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(freeUrl), NAVIGATION_TIMEOUT);
+
     expect(trackCheckoutRedirect).not.toHaveBeenCalled();
+    expect(rememberCheckoutDeparture).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['host ajeno', { success: true, mode: 'free', sessionUrl: 'https://evil.example/tickets/success?session_id=x' }],
+    ['sin ninguna URL', { success: true, mode: 'free' }],
+  ])('pedido gratuito con %s: confirmación + aviso propio, SIN navegar y SIN "sistema no disponible"', async (_name, response) => {
+    triskelGateClient.createCheckout.mockResolvedValue(response);
+
+    await reachCheckoutForm();
+
+    expect(await screen.findByText('ticketModal.checkout.success.freeRegistered')).toBeInTheDocument();
+    expect(screen.getByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
+    expect(screen.queryByText('ticketModal.checkout.errors.networkError')).toBeNull();
+    expect(trackCheckoutRedirect).not.toHaveBeenCalled();
+    expect(rememberCheckoutDeparture).not.toHaveBeenCalled();
+    // Tiempo de sobra para que una navegación diferida hubiera ocurrido.
+    await new Promise((resolve) => setTimeout(resolve, 1700));
+    expect(assignMock).not.toHaveBeenCalled();
   });
 
   it('pago Stripe: redirige a Stripe igual que antes', async () => {
@@ -122,18 +185,6 @@ describe('TG-48 TicketModal tras createCheckout', () => {
 
     await waitFor(() => expect(assignMock).toHaveBeenCalledWith(stripeUrl));
     expect(trackCheckoutRedirect).toHaveBeenCalledTimes(1);
-    expect(screen.queryByText('ticketModal.checkout.success.freeRegistered')).toBeNull();
-  });
-
-  it('sessionUrl gratuita de host ajeno: error y NO redirige', async () => {
-    triskelGateClient.createCheckout.mockResolvedValue({
-      success: true, mode: 'free', sessionUrl: 'https://evil.example/tickets/success?session_id=x',
-    });
-
-    await reachCheckoutForm();
-
-    expect(await screen.findByText('ticketModal.checkout.errors.networkError')).toBeInTheDocument();
-    expect(assignMock).not.toHaveBeenCalled();
     expect(screen.queryByText('ticketModal.checkout.success.freeRegistered')).toBeNull();
   });
 

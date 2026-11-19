@@ -23,6 +23,11 @@ import scriptManager from '../services/scriptManager';
 import { rememberCheckoutDeparture } from '../analytics/checkoutJourney';
 import { resolveCheckoutOutcome } from '../adapters/triskelgate/checkoutOutcome';
 
+// TG-48: pedido gratuito completado. La confirmación se pinta antes de navegar a la
+// página de éxito: navegar al instante no deja al usuario ver el mensaje. 1500 ms
+// es tiempo de sobra para leerlo y para que el navegador pinte el frame.
+const FREE_REDIRECT_DELAY_MS = 1500;
+
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
   : null;
@@ -232,8 +237,10 @@ const TicketModal = ({ show, onHide }) => {
   const [validatingDiscount, setValidatingDiscount] = useState(false);
   const discountValidationNonce = useRef(0);
   const [formError, setFormError]       = useState(null);
-  // TG-48: compra gratuita completada (la redirección a la página de éxito ya va en curso).
-  const [freeRegistered, setFreeRegistered] = useState(false);
+  // TG-48: tras un pedido gratuito completado. 'redirecting' = confirmación visible y
+  // navegación diferida en curso. 'unconfirmed' = completado sin URL de confianza:
+  // confirmación + aviso, sin navegar.
+  const [freeOutcome, setFreeOutcome] = useState(null);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [purchasing, setPurchasing]     = useState(false);
 
@@ -343,7 +350,7 @@ const TicketModal = ({ show, onHide }) => {
     setDiscountPreview(null);
     setDiscountError(null);
     setFormError(null);
-    setFreeRegistered(false);
+    setFreeOutcome(null);
     setAcceptedTerms(false);
     setStep('checkout');
   };
@@ -415,6 +422,8 @@ const TicketModal = ({ show, onHide }) => {
 
     if (!acceptedTerms) { setFormError(t('ticketModal.checkout.errors.termsRequired')); return; }
     setPurchasing(true);
+    // TG-48: true si la compra quedó completada y el botón debe seguir bloqueado.
+    let keepBusy = false;
     setFormError(null);
 
     try {
@@ -466,13 +475,22 @@ const TicketModal = ({ show, onHide }) => {
       // successUrl, no Stripe. La URL se valida por host (ver checkoutOutcome.ts).
       const outcome = resolveCheckoutOutcome(data, window.location.origin);
       if (!outcome.ok) {
+        if (outcome.code === 'free_confirmation_unavailable') {
+          // Compra completada sin URL de confianza: confirmación + aviso, sin navegar.
+          // Se bloquea el botón: reenviar crearía otro pedido.
+          keepBusy = true;
+          setFreeOutcome('unconfirmed');
+          return;
+        }
         throw new Error(outcome.message || t('ticketModal.checkout.errors.networkError'));
       }
 
       if (outcome.mode === 'free') {
         // Éxito: no es un intento de pago, así que no se marca salida a Stripe.
-        setFreeRegistered(true);
-        window.location.assign(outcome.url);
+        // Se bloquea el botón: reenviar crearía otro pedido durante la espera.
+        keepBusy = true;
+        setFreeOutcome('redirecting');
+        setTimeout(() => window.location.assign(outcome.url), FREE_REDIRECT_DELAY_MS);
         return;
       }
       const stripeUrl = outcome.url;
@@ -496,7 +514,7 @@ const TicketModal = ({ show, onHide }) => {
           : err.message,
       );
     } finally {
-      setPurchasing(false);
+      if (!keepBusy) setPurchasing(false);
     }
   };
 
@@ -505,7 +523,9 @@ const TicketModal = ({ show, onHide }) => {
     setValidatingDiscount(false);
     setStep('select');
     setFormError(null);
-    setFreeRegistered(false);
+    setFreeOutcome(null);
+    // Se libera la compra salvo si la navegación gratuita ya está en curso.
+    if (freeOutcome !== 'redirecting') setPurchasing(false);
     onHide();
   };
 
@@ -574,9 +594,12 @@ const TicketModal = ({ show, onHide }) => {
                 {formError}
               </Alert>
             )}
-            {freeRegistered && (
+            {freeOutcome && (
               <Alert variant="success" role="status">
                 {t('ticketModal.checkout.success.freeRegistered')}
+                {freeOutcome === 'unconfirmed' && (
+                  <p className="mb-0 mt-2">{t('ticketModal.checkout.success.freeConfirmationUnavailable')}</p>
+                )}
               </Alert>
             )}
             {/* Resumen de lo que se compra, ANTES de ir a Stripe.
