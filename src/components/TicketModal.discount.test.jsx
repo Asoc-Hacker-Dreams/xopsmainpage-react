@@ -96,11 +96,65 @@ describe('TicketModal · aplicar cupón: causa real del fallo', () => {
   });
 
   it('200 con success:false y código de negocio desconocido sigue siendo "código no válido"', async () => {
-    mockClient.validateDiscount.mockResolvedValue({ success: false, error: 'CODE_EXPIRED' });
+    mockClient.validateDiscount.mockResolvedValue({ success: false, error: 'CODE_EXHAUSTED' });
 
     const alert = await openCheckoutWithCode();
 
     expect(alert).toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('CODE_EXPIRED muestra que el código ha caducado, no "código no válido"', async () => {
+    mockClient.validateDiscount.mockRejectedValue(Object.assign(new Error('400'), {
+      status: 400, body: '{"error":"CODE_EXPIRED"}',
+    }));
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountExpired);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('CODE_NOT_VALID_FOR_TICKET muestra que el código no se aplica a esta entrada', async () => {
+    mockClient.validateDiscount.mockResolvedValue({ success: false, error: 'CODE_NOT_VALID_FOR_TICKET' });
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountNotForTicket);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('CODE_NOT_STARTED muestra que el código aún no está vigente', async () => {
+    mockClient.validateDiscount.mockResolvedValue({ success: false, error: 'CODE_NOT_STARTED' });
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountNotStarted);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('200 con success:true sin discount NUNCA es "código no válido": no se pudo comprobar', async () => {
+    mockClient.validateDiscount.mockResolvedValue({ success: true });
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountUnavailable);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('200 con success:true y ticketTypeId distinto del seleccionado NUNCA es "código no válido"', async () => {
+    mockClient.validateDiscount.mockResolvedValue({
+      success: true,
+      discount: {
+        id: 1, code: 'X-OPSSPEAKERS', type: 'percent', value: 10, currency: 'AED',
+        ticketTypeId: 999, quantity: 1, originalAmount: 200, discountAmount: 20, finalAmount: 180,
+        originalTotalCents: 20000, discountCents: 2000, finalCents: 18000,
+      },
+    });
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountUnavailable);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
   });
 
   it('fallo de red (TypeError, sin respuesta) muestra "no hemos podido comprobar", nunca "código no válido"', async () => {

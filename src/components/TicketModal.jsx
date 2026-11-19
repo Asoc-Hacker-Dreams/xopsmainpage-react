@@ -13,7 +13,11 @@ import {
 import { BsCheckCircleFill, BsXCircle, BsStar, BsCalendar3, BsGeoAlt, BsArrowLeft } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { triskelGateClient } from '../adapters/triskelgate/client';
-import { classifyDiscountFailure, discountFailureMessageKey } from '../adapters/triskelgate/discountErrors';
+import {
+  classifyDiscountFailure,
+  discountFailureMessageKey,
+  discountResponseFailure,
+} from '../adapters/triskelgate/discountErrors';
 import CountdownTimer from './CountdownTimer';
 import { cityEvents, getCityFromHostname } from '../data/cityEvents';
 import { LEGAL_VERSION, editionFromEvent } from '../legal/identity';
@@ -365,7 +369,6 @@ const TicketModal = ({ show, onHide }) => {
     const code = discountCode.trim().toUpperCase();
     if (!code || !selectedEvent || !selectedTT) return null;
     const nonce = ++discountValidationNonce.current;
-    const targetEvent = Number(selectedEvent.id);
     const targetTicket = Number(selectedTT.id);
     setValidatingDiscount(true);
     setDiscountError(null);
@@ -377,15 +380,10 @@ const TicketModal = ({ show, onHide }) => {
         quantity: 1,
       });
       if (nonce !== discountValidationNonce.current) return null;
-      if (!result?.success || !result.discount ||
-          result.discount.code !== code ||
-          Number(result.discount.ticketTypeId) !== targetTicket ||
-          Number(selectedEvent.id) !== targetEvent ||
-          Number(result.discount.quantity) !== 1) {
-        // Llegó una respuesta 2xx con success:false (p.ej. SALE_ENDED) o que no encaja:
-        // el servicio sí respondió, así que un cuerpo sin código conocido es "invalid".
-        return showDiscountFailure(classifyDiscountFailure({ status: 200, body: result }));
-      }
+      // success:false es un rechazo del cupón (por su código); success:true sin un
+      // discount que encaje con lo pedido es una respuesta malformada → "no se pudo comprobar".
+      const failure = discountResponseFailure(result, { code, ticketTypeId: targetTicket, quantity: 1 });
+      if (failure) return showDiscountFailure(failure);
       setDiscountPreview(result.discount);
       return result.discount;
     } catch (error) {
