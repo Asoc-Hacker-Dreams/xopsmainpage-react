@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import {
   Modal,
   Container,
@@ -241,6 +241,21 @@ const TicketModal = ({ show, onHide }) => {
   // navegación diferida en curso. 'unconfirmed' = completado sin URL de confianza:
   // confirmación + aviso, sin navegar.
   const [freeOutcome, setFreeOutcome] = useState(null);
+  // TG-48 ronda 3: hay un pedido gratuito completado en este modal (con o sin URL de
+  // confianza). Bloquea el envío mientras el componente viva: cerrar y reabrir el modal
+  // no lo libera; recargar la página sí (el estado nace de nuevo).
+  const [freeOrderLocked, setFreeOrderLocked] = useState(false);
+  // Temporizador de la navegación gratuita y número de intento. Cerrar, desmontar o
+  // empezar otro intento invalida lo pendiente: el temporizador se cancela y una
+  // respuesta que llegue tarde ya no programa navegación.
+  const freeRedirectTimerRef = useRef(null);
+  const checkoutAttemptRef = useRef(0);
+  const cancelPendingFreeRedirect = useCallback(() => {
+    checkoutAttemptRef.current += 1;
+    clearTimeout(freeRedirectTimerRef.current);
+    freeRedirectTimerRef.current = null;
+  }, []);
+  useEffect(() => cancelPendingFreeRedirect, [cancelPendingFreeRedirect]);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [purchasing, setPurchasing]     = useState(false);
 
@@ -407,6 +422,10 @@ const TicketModal = ({ show, onHide }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // TG-48 ronda 3: ya hay un pedido gratuito completado en este modal; no reenviar.
+    if (freeOrderLocked) return;
+    cancelPendingFreeRedirect();
+    const attempt = checkoutAttemptRef.current;
     if (editionFromEvent(selectedEvent, '') === 'madrid') {
       setFormError(t('announcement.salesSuspended'));
       return;
@@ -422,7 +441,8 @@ const TicketModal = ({ show, onHide }) => {
 
     if (!acceptedTerms) { setFormError(t('ticketModal.checkout.errors.termsRequired')); return; }
     setPurchasing(true);
-    // TG-48: true si la compra quedó completada y el botón debe seguir bloqueado.
+    // TG-48: true en el camino gratuito a propósito (la confirmación queda en pantalla y el
+    // envío sigue ocupado, no es un bug). Lo que impide reenviar tras cerrar es freeOrderLocked.
     let keepBusy = false;
     setFormError(null);
 
@@ -477,8 +497,9 @@ const TicketModal = ({ show, onHide }) => {
       if (!outcome.ok) {
         if (outcome.code === 'free_confirmation_unavailable') {
           // Compra completada sin URL de confianza: confirmación + aviso, sin navegar.
-          // Se bloquea el botón: reenviar crearía otro pedido.
+          // Se bloquea el envío: reenviar crearía otro pedido.
           keepBusy = true;
+          setFreeOrderLocked(true);
           setFreeOutcome('unconfirmed');
           return;
         }
@@ -489,8 +510,16 @@ const TicketModal = ({ show, onHide }) => {
         // Éxito: no es un intento de pago, así que no se marca salida a Stripe.
         // Se bloquea el botón: reenviar crearía otro pedido durante la espera.
         keepBusy = true;
+        setFreeOrderLocked(true);
         setFreeOutcome('redirecting');
-        setTimeout(() => window.location.assign(outcome.url), FREE_REDIRECT_DELAY_MS);
+        // Si el modal se cerró mientras esperábamos la respuesta, el pedido queda registrado
+        // pero no se programa ninguna navegación.
+        if (attempt !== checkoutAttemptRef.current) return;
+        clearTimeout(freeRedirectTimerRef.current);
+        freeRedirectTimerRef.current = setTimeout(() => {
+          freeRedirectTimerRef.current = null;
+          window.location.assign(outcome.url);
+        }, FREE_REDIRECT_DELAY_MS);
         return;
       }
       const stripeUrl = outcome.url;
@@ -514,18 +543,21 @@ const TicketModal = ({ show, onHide }) => {
           : err.message,
       );
     } finally {
+      // keepBusy (camino gratuito) deja el envío ocupado a propósito; ver arriba.
       if (!keepBusy) setPurchasing(false);
     }
   };
 
   const handleHide = () => {
     discountValidationNonce.current += 1;
+    // Cerrar cancela la navegación gratuita pendiente. Tras un pedido gratuito completado,
+    // el botón sigue bloqueado por freeOrderLocked aunque purchasing se libere aquí.
+    cancelPendingFreeRedirect();
     setValidatingDiscount(false);
     setStep('select');
     setFormError(null);
     setFreeOutcome(null);
-    // Se libera la compra salvo si la navegación gratuita ya está en curso.
-    if (freeOutcome !== 'redirecting') setPurchasing(false);
+    setPurchasing(false);
     onHide();
   };
 
@@ -762,7 +794,7 @@ const TicketModal = ({ show, onHide }) => {
             </Button>
             <Button
               type="submit"
-              disabled={purchasing || !acceptedTerms || validatingDiscount}
+              disabled={purchasing || freeOrderLocked || !acceptedTerms || validatingDiscount}
               style={{ background: '#00BCD4', border: 'none', color: '#0A0F2E', fontWeight: 700 }}
             >
               {purchasing ? <Spinner size="sm" /> : t('ticketModal.checkout.submit')}

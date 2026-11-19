@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import TicketModal from './TicketModal';
 import { triskelGateClient } from '../adapters/triskelgate/client';
 import { trackCheckoutRedirect } from '../analytics/ga4';
@@ -76,14 +76,20 @@ const TICKET = {
   saleEndDate: null,
 };
 
-async function reachCheckoutForm() {
-  render(<TicketModal show onHide={() => {}} />);
+async function fillCheckoutAndSubmit() {
   const buy = await screen.findByRole('button', { name: /ticketModal\.checkout\.title Daily Ticket/ });
   fireEvent.click(buy);
   fireEvent.change(screen.getByLabelText(/ticketModal\.checkout\.fullName/), { target: { value: 'Ana Pérez' } });
   fireEvent.change(screen.getByLabelText(/ticketModal\.checkout\.email/), { target: { value: 'ana@example.org' } });
-  fireEvent.click(document.getElementById('tm-terms'));
-  fireEvent.click(screen.getByRole('button', { name: 'ticketModal.checkout.submit' }));
+  // Las condiciones se conservan entre aperturas del modal: no volver a marcarlas (las desmarcaría).
+  if (!document.getElementById('tm-terms').checked) fireEvent.click(document.getElementById('tm-terms'));
+  // Por tipo y no por nombre: con el envío en curso el botón muestra un spinner, no su etiqueta.
+  fireEvent.click(document.querySelector('button[type="submit"]'));
+}
+
+async function reachCheckoutForm() {
+  render(<TicketModal show onHide={() => {}} />);
+  await fillCheckoutAndSubmit();
 }
 
 beforeEach(() => {
@@ -198,5 +204,106 @@ describe('TG-48 TicketModal tras createCheckout', () => {
     expect(await screen.findByText('Quota exceeded for this code')).toBeInTheDocument();
     expect(screen.queryByText('ticketModal.checkout.errors.networkError')).toBeNull();
     expect(assignMock).not.toHaveBeenCalled();
+  });
+});
+
+/*
+ * TG-48 ronda 3 — la navegación gratuita es cancelable y el pedido gratuito
+ * completado bloquea el envío mientras el componente viva (recargar lo libera).
+ */
+const FREE_URL = `${PAGE_ORIGIN}/tickets/success?session_id=cs_free_abc`;
+const FREE_CONFIRMED = { success: true, mode: 'free', sessionUrl: FREE_URL, totalAmount: 0 };
+const FREE_UNCONFIRMED = { success: true, mode: 'free' };
+// Espera por encima del retardo de la navegación gratuita (1500 ms).
+const PAST_FREE_DELAY = () => new Promise((resolve) => setTimeout(resolve, 1700));
+const closeHeaderButton = () => screen.getByRole('button', { name: /close/i });
+const submitButton = () => document.querySelector('button[type="submit"]');
+
+describe('TG-48 ronda 3: navegación gratuita cancelable', () => {
+  it('cerrar el modal antes del retardo: la navegación NO se produce', async () => {
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
+    const onHide = vi.fn();
+    render(<TicketModal show onHide={onHide} />);
+    await fillCheckoutAndSubmit();
+    expect(await screen.findByText('ticketModal.checkout.success.freeRegistered')).toBeInTheDocument();
+
+    fireEvent.click(closeHeaderButton());
+    expect(onHide).toHaveBeenCalled();
+
+    await PAST_FREE_DELAY();
+    expect(assignMock).not.toHaveBeenCalled();
+  });
+
+  it('desmontar el componente antes del retardo: la navegación NO se produce', async () => {
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
+    const { unmount } = render(<TicketModal show onHide={() => {}} />);
+    await fillCheckoutAndSubmit();
+    expect(await screen.findByText('ticketModal.checkout.success.freeRegistered')).toBeInTheDocument();
+
+    unmount();
+
+    await PAST_FREE_DELAY();
+    expect(assignMock).not.toHaveBeenCalled();
+  });
+
+  it('cerrar mientras la petición gratuita está en vuelo: el pedido queda registrado pero NO se navega', async () => {
+    let resolveCheckout;
+    triskelGateClient.createCheckout.mockImplementation(
+      () => new Promise((resolve) => { resolveCheckout = resolve; }),
+    );
+    render(<TicketModal show onHide={() => {}} />);
+    await fillCheckoutAndSubmit();
+    await waitFor(() => expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1));
+
+    fireEvent.click(closeHeaderButton());
+    await act(async () => { resolveCheckout(FREE_CONFIRMED); });
+
+    await PAST_FREE_DELAY();
+    expect(assignMock).not.toHaveBeenCalled();
+  });
+
+  it('tras la navegación diferida el botón de compra sigue bloqueado', async () => {
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
+
+    await reachCheckoutForm();
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(FREE_URL), NAVIGATION_TIMEOUT);
+
+    expect(submitButton()).toBeDisabled();
+  });
+});
+
+describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desde el mismo modal', () => {
+  it.each([
+    ['con URL de confianza (redirigiendo)', FREE_CONFIRMED, 'ticketModal.checkout.success.freeRegistered'],
+    ['sin URL de confianza (unconfirmed)', FREE_UNCONFIRMED, 'ticketModal.checkout.success.freeConfirmationUnavailable'],
+  ])('pedido gratuito %s: cerrar y reabrir el modal NO permite enviar otro checkout', async (_name, response, visibleText) => {
+    triskelGateClient.createCheckout.mockResolvedValue(response);
+    const onHide = vi.fn();
+    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    await fillCheckoutAndSubmit();
+    expect(await screen.findByText(visibleText)).toBeInTheDocument();
+
+    fireEvent.click(closeHeaderButton());
+    rerender(<TicketModal show={false} onHide={onHide} />);
+    rerender(<TicketModal show onHide={onHide} />);
+
+    await fillCheckoutAndSubmit();
+    expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
+    expect(submitButton()).toBeDisabled();
+  });
+
+  it('recargar la página (nuevo montaje) vuelve a permitir comprar', async () => {
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
+    const first = render(<TicketModal show onHide={() => {}} />);
+    await fillCheckoutAndSubmit();
+    expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
+    first.unmount();
+
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
+    render(<TicketModal show onHide={() => {}} />);
+    await fillCheckoutAndSubmit();
+
+    await waitFor(() => expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(FREE_URL), NAVIGATION_TIMEOUT);
   });
 });
