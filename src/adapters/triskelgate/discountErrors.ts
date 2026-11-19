@@ -15,25 +15,35 @@
  *     es de otro organizador, así que no vale para este evento.
  *   - wrong_selection: INVALID_TICKET_TYPE; la entrada elegida no es válida para
  *     este evento. Es un problema de la selección, no del cupón: elegir otra sí sirve.
- *   - invalid: el servicio SÍ respondió y rechazó el código sin causa concreta
- *     (p.ej. INVALID_CODE).
- *   - unavailable: NO se pudo comprobar el código (red, timeout, 5xx, una
- *     respuesta que no es JSON utilizable, o una respuesta de éxito que no cumple
- *     el contrato del quote). También INVALID_QUANTITY: la cantidad va fijada a 1
- *     en este flujo, así que si el backend la rechaza es un defecto de integración
- *     que el comprador no puede corregir. Nunca significa "código no válido".
+ *   - code_exhausted: CODE_EXHAUSTED; el código es correcto y ha alcanzado su límite
+ *     de usos. Nunca es "código no válido".
+ *   - invalid: el servicio rechazó el código porque NO EXISTE (INVALID_CODE), o un
+ *     rechazo explícito (success:false) con un código de error desconocido pero con
+ *     formato de código. Sólo estos dos casos pueden decir "código no válido".
+ *   - unavailable: NO se pudo comprobar el código. Incluye red, timeout, 5xx, una
+ *     respuesta que no es JSON utilizable, un 4xx de proxy/middleware (texto libre
+ *     sin success:false), una respuesta de éxito que no cumple el contrato del quote,
+ *     y los códigos que son un fallo de configuración o de precio, no del cupón
+ *     (INVALID_DISCOUNT_CONFIG, INVALID_PRICE, INVALID_DISCOUNT_CURRENCY) y
+ *     INVALID_QUANTITY (la cantidad va fijada a 1 en este flujo: si el backend la
+ *     rechaza es un defecto de integración que el comprador no puede corregir).
+ *     Nunca significa "código no válido".
+ *
+ * Contrato de rechazo: el backend responde `{success:false, error:<CODE>, message}`.
+ * Sólo una respuesta que cumple ese contrato, o un código de la tabla
+ * BUSINESS_CODE_REASONS, puede atribuirse al cupón. Cualquier otra cosa es una
+ * respuesta que no sabemos interpretar y va a unavailable.
  *
  * Orden de reglas en `classifyDiscountFailure` (la primera que encaja gana):
  *   1. 429 o código RATE_LIMITED → rate_limited.
- *   2. código de negocio conocido (tabla BUSINESS_CODE_REASONS) → su causa, con
- *      independencia del status (el código del backend es explícito).
- *   3. sin status (no hubo respuesta: TypeError de red, timeout) → unavailable.
- *   4. status >= 500 → unavailable.
+ *   2. sin status (no hubo respuesta: TypeError de red, timeout) → unavailable.
+ *   3. status >= 500 → unavailable (una caída del servicio no prueba nada del cupón,
+ *      aunque el cuerpo traiga un código de negocio).
+ *   4. código de negocio conocido (tabla BUSINESS_CODE_REASONS) → su causa.
  *   5. cuerpo que no es una respuesta de negocio (HTML, vacío, null, array,
- *      objeto sin error/message/success) → unavailable, aunque el status sea 4xx:
- *      un rechazo de negocio siempre llega como objeto JSON con esas claves.
- *   6. status 2xx o 4xx con respuesta de negocio sin código conocido → invalid.
- *   7. cualquier otro caso → unavailable.
+ *      objeto sin error/message/success) → unavailable, aunque el status sea 4xx.
+ *   6. success:false con `error` con formato de código (desconocido para la tabla) → invalid.
+ *   7. cualquier otro caso (incluido un 4xx con texto libre en error/message) → unavailable.
  *
  * `discountResponseFailure` aplica la misma filosofía a un 200 ya parseado:
  * success:false es un rechazo del cupón (se clasifica por su código);
@@ -56,7 +66,7 @@
  * Causa de fallo de un cupón (ver la cabecera del módulo).
  * @typedef {'rate_limited' | 'sale_ended' | 'sale_not_started' | 'code_expired' |
  *   'code_not_started' | 'code_not_for_ticket' | 'code_not_for_organizer' |
- *   'wrong_selection' | 'invalid' | 'unavailable'} DiscountFailureReason
+ *   'code_exhausted' | 'wrong_selection' | 'invalid' | 'unavailable'} DiscountFailureReason
  */
 
 /**
@@ -77,7 +87,9 @@
 const ERROR_CODE = /^[A-Z][A-Z0-9_]*$/;
 
 /**
- * Códigos de negocio del backend con causa propia. Cualquier otro es "invalid".
+ * Códigos de negocio del backend (todos los que puede devolver discountPricing.js).
+ * Cada uno tiene su causa. Un código NO listado aquí sólo se considera rechazo del
+ * cupón si el contrato lo marca (success:false con `error` con formato de código).
  * Es un Map (no un objeto) para no hacer acceso dinámico a propiedades con un código
  * que viene del servidor.
  * @type {Map<string, DiscountFailureReason>}
@@ -91,9 +103,18 @@ const BUSINESS_CODE_REASONS = new Map([
   ['CODE_NOT_VALID_FOR_TICKET', 'code_not_for_ticket'],
   ['CODE_NOT_VALID_FOR_EVENT', 'code_not_for_ticket'],
   ['CODE_NOT_VALID_FOR_ORGANIZER', 'code_not_for_organizer'],
+  // El código es correcto, sólo agotó sus usos: nunca "código no válido".
+  ['CODE_EXHAUSTED', 'code_exhausted'],
   ['INVALID_TICKET_TYPE', 'wrong_selection'],
+  // El único código que dice que el cupón no existe.
+  ['INVALID_CODE', 'invalid'],
   // La cantidad va fijada a 1: si el backend la rechaza es defecto de integración, no del cupón.
   ['INVALID_QUANTITY', 'unavailable'],
+  // Fallos de configuración o de precio: el código es correcto, así que no se puede
+  // afirmar que sea inválido. El comprador no puede corregirlos: no sabemos más.
+  ['INVALID_DISCOUNT_CONFIG', 'unavailable'],
+  ['INVALID_PRICE', 'unavailable'],
+  ['INVALID_DISCOUNT_CURRENCY', 'unavailable'],
 ]);
 
 /** Claves que identifican un cuerpo como respuesta de negocio de TriskelGate. */
@@ -144,14 +165,22 @@ export function classifyDiscountFailure(input) {
   const data = parseBody(body);
   const code = data ? errorCode(data) : null;
   if (status === 429 || code === 'RATE_LIMITED') return 'rate_limited';
-  const businessReason = code ? BUSINESS_CODE_REASONS.get(code) : undefined;
-  if (businessReason) return businessReason;
+  // Un 5xx es indisponibilidad del SERVICIO, aunque el cuerpo traiga un código de
+  // negocio: una caída del backend no prueba nada del cupón. Por eso el status se
+  // mira ANTES que la tabla de códigos (si no, un 500 con CODE_EXPIRED se
+  // presentaría como "código caducado").
   // Sin status no hubo respuesta del servicio (red, timeout): no es culpa del cupón.
   if (typeof status !== 'number') return 'unavailable';
   if (status >= 500) return 'unavailable';
+  const businessReason = code ? BUSINESS_CODE_REASONS.get(code) : undefined;
+  if (businessReason) return businessReason;
   // Un rechazo de negocio siempre llega como respuesta JSON de negocio.
   if (data === null) return 'unavailable';
-  if ((status >= 200 && status < 300) || (status >= 400 && status < 500)) return 'invalid';
+  // Rechazo del cupón según el contrato: success:false con un error con formato de código
+  // (desconocido para la tabla). Un texto libre o un success:false sin código no prueba nada del cupón.
+  if (data.success === false && typeof data.error === 'string' && ERROR_CODE.test(data.error)) {
+    return 'invalid';
+  }
   return 'unavailable';
 }
 
@@ -260,6 +289,8 @@ export function discountFailureMessageKey(reason) {
       return 'ticketModal.checkout.discountNotForTicket';
     case 'code_not_for_organizer':
       return 'ticketModal.checkout.discountNotForOrganizer';
+    case 'code_exhausted':
+      return 'ticketModal.checkout.codeExhausted';
     case 'wrong_selection':
       return 'ticketModal.checkout.wrongSelection';
     case 'invalid':

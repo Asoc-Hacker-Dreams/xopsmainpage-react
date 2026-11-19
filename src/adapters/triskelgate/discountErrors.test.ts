@@ -93,13 +93,53 @@ describe('classifyDiscountFailure (regresión: el 429 no es un código inválido
       .toBe('code_not_for_ticket');
   });
 
-  it('código de negocio desconocido en un 400 sigue siendo "invalid"', () => {
+  it('CODE_EXHAUSTED es "code_exhausted": el código es correcto, sólo ha agotado sus usos', () => {
     expect(classifyDiscountFailure({
-      status: 400, body: '{"error":"CODE_EXHAUSTED","message":"Quota exceeded"}',
-    })).toBe('invalid');
+      status: 400, body: '{"success":false,"error":"CODE_EXHAUSTED","message":"El código ha alcanzado su límite de usos"}',
+    })).toBe('code_exhausted');
+    expect(classifyDiscountFailure({ body: { success: false, error: 'CODE_EXHAUSTED' } }))
+      .toBe('code_exhausted');
+  });
+
+  it('INVALID_CODE es "invalid": el único código que dice que el cupón no existe', () => {
     expect(classifyDiscountFailure({ status: 400, body: '{"error":"INVALID_CODE"}' }))
       .toBe('invalid');
   });
+
+  it('INVALID_PRICE, INVALID_DISCOUNT_CONFIG e INVALID_DISCOUNT_CURRENCY son "unavailable": el código es correcto, falla otra cosa', () => {
+    for (const code of ['INVALID_PRICE', 'INVALID_DISCOUNT_CONFIG', 'INVALID_DISCOUNT_CURRENCY']) {
+      expect(classifyDiscountFailure({ status: 400, body: { success: false, error: code } }), code)
+        .toBe('unavailable');
+    }
+  });
+
+  // Tabla de todos los códigos que el backend puede devolver (repo hermano, discountPricing.js).
+  // Cada uno debe caer en la causa que le corresponde; nunca en "invalid" salvo INVALID_CODE.
+  const BACKEND_CODE_REASONS = {
+    INVALID_CODE: 'invalid',
+    INVALID_DISCOUNT_CONFIG: 'unavailable',
+    CODE_EXHAUSTED: 'code_exhausted',
+    INVALID_PRICE: 'unavailable',
+    INVALID_QUANTITY: 'unavailable',
+    INVALID_TICKET_TYPE: 'wrong_selection',
+    SALE_NOT_STARTED: 'sale_not_started',
+    SALE_ENDED: 'sale_ended',
+    CODE_NOT_VALID_FOR_ORGANIZER: 'code_not_for_organizer',
+    CODE_NOT_VALID_FOR_EVENT: 'code_not_for_ticket',
+    CODE_NOT_STARTED: 'code_not_started',
+    CODE_EXPIRED: 'code_expired',
+    CODE_NOT_VALID_FOR_TICKET: 'code_not_for_ticket',
+    INVALID_DISCOUNT_CURRENCY: 'unavailable',
+  };
+
+  it.each(Object.entries(BACKEND_CODE_REASONS))(
+    'el código de negocio %s con success:false en un 400 es "%s"',
+    (code, reason) => {
+      expect(classifyDiscountFailure({
+        status: 400, body: { success: false, error: code, message: 'texto del backend' },
+      })).toBe(reason);
+    },
+  );
 
   it('INVALID_QUANTITY es "unavailable": la cantidad va fijada a 1, así que no es culpa del cupón', () => {
     expect(classifyDiscountFailure({
@@ -124,15 +164,38 @@ describe('classifyDiscountFailure (regresión: el 429 no es un código inválido
       .toBe('code_not_for_organizer');
   });
 
-  it('texto libre en error (no es un código) en un 400 es "invalid"', () => {
+  it('texto libre en error (no es un código) en un 400 es "unavailable", nunca "invalid"', () => {
     expect(classifyDiscountFailure({ status: 400, body: { error: 'Something went wrong.' } }))
+      .toBe('unavailable');
+  });
+
+  it('un 4xx con error o message en texto libre (proxy, middleware) es "unavailable": no sabemos nada del cupón', () => {
+    expect(classifyDiscountFailure({ status: 400, body: '{"message":"proxy error"}' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 400, body: '{"error":"proxy error"}' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 403, body: { message: 'Forbidden by gateway' } })).toBe('unavailable');
+  });
+
+  it('un 4xx con success:false y un código desconocido con formato de código es "invalid": el servicio lo rechazó', () => {
+    expect(classifyDiscountFailure({ status: 400, body: { success: false, error: 'SOME_NEW_CODE' } }))
       .toBe('invalid');
   });
 
-  it('200 con success:false y código desconocido es "invalid": la respuesta sí llegó', () => {
+  it('un 4xx con success:false sin código, o con texto libre en error, es "unavailable": no cumple el contrato', () => {
+    expect(classifyDiscountFailure({ status: 400, body: { success: false } })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 400, body: { success: false, error: 'Something went wrong.' } }))
+      .toBe('unavailable');
+    // Sólo `error` es el código del contrato: un código en `message` no basta para un rechazo desconocido.
+    expect(classifyDiscountFailure({ status: 400, body: { success: false, error: 'Oops', message: 'SOME_NEW_CODE' } }))
+      .toBe('unavailable');
+  });
+
+  it('un código con formato pero sin success:false y no conocido es "unavailable"', () => {
+    expect(classifyDiscountFailure({ status: 400, body: { error: 'SOME_NEW_CODE' } })).toBe('unavailable');
+  });
+
+  it('200 con success:false y CODE_EXHAUSTED es "code_exhausted", no "invalid"', () => {
     expect(classifyDiscountFailure({ status: 200, body: { success: false, error: 'CODE_EXHAUSTED' } }))
-      .toBe('invalid');
-    expect(classifyDiscountFailure({ status: 200, body: { success: false } })).toBe('invalid');
+      .toBe('code_exhausted');
   });
 });
 
@@ -181,9 +244,13 @@ describe('classifyDiscountFailure (regresión: un fallo del servicio NUNCA es c�
 });
 
 describe('discountResponseFailure (regresión: success:true malformado NUNCA es código inválido)', () => {
-  it('success:false sin código conocido es "invalid" (rechazo explícito del cupón)', () => {
-    expect(discountResponseFailure({ success: false }, EXPECTED)).toBe('invalid');
-    expect(discountResponseFailure({ success: false, error: 'CODE_EXHAUSTED' }, EXPECTED)).toBe('invalid');
+  it('success:false sin código de error es "unavailable": sin código no hay rechazo que atribuir al cupón', () => {
+    expect(discountResponseFailure({ success: false }, EXPECTED)).toBe('unavailable');
+    expect(discountResponseFailure({ success: false, error: 'Something went wrong.' }, EXPECTED)).toBe('unavailable');
+  });
+
+  it('success:false con CODE_EXHAUSTED es "code_exhausted" (el código es correcto, sólo se agotó)', () => {
+    expect(discountResponseFailure({ success: false, error: 'CODE_EXHAUSTED' }, EXPECTED)).toBe('code_exhausted');
   });
 
   it('success:false con código específico usa la causa concreta', () => {
@@ -316,6 +383,7 @@ describe('discountFailureMessageKey', () => {
     expect(discountFailureMessageKey('code_not_started')).toBe('ticketModal.checkout.discountNotStarted');
     expect(discountFailureMessageKey('code_not_for_ticket')).toBe('ticketModal.checkout.discountNotForTicket');
     expect(discountFailureMessageKey('code_not_for_organizer')).toBe('ticketModal.checkout.discountNotForOrganizer');
+    expect(discountFailureMessageKey('code_exhausted')).toBe('ticketModal.checkout.codeExhausted');
     expect(discountFailureMessageKey('wrong_selection')).toBe('ticketModal.checkout.wrongSelection');
     expect(discountFailureMessageKey('invalid')).toBe('ticketModal.checkout.invalidDiscount');
     expect(discountFailureMessageKey('unavailable')).toBe('ticketModal.checkout.discountUnavailable');
@@ -324,8 +392,8 @@ describe('discountFailureMessageKey', () => {
   it('cada causa tiene una clave propia (las causas concretas no se funden con "invalid")', () => {
     const reasons = [
       'rate_limited', 'sale_ended', 'sale_not_started', 'code_expired',
-      'code_not_started', 'code_not_for_ticket', 'code_not_for_organizer', 'wrong_selection',
-      'invalid', 'unavailable',
+      'code_not_started', 'code_not_for_ticket', 'code_not_for_organizer', 'code_exhausted',
+      'wrong_selection', 'invalid', 'unavailable',
     ];
     const keys = reasons.map(discountFailureMessageKey);
     expect(new Set(keys).size).toBe(reasons.length);
@@ -340,6 +408,7 @@ describe('discountFailureMessageKey', () => {
       code_not_started: { es: /aún no está vigente/i, en: /not active yet/i },
       code_not_for_ticket: { es: /no se aplica a esta entrada/i, en: /doesn't apply to this ticket/i },
       code_not_for_organizer: { es: /no es válido para este evento/i, en: /isn't valid for this event/i },
+      code_exhausted: { es: /límite de usos/i, en: /usage limit/i },
       wrong_selection: { es: /no es válida para este evento\. Elige otra\./i, en: /isn't valid for this event\. Please choose another/i },
       invalid: { es: /^Código no válido\.$/, en: /^Invalid code\.$/ },
       unavailable: { es: /no hemos podido comprobar/i, en: /couldn't check/i },
@@ -356,6 +425,14 @@ describe('discountFailureMessageKey', () => {
     const key = discountFailureMessageKey('rate_limited');
     expect(textAt(es, key)).not.toMatch(/no válido/i);
     expect(textAt(en, key)).not.toMatch(/invalid/i);
+  });
+
+  it('el texto de rate limit no promete una espera exacta: el backend bloquea 5 min (límite por IP) y 15 min (global)', () => {
+    const key = discountFailureMessageKey('rate_limited');
+    expect(textAt(es, key)).not.toMatch(/un minuto/i);
+    expect(textAt(en, key)).not.toMatch(/a minute\b|one minute/i);
+    expect(textAt(es, key)).toMatch(/minutos/i);
+    expect(textAt(en, key)).toMatch(/few minutes/i);
   });
 
   it('el texto de "no se pudo comprobar" nunca dice "código no válido"', () => {

@@ -57,7 +57,7 @@ describe('TicketModal · aplicar cupón: causa real del fallo', () => {
     mockClient.listTicketTypes.mockResolvedValue([SUMMIT_TT]);
   });
 
-  it('429 muestra "espera un minuto", nunca "código no válido"', async () => {
+  it('429 muestra "espera unos minutos", nunca "código no válido"', async () => {
     mockClient.validateDiscount.mockRejectedValue(ERR_429);
 
     const alert = await openCheckoutWithCode();
@@ -85,22 +85,84 @@ describe('TicketModal · aplicar cupón: causa real del fallo', () => {
     expect(alert).toHaveTextContent(es.ticketModal.checkout.saleNotStarted);
   });
 
-  it('un código realmente inválido sigue mostrando "código no válido"', async () => {
+  it('INVALID_CODE (código inexistente) sigue mostrando "código no válido"', async () => {
     mockClient.validateDiscount.mockRejectedValue(Object.assign(new Error('400'), {
-      status: 400, body: '{"error":"CODE_EXHAUSTED","message":"Quota exceeded"}',
+      status: 400, body: '{"success":false,"error":"INVALID_CODE","message":"Código de descuento inexistente"}',
     }));
 
-    const alert = await openCheckoutWithCode('X-OPS+AGOTADO');
+    const alert = await openCheckoutWithCode('X-OPS+INEXISTENTE');
 
     expect(alert).toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
   });
 
-  it('200 con success:false y código de negocio desconocido sigue siendo "código no válido"', async () => {
+  it('200 con success:false e INVALID_CODE sigue siendo "código no válido"', async () => {
+    mockClient.validateDiscount.mockResolvedValue({ success: false, error: 'INVALID_CODE' });
+
+    const alert = await openCheckoutWithCode('X-OPS+INEXISTENTE');
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('CODE_EXHAUSTED muestra que el código ha alcanzado su límite, NUNCA "código no válido"', async () => {
+    mockClient.validateDiscount.mockRejectedValue(Object.assign(new Error('400'), {
+      status: 400, body: '{"success":false,"error":"CODE_EXHAUSTED","message":"El código ha alcanzado su límite de usos"}',
+    }));
+
+    const alert = await openCheckoutWithCode('X-OPS+AGOTADO');
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.codeExhausted);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('200 con success:false y CODE_EXHAUSTED también muestra el límite de usos, no "código no válido"', async () => {
     mockClient.validateDiscount.mockResolvedValue({ success: false, error: 'CODE_EXHAUSTED' });
+
+    const alert = await openCheckoutWithCode('X-OPS+AGOTADO');
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.codeExhausted);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('CODE_NOT_VALID_FOR_ORGANIZER muestra que el código no vale para este evento, NUNCA "código no válido"', async () => {
+    mockClient.validateDiscount.mockResolvedValue({
+      success: false, error: 'CODE_NOT_VALID_FOR_ORGANIZER', message: 'El código no corresponde al organizador',
+    });
 
     const alert = await openCheckoutWithCode();
 
-    expect(alert).toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountNotForOrganizer);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('un 400 con {"message":"proxy error"} (no es contrato de negocio) NUNCA es "código no válido"', async () => {
+    mockClient.validateDiscount.mockRejectedValue(Object.assign(new Error('400'), {
+      status: 400, body: '{"message":"proxy error"}',
+    }));
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountUnavailable);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('un 400 con {"error":"proxy error"} (texto libre, sin success:false) NUNCA es "código no válido"', async () => {
+    mockClient.validateDiscount.mockRejectedValue(Object.assign(new Error('400'), {
+      status: 400, body: { error: 'proxy error' },
+    }));
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountUnavailable);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
+  });
+
+  it('INVALID_DISCOUNT_CONFIG NUNCA es "código no válido": el código es correcto', async () => {
+    mockClient.validateDiscount.mockResolvedValue({ success: false, error: 'INVALID_DISCOUNT_CONFIG' });
+
+    const alert = await openCheckoutWithCode();
+
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountUnavailable);
+    expect(alert).not.toHaveTextContent(es.ticketModal.checkout.invalidDiscount);
   });
 
   it('CODE_EXPIRED muestra que el código ha caducado, no "código no válido"', async () => {
@@ -207,5 +269,87 @@ describe('TicketModal · aplicar cupón: idioma inglés', () => {
     expect(alert).toHaveTextContent(en.ticketModal.checkout.discountUnavailable);
     expect(alert).not.toHaveTextContent(en.ticketModal.checkout.invalidDiscount);
     expect(alert).not.toHaveTextContent(es.ticketModal.checkout.discountUnavailable);
+  });
+});
+
+// Cupón válido completo (contrato TGDiscountQuote) para la entrada Summit (id 11), cantidad 1.
+const VALID_QUOTE = {
+  id: 42, code: 'X-OPSSPEAKERS', type: 'percent', value: 10, currency: 'AED',
+  ticketTypeId: 11, quantity: 1, originalAmount: 200, discountAmount: 20, finalAmount: 180,
+  originalTotalCents: 20000, discountCents: 2000, finalCents: 18000,
+};
+
+async function startCheckout(copy = es) {
+  fireEvent.click(await screen.findByRole('button', { name: `${copy.ticketModal.checkout.title} Summit` }));
+}
+
+function applyCode(code, copy = es) {
+  fireEvent.change(
+    screen.getByPlaceholderText(copy.ticketModal.checkout.discountPlaceholder),
+    { target: { value: code } },
+  );
+  fireEvent.click(screen.getByRole('button', { name: copy.ticketModal.checkout.applyDiscount }));
+}
+
+describe('TicketModal · cupón: flujo completo (regresión)', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
+    mockClient.listTicketTypes.mockResolvedValue([SUMMIT_TT]);
+  });
+
+  it('un cupón VÁLIDO muestra la previsualización del descuento y ningún error', async () => {
+    mockClient.validateDiscount.mockResolvedValue({ success: true, discount: VALID_QUOTE });
+    render(<TicketModal show onHide={() => {}} />);
+    await startCheckout();
+
+    applyCode('X-OPSSPEAKERS');
+
+    expect(await screen.findByText(/Código aplicado/)).toBeInTheDocument();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('el payload a validateDiscount lleva el eventId, el ticketTypeId y quantity 1 seleccionados', async () => {
+    mockClient.validateDiscount.mockResolvedValue({ success: true, discount: VALID_QUOTE });
+    render(<TicketModal show onHide={() => {}} />);
+    await startCheckout();
+
+    applyCode('X-OPSSPEAKERS');
+    await screen.findByText(/Código aplicado/);
+
+    expect(mockClient.validateDiscount).toHaveBeenCalledTimes(1);
+    expect(mockClient.validateDiscount).toHaveBeenCalledWith({
+      code: 'X-OPSSPEAKERS', eventId: DUBAI_EVENT.id, ticketTypeId: SUMMIT_TT.id, quantity: 1,
+    });
+  });
+
+  it('una respuesta vieja que llega después de cambiar el código NO pisa el estado', async () => {
+    // Cada llamada queda pendiente hasta que el test la resuelve, en el orden que quiere.
+    const pending = [];
+    mockClient.validateDiscount.mockImplementation(
+      () => new Promise((resolve, reject) => pending.push({ resolve, reject })),
+    );
+    render(<TicketModal show onHide={() => {}} />);
+    await startCheckout();
+
+    applyCode('X-OPSVIEJO');                       // respuesta A: se queda pendiente
+    fireEvent.click(screen.getByRole('button', { name: es.ticketModal.checkout.cancel }));
+    await startCheckout();                         // vuelve a la selección y reabre la entrada
+    applyCode('X-OPSNUEVO');                       // respuesta B: la que el usuario ve
+    const [oldResponse, newResponse] = pending;
+    newResponse.reject(Object.assign(new Error('400'), {
+      status: 400, body: '{"success":false,"error":"CODE_EXPIRED"}',
+    }));
+
+    const alert = await screen.findByRole('alert');
+    expect(alert).toHaveTextContent(es.ticketModal.checkout.discountExpired);
+
+    // Llega la respuesta vieja de A, que sería un cupón VÁLIDO: no debe aparecer.
+    oldResponse.resolve({ success: true, discount: { ...VALID_QUOTE, code: 'X-OPSVIEJO' } });
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(screen.getByRole('alert')).toHaveTextContent(es.ticketModal.checkout.discountExpired);
+    expect(screen.queryByText(/Código aplicado/)).not.toBeInTheDocument();
   });
 });
