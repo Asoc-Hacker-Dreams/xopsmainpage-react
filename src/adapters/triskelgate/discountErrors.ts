@@ -166,12 +166,14 @@ export function classifyDiscountFailure(input) {
   const code = data ? errorCode(data) : null;
   if (status === 429 || code === 'RATE_LIMITED') return 'rate_limited';
   // Un 5xx es indisponibilidad del SERVICIO, aunque el cuerpo traiga un código de
-  // negocio: una caída del backend no prueba nada del cupón. Por eso el status se
-  // mira ANTES que la tabla de códigos (si no, un 500 con CODE_EXPIRED se
+  // negocio: una caída del backend no prueba nada del cupón. Por eso el status
+  // se mira ANTES que la tabla de códigos (si no, un 500 con CODE_EXPIRED se
   // presentaría como "código caducado").
-  // Sin status no hubo respuesta del servicio (red, timeout): no es culpa del cupón.
-  if (typeof status !== 'number') return 'unavailable';
-  if (status >= 500) return 'unavailable';
+  if (typeof status === 'number' && status >= 500) return 'unavailable';
+  // Sin status HTTP sólo cuenta como rechazo de negocio si el backend marcó
+  // `success:false` explícitamente (contrato de rechazo); si no, no hubo
+  // respuesta y es indisponibilidad.
+  if (typeof status !== 'number' && !(data && data.success === false)) return 'unavailable';
   const businessReason = code ? BUSINESS_CODE_REASONS.get(code) : undefined;
   if (businessReason) return businessReason;
   // Un rechazo de negocio siempre llega como respuesta JSON de negocio.

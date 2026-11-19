@@ -233,8 +233,16 @@ describe('classifyDiscountFailure (regresión: un fallo del servicio NUNCA es c�
     expect(classifyDiscountFailure({ status: 400, body: '{"foo":"bar"}' })).toBe('unavailable');
   });
 
-  it('un código de negocio explícito gana al status: 5xx con SALE_ENDED es venta cerrada', () => {
-    expect(classifyDiscountFailure({ status: 500, body: '{"error":"SALE_ENDED"}' })).toBe('sale_ended');
+  it('un 5xx es indisponibilidad del servicio aunque traiga un código de negocio', () => {
+    // Una caída del backend no prueba nada del cupón: el status se mira ANTES que
+    // la tabla de códigos. Si se invirtiera, un 500 con SALE_ENDED se mostraría
+    // como "esta entrada no está a la venta" y con CODE_EXPIRED como "caducado".
+    expect(classifyDiscountFailure({ status: 500, body: '{"error":"SALE_ENDED"}' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 500, body: '{"error":"CODE_EXPIRED"}' })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 503, body: '{"error":"CODE_NOT_VALID_FOR_TICKET"}' })).toBe('unavailable');
+    // El mismo código con un status de negocio sí es su causa.
+    expect(classifyDiscountFailure({ status: 400, body: '{"error":"SALE_ENDED"}' })).toBe('sale_ended');
+    expect(classifyDiscountFailure({ status: 400, body: '{"error":"CODE_EXPIRED"}' })).toBe('code_expired');
   });
 
   it('error de TriskelGateApiError 5xx es "unavailable"', () => {
