@@ -21,6 +21,7 @@ import { buildAttributionForCheckout, captureAttribution } from '../analytics/at
 import { ticketGa4Item, trackGa4Event, trackBeginCheckout, trackCheckoutRedirect } from '../analytics/ga4';
 import scriptManager from '../services/scriptManager';
 import { rememberCheckoutDeparture } from '../analytics/checkoutJourney';
+import { resolveCheckoutOutcome } from '../adapters/triskelgate/checkoutOutcome';
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -231,6 +232,8 @@ const TicketModal = ({ show, onHide }) => {
   const [validatingDiscount, setValidatingDiscount] = useState(false);
   const discountValidationNonce = useRef(0);
   const [formError, setFormError]       = useState(null);
+  // TG-48: compra gratuita completada (la redirección a la página de éxito ya va en curso).
+  const [freeRegistered, setFreeRegistered] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [purchasing, setPurchasing]     = useState(false);
 
@@ -340,6 +343,7 @@ const TicketModal = ({ show, onHide }) => {
     setDiscountPreview(null);
     setDiscountError(null);
     setFormError(null);
+    setFreeRegistered(false);
     setAcceptedTerms(false);
     setStep('checkout');
   };
@@ -457,13 +461,21 @@ const TicketModal = ({ show, onHide }) => {
         } : {}),
       });
 
-      if (!data?.success) {
-        throw new Error(data?.message || data?.error || t('ticketModal.checkout.errors.networkError'));
+      // TG-48: la pregunta es "¿la compra se completó?". Un pedido gratuito
+      // (mode 'free') ya tiene ticket y email; su sessionUrl es nuestra
+      // successUrl, no Stripe. La URL se valida por host (ver checkoutOutcome.ts).
+      const outcome = resolveCheckoutOutcome(data, window.location.origin);
+      if (!outcome.ok) {
+        throw new Error(outcome.message || t('ticketModal.checkout.errors.networkError'));
       }
-      const stripeUrl = data.sessionUrl || data.redirectUrl;
-      if (!stripeUrl || !/^https:\/\/checkout\.stripe\.com\//.test(stripeUrl)) {
-        throw new Error(t('ticketModal.checkout.errors.networkError'));
+
+      if (outcome.mode === 'free') {
+        // Éxito: no es un intento de pago, así que no se marca salida a Stripe.
+        setFreeRegistered(true);
+        window.location.assign(outcome.url);
+        return;
       }
+      const stripeUrl = outcome.url;
 
       // Marker contains no buyer identity; only an analytics-consented return
       // from Stripe can be counted as checkout_cancel.
@@ -493,6 +505,7 @@ const TicketModal = ({ show, onHide }) => {
     setValidatingDiscount(false);
     setStep('select');
     setFormError(null);
+    setFreeRegistered(false);
     onHide();
   };
 
@@ -559,6 +572,11 @@ const TicketModal = ({ show, onHide }) => {
             {formError && (
               <Alert variant="danger" role="alert" onClose={() => setFormError(null)} dismissible>
                 {formError}
+              </Alert>
+            )}
+            {freeRegistered && (
+              <Alert variant="success" role="status">
+                {t('ticketModal.checkout.success.freeRegistered')}
               </Alert>
             )}
             {/* Resumen de lo que se compra, ANTES de ir a Stripe.

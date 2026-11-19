@@ -415,6 +415,9 @@
         "networkError": "Sistema de entradas no disponible. Escríbenos a info@xopsconference.com.",
         "termsRequired": "Debes aceptar las condiciones antes de continuar al pago."
       },
+      "success": {
+        "freeRegistered": "¡Registro completado! Tu compra gratuita está confirmada. Te hemos enviado la entrada por email."
+      },
       "organizerNotice": "Organiza: Asociación Hacker Dreams (CIF G56643158).",
       "paymentNotice": "Cobro gestionado mediante Odin Hermes & Danu Technology Solutions LLC. Stripe facilita el pago. Consulta el aviso legal para los roles de cada entidad.",
       "legalNotice": "Aviso legal",
