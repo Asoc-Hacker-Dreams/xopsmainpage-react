@@ -27,6 +27,9 @@ import { resolveCheckoutOutcome } from '../adapters/triskelgate/checkoutOutcome'
 // página de éxito: navegar al instante no deja al usuario ver el mensaje. 1500 ms
 // es tiempo de sobra para leerlo y para que el navegador pinte el frame.
 const FREE_REDIRECT_DELAY_MS = 1500;
+// TG-48 ronda 4: un pedido es gratuito cuando su importe final es 0 (vista previa o cotización
+// del cupón). Un cupón parcial o la ausencia de cupón no es gratuito.
+const isFreeAmount = (discount) => discount?.finalAmount === 0;
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -242,9 +245,15 @@ const TicketModal = ({ show, onHide }) => {
   // confirmación + aviso, sin navegar.
   const [freeOutcome, setFreeOutcome] = useState(null);
   // TG-48 ronda 3: hay un pedido gratuito completado en este modal (con o sin URL de
-  // confianza). Bloquea el envío mientras el componente viva: cerrar y reabrir el modal
-  // no lo libera; recargar la página sí (el estado nace de nuevo).
+  // confianza). Cerrar y reabrir el modal no lo libera; recargar la página sí.
+  // Ronda 4: el bloqueo sólo aplica al envío que volvería a ser gratuito (ver freeOrderBlocked).
   const [freeOrderLocked, setFreeOrderLocked] = useState(false);
+  // TG-48 ronda 4: el envío que se haría es gratuito sólo si hay cupón, la vista previa
+  // corresponde a ese mismo código y su importe final es 0. Sin cupón, o con cupón parcial,
+  // es una compra de pago y no se bloquea.
+  const couponCode = discountCode.trim().toUpperCase();
+  const submitWouldBeFree = Boolean(couponCode) && discountPreview?.code === couponCode && isFreeAmount(discountPreview);
+  const freeOrderBlocked = freeOrderLocked && submitWouldBeFree;
   // Temporizador de la navegación gratuita y número de intento. Cerrar, desmontar o
   // empezar otro intento invalida lo pendiente: el temporizador se cancela y una
   // respuesta que llegue tarde ya no programa navegación.
@@ -422,8 +431,8 @@ const TicketModal = ({ show, onHide }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TG-48 ronda 3: ya hay un pedido gratuito completado en este modal; no reenviar.
-    if (freeOrderLocked) return;
+    // TG-48 ronda 4: ya hay un pedido gratuito completado y este envío volvería a serlo: no reenviar.
+    if (freeOrderBlocked) return;
     cancelPendingFreeRedirect();
     const attempt = checkoutAttemptRef.current;
     if (editionFromEvent(selectedEvent, '') === 'madrid') {
@@ -442,7 +451,7 @@ const TicketModal = ({ show, onHide }) => {
     if (!acceptedTerms) { setFormError(t('ticketModal.checkout.errors.termsRequired')); return; }
     setPurchasing(true);
     // TG-48: true en el camino gratuito a propósito (la confirmación queda en pantalla y el
-    // envío sigue ocupado, no es un bug). Lo que impide reenviar tras cerrar es freeOrderLocked.
+    // envío sigue ocupado, no es un bug). Lo que impide reenviar tras cerrar es freeOrderBlocked.
     let keepBusy = false;
     setFormError(null);
 
@@ -453,6 +462,9 @@ const TicketModal = ({ show, onHide }) => {
       if (code && discountPreview?.code !== code) {
         const quote = await applyDiscount();
         if (!quote) return;
+        // TG-48 ronda 4: cupón sin vista previa que resulta gratuito con un pedido gratuito ya
+        // completado: no enviar. applyDiscount deja la cotización gratuita y el bloqueo se muestra.
+        if (freeOrderLocked && isFreeAmount(quote)) return;
       }
 
       const attributionEnabled = import.meta.env.VITE_TRISKELL_ATTRIBUTION_ENABLED === 'true';
@@ -550,8 +562,8 @@ const TicketModal = ({ show, onHide }) => {
 
   const handleHide = () => {
     discountValidationNonce.current += 1;
-    // Cerrar cancela la navegación gratuita pendiente. Tras un pedido gratuito completado,
-    // el botón sigue bloqueado por freeOrderLocked aunque purchasing se libere aquí.
+    // Cerrar cancela la navegación gratuita pendiente. Tras un pedido gratuito completado, al
+    // reabrir sólo queda bloqueado un envío que volvería a ser gratuito (freeOrderBlocked).
     cancelPendingFreeRedirect();
     setValidatingDiscount(false);
     setStep('select');
@@ -626,10 +638,10 @@ const TicketModal = ({ show, onHide }) => {
                 {formError}
               </Alert>
             )}
-            {/* TG-48: si ya hay un pedido gratuito completado en esta sesion, el boton
-                de compra queda bloqueado. Sin este aviso el usuario ve un boton gris
-                sin saber por que, y podria pensar que la compra fallo. */}
-            {freeOrderLocked && !freeOutcome && (
+            {/* TG-48: si el envio volveria a ser un pedido gratuito y ya hay uno completado en
+                esta sesion, el boton de compra queda bloqueado. Sin este aviso el usuario ve
+                un boton gris sin saber por que. Ronda 4: no aparece si el envio es un pago. */}
+            {freeOrderBlocked && !freeOutcome && (
               <Alert variant="info" role="status">
                 {t('ticketModal.checkout.success.freeAlreadyRegistered')}
               </Alert>
@@ -802,7 +814,7 @@ const TicketModal = ({ show, onHide }) => {
             </Button>
             <Button
               type="submit"
-              disabled={purchasing || freeOrderLocked || !acceptedTerms || validatingDiscount}
+              disabled={purchasing || freeOrderBlocked || !acceptedTerms || validatingDiscount}
               style={{ background: '#00BCD4', border: 'none', color: '#0A0F2E', fontWeight: 700 }}
             >
               {purchasing ? <Spinner size="sm" /> : t('ticketModal.checkout.submit')}

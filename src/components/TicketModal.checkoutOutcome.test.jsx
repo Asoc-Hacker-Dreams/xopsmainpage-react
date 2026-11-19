@@ -75,21 +75,44 @@ const TICKET = {
   saleStartDate: null,
   saleEndDate: null,
 };
+const STRIPE_URL = 'https://checkout.stripe.com/c/pay/cs_test_123';
+// Cupón de ponente: deja el importe a 0 (pedido gratuito). Cupón parcial: deja 150 (pago).
+const SPEAKER_COUPON = 'SPEAKER100';
+const PARTIAL_COUPON = 'HALF50';
+// Forma real de TGDiscountQuote (src/adapters/triskelgate/types.ts).
+const quoteFor = (code, finalAmount) => ({
+  success: true,
+  discount: {
+    id: 1, code, type: 'fixed', value: 200 - finalAmount, currency: 'AED',
+    ticketTypeId: TICKET.id, quantity: 1,
+    originalAmount: 200, discountAmount: 200 - finalAmount, finalAmount,
+    originalTotalCents: 20000, discountCents: (200 - finalAmount) * 100, finalCents: finalAmount * 100,
+  },
+});
+const freeQuote = (code) => quoteFor(code, 0);
+const partialQuote = (code) => quoteFor(code, 150);
 
-async function fillCheckoutAndSubmit() {
+// Rellena el paso de checkout sin enviar. `coupon` (opcional) escribe el cupón en el campo;
+// `coupon: ''` lo borra.
+async function fillCheckout({ coupon } = {}) {
   const buy = await screen.findByRole('button', { name: /ticketModal\.checkout\.title Daily Ticket/ });
   fireEvent.click(buy);
   fireEvent.change(screen.getByLabelText(/ticketModal\.checkout\.fullName/), { target: { value: 'Ana Pérez' } });
   fireEvent.change(screen.getByLabelText(/ticketModal\.checkout\.email/), { target: { value: 'ana@example.org' } });
   // Las condiciones se conservan entre aperturas del modal: no volver a marcarlas (las desmarcaría).
   if (!document.getElementById('tm-terms').checked) fireEvent.click(document.getElementById('tm-terms'));
+  if (coupon !== undefined) fireEvent.change(document.getElementById('tm-discount'), { target: { value: coupon } });
+}
+
+async function fillCheckoutAndSubmit(options) {
+  await fillCheckout(options);
   // Por tipo y no por nombre: con el envío en curso el botón muestra un spinner, no su etiqueta.
   fireEvent.click(document.querySelector('button[type="submit"]'));
 }
 
-async function reachCheckoutForm() {
+async function reachCheckoutForm(options) {
   render(<TicketModal show onHide={() => {}} />);
-  await fillCheckoutAndSubmit();
+  await fillCheckoutAndSubmit(options);
 }
 
 beforeEach(() => {
@@ -138,11 +161,12 @@ describe('TG-48 TicketModal tras createCheckout', () => {
 
   it('pedido gratuito: el botón de compra queda bloqueado mientras se confirma y redirige', async () => {
     const freeUrl = `${PAGE_ORIGIN}/tickets/success?session_id=cs_free_abc`;
+    triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
     triskelGateClient.createCheckout.mockResolvedValue({
       success: true, mode: 'free', sessionUrl: freeUrl, totalAmount: 0,
     });
 
-    await reachCheckoutForm();
+    await reachCheckoutForm({ coupon: SPEAKER_COUPON });
     await screen.findByText('ticketModal.checkout.success.freeRegistered');
 
     const submit = document.querySelector('button[type="submit"]');
@@ -263,9 +287,10 @@ describe('TG-48 ronda 3: navegación gratuita cancelable', () => {
   });
 
   it('tras la navegación diferida el botón de compra sigue bloqueado', async () => {
+    triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
     triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
 
-    await reachCheckoutForm();
+    await reachCheckoutForm({ coupon: SPEAKER_COUPON });
     await waitFor(() => expect(assignMock).toHaveBeenCalledWith(FREE_URL), NAVIGATION_TIMEOUT);
 
     expect(submitButton()).toBeDisabled();
@@ -276,18 +301,19 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
   it.each([
     ['con URL de confianza (redirigiendo)', FREE_CONFIRMED, 'ticketModal.checkout.success.freeRegistered'],
     ['sin URL de confianza (unconfirmed)', FREE_UNCONFIRMED, 'ticketModal.checkout.success.freeConfirmationUnavailable'],
-  ])('pedido gratuito %s: cerrar y reabrir el modal NO permite enviar otro checkout', async (_name, response, visibleText) => {
+  ])('pedido gratuito %s: cerrar y reabrir el modal NO permite enviar otro checkout gratuito', async (_name, response, visibleText) => {
+    triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
     triskelGateClient.createCheckout.mockResolvedValue(response);
     const onHide = vi.fn();
     const { rerender } = render(<TicketModal show onHide={onHide} />);
-    await fillCheckoutAndSubmit();
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText(visibleText)).toBeInTheDocument();
 
     fireEvent.click(closeHeaderButton());
     rerender(<TicketModal show={false} onHide={onHide} />);
     rerender(<TicketModal show onHide={onHide} />);
 
-    await fillCheckoutAndSubmit();
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
     expect(submitButton()).toBeDisabled();
   });
@@ -295,10 +321,11 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
   it('pedido gratuito ya registrado: el botón bloqueado explica por qué', async () => {
     // Un botón deshabilitado sin explicación parece una compra fallida: el usuario
     // no debe ver un botón gris sin saber que su pedido ya está registrado.
+    triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
     triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
     const onHide = vi.fn();
     const { rerender } = render(<TicketModal show onHide={onHide} />);
-    await fillCheckoutAndSubmit();
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
 
     fireEvent.click(closeHeaderButton());
@@ -307,7 +334,7 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
 
     // Tras reabrir, el modal vuelve al paso 'select': hay que volver al checkout
     // para ver el botón bloqueado y su aviso.
-    await fillCheckoutAndSubmit();
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
 
     expect(submitButton()).toBeDisabled();
     expect(await screen.findByText('ticketModal.checkout.success.freeAlreadyRegistered')).toBeInTheDocument();
@@ -326,5 +353,98 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
 
     await waitFor(() => expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(2));
     await waitFor(() => expect(assignMock).toHaveBeenCalledWith(FREE_URL), NAVIGATION_TIMEOUT);
+  });
+});
+
+/*
+ * TG-48 ronda 4 — el bloqueo sólo frena un SEGUNDO PEDIDO GRATUITO. Un envío que
+ * pagaría (sin cupón o con cupón parcial) se permite aunque haya un pedido gratuito
+ * completado en la misma sesión del modal. Un pedido es gratuito cuando su importe
+ * final es 0, según la vista previa del cupón que se enviaría.
+ */
+describe('TG-48 ronda 4: el bloqueo sólo frena un segundo pedido gratuito', () => {
+  // Cierra el modal como lo haría el usuario y lo vuelve a abrir en el mismo montaje.
+  function closeAndReopen(rerender, onHide) {
+    fireEvent.click(closeHeaderButton());
+    rerender(<TicketModal show={false} onHide={onHide} />);
+    rerender(<TicketModal show onHide={onHide} />);
+  }
+
+  it('cupón que deja importe 0 tras un pedido gratuito: no se envía, el botón queda bloqueado y se explica', async () => {
+    triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
+    const onHide = vi.fn();
+    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
+    expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
+
+    closeAndReopen(rerender, onHide);
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
+
+    expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
+    expect(submitButton()).toBeDisabled();
+    expect(await screen.findByText('ticketModal.checkout.success.freeAlreadyRegistered')).toBeInTheDocument();
+  });
+
+  it('compra de pago SIN cupón tras un pedido gratuito: se envía y no muestra el aviso de "ya registrado"', async () => {
+    triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
+    triskelGateClient.createCheckout
+      .mockResolvedValueOnce(FREE_UNCONFIRMED)
+      .mockResolvedValueOnce({ success: true, sessionUrl: STRIPE_URL });
+    const onHide = vi.fn();
+    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
+    expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
+
+    closeAndReopen(rerender, onHide);
+    // Borrar el cupón: la compra ya no es gratuita.
+    await fillCheckoutAndSubmit({ coupon: '' });
+
+    await waitFor(() => expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(2));
+    expect(triskelGateClient.createCheckout.mock.calls[1][0]).not.toHaveProperty('discountCode');
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(STRIPE_URL));
+    expect(screen.queryByText('ticketModal.checkout.success.freeAlreadyRegistered')).toBeNull();
+  });
+
+  it('cupón parcial (importe final > 0) tras un pedido gratuito: se envía y redirige a Stripe', async () => {
+    triskelGateClient.validateDiscount.mockImplementation(async ({ code }) =>
+      code === PARTIAL_COUPON ? partialQuote(PARTIAL_COUPON) : freeQuote(code));
+    triskelGateClient.createCheckout
+      .mockResolvedValueOnce(FREE_UNCONFIRMED)
+      .mockResolvedValueOnce({ success: true, sessionUrl: STRIPE_URL });
+    const onHide = vi.fn();
+    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
+    expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
+
+    closeAndReopen(rerender, onHide);
+    await fillCheckoutAndSubmit({ coupon: PARTIAL_COUPON });
+
+    await waitFor(() => expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(2));
+    expect(triskelGateClient.createCheckout.mock.calls[1][0]).toMatchObject({ discountCode: PARTIAL_COUPON });
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(STRIPE_URL));
+    expect(screen.queryByText('ticketModal.checkout.success.freeAlreadyRegistered')).toBeNull();
+  });
+
+  it('cupón nuevo de importe 0 sin validar tras un pedido gratuito: el botón se puede pulsar, se valida al enviar y queda bloqueado', async () => {
+    triskelGateClient.validateDiscount.mockImplementation(async ({ code }) => freeQuote(code));
+    triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
+    const onHide = vi.fn();
+    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
+    expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
+
+    closeAndReopen(rerender, onHide);
+    await fillCheckout({ coupon: 'SPEAKER200' });
+    // Sin vista previa para este código aún no sabemos si el envío será gratuito.
+    expect(submitButton()).not.toBeDisabled();
+    fireEvent.click(submitButton());
+
+    await waitFor(() => expect(triskelGateClient.validateDiscount).toHaveBeenLastCalledWith(
+      expect.objectContaining({ code: 'SPEAKER200' }),
+    ));
+    expect(await screen.findByText('ticketModal.checkout.success.freeAlreadyRegistered')).toBeInTheDocument();
+    expect(submitButton()).toBeDisabled();
+    expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
   });
 });
