@@ -165,8 +165,7 @@ export const dubaiAcceptedSessions2026 = {
     "language": "English",
     "durationMinutes": 50,
     "speakers": [
-      "51a51018-7f7a-4795-af84-34cb562ad4a0",
-      "88d5d1b5-f49d-48ae-8024-643ab74ece57"
+      "a86f13c6-b7de-4362-848e-145e02aeae60"
     ],
     "sourceTrack": "Conference"
   },
@@ -213,23 +212,11 @@ export const dubaiSpeakers2026 = {
     "sessionizeProfile": "https://sessionize.com/rishi-mondal",
     "bio": "Rishi Mondal is a SRE at Obmondo , CNCF KubeStellar Maintainer, and Docker Captain . A Linux Foundation Mentor, GSoC Mentor at CNCF, and OWASP Mentor he uniquely progressed from LFX Mentee to Maintainer to Mentor within a single year. A regular cloud-native speaker at multiple events across Asia . he was personally featured by the CNCF CEO at Kubecon India for community impact . Harvard HPAIR Delegate and LIFT Scholar."
   },
-  "51a51018-7f7a-4795-af84-34cb562ad4a0": {
-    "id": "51a51018-7f7a-4795-af84-34cb562ad4a0",
-    "name": "Hastimal Jangid",
-    "role": "Co-Founder, RankRabbit.ai | Coozmoo - Cloud and AI Engineering",
-    "photo": "https://cdn.sessionize.com/image/8a67-400o400o1-MsMKrTqhNiWxhs3EjpFAHR.png",
-    "linkedIn": "https://www.linkedin.com/in/hastimaljangid/",
-    "sessionizeProfile": "https://sessionize.com/hastimal-jangid",
-    "bio": "Hastimal Jangid is a Cloud, Data, and AI technology leader, enterprise architect, researcher, and technical speaker with 15+ years of experience designing large-scale distributed, data-intensive, and AI-powered systems. He is 10× AWS, 7× GCP, 3×Azure, Kubernetes, Snowflake, Databricks, GenAI, GitHub, and Anthropic MCP Certified, combining deep multi-cloud expertise with emerging AI technologies.\n\nHis work and research focus on Large Language Models (LLMs), Agentic AI, AI Search and Retrieval, RAG, Model Context Protocol (MCP), cloud-native AI infrastructure, real-time data engineering, AI security, and responsible AI, with particular interest in applications across healthcare and biomedical systems.\n\nAs Co-founder of RankRabbit AI, Hastimal explores how LLMs and AI agents discover, retrieve, rank, reason over, and recommend information across platforms such as Gemini, ChatGPT, Claude, Perplexity, and Google’s AI-powered search experiences. His research interests include LLM retrieval and grounding, multi-agent systems, AI search, information quality, explainable AI (xAI), knowledge-base poisoning, AI security, and trustworthy AI systems.\n\nHis engineering background spans AWS, Google Cloud, Microsoft Azure, Kubernetes, distributed systems, Big Data, machine learning, MLOps, real-time streaming architectures, and AI agent infrastructure. He has designed and delivered enterprise technology initiatives across healthcare, financial services, retail, travel, media, and digital commerce.\n\nAs a technical speaker, Hastimal translates emerging AI research into practical architectures and hands-on demonstrations. His talks explore the intersection of LLMs, AI agents, MCP, cloud infrastructure, K8, search, security, and healthcare AI—explaining how modern AI systems work, where they fail, and how engineers can build them securely, responsibly, and at scale."
-  },
-  "88d5d1b5-f49d-48ae-8024-643ab74ece57": {
-    "id": "88d5d1b5-f49d-48ae-8024-643ab74ece57",
-    "name": "Harsh from RankRabbit",
-    "role": "Director - Engineering & Products - Coozmoo |Co-Founder - RankRabbit.ai",
-    "photo": "https://cdn.sessionize.com/image/0c55-400o400o1-SLy8WmBhmBHCegTuhhQkZw.jpg",
-    "linkedIn": "https://www.linkedin.com/in/harsh-jangid/",
-    "sessionizeProfile": "https://sessionize.com/harsh-from-rankrabbit",
-    "bio": "Harsh Jangid is a product and technology leader and the driving force behind RankRabbit.ai at Coozmoo Digital Solutions. He focuses on turning emerging AI technologies into practical solutions that help businesses improve visibility, automate operations, and accelerate growth.\n\nWith more than 12 years of experience spanning cloud architecture, data engineering, automation, and artificial intelligence, Harsh has helped organizations turn complex technologies into scalable products and business solutions. From building enterprise-grade platforms and modern data ecosystems to developing AI-powered products, his work has consistently focused on delivering measurable business impact.\n\nAs an AWS-certified architect and product leader, Harsh brings together technical depth, strategic thinking, and a strong focus on business outcomes. He leads the development of AI-powered products that help organizations automate operations, improve customer engagement, and drive sustainable growth in an increasingly AI-driven world."
+  "a86f13c6-b7de-4362-848e-145e02aeae60": {
+    "id": "a86f13c6-b7de-4362-848e-145e02aeae60",
+    "name": "Jay Prajapat",
+    "role": "RankRabbit",
+    "photo": null
   },
   "5ac283fc-1b39-4b82-b695-1e39cf3e5dff": {
     "id": "5ac283fc-1b39-4b82-b695-1e39cf3e5dff",
