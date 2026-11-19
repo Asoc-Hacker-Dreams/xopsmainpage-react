@@ -24,4 +24,13 @@ describe('TG-48 ticketModal.checkout.success.freeRegistered', () => {
     expect(es.ticketModal.checkout.success.freeRegistered).toMatch(/Registro completado|confirmada/);
     expect(en.ticketModal.checkout.success.freeRegistered).toMatch(/Registration complete|confirmed/);
   });
+
+  it('la confirmación pendiente existe en ambos idiomas, sin sonar a fallo ni a "no disponible"', () => {
+    for (const lang of [es, en]) {
+      const text = lang.ticketModal.checkout.success.freeConfirmationUnavailable;
+      expect(text).toBeTruthy();
+      expect(text).not.toMatch(/no disponible|unavailable|error|fallo|failed/i);
+      expect(text).not.toBe(lang.ticketModal.checkout.errors.networkError);
+    }
+  });
 });

@@ -43,6 +43,12 @@ describe('TG-48 resolveCheckoutOutcome — camino gratuito es un éxito', () => 
     const out = resolveCheckoutOutcome({ success: true, mode: 'free' }, ORIGIN);
     expect(out.ok).toBe(false);
   });
+
+  it('mode:free sin ninguna URL → código propio de confirmación pendiente, NO el genérico', () => {
+    // El pedido gratuito SÍ está completado: no puede caer en "sistema no disponible".
+    const out = resolveCheckoutOutcome({ success: true, mode: 'free' }, ORIGIN);
+    expect(out).toEqual({ ok: false, message: null, code: 'free_confirmation_unavailable' });
+  });
 });
 
 describe('TG-48 resolveCheckoutOutcome — camino de pago Stripe sin cambios', () => {
@@ -80,6 +86,23 @@ describe('TG-48 resolveCheckoutOutcome — camino de pago Stripe sin cambios', (
 });
 
 describe('TG-48 seguridad: host de la sessionUrl del camino gratuito', () => {
+  it('host ajeno en pedido gratuito → código de confirmación pendiente (no el genérico)', () => {
+    const out = resolveCheckoutOutcome(
+      { success: true, mode: 'free', sessionUrl: 'https://evil.example/tickets/success?session_id=x' },
+      ORIGIN,
+    );
+    expect(out).toEqual({ ok: false, message: null, code: 'free_confirmation_unavailable' });
+  });
+
+  it('página https: una URL http del MISMO host no es de confianza (origen exacto, incluido esquema)', () => {
+    // En producción el origen de la página es https; el match de origen exige el mismo esquema.
+    const out = resolveCheckoutOutcome(
+      { success: true, mode: 'free', sessionUrl: 'http://dubai.xopsconference.com/tickets/success?session_id=x' },
+      ORIGIN,
+    );
+    expect(out.ok).toBe(false);
+  });
+
   it('host ajeno (phishing) → error, no redirige', () => {
     const out = resolveCheckoutOutcome(
       { success: true, mode: 'free', sessionUrl: 'https://evil.example/tickets/success?session_id=x' },
