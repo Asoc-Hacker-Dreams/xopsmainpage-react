@@ -100,8 +100,29 @@ describe('classifyDiscountFailure (regresión: el 429 no es un código inválido
     })).toBe('invalid');
     expect(classifyDiscountFailure({ status: 400, body: '{"error":"INVALID_CODE"}' }))
       .toBe('invalid');
-    expect(classifyDiscountFailure({ status: 422, body: '{"error":"INVALID_QUANTITY"}' }))
-      .toBe('invalid');
+  });
+
+  it('INVALID_QUANTITY es "unavailable": la cantidad va fijada a 1, así que no es culpa del cupón', () => {
+    expect(classifyDiscountFailure({
+      status: 400, body: '{"success":false,"error":"INVALID_QUANTITY","message":"Cantidad de entradas no válida"}',
+    })).toBe('unavailable');
+    expect(classifyDiscountFailure({ status: 422, body: '{"error":"INVALID_QUANTITY"}' })).toBe('unavailable');
+  });
+
+  it('INVALID_TICKET_TYPE es "wrong_selection" (400 entrada no disponible y 404 selección inexistente)', () => {
+    expect(classifyDiscountFailure({
+      status: 400, body: '{"success":false,"error":"INVALID_TICKET_TYPE","message":"La entrada no está disponible para este evento"}',
+    })).toBe('wrong_selection');
+    expect(classifyDiscountFailure({ status: 404, body: '{"success":false,"error":"INVALID_TICKET_TYPE"}' }))
+      .toBe('wrong_selection');
+  });
+
+  it('CODE_NOT_VALID_FOR_ORGANIZER es "code_not_for_organizer": el código existe, es de otro organizador', () => {
+    expect(classifyDiscountFailure({
+      status: 400, body: '{"success":false,"error":"CODE_NOT_VALID_FOR_ORGANIZER","message":"El código no corresponde al organizador"}',
+    })).toBe('code_not_for_organizer');
+    expect(classifyDiscountFailure({ body: { success: false, error: 'CODE_NOT_VALID_FOR_ORGANIZER' } }))
+      .toBe('code_not_for_organizer');
   });
 
   it('texto libre en error (no es un código) en un 400 es "invalid"', () => {
@@ -206,6 +227,83 @@ describe('discountResponseFailure (regresión: success:true malformado NUNCA es 
   });
 });
 
+describe('discountResponseFailure: un success:true que no cumple el contrato del quote es "unavailable"', () => {
+  const QUOTE_FIELDS = [
+    'id', 'type', 'value', 'currency', 'originalAmount', 'discountAmount', 'finalAmount',
+    'originalTotalCents', 'discountCents', 'finalCents',
+  ];
+
+  it('discount con solo code, ticketTypeId y quantity (sin importes) es "unavailable", no válido', () => {
+    expect(discountResponseFailure({
+      success: true, discount: { code: 'X-OPS', ticketTypeId: 1, quantity: 1 },
+    }, EXPECTED)).toBe('unavailable');
+  });
+
+  it.each(QUOTE_FIELDS)('discount sin el campo %s es "unavailable"', (field) => {
+    const incomplete = quote();
+    delete incomplete[field];
+    expect(discountResponseFailure({ success: true, discount: incomplete }, EXPECTED)).toBe('unavailable');
+  });
+
+  it('importes que no cuadran (final ≠ original − descuento) son "unavailable"', () => {
+    expect(discountResponseFailure({ success: true, discount: quote({ finalAmount: 80 }) }, EXPECTED))
+      .toBe('unavailable');
+    expect(discountResponseFailure({ success: true, discount: quote({ finalCents: 8000 }) }, EXPECTED))
+      .toBe('unavailable');
+  });
+
+  it('importes en mayores que no coinciden con sus céntimos son "unavailable"', () => {
+    expect(discountResponseFailure({ success: true, discount: quote({ originalAmount: 101 }) }, EXPECTED))
+      .toBe('unavailable');
+    expect(discountResponseFailure({ success: true, discount: quote({ discountAmount: 9.99, finalAmount: 90.01 }) }, EXPECTED))
+      .toBe('unavailable');
+  });
+
+  it('currency vacía, sólo espacios o no textual es "unavailable"', () => {
+    expect(discountResponseFailure({ success: true, discount: quote({ currency: '' }) }, EXPECTED)).toBe('unavailable');
+    expect(discountResponseFailure({ success: true, discount: quote({ currency: '   ' }) }, EXPECTED)).toBe('unavailable');
+    expect(discountResponseFailure({ success: true, discount: quote({ currency: 978 }) }, EXPECTED)).toBe('unavailable');
+  });
+
+  it('importes NaN, Infinity o negativos son "unavailable"', () => {
+    expect(discountResponseFailure({ success: true, discount: quote({ originalAmount: NaN }) }, EXPECTED))
+      .toBe('unavailable');
+    expect(discountResponseFailure({ success: true, discount: quote({ finalCents: Infinity }) }, EXPECTED))
+      .toBe('unavailable');
+    // Coherente en aritmética, pero un descuento negativo no es un precio válido.
+    expect(discountResponseFailure({
+      success: true,
+      discount: quote({ discountAmount: -10, finalAmount: 110, discountCents: -1000, finalCents: 11000 }),
+    }, EXPECTED)).toBe('unavailable');
+  });
+
+  it('importes como string o id no numérico son "unavailable"', () => {
+    expect(discountResponseFailure({ success: true, discount: quote({ originalAmount: '100' }) }, EXPECTED))
+      .toBe('unavailable');
+    expect(discountResponseFailure({ success: true, discount: quote({ id: NaN }) }, EXPECTED)).toBe('unavailable');
+  });
+
+  it('un quote completo y coherente con decimales (redondeo de céntimos) sigue siendo válido', () => {
+    expect(discountResponseFailure({
+      success: true,
+      discount: quote({
+        originalAmount: 19.99, discountAmount: 3.33, finalAmount: 16.66,
+        originalTotalCents: 1999, discountCents: 333, finalCents: 1666,
+      }),
+    }, EXPECTED)).toBeNull();
+  });
+
+  it('un quote de precio final 0 (gratis) completo y coherente sigue siendo válido', () => {
+    expect(discountResponseFailure({
+      success: true,
+      discount: quote({
+        type: 'percentage', value: 100, discountAmount: 100, finalAmount: 0,
+        discountCents: 10000, finalCents: 0,
+      }),
+    }, EXPECTED)).toBeNull();
+  });
+});
+
 describe('discountFailureMessageKey', () => {
   // Lee una clave con puntos (p.ej. ticketModal.checkout.saleEnded) de un locale.
   const textAt = (locale: object, key: string): string =>
@@ -218,6 +316,8 @@ describe('discountFailureMessageKey', () => {
     expect(discountFailureMessageKey('code_expired')).toBe('ticketModal.checkout.discountExpired');
     expect(discountFailureMessageKey('code_not_started')).toBe('ticketModal.checkout.discountNotStarted');
     expect(discountFailureMessageKey('code_not_for_ticket')).toBe('ticketModal.checkout.discountNotForTicket');
+    expect(discountFailureMessageKey('code_not_for_organizer')).toBe('ticketModal.checkout.discountNotForOrganizer');
+    expect(discountFailureMessageKey('wrong_selection')).toBe('ticketModal.checkout.wrongSelection');
     expect(discountFailureMessageKey('invalid')).toBe('ticketModal.checkout.invalidDiscount');
     expect(discountFailureMessageKey('unavailable')).toBe('ticketModal.checkout.discountUnavailable');
   });
@@ -225,7 +325,8 @@ describe('discountFailureMessageKey', () => {
   it('cada causa tiene una clave propia (las causas concretas no se funden con "invalid")', () => {
     const reasons: DiscountFailureReason[] = [
       'rate_limited', 'sale_ended', 'sale_not_started', 'code_expired',
-      'code_not_started', 'code_not_for_ticket', 'invalid', 'unavailable',
+      'code_not_started', 'code_not_for_ticket', 'code_not_for_organizer', 'wrong_selection',
+      'invalid', 'unavailable',
     ];
     const keys = reasons.map(discountFailureMessageKey);
     expect(new Set(keys).size).toBe(reasons.length);
@@ -239,6 +340,8 @@ describe('discountFailureMessageKey', () => {
       code_expired: { es: /ha caducado/i, en: /expired/i },
       code_not_started: { es: /aún no está vigente/i, en: /not active yet/i },
       code_not_for_ticket: { es: /no se aplica a esta entrada/i, en: /doesn't apply to this ticket/i },
+      code_not_for_organizer: { es: /no es válido para este evento/i, en: /isn't valid for this event/i },
+      wrong_selection: { es: /no es válida para este evento\. Elige otra\./i, en: /isn't valid for this event\. Please choose another/i },
       invalid: { es: /^Código no válido\.$/, en: /^Invalid code\.$/ },
       unavailable: { es: /no hemos podido comprobar/i, en: /couldn't check/i },
     };

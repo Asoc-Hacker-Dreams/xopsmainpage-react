@@ -404,6 +404,8 @@
       "discountExpired": "Este código ha caducado.",
       "discountNotStarted": "Este código aún no está vigente.",
       "discountNotForTicket": "Este código no se aplica a esta entrada o evento.",
+      "discountNotForOrganizer": "Este código no es válido para este evento.",
+      "wrongSelection": "Esta entrada no es válida para este evento. Elige otra.",
       "rateLimited": "Demasiadas comprobaciones de código seguidas. Espera un minuto y vuelve a intentarlo.",
       "saleEnded": "Esta entrada no está a la venta.",
       "saleNotStarted": "La venta de esta entrada aún no ha comenzado.",

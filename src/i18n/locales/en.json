@@ -410,6 +410,8 @@
       "discountExpired": "This code has expired.",
       "discountNotStarted": "This code is not active yet.",
       "discountNotForTicket": "This code doesn't apply to this ticket or event.",
+      "discountNotForOrganizer": "This code isn't valid for this event.",
+      "wrongSelection": "This ticket isn't valid for this event. Please choose another one.",
       "rateLimited": "Too many code checks in a row. Wait a minute and try again.",
       "saleEnded": "This ticket is not on sale.",
       "saleNotStarted": "Sales for this ticket have not started yet.",

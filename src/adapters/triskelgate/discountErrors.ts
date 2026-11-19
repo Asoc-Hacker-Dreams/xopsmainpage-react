@@ -11,14 +11,22 @@
  *   - code_not_started: CODE_NOT_STARTED; el cupón aún no está vigente.
  *   - code_not_for_ticket: CODE_NOT_VALID_FOR_TICKET o CODE_NOT_VALID_FOR_EVENT;
  *     probar con otra entrada sí puede servir.
- *   - invalid: el servicio SÍ respondió y rechazó el código sin causa concreta.
- *   - unavailable: NO se pudo comprobar el código (red, timeout, 5xx, o una
- *     respuesta que no es JSON utilizable). Nunca significa "código no válido".
+ *   - code_not_for_organizer: CODE_NOT_VALID_FOR_ORGANIZER; el código existe pero
+ *     es de otro organizador, así que no vale para este evento.
+ *   - wrong_selection: INVALID_TICKET_TYPE; la entrada elegida no es válida para
+ *     este evento. Es un problema de la selección, no del cupón: elegir otra sí sirve.
+ *   - invalid: el servicio SÍ respondió y rechazó el código sin causa concreta
+ *     (p.ej. INVALID_CODE).
+ *   - unavailable: NO se pudo comprobar el código (red, timeout, 5xx, una
+ *     respuesta que no es JSON utilizable, o una respuesta de éxito que no cumple
+ *     el contrato del quote). También INVALID_QUANTITY: la cantidad va fijada a 1
+ *     en este flujo, así que si el backend la rechaza es un defecto de integración
+ *     que el comprador no puede corregir. Nunca significa "código no válido".
  *
  * Orden de reglas en `classifyDiscountFailure` (la primera que encaja gana):
  *   1. 429 o código RATE_LIMITED → rate_limited.
- *   2. código de negocio conocido (SALE_*, CODE_*) → su causa, con independencia
- *      del status (el código del backend es explícito).
+ *   2. código de negocio conocido (tabla BUSINESS_CODE_REASONS) → su causa, con
+ *      independencia del status (el código del backend es explícito).
  *   3. sin status (no hubo respuesta: TypeError de red, timeout) → unavailable.
  *   4. status >= 500 → unavailable.
  *   5. cuerpo que no es una respuesta de negocio (HTML, vacío, null, array,
@@ -29,8 +37,9 @@
  *
  * `discountResponseFailure` aplica la misma filosofía a un 200 ya parseado:
  * success:false es un rechazo del cupón (se clasifica por su código);
- * success:true con un `discount` que no encaja con lo pedido es una respuesta
- * malformada del servicio → unavailable, NUNCA "código no válido".
+ * success:true exige un quote COMPLETO (contrato TGDiscountQuote de types.ts),
+ * coherente en importes y que sea el pedido. Si no, es una respuesta malformada
+ * del servicio → unavailable, NUNCA "código no válido".
  *
  * El 429 real del backend trae sólo `{"error": "..."}` (sin `message`), así
  * que el código se busca tanto en `error` como en `message`, y el cuerpo puede
@@ -44,6 +53,8 @@ export type DiscountFailureReason =
   | 'code_expired'
   | 'code_not_started'
   | 'code_not_for_ticket'
+  | 'code_not_for_organizer'
+  | 'wrong_selection'
   | 'invalid'
   | 'unavailable';
 
@@ -70,10 +81,17 @@ const BUSINESS_CODE_REASONS: Record<string, DiscountFailureReason> = {
   CODE_NOT_STARTED: 'code_not_started',
   CODE_NOT_VALID_FOR_TICKET: 'code_not_for_ticket',
   CODE_NOT_VALID_FOR_EVENT: 'code_not_for_ticket',
+  CODE_NOT_VALID_FOR_ORGANIZER: 'code_not_for_organizer',
+  INVALID_TICKET_TYPE: 'wrong_selection',
+  // La cantidad va fijada a 1: si el backend la rechaza es defecto de integración, no del cupón.
+  INVALID_QUANTITY: 'unavailable',
 };
 
 /** Claves que identifican un cuerpo como respuesta de negocio de TriskelGate. */
 const BUSINESS_KEYS = ['error', 'message', 'success'] as const;
+
+/** Medio céntimo: tolerancia sólo para la representación en coma flotante de los importes. */
+const HALF_CENT = 0.005;
 
 /**
  * Devuelve el cuerpo como objeto de negocio, o null. Acepta string JSON u objeto
@@ -115,6 +133,50 @@ export function classifyDiscountFailure({ status, body }: DiscountFailureInput):
   return 'unavailable';
 }
 
+/** Número finito y no negativo: importes en mayores y `value` del descuento. */
+function isAmount(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0;
+}
+
+/** Céntimos: entero seguro no negativo. */
+function isCents(value: unknown): value is number {
+  return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
+}
+
+/** Entero seguro positivo: ids, ticketTypeId y quantity. */
+function isPositiveInteger(value: unknown): value is number {
+  return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
+}
+
+function isText(value: unknown): value is string {
+  return typeof value === 'string' && value.trim() !== '';
+}
+
+/**
+ * ¿El quote cumple el contrato TGDiscountQuote completo y es el pedido?
+ * Valida tipos de cada campo, que los importes en mayores sean los céntimos / 100
+ * y que el total cuadre (final = original − descuento, en céntimos exactos).
+ */
+function quoteMatchesContract(quote: Record<string, unknown>, expected: ExpectedDiscount): boolean {
+  if (!isPositiveInteger(quote.id) || !isText(quote.type) || !isAmount(quote.value)) return false;
+  if (quote.code !== expected.code || !isText(quote.currency)) return false;
+  if (!isPositiveInteger(quote.ticketTypeId) || quote.ticketTypeId !== Number(expected.ticketTypeId)) return false;
+  if (!isPositiveInteger(quote.quantity) || quote.quantity !== expected.quantity) return false;
+
+  const { originalAmount, discountAmount, finalAmount } = quote;
+  const { originalTotalCents, discountCents, finalCents } = quote;
+  if (!isAmount(originalAmount) || !isAmount(discountAmount) || !isAmount(finalAmount)) return false;
+  if (!isCents(originalTotalCents) || !isCents(discountCents) || !isCents(finalCents)) return false;
+
+  // Céntimos exactos: final = original − descuento (los enteros no tienen tolerancia).
+  if (finalCents !== originalTotalCents - discountCents) return false;
+  // Los importes en mayores son esos mismos céntimos / 100 y cuadran entre sí.
+  return Math.abs(originalAmount - originalTotalCents / 100) < HALF_CENT &&
+    Math.abs(discountAmount - discountCents / 100) < HALF_CENT &&
+    Math.abs(finalAmount - finalCents / 100) < HALF_CENT &&
+    Math.abs(originalAmount - discountAmount - finalAmount) < HALF_CENT;
+}
+
 /**
  * Evalúa la respuesta 2xx de POST /api/discounts/validate frente a lo pedido.
  * Devuelve null si el cupón es válido para ese código, entrada y cantidad;
@@ -128,13 +190,8 @@ export function discountResponseFailure(result: unknown, expected: ExpectedDisco
   if (data.success !== true) return 'unavailable';
   const discount = data.discount;
   if (!discount || typeof discount !== 'object' || Array.isArray(discount)) return 'unavailable';
-  const quote = discount as Record<string, unknown>;
-  const matches =
-    quote.code === expected.code &&
-    Number(quote.ticketTypeId) === Number(expected.ticketTypeId) &&
-    Number(quote.quantity) === expected.quantity;
-  // success:true con un discount que no es el pedido: fallo del servicio, no del cupón.
-  return matches ? null : 'unavailable';
+  // success:true con un quote incompleto, incoherente o que no es el pedido: fallo del servicio.
+  return quoteMatchesContract(discount as Record<string, unknown>, expected) ? null : 'unavailable';
 }
 
 /** Clave i18n (bajo ticketModal.checkout) con el texto para cada causa. */
@@ -152,6 +209,10 @@ export function discountFailureMessageKey(reason: DiscountFailureReason): string
       return 'ticketModal.checkout.discountNotStarted';
     case 'code_not_for_ticket':
       return 'ticketModal.checkout.discountNotForTicket';
+    case 'code_not_for_organizer':
+      return 'ticketModal.checkout.discountNotForOrganizer';
+    case 'wrong_selection':
+      return 'ticketModal.checkout.wrongSelection';
     case 'invalid':
       return 'ticketModal.checkout.invalidDiscount';
     case 'unavailable':
