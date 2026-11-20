@@ -13,6 +13,11 @@ import {
 import { BsCheckCircleFill, BsXCircle, BsStar, BsCalendar3, BsGeoAlt, BsArrowLeft } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { triskelGateClient } from '../adapters/triskelgate/client';
+import {
+  classifyDiscountFailure,
+  discountFailureMessageKey,
+  discountResponseFailure,
+} from '../adapters/triskelgate/discountErrors';
 import CountdownTimer from './CountdownTimer';
 import { cityEvents, getCityFromHostname } from '../data/cityEvents';
 import { LEGAL_VERSION, editionFromEvent } from '../legal/identity';
@@ -386,11 +391,19 @@ const TicketModal = ({ show, onHide }) => {
     setFormError(null);
   };
 
+  // Muestra la causa real del fallo (rate limit, venta cerrada, código no
+  // válido o no se pudo comprobar). Nunca usa "código no válido" para un 429,
+  // una venta cerrada ni un fallo de red / 5xx.
+  const showDiscountFailure = (reason) => {
+    setDiscountPreview(null);
+    setDiscountError(t(discountFailureMessageKey(reason)));
+    return null;
+  };
+
   const applyDiscount = async () => {
     const code = discountCode.trim().toUpperCase();
     if (!code || !selectedEvent || !selectedTT) return null;
     const nonce = ++discountValidationNonce.current;
-    const targetEvent = Number(selectedEvent.id);
     const targetTicket = Number(selectedTT.id);
     setValidatingDiscount(true);
     setDiscountError(null);
@@ -402,28 +415,16 @@ const TicketModal = ({ show, onHide }) => {
         quantity: 1,
       });
       if (nonce !== discountValidationNonce.current) return null;
-      if (!result?.success || !result.discount ||
-          result.discount.code !== code ||
-          Number(result.discount.ticketTypeId) !== targetTicket ||
-          Number(selectedEvent.id) !== targetEvent ||
-          Number(result.discount.quantity) !== 1) {
-        throw new Error(t('ticketModal.checkout.invalidDiscount'));
-      }
+      // success:false es un rechazo del cupón (por su código); success:true sin un
+      // discount que encaje con lo pedido es una respuesta malformada → "no se pudo comprobar".
+      const failure = discountResponseFailure(result, { code, ticketTypeId: targetTicket, quantity: 1 });
+      if (failure) return showDiscountFailure(failure);
       setDiscountPreview(result.discount);
       return result.discount;
     } catch (error) {
       if (nonce !== discountValidationNonce.current) return null;
-      let message = t('ticketModal.checkout.invalidDiscount');
-      if (typeof error?.body === 'string') {
-        try {
-          message = JSON.parse(error.body).message || message;
-        } catch {
-          // User-safe generic copy if upstream response is not JSON.
-        }
-      }
-      setDiscountPreview(null);
-      setDiscountError(message);
-      return null;
+      // TriskelGateApiError: status (429, 400…) y body (string JSON) del backend.
+      return showDiscountFailure(classifyDiscountFailure({ status: error?.status, body: error?.body }));
     } finally {
       if (nonce === discountValidationNonce.current) setValidatingDiscount(false);
     }
