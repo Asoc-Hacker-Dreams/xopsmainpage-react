@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import {
   Modal,
   Container,
@@ -26,6 +26,15 @@ import { buildAttributionForCheckout, captureAttribution } from '../analytics/at
 import { ticketGa4Item, trackGa4Event, trackBeginCheckout, trackCheckoutRedirect } from '../analytics/ga4';
 import scriptManager from '../services/scriptManager';
 import { rememberCheckoutDeparture } from '../analytics/checkoutJourney';
+import { resolveCheckoutOutcome } from '../adapters/triskelgate/checkoutOutcome';
+
+// TG-48: pedido gratuito completado. La confirmación se pinta antes de navegar a la
+// página de éxito: navegar al instante no deja al usuario ver el mensaje. 1500 ms
+// es tiempo de sobra para leerlo y para que el navegador pinte el frame.
+const FREE_REDIRECT_DELAY_MS = 1500;
+// TG-48 ronda 4: un pedido es gratuito cuando su importe final es 0 (vista previa o cotización
+// del cupón). Un cupón parcial o la ausencia de cupón no es gratuito.
+const isFreeAmount = (discount) => discount?.finalAmount === 0;
 
 const CONFIG_ORGANIZER_ID = import.meta.env.VITE_TRISKELL_ORGANIZER_ID
   ? Number(import.meta.env.VITE_TRISKELL_ORGANIZER_ID)
@@ -236,6 +245,31 @@ const TicketModal = ({ show, onHide }) => {
   const [validatingDiscount, setValidatingDiscount] = useState(false);
   const discountValidationNonce = useRef(0);
   const [formError, setFormError]       = useState(null);
+  // TG-48: tras un pedido gratuito completado. 'redirecting' = confirmación visible y
+  // navegación diferida en curso. 'unconfirmed' = completado sin URL de confianza:
+  // confirmación + aviso, sin navegar.
+  const [freeOutcome, setFreeOutcome] = useState(null);
+  // TG-48 ronda 3: hay un pedido gratuito completado en este modal (con o sin URL de
+  // confianza). Cerrar y reabrir el modal no lo libera; recargar la página sí.
+  // Ronda 4: el bloqueo sólo aplica al envío que volvería a ser gratuito (ver freeOrderBlocked).
+  const [freeOrderLocked, setFreeOrderLocked] = useState(false);
+  // TG-48 ronda 4: el envío que se haría es gratuito sólo si hay cupón, la vista previa
+  // corresponde a ese mismo código y su importe final es 0. Sin cupón, o con cupón parcial,
+  // es una compra de pago y no se bloquea.
+  const couponCode = discountCode.trim().toUpperCase();
+  const submitWouldBeFree = Boolean(couponCode) && discountPreview?.code === couponCode && isFreeAmount(discountPreview);
+  const freeOrderBlocked = freeOrderLocked && submitWouldBeFree;
+  // Temporizador de la navegación gratuita y número de intento. Cerrar, desmontar o
+  // empezar otro intento invalida lo pendiente: el temporizador se cancela y una
+  // respuesta que llegue tarde ya no programa navegación.
+  const freeRedirectTimerRef = useRef(null);
+  const checkoutAttemptRef = useRef(0);
+  const cancelPendingFreeRedirect = useCallback(() => {
+    checkoutAttemptRef.current += 1;
+    clearTimeout(freeRedirectTimerRef.current);
+    freeRedirectTimerRef.current = null;
+  }, []);
+  useEffect(() => cancelPendingFreeRedirect, [cancelPendingFreeRedirect]);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [purchasing, setPurchasing]     = useState(false);
 
@@ -345,6 +379,7 @@ const TicketModal = ({ show, onHide }) => {
     setDiscountPreview(null);
     setDiscountError(null);
     setFormError(null);
+    setFreeOutcome(null);
     setAcceptedTerms(false);
     setStep('checkout');
   };
@@ -397,6 +432,10 @@ const TicketModal = ({ show, onHide }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // TG-48 ronda 4: ya hay un pedido gratuito completado y este envío volvería a serlo: no reenviar.
+    if (freeOrderBlocked) return;
+    cancelPendingFreeRedirect();
+    const attempt = checkoutAttemptRef.current;
     if (editionFromEvent(selectedEvent, '') === 'madrid') {
       setFormError(t('announcement.salesSuspended'));
       return;
@@ -412,6 +451,9 @@ const TicketModal = ({ show, onHide }) => {
 
     if (!acceptedTerms) { setFormError(t('ticketModal.checkout.errors.termsRequired')); return; }
     setPurchasing(true);
+    // TG-48: true en el camino gratuito a propósito (la confirmación queda en pantalla y el
+    // envío sigue ocupado, no es un bug). Lo que impide reenviar tras cerrar es freeOrderBlocked.
+    let keepBusy = false;
     setFormError(null);
 
     try {
@@ -421,6 +463,9 @@ const TicketModal = ({ show, onHide }) => {
       if (code && discountPreview?.code !== code) {
         const quote = await applyDiscount();
         if (!quote) return;
+        // TG-48 ronda 4: cupón sin vista previa que resulta gratuito con un pedido gratuito ya
+        // completado: no enviar. applyDiscount deja la cotización gratuita y el bloqueo se muestra.
+        if (freeOrderLocked && isFreeAmount(quote)) return;
       }
 
       const attributionEnabled = import.meta.env.VITE_TRISKELL_ATTRIBUTION_ENABLED === 'true';
@@ -458,13 +503,39 @@ const TicketModal = ({ show, onHide }) => {
         } : {}),
       });
 
-      if (!data?.success) {
-        throw new Error(data?.message || data?.error || t('ticketModal.checkout.errors.networkError'));
+      // TG-48: la pregunta es "¿la compra se completó?". Un pedido gratuito
+      // (mode 'free') ya tiene ticket y email; su sessionUrl es nuestra
+      // successUrl, no Stripe. La URL se valida por host (ver checkoutOutcome.ts).
+      const outcome = resolveCheckoutOutcome(data, window.location.origin);
+      if (!outcome.ok) {
+        if (outcome.code === 'free_confirmation_unavailable') {
+          // Compra completada sin URL de confianza: confirmación + aviso, sin navegar.
+          // Se bloquea el envío: reenviar crearía otro pedido.
+          keepBusy = true;
+          setFreeOrderLocked(true);
+          setFreeOutcome('unconfirmed');
+          return;
+        }
+        throw new Error(outcome.message || t('ticketModal.checkout.errors.networkError'));
       }
-      const stripeUrl = data.sessionUrl || data.redirectUrl;
-      if (!stripeUrl || !/^https:\/\/checkout\.stripe\.com\//.test(stripeUrl)) {
-        throw new Error(t('ticketModal.checkout.errors.networkError'));
+
+      if (outcome.mode === 'free') {
+        // Éxito: no es un intento de pago, así que no se marca salida a Stripe.
+        // Se bloquea el botón: reenviar crearía otro pedido durante la espera.
+        keepBusy = true;
+        setFreeOrderLocked(true);
+        setFreeOutcome('redirecting');
+        // Si el modal se cerró mientras esperábamos la respuesta, el pedido queda registrado
+        // pero no se programa ninguna navegación.
+        if (attempt !== checkoutAttemptRef.current) return;
+        clearTimeout(freeRedirectTimerRef.current);
+        freeRedirectTimerRef.current = setTimeout(() => {
+          freeRedirectTimerRef.current = null;
+          window.location.assign(outcome.url);
+        }, FREE_REDIRECT_DELAY_MS);
+        return;
       }
+      const stripeUrl = outcome.url;
 
       // Marker contains no buyer identity; only an analytics-consented return
       // from Stripe can be counted as checkout_cancel.
@@ -485,15 +556,21 @@ const TicketModal = ({ show, onHide }) => {
           : err.message,
       );
     } finally {
-      setPurchasing(false);
+      // keepBusy (camino gratuito) deja el envío ocupado a propósito; ver arriba.
+      if (!keepBusy) setPurchasing(false);
     }
   };
 
   const handleHide = () => {
     discountValidationNonce.current += 1;
+    // Cerrar cancela la navegación gratuita pendiente. Tras un pedido gratuito completado, al
+    // reabrir sólo queda bloqueado un envío que volvería a ser gratuito (freeOrderBlocked).
+    cancelPendingFreeRedirect();
     setValidatingDiscount(false);
     setStep('select');
     setFormError(null);
+    setFreeOutcome(null);
+    setPurchasing(false);
     onHide();
   };
 
@@ -560,6 +637,22 @@ const TicketModal = ({ show, onHide }) => {
             {formError && (
               <Alert variant="danger" role="alert" onClose={() => setFormError(null)} dismissible>
                 {formError}
+              </Alert>
+            )}
+            {/* TG-48: si el envio volveria a ser un pedido gratuito y ya hay uno completado en
+                esta sesion, el boton de compra queda bloqueado. Sin este aviso el usuario ve
+                un boton gris sin saber por que. Ronda 4: no aparece si el envio es un pago. */}
+            {freeOrderBlocked && !freeOutcome && (
+              <Alert variant="info" role="status">
+                {t('ticketModal.checkout.success.freeAlreadyRegistered')}
+              </Alert>
+            )}
+            {freeOutcome && (
+              <Alert variant="success" role="status">
+                {t('ticketModal.checkout.success.freeRegistered')}
+                {freeOutcome === 'unconfirmed' && (
+                  <p className="mb-0 mt-2">{t('ticketModal.checkout.success.freeConfirmationUnavailable')}</p>
+                )}
               </Alert>
             )}
             {/* Resumen de lo que se compra, ANTES de ir a Stripe.
@@ -722,7 +815,7 @@ const TicketModal = ({ show, onHide }) => {
             </Button>
             <Button
               type="submit"
-              disabled={purchasing || !acceptedTerms || validatingDiscount}
+              disabled={purchasing || freeOrderBlocked || !acceptedTerms || validatingDiscount}
               style={{ background: '#00BCD4', border: 'none', color: '#0A0F2E', fontWeight: 700 }}
             >
               {purchasing ? <Spinner size="sm" /> : t('ticketModal.checkout.submit')}
