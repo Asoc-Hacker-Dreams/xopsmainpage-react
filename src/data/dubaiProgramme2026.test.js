@@ -14,17 +14,17 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
   const summitTalks = summit.filter((x) => x.sessionId);
   const conferenceTalks = conference.filter((x) => x.sessionId);
 
-  test('correct dates and 17 unique accepted talks', () => {
+  test('correct dates and 16 unique accepted talks', () => {
     expect(dubaiProgramme2026.summit.date).toBe('2026-11-30');
     expect(dubaiProgramme2026.conference.date).toBe('2026-12-01');
     expect(dubaiProgramme2026.timezone).toBe('Asia/Dubai');
     expect(summitTalks).toHaveLength(8);
-    expect(conferenceTalks).toHaveLength(9);
-    expect(new Set([...summitTalks,...conferenceTalks].map((x) => x.sessionId)).size).toBe(17);
-    expect(Object.keys(dubaiAcceptedSessions2026)).toHaveLength(17);
+    expect(conferenceTalks).toHaveLength(8);
+    expect(new Set([...summitTalks,...conferenceTalks].map((x) => x.sessionId)).size).toBe(16);
+    expect(Object.keys(dubaiAcceptedSessions2026)).toHaveLength(16);
   });
 
-  test.each([['Summit',summit,260],['Conference',conference,370]])(
+  test.each([['Summit',summit,260],['Conference',conference,320]])(
     '%s preserves durations and has no overlapping slots',
     (_label, slots, expected) => {
       let lastEnd='00:00'; let total=0;
@@ -55,10 +55,10 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     }
   });
 
-  test('all 19 public speakers are attributed; photos are Sessionize paths when present', () => {
+  test('all 18 public speakers are attributed; photos are Sessionize paths when present', () => {
     const speakerIds=new Set(Object.values(dubaiAcceptedSessions2026).flatMap((x)=>x.speakers));
-    expect(speakerIds.size).toBe(19);
-    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(19);
+    expect(speakerIds.size).toBe(18);
+    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(18);
     for(const id of speakerIds) {
       const p=dubaiSpeakers2026[id];
       expect(p?.name).toBeTruthy();
@@ -113,5 +113,76 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     expect(game).toBeDefined();
     expect(dubaiAcceptedSessions2026[game.sessionId].language).toBe('Spanish');
     expect(dubaiAcceptedSessions2026[game.sessionId].speakers).toHaveLength(2);
+  });
+
+  // Guardas de retirada: la charla de Victor Isakov (ClickHouse) fue declinada por escrito el 20-nov.
+  const REMOVED_SESSION_ID = '1303592';
+  const REMOVED_SPEAKER_ID = 'be6a6aa1-b9f3-4c11-a22b-593cad466590';
+  const isOpenSlot = (x) => x.type === 'talk' && !x.sessionId;
+
+  test('the declined talk and its speaker stay out of every public dataset', () => {
+    expect(Object.keys(dubaiAcceptedSessions2026)).not.toContain(REMOVED_SESSION_ID);
+    expect(Object.values(dubaiAcceptedSessions2026).some((s) => s.speakers.includes(REMOVED_SPEAKER_ID))).toBe(false);
+    expect(Object.keys(dubaiSpeakers2026)).not.toContain(REMOVED_SPEAKER_ID);
+    expect(JSON.stringify(dubaiAcceptedSessions2026)).not.toMatch(/Isakov|ClickHouse|One Database, Every Workload/i);
+    expect(JSON.stringify(dubaiSpeakers2026)).not.toMatch(/Isakov|ClickHouse/i);
+    expect(JSON.stringify(dubaiProgramme2026)).not.toMatch(/Isakov|ClickHouse|One Database, Every Workload/i);
+  });
+
+  test('no agenda slot points at the declined session or references the declined speaker', () => {
+    for (const slot of [...summit, ...conference]) {
+      expect(slot.sessionId).not.toBe(REMOVED_SESSION_ID);
+      expect(slot.speakers ?? []).not.toContain(REMOVED_SPEAKER_ID);
+    }
+    expect(JSON.stringify(dubaiProgramme2026)).not.toContain(REMOVED_SESSION_ID);
+    expect(JSON.stringify(dubaiProgramme2026)).not.toContain(REMOVED_SPEAKER_ID);
+  });
+
+  test('the three open slots are pinned to their exact day, times and length', () => {
+    const openSlots = [
+      ...summit.filter(isOpenSlot).map((x) => ({ day: dubaiProgramme2026.summit.date, start: x.start, end: x.end, minutes: minutes(x.start, x.end) })),
+      ...conference.filter(isOpenSlot).map((x) => ({ day: dubaiProgramme2026.conference.date, start: x.start, end: x.end, minutes: minutes(x.start, x.end) })),
+    ];
+    expect(openSlots).toEqual([
+      { day: '2026-11-30', start: '14:10', end: '14:40', minutes: 30 },
+      { day: '2026-12-01', start: '13:50', end: '14:40', minutes: 50 },
+      { day: '2026-12-01', start: '14:40', end: '15:10', minutes: 30 },
+    ]);
+  });
+
+  test('every talk slot maps to exactly one accepted session, and every accepted session has exactly one slot', () => {
+    const placed = [
+      ...summit.map((x) => ({ ...x, day: dubaiProgramme2026.summit.date })),
+      ...conference.map((x) => ({ ...x, day: dubaiProgramme2026.conference.date })),
+    ].filter((x) => x.sessionId);
+    const ids = placed.map((x) => x.sessionId);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect([...ids].sort()).toEqual(Object.keys(dubaiAcceptedSessions2026).sort());
+  });
+
+  test('each accepted session is pinned to its exact day and time slot', () => {
+    const placed = [
+      ...summit.map((x) => ({ ...x, day: dubaiProgramme2026.summit.date })),
+      ...conference.map((x) => ({ ...x, day: dubaiProgramme2026.conference.date })),
+    ].filter((x) => x.sessionId);
+    const actual = Object.fromEntries(placed.map((x) => [x.sessionId, [x.day, x.start, x.end]]));
+    expect(actual).toEqual({
+      '1341342': ['2026-11-30', '09:30', '10:00'],
+      '1319799': ['2026-11-30', '10:00', '10:30'],
+      '1321418': ['2026-11-30', '10:30', '11:00'],
+      '1318615': ['2026-11-30', '11:45', '12:15'],
+      '1315380': ['2026-11-30', '13:40', '14:10'],
+      '1339445': ['2026-11-30', '15:20', '15:50'],
+      '1322277': ['2026-11-30', '15:50', '16:20'],
+      '1322885': ['2026-11-30', '16:20', '17:10'],
+      '1343214': ['2026-12-01', '09:35', '10:25'],
+      '1345297': ['2026-12-01', '10:25', '10:55'],
+      '1305616': ['2026-12-01', '10:55', '11:25'],
+      '1297939': ['2026-12-01', '11:40', '12:30'],
+      '1309973': ['2026-12-01', '12:30', '13:00'],
+      '1346162': ['2026-12-01', '15:25', '16:15'],
+      '1317552': ['2026-12-01', '16:15', '16:45'],
+      '1289422': ['2026-12-01', '16:45', '17:35'],
+    });
   });
 });

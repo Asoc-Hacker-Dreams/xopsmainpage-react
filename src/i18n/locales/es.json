@@ -52,11 +52,11 @@
       "days": "jornadas",
       "summitLabel": "30 de noviembre · Estrategia + negocio",
       "summitTitle": "Executive Summit",
-      "summitDescription": "Nueve charlas aceptadas, conversaciones sobre riesgo de IA y estrategia de plataformas, mesas ejecutivas y conexiones B2B voluntarias.",
+      "summitDescription": "Ocho charlas aceptadas, conversaciones sobre riesgo de IA y estrategia de plataformas, mesas ejecutivas y conexiones B2B voluntarias.",
       "viewSummit": "Explorar agenda del Summit",
       "conferenceLabel": "1 de diciembre · Ingeniería + comunidad",
       "conferenceTitle": "Technical Conference",
-      "conferenceDescription": "Diez charlas aceptadas, con descripciones originales, fotografías y contenido técnico de nube, IA, seguridad y datos.",
+      "conferenceDescription": "Ocho charlas aceptadas, con descripciones originales, fotografías y contenido técnico de nube, IA, seguridad y datos.",
       "viewConference": "Explorar agenda de la Conference",
       "getTickets": "Consultar entradas",
       "venuePending": "Sede de Dubái pendiente de anuncio",
@@ -107,7 +107,7 @@
       "listLabel": "Programa de sesiones de Dubái",
       "speakerPending": "Ponente(s) por confirmar",
       "conferenceTitle": "Agenda técnica de Dubái · 1 de diciembre",
-      "conferenceIntro": "Consulta las diez charlas técnicas aceptadas para el martes 1 de diciembre, con fotografías de los ponentes, títulos originales y descripciones.",
+      "conferenceIntro": "Consulta las ocho charlas técnicas aceptadas para el martes 1 de diciembre, con fotografías de los ponentes, títulos originales y descripciones.",
       "types": {
         "talk": "Charla aceptada",
         "keynote": "Keynote estratégica",
@@ -179,7 +179,7 @@
       },
       "agendaTbd": "Por anunciar",
       "agendaTitle": "Programa ejecutivo",
-      "agendaSubtitle": "Nueve charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Panelistas y participantes de las mesas se anunciarán por separado."
+      "agendaSubtitle": "Ocho charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Panelistas y participantes de las mesas se anunciarán por separado."
     },
     "conference": {
       "kicker": "Conference técnica",

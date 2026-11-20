@@ -52,11 +52,11 @@
       "days": "event days",
       "summitLabel": "30 November · Strategy + business",
       "summitTitle": "Executive Summit",
-      "summitDescription": "Nine accepted talks, a focused discussion of AI risk and platform strategy, executive boardrooms and opt-in B2B connections.",
+      "summitDescription": "Eight accepted talks, a focused discussion of AI risk and platform strategy, executive boardrooms and opt-in B2B connections.",
       "viewSummit": "Explore Summit agenda",
       "conferenceLabel": "1 December · Engineering + community",
       "conferenceTitle": "Technical Conference",
-      "conferenceDescription": "Ten accepted talks with original abstracts, speaker portraits and deep technical insights into cloud, AI, security and data.",
+      "conferenceDescription": "Eight accepted talks with original abstracts, speaker portraits and deep technical insights into cloud, AI, security and data.",
       "viewConference": "Explore Conference agenda",
       "getTickets": "Explore tickets",
       "venuePending": "Dubai venue details to be announced",
@@ -107,7 +107,7 @@
       "listLabel": "Dubai session programme",
       "speakerPending": "Speaker(s) to be announced",
       "conferenceTitle": "Dubai technical agenda · 1 December",
-      "conferenceIntro": "Explore the 10 accepted technical talks scheduled for Tuesday, 1 December, with speaker photographs, original titles and abstracts.",
+      "conferenceIntro": "Explore the 8 accepted technical talks scheduled for Tuesday, 1 December, with speaker photographs, original titles and abstracts.",
       "types": {
         "talk": "Accepted talk",
         "keynote": "Opening keynote",
@@ -179,7 +179,7 @@
       },
       "agendaTbd": "To be announced",
       "agendaTitle": "Executive program",
-      "agendaSubtitle": "Nine accepted talks, expert discussions and curated B2B connections. Panel and roundtable participants will be announced separately."
+      "agendaSubtitle": "Eight accepted talks, expert discussions and curated B2B connections. Panel and roundtable participants will be announced separately."
     },
     "conference": {
       "kicker": "Technical Conference",
