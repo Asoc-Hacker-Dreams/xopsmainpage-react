@@ -1,5 +1,5 @@
-// Dubai 2026 actual accepted talks: 9 in Summit (30 Nov), 10 in Conference (1 Dec).
-// Four accepted Conference talks are programmed as regular Summit presentations at the organiser's direction.
+// Dubai 2026 actual accepted talks: 8 in Summit (30 Nov), 8 in Conference (1 Dec).
+// Three accepted Conference talks are programmed as regular Summit presentations at the organiser's direction.
 // The accepted original titles, descriptions, durations and speakers are stored in dubaiAcceptedSessions2026.js.
 // Panelists and roundtable facilitators are NOT assigned here without separately accepted roles.
 export const dubaiProgramme2026 = {
