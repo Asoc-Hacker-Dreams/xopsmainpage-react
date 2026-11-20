@@ -14,17 +14,17 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
   const summitTalks = summit.filter((x) => x.sessionId);
   const conferenceTalks = conference.filter((x) => x.sessionId);
 
-  test('correct dates and 17 unique accepted talks', () => {
+  test('correct dates and 16 unique accepted talks', () => {
     expect(dubaiProgramme2026.summit.date).toBe('2026-11-30');
     expect(dubaiProgramme2026.conference.date).toBe('2026-12-01');
     expect(dubaiProgramme2026.timezone).toBe('Asia/Dubai');
     expect(summitTalks).toHaveLength(8);
-    expect(conferenceTalks).toHaveLength(9);
-    expect(new Set([...summitTalks,...conferenceTalks].map((x) => x.sessionId)).size).toBe(17);
-    expect(Object.keys(dubaiAcceptedSessions2026)).toHaveLength(17);
+    expect(conferenceTalks).toHaveLength(8);
+    expect(new Set([...summitTalks,...conferenceTalks].map((x) => x.sessionId)).size).toBe(16);
+    expect(Object.keys(dubaiAcceptedSessions2026)).toHaveLength(16);
   });
 
-  test.each([['Summit',summit,260],['Conference',conference,370]])(
+  test.each([['Summit',summit,260],['Conference',conference,320]])(
     '%s preserves durations and has no overlapping slots',
     (_label, slots, expected) => {
       let lastEnd='00:00'; let total=0;
@@ -55,10 +55,10 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     }
   });
 
-  test('all 19 public speakers are attributed; photos are Sessionize paths when present', () => {
+  test('all 18 public speakers are attributed; photos are Sessionize paths when present', () => {
     const speakerIds=new Set(Object.values(dubaiAcceptedSessions2026).flatMap((x)=>x.speakers));
-    expect(speakerIds.size).toBe(19);
-    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(19);
+    expect(speakerIds.size).toBe(18);
+    expect(Object.keys(dubaiSpeakers2026)).toHaveLength(18);
     for(const id of speakerIds) {
       const p=dubaiSpeakers2026[id];
       expect(p?.name).toBeTruthy();
