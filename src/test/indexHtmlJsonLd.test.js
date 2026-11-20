@@ -119,21 +119,19 @@ describe('index.html static JSON-LD — Madrid is postponed', () => {
     expect(scheduled).toEqual([]);
   });
 
-  it('keeps the original Madrid dates (2026-11-19 / 2026-11-21) when present', () => {
+  it('keeps the original Madrid dates (2026-11-19 / 2026-11-21)', () => {
     const { nodes } = loadIndexHtmlJsonLd();
     const madridEvents = nodes.filter(isMadridEvent);
 
     expect(madridEvents.length).toBeGreaterThan(0);
-    // Google's guide: do NOT remove startDate/endDate on postponement. If they
-    // are there, they must still be the originally announced ones — this
-    // catches anyone swapping them for an invented new date.
+    // Google's guide: do NOT remove startDate/endDate on postponement, and keep
+    // the originally announced values until a new date is known. Asserting
+    // presence guards against the dates being dropped (which would remove
+    // Madrid from event rich results); asserting the value catches anyone
+    // swapping them for an invented new date.
     madridEvents.forEach((event) => {
-      if (event.startDate !== undefined) {
-        expect(event.startDate).toMatch(new RegExp(`^${MADRID_START}`));
-      }
-      if (event.endDate !== undefined) {
-        expect(event.endDate).toMatch(new RegExp(`^${MADRID_END}`));
-      }
+      expect(event.startDate).toMatch(new RegExp(`^${MADRID_START}`));
+      expect(event.endDate).toMatch(new RegExp(`^${MADRID_END}`));
     });
   });
 
@@ -165,10 +163,8 @@ describe('index.html static JSON-LD — Madrid is postponed', () => {
     const dubaiEvents = nodes.filter(isDubaiEvent);
 
     expect(dubaiEvents.length).toBeGreaterThan(0);
-    const scheduled = dubaiEvents.filter((event) => event.eventStatus === EVENT_SCHEDULED);
-    expect(scheduled.length).toBeGreaterThan(0);
-
-    scheduled.forEach((event) => {
+    dubaiEvents.forEach((event) => {
+      expect(event.eventStatus).toBe(EVENT_SCHEDULED);
       expect(event.startDate).toMatch(new RegExp(`^${DUBAI_START}`));
       expect(event.endDate).toMatch(new RegExp(`^${DUBAI_END}`));
     });
