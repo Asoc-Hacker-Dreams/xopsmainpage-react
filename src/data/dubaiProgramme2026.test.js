@@ -114,4 +114,26 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     expect(dubaiAcceptedSessions2026[game.sessionId].language).toBe('Spanish');
     expect(dubaiAcceptedSessions2026[game.sessionId].speakers).toHaveLength(2);
   });
+
+  // Guardas de retirada: la charla de Victor Isakov (ClickHouse) fue declinada por escrito el 20-nov.
+  const REMOVED_SESSION_ID = '1303592';
+  const REMOVED_SPEAKER_ID = 'be6a6aa1-b9f3-4c11-a22b-593cad466590';
+
+  test('the declined talk and its speaker stay out of every public dataset', () => {
+    expect(Object.keys(dubaiAcceptedSessions2026)).not.toContain(REMOVED_SESSION_ID);
+    expect(Object.values(dubaiAcceptedSessions2026).some((s) => s.speakers.includes(REMOVED_SPEAKER_ID))).toBe(false);
+    expect(Object.keys(dubaiSpeakers2026)).not.toContain(REMOVED_SPEAKER_ID);
+    expect(JSON.stringify(dubaiAcceptedSessions2026)).not.toMatch(/Isakov|ClickHouse|One Database, Every Workload/i);
+    expect(JSON.stringify(dubaiSpeakers2026)).not.toMatch(/Isakov|ClickHouse/i);
+    expect(JSON.stringify(dubaiProgramme2026)).not.toMatch(/Isakov|ClickHouse|One Database, Every Workload/i);
+  });
+
+  test('no agenda slot points at the declined session or references the declined speaker', () => {
+    for (const slot of [...summit, ...conference]) {
+      expect(slot.sessionId).not.toBe(REMOVED_SESSION_ID);
+      expect(slot.speakers ?? []).not.toContain(REMOVED_SPEAKER_ID);
+    }
+    expect(JSON.stringify(dubaiProgramme2026)).not.toContain(REMOVED_SESSION_ID);
+    expect(JSON.stringify(dubaiProgramme2026)).not.toContain(REMOVED_SPEAKER_ID);
+  });
 });
