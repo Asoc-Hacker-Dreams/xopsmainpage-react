@@ -83,7 +83,7 @@ const CityEventPage = ({ city }) => {
           '@context': 'https://schema.org',
           '@type': 'Event',
           name: 'X-Ops Dubai 2026 — Executive Summit + Technical Conference',
-          description: '30 Nov Executive Summit and 1 Dec Technical Conference: 17 accepted talks, AI, DevSecOps, cloud, data platforms and engineering.',
+          description: '30 Nov Executive Summit and 1 Dec Technical Conference: 16 accepted talks, AI, DevSecOps, cloud, data platforms and engineering.',
           startDate: '2026-11-30T09:00:00+04:00',
           endDate: '2026-12-01T17:50:00+04:00',
           eventStatus: 'https://schema.org/EventScheduled',
