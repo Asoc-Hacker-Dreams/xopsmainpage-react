@@ -25,17 +25,6 @@ export const dubaiAcceptedSessions2026 = {
     ],
     "sourceTrack": "Conference"
   },
-  "1303592": {
-    "id": "1303592",
-    "title": "One Database, Every Workload",
-    "description": "Real-time analytics. Data warehousing. Observability. LLM Observability. In this session you'll see ClickHouse power all of them — live. We will start with the basics, demo each use case and crack open the hood to understand the architecture that makes sub-second queries at petabyte scale possible. Whether you're evaluating ClickHouse Open Source or ClickHouse Cloud, you'll leave with a clear picture that ClickHouse is the right tool for you.",
-    "language": "English",
-    "durationMinutes": 50,
-    "speakers": [
-      "be6a6aa1-b9f3-4c11-a22b-593cad466590"
-    ],
-    "sourceTrack": "Conference"
-  },
   "1305616": {
     "id": "1305616",
     "title": "Securing Kubernetes at Scale: Resilient Cloud Native Infrastructure Against Cyber Threats",
@@ -307,15 +296,6 @@ export const dubaiSpeakers2026 = {
     "linkedIn": "https://www.linkedin.com/in/klavsklavsen/",
     "sessionizeProfile": "https://sessionize.com/klavs-klavsen",
     "bio": "Head of Obmondo.com - We develop open source to help ensure security and reliability of your Linux and K8s on on-prem or *cloud, enabling cost-savings through a unique customer cost-sharing model, so you can focus on your business."
-  },
-  "be6a6aa1-b9f3-4c11-a22b-593cad466590": {
-    "id": "be6a6aa1-b9f3-4c11-a22b-593cad466590",
-    "name": "Victor Isakov",
-    "role": "Senior Technical Trainer / Content Developer",
-    "photo": "https://cdn.sessionize.com/image/ce2d-400o400o1-aUBAMU39DPPSEoA5QTJfZF.svg",
-    "linkedIn": null,
-    "sessionizeProfile": null,
-    "bio": "Victor Isakov has worked as a Data Architect / Data Engineer / Evangelist / Trainer with a variety of Data Platforms for over 30 years. He has authored a number of books on database engines, and spoken a conferences/community events for 20 years. Having worked globally in a variety of sectors and projects, he has plenty of experience and deep technical knowledge that he is passionate about sharing."
   },
   "5605121f-ff48-4c86-935d-54b1aa97b52f": {
     "id": "5605121f-ff48-4c86-935d-54b1aa97b52f",
