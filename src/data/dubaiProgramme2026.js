@@ -308,7 +308,15 @@ export const dubaiProgramme2026 = {
         "start": "13:50",
         "end": "14:40",
         "type": "talk",
-        "sessionId": "1303592"
+        "sessionId": null,
+        "topic": {
+          "en": "Open slot — speaker announcement pending",
+          "es": "Espacio abierto — ponente por anunciar"
+        },
+        "details": {
+          "en": "A 50-minute slot is available on the Technical Conference track. Speaker to be announced.",
+          "es": "Hay un espacio de 50 minutos disponible en el track de la Conference. Ponente por anunciar."
+        }
       },
       {
         "start": "14:40",
@@ -363,7 +371,7 @@ export const dubaiProgramme2026 = {
     ]
   },
   "disclaimer": {
-    "en": "Seventeen accepted Dubai talks are scheduled across two days, with two 30-minute slots currently open for speakers to be announced. Session times may change. Participation in panels and roundtables requires separate acceptance; no unconfirmed panelists are advertised.",
-    "es": "Diecisiete charlas aceptadas para Dubái están programadas en dos jornadas, con dos espacios de 30 minutos abiertos a la espera de anunciar ponente. Los horarios pueden cambiar. La participación en paneles y mesas requiere aceptación independiente; no se anuncian panelistas sin confirmar."
+    "en": "Sixteen accepted Dubai talks are scheduled across two days, with three open slots currently available for speakers to be announced (two of 30 minutes and one of 50 minutes). Session times may change. Participation in panels and roundtables requires separate acceptance; no unconfirmed panelists are advertised.",
+    "es": "Dieciséis charlas aceptadas para Dubái están programadas en dos jornadas, con tres espacios abiertos a la espera de anunciar ponente (dos de 30 minutos y uno de 50 minutos). Los horarios pueden cambiar. La participación en paneles y mesas requiere aceptación independiente; no se anuncian panelistas sin confirmar."
   }
 };
