@@ -115,6 +115,11 @@ export interface TGCheckoutPayload {
 
 export interface TGCheckoutResponse {
   success: boolean;
+  /**
+   * TG-48: 'free' = pedido sin coste (cupón 100 %), ya completado sin Stripe;
+   * su sessionUrl es la successUrl de la plataforma. 'stripe' = pago normal.
+   */
+  mode?: 'free' | 'stripe';
   sessionUrl?: string;
   redirectUrl?: string;
   checkoutId?: string;
