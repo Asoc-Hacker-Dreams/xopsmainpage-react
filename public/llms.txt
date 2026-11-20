@@ -4,12 +4,12 @@
 
 ## About
 
-X-Ops Conference is an international technology conference held in Madrid, Spain and Dubai, UAE. The event focuses on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE, and Cybersecurity topics.
+X-Ops Conference is an international technology conference held in Madrid, Spain, and Dubai, UAE. The event focuses on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE, and Cybersecurity topics.
 
 - **Edition 2026**: Madrid · postponed (originally 19–21 November 2026; new dates TBC) | Dubai · 30 November (Summit) and 1 December (Conference), 2026
 - **Programme**: 16 talks accepted and 18 speakers confirmed (Dubai 2026)
 - **Format**: 1-day Executive Summit (C-Level) + 1-day Technical Conference
-- **Attendees**: Dubai 2026 Executive Summit is capped at a maximum of 90 attendees; total Dubai attendance TBC (Madrid 2025: 300+ attendees)
+- **Attendees**: Dubai 2026 Executive Summit has a maximum of 90 attendees; total Dubai attendance TBC (Madrid 2025: 300+ attendees)
 - **Rating**: 4.7/5 (2025 edition)
 - **Tracks**: DevSecOps, Platform Engineering, AIOps/MLOps, SRE, Ciberseguridad
 - **Languages**: Spanish and English
