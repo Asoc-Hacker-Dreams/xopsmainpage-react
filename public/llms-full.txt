@@ -3,10 +3,10 @@ X-OPS CONFERENCE — FULL INFORMATION FOR AI SYSTEMS
 
 DESCRIPTION
 -----------
-X-Ops Conference is an annual technology conference held in Madrid, Spain,
-focusing on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering, SRE (Site
-Reliability Engineering), and Cybersecurity. It is part of the HSM (Hacker Dreams
-& Social Media) organization ecosystem.
+X-Ops Conference is an annual technology conference held in Madrid, Spain, and
+Dubai, UAE, focusing on DevOps, DevSecOps, AIOps, MLOps, Platform Engineering,
+SRE (Site Reliability Engineering), and Cybersecurity. It is part of the HSM
+(Hacker Dreams & Social Media) organization ecosystem.
 
 EDITIONS
 --------
@@ -20,8 +20,9 @@ EDITIONS
 ------------------
 Madrid: postponed. Dates and venues pending reprogramming; do not attend the original venues.
 Dubai: Summit on Monday 30 November 2026 and technical Conference on Tuesday 1 December 2026.
-Programme status: preliminary topics and timing; named speakers to be confirmed. All times Gulf Standard Time (UTC+4).
-Expected attendees: to be confirmed
+Dubai: in-person event in Dubai, UAE. Venue to be announced.
+Programme status: confirmed. 16 talks accepted and 18 speakers confirmed. All times Gulf Standard Time (UTC+4).
+Expected attendees: Dubai 2026 Executive Summit is capped at a maximum of 90; total Dubai attendance TBC (Madrid 2025: 300+ attendees)
 Tracks: DevSecOps, Platform Engineering, AIOps/MLOps, SRE, Ciberseguridad
 
 SPONSORSHIP
