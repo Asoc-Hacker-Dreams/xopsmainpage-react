@@ -63,7 +63,11 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
       const p=dubaiSpeakers2026[id];
       expect(p?.name).toBeTruthy();
       // sin foto oficial verificada el retrato cae a iniciales (como el resto del fallback)
-      if(p.photo!==null) expect(p.photo).toMatch(/^https:\/\/cdn\.sessionize\.com\/image\//);
+      // Excepción: Jay Prajapat usa un retrato local de marca (aportado por el ponente, no de Sessionize).
+      if(p.photo!==null) {
+        if(id==='a86f13c6-b7de-4362-848e-145e02aeae60') expect(p.photo).toMatch(/^\/speakers\//);
+        else expect(p.photo).toMatch(/^https:\/\/cdn\.sessionize\.com\/image\//);
+      }
       expect(p.email).toBeUndefined();
     }
   });
@@ -73,7 +77,7 @@ describe('Dubai 2026 accepted sessions and speaker portraits', () => {
     expect(session.speakers).toHaveLength(1);
     const jay=dubaiSpeakers2026[session.speakers[0]];
     expect(jay.name).toBe('Jay Prajapat');
-    expect(jay.role).toBe('RankRabbit');
+    expect(jay.role).toBe('VP of Engineering & Technology, RankRabbitAI');
     expect(JSON.stringify(dubaiSpeakers2026)).not.toMatch(/Hastimal|Harsh/);
     expect(JSON.stringify(dubaiAcceptedSessions2026)).not.toMatch(/51a51018|88d5d1b5/);
   });
