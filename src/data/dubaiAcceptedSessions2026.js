@@ -128,8 +128,10 @@ export const dubaiSpeakers2026 = {
   "a86f13c6-b7de-4362-848e-145e02aeae60": {
     "id": "a86f13c6-b7de-4362-848e-145e02aeae60",
     "name": "Jay Prajapat",
-    "role": "RankRabbit",
-    "photo": null
+    "role": "VP of Engineering & Technology, RankRabbitAI",
+    "photo": "/speakers/jay-prajapat-profile.png",
+    "linkedIn": "https://www.linkedin.com/in/jayy-p/",
+    "bio": "Jay Prajapat is a technology leader and engineer with 15 years of experience taking software products from concept to MVP and scaling them into production-ready platforms.\n\nAt RankRabbitAI, Jay leads engineering initiatives focused on building AI-powered applications and production-grade agentic AI systems. His current interests and contributions include agentic AI architectures, developing intelligent agents using Google's Agent Development Kit (ADK), and advancing AI evaluation practices to improve agent reliability, quality, observability, and performance. He is also engaged with the broader AI ecosystem through contributions and involvement with the Agentic AI Foundation (AAIF).\n\nHis engineering philosophy is simple: the right boundaries matter more than the right buzzwords, and a system you cannot observe is a system you cannot trust.\n\nJay is a Certified SAFe Practitioner, an active mentor to fellow engineers, and is based in Ahmedabad, India."
   },
   "b29d5315-2fec-4dd6-8a91-30efcd6d0a68": {
     "id": "b29d5315-2fec-4dd6-8a91-30efcd6d0a68",

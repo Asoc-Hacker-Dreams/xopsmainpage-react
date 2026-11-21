@@ -59,6 +59,22 @@ describe('Dubai 2026 single-day programme', () => {
     });
   });
 
+  test('la ficha publica de Jay Prajapat esta actualizada (cargo, LinkedIn, bio y foto)', () => {
+    const jay=dubaiSpeakers2026['a86f13c6-b7de-4362-848e-145e02aeae60'];
+    expect(jay).toBeTruthy();
+    expect(jay.name).toBe('Jay Prajapat');
+    expect(jay.role).toBe('VP of Engineering & Technology, RankRabbitAI');
+    expect(jay.linkedIn).toBe('https://www.linkedin.com/in/jayy-p/');
+    expect(jay.photo).toBe('/speakers/jay-prajapat-profile.png');
+    expect(jay.bio).toBeTruthy();
+    // 'Beyond RAG' (13:20-14:10) es suya y solo suya: Hastimal y Harsh ya no figuran
+    const sesion=dubaiAcceptedSessions2026['1343214'];
+    expect(sesion.speakers).toHaveLength(1);
+    expect(dubaiSpeakers2026[sesion.speakers[0]].name).toBe('Jay Prajapat');
+    expect(JSON.stringify(dubaiSpeakers2026)).not.toMatch(/Hastimal|Harsh/);
+    expect(JSON.stringify(dubaiAcceptedSessions2026)).not.toMatch(/51a51018|88d5d1b5/);
+  });
+
   test('Victor Perez is not attributed to the Game of Bounties talk; Klavs is not on Ashish talk', () => {
     expect(dubaiAcceptedSessions2026['1289422'].speakers).toHaveLength(1);
     expect(dubaiSpeakers2026[dubaiAcceptedSessions2026['1289422'].speakers[0]].name).toBe('David Padilla Alvarado');
