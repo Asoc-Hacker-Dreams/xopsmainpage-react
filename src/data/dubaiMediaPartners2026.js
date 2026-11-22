@@ -25,8 +25,9 @@ export const dubaiMediaPartners2026 = [
     logo: securityMiddleEastLogo,
     coverage: [
       {
-        title: 'X-Ops Dubai 2026 — ficha del evento',
-        url: 'https://securitymiddleeastmag.com/event/x-ops-dubai-2026',
+        title: 'X-Ops Dubai 2026 - Security Middle East Magazine',
+        url: 'https://securitymiddleeastmag.com/event/x-ops-dubai-2026/',
+        lang: 'en',
       },
     ],
   },
@@ -55,12 +56,14 @@ export const dubaiMediaPartners2026 = [
     logo: cryptokenMediaLogo,
     coverage: [
       {
-        title: 'X-Ops Conference llega a Oriente Medio',
-        url: 'https://cryptobrowser.io/news/x-ops-conference-arrives-in-the-middle-east-x-ops-dubai-2026',
+        title: 'X-Ops Conference arrives in the Middle East: X-Ops Dubai 2026',
+        url: 'https://cryptobrowser.io/news/x-ops-conference-arrives-in-the-middle-east-x-ops-dubai-2026/',
+        lang: 'en',
       },
       {
-        title: 'X-Ops Dubai 2026 — ficha del evento',
-        url: 'https://cryptobrowser.io/events/x-ops-dubai-2026',
+        title: 'X-Ops Dubai 2026',
+        url: 'https://cryptobrowser.io/events/x-ops-dubai-2026/',
+        lang: 'en',
       },
     ],
   },

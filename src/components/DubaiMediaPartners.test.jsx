@@ -59,7 +59,11 @@ describe('DubaiMediaPartners section', () => {
         const link = screen.getAllByRole('link').find((el) => el.getAttribute('href') === piece.url);
         expect(link, `${partner.id} -> ${piece.url}`).toBeTruthy();
         expect(link.textContent).toContain(piece.title);
+        expect(link.getAttribute('rel')).toContain('noopener');
+        expect(link.getAttribute('target')).toBe('_blank');
       }
     }
+    // The "Coverage" label appears exactly once per partner that has coverage, never on the others.
+    expect(screen.getAllByText(en.cityEvent.mediaPartners.coverage)).toHaveLength(withCoverage.length);
   });
 });

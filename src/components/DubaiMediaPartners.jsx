@@ -58,6 +58,7 @@ const DubaiMediaPartners = () => {
                         className="dubai-media-partners__coverage-link"
                         href={piece.url}
                         key={piece.url}
+                        lang={piece.lang}
                         rel="noopener noreferrer"
                         target="_blank"
                       >
