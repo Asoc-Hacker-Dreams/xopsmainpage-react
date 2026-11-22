@@ -39,6 +39,7 @@ describe('DubaiMediaPartners section', () => {
       for (const link of links) {
         expect(link.getAttribute('target')).toBe('_blank');
         expect(link.getAttribute('rel')).toContain('noopener');
+        expect(link.getAttribute('rel')).toContain('noreferrer');
       }
     }
   });
@@ -48,5 +49,23 @@ describe('DubaiMediaPartners section', () => {
     for (const partner of dubaiMediaPartners2026) {
       expect(screen.getByAltText(partner.name)).toBeTruthy();
     }
+  });
+
+  test('renders the verified coverage pieces without inventing any for the other outlets', () => {
+    render(<DubaiMediaPartners />);
+    const withCoverage = dubaiMediaPartners2026.filter((partner) => partner.coverage?.length > 0);
+    expect(withCoverage.map((partner) => partner.id).sort()).toEqual(['cryptoken-media', 'security-middle-east']);
+    for (const partner of withCoverage) {
+      for (const piece of partner.coverage) {
+        const link = screen.getAllByRole('link').find((el) => el.getAttribute('href') === piece.url);
+        expect(link, `${partner.id} -> ${piece.url}`).toBeTruthy();
+        expect(link.textContent).toContain(piece.title);
+        expect(link.getAttribute('rel')).toContain('noopener');
+        expect(link.getAttribute('rel')).toContain('noreferrer');
+        expect(link.getAttribute('target')).toBe('_blank');
+      }
+    }
+    // The "Coverage" label appears exactly once per partner that has coverage, never on the others.
+    expect(screen.getAllByText(en.cityEvent.mediaPartners.coverage)).toHaveLength(withCoverage.length);
   });
 });

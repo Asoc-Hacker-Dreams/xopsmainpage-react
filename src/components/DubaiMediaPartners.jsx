@@ -48,6 +48,25 @@ const DubaiMediaPartners = () => {
               </a>
               <div className="dubai-media-partners__body">
                 <h3>{partner.name}</h3>
+                {partner.coverage?.length > 0 && (
+                  <div className="dubai-media-partners__coverage">
+                    <span className="dubai-media-partners__coverage-label">
+                      {t('cityEvent.mediaPartners.coverage')}
+                    </span>
+                    {partner.coverage.map((piece) => (
+                      <a
+                        className="dubai-media-partners__coverage-link"
+                        href={piece.url}
+                        key={piece.url}
+                        lang={piece.lang}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {piece.title} <span aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
                 <a className="dubai-media-partners__website" href={partner.url} target="_blank" rel="noopener noreferrer">
                   {partner.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')} <span aria-hidden="true">↗</span>
                 </a>

@@ -41,4 +41,22 @@ describe('Dubai 2026 media partners', () => {
     // El Correo del Golfo recibió la propuesta (14-nov) pero no ha confirmado.
     expect(dubaiMediaPartners2026.some((partner) => /correo del golfo|elcorreo/i.test(partner.name))).toBe(false);
   });
+
+  test('only lists coverage pieces that exist and are https', () => {
+    for (const partner of dubaiMediaPartners2026) {
+      for (const piece of partner.coverage ?? []) {
+        expect(piece.title?.trim(), `${partner.id} coverage title`).toBeTruthy();
+        const parsed = new URL(piece.url); // throws on relative / malformed URLs
+        expect(parsed.protocol, `${partner.id} -> ${piece.url}`).toBe('https:');
+        expect(parsed.hostname).toContain('.');
+        expect(parsed.username + parsed.password).toBe('');
+      }
+    }
+    const urls = dubaiMediaPartners2026.flatMap((p) => (p.coverage ?? []).map((c) => c.url));
+    expect(new Set(urls).size).toBe(urls.length);
+    // Sin pieza verificable no se inventa: Times of AI, CoinNewsSpan y CryptoMoonPress
+    // aún no tienen ficha pública localizable (comprobado el 22-nov-2026).
+    const withoutCoverage = dubaiMediaPartners2026.filter((p) => !p.coverage?.length).map((p) => p.id);
+    expect(withoutCoverage.sort()).toEqual(['coinnewsspan', 'cryptomoonpress', 'times-of-ai']);
+  });
 });
