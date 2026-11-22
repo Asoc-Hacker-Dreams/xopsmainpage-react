@@ -19,7 +19,11 @@ describe.each([
 
   it('states the official programme figures: 16 talks, 18 speakers', () => {
     expect(text).toMatch(/16 talks accepted/);
-    expect(text).toMatch(/18 speakers confirmed/);
+    expect(text).toMatch(/18 speakers/);
+  });
+
+  it('does not claim all 18 speakers are confirmed (only 10 have confirmed in writing)', () => {
+    expect(text).not.toMatch(/18 speakers confirmed/);
   });
 
   it('states the Executive Summit cap of 90 and the verified Madrid 2025 audience', () => {
