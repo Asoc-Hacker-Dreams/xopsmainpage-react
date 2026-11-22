@@ -146,6 +146,19 @@ describe('index.html static JSON-LD — Madrid is postponed', () => {
     });
   });
 
+  it('confirms the Dubai dates in the Madrid description and does not announce Madrid as going ahead', () => {
+    const { nodes } = loadIndexHtmlJsonLd();
+    const madridEvents = nodes.filter(isMadridEvent);
+
+    expect(madridEvents.length).toBeGreaterThan(0);
+    madridEvents.forEach((event) => {
+      expect(event.description).toMatch(/30 de noviembre/i);
+      expect(event.description).toMatch(/1 de diciembre/i);
+      // "no se va a celebrar" is fine; an affirmative "se celebrará/se celebra" is not.
+      expect(event.description).not.toMatch(/(?<!no se va a |no se )celebr(a|ará)\b/i);
+    });
+  });
+
   it('keeps the modality and location properties of the Madrid event', () => {
     const { nodes } = loadIndexHtmlJsonLd();
     const madridEvents = nodes.filter(isMadridEvent);
