@@ -39,6 +39,7 @@ describe('DubaiMediaPartners section', () => {
       for (const link of links) {
         expect(link.getAttribute('target')).toBe('_blank');
         expect(link.getAttribute('rel')).toContain('noopener');
+        expect(link.getAttribute('rel')).toContain('noreferrer');
       }
     }
   });
@@ -60,6 +61,7 @@ describe('DubaiMediaPartners section', () => {
         expect(link, `${partner.id} -> ${piece.url}`).toBeTruthy();
         expect(link.textContent).toContain(piece.title);
         expect(link.getAttribute('rel')).toContain('noopener');
+        expect(link.getAttribute('rel')).toContain('noreferrer');
         expect(link.getAttribute('target')).toBe('_blank');
       }
     }
