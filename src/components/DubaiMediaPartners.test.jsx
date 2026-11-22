@@ -49,4 +49,17 @@ describe('DubaiMediaPartners section', () => {
       expect(screen.getByAltText(partner.name)).toBeTruthy();
     }
   });
+
+  test('renders the verified coverage pieces without inventing any for the other outlets', () => {
+    render(<DubaiMediaPartners />);
+    const withCoverage = dubaiMediaPartners2026.filter((partner) => partner.coverage?.length > 0);
+    expect(withCoverage.map((partner) => partner.id).sort()).toEqual(['cryptoken-media', 'security-middle-east']);
+    for (const partner of withCoverage) {
+      for (const piece of partner.coverage) {
+        const link = screen.getAllByRole('link').find((el) => el.getAttribute('href') === piece.url);
+        expect(link, `${partner.id} -> ${piece.url}`).toBeTruthy();
+        expect(link.textContent).toContain(piece.title);
+      }
+    }
+  });
 });

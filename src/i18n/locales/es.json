@@ -203,6 +203,7 @@
       "title": "Media Partners",
       "intro": "X-Ops Dubái 2026 colabora con medios de referencia mediante acuerdos recíprocos no pagados: nos ayudan a difundir el evento y sus logotipos enlazan a sus sitios oficiales.",
       "visitWebsite": "Visitar el sitio de {{partner}}",
+      "coverage": "Cobertura",
       "disclaimer": "Acuerdos de medios recíprocos y no pagados. Los logotipos enlazan al sitio oficial de cada medio."
     },
     "finalCta": {
