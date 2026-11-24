@@ -175,10 +175,14 @@ const getTicketDescription = (tt, t, language, edition = null) => {
 // lista blanca (edición identificada) más una lista negra de marcadores de
 // prueba, por si la API añade un evento de prueba que sí nombre Dubái.
 const TEST_EVENT_MARKERS = /\b(qa|test|privado|no comprar|sandbox|prueba)\b/i;
+// Identidad X-Ops exigida en nombre o slug (no en la ubicación): un partner o venue
+// celebrado en Dubái no es una edición X-Ops aunque la ciudad coincida.
+const XOPS_IDENTITY = /x[\s_-]?ops/i;
 const isPublicXopsEvent = (e) => {
   if (e?.status !== 'active') return false;
   const evidence = [e.name, e.slug, e.location, e.city].filter(Boolean).join(' ');
   if (TEST_EVENT_MARKERS.test(evidence)) return false;
+  if (!XOPS_IDENTITY.test([e.name, e.slug].filter(Boolean).join(' '))) return false;
   return editionFromEvent(e, '') === 'dubai';
 };
 

@@ -135,6 +135,52 @@ describe('TicketModal · qué eventos se listan', () => {
   });
 });
 
+// Un evento activo de Dubái que NO es X-Ops (partner o venue) no se lista ni se
+// piden sus entradas: "Dubai" en la ubicación no basta para venderlo como edición X-Ops.
+const PARTNER_DUBAI_EVENT = {
+  id: 4,
+  name: 'Dubai Blockchain Partner Summit 2026',
+  slug: 'dubai-blockchain-partner-summit-2026',
+  location: 'Dubai Marina, Dubai, UAE',
+  status: 'active',
+  organizerId: 3,
+  startDate: '2026-11-28',
+  endDate: '2026-11-28',
+};
+const VENUE_DUBAI_EVENT = {
+  id: 5,
+  name: 'Hotel Venue Dubai Expo 2026',
+  slug: 'venue-dubai-expo-2026',
+  location: 'Dubai, UAE',
+  status: 'active',
+  organizerId: 3,
+  startDate: '2026-11-29',
+  endDate: '2026-11-29',
+};
+
+describe('TicketModal · un evento de Dubái sin identidad X-Ops no se lista', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockClient.listTicketTypes.mockImplementation(async (eventId) => TICKETS_BY_EVENT.get(eventId) ?? []);
+  });
+
+  afterEach(async () => {
+    await i18n.changeLanguage('es');
+  });
+
+  it('un partner activo en Dubái no aparece ni se piden sus entradas', async () => {
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT, PARTNER_DUBAI_EVENT, VENUE_DUBAI_EVENT]);
+
+    await renderModal();
+
+    expect(screen.queryByText(PARTNER_DUBAI_EVENT.name)).toBeNull();
+    expect(screen.queryByText(VENUE_DUBAI_EVENT.name)).toBeNull();
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(1);
+    expect(mockClient.listTicketTypes).not.toHaveBeenCalledWith(PARTNER_DUBAI_EVENT.id);
+    expect(mockClient.listTicketTypes).not.toHaveBeenCalledWith(VENUE_DUBAI_EVENT.id);
+  });
+});
+
 // Jornada única: Summit y Conference son el mismo día, así que la tarjeta
 // "Summit" no se pinta en Dubái. Es sólo presentación: el tipo sigue en la API.
 const SUMMIT_TT = {
