@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import i18n from '../i18n';
 import TicketModal from './TicketModal';
 
@@ -280,5 +280,68 @@ describe('TicketModal · la descripción de la BD no se muestra en Dubái', () =
     const text = document.body.textContent;
     expect(text).not.toMatch(/Entrada de dos días|martes 1 de diciembre|Tuesday 1 December/i);
     expect(text).toMatch(copyPattern);
+  });
+});
+
+// Entrada antigua con CONF_D2 concedido. En la BD hay Summit ya emitidas con
+// ['SUMMIT', 'CONF_D1', 'DINNER'] y el diseño de dos días tenía CONF_D2 como día 2.
+// Este tier es un modelo de ese caso, no un producto vigente. Dubái no tiene día 2,
+// así que la concesión no debe pintar ninguna fila extra ni un segundo día.
+const LEGACY_D2_TT = {
+  id: 16, name: 'Early Adopter', tierCode: 'EARLY', productCode: 'CONFERENCE',
+  price: 300, currency: 'AED', displayOrder: 2, isActive: true,
+  entitlements: ['CONF_D1', 'CONF_D2'], description: null,
+};
+
+const SECOND_DAY_PATTERN = /día 2|day 2|1 de diciembre|1 December|December 1\b|martes|Tuesday/i;
+
+// Filas exactas que pinta Dubái para cualquier entrada. Se compara la lista completa
+// (no un texto concreto) para que el test falle con CUALQUIER fila extra, tenga la
+// etiqueta que tenga; un "Conference día 2" y un "Acceso adicional" fallan igual.
+const dubaiRows = () => [
+  i18n.t('ticketModal.entitlementsDubai.summit'),
+  i18n.t('ticketModal.entitlementsDubai.conference'),
+  i18n.t('ticketModal.entitlements.dinner'),
+  i18n.t('ticketModal.entitlements.workshops'),
+];
+
+describe('TicketModal · entrada con CONF_D2 concedido no muestra un segundo día', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
+    mockClient.listTicketTypes.mockResolvedValue([LEGACY_D2_TT]);
+  });
+
+  afterEach(async () => {
+    await i18n.changeLanguage('es');
+  });
+
+  it.each(['es', 'en'])('en %s: la tarjeta no muestra un segundo día ni filas extra', async (lang) => {
+    await i18n.changeLanguage(lang);
+
+    await renderModal();
+
+    // La tarjeta debe existir: si no, la ausencia de texto pasaría en vacío.
+    expect(screen.getByRole('button', { name: /Early Adopter/i })).toBeInTheDocument();
+    expect(document.body.textContent).not.toMatch(SECOND_DAY_PATTERN);
+
+    const card = screen.getByRole('heading', { level: 3 }).closest('.ticket-card');
+    const rows = Array.from(card.querySelectorAll('li')).map((li) => li.textContent);
+    expect(rows).toEqual(dubaiRows());
+  });
+
+  it.each(['es', 'en'])('en %s: el resumen previo a Stripe no muestra un segundo día ni filas extra', async (lang) => {
+    await i18n.changeLanguage(lang);
+
+    await renderModal();
+    fireEvent.click(screen.getByRole('button', { name: /Early Adopter/i }));
+
+    // El resumen es el último paso antes de Stripe y nombra la entrada en un <strong>.
+    const title = await screen.findByText(LEGACY_D2_TT.name, { selector: 'strong' });
+    expect(document.body.textContent).not.toMatch(SECOND_DAY_PATTERN);
+
+    const summary = title.closest('div').parentElement;
+    const rows = Array.from(summary.querySelectorAll('li')).map((li) => li.textContent);
+    expect(rows).toEqual(dubaiRows());
   });
 });
