@@ -173,3 +173,49 @@ describe('TicketModal · Summit no se presenta en Dubái', () => {
     expect(titles).toHaveLength(3);
   });
 });
+
+// Orden explícito de producto en Dubái: Daily → Last Minute → VIP, y los early
+// adopters (ya agotados o cerrados) al final. No depende del orden de la API.
+const EARLY_TT = {
+  id: 8, name: 'Early Adopter', tierCode: 'EARLY', productCode: 'CONFERENCE',
+  price: 300, currency: 'AED', displayOrder: 2, isActive: true,
+  entitlements: ['CONF_D1'], description: null,
+};
+const SUPER_EARLY_TT = {
+  id: 7, name: 'Super Early Adopter', tierCode: 'SUPER_EARLY', productCode: 'CONFERENCE',
+  price: 180, currency: 'AED', displayOrder: 1, isActive: true,
+  entitlements: ['CONF_D1'], description: null,
+};
+const DUBAI_ORDER = ['DAILY TICKET', 'LAST MINUTE', 'VIP', 'EARLY ADOPTER', 'SUPER EARLY ADOPTER'];
+
+describe('TicketModal · orden de las entradas de Dubái', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
+  });
+
+  afterEach(async () => {
+    await i18n.changeLanguage('es');
+  });
+
+  // Orden crudo que devuelve la API para el evento 2 (sin ordenar por displayOrder).
+  const RAW_API_ORDER = [EARLY_TT, LAST_MINUTE_TT, DAILY_TT, SUPER_EARLY_TT, SUMMIT_TT, VIP_TT];
+
+  it('pinta Daily → Last Minute → VIP → early adopters, aunque la API venga en otro orden', async () => {
+    mockClient.listTicketTypes.mockResolvedValue(RAW_API_ORDER);
+
+    await renderModal();
+
+    const titles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent);
+    expect(titles).toEqual(DUBAI_ORDER);
+  });
+
+  it('el orden no depende del orden de llegada: invertir la API da el mismo resultado', async () => {
+    mockClient.listTicketTypes.mockResolvedValue([...RAW_API_ORDER].reverse());
+
+    await renderModal();
+
+    const titles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent);
+    expect(titles).toEqual(DUBAI_ORDER);
+  });
+});

@@ -188,6 +188,18 @@ const isPublicXopsEvent = (e) => {
 const isHiddenInEdition = (tt, edition) =>
   edition === 'dubai' && (tt?.tierCode === 'SUMMIT' || tt?.productCode === 'SUMMIT');
 
+// Orden de producto en Dubái: Daily → Last Minute → VIP, y los early adopters
+// (ya agotados o cerrados) al final. Se decide por `tierCode` y no por
+// `displayOrder` ni por el orden de llegada de la API, que no ordena nada hoy.
+// Un tierCode desconocido cae justo antes de los early adopters, para que estos
+// sigan siendo siempre los últimos.
+const DUBAI_TIER_RANK = { DAILY: 0, LAST_MINUTE: 1, VIP: 2, EARLY: 4, SUPER_EARLY: 5 };
+const DUBAI_UNKNOWN_TIER_RANK = 3;
+const dubaiTierRank = (tt) => DUBAI_TIER_RANK[tt?.tierCode] ?? DUBAI_UNKNOWN_TIER_RANK;
+// Array.prototype.sort es estable: entradas con el mismo rango conservan su orden.
+const sortTicketTypesForEdition = (types, edition) =>
+  edition === 'dubai' ? [...types].sort((a, b) => dubaiTierRank(a) - dubaiTierRank(b)) : types;
+
 /** Resolves the countdown target date the same way App.jsx resolves the active city
  *  (getCityFromHostname(window.location.hostname)). Falls back to the closer of the
  *  two known event dates when the hostname doesn't map to a single city (e.g. root domain). */
@@ -365,7 +377,10 @@ const TicketModal = ({ show, onHide }) => {
               return {
                 ...ev,
                 ticketTypes: Array.isArray(types)
-                  ? types.filter((t) => t.isActive !== false && !isHiddenInEdition(t, edition))
+                  ? sortTicketTypesForEdition(
+                      types.filter((t) => t.isActive !== false && !isHiddenInEdition(t, edition)),
+                      edition,
+                    )
                   : [],
               };
             } catch {
