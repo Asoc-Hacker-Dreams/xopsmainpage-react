@@ -134,3 +134,42 @@ describe('TicketModal · qué eventos se listan', () => {
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(1);
   });
 });
+
+// Jornada única: Summit y Conference son el mismo día, así que la tarjeta
+// "Summit" no se pinta en Dubái. Es sólo presentación: el tipo sigue en la API.
+const SUMMIT_TT = {
+  id: 12, name: 'Summit', tierCode: 'SUMMIT', productCode: 'SUMMIT',
+  price: 1200, currency: 'AED', displayOrder: 5, isActive: true,
+  entitlements: ['SUMMIT', 'CONF_D1', 'DINNER'], description: null,
+};
+const LAST_MINUTE_TT = {
+  id: 10, name: 'Last Minute', tierCode: 'LAST_MINUTE', productCode: 'CONFERENCE',
+  price: 600, currency: 'AED', displayOrder: 4, isActive: true,
+  entitlements: ['CONF_D1'], description: null,
+};
+const VIP_TT = {
+  id: 11, name: 'VIP', tierCode: 'VIP', productCode: 'VIP',
+  price: 900, currency: 'AED', displayOrder: 6, isActive: true,
+  entitlements: ['CONF_D1', 'DINNER'], description: null,
+};
+
+describe('TicketModal · Summit no se presenta en Dubái', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
+    mockClient.listTicketTypes.mockResolvedValue([DAILY_TT, SUMMIT_TT, LAST_MINUTE_TT, VIP_TT]);
+  });
+
+  afterEach(async () => {
+    await i18n.changeLanguage('es');
+  });
+
+  it('la tarjeta Summit no aparece, pero sí Daily, Last Minute y VIP', async () => {
+    await renderModal();
+
+    const titles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent);
+    expect(titles).not.toContain('SUMMIT');
+    expect(titles).toEqual(expect.arrayContaining(['DAILY TICKET', 'LAST MINUTE', 'VIP']));
+    expect(titles).toHaveLength(3);
+  });
+});

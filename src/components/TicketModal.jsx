@@ -180,6 +180,14 @@ const isPublicXopsEvent = (e) => {
   return editionFromEvent(e, '') === 'dubai';
 };
 
+// Jornada única (Dubái, lunes 30-nov): Summit y Conference son el mismo día, así
+// que la tarjeta Summit no se pinta. Es un filtro de PRESENTACIÓN: el tipo sigue
+// activo en TriskelGate y sus titulares (ya vendido) entran el 30-nov igual; no
+// se desactiva ni se borra nada en la API ni en la base de datos.
+// Madrid no se toca (no lista eventos, ver isPublicXopsEvent).
+const isHiddenInEdition = (tt, edition) =>
+  edition === 'dubai' && (tt?.tierCode === 'SUMMIT' || tt?.productCode === 'SUMMIT');
+
 /** Resolves the countdown target date the same way App.jsx resolves the active city
  *  (getCityFromHostname(window.location.hostname)). Falls back to the closer of the
  *  two known event dates when the hostname doesn't map to a single city (e.g. root domain). */
@@ -353,9 +361,12 @@ const TicketModal = ({ show, onHide }) => {
           sorted.map(async (ev) => {
             try {
               const types = await triskelGateClient.listTicketTypes(ev.id);
+              const edition = editionFromEvent(ev, '');
               return {
                 ...ev,
-                ticketTypes: Array.isArray(types) ? types.filter((t) => t.isActive !== false) : [],
+                ticketTypes: Array.isArray(types)
+                  ? types.filter((t) => t.isActive !== false && !isHiddenInEdition(t, edition))
+                  : [],
               };
             } catch {
               return { ...ev, ticketTypes: [] };
