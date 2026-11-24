@@ -121,25 +121,27 @@ describe('tierDescriptionsDubai / entitlementsDubai (TG-43)', () => {
     }
   });
 
-  it('Conference y VIP: solo 1 de diciembre, sin Summit', () => {
+  it('Conference y VIP: jornada única 30 de noviembre (sin 1 de diciembre), sin Summit', () => {
     for (const [tier, text] of tiersOf(es).filter(([k]) => CONFERENCE_LIKE.has(k))) {
-      expect(text, tier).toMatch(/1 de diciembre/);
+      expect(text, tier).toMatch(/30 de noviembre/);
+      expect(text, tier).not.toMatch(/1 de diciembre/);
       expect(text, tier).toMatch(/No incluye el Summit/);
     }
     for (const [tier, text] of tiersOf(en).filter(([k]) => CONFERENCE_LIKE.has(k))) {
-      expect(text, tier).toMatch(/1 December/);
+      expect(text, tier).toMatch(/30 November/);
+      expect(text, tier).not.toMatch(/1 December/);
       expect(text, tier).toMatch(/Does not include the 30 November Summit/);
     }
   });
 
-  it('Summit: válido el 30 de noviembre y el 1 de diciembre, con cena', () => {
+  it('Summit: jornada única 30 de noviembre (Summit AM + Conference PM), con cena', () => {
     const esS = es.ticketModal.tierDescriptionsDubai.summit;
     const enS = en.ticketModal.tierDescriptionsDubai.summit;
     expect(esS).toMatch(/30 de noviembre/);
-    expect(esS).toMatch(/1 de diciembre/);
+    expect(esS).not.toMatch(/1 de diciembre/);
     expect(esS).toMatch(/dinner/);
     expect(enS).toMatch(/30 November/);
-    expect(enS).toMatch(/1 December/);
+    expect(enS).not.toMatch(/1 December/);
     expect(enS).toMatch(/dinner/);
   });
 });

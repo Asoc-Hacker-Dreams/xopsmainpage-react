@@ -457,12 +457,12 @@
       "summit": "La experiencia X-Ops completa: Summit ejecutivo, los 2 días completos de Conference y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
     },
     "tierDescriptionsDubai": {
-      "superEarly": "Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día). Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "early": "Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día). Todas las sesiones técnicas, networking y material incluidos. Precio early adopter. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "daily": "Entrada estándar al precio regular. Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día), todas las sesiones técnicas, networking y material incluidos. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "lastMinute": "Acceso a la Conference del martes 1 de diciembre de 2026 (jornada técnica de un día). Todas las sesiones técnicas, networking y material incluidos. Tarifa de último momento. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "vip": "La Conference del martes 1 de diciembre de 2026 MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye el Summit del 30 de noviembre ni workshops premium.",
-      "summit": "La experiencia X-Ops completa, válida los dos días: Summit ejecutivo el lunes 30 de noviembre, Conference el martes 1 de diciembre de 2026 y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
+      "superEarly": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "early": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Precio early adopter. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "daily": "Entrada estándar al precio regular. Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM), todas las sesiones técnicas, networking y material incluidos. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "lastMinute": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Tarifa de último momento. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
+      "vip": "La jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye el Summit del 30 de noviembre ni workshops premium.",
+      "summit": "La experiencia X-Ops completa, válida en la jornada única del lunes 30 de noviembre de 2026: Summit ejecutivo por la mañana, Conference por la tarde y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
     },
     "entitlements": {
       "confDay1": "Conference día 1 · acceso completo",
@@ -473,7 +473,7 @@
     },
     "entitlementsDubai": {
       "summit": "X-Ops Summit ejecutivo · lunes 30 de noviembre",
-      "conference": "X-Ops Conference · martes 1 de diciembre",
+      "conference": "X-Ops Conference · lunes 30 de noviembre",
       "legacyDay": "Acceso adicional · lunes 30 de noviembre"
     }
   },
@@ -714,7 +714,7 @@
     },
     "card2": {
       "title": "¿Dónde y Cuándo?",
-      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 se celebra el 30 de noviembre (Summit) y el 1 de diciembre (Conference). La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 es una jornada única el 30 de noviembre de 2026 (DKP Conference Centre, TECOM): Summit ejecutivo por la mañana y Conference por la tarde. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
     },
     "card3": {
       "title": "El Futuro del Trabajo",
