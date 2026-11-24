@@ -20,8 +20,7 @@ const speakersByDay = (slots) => {
 const DubaiSpeakersGallery = () => {
   const { t } = useTranslation();
   const groups = [
-    { key: 'summit', people: speakersByDay(dubaiProgramme2026.summit.items), date: '30 Nov' },
-    { key: 'conference', people: speakersByDay(dubaiProgramme2026.conference.items), date: '1 Dec' },
+    { key: 'summit', people: speakersByDay(dubaiProgramme2026.items), date: '30 Nov' },
   ];
 
   return (

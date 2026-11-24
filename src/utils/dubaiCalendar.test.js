@@ -3,20 +3,16 @@ import { buildDubaiIcs } from './dubaiCalendar';
 import { dubaiProgramme2026 } from '../data/dubaiProgramme2026';
 
 describe('Dubai calendar exports', () => {
-  test.each([
-    ['2026-11-30', 'summit', 21, 8, '20261130T050000Z'],
-    ['2026-12-01', 'conference', 16, 8, '20261201T050000Z'],
-  ])('exports %s %s in true GST/UTC and skips provisional evening dinner', (date, track, totalSlots, talks, firstUtc) => {
-    const slots = dubaiProgramme2026[track].items;
-    expect(slots).toHaveLength(totalSlots);
-    expect(slots.filter((slot) => slot.sessionId)).toHaveLength(talks);
-    const calendar = buildDubaiIcs({ date, slots, label: 'X-Ops Dubai 2026', language: 'en' });
+  test('exports the single 30 Nov day in GST/UTC with one VEVENT per slot', () => {
+    const slots = dubaiProgramme2026.items;
+    const calendar = buildDubaiIcs({ date: '2026-11-30', slots, label: 'X-Ops Dubai 2026', language: 'en' });
     expect(calendar.startsWith('BEGIN:VCALENDAR\r\n')).toBe(true);
     expect(calendar.endsWith('END:VCALENDAR\r\n')).toBe(true);
-    expect(calendar).toContain('DTSTART:' + firstUtc);
-    expect(calendar.match(/BEGIN:VEVENT/g)).toHaveLength(track === 'summit' ? totalSlots - 1 : totalSlots);
+    expect(calendar).toContain('DTSTART:20261130T050000Z');
+    expect(calendar.match(/BEGIN:VEVENT/g)).toHaveLength(slots.length);
+    expect(calendar).toContain('LOCATION:DKP Conference Centre\\, Dubai Knowledge Park (TECOM)\\, Dubai');
+    expect(calendar).not.toContain('venue to be announced');
     expect(calendar).not.toContain('Executive Networking Dinner');
-    expect(calendar).toContain('STATUS:TENTATIVE');
     for (const line of calendar.split('\r\n')) {
       expect(new TextEncoder().encode(line).length).toBeLessThanOrEqual(75);
     }
@@ -25,7 +21,7 @@ describe('Dubai calendar exports', () => {
   test('escapes commas, semicolons and newlines in accepted talk descriptions', () => {
     const calendar = buildDubaiIcs({
       date: '2026-11-30',
-      slots: dubaiProgramme2026.summit.items,
+      slots: dubaiProgramme2026.items,
       label: 'Summit, Dubai; 2026',
     });
     expect(calendar).toContain('X-WR-CALNAME:Summit\\, Dubai\\; 2026');
@@ -33,8 +29,8 @@ describe('Dubai calendar exports', () => {
   });
 
   test('every calendar event has start/end timestamps and no duplicate UID', () => {
-    const slots = dubaiProgramme2026.conference.items;
-    const calendar = buildDubaiIcs({ date: '2026-12-01', slots, label: 'Conference' });
+    const slots = dubaiProgramme2026.items;
+    const calendar = buildDubaiIcs({ date: '2026-11-30', slots, label: 'X-Ops Dubai 2026' });
     const uids = calendar.match(/UID:[^\r\n]+/g) || [];
     expect(uids).toHaveLength(slots.length);
     expect(new Set(uids).size).toBe(uids.length);

@@ -9,8 +9,7 @@ export const dubaiSummitSpeakerCompanies2026 = [
     "url": "https://www.obmondo.com/",
     "logo": "https://www.obmondo.com/brand/obmondo-logo-dark.svg",
     "speakers": [
-      "dcbdeeda-0642-4650-85cd-beef78f8f83c",
-      "ad33b7c3-12ab-4b20-8618-63b713f5bb9c"
+      "dcbdeeda-0642-4650-85cd-beef78f8f83c"
     ],
     "verified": true
   },
@@ -20,18 +19,7 @@ export const dubaiSummitSpeakerCompanies2026 = [
     "url": "https://www.percona.com/",
     "logo": "https://www.percona.com/wp-content/uploads/2026/02/Logo.svg",
     "speakers": [
-      "3047a4f7-f794-49a5-85db-94e63e2af22c",
-      "4e22e857-dcd5-4479-baaf-e9d19168a425"
-    ],
-    "verified": true
-  },
-  {
-    "id": "solanica",
-    "name": "Solanica",
-    "url": "https://solanica.io/",
-    "logo": "https://solanica.io/images/brand/solanica-horizontal-color.svg",
-    "speakers": [
-      "1f3078c9-65db-4737-b166-7b6479c99588"
+      "3047a4f7-f794-49a5-85db-94e63e2af22c"
     ],
     "verified": true
   },
@@ -87,4 +75,4 @@ export const dubaiSummitSpeakerCompanies2026 = [
     "verified": false,
     "needs": "site-and-brand-unverified"
   }
-];
+]

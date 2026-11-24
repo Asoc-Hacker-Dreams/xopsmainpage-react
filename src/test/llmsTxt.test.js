@@ -3,7 +3,7 @@ import llms from '../../public/llms.txt?raw';
 import llmsFull from '../../public/llms-full.txt?raw';
 
 // public/llms*.txt are served verbatim to AI agents and agenda aggregators, so
-// their figures must match the official Dubai 2026 site. These checks pin the
+// their figures must match the official Dubai 2026 site (single day, 30 Nov 2026). These checks pin the
 // verified facts and guard against the stale claims that were removed.
 describe.each([
   ['llms.txt', llms],
@@ -17,9 +17,11 @@ describe.each([
     expect(text).toMatch(/Madrid, Spain,? and\s+Dubai, UAE/);
   });
 
-  it('states the official programme figures: 16 talks, 18 speakers', () => {
-    expect(text).toMatch(/16 talks accepted/);
-    expect(text).toMatch(/18 speakers/);
+  it('states the single-day programme figures: 10 accepted talks on 30 November at the confirmed venue', () => {
+    expect(text).toMatch(/10 accepted talks in one day/);
+    expect(text).toMatch(/30 November 2026/);
+    expect(text).toMatch(/DKP Conference Centre, Dubai Knowledge Park \(TECOM\)/);
+    expect(text).not.toMatch(/1 December|1 de diciembre|Venue to be announced/i);
   });
 
   it('does not claim all 18 speakers are confirmed (only 10 have confirmed in writing)', () => {
