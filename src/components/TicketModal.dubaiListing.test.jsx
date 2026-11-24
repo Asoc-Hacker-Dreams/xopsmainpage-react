@@ -158,6 +158,18 @@ const VENUE_DUBAI_EVENT = {
   endDate: '2026-11-29',
 };
 
+// "Complex Ops" contiene "x ops" dentro de otra palabra: no es identidad X-Ops.
+const LOOKALIKE_DUBAI_EVENT = {
+  id: 7,
+  name: 'Complex Ops Dubai Forum 2026',
+  slug: 'complex-ops-dubai-forum-2026',
+  location: 'Dubai, UAE',
+  status: 'active',
+  organizerId: 3,
+  startDate: '2026-11-27',
+  endDate: '2026-11-27',
+};
+
 describe('TicketModal · un evento de Dubái sin identidad X-Ops no se lista', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -178,6 +190,16 @@ describe('TicketModal · un evento de Dubái sin identidad X-Ops no se lista', (
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(1);
     expect(mockClient.listTicketTypes).not.toHaveBeenCalledWith(PARTNER_DUBAI_EVENT.id);
     expect(mockClient.listTicketTypes).not.toHaveBeenCalledWith(VENUE_DUBAI_EVENT.id);
+  });
+
+  it('un nombre que solo contiene "x ops" dentro de otra palabra no cuenta como X-Ops', async () => {
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT, LOOKALIKE_DUBAI_EVENT]);
+
+    await renderModal();
+
+    expect(screen.queryByText(LOOKALIKE_DUBAI_EVENT.name)).toBeNull();
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(1);
+    expect(mockClient.listTicketTypes).not.toHaveBeenCalledWith(LOOKALIKE_DUBAI_EVENT.id);
   });
 });
 

@@ -116,13 +116,11 @@ const DUBAI_ENTITLEMENT_LABELS = [
 const getEntitlementBreakdown = (tt, edition = null) => {
   const granted = Array.isArray(tt?.entitlements) ? tt.entitlements : [];
   const labels = edition === 'dubai' ? DUBAI_ENTITLEMENT_LABELS : ENTITLEMENT_LABELS;
-  return labels
-    .filter(({ code, onlyIfGranted }) => !onlyIfGranted || granted.includes(code))
-    .map(({ code, i18nKey }) => ({
-      code,
-      i18nKey,
-      included: granted.includes(code),
-    }));
+  return labels.map(({ code, i18nKey }) => ({
+    code,
+    i18nKey,
+    included: granted.includes(code),
+  }));
 };
 
 // Idioma en el que TriskelGate almacena `ticket_types.description`.
@@ -177,7 +175,8 @@ const getTicketDescription = (tt, t, language, edition = null) => {
 const TEST_EVENT_MARKERS = /\b(qa|test|privado|no comprar|sandbox|prueba)\b/i;
 // Identidad X-Ops exigida en nombre o slug (no en la ubicación): un partner o venue
 // celebrado en Dubái no es una edición X-Ops aunque la ciudad coincida.
-const XOPS_IDENTITY = /x[\s_-]?ops/i;
+// El lookbehind evita falsos positivos dentro de otra palabra ("Complex Ops").
+const XOPS_IDENTITY = /(?<![a-z0-9])x[\s_-]?ops/i;
 const isPublicXopsEvent = (e) => {
   if (e?.status !== 'active') return false;
   const evidence = [e.name, e.slug, e.location, e.city].filter(Boolean).join(' ');
