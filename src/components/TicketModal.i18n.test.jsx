@@ -117,24 +117,45 @@ describe('tierDescriptionsDubai / entitlementsDubai (TG-43)', () => {
         expect(text, tier).not.toMatch(/[23] de diciembre|[23] December/);
       }
       expect(Object.keys(lang.ticketModal.entitlementsDubai).sort())
-        .toEqual(['conference', 'legacyDay', 'summit']);
+        .toEqual(['conference', 'summit']);
     }
   });
 
-  it('Conference y VIP: jornada única 30 de noviembre (sin 1 de diciembre), sin Summit', () => {
+  it('Conference y VIP: jornada única 30 de noviembre (sin 1 de diciembre), exclusión de sesiones de liderazgo', () => {
     for (const [tier, text] of tiersOf(es).filter(([k]) => CONFERENCE_LIKE.has(k))) {
       expect(text, tier).toMatch(/30 de noviembre/);
       expect(text, tier).not.toMatch(/1 de diciembre/);
-      expect(text, tier).toMatch(/No incluye el Summit/);
+      expect(text, tier).toMatch(/No incluye sesiones de liderazgo/);
     }
     for (const [tier, text] of tiersOf(en).filter(([k]) => CONFERENCE_LIKE.has(k))) {
       expect(text, tier).toMatch(/30 November/);
       expect(text, tier).not.toMatch(/1 December/);
-      expect(text, tier).toMatch(/Does not include the 30 November Summit/);
+      expect(text, tier).toMatch(/Does not include leadership sessions/);
     }
   });
 
-  it('Summit: jornada única 30 de noviembre (Summit AM + Conference PM), con cena', () => {
+  it('ningún copy de Dubái menciona un segundo día, un martes, "legacy" ni Summit', () => {
+    for (const lang of [es, en]) {
+      const all = [
+        ...tiersOf(lang).map(([, text]) => text),
+        ...Object.values(lang.ticketModal.entitlementsDubai),
+      ];
+      for (const text of all) {
+        expect(text).not.toMatch(/1 de diciembre|1 December|martes|Tuesday/i);
+        expect(text).not.toMatch(/día 2|day 2|legacy/i);
+        expect(text).not.toMatch(/summit/i);
+      }
+    }
+  });
+
+  it('las etiquetas de entitlements de Dubái nombran la misma jornada del 30 de noviembre', () => {
+    expect(es.ticketModal.entitlementsDubai.summit).toMatch(/30 de noviembre/);
+    expect(es.ticketModal.entitlementsDubai.conference).toMatch(/30 de noviembre/);
+    expect(en.ticketModal.entitlementsDubai.summit).toMatch(/30 November/);
+    expect(en.ticketModal.entitlementsDubai.conference).toMatch(/30 November/);
+  });
+
+  it('summit (tier de Dubái): la jornada única del 30 de noviembre, con cena', () => {
     const esS = es.ticketModal.tierDescriptionsDubai.summit;
     const enS = en.ticketModal.tierDescriptionsDubai.summit;
     expect(esS).toMatch(/30 de noviembre/);
@@ -143,5 +164,15 @@ describe('tierDescriptionsDubai / entitlementsDubai (TG-43)', () => {
     expect(enS).toMatch(/30 November/);
     expect(enS).not.toMatch(/1 December/);
     expect(enS).toMatch(/dinner/);
+  });
+});
+
+// Madrid (aplazado): su copy genérico no cambia con la jornada única de Dubái.
+describe('Madrid conserva sus textos genéricos (aplazado)', () => {
+  it('Conference día 1 / día 2 y entitlements genéricos siguen igual', () => {
+    expect(es.ticketModal.entitlements.confDay1).toBe('Conference día 1 · acceso completo');
+    expect(es.ticketModal.entitlements.confDay2).toBe('Conference día 2 · acceso completo');
+    expect(en.ticketModal.entitlements.confDay1).toBe('Conference day 1 · full access');
+    expect(en.ticketModal.entitlements.confDay2).toBe('Conference day 2 · full access');
   });
 });

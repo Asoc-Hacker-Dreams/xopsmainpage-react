@@ -219,3 +219,33 @@ describe('TicketModal · orden de las entradas de Dubái', () => {
     expect(titles).toEqual(DUBAI_ORDER);
   });
 });
+
+// Copy uniforme: todo el texto renderizado de Dubái habla de la misma jornada.
+// Se mira el texto completo del body porque la cabecera (fechas del evento),
+// las tarjetas y el desglose de entitlements pintan en sitios distintos.
+describe('TicketModal · copy uniforme de la jornada única (es y en)', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
+    mockClient.listTicketTypes.mockResolvedValue([EARLY_TT, LAST_MINUTE_TT, DAILY_TT, SUPER_EARLY_TT, SUMMIT_TT, VIP_TT]);
+  });
+
+  afterEach(async () => {
+    await i18n.changeLanguage('es');
+  });
+
+  it.each([
+    ['es', /30 de noviembre/],
+    ['en', /30 November/],
+  ])('en %s: no aparece un segundo día, ni "martes", ni "legacy"; sí el 30 de noviembre', async (lang, dayPattern) => {
+    await i18n.changeLanguage(lang);
+
+    await renderModal();
+
+    const text = document.body.textContent;
+    // "December 1" es el formato que Intl da al fin de rango en inglés.
+    expect(text).not.toMatch(/1 de diciembre|1 December|December 1\b|martes|Tuesday/i);
+    expect(text).not.toMatch(/día 2|day 2|legacy/i);
+    expect(text).toMatch(dayPattern);
+  });
+});

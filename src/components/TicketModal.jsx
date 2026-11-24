@@ -102,16 +102,14 @@ const formatSaleDate = (dateStr, locale) => {
 //
 // Ahora TriskelGate expone `entitlements` por tipo de entrada (migración
 // 0007/0008), así que inclusiones y exclusiones se calculan del dato.
-// TG-43 (Opción A, 2026-11-13): en Dubái cada derecho es un DÍA concreto —
-// Summit el lunes 30 de noviembre y Conference el martes 1 de diciembre (una
-// sola jornada técnica); la entrada Summit vale los dos días. Allí no existe
-// un "día 2 de Conference", así que el desglose lo nombra por fecha y no
-// muestra CONF_D2 salvo que una entrada antigua lo tenga concedido.
-// Madrid (aplazado) conserva sus etiquetas.
+// Jornada única de Dubái (lunes 30-nov-2026): todas las etiquetas nombran ese
+// mismo día, sin una segunda fecha. SUMMIT se etiqueta como "sesiones de
+// liderazgo" (es lo que da la entrada, no un evento aparte). CONF_D2 no tiene
+// fila: no existe un "día 2" en Dubái, y si una entrada antigua lo tuviera
+// concedido, no se muestra. Madrid (aplazado) conserva sus etiquetas.
 const DUBAI_ENTITLEMENT_LABELS = [
   { code: 'SUMMIT',  i18nKey: 'ticketModal.entitlementsDubai.summit' },
   { code: 'CONF_D1', i18nKey: 'ticketModal.entitlementsDubai.conference' },
-  { code: 'CONF_D2', i18nKey: 'ticketModal.entitlementsDubai.legacyDay', onlyIfGranted: true },
   { code: 'DINNER',  i18nKey: 'ticketModal.entitlements.dinner' },
 ];
 
@@ -942,7 +940,8 @@ const TicketModal = ({ show, onHide }) => {
                           <span>
                             <BsCalendar3 className="me-1" aria-hidden="true" />
                             {formatDate(ev.startDate, i18n.language)}
-                            {ev.endDate && ev.endDate !== ev.startDate && ` — ${formatDate(ev.endDate, i18n.language)}`}
+                            {/* Dubái es una jornada única: el endDate de la API (1-dic) no se muestra. */}
+                            {ev.endDate && ev.endDate !== ev.startDate && editionFromEvent(ev, '') !== 'dubai' && ` — ${formatDate(ev.endDate, i18n.language)}`}
                           </span>
                         )}
                         {ev.location && (
