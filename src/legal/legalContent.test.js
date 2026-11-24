@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { privacyContent } from './privacyContent';
 import { termsContent } from './termsContent';
 import { noticesContent } from './noticesContent';
-import { editionFromEvent, resolveLegalEdition } from './identity';
+import { editionFromEvent, resolveLegalEdition, LEGAL_VERSION } from './identity';
 
 describe('legal coverage and jurisdiction routing', () => {
   it('contains substantive bilingual EU and UAE privacy notices', () => {
@@ -88,5 +88,13 @@ describe('legal coverage and jurisdiction routing', () => {
     expect(rights).toMatch(/They do not include leadership sessions, the speakers dinner or premium workshops/);
     expect(rights).toMatch(/The VIP pass adds the speakers dinner, but not the leadership sessions or premium workshops/);
     expect(rights).toMatch(/Summit passes already issued keep their registered rights for that same day \(leadership sessions, the Conference programme and the speakers dinner\)/);
+  });
+
+  // La versión legal se muestra al comprador en el checkout (TicketModal) y en el
+  // documento legal. Si los términos cambian materialmente y la versión no se bumpea,
+  // el comprador acepta "unas condiciones" que no son las de la versión que se le muestra.
+  it('la versión legal está actualizada y no es la anterior a los términos de Dubái', () => {
+    expect(LEGAL_VERSION).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(LEGAL_VERSION).not.toBe('2026-10-27');
   });
 });
