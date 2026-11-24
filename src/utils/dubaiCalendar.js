@@ -59,7 +59,7 @@ export const buildDubaiIcs = ({ date, slots, label, language = 'en' }) => {
       'STATUS:TENTATIVE',
       'SUMMARY:' + escapeIcs(title),
       'DESCRIPTION:' + escapeIcs(description),
-      'LOCATION:' + escapeIcs('Dubai, United Arab Emirates (venue to be announced)'),
+      'LOCATION:' + escapeIcs('DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai'),
       'URL:' + (slot.sessionId ? 'https://dubai.xopsconference.com/#talk-' + slot.sessionId : 'https://dubai.xopsconference.com/'),
       'END:VEVENT',
     );

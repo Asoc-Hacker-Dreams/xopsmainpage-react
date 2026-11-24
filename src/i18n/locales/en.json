@@ -15,7 +15,7 @@
   "hero": {
     "title": "JOIN THE X-OPS REVOLUTION!",
     "description": "The world of IT is changing. Join us at X-Ops Conference, where you will discover how the right technology and people are driving change.",
-    "date": "Madrid: postponed · Dubai: 30 Nov–1 Dec 2026",
+    "date": "Madrid: postponed · Dubai: 30 Nov 2026",
     "buyTicket": "Reserve your spot",
     "viewAgenda": "View agenda",
     "cfp": "CFP",
@@ -26,7 +26,7 @@
     "addressLine1": "Venue to be confirmed, Madrid",
     "addressLine2": "Madrid, Spain",
     "dubaiAddressLine1": "Dubai, United Arab Emirates",
-    "dubaiAddressLine2": "Venue to be confirmed",
+    "dubaiAddressLine2": "DKP Conference Centre, Dubai Knowledge Park (TECOM)",
     "contacts": "Contacts",
     "links": "Links",
     "privacyPolicy": "Privacy Policy",
@@ -37,7 +37,7 @@
     "summitCompanies": {
       "kicker": "THE SUMMIT ECOSYSTEM",
       "title": "Companies represented by our speakers",
-      "intro": "Discover the organizations where X-Ops Executive Summit Dubai 2026 speakers work or which they have founded. Brand marks link to corporate websites when reliably identifiable.",
+      "intro": "Discover the organizations where X-Ops Dubai 2026 speakers work or which they have founded. Brand marks link to corporate websites when reliably identifiable.",
       "navLabel": "Companies",
       "representedBy": "Speaker(s): {{names}}",
       "website": "Visit website",
@@ -49,17 +49,17 @@
       "lineupSummary": "X-Ops Dubai 2026 at a glance",
       "acceptedTalks": "accepted talks",
       "speakers": "speakers",
-      "days": "event days",
-      "summitLabel": "30 November · Strategy + business",
+      "days": "event day",
+      "summitLabel": "30 November · Monday · one day, one room",
       "summitTitle": "Executive Summit",
-      "summitDescription": "Eight accepted talks, a focused discussion of AI risk and platform strategy, executive boardrooms and opt-in B2B connections.",
+      "summitDescription": "Ten accepted talks on one day, in one room, with executive and technical sessions, and opt-in B2B connections at the end of the afternoon.",
       "viewSummit": "Explore Summit agenda",
-      "conferenceLabel": "1 December · Engineering + community",
-      "conferenceTitle": "Technical Conference",
-      "conferenceDescription": "Eight accepted talks with original abstracts, speaker portraits and deep technical insights into cloud, AI, security and data.",
-      "viewConference": "Explore Conference agenda",
+      "conferenceLabel": "30 November · same day",
+      "conferenceTitle": "Technical talks",
+      "conferenceDescription": "Part of the same single day: technical talks in the same room.",
+      "viewConference": "View agenda",
       "getTickets": "Explore tickets",
-      "venuePending": "Dubai venue details to be announced",
+      "venuePending": "Venue: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai",
       "connectionsKicker": "BEYOND THE STAGE",
       "connectionsTitle": "Make the conversations count",
       "connectionsIntro": "The aim is more than stage time: a focused setting to discuss technology decisions, compare real delivery experience and meet people with complementary challenges.",
@@ -77,20 +77,20 @@
           "text": "Opt-in introductions and a scheduled B2B block create room for potential partnerships. Meetings are not guaranteed."
         }
       },
-      "connectionsNotice": "Panelists, moderators, boardroom facilitators, meeting arrangements, catering and venue are still being coordinated. No executive introductions or commercial outcomes are guaranteed."
+      "connectionsNotice": "Panelists, moderators, boardroom facilitators, meeting arrangements and catering are still being coordinated. No executive introductions or commercial outcomes are guaranteed."
     },
     "dubaiSpeakers": {
       "kicker": "MEET THE SPEAKERS",
       "title": "Dubai 2026 speakers",
-      "intro": "The accepted Dubai sessions now have their original titles, times, speaker photos and professional profiles. Summit panelists and roundtable facilitators are separate, optional roles and will be announced after acceptance.",
-      "summit": "Summit speakers",
+      "intro": "The accepted Dubai sessions have their original titles, times, speaker photos and professional profiles. Panelists and roundtable facilitators are separate, optional roles and will be announced after acceptance.",
+      "summit": "Speakers",
       "conference": "Conference speakers",
       "speakerCount": "{{count}} speakers",
       "viewTalk": "View session",
       "viewBio": "Speaker biography"
     },
     "dubaiProgramme": {
-      "summitDisclaimer": "Accepted Dubai Summit talks are listed with their speakers and original durations. Timings may change. Panelists and boardroom facilitators will be announced separately once they accept those additional roles. All times GST (UTC+4).",
+      "summitDisclaimer": "Accepted talks are listed with their speakers and original durations. Timings may change. All times GST (UTC+4).",
       "facilitatorPending": "Boardroom facilitator(s) to be announced",
       "panelPending": "Panelists and moderator to be announced",
       "hostPending": "Session host to be announced",
@@ -103,11 +103,11 @@
       "talkCount_other": "{{count}} accepted talks",
       "downloadCalendar": "Add programme to calendar (.ics)",
       "timezone": "Dubai local time · GST (UTC+4)",
-      "disclaimer": "The accepted one-day Dubai Conference schedule is published with speakers and session abstracts. Timings may change. One session was submitted in Spanish; any language update will be announced. All times GST (UTC+4).",
+      "disclaimer": "The one-day Dubai programme is published with speakers and session abstracts. Timings may change. One session was submitted in Spanish; any language update will be announced. All times GST (UTC+4).",
       "listLabel": "Dubai session programme",
       "speakerPending": "Speaker(s) to be announced",
-      "conferenceTitle": "Dubai technical agenda · 1 December",
-      "conferenceIntro": "Explore the 8 accepted technical talks scheduled for Tuesday, 1 December, with speaker photographs, original titles and abstracts.",
+      "conferenceTitle": "Dubai agenda · 30 November",
+      "conferenceIntro": "Explore the 10 accepted talks of the single day, with speaker photographs, original titles and abstracts.",
       "types": {
         "talk": "Accepted talk",
         "keynote": "Opening keynote",
@@ -179,7 +179,7 @@
       },
       "agendaTbd": "To be announced",
       "agendaTitle": "Executive program",
-      "agendaSubtitle": "Eight accepted talks, expert discussions and curated B2B connections. Panel and roundtable participants will be announced separately."
+      "agendaSubtitle": "Ten accepted talks, expert discussions and curated B2B connections. Panel and roundtable participants will be announced once confirmed."
     },
     "conference": {
       "kicker": "Technical Conference",
@@ -463,12 +463,12 @@
       "summit": "The complete X-Ops experience: executive Summit, the full 2 days of Conference and the speakers dinner. Includes leadership sessions, C-level networking, all technical sessions and materials. Does not include premium workshops."
     },
     "tierDescriptionsDubai": {
-      "superEarly": "Access to the Conference on Tuesday 1 December 2026 (a single technical day). All technical sessions, networking and materials included. Exclusive price for the first attendees. Does not include the 30 November Summit, speakers dinner or premium workshops.",
-      "early": "Access to the Conference on Tuesday 1 December 2026 (a single technical day). All technical sessions, networking and materials included. Early adopter price. Does not include the 30 November Summit, speakers dinner or premium workshops.",
-      "daily": "Standard ticket at the regular price. Access to the Conference on Tuesday 1 December 2026 (a single technical day), all technical sessions, networking and materials included. Does not include the 30 November Summit, speakers dinner or premium workshops.",
-      "lastMinute": "Access to the Conference on Tuesday 1 December 2026 (a single technical day). All technical sessions, networking and materials included. Last-minute rate. Does not include the 30 November Summit, speakers dinner or premium workshops.",
-      "vip": "The Conference on Tuesday 1 December 2026 PLUS the speakers dinner. Includes all technical sessions, priority networking and VIP area. Does not include the 30 November Summit or premium workshops.",
-      "summit": "The complete X-Ops experience, valid on both days: executive Summit on Monday 30 November, the Conference on Tuesday 1 December 2026 and the speakers dinner. Includes leadership sessions, C-level networking, all technical sessions and materials. Does not include premium workshops."
+      "superEarly": "Access to the single-day X-Ops Dubai on Monday 30 November 2026 (DKP Conference Centre, TECOM). All technical sessions, networking and materials included. Exclusive price for the first attendees. Does not include the 30 November Summit, speakers dinner or premium workshops.",
+      "early": "Access to the single-day X-Ops Dubai on Monday 30 November 2026 (DKP Conference Centre, TECOM). All technical sessions, networking and materials included. Early adopter price. Does not include the 30 November Summit, speakers dinner or premium workshops.",
+      "daily": "Standard ticket at the regular price. Access to the single-day X-Ops Dubai on Monday 30 November 2026 (DKP Conference Centre, TECOM), all technical sessions, networking and materials included. Does not include the 30 November Summit, speakers dinner or premium workshops.",
+      "lastMinute": "Access to the single-day X-Ops Dubai on Monday 30 November 2026 (DKP Conference Centre, TECOM). All technical sessions, networking and materials included. Last-minute rate. Does not include the 30 November Summit, speakers dinner or premium workshops.",
+      "vip": "The single-day X-Ops Dubai on Monday 30 November 2026 PLUS the speakers dinner. Includes all technical sessions, priority networking and VIP area. Does not include the 30 November Summit or premium workshops.",
+      "summit": "The complete X-Ops experience, valid on the single day, Monday 30 November 2026: executive Summit in the morning, Conference in the afternoon and the speakers dinner. Includes leadership sessions, C-level networking, all technical sessions and materials. Does not include premium workshops."
     },
     "entitlements": {
       "confDay1": "Conference day 1 · full access",
@@ -479,7 +479,7 @@
     },
     "entitlementsDubai": {
       "summit": "X-Ops Executive Summit · Monday 30 November",
-      "conference": "X-Ops Conference · Tuesday 1 December",
+      "conference": "X-Ops Conference · Monday 30 November",
       "legacyDay": "Additional access · Monday 30 November"
     }
   },
@@ -647,29 +647,29 @@
     },
     "dubai": {
       "flag": "🇦🇪",
-      "dates": "NOV 30 · DEC 1",
+      "dates": "NOV 30",
       "year": "2026",
       "title": "X-Ops Dubai 2026",
       "city": "Dubai, UAE",
       "summit": {
         "label": "X-Ops Summit",
         "dates": "November 30",
-        "venue": "To be confirmed"
+        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai"
       },
       "conference": {
         "label": "X-Ops Conference",
-        "dates": "December 1",
-        "venue": "To be confirmed"
+        "dates": "30 November",
+        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai"
       },
-      "narrative": "The first edition in the Middle East. Dubai is the technology and financial hub of MENA. We bring the X-Ops DNA to a new continent: the same Summit + Conference format, adapted to an ecosystem where digital transformation moves at Formula 1 speed.",
+      "narrative": "The first edition in the Middle East. Dubai is the technology and financial hub of MENA. We bring the X-Ops DNA to a new continent: the Summit and Conference content condensed into one day, in one room, for an ecosystem where digital transformation moves at Formula 1 speed.",
       "badges": {
-        "format": "Summit + Conference",
+        "format": "One day: Summit + Conference",
         "edition": "First edition",
         "region": "Middle East"
       },
       "cta": {
         "summit": "View Dubai Summit",
-        "conference": "View Dubai Conference",
+        "conference": "View Dubai agenda",
         "verDubai": "View Dubai"
       }
     }
@@ -693,10 +693,10 @@
     },
     "dubai": {
       "city": "Dubai, UAE",
-      "label": "X-Ops Dubai · November 30 – December 1",
-      "name": "Venue to be confirmed",
+      "label": "X-Ops Dubai · 30 November 2026",
+      "name": "DKP Conference Centre, Dubai Knowledge Park (TECOM)",
       "address": "Dubai, United Arab Emirates",
-      "tbdNote": "The exact venue will be announced soon. Stay tuned."
+      "tbdNote": "Venue confirmed: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai. Capacity up to 90 people."
     }
   },
   "xops": {
@@ -720,7 +720,7 @@
     },
     "card2": {
       "title": "Where & When?",
-      "text": "X-Ops Madrid 2026 has been postponed; new dates have yet to be announced. X-Ops Dubai 2026 runs November 30 (Summit) and December 1 (Conference). The agenda covers automation, continuous integration, continuous delivery, monitoring and secure architectures."
+      "text": "X-Ops Madrid 2026 has been postponed; new dates have yet to be announced. X-Ops Dubai 2026 takes place on November 30 at DKP Conference Centre (TECOM), Dubai. The agenda covers automation, continuous integration, continuous delivery, monitoring and secure architectures."
     },
     "card3": {
       "title": "The Future of Work",

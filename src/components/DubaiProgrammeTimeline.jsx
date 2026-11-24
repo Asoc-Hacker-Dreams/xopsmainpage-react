@@ -9,13 +9,13 @@ const DubaiProgrammeTimeline = ({ sessions, variant = 'conference' }) => {
   const { t, i18n } = useTranslation();
   const language = i18n.language?.startsWith('es') ? 'es' : 'en';
   const isSummit = variant === 'summit';
-  const day = isSummit ? '2026-11-30' : '2026-12-01';
+  const day = '2026-11-30';
   const sessionCount = sessions.filter((slot) => slot.sessionId).length;
   const downloadAgenda = () => downloadDubaiIcs({
     date: day,
     slots: sessions,
-    label: isSummit ? 'X-Ops Executive Summit Dubai 2026' : 'X-Ops Technical Conference Dubai 2026',
-    filename: isSummit ? 'XOps-Dubai-Summit-Nov-30-2026.ics' : 'XOps-Dubai-Conference-Dec-01-2026.ics',
+    label: 'X-Ops Dubai 2026',
+    filename: 'XOps-Dubai-Nov-30-2026.ics',
     language,
   });
 

@@ -15,7 +15,7 @@ import path from 'path';
 const MADRID_START = '2026-11-19';
 const MADRID_END = '2026-11-21';
 const DUBAI_START = '2026-11-30';
-const DUBAI_END = '2026-12-01';
+const DUBAI_END = '2026-11-30';
 
 const EVENT_SCHEDULED = 'https://schema.org/EventScheduled';
 const EVENT_POSTPONED = 'https://schema.org/EventPostponed';
@@ -153,7 +153,6 @@ describe('index.html static JSON-LD — Madrid is postponed', () => {
     expect(madridEvents.length).toBeGreaterThan(0);
     madridEvents.forEach((event) => {
       expect(event.description).toMatch(/30 de noviembre/i);
-      expect(event.description).toMatch(/1 de diciembre/i);
       // "no se va a celebrar" is fine; an affirmative "se celebrará/se celebra" is not.
       expect(event.description).not.toMatch(/(?<!no se va a |no se )celebr(a|ará)\b/i);
     });
@@ -171,7 +170,7 @@ describe('index.html static JSON-LD — Madrid is postponed', () => {
     });
   });
 
-  it('leaves the Dubai event scheduled on 2026-11-30 / 2026-12-01', () => {
+  it('leaves the Dubai event scheduled on 2026-11-30 (single day)', () => {
     const { nodes } = loadIndexHtmlJsonLd();
     const dubaiEvents = nodes.filter(isDubaiEvent);
 

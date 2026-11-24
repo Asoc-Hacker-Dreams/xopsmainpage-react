@@ -3,35 +3,34 @@ import { dubaiSummitSpeakerCompanies2026 } from './dubaiSummitSpeakerCompanies20
 import { dubaiProgramme2026 } from './dubaiProgramme2026';
 import { dubaiAcceptedSessions2026, dubaiSpeakers2026 } from './dubaiAcceptedSessions2026';
 
-const ids = (list) => new Set(list);
-const speakerIds = [...new Set(dubaiProgramme2026.summit.items
+const speakerIds = new Set(dubaiProgramme2026.items
   .filter((slot) => slot.sessionId)
-  .flatMap((slot) => dubaiAcceptedSessions2026[slot.sessionId].speakers))];
+  .flatMap((slot) => dubaiAcceptedSessions2026[slot.sessionId].speakers));
 
-describe('Dubai Summit company affiliations', () => {
-  test('all nine accepted Summit speakers are represented', () => {
-    expect(dubaiSummitSpeakerCompanies2026).toHaveLength(8);
-    expect(speakerIds).toHaveLength(9);
-    const mapped = ids(dubaiSummitSpeakerCompanies2026.flatMap((company) => company.speakers));
-    expect(mapped.size).toBe(9);
-    for (const id of speakerIds) {
-      expect(mapped.has(id)).toBe(true);
-      expect(dubaiSpeakers2026[id]?.name).toBeTruthy();
+describe('Dubai company affiliations (single-day programme)', () => {
+  test('every affiliated speaker is one of the 10 speakers in the confirmed agenda', () => {
+    expect(speakerIds.size).toBe(10);
+    for (const company of dubaiSummitSpeakerCompanies2026) {
+      for (const id of company.speakers) {
+        expect(speakerIds.has(id)).toBe(true);
+        expect(dubaiSpeakers2026[id]?.name).toBeTruthy();
+      }
     }
   });
 
-  test('the same company is listed only once even when two speakers share an employer', () => {
-    expect(ids(dubaiSummitSpeakerCompanies2026.map((company) => company.id)).size).toBe(8);
-    for (const id of ['percona', 'obmondo']) {
-      const companies = dubaiSummitSpeakerCompanies2026.filter((company) => company.id === id);
-      expect(companies).toHaveLength(1);
-      expect(companies[0].speakers).toHaveLength(2);
-    }
+  test('withdrawn speakers (Peter Zaitsev, Victor Perez, Klavs Klavsen) are no longer affiliated on the page', () => {
+    const names = dubaiSummitSpeakerCompanies2026.flatMap((c) => c.speakers.map((id) => dubaiSpeakers2026[id]?.name));
+    expect(names).not.toContain('Peter Zaitsev');
+    expect(names).not.toContain('Victor Perez');
+    expect(names).not.toContain('Klavs Klavsen');
+  });
+
+  test('the same company is listed only once', () => {
+    const ids = dubaiSummitSpeakerCompanies2026.map((company) => company.id);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 
   test('uses company homepages, not invented sponsorship URLs or personal profiles', () => {
-    expect(dubaiSummitSpeakerCompanies2026.filter((company) => company.url)).toHaveLength(7);
-    expect(dubaiSummitSpeakerCompanies2026.filter((company) => company.logo)).toHaveLength(7);
     for (const company of dubaiSummitSpeakerCompanies2026) {
       expect(company.name).toBeTruthy();
       expect(company.speakers.length).toBeGreaterThanOrEqual(1);
@@ -53,7 +52,7 @@ describe('Dubai Summit company affiliations', () => {
     expect(cbit).toBeDefined();
     expect(cbit.url).toBeNull();
     expect(cbit.logo).toBeNull();
-    const hannah = speakerIds.find((id) => dubaiSpeakers2026[id]?.name === 'Hannah Suarez');
+    const hannah = [...speakerIds].find((id) => dubaiSpeakers2026[id]?.name === 'Hannah Suarez');
     expect(cbit.speakers).toContain(hannah);
   });
 });
