@@ -135,25 +135,29 @@ const DB_DESCRIPTION_LANG = 'es';
  * `ticket_types.description` existe ÚNICAMENTE en español, así que usarla tal
  * cual dejaba el copy sin traducir para el resto de idiomas — visible en la QA
  * visual: el desglose salía en inglés y la descripción seguía en castellano.
- * Afecta sobre todo a Dubai, cuyo público es anglófono.
  *
- *   - idioma español  -> la descripción de la BD (la fuente de verdad, y la
- *                        que se edita al cambiar el producto).
- *   - otro idioma     -> el texto i18n del `tierCode`.
+ *   - Dubái (cualquier idioma) -> SIEMPRE el texto i18n del `tierCode`. La BD
+ *                        todavía describe la edición de dos días (martes 1 de
+ *                        diciembre) y no hay columna traducida; cambiarla en
+ *                        la BD exigiría un despliegue, así que se ignora desde
+ *                        el frontend.
+ *   - Madrid, idioma español -> la descripción de la BD (la fuente de verdad).
+ *   - Madrid, otro idioma    -> el texto i18n del `tierCode`.
  *
  * Los textos i18n se mantienen alineados con la matriz de producto: si cambia
- * un producto hay que tocar la migración Y `tierDescriptions`. Es el coste de
- * no tener la columna traducida en base de datos.
+ * un producto hay que tocar la migración Y `tierDescriptions(Dubai)`. Es el coste
+ * de no tener la columna traducida en base de datos.
  */
 const getTicketDescription = (tt, t, language, edition = null) => {
   const isSpanish = (language || '').toLowerCase().startsWith(DB_DESCRIPTION_LANG);
-  // TG-43: Dubái tiene su propio copy (Summit 30-nov, Conference 1-dic);
-  // el genérico describe la Conference de dos días de Madrid.
+  // Dubái tiene su propio copy de jornada única; el genérico describe la
+  // Conference de dos días de Madrid.
   const baseKey = TIER_DESCRIPTION_KEY[tt?.tierCode];
   const descKey = baseKey && edition === 'dubai'
     ? baseKey.replace('ticketModal.tierDescriptions.', 'ticketModal.tierDescriptionsDubai.')
     : baseKey;
 
+  if (edition === 'dubai') return descKey ? t(descKey) : null;
   if (isSpanish) return tt?.description || (descKey ? t(descKey) : null);
 
   // Si el tier no está en el mapa (producto nuevo sin traducir todavía), se

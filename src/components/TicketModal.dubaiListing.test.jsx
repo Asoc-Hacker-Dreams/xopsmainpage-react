@@ -249,3 +249,36 @@ describe('TicketModal · copy uniforme de la jornada única (es y en)', () => {
     expect(text).toMatch(dayPattern);
   });
 });
+
+// `ticket_types.description` solo existe en español y en la BD todavía dice
+// "dos días" (martes 1 de diciembre). En Dubái no debe llegar a pantalla: el copy
+// sale siempre de la clave i18n del tierCode, en todos los idiomas.
+describe('TicketModal · la descripción de la BD no se muestra en Dubái', () => {
+  const DAILY_WITH_STALE_DB_COPY = {
+    ...DAILY_TT,
+    description: 'Entrada de dos días: Summit el lunes 30 de noviembre y Conference el martes 1 de diciembre de 2026.',
+  };
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
+    mockClient.listTicketTypes.mockResolvedValue([DAILY_WITH_STALE_DB_COPY]);
+  });
+
+  afterEach(async () => {
+    await i18n.changeLanguage('es');
+  });
+
+  it.each([
+    ['es', /Entrada estándar al precio regular/],
+    ['en', /Standard ticket at the regular price/],
+  ])('en %s se pinta el copy i18n del tierCode, no la descripción de la BD', async (lang, copyPattern) => {
+    await i18n.changeLanguage(lang);
+
+    await renderModal();
+
+    const text = document.body.textContent;
+    expect(text).not.toMatch(/Entrada de dos días|martes 1 de diciembre|Tuesday 1 December/i);
+    expect(text).toMatch(copyPattern);
+  });
+});
