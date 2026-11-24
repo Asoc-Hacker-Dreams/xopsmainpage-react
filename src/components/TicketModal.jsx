@@ -175,8 +175,9 @@ const getTicketDescription = (tt, t, language, edition = null) => {
 const TEST_EVENT_MARKERS = /\b(qa|test|privado|no comprar|sandbox|prueba)\b/i;
 // Identidad X-Ops exigida en nombre o slug (no en la ubicación): un partner o venue
 // celebrado en Dubái no es una edición X-Ops aunque la ciudad coincida.
-// El lookbehind evita falsos positivos dentro de otra palabra ("Complex Ops").
-const XOPS_IDENTITY = /(?<![a-z0-9])x[\s_-]?ops/i;
+// El lookbehind evita falsos positivos dentro de otra palabra ("Complex Ops") y el
+// lookahead evita que el token siga pegado a letras o dígitos ("XopsPartner").
+const XOPS_IDENTITY = /(?<![a-z0-9])x[\s_-]?ops(?![a-z0-9])/i;
 const isPublicXopsEvent = (e) => {
   if (e?.status !== 'active') return false;
   const evidence = [e.name, e.slug, e.location, e.city].filter(Boolean).join(' ');

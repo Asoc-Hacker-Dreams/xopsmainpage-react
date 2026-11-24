@@ -170,6 +170,19 @@ const LOOKALIKE_DUBAI_EVENT = {
   endDate: '2026-11-27',
 };
 
+// "XopsPartner" empieza por "Xops" pero es otra palabra: el token X-Ops no tiene
+// límite después de "ops", así que no es identidad X-Ops aunque esté en Dubái.
+const XOPSPARTNER_DUBAI_EVENT = {
+  id: 13,
+  name: 'XopsPartner Dubai Forum 2026',
+  slug: 'xopspartner-dubai-forum-2026',
+  location: 'Dubai, UAE',
+  status: 'active',
+  organizerId: 3,
+  startDate: '2026-11-26',
+  endDate: '2026-11-26',
+};
+
 describe('TicketModal · un evento de Dubái sin identidad X-Ops no se lista', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -200,6 +213,19 @@ describe('TicketModal · un evento de Dubái sin identidad X-Ops no se lista', (
     expect(screen.queryByText(LOOKALIKE_DUBAI_EVENT.name)).toBeNull();
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(1);
     expect(mockClient.listTicketTypes).not.toHaveBeenCalledWith(LOOKALIKE_DUBAI_EVENT.id);
+  });
+
+  it('un nombre que empieza por "Xops" seguido de letras (XopsPartner) no cuenta como X-Ops', async () => {
+    mockClient.listEvents.mockResolvedValue([DUBAI_EVENT, XOPSPARTNER_DUBAI_EVENT]);
+
+    await renderModal();
+
+    expect(screen.queryByText(XOPSPARTNER_DUBAI_EVENT.name)).toBeNull();
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(1);
+    expect(mockClient.listTicketTypes).not.toHaveBeenCalledWith(XOPSPARTNER_DUBAI_EVENT.id);
+    // El evento X-Ops real sigue listado con sus entradas.
+    expect(screen.getByRole('heading', { level: 2, name: DUBAI_EVENT.name })).toBeInTheDocument();
+    expect(mockClient.listTicketTypes).toHaveBeenCalledWith(DUBAI_EVENT.id);
   });
 });
 
