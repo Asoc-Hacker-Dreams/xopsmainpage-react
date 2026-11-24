@@ -164,6 +164,22 @@ const getTicketDescription = (tt, t, language, edition = null) => {
   return descKey ? t(descKey) : tt?.description || null;
 };
 
+// Un evento sólo se lista si es una edición pública de X-Ops identificable por
+// name+slug+location: hoy Dubái (Madrid está aplazado y no se lista).
+//
+// No basta con excluir Madrid: un evento de prueba (p. ej. "X-Ops TEST - QA
+// privado (no comprar)", que la API devuelve como `active`) no menciona ninguna
+// edición y pasaba el filtro antiguo `edition !== 'madrid'`. Por eso es una
+// lista blanca (edición identificada) más una lista negra de marcadores de
+// prueba, por si la API añade un evento de prueba que sí nombre Dubái.
+const TEST_EVENT_MARKERS = /\b(qa|test|privado|no comprar|sandbox|prueba)\b/i;
+const isPublicXopsEvent = (e) => {
+  if (e?.status !== 'active') return false;
+  const evidence = [e.name, e.slug, e.location, e.city].filter(Boolean).join(' ');
+  if (TEST_EVENT_MARKERS.test(evidence)) return false;
+  return editionFromEvent(e, '') === 'dubai';
+};
+
 /** Resolves the countdown target date the same way App.jsx resolves the active city
  *  (getCityFromHostname(window.location.hostname)). Falls back to the closer of the
  *  two known event dates when the hostname doesn't map to a single city (e.g. root domain). */
@@ -320,8 +336,7 @@ const TicketModal = ({ show, onHide }) => {
 
         const active = evList.filter(
           (e) =>
-            e.status === 'active' &&
-            editionFromEvent(e, '') !== 'madrid' &&
+            isPublicXopsEvent(e) &&
             (
               CONFIG_ORGANIZER_ID === null ||
               e.organizerId == null || // event without organizer matches any configured organizer
