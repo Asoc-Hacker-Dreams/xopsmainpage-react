@@ -99,8 +99,8 @@ export const termsContent = {
           'Odin Hermes & Danu Technology Solutions LLC (Delaware, United States) is the identified collection entity and Stripe facilitates card payments. Being a collector does not automatically establish the contractual seller, UAE establishment or tax treatment. The seller and invoice issuer must be clearly identified in the live checkout.'
         ]},
         { title: '2. Event dates, programme and entitlements', paragraphs: [
-          'The published Dubai programme has Summit on 30 November 2026 and Conference on 1 December 2026. Venues are announced as to be confirmed where applicable; please check the latest venue and any material changes before purchasing travel.',
-          'A Conference pass is valid only on Tuesday 1 December 2026 (one technical day). VIP adds the speakers dinner to the Conference day but not the executive Summit. The Summit pass is valid on both days: Summit on Monday 30 November and Conference on Tuesday 1 December, plus the speakers dinner, subject to the specific ticket description. Tickets are not valid on any other date. Premium workshops are not included unless explicitly stated.'
+          'The Dubai programme is a single-day event on Monday 30 November 2026 at Dubai Knowledge Park (DKP) Conference Centre, TECOM, Dubai. All tickets are valid only on that date. Please check the latest schedule and any material changes before purchasing travel.',
+          'Daily, Last Minute and early adopter passes include the technical programme, networking and event material. They do not include leadership sessions, the speakers dinner or premium workshops. The VIP pass adds the speakers dinner, but not the leadership sessions or premium workshops. Summit passes already issued keep their registered rights for that same day (leadership sessions, the Conference programme and the speakers dinner). No ticket is valid on any other date.'
         ]},
         { title: '3. Prices, currency, taxes and checkout', paragraphs: [
           'The selected ticket price and currency are shown before proceeding to Stripe. Applicable taxes, fees, any currency conversion and the total to be charged must be presented before payment authorisation. An AED listing alone is not proof of the applicable UAE tax treatment.',
@@ -111,7 +111,7 @@ export const termsContent = {
           'If the organiser cancels or makes a material change to the purchased service, available alternatives and refund rights will be assessed under mandatory applicable law. Attendees will be contacted through their registration email. Cancellation and dispute contact: info@xopsconference.com.'
         ]},
         { title: '5. Venue, travel and admission', paragraphs: [
-          'Event venues, schedule and participant access conditions may be updated before the event. A venue marked “to be confirmed” has not yet been finalised. Unless explicitly stated, passes do not include visas, flights, accommodation or insurance.',
+          'Schedule and participant access conditions may be updated before the event. The Dubai event takes place at DKP Conference Centre, TECOM, Dubai. Unless explicitly stated, passes do not include visas, flights, accommodation or insurance.',
           'Tickets are personalised for access-control purposes; please contact the organiser before requesting a name change. Appropriate identification may be required at entry.'
         ]},
         { title: '6. Conduct, accessibility and image rights', paragraphs: [
@@ -137,8 +137,8 @@ export const termsContent = {
           'Odin Hermes & Danu Technology Solutions LLC (Delaware, Estados Unidos) es la entidad identificada para la gestión de cobros y Stripe facilita los pagos. Su condición de recaudadora no acredita por sí sola la identidad del vendedor, establecimiento en EAU o tratamiento fiscal. El vendedor y emisor de factura deben identificarse en el checkout efectivo.'
         ]},
         { title: '2. Programa y derechos de acceso', paragraphs: [
-          'El programa publicado contempla Summit el 30 de noviembre de 2026 y Conference el 1 de diciembre de 2026. Las sedes marcadas como pendientes de confirmación aún no son definitivas; comprueba posibles cambios antes de contratar viajes.',
-          'La entrada Conference solo es válida el martes 1 de diciembre de 2026 (una jornada técnica). VIP añade la cena con ponentes a la jornada de Conference, pero no incluye el Summit. La entrada Summit es válida los dos días: Summit el lunes 30 de noviembre y Conference el martes 1 de diciembre, más la cena con ponentes, sujeto a la descripción individual del producto. Ninguna entrada es válida en otras fechas. Los talleres premium se venden aparte salvo indicación expresa.'
+          'El programa de Dubái se celebra en una única jornada el lunes 30 de noviembre de 2026 en Dubai Knowledge Park (DKP) Conference Centre, TECOM, Dubái. Todas las entradas son válidas únicamente en esa fecha. Consulta el horario vigente y posibles cambios antes de contratar viajes.',
+          'Las entradas Daily, Last Minute y early adopters dan acceso al programa técnico, al networking y al material del evento. No incluyen sesiones de liderazgo, la cena con ponentes ni talleres premium. La entrada VIP añade la cena con ponentes, pero no incluye las sesiones de liderazgo ni los talleres premium. Las entradas Summit ya emitidas conservan los derechos registrados para esa misma jornada (liderazgo, Conference y cena). Ninguna entrada es válida en otra fecha.'
         ]},
         { title: '3. Precio, moneda, impuestos y pago', paragraphs: [
           'El precio y la moneda se muestran antes de acceder a Stripe. Los impuestos, cargos, conversiones y el total exigible deben estar identificados antes de autorizar el pago. Un importe en AED no acredita por sí mismo el tratamiento fiscal que proceda en EAU.',
@@ -149,7 +149,7 @@ export const termsContent = {
           'En caso de cancelación o cambio sustancial de las prestaciones contratadas por la organización, las alternativas y devoluciones se resolverán conforme al derecho imperativo aplicable y se comunicarán al correo de registro.'
         ]},
         { title: '5. Sede, viajes y acreditación', paragraphs: [
-          'Las sedes, horarios y condiciones de acceso pueden actualizarse. Cuando un recinto figure como pendiente de confirmación, la ubicación aún no es definitiva. Salvo indicación expresa, la entrada no incluye visado, vuelos, alojamiento ni seguros.',
+          'Los horarios y las condiciones de acceso pueden actualizarse antes del evento. El evento de Dubái se celebra en DKP Conference Centre, TECOM, Dubái. Salvo indicación expresa, la entrada no incluye visado, vuelos, alojamiento ni seguros.',
           'Las entradas son nominales a efectos de control de acceso; solicita con antelación cualquier cambio de titular. Se puede solicitar identificación adecuada.'
         ]},
         { title: '6. Convivencia, accesibilidad e imagen', paragraphs: [
