@@ -102,12 +102,11 @@ const formatSaleDate = (dateStr, locale) => {
 //
 // Ahora TriskelGate expone `entitlements` por tipo de entrada (migración
 // 0007/0008), así que inclusiones y exclusiones se calculan del dato.
-// TG-43 (Opción A, 2026-11-13): en Dubái cada derecho es un DÍA concreto —
-// Summit el lunes 30 de noviembre y Conference el martes 1 de diciembre (una
-// sola jornada técnica); la entrada Summit vale los dos días. Allí no existe
-// un "día 2 de Conference", así que el desglose lo nombra por fecha y no
-// muestra CONF_D2 salvo que una entrada antigua lo tenga concedido.
-// Madrid (aplazado) conserva sus etiquetas.
+// Jornada única de Dubái (lunes 30-nov-2026): todas las etiquetas nombran ese
+// mismo día, sin una segunda fecha. SUMMIT se etiqueta como "sesiones de
+// liderazgo" (es lo que da la entrada, no un evento aparte). CONF_D2 no tiene
+// fila: no existe un "día 2" en Dubái, y si una entrada antigua lo tuviera
+// concedido, no se muestra. Madrid (aplazado) conserva sus etiquetas.
 const DUBAI_ENTITLEMENT_LABELS = [
   { code: 'SUMMIT',  i18nKey: 'ticketModal.entitlementsDubai.summit' },
   { code: 'CONF_D1', i18nKey: 'ticketModal.entitlementsDubai.conference' },
@@ -136,18 +135,23 @@ const DB_DESCRIPTION_LANG = 'es';
  * `ticket_types.description` existe ÚNICAMENTE en español, así que usarla tal
  * cual dejaba el copy sin traducir para el resto de idiomas — visible en la QA
  * visual: el desglose salía en inglés y la descripción seguía en castellano.
- * Afecta sobre todo a Dubai, cuyo público es anglófono.
  *
- *   - idioma español  -> la descripción de la BD (la fuente de verdad, y la
- *                        que se edita al cambiar el producto).
- *   - otro idioma     -> el texto i18n del `tierCode`.
+ *   - Dubái (cualquier idioma) -> SIEMPRE el texto i18n del `tierCode`. La BD
+ *                        todavía describe la edición de dos días (martes 1 de
+ *                        diciembre) y no hay columna traducida; cambiarla en
+ *                        la BD exigiría un despliegue, así que se ignora desde
+ *                        el frontend.
+ *   - Madrid, idioma español -> la descripción de la BD (la fuente de verdad).
+ *   - Madrid, otro idioma    -> el texto i18n del `tierCode`.
  *
  * Los textos i18n se mantienen alineados con la matriz de producto: si cambia
- * un producto hay que tocar la migración Y `tierDescriptions`. Es el coste de
- * no tener la columna traducida en base de datos.
+ * un producto hay que tocar la migración Y `tierDescriptions(Dubai)`. Es el coste
+ * de no tener la columna traducida en base de datos.
  */
 const getTicketDescription = (tt, t, language, edition = null) => {
   const isSpanish = (language || '').toLowerCase().startsWith(DB_DESCRIPTION_LANG);
+  // Dubái tiene su propio copy de jornada única; el genérico describe la
+  // Conference de dos días de Madrid.
   const baseKey = TIER_DESCRIPTION_KEY[tt?.tierCode];
   // Dubái usa una clave propia nombrada como la entrada (no "daily").
   const DUBAI_DESC_KEY = { DAILY: 'ticketModal.tierDescriptionsDubai.general' };
@@ -163,6 +167,46 @@ const getTicketDescription = (tt, t, language, edition = null) => {
   // dejar la tarjeta sin describir.
   return descKey ? t(descKey) : tt?.description || null;
 };
+
+// Un evento sólo se lista si es una edición pública de X-Ops identificable por
+// name+slug+location: hoy Dubái (Madrid está aplazado y no se lista).
+//
+// No basta con excluir Madrid: un evento de prueba (p. ej. "X-Ops TEST - QA
+// privado (no comprar)", que la API devuelve como `active`) no menciona ninguna
+// edición y pasaba el filtro antiguo `edition !== 'madrid'`. Por eso es una
+// lista blanca (edición identificada) más una lista negra de marcadores de
+// prueba, por si la API añade un evento de prueba que sí nombre Dubái.
+const TEST_EVENT_MARKERS = /\b(qa|test|privado|no comprar|sandbox|prueba)\b/i;
+// Identidad X-Ops exigida en nombre o slug (no en la ubicación): un partner o venue
+// celebrado en Dubái no es una edición X-Ops aunque la ciudad coincida.
+const XOPS_IDENTITY = /\bx[\s_-]?ops\b/i;
+const isPublicXopsEvent = (e) => {
+  if (e?.status !== 'active') return false;
+  const evidence = [e.name, e.slug, e.location, e.city].filter(Boolean).join(' ');
+  if (TEST_EVENT_MARKERS.test(evidence)) return false;
+  if (!XOPS_IDENTITY.test([e.name, e.slug].filter(Boolean).join(' '))) return false;
+  return editionFromEvent(e, '') === 'dubai';
+};
+
+// Jornada única (Dubái, lunes 30-nov): Summit y Conference son el mismo día, así
+// que la tarjeta Summit no se pinta. Es un filtro de PRESENTACIÓN: el tipo sigue
+// activo en TriskelGate y sus titulares (ya vendido) entran el 30-nov igual; no
+// se desactiva ni se borra nada en la API ni en la base de datos.
+// Madrid no se toca (no lista eventos, ver isPublicXopsEvent).
+const isHiddenInEdition = (tt, edition) =>
+  edition === 'dubai' && (tt?.tierCode === 'SUMMIT' || tt?.productCode === 'SUMMIT');
+
+// Orden de producto en Dubái: Daily → Last Minute → VIP, y los early adopters
+// (ya agotados o cerrados) al final. Se decide por `tierCode` y no por
+// `displayOrder` ni por el orden de llegada de la API, que no ordena nada hoy.
+// Un tierCode desconocido cae justo antes de los early adopters, para que estos
+// sigan siendo siempre los últimos.
+const DUBAI_TIER_RANK = { DAILY: 0, LAST_MINUTE: 1, VIP: 2, EARLY: 4, SUPER_EARLY: 5 };
+const DUBAI_UNKNOWN_TIER_RANK = 3;
+const dubaiTierRank = (tt) => DUBAI_TIER_RANK[tt?.tierCode] ?? DUBAI_UNKNOWN_TIER_RANK;
+// Array.prototype.sort es estable: entradas con el mismo rango conservan su orden.
+const sortTicketTypesForEdition = (types, edition) =>
+  edition === 'dubai' ? [...types].sort((a, b) => dubaiTierRank(a) - dubaiTierRank(b)) : types;
 
 /** Resolves the countdown target date the same way App.jsx resolves the active city
  *  (getCityFromHostname(window.location.hostname)). Falls back to the closer of the
@@ -320,8 +364,7 @@ const TicketModal = ({ show, onHide }) => {
 
         const active = evList.filter(
           (e) =>
-            e.status === 'active' &&
-            editionFromEvent(e, '') !== 'madrid' &&
+            isPublicXopsEvent(e) &&
             (
               CONFIG_ORGANIZER_ID === null ||
               e.organizerId == null || // event without organizer matches any configured organizer
@@ -338,9 +381,15 @@ const TicketModal = ({ show, onHide }) => {
           sorted.map(async (ev) => {
             try {
               const types = await triskelGateClient.listTicketTypes(ev.id);
+              const edition = editionFromEvent(ev, '');
               return {
                 ...ev,
-                ticketTypes: Array.isArray(types) ? types.filter((t) => t.isActive !== false) : [],
+                ticketTypes: Array.isArray(types)
+                  ? sortTicketTypesForEdition(
+                      types.filter((t) => t.isActive !== false && !isHiddenInEdition(t, edition)),
+                      edition,
+                    )
+                  : [],
               };
             } catch {
               return { ...ev, ticketTypes: [] };
@@ -901,7 +950,8 @@ const TicketModal = ({ show, onHide }) => {
                           <span>
                             <BsCalendar3 className="me-1" aria-hidden="true" />
                             {formatDate(ev.startDate, i18n.language)}
-                            {ev.endDate && ev.endDate !== ev.startDate && ` — ${formatDate(ev.endDate, i18n.language)}`}
+                            {/* Dubái es una jornada única: el endDate de la API (1-dic) no se muestra. */}
+                            {ev.endDate && ev.endDate !== ev.startDate && editionFromEvent(ev, '') !== 'dubai' && ` — ${formatDate(ev.endDate, i18n.language)}`}
                           </span>
                         )}
                         {ev.location && (
