@@ -66,7 +66,15 @@ describe('Dubai 2026 single-day programme', () => {
     expect(jay.role).toBe('VP of Engineering & Technology, RankRabbitAI');
     expect(jay.linkedIn).toBe('https://www.linkedin.com/in/jayy-p/');
     expect(jay.photo).toBe('/speakers/jay-prajapat-profile.png');
-    expect(jay.bio).toBeTruthy();
+    // La bio se compara COMPLETA contra la que remitio el ponente por correo el 21-nov-2026
+    // (noreply@rankrabbit.ai, 06:58Z, "Speaker Biography"). Comparar solo que no este vacia
+    // dejaria pasar una bio inventada o truncada.
+    expect(jay.bio).toBe(
+      'Jay Prajapat is a technology leader and engineer with 15 years of experience taking software products from concept to MVP and scaling them into production-ready platforms.\n\n' +
+      'At RankRabbitAI, Jay leads engineering initiatives focused on building AI-powered applications and production-grade agentic AI systems. His current interests and contributions include agentic AI architectures, developing intelligent agents using Google\'s Agent Development Kit (ADK), and advancing AI evaluation practices to improve agent reliability, quality, observability, and performance. He is also engaged with the broader AI ecosystem through contributions and involvement with the Agentic AI Foundation (AAIF).\n\n' +
+      'His engineering philosophy is simple: the right boundaries matter more than the right buzzwords, and a system you cannot observe is a system you cannot trust.\n\n' +
+      'Jay is a Certified SAFe Practitioner, an active mentor to fellow engineers, and is based in Ahmedabad, India.'
+    );
     // 'Beyond RAG' (13:20-14:10) es suya y solo suya: Hastimal y Harsh ya no figuran
     const sesion=dubaiAcceptedSessions2026['1343214'];
     expect(sesion.speakers).toHaveLength(1);
