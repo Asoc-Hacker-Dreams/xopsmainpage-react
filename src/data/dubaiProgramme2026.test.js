@@ -23,9 +23,9 @@ describe('Dubai 2026 single-day programme', () => {
   });
 
   test('10 accepted talks, unique, all present in the session dataset', () => {
-    expect(talks).toHaveLength(10);
+    expect(talks).toHaveLength(11);
     const ids = talks.map((x) => x.sessionId);
-    expect(new Set(ids).size).toBe(10);
+    expect(new Set(ids).size).toBe(11);
     expect([...ids].sort()).toEqual(Object.keys(dubaiAcceptedSessions2026).sort());
   });
 
@@ -56,6 +56,7 @@ describe('Dubai 2026 single-day programme', () => {
       '1345297': ['14:10', '14:40'], // Rishi Mondal
       '1317552': ['14:40', '15:10'], // Sonia Valeja
       '1289422': ['15:25', '16:15'], // David Padilla (solo)
+      '1322277': ['16:45', '17:15'], // Sergei Pronin (Solanica) — confirmado por escrito el 25-nov
     });
   });
 
@@ -80,5 +81,56 @@ describe('Dubai 2026 single-day programme', () => {
 
   test('no two-day or Conference-day wording remains in the programme data', () => {
     expect(JSON.stringify(dubaiProgramme2026)).not.toMatch(/1 de diciembre|1 December|2026-12-01|Conference day/i);
+  });
+});
+
+// REGRESION (25-nov-2026): al pasar a jornada unica se perdio la sesion de Sergey Pronin
+// (Solanica) de la agenda publica. El ponente habia confirmado por escrito que habla y pidio
+// que apareciese; nadie se dio cuenta de que su sesion no estaba. Este test ata la agenda a los
+// ponentes que TIENEN ENTRADA EMITIDA: si un ponente con ticket no aparece en la agenda, falla.
+describe('todo ponente con entrada emitida aparece en la agenda', () => {
+  it('cada ponente con entrada emitida tiene su sesion en la agenda publica', () => {
+    // PONENTES con entrada emitida en el evento 2 (verificado en la BD el 25-nov-2026).
+    const conEntrada = [
+      ['Sergei Pronin', '1322277'],
+      ['Ashish Jaiswal', '1315380'],
+      ['Hannah Suarez', '1321418'],
+      ['Jay Prajapat', '1343214'],
+      ['Rishi Mondal', '1345297'],
+      ['Sonia Valeja', '1317552'],
+      ['Valeria Bogatyreva', '1319799'],
+      ['Harmeet Singh', '1318615'],
+      ['Ravindra Verma', '1339445'],
+      ['Daria Kasatkina', '1341342'],
+    ];
+    const enAgenda = new Set(
+      dubaiProgramme2026.items.map((s) => s.sessionId).filter(Boolean),
+    );
+    for (const [nombre, sessionId] of conEntrada) {
+      expect(enAgenda.has(sessionId), `${nombre} (${sessionId}) no esta en la agenda`).toBe(true);
+      const sesion = dubaiAcceptedSessions2026[sessionId];
+      expect(sesion, `no existe la sesion ${sessionId} de ${nombre}`).toBeTruthy();
+      // Y el ponente tiene que estar en la sesion.
+      expect(sesion.speakers.length).toBeGreaterThan(0);
+      const ficha = dubaiSpeakers2026[sesion.speakers[0]];
+      expect(ficha?.name, `la sesion ${sessionId} no tiene ficha de ponente`).toBeTruthy();
+    }
+  });
+
+  it('la agenda encadena los slots sin huecos ni solapes', () => {
+    const min = (hhmm) => {
+      const [h, m] = hhmm.split(':').map(Number);
+      return h * 60 + m;
+    };
+    let prev = null;
+    for (const item of dubaiProgramme2026.items) {
+      if (prev) {
+        expect(min(item.start), `hueco antes de ${item.start}`).toBeGreaterThanOrEqual(min(prev.end));
+      }
+      prev = item;
+    }
+    // La jornada no pasa de la ventana de la sede (09:00-18:00).
+    expect(min(dubaiProgramme2026.items[0].start)).toBeGreaterThanOrEqual(min('09:00'));
+    expect(min(prev.end)).toBeLessThanOrEqual(min('18:00'));
   });
 });

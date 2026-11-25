@@ -1,6 +1,9 @@
 // X-Ops Dubai 2026: jornada única, lunes 30 de noviembre de 2026.
 // Sede: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai. Una sala, aforo hasta 90 personas.
-// Fuente de verdad del horario: xops/agenda_jornada_unica_dubai.md (Antonio, 23–24 nov 2026).
+// Fuente de verdad del horario: xops/agenda_jornada_unica_dubai.md (Antonio, 23-24 nov 2026).
+// Sergei Pronin (Solanica) se incorporo el 25-nov: confirmo por escrito que habla ('Will be there')
+// y pidio que apareciese en la agenda. Su slot es 16:45-17:15, el mismo que le confirmaramos
+// por email; el networking B2B se acorta a 17:15-17:30.
 // Títulos, descripciones, duraciones e idiomas originales: dubaiAcceptedSessions2026.js.
 export const dubaiVenue = 'DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai';
 
@@ -28,11 +31,12 @@ export const dubaiProgramme2026 = {
     { "start": "15:10", "end": "15:25", "type": "networking", "topic": { "en": "Coffee break", "es": "Pausa para café" } },
     { "start": "15:25", "end": "16:15", "type": "talk", "sessionId": "1289422" },
     { "start": "16:15", "end": "16:45", "type": "presentation", "topic": { "en": "Daedoryx", "es": "Daedoryx" }, "details": { "en": "Daedoryx presentation by Antonio Juanilla.", "es": "Presentación de Daedoryx a cargo de Antonio Juanilla." } },
-    { "start": "16:45", "end": "17:30", "type": "networking", "topic": { "en": "Curated B2B networking", "es": "Networking B2B dirigido" }, "details": { "en": "Optional matchmaking, subject to participant opt-in.", "es": "Networking dirigido opcional con participación voluntaria." } },
+    { "start": "16:45", "end": "17:15", "type": "talk", "sessionId": "1322277" },
+    { "start": "17:15", "end": "17:30", "type": "networking", "topic": { "en": "Curated B2B networking", "es": "Networking B2B dirigido" }, "details": { "en": "Optional matchmaking, subject to participant opt-in.", "es": "Networking dirigido opcional con participación voluntaria." } },
     { "start": "17:30", "end": "17:45", "type": "closing", "topic": { "en": "Closing", "es": "Clausura" } }
   ],
   "disclaimer": {
-    "en": "Ten accepted talks on one day, in one room (up to 90 attendees). Session times may change. All times GST (UTC+4).",
-    "es": "Diez charlas aceptadas en una única jornada, en una sala (hasta 90 asistentes). Los horarios pueden cambiar. Horarios GST (UTC+4)."
+    "en": "Eleven accepted talks on one day, in one room (up to 90 attendees). Session times may change. All times GST (UTC+4).",
+    "es": "Once charlas aceptadas en una única jornada, en una sala (hasta 90 asistentes). Los horarios pueden cambiar. Horarios GST (UTC+4)."
   }
 };

@@ -80,6 +80,17 @@ export const dubaiAcceptedSessions2026 = {
     ],
     "sourceTrack": "Conference"
   },
+  "1322277": {
+    "id": "1322277",
+    "title": "The Death of the DBA “Third Pedal”: Automating Databases on Kubernetes",
+    "description": "Databases are often the last manually operated part of modern infrastructure. While compute, networking, and deployment have become automated, data platforms still rely heavily on human intervention.\nIn this talk, we explore how Kubernetes and open source tooling are changing that. We’ll break down practical patterns for automating database operations—provisioning, scaling, failover, and maintenance—using operators and cloud-native design principles.\nWe’ll also examine where automation works well today, where it still falls short, and what role AI may realistically play in reducing operational toil.\nYou’ll leave with a clear understanding of how to reduce manual database management and what it takes to move toward a more self-driving data platform.",
+    "language": "English",
+    "durationMinutes": 30,
+    "speakers": [
+      "1f3078c9-65db-4737-b166-7b6479c99588"
+    ],
+    "sourceTrack": "Summit"
+  },
   "1345297": {
     "id": "1345297",
     "title": "Agents Are the New Containers: Packaging AI Agents and Their Guardrails as OCI Kits",
@@ -116,6 +127,15 @@ export const dubaiAcceptedSessions2026 = {
 };
 
 export const dubaiSpeakers2026 = {
+  "1f3078c9-65db-4737-b166-7b6479c99588": {
+    "id": "1f3078c9-65db-4737-b166-7b6479c99588",
+    "name": "Sergei Pronin",
+    "role": "Founder at Solanica",
+    "photo": "https://cdn.sessionize.com/image/7aa8-400o400o1-h2VpFps5yMUgYPjWZpoh85.png",
+    "linkedIn": "https://www.linkedin.com/in/sergeypronin/",
+    "sessionizeProfile": null,
+    "bio": "Sergey is a product leader focusing on delivering robust open-source solutions. After having consistently contributed to the growth of Percona and its product open source culture as a VP of Product, he is now leading the Everest open source database platform. Digital nomad, who enjoys spreading the word about data on Kubernetes. He loves playing tennis and hockey, but his major passions are his family, three kids and a dog."
+  },
   "4cc63fd4-a20e-4d0f-b29f-7cc04d62efdc": {
     "id": "4cc63fd4-a20e-4d0f-b29f-7cc04d62efdc",
     "name": "Rishi Mondal",

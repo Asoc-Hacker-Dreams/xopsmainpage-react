@@ -8,8 +8,8 @@ const speakerIds = new Set(dubaiProgramme2026.items
   .flatMap((slot) => dubaiAcceptedSessions2026[slot.sessionId].speakers));
 
 describe('Dubai company affiliations (single-day programme)', () => {
-  test('every affiliated speaker is one of the 10 speakers in the confirmed agenda', () => {
-    expect(speakerIds.size).toBe(10);
+  test('every affiliated speaker is one of the 11 speakers in the confirmed agenda', () => {
+    expect(speakerIds.size).toBe(11);
     for (const company of dubaiSummitSpeakerCompanies2026) {
       for (const id of company.speakers) {
         expect(speakerIds.has(id)).toBe(true);

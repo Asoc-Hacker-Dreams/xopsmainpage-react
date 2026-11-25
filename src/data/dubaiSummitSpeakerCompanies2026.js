@@ -14,6 +14,16 @@ export const dubaiSummitSpeakerCompanies2026 = [
     "verified": true
   },
   {
+    "id": "solanica",
+    "name": "Solanica",
+    "url": "https://solanica.io/",
+    "logo": "https://solanica.io/favicon.ico",
+    "speakers": [
+      "1f3078c9-65db-4737-b166-7b6479c99588"
+    ],
+    "verified": true
+  },
+  {
     "id": "percona",
     "name": "Percona",
     "url": "https://www.percona.com/",
