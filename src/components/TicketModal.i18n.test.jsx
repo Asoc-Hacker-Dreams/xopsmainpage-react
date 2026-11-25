@@ -131,3 +131,26 @@ describe('tierDescriptionsDubai / entitlementsDubai (una sola entrada)', () => {
     }
   });
 });
+
+// El botón de reserva compone 'Reservar Entrada' + el nombre del tipo. Con el nombre
+// 'Entrada General' eso daba 'Reservar Entrada Entrada General' (duplicado). La entrada
+// general es la ÚNICA de Dubái, así que el nombre ya lo dice todo y no hay que repetirlo.
+describe('botón de reserva con la entrada general', () => {
+  it('no duplica "Entrada" en el texto del botón', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+    // El caso especial debe existir y cubrir exactamente el nombre de la entrada general.
+    expect(src).toContain("tt.name === 'Entrada General'");
+    // Y la concatenación que producía el duplicado no debe quedar incondicional.
+    const condicional = src.indexOf("tt.name === 'Entrada General'");
+    const concatenacion = src.indexOf(
+      "`${t('ticketModal.checkout.title')} ${tt.name}`",
+    );
+    expect(condicional).toBeGreaterThan(-1);
+    // La concatenación sigue existiendo, pero SOLO como rama alternativa del ternario.
+    expect(concatenacion).toBeGreaterThan(condicional);
+    expect(src.slice(condicional, concatenacion)).toContain('?');
+  });
+});

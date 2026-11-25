@@ -1070,7 +1070,9 @@ const TicketModal = ({ show, onHide }) => {
                                 disabled={!onSale}
                               >
                                 {onSale
-                                  ? `${t('ticketModal.checkout.title')} ${tt.name}`
+                                  ? (tt.name === 'Entrada General'
+                                      ? t('ticketModal.checkout.title')
+                                      : `${t('ticketModal.checkout.title')} ${tt.name}`)
                                   : saleOpensOn
                                     ? t('ticketModal.saleOpensOn', { date: saleOpensOn })
                                     : t('ticketModal.saleClosed')}
