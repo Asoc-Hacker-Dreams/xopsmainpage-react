@@ -128,13 +128,17 @@ const CityEventPage = ({ city }) => {
         <div className="container city-hero__content">
           <p className="city-eyebrow"><span>{event.flag}</span> X-Ops 2026</p>
           <h1 id={`${city}-title`}>{event.city}</h1>
-          <p className="city-hero__statement">{t('cityEvent.hero.statement')}</p>
+          <p className="city-hero__statement">
+            {isMadrid ? t('cityEvent.hero.statement') : t('cityEvent.hero.dubaiStatement')}
+          </p>
           <div className="city-hero__facts" aria-label={t('cityEvent.hero.facts')}>
             <span><BsCalendar3 aria-hidden="true" /> {event.dateRange}</span>
             <span><BsGeoAlt aria-hidden="true" /> {event.country}</span>
           </div>
           <nav className="city-hero__nav" aria-label={t('cityEvent.hero.navLabel', { city: event.city })}>
-            <a href="#summit">{t('cityEvent.hero.navSummit')}</a>
+            <a href="#summit">
+              {isMadrid ? t('cityEvent.hero.navSummit') : t('cityEvent.hero.dubaiNavSummit')}
+            </a>
             <a href="#agenda">{t('cityEvent.hero.navAgenda')}</a>
             <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>
             <a href="#empresas-summit">{t('cityEvent.summitCompanies.navLabel')}</a>

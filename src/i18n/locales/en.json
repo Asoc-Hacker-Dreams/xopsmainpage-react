@@ -135,7 +135,9 @@
       "navSummit": "Executive Summit",
       "navConference": "Technical Conference",
       "navAgenda": "Agenda",
-      "navSpeakers": "Speakers"
+      "navSpeakers": "Speakers",
+      "dubaiStatement": "One city. One day. One technology ecosystem.",
+      "dubaiNavSummit": "Programme"
     },
     "program": {
       "kicker": "The {{city}} program",
@@ -655,12 +657,14 @@
       "summit": {
         "label": "X-Ops Summit",
         "dates": "November 30",
-        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai"
+        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai",
+        "dubaiLabel": "X-Ops Dubai"
       },
       "conference": {
         "label": "X-Ops Conference",
         "dates": "30 November",
-        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai"
+        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai",
+        "dubaiLabel": "X-Ops Dubai"
       },
       "narrative": "The first edition in the Middle East. Dubai is the technology and financial hub of MENA. We bring the X-Ops DNA to a new continent: the Summit and Conference content condensed into one day, in one room, for an ecosystem where digital transformation moves at Formula 1 speed.",
       "badges": {
@@ -671,7 +675,9 @@
       "cta": {
         "summit": "View Dubai Summit",
         "conference": "View Dubai agenda",
-        "verDubai": "View Dubai"
+        "verDubai": "View Dubai",
+        "dubaiSummit": "See Dubai",
+        "dubaiConference": "See Dubai"
       }
     }
   },

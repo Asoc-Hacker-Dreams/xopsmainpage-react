@@ -235,3 +235,32 @@ describe('coherencia entre la tarjeta y las condiciones de compra', () => {
     expect(en).not.toMatch(/It includes all technical sessions, leadership sessions/);
   });
 });
+
+// La portada y la página de ciudad no pueden seguir presentando Dubái como dos
+// productos (Summit + Conference) cuando solo hay una jornada y una entrada.
+describe('la portada y la página de ciudad de Dubái no muestran dos productos', () => {
+  it('Dubái tiene copy propio de una sola jornada en ES y EN', () => {
+    for (const lang of [es, en]) {
+      expect(lang.cityEvent.hero.dubaiStatement, 'dubaiStatement').toBeTruthy();
+      expect(lang.cityEvent.hero.dubaiStatement).not.toMatch(/dos experiencias|two experiences/i);
+      expect(lang.cityEvent.hero.dubaiNavSummit, 'dubaiNavSummit').toBeTruthy();
+      const dubai = lang.editions.dubai;
+      expect(dubai.summit.dubaiLabel, 'summit.dubaiLabel').toBeTruthy();
+      expect(dubai.conference.dubaiLabel, 'conference.dubaiLabel').toBeTruthy();
+      // El badge no debe anunciar dos productos.
+      expect(dubai.badges.format).not.toMatch(/Summit \+ Conference/);
+      expect(dubai.badges.format).not.toMatch(/One day: Summit/);
+    }
+  });
+
+  it('el componente CityCard sabe pintar una sola sede (singleVenue)', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'EditionsSection.jsx'), 'utf8');
+    expect(src).toMatch(/singleVenue = false/);
+    expect(src).toMatch(/\{!singleVenue && \(/);
+    // Y la tarjeta de Dubái lo activa.
+    expect(src).toMatch(/singleVenue\s*\n/);
+  });
+});
