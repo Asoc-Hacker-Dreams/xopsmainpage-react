@@ -111,7 +111,6 @@ const formatSaleDate = (dateStr, locale) => {
 const DUBAI_ENTITLEMENT_LABELS = [
   { code: 'SUMMIT',  i18nKey: 'ticketModal.entitlementsDubai.summit' },
   { code: 'CONF_D1', i18nKey: 'ticketModal.entitlementsDubai.conference' },
-  { code: 'CONF_D2', i18nKey: 'ticketModal.entitlementsDubai.legacyDay', onlyIfGranted: true },
   { code: 'DINNER',  i18nKey: 'ticketModal.entitlements.dinner' },
 ];
 

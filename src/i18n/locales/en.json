@@ -473,9 +473,8 @@
       "workshops": "Premium workshops (sold separately)"
     },
     "entitlementsDubai": {
-      "summit": "X-Ops Executive Summit · Monday 30 November",
-      "conference": "X-Ops Conference · Monday 30 November",
-      "legacyDay": "Additional access · Monday 30 November"
+      "summit": "Leadership sessions · Monday 30 November",
+      "conference": "Technical day · Monday 30 November"
     }
   },
   "tickets": {
