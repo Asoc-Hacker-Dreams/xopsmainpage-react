@@ -141,6 +141,13 @@
       "kicker": "El programa de {{city}}",
       "title": "Dos formatos diseñados para públicos distintos",
       "subtitle": "Summit y Conference comparten ciudad y visión, pero conservan su propósito, audiencia y ritmo.",
+      "dubaiTitle": "Una jornada, una comunidad",
+      "dubaiSubtitle": "X-Ops Dubai 2026 es una jornada única: sesiones técnicas, sesiones de liderazgo y networking en el mismo día, para quienes construyen y para quienes deciden.",
+      "dubaiTrack": {
+        "h3": "Práctica, liderazgo y networking en la misma jornada",
+        "text": "Una jornada con charlas técnicas sobre IA en producción, plataforma y seguridad, sesiones de liderazgo y tiempo de networking para la comunidad.",
+        "cta": "Ver la agenda"
+      },
       "summit": {
         "h3": "Liderazgo, estrategia y transformación",
         "text": "Una jornada ejecutiva para CTOs, CISOs y Decision Makers que buscan conversación estratégica y networking de alto nivel.",
@@ -708,7 +715,7 @@
     },
     "card2": {
       "title": "¿Dónde y Cuándo?",
-      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 es una jornada única el 30 de noviembre de 2026 (DKP Conference Centre, TECOM): Summit ejecutivo por la mañana y Conference por la tarde. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 es una jornada única el 30 de noviembre de 2026 (DKP Conference Centre, TECOM): sesiones técnicas y de liderazgo, y networking, todo el mismo día. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
     },
     "card3": {
       "title": "El Futuro del Trabajo",

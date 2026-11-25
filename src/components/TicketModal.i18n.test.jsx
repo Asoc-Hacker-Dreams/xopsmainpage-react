@@ -154,3 +154,62 @@ describe('botón de reserva con la entrada general', () => {
     expect(src.slice(condicional, concatenacion)).toContain('?');
   });
 });
+
+// Rondas de revisión (Codex, 25-nov-2026): con una sola entrada, el copy de las CONDICIONES DE
+// COMPRA y el de la PÁGINA DE LA CIUDAD no pueden seguir hablando de dos productos (Summit el
+// 30-nov y Conference el 1-dic). Además el filtro de identidad tiene que admitir slugs con
+// guion bajo (en JS `\w` incluye `_`, así que `\b` no separa después de un guion bajo).
+describe('una sola jornada en Dubái (condiciones y copy de ciudad)', () => {
+  it('las condiciones de compra de Dubái no anuncian un segundo día ni dos productos', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, '..', 'legal', 'termsContent.js'), 'utf8');
+    const dubai = src.split("dubai: {")[1] ?? '';
+    for (const viejo of [
+      'Conference on 1 December 2026',
+      'Tuesday 1 December 2026',
+      'Conference el 1 de diciembre',
+      'martes 1 de diciembre',
+      'on both days',
+      'los dos días',
+    ]) {
+      expect(dubai, viejo).not.toContain(viejo);
+    }
+    // Y sí debe decir la jornada única y conservar los derechos ya adquiridos.
+    expect(dubai).toContain('Monday 30 November 2026');
+    expect(dubai).toContain('lunes 30 de noviembre de 2026');
+    expect(dubai).toMatch(/keep the rights registered|Tickets already issued/);
+    expect(dubai).toMatch(/conservan los derechos|ya emitidas/);
+  });
+
+  it('el copy propio de Dubái existe en ES y EN y Madrid conserva el suyo', () => {
+    for (const lang of [es, en]) {
+      const p = lang.cityEvent.program;
+      expect(p.dubaiTitle, 'dubaiTitle').toBeTruthy();
+      expect(p.dubaiSubtitle, 'dubaiSubtitle').toBeTruthy();
+      expect(p.dubaiTrack.h3, 'dubaiTrack.h3').toBeTruthy();
+      expect(p.dubaiTrack.text, 'dubaiTrack.text').toBeTruthy();
+      expect(p.dubaiTrack.cta, 'dubaiTrack.cta').toBeTruthy();
+      // El copy de Madrid no se toca.
+      expect(p.title).toMatch(/Dos formatos|Two formats/);
+      expect(p.summit.h3).toBeTruthy();
+    }
+  });
+
+  it('el filtro de identidad acepta slugs con guion bajo pero no XopsPartner', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+    const m = src.match(/const XOPS_IDENTITY = (\/.*?\/i);/);
+    expect(m, 'no se encuentra XOPS_IDENTITY').toBeTruthy();
+    const re = new RegExp(m[1].replace(/^\/|\/[a-z]*$/g, ''), 'i');
+    for (const ok of ['xops_dubai_2026', 'x_ops_dubai_2026', 'xops-dubai-2026', 'X-Ops Conference']) {
+      expect(re.test(ok), ok).toBe(true);
+    }
+    for (const no of ['XopsPartner', 'xopspartner']) {
+      expect(re.test(no), no).toBe(false);
+    }
+  });
+});

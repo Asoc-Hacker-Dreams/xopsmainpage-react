@@ -179,7 +179,11 @@ const getTicketDescription = (tt, t, language, edition = null) => {
 const TEST_EVENT_MARKERS = /\b(qa|test|privado|no comprar|sandbox|prueba)\b/i;
 // Identidad X-Ops exigida en nombre o slug (no en la ubicación): un partner o venue
 // celebrado en Dubái no es una edición X-Ops aunque la ciudad coincida.
-const XOPS_IDENTITY = /\bx[\s_-]?ops\b/i;
+// El token admite guion, guion bajo y espacio ("x-ops", "x_ops", "xops") y exige que
+// NO esté pegado a otra palabra: "XopsPartner" no es identidad X-Ops, pero
+// "xops_dubai_2026" sí lo es (en JS `\w` incluye `_`, así que `\b` NO separaría
+// después de un guion bajo: por eso el límite es explícito, no `\b`).
+const XOPS_IDENTITY = /(?<![a-z0-9])x[\s_-]?ops(?![a-z0-9])/i;
 const isPublicXopsEvent = (e) => {
   if (e?.status !== 'active') return false;
   const evidence = [e.name, e.slug, e.location, e.city].filter(Boolean).join(' ');

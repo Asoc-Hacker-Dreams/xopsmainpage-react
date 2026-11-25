@@ -141,6 +141,13 @@
       "kicker": "The {{city}} program",
       "title": "Two formats designed for different audiences",
       "subtitle": "The Summit and Conference share the city and the vision, but keep their purpose, audience and pace.",
+      "dubaiTitle": "One day, one community",
+      "dubaiSubtitle": "X-Ops Dubai 2026 is a single day: technical sessions, leadership sessions and networking together, for the people who build and the people who decide.",
+      "dubaiTrack": {
+        "h3": "Practice, leadership and networking in the same day",
+        "text": "One day of talks on AI in production, platforms and security, leadership sessions, and time for the community to network.",
+        "cta": "See the agenda"
+      },
       "summit": {
         "h3": "Leadership, strategy and transformation",
         "text": "An executive day for CTOs, CISOs and decision makers looking for strategic conversation and high-level networking.",
