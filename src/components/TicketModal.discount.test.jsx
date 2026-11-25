@@ -31,7 +31,20 @@ const DUBAI_EVENT = {
   status: 'active',
   startDate: '2026-11-30T00:00:00.000Z',
 };
-const SUMMIT_TT = { id: 11, name: 'Summit', price: 200, currency: 'AED', isActive: true };
+// Catálogo vigente (25-nov-2026): Dubái tiene UNA sola entrada, 'Entrada General' (tipo 9,
+// 450 AED). El tipo 11 (Summit) esta cerrado (is_active=false) y no se puede comprar.
+// El fixture incluye tierCode/productCode para que el filtro de presentacion lo vea igual
+// que lo ve la API real.
+const GENERAL_TT = {
+  id: 9,
+  name: 'Entrada General',
+  price: 450,
+  currency: 'AED',
+  isActive: true,
+  tierCode: 'DAILY',
+  productCode: 'CONFERENCE',
+  entitlements: ['CONF_D1'],
+};
 
 const ERR_429 = Object.assign(new Error('TriskelGate 429'), {
   status: 429,
@@ -41,7 +54,7 @@ const ERR_429 = Object.assign(new Error('TriskelGate 429'), {
 // `copy` es el locale con el que se pintan los textos del formulario (es por defecto).
 async function openCheckoutWithCode(code = 'X-OPSSPEAKERS', copy = es) {
   render(<TicketModal show onHide={() => {}} />);
-  fireEvent.click(await screen.findByRole('button', { name: `${copy.ticketModal.checkout.title} Summit` }));
+  fireEvent.click(await screen.findByRole('button', { name: copy.ticketModal.checkout.title }));
   fireEvent.change(
     screen.getByPlaceholderText(copy.ticketModal.checkout.discountPlaceholder),
     { target: { value: code } },
@@ -54,7 +67,7 @@ describe('TicketModal · aplicar cupón: causa real del fallo', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
-    mockClient.listTicketTypes.mockResolvedValue([SUMMIT_TT]);
+    mockClient.listTicketTypes.mockResolvedValue([GENERAL_TT]);
   });
 
   it('429 muestra "espera unos minutos", nunca "código no válido"', async () => {
@@ -244,7 +257,7 @@ describe('TicketModal · aplicar cupón: idioma inglés', () => {
   beforeEach(async () => {
     vi.clearAllMocks();
     mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
-    mockClient.listTicketTypes.mockResolvedValue([SUMMIT_TT]);
+    mockClient.listTicketTypes.mockResolvedValue([GENERAL_TT]);
     await i18n.changeLanguage('en');
   });
 
@@ -272,15 +285,17 @@ describe('TicketModal · aplicar cupón: idioma inglés', () => {
   });
 });
 
-// Cupón válido completo (contrato TGDiscountQuote) para la entrada Summit (id 11), cantidad 1.
+// Cupón válido completo (contrato TGDiscountQuote) para la entrada EN VENTA de Dubái
+// (Entrada General, id 9, 450 AED), cantidad 1. El ticketTypeId tiene que coincidir con
+// el tipo seleccionado: si no, el modal rechaza el quote.
 const VALID_QUOTE = {
-  id: 42, code: 'X-OPSSPEAKERS', type: 'percentage', value: 10, currency: 'AED',
-  ticketTypeId: 11, quantity: 1, originalAmount: 200, discountAmount: 20, finalAmount: 180,
-  originalTotalCents: 20000, discountCents: 2000, finalCents: 18000,
+  id: 42, code: 'X-OPSSPEAKERS', type: 'percentage', value: 100, currency: 'AED',
+  ticketTypeId: 9, quantity: 1, originalAmount: 450, discountAmount: 450, finalAmount: 0,
+  originalTotalCents: 45000, discountCents: 45000, finalCents: 0,
 };
 
 async function startCheckout(copy = es) {
-  fireEvent.click(await screen.findByRole('button', { name: `${copy.ticketModal.checkout.title} Summit` }));
+  fireEvent.click(await screen.findByRole('button', { name: copy.ticketModal.checkout.title }));
 }
 
 function applyCode(code, copy = es) {
@@ -295,7 +310,7 @@ describe('TicketModal · cupón: flujo completo (regresión)', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockClient.listEvents.mockResolvedValue([DUBAI_EVENT]);
-    mockClient.listTicketTypes.mockResolvedValue([SUMMIT_TT]);
+    mockClient.listTicketTypes.mockResolvedValue([GENERAL_TT]);
   });
 
   it('un cupón VÁLIDO muestra la previsualización del descuento y ningún error', async () => {
@@ -335,7 +350,7 @@ describe('TicketModal · cupón: flujo completo (regresión)', () => {
 
     expect(mockClient.validateDiscount).toHaveBeenCalledTimes(1);
     expect(mockClient.validateDiscount).toHaveBeenCalledWith({
-      code: 'X-OPSSPEAKERS', eventId: DUBAI_EVENT.id, ticketTypeId: SUMMIT_TT.id, quantity: 1,
+      code: 'X-OPSSPEAKERS', eventId: DUBAI_EVENT.id, ticketTypeId: GENERAL_TT.id, quantity: 1,
     });
   });
 

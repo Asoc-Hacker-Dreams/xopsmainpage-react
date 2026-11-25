@@ -213,3 +213,25 @@ describe('una sola jornada en Dubái (condiciones y copy de ciudad)', () => {
     }
   });
 });
+
+// Coherencia tarjeta <-> condiciones. La Entrada General tiene entitlements=['CONF_D1']
+// (verificado en la BD): NO incluye SUMMIT (sesiones de liderazgo) ni DINNER (cena). La
+// tarjeta lo muestra con una X roja, asi que las condiciones de compra NO pueden
+// prometer esas sesiones para esta entrada.
+describe('coherencia entre la tarjeta y las condiciones de compra', () => {
+  it('las condiciones no prometen liderazgo ni cena para la Entrada General', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, '..', 'legal', 'termsContent.js'), 'utf8');
+    const dubai = src.split('dubai: {')[1] ?? '';
+    // La frase de la Entrada General debe excluir liderazgo y cena, no incluirlos.
+    const es = dubai.match(/'La Entrada General[^']*'/)?.[0] ?? '';
+    const en = dubai.match(/'The General Admission[^']*'/)?.[0] ?? '';
+    expect(es).toMatch(/No incluye las sesiones de liderazgo, la cena con ponentes/);
+    expect(en).toMatch(/does not include the leadership sessions, the speakers dinner/);
+    // Y no puede decir que las incluye.
+    expect(es).not.toMatch(/Incluye todas las sesiones técnicas, las sesiones de liderazgo/);
+    expect(en).not.toMatch(/It includes all technical sessions, leadership sessions/);
+  });
+});

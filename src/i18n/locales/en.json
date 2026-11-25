@@ -142,9 +142,9 @@
       "title": "Two formats designed for different audiences",
       "subtitle": "The Summit and Conference share the city and the vision, but keep their purpose, audience and pace.",
       "dubaiTitle": "One day, one community",
-      "dubaiSubtitle": "X-Ops Dubai 2026 is a single day: technical sessions, leadership sessions and networking together, for the people who build and the people who decide.",
+      "dubaiSubtitle": "X-Ops Dubai 2026 is a single day: technical programme, leadership sessions and networking on the same day. The General Admission covers the technical programme and networking; leadership sessions and the speakers dinner are for other ticket types.",
       "dubaiTrack": {
-        "h3": "Practice, leadership and networking in the same day",
+        "h3": "Technical programme, leadership sessions and networking",
         "text": "One day of talks on AI in production, platforms and security, leadership sessions, and time for the community to network.",
         "cta": "See the agenda"
       },
@@ -664,7 +664,7 @@
       },
       "narrative": "The first edition in the Middle East. Dubai is the technology and financial hub of MENA. We bring the X-Ops DNA to a new continent: the Summit and Conference content condensed into one day, in one room, for an ecosystem where digital transformation moves at Formula 1 speed.",
       "badges": {
-        "format": "One day: Summit + Conference",
+        "format": "One day, one programme",
         "edition": "First edition",
         "region": "Middle East"
       },
