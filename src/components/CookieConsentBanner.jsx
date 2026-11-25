@@ -9,13 +9,13 @@ const copy = {
   es: {
     title: 'Privacidad y cookies',
     text: 'Usamos almacenamiento necesario para que esta web funcione. La analítica opcional mide visitas, campañas, pasos del checkout y compras confirmadas. Permanece desactivada hasta que la autorices; no enviamos nombre ni correo a GA4. No utilizamos etiquetas publicitarias.',
-    detail: 'Rechazar no impide consultar el programa ni comprar entradas.',
+    detail: 'Rechazar no impide consultar el programa ni solicitar tu entrada.',
     accept: 'Aceptar todo', reject: 'Rechazar todo', custom: 'Personalizar', link: 'Política de cookies',
   },
   en: {
     title: 'Privacy and cookies',
     text: 'We use essential storage to run the website. Optional analytics measures visits, campaign sources, checkout steps and verified purchases. It stays off until you opt in; we do not send names or email addresses to GA4. No advertising tags are used.',
-    detail: 'Rejecting optional cookies does not prevent viewing the programme or buying tickets.',
+    detail: 'Rejecting optional cookies does not prevent viewing the programme or requesting a ticket.',
     accept: 'Accept all', reject: 'Reject all', custom: 'Customise', link: 'Cookie policy',
   },
 };

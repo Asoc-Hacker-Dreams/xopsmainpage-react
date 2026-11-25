@@ -128,13 +128,17 @@ const CityEventPage = ({ city }) => {
         <div className="container city-hero__content">
           <p className="city-eyebrow"><span>{event.flag}</span> X-Ops 2026</p>
           <h1 id={`${city}-title`}>{event.city}</h1>
-          <p className="city-hero__statement">{t('cityEvent.hero.statement')}</p>
+          <p className="city-hero__statement">
+            {isMadrid ? t('cityEvent.hero.statement') : t('cityEvent.hero.dubaiStatement')}
+          </p>
           <div className="city-hero__facts" aria-label={t('cityEvent.hero.facts')}>
             <span><BsCalendar3 aria-hidden="true" /> {event.dateRange}</span>
             <span><BsGeoAlt aria-hidden="true" /> {event.country}</span>
           </div>
           <nav className="city-hero__nav" aria-label={t('cityEvent.hero.navLabel', { city: event.city })}>
-            <a href="#summit">{t('cityEvent.hero.navSummit')}</a>
+            <a href="#summit">
+              {isMadrid ? t('cityEvent.hero.navSummit') : t('cityEvent.hero.dubaiNavSummit')}
+            </a>
             <a href="#agenda">{t('cityEvent.hero.navAgenda')}</a>
             <a href="#ponentes">{t('cityEvent.hero.navSpeakers')}</a>
             <a href="#empresas-summit">{t('cityEvent.summitCompanies.navLabel')}</a>
@@ -175,20 +179,37 @@ const CityEventPage = ({ city }) => {
         <div className="container">
           <div className="city-section-heading">
             <p className="city-kicker">{t('cityEvent.program.kicker', { city: event.city })}</p>
-            <h2 id="program-title">{t('cityEvent.program.title')}</h2>
-            <p>{t('cityEvent.program.subtitle')}</p>
+            <h2 id="program-title">
+              {isMadrid ? t('cityEvent.program.title') : t('cityEvent.program.dubaiTitle')}
+            </h2>
+            <p>
+              {isMadrid ? t('cityEvent.program.subtitle') : t('cityEvent.program.dubaiSubtitle')}
+            </p>
           </div>
           <div className="city-program__tracks">
             <article className="city-track city-track--summit">
               <span className="city-track__number">01</span>
-              <p className="city-track__label">Summit</p>
-              <h3>{t('cityEvent.program.summit.h3')}</h3>
-              <p>{t('cityEvent.program.summit.text')}</p>
+              <p className="city-track__label">{isMadrid ? 'Summit' : 'Dubai'}</p>
+              <h3>
+                {isMadrid
+                  ? t('cityEvent.program.summit.h3')
+                  : t('cityEvent.program.dubaiTrack.h3')}
+              </h3>
+              <p>
+                {isMadrid
+                  ? t('cityEvent.program.summit.text')
+                  : t('cityEvent.program.dubaiTrack.text')}
+              </p>
               <dl>
                 <div><dt>{t('cityEvent.when')}</dt><dd>{event.summit.dates}</dd></div>
                 <div><dt>{t('cityEvent.where')}</dt><dd>{event.summit.venue}</dd></div>
               </dl>
-              <a href="#summit">{t('cityEvent.program.summit.cta')} <span aria-hidden="true">↓</span></a>
+              <a href="#summit">
+                {isMadrid
+                  ? t('cityEvent.program.summit.cta')
+                  : t('cityEvent.program.dubaiTrack.cta')}{' '}
+                <span aria-hidden="true">↓</span>
+              </a>
             </article>
           </div>
         </div>

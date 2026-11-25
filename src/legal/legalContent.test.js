@@ -48,16 +48,35 @@ describe('legal coverage and jurisdiction routing', () => {
     expect(editionFromEvent({name:'X-Ops Madrid 2026'}, 'xopsconference.com')).toBe('madrid');
   });
 
-  it('Dubai terms: Conference only 1 December, Summit valid 30 November and 1 December (TG-43)', () => {
+  // TG-43 fijaba el diseño de dos días (Summit 30-nov + Conference 1-dic). Desde el
+  // 25-nov-2026 Dubái es UNA JORNADA ÚNICA el lunes 30-nov-2026 con una sola entrada
+  // ('Entrada General'), así que el test fija el modelo actual: un solo día, sin segundo
+  // día, y sin perder los derechos ya adquiridos por las entradas Summit emitidas.
+  it('Dubai terms: una sola jornada el 30-nov-2026, sin segundo día (TG-43, revisado 25-nov)', () => {
     const es = JSON.stringify(termsContent.dubai.es);
     const en = JSON.stringify(termsContent.dubai.en);
-    expect(es).toMatch(/Conference solo es válida el martes 1 de diciembre de 2026/);
-    expect(es).toMatch(/Summit es válida los dos días/);
-    expect(en).toMatch(/Conference pass is valid only on Tuesday 1 December 2026/);
-    expect(en).toMatch(/Summit pass is valid on both days/);
+    // La jornada única y su sede.
+    expect(es).toMatch(/lunes 30 de noviembre de 2026/);
+    expect(en).toMatch(/Monday 30 November 2026/);
+    expect(es).toMatch(/Dubai Knowledge Park Conference Centre/);
+    expect(en).toMatch(/Dubai Knowledge Park Conference Centre/);
+    // El modelo anterior (dos días, dos productos) no puede volver.
     for (const text of [es, en]) {
-      expect(text).not.toMatch(/dos días técnicos|two technical Conference days/);
-      expect(text).not.toMatch(/[23] de diciembre|[23] December/);
+      expect(text).not.toMatch(/1 de diciembre de 2026|1 December 2026/i);
+      expect(text).not.toMatch(/martes 1 de diciembre|Tuesday 1 December/i);
+      expect(text).not.toMatch(/los dos días|on both days/i);
+      expect(text).not.toMatch(/Conference solo es válida|Conference pass is valid only/i);
     }
+    // La entrada única se nombra y lo que no incluye se dice.
+    expect(es).toMatch(/Entrada General/);
+    expect(en).toMatch(/General Admission/);
+    // Y los derechos ya adquiridos quedan expresamente conservados.
+    expect(es).toMatch(/conservan los derechos/);
+    expect(en).toMatch(/keep the rights registered/);
+    // Madrid conserva su propio texto histórico de dos días.
+    const esMad = JSON.stringify(termsContent.madrid.es);
+    const enMad = JSON.stringify(termsContent.madrid.en);
+    expect(esMad).toMatch(/19 de noviembre|20 y 21 de noviembre/);
+    expect(enMad).toMatch(/19 November|20 and 21 November/);
   });
 });

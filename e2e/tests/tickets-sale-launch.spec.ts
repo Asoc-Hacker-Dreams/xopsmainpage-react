@@ -28,7 +28,8 @@ const TG_BASE =
 const SCREENSHOT_DIR =
   process.env.SCREENSHOT_DIR ?? '/Users/antonioj/Repos/spectertj/hsm/screenshots';
 
-const SALE_TIER = 'Super Early Adopter';
+// La entrada en venta de Dubái (25-nov-2026): una sola, 'Entrada General'.
+const SALE_TIER = 'Entrada General';
 
 interface CitySpec {
   city: string;
@@ -58,12 +59,19 @@ const MADRID: CitySpec = {
   shots: { form: '03', stripe: '04', paying: '05', success: '06' },
 };
 
+// Catálogo vigente (25-nov-2026): Dubái tiene UNA sola entrada en venta,
+// 'Entrada General' (tipo 9, 450 AED). El tipo 7 (Super Early Adopter, 180 AED) y el 11
+// (Summit) están cerrados (is_active=false) y no se pueden comprar.
+//
+// Este E2E estaba roto desde el PR #210 (jornada única): el modal ya solo muestra
+// eventos de Dubái, así que esperaba '2' event-sections y una compra en Madrid que
+// ya no existe. Se actualiza al catálogo y al alcance reales.
 const DUBAI: CitySpec = {
   city: 'dubai',
   eventId: 2,
-  ticketTypeId: 7,
+  ticketTypeId: 9,
   eventName: 'X-Ops Conference Dubai 2026',
-  pricePattern: /180\s*(AED|د\.إ)/,
+  pricePattern: /450\s*(AED|د\.إ)/,
   buyerName: 'Specter Dubai',
   buyerEmail: TEST_BUYER_EMAIL,
   shots: { form: '07', stripe: '08', paying: '09', success: '10' },
@@ -130,13 +138,18 @@ test.describe.serial('Apertura de venta X-Ops Conference 2026 (producción)', ()
     await page.waitForTimeout(800); // deja respirar el countdown/animaciones para la captura
     await page.screenshot({ path: shot('01-home-modal-tickets.png'), fullPage: false });
 
-    // Paso 02: ambos eventos con sus tiers
-    await expect(page.locator('.event-section')).toHaveCount(2);
-    await expect(page.locator('.ticket-selection-modal')).toContainText(SALE_TIER);
+    // Paso 02: el modal muestra SOLO la edición de Dubái (Madrid está aplazado y
+    // excluido desde el PR #210; el de QA, desde el #213).
+    await expect(page.locator('.event-section')).toHaveCount(1);
+    // El nombre del tipo se renderiza en mayúsculas (tt.name.toUpperCase()).
+    await expect(page.locator('.ticket-selection-modal')).toContainText(
+      new RegExp(SALE_TIER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'),
+    );
     await page.screenshot({ path: shot('02-modal-seleccion-madrid-dubai.png'), fullPage: false });
   });
 
-  for (const spec of [MADRID, DUBAI]) {
+  // Solo Dubái: el modal ya no incluye Madrid (aplazado) ni el evento de QA.
+  for (const spec of [DUBAI]) {
     test(`${spec.shots.form} — compra ${spec.city} (${SALE_TIER}) por UI + registro`, async ({
       page,
       request,
@@ -149,7 +162,10 @@ test.describe.serial('Apertura de venta X-Ops Conference 2026 (producción)', ()
       // de algunos tiers mencionan las dos ciudades; anclar por el nombre exacto
       // del evento, que es único en su sección.
       const section = page.locator('.event-section').filter({ hasText: spec.eventName });
-      const card = section.locator('.ticket-card', { hasText: SALE_TIER });
+      // El nombre se pinta en mayúsculas: se busca sin distinguir mayúsculas.
+      const card = section.locator('.ticket-card', {
+        hasText: new RegExp(SALE_TIER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'),
+      });
       await expect(card).toHaveCount(1);
       await expect(card).toBeVisible();
       // El precio del tier sale formateado por Intl.NumberFormat (es-ES)
@@ -162,6 +178,10 @@ test.describe.serial('Apertura de venta X-Ops Conference 2026 (producción)', ()
       await page.fill('#tm-name', spec.buyerName);
       await page.fill('#tm-email', spec.buyerEmail);
       await page.screenshot({ path: shot(`${spec.shots.form}-${spec.city}-formulario-checkout.png`) });
+
+      // ── aceptar las condiciones (obligatorio: sin acceptedTerms el botón de
+      //    envío está deshabilitado, TicketModal.jsx:871)
+      await page.locator('#tm-terms').check();
 
       // ── submit → Stripe Checkout ─────────────────────────────────────────
       await Promise.all([

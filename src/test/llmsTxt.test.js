@@ -17,8 +17,8 @@ describe.each([
     expect(text).toMatch(/Madrid, Spain,? and\s+Dubai, UAE/);
   });
 
-  it('states the single-day programme figures: 10 accepted talks on 30 November at the confirmed venue', () => {
-    expect(text).toMatch(/10 accepted talks in one day/);
+  it('states the single-day programme figures: 11 accepted talks on 30 November at the confirmed venue', () => {
+    expect(text).toMatch(/11 accepted talks in one day/);
     expect(text).toMatch(/30 November 2026/);
     expect(text).toMatch(/DKP Conference Centre, Dubai Knowledge Park \(TECOM\)/);
     expect(text).not.toMatch(/1 December|1 de diciembre|Venue to be announced/i);

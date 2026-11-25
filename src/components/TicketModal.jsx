@@ -102,16 +102,14 @@ const formatSaleDate = (dateStr, locale) => {
 //
 // Ahora TriskelGate expone `entitlements` por tipo de entrada (migración
 // 0007/0008), así que inclusiones y exclusiones se calculan del dato.
-// TG-43 (Opción A, 2026-11-13): en Dubái cada derecho es un DÍA concreto —
-// Summit el lunes 30 de noviembre y Conference el martes 1 de diciembre (una
-// sola jornada técnica); la entrada Summit vale los dos días. Allí no existe
-// un "día 2 de Conference", así que el desglose lo nombra por fecha y no
-// muestra CONF_D2 salvo que una entrada antigua lo tenga concedido.
-// Madrid (aplazado) conserva sus etiquetas.
+// Jornada única de Dubái (lunes 30-nov-2026): todas las etiquetas nombran ese
+// mismo día, sin una segunda fecha. SUMMIT se etiqueta como "sesiones de
+// liderazgo" (es lo que da la entrada, no un evento aparte). CONF_D2 no tiene
+// fila: no existe un "día 2" en Dubái, y si una entrada antigua lo tuviera
+// concedido, no se muestra. Madrid (aplazado) conserva sus etiquetas.
 const DUBAI_ENTITLEMENT_LABELS = [
   { code: 'SUMMIT',  i18nKey: 'ticketModal.entitlementsDubai.summit' },
   { code: 'CONF_D1', i18nKey: 'ticketModal.entitlementsDubai.conference' },
-  { code: 'CONF_D2', i18nKey: 'ticketModal.entitlementsDubai.legacyDay', onlyIfGranted: true },
   { code: 'DINNER',  i18nKey: 'ticketModal.entitlements.dinner' },
 ];
 
@@ -137,25 +135,31 @@ const DB_DESCRIPTION_LANG = 'es';
  * `ticket_types.description` existe ÚNICAMENTE en español, así que usarla tal
  * cual dejaba el copy sin traducir para el resto de idiomas — visible en la QA
  * visual: el desglose salía en inglés y la descripción seguía en castellano.
- * Afecta sobre todo a Dubai, cuyo público es anglófono.
  *
- *   - idioma español  -> la descripción de la BD (la fuente de verdad, y la
- *                        que se edita al cambiar el producto).
- *   - otro idioma     -> el texto i18n del `tierCode`.
+ *   - Dubái (cualquier idioma) -> SIEMPRE el texto i18n del `tierCode`. La BD
+ *                        todavía describe la edición de dos días (martes 1 de
+ *                        diciembre) y no hay columna traducida; cambiarla en
+ *                        la BD exigiría un despliegue, así que se ignora desde
+ *                        el frontend.
+ *   - Madrid, idioma español -> la descripción de la BD (la fuente de verdad).
+ *   - Madrid, otro idioma    -> el texto i18n del `tierCode`.
  *
  * Los textos i18n se mantienen alineados con la matriz de producto: si cambia
- * un producto hay que tocar la migración Y `tierDescriptions`. Es el coste de
- * no tener la columna traducida en base de datos.
+ * un producto hay que tocar la migración Y `tierDescriptions(Dubai)`. Es el coste
+ * de no tener la columna traducida en base de datos.
  */
 const getTicketDescription = (tt, t, language, edition = null) => {
   const isSpanish = (language || '').toLowerCase().startsWith(DB_DESCRIPTION_LANG);
-  // TG-43: Dubái tiene su propio copy (Summit 30-nov, Conference 1-dic);
-  // el genérico describe la Conference de dos días de Madrid.
+  // Dubái tiene su propio copy de jornada única; el genérico describe la
+  // Conference de dos días de Madrid.
   const baseKey = TIER_DESCRIPTION_KEY[tt?.tierCode];
-  const descKey = baseKey && edition === 'dubai'
-    ? baseKey.replace('ticketModal.tierDescriptions.', 'ticketModal.tierDescriptionsDubai.')
+  // Dubái usa una clave propia nombrada como la entrada (no "daily").
+  const DUBAI_DESC_KEY = { DAILY: 'ticketModal.tierDescriptionsDubai.general' };
+  const descKey = edition === 'dubai'
+    ? (DUBAI_DESC_KEY[tt?.tierCode] || (baseKey ? baseKey.replace('ticketModal.tierDescriptions.', 'ticketModal.tierDescriptionsDubai.') : null))
     : baseKey;
 
+  if (edition === 'dubai') return descKey ? t(descKey) : null;
   if (isSpanish) return tt?.description || (descKey ? t(descKey) : null);
 
   // Si el tier no está en el mapa (producto nuevo sin traducir todavía), se
@@ -163,6 +167,53 @@ const getTicketDescription = (tt, t, language, edition = null) => {
   // dejar la tarjeta sin describir.
   return descKey ? t(descKey) : tt?.description || null;
 };
+
+// Un evento sólo se lista si es una edición pública de X-Ops identificable por
+// name+slug+location: hoy Dubái (Madrid está aplazado y no se lista).
+//
+// No basta con excluir Madrid: un evento de prueba (p. ej. "X-Ops TEST - QA
+// privado (no comprar)", que la API devuelve como `active`) no menciona ninguna
+// edición y pasaba el filtro antiguo `edition !== 'madrid'`. Por eso es una
+// lista blanca (edición identificada) más una lista negra de marcadores de
+// prueba, por si la API añade un evento de prueba que sí nombre Dubái.
+// Límites explícitos y no `\b`: en JS `\w` incluye `_`, así que `\b` NO separa
+// después de un guion bajo y un evento de pruebas como 'xops_dubai_qa' se colaba en el
+// modal. Igual que en XOPS_IDENTITY, el límite es [a-z0-9] a ambos lados.
+const TEST_EVENT_MARKERS = /(?<![a-z0-9])(qa|test|privado|no comprar|sandbox|prueba)(?![a-z0-9])/i;
+// Identidad X-Ops exigida en nombre o slug (no en la ubicación): un partner o venue
+// celebrado en Dubái no es una edición X-Ops aunque la ciudad coincida.
+// El token admite guion, guion bajo y espacio ("x-ops", "x_ops", "xops") y exige que
+// NO esté pegado a otra palabra: "XopsPartner" no es identidad X-Ops, pero
+// "xops_dubai_2026" sí lo es (en JS `\w` incluye `_`, así que `\b` NO separaría
+// después de un guion bajo: por eso el límite es explícito, no `\b`).
+const XOPS_IDENTITY = /(?<![a-z0-9])x[\s_-]?ops(?![a-z0-9])/i;
+const isPublicXopsEvent = (e) => {
+  if (e?.status !== 'active') return false;
+  const evidence = [e.name, e.slug, e.location, e.city].filter(Boolean).join(' ');
+  if (TEST_EVENT_MARKERS.test(evidence)) return false;
+  if (!XOPS_IDENTITY.test([e.name, e.slug].filter(Boolean).join(' '))) return false;
+  return editionFromEvent(e, '') === 'dubai';
+};
+
+// Jornada única (Dubái, lunes 30-nov): Summit y Conference son el mismo día, así
+// que la tarjeta Summit no se pinta. Es un filtro de PRESENTACIÓN: el tipo sigue
+// activo en TriskelGate y sus titulares (ya vendido) entran el 30-nov igual; no
+// se desactiva ni se borra nada en la API ni en la base de datos.
+// Madrid no se toca (no lista eventos, ver isPublicXopsEvent).
+const isHiddenInEdition = (tt, edition) =>
+  edition === 'dubai' && (tt?.tierCode === 'SUMMIT' || tt?.productCode === 'SUMMIT');
+
+// Orden de producto en Dubái: Daily → Last Minute → VIP, y los early adopters
+// (ya agotados o cerrados) al final. Se decide por `tierCode` y no por
+// `displayOrder` ni por el orden de llegada de la API, que no ordena nada hoy.
+// Un tierCode desconocido cae justo antes de los early adopters, para que estos
+// sigan siendo siempre los últimos.
+const DUBAI_TIER_RANK = { DAILY: 0, LAST_MINUTE: 1, VIP: 2, EARLY: 4, SUPER_EARLY: 5 };
+const DUBAI_UNKNOWN_TIER_RANK = 3;
+const dubaiTierRank = (tt) => DUBAI_TIER_RANK[tt?.tierCode] ?? DUBAI_UNKNOWN_TIER_RANK;
+// Array.prototype.sort es estable: entradas con el mismo rango conservan su orden.
+const sortTicketTypesForEdition = (types, edition) =>
+  edition === 'dubai' ? [...types].sort((a, b) => dubaiTierRank(a) - dubaiTierRank(b)) : types;
 
 /** Resolves the countdown target date the same way App.jsx resolves the active city
  *  (getCityFromHostname(window.location.hostname)). Falls back to the closer of the
@@ -224,7 +275,18 @@ const MODAL_BODY   = { background: '#0f0f1a', color: '#e0e0e0' };
 const MODAL_FOOTER = { background: '#1a1a2e', borderTop: '1px solid #2a2a4a' };
 const INPUT_STYLE  = { background: '#1e1e3a', border: '1px solid #2a2a4a', color: '#f8fafc' };
 
-const TicketModal = ({ show, onHide }) => {
+/**
+ * @param {boolean} props.show        el modal esta abierto
+ * @param {Function} props.onHide     cerrar
+ * @param {boolean} [props.allowIndividualCheckout]
+ *        true cuando el checkout se abre para una persona concreta a la que el
+ *        equipo ya le ha enviado un enlace de pago individual. En Dubai el CTA
+ *        publico NO abre el checkout (el evento es cerrado y por invitacion):
+ *        lleva al formulario de solicitud. El checkout sigue vivo para los
+ *        enlaces individuales, que es por donde se paga de verdad.
+ *        Por defecto false: via publica, sin checkout.
+ */
+const TicketModal = ({ show, onHide, allowIndividualCheckout = false }) => {
   const { t, i18n } = useTranslation();
   const { consent, hasInteracted } = useConsent();
   const analyticsOptIn = hasInteracted && consent.analytics === true;
@@ -320,8 +382,7 @@ const TicketModal = ({ show, onHide }) => {
 
         const active = evList.filter(
           (e) =>
-            e.status === 'active' &&
-            editionFromEvent(e, '') !== 'madrid' &&
+            isPublicXopsEvent(e) &&
             (
               CONFIG_ORGANIZER_ID === null ||
               e.organizerId == null || // event without organizer matches any configured organizer
@@ -338,9 +399,15 @@ const TicketModal = ({ show, onHide }) => {
           sorted.map(async (ev) => {
             try {
               const types = await triskelGateClient.listTicketTypes(ev.id);
+              const edition = editionFromEvent(ev, '');
               return {
                 ...ev,
-                ticketTypes: Array.isArray(types) ? types.filter((t) => t.isActive !== false) : [],
+                ticketTypes: Array.isArray(types)
+                  ? sortTicketTypesForEdition(
+                      types.filter((t) => t.isActive !== false && !isHiddenInEdition(t, edition)),
+                      edition,
+                    )
+                  : [],
               };
             } catch {
               return { ...ev, ticketTypes: [] };
@@ -363,12 +430,31 @@ const TicketModal = ({ show, onHide }) => {
     return () => { cancelled = true; };
   }, [show, loaded, t]);
 
-  const openCheckout = (event, ticketType) => {
+  // `fromIndividualLink` = true cuando el checkout se abre desde un enlace de
+  // pago individual (el que el equipo manda a quien aceptó la solicitud),
+  // no desde el CTA público de la web. En Dubái el CTA público NO abre el
+  // checkout: el evento es cerrado y no hay venta abierta. El checkout
+  // sigue existiendo para los enlaces individuales, que es por donde se
+  // paga de verdad.
+  const openCheckout = (event, ticketType, { fromIndividualLink = false } = {}) => {
     const item = ticketGa4Item(event, ticketType);
     if (item) trackGa4Event('select_item', {
       item_list_name: 'X-Ops tickets', items: [item],
       xops_edition: editionFromEvent(event, window.location.hostname) || 'madrid',
     });
+
+    // Dubái: el evento es CERRADO y por invitación. No hay checkout abierto:
+    // quien quiere entrar pide la entrada en el formulario, el equipo revisa la
+    // solicitud y le envía un enlace de pago individual. Abrir Stripe aquí
+    // convertiría el evento en una venta pública, que es justo lo que se
+    // quiere evitar (y lo que la DET trata como ticketed con permiso).
+    // Se mide igual el 'select_item' de GA4 antes de salir, para no perder la
+    // métrica de interés.
+    if (!fromIndividualLink && !allowIndividualCheckout
+        && editionFromEvent(event, '') === 'dubai') {
+      window.location.assign('/registro');
+      return;
+    }
     discountValidationNonce.current += 1;
     setValidatingDiscount(false);
     setSelectedEvent(event);
@@ -901,7 +987,8 @@ const TicketModal = ({ show, onHide }) => {
                           <span>
                             <BsCalendar3 className="me-1" aria-hidden="true" />
                             {formatDate(ev.startDate, i18n.language)}
-                            {ev.endDate && ev.endDate !== ev.startDate && ` — ${formatDate(ev.endDate, i18n.language)}`}
+                            {/* Dubái es una jornada única: el endDate de la API (1-dic) no se muestra. */}
+                            {ev.endDate && ev.endDate !== ev.startDate && editionFromEvent(ev, '') !== 'dubai' && ` — ${formatDate(ev.endDate, i18n.language)}`}
                           </span>
                         )}
                         {ev.location && (
@@ -1013,6 +1100,14 @@ const TicketModal = ({ show, onHide }) => {
                                   <span>{t('ticketModal.entitlements.workshops')}</span>
                                 </li>
                               </ul>
+                              {onSale && editionFromEvent(ev, '') === 'dubai' && (
+                                <p style={{
+                                  color: '#94a3b8', fontSize: '0.8rem', marginBottom: '10px',
+                                  textAlign: 'center'
+                                }}>
+                                  {t('ticketModal.closedEventNote')}
+                                </p>
+                              )}
                               <Button
                                 variant={onSale ? style.ctaVariant : 'secondary'}
                                 style={{ width: '100%', fontWeight: 600 }}
@@ -1020,7 +1115,13 @@ const TicketModal = ({ show, onHide }) => {
                                 disabled={!onSale}
                               >
                                 {onSale
-                                  ? `${t('ticketModal.checkout.title')} ${tt.name}`
+                                  ? (editionFromEvent(ev, '') === 'dubai'
+                                      // Dubái es un evento cerrado: el CTA pide la
+                                      // entrada, no la compra.
+                                      ? t('ticketModal.requestAccess')
+                                      : (tt.name === 'Entrada General'
+                                          ? t('ticketModal.checkout.title')
+                                          : `${t('ticketModal.checkout.title')} ${tt.name}`))
                                   : saleOpensOn
                                     ? t('ticketModal.saleOpensOn', { date: saleOpensOn })
                                     : t('ticketModal.saleClosed')}

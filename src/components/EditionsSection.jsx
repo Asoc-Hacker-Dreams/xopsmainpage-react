@@ -86,7 +86,9 @@ const VenueRow = ({ label, name, dates, venue }) => (
   </div>
 );
 
-const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaLabel, ctaTo, agendaLabel, agendaTo, targetDate }) => (
+// singleVenue: la edición es UNA sola jornada con una sola sede (Dubái desde el
+// 25-nov-2026). En ese caso se pinta un único bloque de sede en vez de dos.
+const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, narrative, badges, ctaLabel, ctaTo, agendaLabel, agendaTo, targetDate, singleVenue = false }) => (
   <div style={{
       background: '#16213e',
       borderRadius: '14px',
@@ -119,12 +121,14 @@ const CityCard = ({ flagEmoji, dates, year, title, city, summit, conference, nar
           dates={summit.dates}
           venue={summit.venue}
         />
+        {!singleVenue && (
         <VenueRow
           label={conference.label}
           name={conference.name}
           dates={conference.dates}
           venue={conference.venue}
         />
+        )}
       </div>
 
       {/* Narrative */}
@@ -242,14 +246,15 @@ const EditionsSection = () => {
               year={t('editions.dubai.year')}
               title={t('editions.dubai.title')}
               city={t('editions.dubai.city')}
+              singleVenue
               summit={{
-                label: t('editions.dubai.summit.label'),
+                label: t('editions.dubai.summit.dubaiLabel'),
                 name:  t('editions.dubai.summit.venue'),
                 dates: t('editions.dubai.summit.dates'),
                 venue: '',
               }}
               conference={{
-                label: t('editions.dubai.conference.label'),
+                label: t('editions.dubai.conference.dubaiLabel'),
                 name:  t('editions.dubai.conference.venue'),
                 dates: t('editions.dubai.conference.dates'),
                 venue: '',

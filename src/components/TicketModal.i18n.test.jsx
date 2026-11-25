@@ -99,49 +99,237 @@ describe('tierDescriptions', () => {
   });
 });
 
-// TG-43 (Opción A, 2026-11-13): en Dubái Summit = lunes 30-nov, Conference =
-// martes 1-dic (una jornada), la entrada Summit vale los dos días. El copy
-// genérico (Madrid, aplazado) no se toca.
-describe('tierDescriptionsDubai / entitlementsDubai (TG-43)', () => {
-  const TIERS = ['superEarly', 'early', 'daily', 'lastMinute', 'vip', 'summit'];
-  const CONFERENCE_LIKE = new Set(['superEarly', 'early', 'daily', 'lastMinute', 'vip']);
-  const tiersOf = (lang) => Object.entries(lang.ticketModal.tierDescriptionsDubai);
-
-  it('existen en ES y EN y no prometen 2 días de Conference ni 2-3 dic', () => {
+// Una sola entrada general en Dubái (2026-11-25): tierDescriptionsDubai sólo tiene
+// la clave de la entrada general; entitlementsDubai ya no tiene legacyDay.
+describe('tierDescriptionsDubai / entitlementsDubai (una sola entrada)', () => {
+  it('existen en ES y EN con una sola clave general', () => {
     for (const lang of [es, en]) {
-      const entries = tiersOf(lang);
-      expect(entries.map(([k]) => k).sort()).toEqual([...TIERS].sort());
-      for (const [tier, text] of entries) {
-        expect(text.length, tier).toBeGreaterThan(30);
-        expect(text, tier).not.toMatch(/2 días|2-day|2 days|two days|dos días de Conference/i);
-        expect(text, tier).not.toMatch(/[23] de diciembre|[23] December/);
+      const td = lang.ticketModal.tierDescriptionsDubai;
+      expect(Object.keys(td).sort()).toEqual(['general']);
+      expect(td.general.length).toBeGreaterThan(30);
+      const ent = lang.ticketModal.entitlementsDubai;
+      expect(Object.keys(ent).sort()).toEqual(['conference', 'summit']);
+    }
+  });
+
+  it('el copy general no contiene Summit, Conference como entidades ni precio regular', () => {
+    for (const lang of [es, en]) {
+      const text = lang.ticketModal.tierDescriptionsDubai.general;
+      expect(text).not.toMatch(/Summit/i);
+      expect(text).not.toMatch(/al precio regular|regular price/i);
+      expect(text).toMatch(/30 de noviembre|30 November/);
+    }
+  });
+
+  it('las etiquetas de entitlement no contienen día 1, día 2 ni producto inexistente', () => {
+    for (const lang of [es, en]) {
+      const ent = lang.ticketModal.entitlementsDubai;
+      for (const [k, v] of Object.entries(ent)) {
+        expect(v, k).not.toMatch(/día 1|día 2|day 1|day 2/i);
+        expect(v, k).not.toMatch(/Summit|Conference/i);
       }
-      expect(Object.keys(lang.ticketModal.entitlementsDubai).sort())
-        .toEqual(['conference', 'legacyDay', 'summit']);
+    }
+  });
+});
+
+// El botón de reserva compone 'Reservar Entrada' + el nombre del tipo. Con el nombre
+// 'Entrada General' eso daba 'Reservar Entrada Entrada General' (duplicado). La entrada
+// general es la ÚNICA de Dubái, así que el nombre ya lo dice todo y no hay que repetirlo.
+describe('botón de reserva con la entrada general', () => {
+  it('no duplica "Entrada" en el texto del botón', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+    // El caso especial debe existir y cubrir exactamente el nombre de la entrada general.
+    expect(src).toContain("tt.name === 'Entrada General'");
+    // Y la concatenación que producía el duplicado no debe quedar incondicional.
+    const condicional = src.indexOf("tt.name === 'Entrada General'");
+    const concatenacion = src.indexOf(
+      "`${t('ticketModal.checkout.title')} ${tt.name}`",
+    );
+    expect(condicional).toBeGreaterThan(-1);
+    // La concatenación sigue existiendo, pero SOLO como rama alternativa del ternario.
+    expect(concatenacion).toBeGreaterThan(condicional);
+    expect(src.slice(condicional, concatenacion)).toContain('?');
+  });
+});
+
+// Rondas de revisión (Codex, 25-nov-2026): con una sola entrada, el copy de las CONDICIONES DE
+// COMPRA y el de la PÁGINA DE LA CIUDAD no pueden seguir hablando de dos productos (Summit el
+// 30-nov y Conference el 1-dic). Además el filtro de identidad tiene que admitir slugs con
+// guion bajo (en JS `\w` incluye `_`, así que `\b` no separa después de un guion bajo).
+describe('una sola jornada en Dubái (condiciones y copy de ciudad)', () => {
+  it('las condiciones de compra de Dubái no anuncian un segundo día ni dos productos', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, '..', 'legal', 'termsContent.js'), 'utf8');
+    const dubai = src.split("dubai: {")[1] ?? '';
+    for (const viejo of [
+      'Conference on 1 December 2026',
+      'Tuesday 1 December 2026',
+      'Conference el 1 de diciembre',
+      'martes 1 de diciembre',
+      'on both days',
+      'los dos días',
+    ]) {
+      expect(dubai, viejo).not.toContain(viejo);
+    }
+    // Y sí debe decir la jornada única y conservar los derechos ya adquiridos.
+    expect(dubai).toContain('Monday 30 November 2026');
+    expect(dubai).toContain('lunes 30 de noviembre de 2026');
+    expect(dubai).toMatch(/keep the rights registered|Tickets already issued/);
+    expect(dubai).toMatch(/conservan los derechos|ya emitidas/);
+  });
+
+  it('el copy propio de Dubái existe en ES y EN y Madrid conserva el suyo', () => {
+    for (const lang of [es, en]) {
+      const p = lang.cityEvent.program;
+      expect(p.dubaiTitle, 'dubaiTitle').toBeTruthy();
+      expect(p.dubaiSubtitle, 'dubaiSubtitle').toBeTruthy();
+      expect(p.dubaiTrack.h3, 'dubaiTrack.h3').toBeTruthy();
+      expect(p.dubaiTrack.text, 'dubaiTrack.text').toBeTruthy();
+      expect(p.dubaiTrack.cta, 'dubaiTrack.cta').toBeTruthy();
+      // El copy de Madrid no se toca.
+      expect(p.title).toMatch(/Dos formatos|Two formats/);
+      expect(p.summit.h3).toBeTruthy();
     }
   });
 
-  it('Conference y VIP: jornada única 30 de noviembre (sin 1 de diciembre), sin Summit', () => {
-    for (const [tier, text] of tiersOf(es).filter(([k]) => CONFERENCE_LIKE.has(k))) {
-      expect(text, tier).toMatch(/30 de noviembre/);
-      expect(text, tier).not.toMatch(/1 de diciembre/);
-      expect(text, tier).toMatch(/No incluye el Summit/);
+  it('el filtro de identidad acepta slugs con guion bajo pero no XopsPartner', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+    const m = src.match(/const XOPS_IDENTITY = (\/.*?\/i);/);
+    expect(m, 'no se encuentra XOPS_IDENTITY').toBeTruthy();
+    const re = new RegExp(m[1].replace(/^\/|\/[a-z]*$/g, ''), 'i');
+    for (const ok of ['xops_dubai_2026', 'x_ops_dubai_2026', 'xops-dubai-2026', 'X-Ops Conference']) {
+      expect(re.test(ok), ok).toBe(true);
     }
-    for (const [tier, text] of tiersOf(en).filter(([k]) => CONFERENCE_LIKE.has(k))) {
-      expect(text, tier).toMatch(/30 November/);
-      expect(text, tier).not.toMatch(/1 December/);
-      expect(text, tier).toMatch(/Does not include the 30 November Summit/);
+    for (const no of ['XopsPartner', 'xopspartner']) {
+      expect(re.test(no), no).toBe(false);
+    }
+  });
+});
+
+// Coherencia tarjeta <-> condiciones. La Entrada General tiene entitlements=['CONF_D1']
+// (verificado en la BD): NO incluye SUMMIT (sesiones de liderazgo) ni DINNER (cena). La
+// tarjeta lo muestra con una X roja, asi que las condiciones de compra NO pueden
+// prometer esas sesiones para esta entrada.
+describe('coherencia entre la tarjeta y las condiciones de compra', () => {
+  it('las condiciones no prometen liderazgo ni cena para la Entrada General', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, '..', 'legal', 'termsContent.js'), 'utf8');
+    const dubai = src.split('dubai: {')[1] ?? '';
+    // La frase de la Entrada General debe excluir liderazgo y cena, no incluirlos.
+    const es = dubai.match(/'La Entrada General[^']*'/)?.[0] ?? '';
+    const en = dubai.match(/'The General Admission[^']*'/)?.[0] ?? '';
+    expect(es).toMatch(/No incluye las sesiones de liderazgo, la cena con ponentes/);
+    expect(en).toMatch(/does not include the leadership sessions, the speakers dinner/);
+    // Y no puede decir que las incluye.
+    expect(es).not.toMatch(/Incluye todas las sesiones técnicas, las sesiones de liderazgo/);
+    expect(en).not.toMatch(/It includes all technical sessions, leadership sessions/);
+  });
+});
+
+// La portada y la página de ciudad no pueden seguir presentando Dubái como dos
+// productos (Summit + Conference) cuando solo hay una jornada y una entrada.
+describe('la portada y la página de ciudad de Dubái no muestran dos productos', () => {
+  it('Dubái tiene copy propio de una sola jornada en ES y EN', () => {
+    for (const lang of [es, en]) {
+      expect(lang.cityEvent.hero.dubaiStatement, 'dubaiStatement').toBeTruthy();
+      expect(lang.cityEvent.hero.dubaiStatement).not.toMatch(/dos experiencias|two experiences/i);
+      expect(lang.cityEvent.hero.dubaiNavSummit, 'dubaiNavSummit').toBeTruthy();
+      const dubai = lang.editions.dubai;
+      expect(dubai.summit.dubaiLabel, 'summit.dubaiLabel').toBeTruthy();
+      expect(dubai.conference.dubaiLabel, 'conference.dubaiLabel').toBeTruthy();
+      // El badge no debe anunciar dos productos.
+      expect(dubai.badges.format).not.toMatch(/Summit \+ Conference/);
+      expect(dubai.badges.format).not.toMatch(/One day: Summit/);
     }
   });
 
-  it('Summit: jornada única 30 de noviembre (Summit AM + Conference PM), con cena', () => {
-    const esS = es.ticketModal.tierDescriptionsDubai.summit;
-    const enS = en.ticketModal.tierDescriptionsDubai.summit;
-    expect(esS).toMatch(/30 de noviembre/);
-    expect(esS).not.toMatch(/1 de diciembre/);
-    expect(esS).toMatch(/dinner/);
-    expect(enS).toMatch(/30 November/);
-    expect(enS).not.toMatch(/1 December/);
-    expect(enS).toMatch(/dinner/);
+  it('el componente CityCard sabe pintar una sola sede (singleVenue)', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'EditionsSection.jsx'), 'utf8');
+    expect(src).toMatch(/singleVenue = false/);
+    expect(src).toMatch(/\{!singleVenue && \(/);
+    // Y la tarjeta de Dubái lo activa.
+    expect(src).toMatch(/singleVenue\s*\n/);
+  });
+});
+
+// El filtro de marcadores de prueba usaba \b, que en JS no separa después de un guion
+// bajo: un evento de pruebas con slug 'xops_dubai_qa' se colaba en el modal de entradas.
+// Se fija aquí el comportamiento para que no vuelva a colarse.
+describe('el filtro de eventos de pruebas cubre los separadores de slug', () => {
+  it('detecta los marcadores separados por guion bajo, guion o espacio', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+    const m = src.match(/const TEST_EVENT_MARKERS = (\/.*?\/i);/);
+    expect(m, 'no se encuentra TEST_EVENT_MARKERS').toBeTruthy();
+    const re = new RegExp(m[1].replace(/^\/|\/[a-z]*$/g, ''), 'i');
+    for (const marcador of ['xops_dubai_qa', 'xops_dubai_test', 'xops_dubai_sandbox', 'qa', 'test-qa', 'xops-qa', 'X-Ops TEST - QA privado']) {
+      expect(re.test(marcador), marcador).toBe(true);
+    }
+    // Y no debe lanzar falsos positivos sobre nombres legitimos.
+    for (const ok of ['X-Ops Conference Dubai 2026', 'latest conference', 'opqa', 'testing lab']) {
+      expect(re.test(ok), ok).toBe(false);
+    }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────────────
+// EVENTO CERRADO POR INVITACION (Dubai, 25-nov-2026)
+// ───────────────────────────────────────────────────────────────────────────
+// El evento deja de vender entradas en abierto. El CTA de la tarjeta de
+// Dubái NO puede llevar al checkout de Stripe: si lo hiciera, seguiria
+// habiendo una venta publica, que es exactamente lo que se quiere evitar
+// (la DET trata como ticketed cualquier evento con venta, y con el plazo de
+// 5 dias habiles el permiso no sale para el 30-nov).
+//
+// Estos tests fijan ese comportamiento para que nadie reintroduzca el
+// checkout abierto sin darse cuenta.
+describe('Dubai es un evento cerrado: el CTA no lleva al checkout', () => {
+  it('el CTA de la tarjeta de Dubai pide la entrada, no la reserva', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+
+    // El CTA de Dubai usa su propia clave, no la de "reservar".
+    expect(src).toMatch(/ticketModal\.requestAccess/);
+    expect(src).toMatch(/ticketModal\.closedEventNote/);
+  });
+
+  it('openCheckout NO abre el checkout de Stripe para Dubai', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+
+    // La guarda de Dubai esta ANTES de setStep('checkout'), y redirige al
+    // formulario. Si alguien la quita, el checkout vuelve a abrirse.
+    const guarda = src.indexOf("editionFromEvent(event, '') === 'dubai'");
+    expect(guarda).toBeGreaterThan(-1);
+
+    const openCheckout = src.indexOf('const openCheckout =');
+    const bloque = src.slice(openCheckout, openCheckout + 1400);
+    const iGuarda = bloque.indexOf("=== 'dubai'");
+    const iStep = bloque.indexOf("setStep('checkout')");
+    expect(iGuarda).toBeGreaterThan(-1);
+    expect(iStep).toBeGreaterThan(-1);
+    // La guarda va ANTES: siDubai, se sale del checkout.
+    expect(iGuarda).toBeLessThan(iStep);
+    // Y redirige al formulario.
+    expect(bloque.slice(iGuarda, iStep)).toMatch(/\/registro/);
   });
 });

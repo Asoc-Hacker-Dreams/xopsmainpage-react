@@ -52,13 +52,13 @@
       "days": "día del evento",
       "summitLabel": "30 de noviembre · lunes · una jornada, una sala",
       "summitTitle": "Executive Summit",
-      "summitDescription": "Diez charlas aceptadas en una sola jornada y una sola sala, con sesiones ejecutivas y técnicas, y conexiones B2B voluntarias al final de la tarde.",
+      "summitDescription": "once charlas aceptadas en una sola jornada y una sola sala, con sesiones ejecutivas y técnicas, y conexiones B2B voluntarias al final de la tarde.",
       "viewSummit": "Explorar agenda del Summit",
       "conferenceLabel": "30 de noviembre · mismo día",
       "conferenceTitle": "Charlas técnicas",
       "conferenceDescription": "Parte de la misma jornada única: charlas técnicas en la misma sala.",
       "viewConference": "Ver agenda",
-      "getTickets": "Consultar entradas",
+      "getTickets": "Solicita tu entrada",
       "venuePending": "Sede: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái",
       "connectionsKicker": "MÁS ALLÁ DEL ESCENARIO",
       "connectionsTitle": "Conversaciones con propósito",
@@ -107,7 +107,7 @@
       "listLabel": "Programa de sesiones de Dubái",
       "speakerPending": "Ponente(s) por confirmar",
       "conferenceTitle": "Agenda de Dubái · 30 de noviembre",
-      "conferenceIntro": "Consulta las diez charlas aceptadas de la jornada única, con fotografías de los ponentes, títulos originales y descripciones.",
+      "conferenceIntro": "Consulta las once charlas aceptadas de la jornada única, con fotografías de los ponentes, títulos originales y descripciones.",
       "types": {
         "talk": "Charla aceptada",
         "keynote": "Keynote estratégica",
@@ -135,12 +135,21 @@
       "navSummit": "Summit ejecutivo",
       "navConference": "Conference técnica",
       "navAgenda": "Agenda",
-      "navSpeakers": "Ponentes"
+      "navSpeakers": "Ponentes",
+      "dubaiStatement": "Una ciudad. Una jornada. Un mismo ecosistema tecnológico.",
+      "dubaiNavSummit": "Programa"
     },
     "program": {
       "kicker": "El programa de {{city}}",
       "title": "Dos formatos diseñados para públicos distintos",
       "subtitle": "Summit y Conference comparten ciudad y visión, pero conservan su propósito, audiencia y ritmo.",
+      "dubaiTitle": "Una jornada, una comunidad",
+      "dubaiSubtitle": "X-Ops Dubai 2026 es una jornada única: programa técnico, sesiones de liderazgo y networking el mismo día. La Entrada General da acceso al programa técnico y al networking; las sesiones de liderazgo y la cena con ponentes son para otros perfiles de entrada.",
+      "dubaiTrack": {
+        "h3": "Programa técnico, sesiones de liderazgo y networking",
+        "text": "Un día con charlas técnicas sobre IA en producción, plataforma y seguridad, sesiones de liderazgo y tiempo de networking para la comunidad.",
+        "cta": "Ver la agenda"
+      },
       "summit": {
         "h3": "Liderazgo, estrategia y transformación",
         "text": "Una jornada ejecutiva para CTOs, CISOs y Decision Makers que buscan conversación estratégica y networking de alto nivel.",
@@ -179,7 +188,7 @@
       },
       "agendaTbd": "Por anunciar",
       "agendaTitle": "Programa ejecutivo",
-      "agendaSubtitle": "Diez charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Los participantes de paneles y mesas se anunciarán al confirmarse."
+      "agendaSubtitle": "once charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Los participantes de paneles y mesas se anunciarán al confirmarse."
     },
     "conference": {
       "kicker": "Conference técnica",
@@ -457,12 +466,7 @@
       "summit": "La experiencia X-Ops completa: Summit ejecutivo, los 2 días completos de Conference y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
     },
     "tierDescriptionsDubai": {
-      "superEarly": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "early": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Precio early adopter. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "daily": "Entrada estándar al precio regular. Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM), todas las sesiones técnicas, networking y material incluidos. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "lastMinute": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Tarifa de último momento. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "vip": "La jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye el Summit del 30 de noviembre ni workshops premium.",
-      "summit": "La experiencia X-Ops completa, válida en la jornada única del lunes 30 de noviembre de 2026: Summit ejecutivo por la mañana, Conference por la tarde y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
+      "general": "Acceso a una sola jornada, el lunes 30 de noviembre de 2026, en DKP Conference Centre (TECOM). Todas las sesiones técnicas, networking y material incluidos. No incluye speakers dinner ni workshops premium."
     },
     "entitlements": {
       "confDay1": "Conference día 1 · acceso completo",
@@ -472,15 +476,16 @@
       "workshops": "Workshops premium (se venden aparte)"
     },
     "entitlementsDubai": {
-      "summit": "X-Ops Summit ejecutivo · lunes 30 de noviembre",
-      "conference": "X-Ops Conference · lunes 30 de noviembre",
-      "legacyDay": "Acceso adicional · lunes 30 de noviembre"
-    }
+      "summit": "Sesiones de liderazgo · lunes 30 de noviembre",
+      "conference": "Jornada técnica · lunes 30 de noviembre"
+    },
+    "requestAccess": "Solicitar entrada",
+    "closedEventNote": "Este evento es cerrado y por invitación. Rellena la solicitud y te enviamos tu enlace personal de registro y pago."
   },
   "tickets": {
     "event": {
       "getTickets": "Obtener entradas",
-      "buyTickets": "Comprar entradas",
+      "buyTickets": "Solicitar entrada",
       "viewDetails": "Ver detalles",
       "buyNow": "Comprar ahora"
     },
@@ -648,23 +653,27 @@
       "summit": {
         "label": "X-Ops Summit",
         "dates": "30 de noviembre",
-        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái"
+        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái",
+        "dubaiLabel": "X-Ops Dubai"
       },
       "conference": {
         "label": "X-Ops Conference",
         "dates": "30 de noviembre",
-        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái"
+        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái",
+        "dubaiLabel": "X-Ops Dubai"
       },
       "narrative": "La primera edición en Oriente Medio. Dubai es el hub tecnológico y financiero del MENA. Llevamos el ADN de X-Ops a un nuevo continente: el contenido de Summit y Conference condensado en una jornada, en una sala, para un ecosistema donde la transformación digital avanza a velocidad de fórmula 1.",
       "badges": {
-        "format": "Una jornada: Summit + Conference",
+        "format": "Una jornada, un programa",
         "edition": "Primera edición",
         "region": "Oriente Medio"
       },
       "cta": {
         "summit": "Ver Summit Dubai",
         "conference": "Ver agenda de Dubái",
-        "verDubai": "Ver Dubai"
+        "verDubai": "Ver Dubai",
+        "dubaiSummit": "Ver Dubai",
+        "dubaiConference": "Ver Dubai"
       }
     }
   },
@@ -714,7 +723,7 @@
     },
     "card2": {
       "title": "¿Dónde y Cuándo?",
-      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 es una jornada única el 30 de noviembre de 2026 (DKP Conference Centre, TECOM): Summit ejecutivo por la mañana y Conference por la tarde. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 es una jornada única el 30 de noviembre de 2026 (DKP Conference Centre, TECOM): sesiones técnicas y de liderazgo, y networking, todo el mismo día. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
     },
     "card3": {
       "title": "El Futuro del Trabajo",
@@ -929,5 +938,45 @@
     "venue": "Las fechas y sedes de Madrid quedan pendientes de reprogramación. No acudas a las ubicaciones anteriormente anunciadas.",
     "status": "Madrid 2026 · edición aplazada",
     "salesSuspended": "La venta de entradas de Madrid está suspendida por el aplazamiento."
+  },
+  "registration": {
+    "title": "Solicita tu entrada — X-Ops Dubai 2026",
+    "seoDesc": "Solicitud de entrada para X-Ops Conference Dubai 2026, el lunes 30 de noviembre en Dubái.",
+    "intro": "Este evento es de acceso cerrado por invitación. Rellena la solicitud y te enviamos tu enlace de registro y pago.",
+    "introNote": "Revisamos cada solicitud a mano. Si la aceptamos, te llega un correo con tu enlace personal de pago.",
+    "section": {
+      "who": "Tus datos",
+      "consent": "Consentimiento"
+    },
+    "fields": {
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono (con prefijo internacional)",
+      "company": "Empresa u organización",
+      "role": "Cargo",
+      "country": "País de residencia",
+      "linkedin": "LinkedIn o web (opcional)",
+      "motivation": "¿Por qué quieres venir? (opcional)",
+      "motivationHint": "Nos ayuda a preparar la sala. Un par de líneas vale.",
+      "marketing": "Sí, quiero recibir correos sobre los próximos eventos de X-Ops.",
+      "marketingHint": "Opcional. Solo si lo marcas guardamos tu correo para enviarte avisos de otros eventos. Puedes darte de baja cuando quieras.",
+      "privacy": "He leído y acepto la política de privacidad",
+      "privacyHint": "Necesario para poder tramitr tu solicitud. Lo guardamos con ella.",
+      "privacyLink": "Ver la política de privacidad"
+    },
+    "errors": {
+      "fullName": "Escribe tu nombre completo",
+      "email": "Escribe un correo válido",
+      "company": "Escribe tu empresa u organización",
+      "country": "Escribe tu país",
+      "privacy": "Tienes que aceptar la política de privacidad",
+      "submit": "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos."
+    },
+    "submit": "Enviar solicitud",
+    "submitting": "Enviando…",
+    "success": {
+      "title": "Solicitud recibida",
+      "body": "Gracias. Revisamos tu solicitud y te escribimos con los siguientes pasos."
+    }
   }
 }

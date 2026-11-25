@@ -34,6 +34,7 @@ import TermsOfService from './pages/TermsOfService';
 import SpeakerPage from './pages/Speaker';
 import MyAgenda from './pages/MyAgenda';
 import TicketSuccess from './pages/TicketSuccess';
+import RegistrationForm from './pages/RegistrationForm';
 import PostEventPage from './pages/PostEventPage';
 import AnalyticsPage from './pages/Analytics';
 import NotFound from './components/NotFound';
@@ -286,6 +287,8 @@ function App() {
               auto-open the modal instead of 404ing. */}
           <Route path="/tickets" element={<Navigate to="/?openTickets=1" replace />} />
           <Route path="/tickets/success" element={<TicketSuccess />} />
+          <Route path="/registro" element={<RegistrationForm />} />
+          <Route path="/registration" element={<RegistrationForm />} />
 
           <Route path="/#ponentes" element={<Home />} />
 
