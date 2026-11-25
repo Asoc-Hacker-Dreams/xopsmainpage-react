@@ -60,6 +60,30 @@ describe('Dubai 2026 single-day programme', () => {
     });
   });
 
+  test('la ficha publica de Jay Prajapat esta actualizada (cargo, LinkedIn, bio y foto)', () => {
+    const jay=dubaiSpeakers2026['a86f13c6-b7de-4362-848e-145e02aeae60'];
+    expect(jay).toBeTruthy();
+    expect(jay.name).toBe('Jay Prajapat');
+    expect(jay.role).toBe('VP of Engineering & Technology, RankRabbitAI');
+    expect(jay.linkedIn).toBe('https://www.linkedin.com/in/jayy-p/');
+    expect(jay.photo).toBe('/speakers/jay-prajapat-profile.png');
+    // La bio se compara COMPLETA contra la que remitio el ponente por correo el 21-nov-2026
+    // (noreply@rankrabbit.ai, 06:58Z, "Speaker Biography"). Comparar solo que no este vacia
+    // dejaria pasar una bio inventada o truncada.
+    expect(jay.bio).toBe(
+      'Jay Prajapat is a technology leader and engineer with 15 years of experience taking software products from concept to MVP and scaling them into production-ready platforms.\n\n' +
+      'At RankRabbitAI, Jay leads engineering initiatives focused on building AI-powered applications and production-grade agentic AI systems. His current interests and contributions include agentic AI architectures, developing intelligent agents using Google\'s Agent Development Kit (ADK), and advancing AI evaluation practices to improve agent reliability, quality, observability, and performance. He is also engaged with the broader AI ecosystem through contributions and involvement with the Agentic AI Foundation (AAIF).\n\n' +
+      'His engineering philosophy is simple: the right boundaries matter more than the right buzzwords, and a system you cannot observe is a system you cannot trust.\n\n' +
+      'Jay is a Certified SAFe Practitioner, an active mentor to fellow engineers, and is based in Ahmedabad, India.'
+    );
+    // 'Beyond RAG' (13:20-14:10) es suya y solo suya: Hastimal y Harsh ya no figuran
+    const sesion=dubaiAcceptedSessions2026['1343214'];
+    expect(sesion.speakers).toHaveLength(1);
+    expect(dubaiSpeakers2026[sesion.speakers[0]].name).toBe('Jay Prajapat');
+    expect(JSON.stringify(dubaiSpeakers2026)).not.toMatch(/Hastimal|Harsh/);
+    expect(JSON.stringify(dubaiAcceptedSessions2026)).not.toMatch(/51a51018|88d5d1b5/);
+  });
+
   test('Victor Perez is not attributed to the Game of Bounties talk; Klavs is not on Ashish talk', () => {
     expect(dubaiAcceptedSessions2026['1289422'].speakers).toHaveLength(1);
     expect(dubaiSpeakers2026[dubaiAcceptedSessions2026['1289422'].speakers[0]].name).toBe('David Padilla Alvarado');
