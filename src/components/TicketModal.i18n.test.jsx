@@ -99,49 +99,35 @@ describe('tierDescriptions', () => {
   });
 });
 
-// TG-43 (Opción A, 2026-11-13): en Dubái Summit = lunes 30-nov, Conference =
-// martes 1-dic (una jornada), la entrada Summit vale los dos días. El copy
-// genérico (Madrid, aplazado) no se toca.
-describe('tierDescriptionsDubai / entitlementsDubai (TG-43)', () => {
-  const TIERS = ['superEarly', 'early', 'daily', 'lastMinute', 'vip', 'summit'];
-  const CONFERENCE_LIKE = new Set(['superEarly', 'early', 'daily', 'lastMinute', 'vip']);
-  const tiersOf = (lang) => Object.entries(lang.ticketModal.tierDescriptionsDubai);
-
-  it('existen en ES y EN y no prometen 2 días de Conference ni 2-3 dic', () => {
+// Una sola entrada general en Dubái (2026-11-25): tierDescriptionsDubai sólo tiene
+// la clave de la entrada general; entitlementsDubai ya no tiene legacyDay.
+describe('tierDescriptionsDubai / entitlementsDubai (una sola entrada)', () => {
+  it('existen en ES y EN con una sola clave general', () => {
     for (const lang of [es, en]) {
-      const entries = tiersOf(lang);
-      expect(entries.map(([k]) => k).sort()).toEqual([...TIERS].sort());
-      for (const [tier, text] of entries) {
-        expect(text.length, tier).toBeGreaterThan(30);
-        expect(text, tier).not.toMatch(/2 días|2-day|2 days|two days|dos días de Conference/i);
-        expect(text, tier).not.toMatch(/[23] de diciembre|[23] December/);
+      const td = lang.ticketModal.tierDescriptionsDubai;
+      expect(Object.keys(td).sort()).toEqual(['general']);
+      expect(td.general.length).toBeGreaterThan(30);
+      const ent = lang.ticketModal.entitlementsDubai;
+      expect(Object.keys(ent).sort()).toEqual(['conference', 'summit']);
+    }
+  });
+
+  it('el copy general no contiene Summit, Conference como entidades ni precio regular', () => {
+    for (const lang of [es, en]) {
+      const text = lang.ticketModal.tierDescriptionsDubai.general;
+      expect(text).not.toMatch(/Summit/i);
+      expect(text).not.toMatch(/al precio regular|regular price/i);
+      expect(text).toMatch(/30 de noviembre|30 November/);
+    }
+  });
+
+  it('las etiquetas de entitlement no contienen día 1, día 2 ni producto inexistente', () => {
+    for (const lang of [es, en]) {
+      const ent = lang.ticketModal.entitlementsDubai;
+      for (const [k, v] of Object.entries(ent)) {
+        expect(v, k).not.toMatch(/día 1|día 2|day 1|day 2/i);
+        expect(v, k).not.toMatch(/Summit|Conference/i);
       }
-      expect(Object.keys(lang.ticketModal.entitlementsDubai).sort())
-        .toEqual(['conference', 'legacyDay', 'summit']);
     }
-  });
-
-  it('Conference y VIP: jornada única 30 de noviembre (sin 1 de diciembre), sin Summit', () => {
-    for (const [tier, text] of tiersOf(es).filter(([k]) => CONFERENCE_LIKE.has(k))) {
-      expect(text, tier).toMatch(/30 de noviembre/);
-      expect(text, tier).not.toMatch(/1 de diciembre/);
-      expect(text, tier).toMatch(/No incluye el Summit/);
-    }
-    for (const [tier, text] of tiersOf(en).filter(([k]) => CONFERENCE_LIKE.has(k))) {
-      expect(text, tier).toMatch(/30 November/);
-      expect(text, tier).not.toMatch(/1 December/);
-      expect(text, tier).toMatch(/Does not include the 30 November Summit/);
-    }
-  });
-
-  it('Summit: jornada única 30 de noviembre (Summit AM + Conference PM), con cena', () => {
-    const esS = es.ticketModal.tierDescriptionsDubai.summit;
-    const enS = en.ticketModal.tierDescriptionsDubai.summit;
-    expect(esS).toMatch(/30 de noviembre/);
-    expect(esS).not.toMatch(/1 de diciembre/);
-    expect(esS).toMatch(/dinner/);
-    expect(enS).toMatch(/30 November/);
-    expect(enS).not.toMatch(/1 December/);
-    expect(enS).toMatch(/dinner/);
   });
 });
