@@ -21,7 +21,7 @@ EDITIONS
 Madrid: postponed. Dates and venues pending reprogramming; do not attend the original venues.
 Dubai: one day, Monday 30 November 2026, with executive and technical talks in one room.
 Dubai: in-person event in Dubai, UAE. Venue: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai. Capacity up to 90 people.
-Programme status: 10 accepted talks in one day (30 November 2026), in one room, up to 90 people. Speakers are listed per talk on the agenda. All times Gulf Standard Time (UTC+4).
+Programme status: 11 accepted talks in one day (30 November 2026), in one room, up to 90 people. Speakers are listed per talk on the agenda. All times Gulf Standard Time (UTC+4).
 Expected attendees: Dubai 2026 has a maximum of 90 attendees (one room); total Dubai attendance TBC (Madrid 2025: 300+ attendees)
 Tracks: DevSecOps, Platform Engineering, AIOps/MLOps, SRE, Ciberseguridad
 

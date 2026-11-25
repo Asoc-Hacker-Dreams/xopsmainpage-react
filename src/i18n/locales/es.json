@@ -52,7 +52,7 @@
       "days": "día del evento",
       "summitLabel": "30 de noviembre · lunes · una jornada, una sala",
       "summitTitle": "Executive Summit",
-      "summitDescription": "Diez charlas aceptadas en una sola jornada y una sola sala, con sesiones ejecutivas y técnicas, y conexiones B2B voluntarias al final de la tarde.",
+      "summitDescription": "once charlas aceptadas en una sola jornada y una sola sala, con sesiones ejecutivas y técnicas, y conexiones B2B voluntarias al final de la tarde.",
       "viewSummit": "Explorar agenda del Summit",
       "conferenceLabel": "30 de noviembre · mismo día",
       "conferenceTitle": "Charlas técnicas",
@@ -107,7 +107,7 @@
       "listLabel": "Programa de sesiones de Dubái",
       "speakerPending": "Ponente(s) por confirmar",
       "conferenceTitle": "Agenda de Dubái · 30 de noviembre",
-      "conferenceIntro": "Consulta las diez charlas aceptadas de la jornada única, con fotografías de los ponentes, títulos originales y descripciones.",
+      "conferenceIntro": "Consulta las once charlas aceptadas de la jornada única, con fotografías de los ponentes, títulos originales y descripciones.",
       "types": {
         "talk": "Charla aceptada",
         "keynote": "Keynote estratégica",
@@ -188,7 +188,7 @@
       },
       "agendaTbd": "Por anunciar",
       "agendaTitle": "Programa ejecutivo",
-      "agendaSubtitle": "Diez charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Los participantes de paneles y mesas se anunciarán al confirmarse."
+      "agendaSubtitle": "once charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Los participantes de paneles y mesas se anunciarán al confirmarse."
     },
     "conference": {
       "kicker": "Conference técnica",

@@ -91,29 +91,37 @@ describe('Dubai 2026 single-day programme', () => {
 describe('todo ponente con entrada emitida aparece en la agenda', () => {
   it('cada ponente con entrada emitida tiene su sesion en la agenda publica', () => {
     // PONENTES con entrada emitida en el evento 2 (verificado en la BD el 25-nov-2026).
+    // Se comprueba nombre Y sessionId: si solo se mirase el nombre, la sesion de un ponente
+    // podria quedar atribuida a otro y el test seguiria en verde.
     const conEntrada = [
-      ['Sergei Pronin', '1322277'],
-      ['Ashish Jaiswal', '1315380'],
-      ['Hannah Suarez', '1321418'],
-      ['Jay Prajapat', '1343214'],
-      ['Rishi Mondal', '1345297'],
-      ['Sonia Valeja', '1317552'],
-      ['Valeria Bogatyreva', '1319799'],
-      ['Harmeet Singh', '1318615'],
-      ['Ravindra Verma', '1339445'],
-      ['Daria Kasatkina', '1341342'],
+      ['Sergei Pronin', '1322277', '1f3078c9-65db-4737-b166-7b6479c99588'],
+      ['Ashish Jaiswal', '1315380', 'dcbdeeda-0642-4650-85cd-beef78f8f83c'],
+      ['Hannah Suarez', '1321418', null],
+      ['Jay Prajapat', '1343214', null],
+      ['Rishi Mondal', '1345297', null],
+      ['Sonia Valeja', '1317552', null],
+      ['Valeria Bogatyreva', '1319799', null],
+      ['Harmeet Singh', '1318615', null],
+      ['Ravindra Verma', '1339445', null],
+      ['Daria Kasatkina', '1341342', null],
     ];
     const enAgenda = new Set(
       dubaiProgramme2026.items.map((s) => s.sessionId).filter(Boolean),
     );
-    for (const [nombre, sessionId] of conEntrada) {
+    for (const [nombre, sessionId, speakerId] of conEntrada) {
       expect(enAgenda.has(sessionId), `${nombre} (${sessionId}) no esta en la agenda`).toBe(true);
       const sesion = dubaiAcceptedSessions2026[sessionId];
       expect(sesion, `no existe la sesion ${sessionId} de ${nombre}`).toBeTruthy();
-      // Y el ponente tiene que estar en la sesion.
-      expect(sesion.speakers.length).toBeGreaterThan(0);
+      expect(sesion.speakers.length, `la sesion ${sessionId} no tiene ponente`).toBeGreaterThan(0);
+      // El ponente de ESA sesion tiene que ser el esperado (no basta con que tenga ficha).
+      if (speakerId) {
+        expect(sesion.speakers, `${sessionId} deberia tener a ${nombre}`).toContain(speakerId);
+      }
+      // Y el nombre publicado de la sesion tiene que ser el del ponente con entrada.
       const ficha = dubaiSpeakers2026[sesion.speakers[0]];
       expect(ficha?.name, `la sesion ${sessionId} no tiene ficha de ponente`).toBeTruthy();
+      const esElEsperado = sesion.speakers.some((sid) => dubaiSpeakers2026[sid]?.name === nombre);
+      expect(esElEsperado, `la sesion ${sessionId} no la presenta ${nombre}`).toBe(true);
     }
   });
 
