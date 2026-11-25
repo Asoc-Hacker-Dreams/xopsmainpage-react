@@ -58,7 +58,7 @@
       "conferenceTitle": "Charlas técnicas",
       "conferenceDescription": "Parte de la misma jornada única: charlas técnicas en la misma sala.",
       "viewConference": "Ver agenda",
-      "getTickets": "Consultar entradas",
+      "getTickets": "Solicita tu entrada",
       "venuePending": "Sede: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái",
       "connectionsKicker": "MÁS ALLÁ DEL ESCENARIO",
       "connectionsTitle": "Conversaciones con propósito",
@@ -478,12 +478,14 @@
     "entitlementsDubai": {
       "summit": "Sesiones de liderazgo · lunes 30 de noviembre",
       "conference": "Jornada técnica · lunes 30 de noviembre"
-    }
+    },
+    "requestAccess": "Solicitar entrada",
+    "closedEventNote": "Este evento es cerrado y por invitación. Rellena la solicitud y te enviamos tu enlace personal de registro y pago."
   },
   "tickets": {
     "event": {
       "getTickets": "Obtener entradas",
-      "buyTickets": "Comprar entradas",
+      "buyTickets": "Solicitar entrada",
       "viewDetails": "Ver detalles",
       "buyNow": "Comprar ahora"
     },
@@ -936,5 +938,45 @@
     "venue": "Las fechas y sedes de Madrid quedan pendientes de reprogramación. No acudas a las ubicaciones anteriormente anunciadas.",
     "status": "Madrid 2026 · edición aplazada",
     "salesSuspended": "La venta de entradas de Madrid está suspendida por el aplazamiento."
+  },
+  "registration": {
+    "title": "Solicita tu entrada — X-Ops Dubai 2026",
+    "seoDesc": "Solicitud de entrada para X-Ops Conference Dubai 2026, el lunes 30 de noviembre en Dubái.",
+    "intro": "Este evento es de acceso cerrado por invitación. Rellena la solicitud y te enviamos tu enlace de registro y pago.",
+    "introNote": "Revisamos cada solicitud a mano. Si la aceptamos, te llega un correo con tu enlace personal de pago.",
+    "section": {
+      "who": "Tus datos",
+      "consent": "Consentimiento"
+    },
+    "fields": {
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono (con prefijo internacional)",
+      "company": "Empresa u organización",
+      "role": "Cargo",
+      "country": "País de residencia",
+      "linkedin": "LinkedIn o web (opcional)",
+      "motivation": "¿Por qué quieres venir? (opcional)",
+      "motivationHint": "Nos ayuda a preparar la sala. Un par de líneas vale.",
+      "marketing": "Sí, quiero recibir correos sobre los próximos eventos de X-Ops.",
+      "marketingHint": "Opcional. Solo si lo marcas guardamos tu correo para enviarte avisos de otros eventos. Puedes darte de baja cuando quieras.",
+      "privacy": "He leído y acepto la política de privacidad",
+      "privacyHint": "Necesario para poder tramitr tu solicitud. Lo guardamos con ella.",
+      "privacyLink": "Ver la política de privacidad"
+    },
+    "errors": {
+      "fullName": "Escribe tu nombre completo",
+      "email": "Escribe un correo válido",
+      "company": "Escribe tu empresa u organización",
+      "country": "Escribe tu país",
+      "privacy": "Tienes que aceptar la política de privacidad",
+      "submit": "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos."
+    },
+    "submit": "Enviar solicitud",
+    "submitting": "Enviando…",
+    "success": {
+      "title": "Solicitud recibida",
+      "body": "Gracias. Revisamos tu solicitud y te escribimos con los siguientes pasos."
+    }
   }
 }

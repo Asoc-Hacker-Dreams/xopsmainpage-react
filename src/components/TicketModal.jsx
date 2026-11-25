@@ -275,7 +275,18 @@ const MODAL_BODY   = { background: '#0f0f1a', color: '#e0e0e0' };
 const MODAL_FOOTER = { background: '#1a1a2e', borderTop: '1px solid #2a2a4a' };
 const INPUT_STYLE  = { background: '#1e1e3a', border: '1px solid #2a2a4a', color: '#f8fafc' };
 
-const TicketModal = ({ show, onHide }) => {
+/**
+ * @param {boolean} props.show        el modal esta abierto
+ * @param {Function} props.onHide     cerrar
+ * @param {boolean} [props.allowIndividualCheckout]
+ *        true cuando el checkout se abre para una persona concreta a la que el
+ *        equipo ya le ha enviado un enlace de pago individual. En Dubai el CTA
+ *        publico NO abre el checkout (el evento es cerrado y por invitacion):
+ *        lleva al formulario de solicitud. El checkout sigue vivo para los
+ *        enlaces individuales, que es por donde se paga de verdad.
+ *        Por defecto false: via publica, sin checkout.
+ */
+const TicketModal = ({ show, onHide, allowIndividualCheckout = false }) => {
   const { t, i18n } = useTranslation();
   const { consent, hasInteracted } = useConsent();
   const analyticsOptIn = hasInteracted && consent.analytics === true;
@@ -419,12 +430,31 @@ const TicketModal = ({ show, onHide }) => {
     return () => { cancelled = true; };
   }, [show, loaded, t]);
 
-  const openCheckout = (event, ticketType) => {
+  // `fromIndividualLink` = true cuando el checkout se abre desde un enlace de
+  // pago individual (el que el equipo manda a quien aceptó la solicitud),
+  // no desde el CTA público de la web. En Dubái el CTA público NO abre el
+  // checkout: el evento es cerrado y no hay venta abierta. El checkout
+  // sigue existiendo para los enlaces individuales, que es por donde se
+  // paga de verdad.
+  const openCheckout = (event, ticketType, { fromIndividualLink = false } = {}) => {
     const item = ticketGa4Item(event, ticketType);
     if (item) trackGa4Event('select_item', {
       item_list_name: 'X-Ops tickets', items: [item],
       xops_edition: editionFromEvent(event, window.location.hostname) || 'madrid',
     });
+
+    // Dubái: el evento es CERRADO y por invitación. No hay checkout abierto:
+    // quien quiere entrar pide la entrada en el formulario, el equipo revisa la
+    // solicitud y le envía un enlace de pago individual. Abrir Stripe aquí
+    // convertiría el evento en una venta pública, que es justo lo que se
+    // quiere evitar (y lo que la DET trata como ticketed con permiso).
+    // Se mide igual el 'select_item' de GA4 antes de salir, para no perder la
+    // métrica de interés.
+    if (!fromIndividualLink && !allowIndividualCheckout
+        && editionFromEvent(event, '') === 'dubai') {
+      window.location.assign('/registro');
+      return;
+    }
     discountValidationNonce.current += 1;
     setValidatingDiscount(false);
     setSelectedEvent(event);
@@ -1070,6 +1100,14 @@ const TicketModal = ({ show, onHide }) => {
                                   <span>{t('ticketModal.entitlements.workshops')}</span>
                                 </li>
                               </ul>
+                              {onSale && editionFromEvent(ev, '') === 'dubai' && (
+                                <p style={{
+                                  color: '#94a3b8', fontSize: '0.8rem', marginBottom: '10px',
+                                  textAlign: 'center'
+                                }}>
+                                  {t('ticketModal.closedEventNote')}
+                                </p>
+                              )}
                               <Button
                                 variant={onSale ? style.ctaVariant : 'secondary'}
                                 style={{ width: '100%', fontWeight: 600 }}
@@ -1077,9 +1115,13 @@ const TicketModal = ({ show, onHide }) => {
                                 disabled={!onSale}
                               >
                                 {onSale
-                                  ? (tt.name === 'Entrada General'
-                                      ? t('ticketModal.checkout.title')
-                                      : `${t('ticketModal.checkout.title')} ${tt.name}`)
+                                  ? (editionFromEvent(ev, '') === 'dubai'
+                                      // Dubái es un evento cerrado: el CTA pide la
+                                      // entrada, no la compra.
+                                      ? t('ticketModal.requestAccess')
+                                      : (tt.name === 'Entrada General'
+                                          ? t('ticketModal.checkout.title')
+                                          : `${t('ticketModal.checkout.title')} ${tt.name}`))
                                   : saleOpensOn
                                     ? t('ticketModal.saleOpensOn', { date: saleOpensOn })
                                     : t('ticketModal.saleClosed')}

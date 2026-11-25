@@ -58,7 +58,7 @@
       "conferenceTitle": "Technical talks",
       "conferenceDescription": "Part of the same single day: technical talks in the same room.",
       "viewConference": "View agenda",
-      "getTickets": "Explore tickets",
+      "getTickets": "Request a ticket",
       "venuePending": "Venue: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai",
       "connectionsKicker": "BEYOND THE STAGE",
       "connectionsTitle": "Make the conversations count",
@@ -484,12 +484,14 @@
     "entitlementsDubai": {
       "summit": "Leadership sessions · Monday 30 November",
       "conference": "Technical day · Monday 30 November"
-    }
+    },
+    "requestAccess": "Request a ticket",
+    "closedEventNote": "This event is closed and by invitation. Fill in the request and we will send you your personal registration and payment link."
   },
   "tickets": {
     "event": {
       "getTickets": "Get tickets",
-      "buyTickets": "Buy tickets",
+      "buyTickets": "Request a ticket",
       "viewDetails": "View details",
       "buyNow": "Buy now"
     },
@@ -942,5 +944,45 @@
     "venue": "The Madrid dates and venues will be rescheduled. Please do not travel to the previously announced venues.",
     "status": "Madrid 2026 · postponed",
     "salesSuspended": "Madrid ticket sales have been suspended due to the postponement."
+  },
+  "registration": {
+    "title": "Request your ticket — X-Ops Dubai 2026",
+    "seoDesc": "Ticket request for X-Ops Conference Dubai 2026, Monday 30 November in Dubai.",
+    "intro": "This event is closed and by invitation. Fill in the request and we will send you your registration and payment link.",
+    "introNote": "We review every request by hand. If we accept it, you will get an email with your personal payment link.",
+    "section": {
+      "who": "Your details",
+      "consent": "Consent"
+    },
+    "fields": {
+      "fullName": "Full name",
+      "email": "Email address",
+      "phone": "Phone (with country code)",
+      "company": "Company or organization",
+      "role": "Role",
+      "country": "Country of residence",
+      "linkedin": "LinkedIn or website (optional)",
+      "motivation": "Why do you want to come? (optional)",
+      "motivationHint": "It helps us shape the room. A couple of lines is plenty.",
+      "marketing": "Yes, I want to receive emails about future X-Ops events.",
+      "marketingHint": "Optional. Only if you tick this do we keep your email to tell you about other events. You can unsubscribe at any time.",
+      "privacy": "I have read and accept the privacy policy",
+      "privacyHint": "Required so we can process your request. We store it with your request.",
+      "privacyLink": "Read the privacy policy"
+    },
+    "errors": {
+      "fullName": "Please enter your full name",
+      "email": "Please enter a valid email",
+      "company": "Please enter your company or organization",
+      "country": "Please enter your country",
+      "privacy": "You need to accept the privacy policy",
+      "submit": "We could not send your request. Please try again in a few minutes."
+    },
+    "submit": "Send request",
+    "submitting": "Sending…",
+    "success": {
+      "title": "Request received",
+      "body": "Thank you. We review your request and write to you with the next steps."
+    }
   }
 }

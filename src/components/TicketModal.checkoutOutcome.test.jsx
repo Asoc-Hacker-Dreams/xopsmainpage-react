@@ -95,7 +95,13 @@ const partialQuote = (code) => quoteFor(code, 150);
 // Rellena el paso de checkout sin enviar. `coupon` (opcional) escribe el cupón en el campo;
 // `coupon: ''` lo borra.
 async function fillCheckout({ coupon } = {}) {
-  const buy = await screen.findByRole('button', { name: /ticketModal\.checkout\.title Daily Ticket/ });
+  // En Dubai el CTA del selector dice "ticketModal.requestAccess" (el evento
+  // es cerrado: el CTA publico lleva al formulario, no al checkout). Este test
+  // abre el checkout con `allowIndividualCheckout`, asi que el boton es el de
+  // la entrada general.
+  const buy = await screen.findByRole('button', {
+    name: /ticketModal\.(requestAccess|checkout\.title)/,
+  });
   fireEvent.click(buy);
   fireEvent.change(screen.getByLabelText(/ticketModal\.checkout\.fullName/), { target: { value: 'Ana Pérez' } });
   fireEvent.change(screen.getByLabelText(/ticketModal\.checkout\.email/), { target: { value: 'ana@example.org' } });
@@ -111,7 +117,12 @@ async function fillCheckoutAndSubmit(options) {
 }
 
 async function reachCheckoutForm(options) {
-  render(<TicketModal show onHide={() => {}} />);
+  // El checkout de Dubai se abre con `allowIndividualCheckout`: en la via
+  // publica el CTA lleva al formulario de solicitud (el evento es cerrado).
+  // Este test ejercita la MECANICA del checkout (pedido gratuito, navegacion
+  // diferida, errores), que es la misma que se usa cuando el equipo envia un
+  // enlace de pago individual a quien acepto la solicitud.
+  render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
   await fillCheckoutAndSubmit(options);
 }
 
@@ -247,7 +258,7 @@ describe('TG-48 ronda 3: navegación gratuita cancelable', () => {
   it('cerrar el modal antes del retardo: la navegación NO se produce', async () => {
     triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
     const onHide = vi.fn();
-    render(<TicketModal show onHide={onHide} />);
+    render(<TicketModal show onHide={onHide} allowIndividualCheckout />);
     await fillCheckoutAndSubmit();
     expect(await screen.findByText('ticketModal.checkout.success.freeRegistered')).toBeInTheDocument();
 
@@ -260,7 +271,7 @@ describe('TG-48 ronda 3: navegación gratuita cancelable', () => {
 
   it('desmontar el componente antes del retardo: la navegación NO se produce', async () => {
     triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
-    const { unmount } = render(<TicketModal show onHide={() => {}} />);
+    const { unmount } = render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await fillCheckoutAndSubmit();
     expect(await screen.findByText('ticketModal.checkout.success.freeRegistered')).toBeInTheDocument();
 
@@ -275,7 +286,7 @@ describe('TG-48 ronda 3: navegación gratuita cancelable', () => {
     triskelGateClient.createCheckout.mockImplementation(
       () => new Promise((resolve) => { resolveCheckout = resolve; }),
     );
-    render(<TicketModal show onHide={() => {}} />);
+    render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await fillCheckoutAndSubmit();
     await waitFor(() => expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1));
 
@@ -305,13 +316,13 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
     triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
     triskelGateClient.createCheckout.mockResolvedValue(response);
     const onHide = vi.fn();
-    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    const { rerender } = render(<TicketModal show onHide={onHide} allowIndividualCheckout />);
     await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText(visibleText)).toBeInTheDocument();
 
     fireEvent.click(closeHeaderButton());
-    rerender(<TicketModal show={false} onHide={onHide} />);
-    rerender(<TicketModal show onHide={onHide} />);
+    rerender(<TicketModal show={false} onHide={onHide} allowIndividualCheckout />);
+    rerender(<TicketModal show onHide={onHide} allowIndividualCheckout />);
 
     await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
@@ -324,13 +335,13 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
     triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
     triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
     const onHide = vi.fn();
-    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    const { rerender } = render(<TicketModal show onHide={onHide} allowIndividualCheckout />);
     await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
 
     fireEvent.click(closeHeaderButton());
-    rerender(<TicketModal show={false} onHide={onHide} />);
-    rerender(<TicketModal show onHide={onHide} />);
+    rerender(<TicketModal show={false} onHide={onHide} allowIndividualCheckout />);
+    rerender(<TicketModal show onHide={onHide} allowIndividualCheckout />);
 
     // Tras reabrir, el modal vuelve al paso 'select': hay que volver al checkout
     // para ver el botón bloqueado y su aviso.
@@ -342,13 +353,13 @@ describe('TG-48 ronda 3: un pedido gratuito completado no se puede reenviar desd
 
   it('recargar la página (nuevo montaje) vuelve a permitir comprar', async () => {
     triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
-    const first = render(<TicketModal show onHide={() => {}} />);
+    const first = render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await fillCheckoutAndSubmit();
     expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
     first.unmount();
 
     triskelGateClient.createCheckout.mockResolvedValue(FREE_CONFIRMED);
-    render(<TicketModal show onHide={() => {}} />);
+    render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await fillCheckoutAndSubmit();
 
     await waitFor(() => expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(2));
@@ -366,15 +377,15 @@ describe('TG-48 ronda 4: el bloqueo sólo frena un segundo pedido gratuito', () 
   // Cierra el modal como lo haría el usuario y lo vuelve a abrir en el mismo montaje.
   function closeAndReopen(rerender, onHide) {
     fireEvent.click(closeHeaderButton());
-    rerender(<TicketModal show={false} onHide={onHide} />);
-    rerender(<TicketModal show onHide={onHide} />);
+    rerender(<TicketModal show={false} onHide={onHide} allowIndividualCheckout />);
+    rerender(<TicketModal show onHide={onHide} allowIndividualCheckout />);
   }
 
   it('cupón que deja importe 0 tras un pedido gratuito: no se envía, el botón queda bloqueado y se explica', async () => {
     triskelGateClient.validateDiscount.mockResolvedValue(freeQuote(SPEAKER_COUPON));
     triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
     const onHide = vi.fn();
-    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    const { rerender } = render(<TicketModal show onHide={onHide} allowIndividualCheckout />);
     await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
 
@@ -392,7 +403,7 @@ describe('TG-48 ronda 4: el bloqueo sólo frena un segundo pedido gratuito', () 
       .mockResolvedValueOnce(FREE_UNCONFIRMED)
       .mockResolvedValueOnce({ success: true, sessionUrl: STRIPE_URL });
     const onHide = vi.fn();
-    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    const { rerender } = render(<TicketModal show onHide={onHide} allowIndividualCheckout />);
     await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
 
@@ -413,7 +424,7 @@ describe('TG-48 ronda 4: el bloqueo sólo frena un segundo pedido gratuito', () 
       .mockResolvedValueOnce(FREE_UNCONFIRMED)
       .mockResolvedValueOnce({ success: true, sessionUrl: STRIPE_URL });
     const onHide = vi.fn();
-    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    const { rerender } = render(<TicketModal show onHide={onHide} allowIndividualCheckout />);
     await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
 
@@ -430,7 +441,7 @@ describe('TG-48 ronda 4: el bloqueo sólo frena un segundo pedido gratuito', () 
     triskelGateClient.validateDiscount.mockImplementation(async ({ code }) => freeQuote(code));
     triskelGateClient.createCheckout.mockResolvedValue(FREE_UNCONFIRMED);
     const onHide = vi.fn();
-    const { rerender } = render(<TicketModal show onHide={onHide} />);
+    const { rerender } = render(<TicketModal show onHide={onHide} allowIndividualCheckout />);
     await fillCheckoutAndSubmit({ coupon: SPEAKER_COUPON });
     expect(await screen.findByText('ticketModal.checkout.success.freeConfirmationUnavailable')).toBeInTheDocument();
 
@@ -446,5 +457,44 @@ describe('TG-48 ronda 4: el bloqueo sólo frena un segundo pedido gratuito', () 
     expect(await screen.findByText('ticketModal.checkout.success.freeAlreadyRegistered')).toBeInTheDocument();
     expect(submitButton()).toBeDisabled();
     expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────────────
+// EVENTO CERRADO: la via publica de Dubai NO abre el checkout
+// ───────────────────────────────────────────────────────────────────────────
+// El CTA publico de Dubai lleva al formulario de solicitud, no a Stripe: si
+// abriera el checkout, seguiria habiendo una venta abierta, que es
+// exactamente lo que se quiere evitar. El checkout sigue vivo para los
+// enlaces de pago individuales (allowIndividualCheckout), que es por donde
+// paga de verdad quien acepta la solicitud.
+describe('Dubai: el CTA publico no abre el checkout', () => {
+  it('el CTA de Dubai lleva al formulario y no crea sesion de pago', async () => {
+    assignMock.mockReset();
+    triskelGateClient.createCheckout.mockReset();
+
+    render(<TicketModal show onHide={() => {}} />);
+
+    const buy = await screen.findByRole('button', { name: /ticketModal\.requestAccess/ });
+    fireEvent.click(buy);
+
+    await waitFor(() => expect(assignMock).toHaveBeenCalled(), { timeout: 4000 });
+    expect(assignMock).toHaveBeenCalledWith('/registro');
+    // Y no se ha abierto ninguna sesion de pago.
+    expect(triskelGateClient.createCheckout).not.toHaveBeenCalled();
+  });
+
+  it('con allowIndividualCheckout el checkout SI se abre (enlace de pago individual)', async () => {
+    assignMock.mockReset();
+    triskelGateClient.createCheckout.mockReset();
+
+    render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
+
+    const buy = await screen.findByRole('button', { name: /ticketModal\.requestAccess/ });
+    fireEvent.click(buy);
+
+    // Se llega al formulario de checkout: no se redirige al formulario de solicitud.
+    await screen.findByLabelText(/ticketModal\.checkout\.fullName/);
+    expect(assignMock).not.toHaveBeenCalledWith('/registro');
   });
 });

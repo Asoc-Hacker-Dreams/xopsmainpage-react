@@ -286,3 +286,50 @@ describe('el filtro de eventos de pruebas cubre los separadores de slug', () => 
     }
   });
 });
+
+// ───────────────────────────────────────────────────────────────────────────
+// EVENTO CERRADO POR INVITACION (Dubai, 25-nov-2026)
+// ───────────────────────────────────────────────────────────────────────────
+// El evento deja de vender entradas en abierto. El CTA de la tarjeta de
+// Dubái NO puede llevar al checkout de Stripe: si lo hiciera, seguiria
+// habiendo una venta publica, que es exactamente lo que se quiere evitar
+// (la DET trata como ticketed cualquier evento con venta, y con el plazo de
+// 5 dias habiles el permiso no sale para el 30-nov).
+//
+// Estos tests fijan ese comportamiento para que nadie reintroduzca el
+// checkout abierto sin darse cuenta.
+describe('Dubai es un evento cerrado: el CTA no lleva al checkout', () => {
+  it('el CTA de la tarjeta de Dubai pide la entrada, no la reserva', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+
+    // El CTA de Dubai usa su propia clave, no la de "reservar".
+    expect(src).toMatch(/ticketModal\.requestAccess/);
+    expect(src).toMatch(/ticketModal\.closedEventNote/);
+  });
+
+  it('openCheckout NO abre el checkout de Stripe para Dubai', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+
+    // La guarda de Dubai esta ANTES de setStep('checkout'), y redirige al
+    // formulario. Si alguien la quita, el checkout vuelve a abrirse.
+    const guarda = src.indexOf("editionFromEvent(event, '') === 'dubai'");
+    expect(guarda).toBeGreaterThan(-1);
+
+    const openCheckout = src.indexOf('const openCheckout =');
+    const bloque = src.slice(openCheckout, openCheckout + 1400);
+    const iGuarda = bloque.indexOf("=== 'dubai'");
+    const iStep = bloque.indexOf("setStep('checkout')");
+    expect(iGuarda).toBeGreaterThan(-1);
+    expect(iStep).toBeGreaterThan(-1);
+    // La guarda va ANTES: siDubai, se sale del checkout.
+    expect(iGuarda).toBeLessThan(iStep);
+    // Y redirige al formulario.
+    expect(bloque.slice(iGuarda, iStep)).toMatch(/\/registro/);
+  });
+});

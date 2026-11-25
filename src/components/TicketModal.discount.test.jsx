@@ -53,8 +53,8 @@ const ERR_429 = Object.assign(new Error('TriskelGate 429'), {
 
 // `copy` es el locale con el que se pintan los textos del formulario (es por defecto).
 async function openCheckoutWithCode(code = 'X-OPSSPEAKERS', copy = es) {
-  render(<TicketModal show onHide={() => {}} />);
-  fireEvent.click(await screen.findByRole('button', { name: copy.ticketModal.checkout.title }));
+  render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
+  fireEvent.click(await screen.findByRole('button', { name: copy.ticketModal.requestAccess }));
   fireEvent.change(
     screen.getByPlaceholderText(copy.ticketModal.checkout.discountPlaceholder),
     { target: { value: code } },
@@ -295,7 +295,7 @@ const VALID_QUOTE = {
 };
 
 async function startCheckout(copy = es) {
-  fireEvent.click(await screen.findByRole('button', { name: copy.ticketModal.checkout.title }));
+  fireEvent.click(await screen.findByRole('button', { name: copy.ticketModal.requestAccess }));
 }
 
 function applyCode(code, copy = es) {
@@ -315,7 +315,7 @@ describe('TicketModal · cupón: flujo completo (regresión)', () => {
 
   it('un cupón VÁLIDO muestra la previsualización del descuento y ningún error', async () => {
     mockClient.validateDiscount.mockResolvedValue({ success: true, discount: VALID_QUOTE });
-    render(<TicketModal show onHide={() => {}} />);
+    render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await startCheckout();
 
     applyCode('X-OPSSPEAKERS');
@@ -329,7 +329,7 @@ describe('TicketModal · cupón: flujo completo (regresión)', () => {
     mockClient.validateDiscount.mockResolvedValue({
       success: true, discount: { ...VALID_QUOTE, currency: 'NOPE' },
     });
-    render(<TicketModal show onHide={() => {}} />);
+    render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await startCheckout();
 
     applyCode('X-OPSSPEAKERS');
@@ -342,7 +342,7 @@ describe('TicketModal · cupón: flujo completo (regresión)', () => {
 
   it('el payload a validateDiscount lleva el eventId, el ticketTypeId y quantity 1 seleccionados', async () => {
     mockClient.validateDiscount.mockResolvedValue({ success: true, discount: VALID_QUOTE });
-    render(<TicketModal show onHide={() => {}} />);
+    render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await startCheckout();
 
     applyCode('X-OPSSPEAKERS');
@@ -360,7 +360,7 @@ describe('TicketModal · cupón: flujo completo (regresión)', () => {
     mockClient.validateDiscount.mockImplementation(
       () => new Promise((resolve, reject) => pending.push({ resolve, reject })),
     );
-    render(<TicketModal show onHide={() => {}} />);
+    render(<TicketModal show onHide={() => {}} allowIndividualCheckout />);
     await startCheckout();
 
     applyCode('X-OPSVIEJO');                       // respuesta A: se queda pendiente
