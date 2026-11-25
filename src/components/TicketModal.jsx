@@ -176,7 +176,10 @@ const getTicketDescription = (tt, t, language, edition = null) => {
 // edición y pasaba el filtro antiguo `edition !== 'madrid'`. Por eso es una
 // lista blanca (edición identificada) más una lista negra de marcadores de
 // prueba, por si la API añade un evento de prueba que sí nombre Dubái.
-const TEST_EVENT_MARKERS = /\b(qa|test|privado|no comprar|sandbox|prueba)\b/i;
+// Límites explícitos y no `\b`: en JS `\w` incluye `_`, así que `\b` NO separa
+// después de un guion bajo y un evento de pruebas como 'xops_dubai_qa' se colaba en el
+// modal. Igual que en XOPS_IDENTITY, el límite es [a-z0-9] a ambos lados.
+const TEST_EVENT_MARKERS = /(?<![a-z0-9])(qa|test|privado|no comprar|sandbox|prueba)(?![a-z0-9])/i;
 // Identidad X-Ops exigida en nombre o slug (no en la ubicación): un partner o venue
 // celebrado en Dubái no es una edición X-Ops aunque la ciudad coincida.
 // El token admite guion, guion bajo y espacio ("x-ops", "x_ops", "xops") y exige que

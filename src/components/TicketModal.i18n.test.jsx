@@ -264,3 +264,25 @@ describe('la portada y la página de ciudad de Dubái no muestran dos productos'
     expect(src).toMatch(/singleVenue\s*\n/);
   });
 });
+
+// El filtro de marcadores de prueba usaba \b, que en JS no separa después de un guion
+// bajo: un evento de pruebas con slug 'xops_dubai_qa' se colaba en el modal de entradas.
+// Se fija aquí el comportamiento para que no vuelva a colarse.
+describe('el filtro de eventos de pruebas cubre los separadores de slug', () => {
+  it('detecta los marcadores separados por guion bajo, guion o espacio', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const here = path.dirname(new URL(import.meta.url).pathname);
+    const src = fs.readFileSync(path.join(here, 'TicketModal.jsx'), 'utf8');
+    const m = src.match(/const TEST_EVENT_MARKERS = (\/.*?\/i);/);
+    expect(m, 'no se encuentra TEST_EVENT_MARKERS').toBeTruthy();
+    const re = new RegExp(m[1].replace(/^\/|\/[a-z]*$/g, ''), 'i');
+    for (const marcador of ['xops_dubai_qa', 'xops_dubai_test', 'xops_dubai_sandbox', 'qa', 'test-qa', 'xops-qa', 'X-Ops TEST - QA privado']) {
+      expect(re.test(marcador), marcador).toBe(true);
+    }
+    // Y no debe lanzar falsos positivos sobre nombres legitimos.
+    for (const ok of ['X-Ops Conference Dubai 2026', 'latest conference', 'opqa', 'testing lab']) {
+      expect(re.test(ok), ok).toBe(false);
+    }
+  });
+});
