@@ -149,13 +149,14 @@ const DB_DESCRIPTION_LANG = 'es';
  */
 const getTicketDescription = (tt, t, language, edition = null) => {
   const isSpanish = (language || '').toLowerCase().startsWith(DB_DESCRIPTION_LANG);
-  // TG-43: Dubái tiene su propio copy (Summit 30-nov, Conference 1-dic);
-  // el genérico describe la Conference de dos días de Madrid.
   const baseKey = TIER_DESCRIPTION_KEY[tt?.tierCode];
-  const descKey = baseKey && edition === 'dubai'
-    ? baseKey.replace('ticketModal.tierDescriptions.', 'ticketModal.tierDescriptionsDubai.')
+  // Dubái usa una clave propia nombrada como la entrada (no "daily").
+  const DUBAI_DESC_KEY = { DAILY: 'ticketModal.tierDescriptionsDubai.general' };
+  const descKey = edition === 'dubai'
+    ? (DUBAI_DESC_KEY[tt?.tierCode] || (baseKey ? baseKey.replace('ticketModal.tierDescriptions.', 'ticketModal.tierDescriptionsDubai.') : null))
     : baseKey;
 
+  if (edition === 'dubai') return descKey ? t(descKey) : null;
   if (isSpanish) return tt?.description || (descKey ? t(descKey) : null);
 
   // Si el tier no está en el mapa (producto nuevo sin traducir todavía), se

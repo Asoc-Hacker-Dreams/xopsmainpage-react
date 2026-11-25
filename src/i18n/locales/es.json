@@ -457,12 +457,7 @@
       "summit": "La experiencia X-Ops completa: Summit ejecutivo, los 2 días completos de Conference y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
     },
     "tierDescriptionsDubai": {
-      "superEarly": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Precio exclusivo para los primeros asistentes. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "early": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Precio early adopter. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "daily": "Entrada estándar al precio regular. Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM), todas las sesiones técnicas, networking y material incluidos. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "lastMinute": "Acceso a la jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 (DKP Conference Centre, TECOM). Todas las sesiones técnicas, networking y material incluidos. Tarifa de último momento. No incluye el Summit del 30 de noviembre, speakers dinner ni workshops premium.",
-      "vip": "La jornada única X-Ops Dubai del lunes 30 de noviembre de 2026 MÁS la speakers dinner. Incluye todas las sesiones técnicas, networking preferente y zona VIP. No incluye el Summit del 30 de noviembre ni workshops premium.",
-      "summit": "La experiencia X-Ops completa, válida en la jornada única del lunes 30 de noviembre de 2026: Summit ejecutivo por la mañana, Conference por la tarde y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
+      "general": "Acceso a una sola jornada, el lunes 30 de noviembre de 2026, en DKP Conference Centre (TECOM). Todas las sesiones técnicas, networking y material incluidos. No incluye speakers dinner ni workshops premium."
     },
     "entitlements": {
       "confDay1": "Conference día 1 · acceso completo",
