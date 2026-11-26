@@ -1,11 +1,12 @@
 // X-Ops Dubai 2026: jornada única, lunes 30 de noviembre de 2026.
-// Sede: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai. Una sala, aforo hasta 90 personas.
+// Sede: POR CONFIRMAR. DKP esta descartado y in5 aun no esta cerrado, asi que
+// no se nombra ninguna sede. Una sala, aforo hasta 90 personas.
 // Fuente de verdad del horario: xops/agenda_jornada_unica_dubai.md (Antonio, 23-24 nov 2026).
 // Sergei Pronin (Solanica) se incorporo el 25-nov: confirmo por escrito que habla ('Will be there')
 // y pidio que apareciese en la agenda. Su slot es 16:45-17:15, el mismo que le confirmaramos
 // por email; el networking B2B se acorta a 17:15-17:30.
 // Títulos, descripciones, duraciones e idiomas originales: dubaiAcceptedSessions2026.js.
-export const dubaiVenue = 'DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai';
+export const dubaiVenue = 'Sede por confirmar, Dubai';
 
 export const dubaiProgramme2026 = {
   "edition": "dubai",
@@ -13,7 +14,7 @@ export const dubaiProgramme2026 = {
   "timezone": "Asia/Dubai",
   "date": "2026-11-30",
   "title": "X-Ops Dubai 2026",
-  "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai",
+  "venue": "Sede por confirmar, Dubai",
   "capacity": 90,
   "items": [
     { "start": "09:00", "end": "09:15", "type": "opening", "topic": { "en": "Opening", "es": "Apertura" }, "details": { "en": "Welcome and X-Ops objectives.", "es": "Bienvenida y objetivos de X-Ops." } },

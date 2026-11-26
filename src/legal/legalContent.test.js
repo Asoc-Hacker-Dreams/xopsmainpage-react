@@ -58,8 +58,12 @@ describe('legal coverage and jurisdiction routing', () => {
     // La jornada única y su sede.
     expect(es).toMatch(/lunes 30 de noviembre de 2026/);
     expect(en).toMatch(/Monday 30 November 2026/);
-    expect(es).toMatch(/Dubai Knowledge Park Conference Centre/);
-    expect(en).toMatch(/Dubai Knowledge Park Conference Centre/);
+    // La sede de Dubái está por confirmar (DKP está descartado): los
+    // términos no pueden dar una dirección que ya no existe.
+    expect(es).toMatch(/sede está todavía por confirmar/i);
+    expect(en).toMatch(/venue is still to be confirmed/i);
+    expect(es).not.toMatch(/Dubai Knowledge Park/i);
+    expect(en).not.toMatch(/Dubai Knowledge Park/i);
     // El modelo anterior (dos días, dos productos) no puede volver.
     for (const text of [es, en]) {
       expect(text).not.toMatch(/1 de diciembre de 2026|1 December 2026/i);

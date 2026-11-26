@@ -10,7 +10,11 @@ describe('Dubai calendar exports', () => {
     expect(calendar.endsWith('END:VCALENDAR\r\n')).toBe(true);
     expect(calendar).toContain('DTSTART:20261130T050000Z');
     expect(calendar.match(/BEGIN:VEVENT/g)).toHaveLength(slots.length);
-    expect(calendar).toContain('LOCATION:DKP Conference Centre\\, Dubai Knowledge Park (TECOM)\\, Dubai');
+    // La sede está por confirmar: el .ics no anuncia DKP.
+    expect(calendar).not.toMatch(/DKP|Dubai Knowledge Park/i);
+    // escapeIcs escapa la coma pero no los parentesis: el LOCATION real es
+    // "Dubai\, UAE (venue to be confirmed)".
+    expect(calendar).toContain('LOCATION:Dubai\\, UAE (venue to be confirmed)');
     expect(calendar).not.toContain('venue to be announced');
     expect(calendar).not.toContain('Executive Networking Dinner');
     for (const line of calendar.split('\r\n')) {
