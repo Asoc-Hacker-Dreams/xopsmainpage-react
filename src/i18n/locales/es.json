@@ -10,7 +10,8 @@
     "conference": "CONFERENCIA",
     "editions": "EDICIONES",
     "becomeSponsor": "CONVIÉRTETE EN PATROCINADOR",
-    "volunteer": "Hazte voluntario"
+    "volunteer": "Hazte voluntario",
+    "program": "Programa"
   },
   "hero": {
     "title": "¡ÚNETE A LA REVOLUCIÓN X-OPS!",
@@ -51,9 +52,9 @@
       "speakers": "ponentes",
       "days": "día del evento",
       "summitLabel": "30 de noviembre · lunes · una jornada, una sala",
-      "summitTitle": "Executive Summit",
+      "summitTitle": "Programa",
       "summitDescription": "once charlas aceptadas en una sola jornada y una sola sala, con sesiones ejecutivas y técnicas, y conexiones B2B voluntarias al final de la tarde.",
-      "viewSummit": "Explorar agenda del Summit",
+      "viewSummit": "Ver el programa",
       "conferenceLabel": "30 de noviembre · mismo día",
       "conferenceTitle": "Charlas técnicas",
       "conferenceDescription": "Parte de la misma jornada única: charlas técnicas en la misma sala.",
@@ -153,7 +154,7 @@
       "summit": {
         "h3": "Liderazgo, estrategia y transformación",
         "text": "Una jornada ejecutiva para CTOs, CISOs y Decision Makers que buscan conversación estratégica y networking de alto nivel.",
-        "cta": "Explorar Summit"
+        "cta": "Ver el programa"
       },
       "conference": {
         "h3": "Comunidad, práctica y conocimiento técnico",
@@ -162,7 +163,7 @@
       }
     },
     "summit": {
-      "kicker": "Evento ejecutivo",
+      "kicker": "Evento para líderes tecnológicos",
       "subtitle": "Programa diseñado para líderes tecnológicos que buscan conectar decisiones de negocio, transformación y futuro.",
       "benefits": {
         "strategic": {
@@ -187,7 +188,7 @@
         }
       },
       "agendaTbd": "Por anunciar",
-      "agendaTitle": "Programa ejecutivo",
+      "agendaTitle": "Programa",
       "agendaSubtitle": "once charlas aceptadas, conversaciones expertas y conexiones B2B dirigidas. Los participantes de paneles y mesas se anunciarán al confirmarse."
     },
     "conference": {
