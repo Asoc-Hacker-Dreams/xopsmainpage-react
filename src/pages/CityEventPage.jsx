@@ -13,8 +13,27 @@ import DubaiMediaPartners from '../components/DubaiMediaPartners';
 import { dubaiProgramme2026, dubaiVenue } from '../data/dubaiProgramme2026';
 import { dubaiAcceptedSessions2026, dubaiSpeakers2026 } from '../data/dubaiAcceptedSessions2026';
 import { cityEvents, cityUrl } from '../data/cityEvents';
+// Fondo de Dubái: skyline real (Burj Khalifa y la ciudad al atardecer). Los
+// tres formatos se importan explicitamente porque el nombre con hash del
+// bundler no permite derivar las URLs de los otros (ver OptimizedImage).
+import dubaiSkylineJpg from '../assets/dubai-skyline.jpg';
+import dubaiSkylineAvif from '../assets/dubai-skyline.avif';
+import dubaiSkylineWebp from '../assets/dubai-skyline.webp';
 import { ORGANIZER } from '../legal/identity';
 import './CityEventPage.css';
+
+/**
+ * Fuentes de la foto de fondo de Dubái. La sintaxis de `type()` es de
+ * image-set(), no de background-image: para un fondo con imagen hace falta un
+ * <picture> real, que es lo que pinta el componente.
+ */
+const dubaiSkylinePicture = (
+  <picture className="city-hero__photo" aria-hidden="true">
+    <source type="image/avif" srcSet={dubaiSkylineAvif} />
+    <source type="image/webp" srcSet={dubaiSkylineWebp} />
+    <img src={dubaiSkylineJpg} alt="" loading="eager" decoding="async" />
+  </picture>
+);
 
 const CityEventPage = ({ city }) => {
   const { t } = useTranslation();
@@ -124,6 +143,10 @@ const CityEventPage = ({ city }) => {
       />
 
       <section className="city-hero" aria-labelledby={`${city}-title`}>
+        {/* El fondo de Dubái: skyline real. Va DENTRO del hero (es su fondo);
+            fuera, el position:absolute lo referencia al <main> y queda tapado.
+            Solo en Dubai; Madrid no lleva foto. */}
+        {city === 'dubai' && dubaiSkylinePicture}
         <div className="city-hero__grid" aria-hidden="true" />
         <div className="container city-hero__content">
           <p className="city-eyebrow"><span>{event.flag}</span> X-Ops 2026</p>

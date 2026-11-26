@@ -32,10 +32,84 @@
     linear-gradient(145deg, var(--city-stage), oklch(22% 0.08 279));
 }
 
+/*
+ * El fondo de Dubái: skyline real (Burj Khalifa y la ciudad al atardecer),
+ * con los degradados por encima para que el texto siga teniendo contraste.
+ *
+ * La foto va como capa de fondo del HERO (con su propio mask para que se
+ * desvanezca hacia abajo y no compita con el resto de secciones), no de toda
+ * la pagina: una foto de fondo en todo el scroll compete con el contenido y
+ * hace la pagina mas pesada de lo que tiene que ser.
+ *
+ * Las tres versiones (avif/webp/jpg) se importan en CityEventPage.jsx con
+ * imports explicitos: el nombre con hash del bundler NO permite derivar las
+ * URLs de los otros formatos (ver OptimizedImage).
+ */
 .city-page--dubai .city-hero {
   background:
     radial-gradient(circle at 76% 30%, oklch(88% 0.18 95 / 14%), transparent 30%),
     linear-gradient(145deg, var(--city-stage), oklch(23% 0.065 274));
+}
+
+/* Capa de la foto: detras del contenido, con su propio degradado para que el
+   texto del hero se lea con holgura. */
+/*
+ * El fondo de Dubái: skyline real (Burj Khalifa y la ciudad al atardecer).
+ *
+ * La foto va en un <picture> real (no en un pseudo-elemento): la sintaxis
+ * `url(x) type('image/avif')` es de image-set(), no de background-image, y
+ * con un pseudo-elemento no habria forma de servir las tres versiones.
+ *
+ * El <picture> se coloca por encima de los degradados del hero y por debajo
+ * del contenido; el ::after es el velo oscuro que garantiza el contraste del
+ * texto (blanco y dorado sobre la foto).
+ */
+.city-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.city-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+  opacity: 0.9;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 46%, transparent 94%);
+  mask-image: linear-gradient(to bottom, black 0%, black 46%, transparent 94%);
+}
+
+/*
+ * El velo de contraste: fuerte en la IZQUIERDA (donde vive el texto) y
+ * casi transparente en la DERECHA (donde esta el Burj Khalifa, que es lo que
+ * se quiere ver). Asi la foto seappreciay el texto se lee igual.
+ */
+.city-page--dubai .city-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(100deg,
+      oklch(18% 0.055 275 / 94%) 0%,
+      oklch(18% 0.055 275 / 88%) 34%,
+      oklch(18% 0.055 275 / 45%) 62%,
+      oklch(18% 0.055 275 / 18%) 100%),
+    linear-gradient(to bottom,
+      oklch(18% 0.055 275 / 55%) 0%,
+      oklch(18% 0.055 275 / 12%) 34%,
+      oklch(18% 0.055 275 / 72%) 100%);
+  pointer-events: none;
+}
+
+/* El contenido del hero, por encima de la foto y del velo. */
+.city-page--dubai .city-hero__content {
+  position: relative;
+  z-index: 1;
 }
 
 .city-hero__grid {
