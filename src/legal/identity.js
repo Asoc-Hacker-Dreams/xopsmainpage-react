@@ -1,5 +1,9 @@
 // Shared public identity and jurisdiction helpers. These are NOT payment processor credentials.
-export const LEGAL_VERSION = '2026-10-27';
+// Versión de los términos de compra. Se envía como legalAcceptance.legalVersion en el checkout
+// (TicketModal) y se muestra en LegalDocument; queda registrada como evidencia de aceptación.
+// Bumpear (YYYY-MM-DD, fecha efectiva) cada vez que cambien materialmente los términos.
+// NO confundir con CONSENT_POLICY_VERSION (ConsentContext), que es independiente.
+export const LEGAL_VERSION = '2026-11-24';
 export const ORGANIZER = Object.freeze({
   name: 'Asociación Hacker Dreams',
   taxId: 'G56643158',

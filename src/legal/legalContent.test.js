@@ -2,9 +2,16 @@ import { describe, expect, it } from 'vitest';
 import { privacyContent } from './privacyContent';
 import { termsContent } from './termsContent';
 import { noticesContent } from './noticesContent';
-import { editionFromEvent, resolveLegalEdition } from './identity';
+import { LEGAL_VERSION, editionFromEvent, resolveLegalEdition } from './identity';
 
 describe('legal coverage and jurisdiction routing', () => {
+  // Versión de los términos usada en el checkout y en la evidencia de aceptación.
+  it('LEGAL_VERSION fija la fecha efectiva de los términos de jornada única', () => {
+    expect(LEGAL_VERSION).toBe('2026-11-24');
+    expect(LEGAL_VERSION).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(LEGAL_VERSION).not.toBe('2026-10-27');
+  });
+
   it('contains substantive bilingual EU and UAE privacy notices', () => {
     for (const city of ['madrid', 'dubai']) {
       for (const lang of ['es', 'en']) {
@@ -58,8 +65,9 @@ describe('legal coverage and jurisdiction routing', () => {
     // La jornada única y su sede.
     expect(es).toMatch(/lunes 30 de noviembre de 2026/);
     expect(en).toMatch(/Monday 30 November 2026/);
-    expect(es).toMatch(/Dubai Knowledge Park Conference Centre/);
-    expect(en).toMatch(/Dubai Knowledge Park Conference Centre/);
+    // La sede se describe de forma neutral y verificable, sin afirmar un recinto concreto.
+    expect(es).toContain('en la sede anunciada en la página oficial del evento');
+    expect(en).toContain('at the venue announced on the official event page');
     // El modelo anterior (dos días, dos productos) no puede volver.
     for (const text of [es, en]) {
       expect(text).not.toMatch(/1 de diciembre de 2026|1 December 2026/i);
@@ -74,9 +82,20 @@ describe('legal coverage and jurisdiction routing', () => {
     expect(es).toMatch(/conservan los derechos/);
     expect(en).toMatch(/keep the rights registered/);
     // Madrid conserva su propio texto histórico de dos días.
-    const esMad = JSON.stringify(termsContent.madrid.es);
-    const enMad = JSON.stringify(termsContent.madrid.en);
-    expect(esMad).toMatch(/19 de noviembre|20 y 21 de noviembre/);
-    expect(enMad).toMatch(/19 November|20 and 21 November/);
+    expect(JSON.stringify(termsContent.madrid.es)).toMatch(/19 de noviembre|20 y 21 de noviembre/);
+    expect(JSON.stringify(termsContent.madrid.en)).toMatch(/19 November|20 and 21 November/);
+  });
+
+  // VenueWise rechazó DKP para el 30-nov y la sede alternativa no está firmada: los términos
+  // no pueden afirmar ningún recinto concreto (registro operativo 26-nov).
+  it('Dubai terms: sede neutral, sin DKP, Conference Hall ni in5 como afirmación', () => {
+    const es = JSON.stringify(termsContent.dubai.es);
+    const en = JSON.stringify(termsContent.dubai.en);
+    for (const text of [es, en]) {
+      expect(text).not.toContain('Dubai Knowledge Park Conference Centre');
+      expect(text).not.toContain('DKP Conference Centre');
+      expect(text).not.toContain('Conference Hall 1');
+      expect(text).not.toMatch(/\bin5\b/i);
+    }
   });
 });
