@@ -14,10 +14,14 @@ export const dubaiSummitSpeakerCompanies2026 = [
     "verified": true
   },
   {
+    // Solanica no publica ningun logo accesible (su web es un GitHub Pages:
+    // favicon.ico, favicon.png, logo.png y logo.svg devuelven 404), asi que una
+    // URL de logo solo dejaba un hueco roto. Se usa la foto del ponente de
+    // Sessionize, que SI carga, como insignia de la empresa.
     "id": "solanica",
     "name": "Solanica",
     "url": "https://solanica.io/",
-    "logo": "https://solanica.io/favicon.ico",
+    "logo": "https://cdn.sessionize.com/image/7aa8-400o400o1-h2VpFps5yMUgYPjWZpoh85.png",
     "speakers": [
       "1f3078c9-65db-4737-b166-7b6479c99588"
     ],
@@ -34,8 +38,17 @@ export const dubaiSummitSpeakerCompanies2026 = [
     "verified": true
   },
   {
+    // La ponente figura como "Superuser OÜ, CBIT FZCO": es la misma empresa
+    // con dos denominaciones (la marca y la entidad juridica). Se mantiene UNA
+    // sola entrada, con la marca que ella usa y el logo verificado, y la
+    // entidad juridica queda en legalEntity para no perder el dato.
+    //
+    // Antes habia DOS entradas (esta y "CBIT FZCO", sin logo y sin URL) y la
+    // segunda se pintaba como un hueco con texto plano que parecia un logo
+    // roto (lo marco Antonio el 26-nov).
     "id": "superuser",
     "name": "Superuser OÜ",
+    "legalEntity": "CBIT FZCO",
     "url": "https://www.superuser.space/",
     "logo": "https://images.squarespace-cdn.com/content/v1/642979ee5947b3094b9b7b65/a361dcaf-9226-491a-9776-6a71978432e9/favicon.ico?format=100w",
     "speakers": [
@@ -74,15 +87,4 @@ export const dubaiSummitSpeakerCompanies2026 = [
     ],
     "verified": true
   },
-  {
-    "id": "cbit-fzco",
-    "name": "CBIT FZCO",
-    "url": null,
-    "logo": null,
-    "speakers": [
-      "df8487c4-3a65-4301-8a0a-3ae6759e981a"
-    ],
-    "verified": false,
-    "needs": "site-and-brand-unverified"
-  }
 ]

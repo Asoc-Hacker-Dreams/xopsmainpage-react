@@ -10,7 +10,8 @@
     "conference": "CONFERENCE",
     "editions": "EDITIONS",
     "becomeSponsor": "BECOME A SPONSOR",
-    "volunteer": "Volunteer"
+    "volunteer": "Volunteer",
+    "program": "Programme"
   },
   "hero": {
     "title": "JOIN THE X-OPS REVOLUTION!",
@@ -51,9 +52,9 @@
       "speakers": "speakers",
       "days": "event day",
       "summitLabel": "30 November · Monday · one day, one room",
-      "summitTitle": "Executive Summit",
+      "summitTitle": "Programme",
       "summitDescription": "Eleven accepted talks on one day, in one room, with executive and technical sessions, and opt-in B2B connections at the end of the afternoon.",
-      "viewSummit": "Explore Summit agenda",
+      "viewSummit": "See the programme",
       "conferenceLabel": "30 November · same day",
       "conferenceTitle": "Technical talks",
       "conferenceDescription": "Part of the same single day: technical talks in the same room.",
@@ -153,7 +154,7 @@
       "summit": {
         "h3": "Leadership, strategy and transformation",
         "text": "An executive day for CTOs, CISOs and decision makers looking for strategic conversation and high-level networking.",
-        "cta": "Explore Summit"
+        "cta": "See the programme"
       },
       "conference": {
         "h3": "Community, practice and technical craft",
@@ -162,7 +163,7 @@
       }
     },
     "summit": {
-      "kicker": "Executive event",
+      "kicker": "Event for technology leaders",
       "subtitle": "A program designed for technology leaders who want to connect business decisions, transformation and the future.",
       "benefits": {
         "strategic": {
@@ -187,7 +188,7 @@
         }
       },
       "agendaTbd": "To be announced",
-      "agendaTitle": "Executive program",
+      "agendaTitle": "Programme",
       "agendaSubtitle": "Eleven accepted talks, expert discussions and curated B2B connections. Panel and roundtable participants will be announced once confirmed."
     },
     "conference": {

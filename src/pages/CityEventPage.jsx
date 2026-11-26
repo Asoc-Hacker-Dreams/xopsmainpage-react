@@ -136,7 +136,9 @@ const CityEventPage = ({ city }) => {
             <span><BsGeoAlt aria-hidden="true" /> {event.country}</span>
           </div>
           <nav className="city-hero__nav" aria-label={t('cityEvent.hero.navLabel', { city: event.city })}>
-            <a href="#summit">
+            {/* En Dubai la seccion #summit no existe (un solo dia, un solo
+                programa): el enlace va al programa. */}
+            <a href={isMadrid ? '#summit' : '#agenda'}>
               {isMadrid ? t('cityEvent.hero.navSummit') : t('cityEvent.hero.dubaiNavSummit')}
             </a>
             <a href="#agenda">{t('cityEvent.hero.navAgenda')}</a>
@@ -167,7 +169,7 @@ const CityEventPage = ({ city }) => {
             </article>
           </div>
           <div className="city-hero__ticket-row">
-            <Link className="city-hero__ticket-link" to="/dubai?openTickets=1">
+            <Link className="city-hero__ticket-link" to="/registro">
               {t('cityEvent.experience.getTickets')} <span aria-hidden="true">↗</span>
             </Link>
             <span>{t('cityEvent.experience.venuePending')}</span>
@@ -204,7 +206,7 @@ const CityEventPage = ({ city }) => {
                 <div><dt>{t('cityEvent.when')}</dt><dd>{event.summit.dates}</dd></div>
                 <div><dt>{t('cityEvent.where')}</dt><dd>{event.summit.venue}</dd></div>
               </dl>
-              <a href="#summit">
+              <a href={isMadrid ? '#summit' : '#agenda'}>
                 {isMadrid
                   ? t('cityEvent.program.summit.cta')
                   : t('cityEvent.program.dubaiTrack.cta')}{' '}
@@ -215,6 +217,11 @@ const CityEventPage = ({ city }) => {
         </div>
       </section>
 
+      {/* El bloque del Summit ejecutivo es de un evento de dos formatos.
+          Dubai es de UN solo dia con un solo programa: la seccion no aplica y
+          mostrarla es justo la incoherencia que Antonioavorio (26-nov).
+          Madrid (aplazado, dos formatos) la conserva. */}
+      {isMadrid && (
       <section className="city-summit" id="summit" aria-labelledby="summit-title">
         <div className="container">
           <div className="city-summit__intro">
@@ -243,6 +250,7 @@ const CityEventPage = ({ city }) => {
           </div>
         </div>
       </section>
+      )}
 
       <section className="city-agenda" id="agenda" aria-labelledby="agenda-title">
         <div className="container city-agenda__layout">
@@ -278,7 +286,7 @@ const CityEventPage = ({ city }) => {
             ))}
           </div>
           <p className="city-connections__notice">{t('cityEvent.experience.connectionsNotice')}</p>
-          <Link className="city-connections__cta" to="/dubai?openTickets=1">
+          <Link className="city-connections__cta" to="/registro">
             {t('cityEvent.experience.getTickets')} <span aria-hidden="true">↗</span>
           </Link>
         </div>
@@ -293,7 +301,7 @@ const CityEventPage = ({ city }) => {
           <p>{t('cityEvent.finalCta.kicker')}</p>
           <h2>{t('cityEvent.finalCta.title', { city: event.city })}</h2>
           <div className="city-final-cta__actions">
-            <Link to="/dubai?openTickets=1" className="city-final-cta__primary">{t('cityEvent.experience.getTickets')}</Link>
+            <Link to="/registro" className="city-final-cta__primary">{t('cityEvent.experience.getTickets')}</Link>
             <a href="#agenda" className="city-final-cta__secondary">{t('cityEvent.experience.viewSummit')}</a>
           </div>
         </div>

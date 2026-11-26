@@ -156,12 +156,25 @@ function App() {
                     {t('announcement.nav')}
                   </a>
                 ) : isCityPage ? (
-                  <>
-                    <a className="links px-4 fw-bold text-white" href="#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</a>
-                    <a className="links px-4 fw-bold text-white" href={activeCity === 'dubai' ? '#agenda' : '#conference'} style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</a>
-                    <a className="links px-4 fw-bold text-white" href={activeCity === 'dubai' ? '#agenda' : '#main-content'} style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('archive.agenda')}</a>
-                    <a className="links px-4 fw-bold text-white" href="#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</a>
-                  </>
+                  /* Dubai es de UN solo dia con un solo programa: el boton
+                     "SUMMIT" apuntaba a la seccion #summit, que ya no se pinta
+                     en Dubái, asi que era un enlace roto; y "CONFERENCE" y
+                     "AGENDA" iban los dos a #agenda. Ahora hay un unico
+                     "Programa" al programa. Madrid (aplazado, dos formatos)
+                     conserva su navegacion de cuatro entradas. */
+                  activeCity === 'dubai' ? (
+                    <>
+                      <a className="links px-4 fw-bold text-white" href="#agenda" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.program')}</a>
+                      <a className="links px-4 fw-bold text-white" href="#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</a>
+                    </>
+                  ) : (
+                    <>
+                      <a className="links px-4 fw-bold text-white" href="#summit" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.summit')}</a>
+                      <a className="links px-4 fw-bold text-white" href="#conference" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.conference')}</a>
+                      <a className="links px-4 fw-bold text-white" href="#main-content" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('archive.agenda')}</a>
+                      <a className="links px-4 fw-bold text-white" href="#ponentes" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.speakers')}</a>
+                    </>
+                  )
                 ) : (
                   <>
                     <NavLink className={({ isActive }) => `links px-4 fw-bold text-white${isActive ? ' nav-link-active' : ''}`} to="/#ediciones" style={{ marginTop: '10px', marginBottom: '10px', textDecoration: 'none' }}>{t('nav.editions')}</NavLink>

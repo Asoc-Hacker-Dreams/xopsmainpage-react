@@ -47,12 +47,30 @@ describe('Dubai company affiliations (single-day programme)', () => {
     }
   });
 
-  test('keeps CBIT FZCO truthful when no official domain/logo was independently verified', () => {
-    const cbit = dubaiSummitSpeakerCompanies2026.find((company) => company.id === 'cbit-fzco');
-    expect(cbit).toBeDefined();
-    expect(cbit.url).toBeNull();
-    expect(cbit.logo).toBeNull();
+  // La ponente figura como "Superuser OÜ, CBIT FZCO": la misma empresa con
+  // dos denominaciones. La intencion de este test se mantiene (no publicar
+  // datos inventados ni duplicar a la misma empresa), pero la forma cambia:
+  // UNA sola entrada, con la marca que ella usa y su logo verificado, y la
+  // entidad juridica conservada en legalEntity.
+  test('keeps CBIT FZCO truthful without duplicating the company', () => {
     const hannah = [...speakerIds].find((id) => dubaiSpeakers2026[id]?.name === 'Hannah Suarez');
-    expect(cbit.speakers).toContain(hannah);
+    expect(hannah).toBeTruthy();
+
+    const su = dubaiSummitSpeakerCompanies2026.find((company) => company.id === 'superuser');
+    expect(su).toBeDefined();
+    expect(su.speakers).toContain(hannah);
+    // La entidad juridica se conserva, sin inventar dominio ni logo.
+    expect(su.legalEntity).toBe('CBIT FZCO');
+    expect(su.url).toMatch(/^https:\/\//);
+    expect(su.logo).toMatch(/^https:\/\//);
+
+    // Y no hay una entrada aparte que duplique a la misma persona.
+    const duplicados = dubaiSummitSpeakerCompanies2026.filter(
+      (company) => company.speakers?.includes(hannah),
+    );
+    expect(duplicados).toHaveLength(1);
+    expect(
+      dubaiSummitSpeakerCompanies2026.find((company) => company.id === 'cbit-fzco'),
+    ).toBeUndefined();
   });
 });
