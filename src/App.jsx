@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "./assets/xops.png";
+import logoAvif from "./assets/xops.avif";
+import logoWebp from "./assets/xops.webp";
 import bgMain from "./assets/bg-main.jpg";
 import { BsCalendar3, BsChevronDown } from 'react-icons/bs';
 import { Route, Routes, Link, NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
@@ -138,6 +140,8 @@ function App() {
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center" style={{ textDecoration: 'none' }}>
           <OptimizedImage
             src={logo}
+            avifSrc={logoAvif}
+            webpSrc={logoWebp}
             alt="X-Ops Logo"
             style={{ height: '51px', width: '56px', marginRight: '15px' }}
             width={56}

@@ -61,28 +61,47 @@ describe('OptimizedImage', () => {
     expect(img).toHaveAttribute('loading', 'lazy');
   });
 
-  it('generates correct image format sources', () => {
+  it('usa las fuentes alternativas que le pasan, ya resueltas por el bundler', () => {
+    // Las alternativas llegan con el hash correcto porque el bundler las ha
+    // resuelto. Esto es lo que se usa en produccion.
     const { container } = render(
-      <OptimizedImage 
-        src="/test-image.jpg" 
-        alt="Multi-format image" 
+      <OptimizedImage
+        src="/assets/xops-D73UKbcv.png"
+        avifSrc="/assets/xops-BBQ8ixat.avif"
+        webpSrc="/assets/xops-iEZUSOEB.webp"
+        alt="Multi-format image"
         priority={true}
       />
     );
-    
+
     const picture = container.querySelector('picture');
     expect(picture).toBeInTheDocument();
-    
-    const sources = picture.querySelectorAll('source');
+
+    const sources = [...picture.querySelectorAll('source')];
     expect(sources).toHaveLength(2);
-    
-    // Check AVIF source
     expect(sources[0]).toHaveAttribute('type', 'image/avif');
-    expect(sources[0]).toHaveAttribute('srcset', '/test-image.avif');
-    
-    // Check WebP source
+    expect(sources[0]).toHaveAttribute('srcset', '/assets/xops-BBQ8ixat.avif');
     expect(sources[1]).toHaveAttribute('type', 'image/webp');
-    expect(sources[1]).toHaveAttribute('srcset', '/test-image.webp');
+    expect(sources[1]).toHaveAttribute('srcset', '/assets/xops-iEZUSOEB.webp');
+  });
+
+  it('sin alternativas explicitas NO inventa URLs derivadas de un nombre con hash', () => {
+    // Un nombre con hash de Vite no permite derivar el hash del AVIF/WebP:
+    // la URL derivada no existe y, con el <source> en 404, el navegador no
+    // cae al <img> de reserva y la imagen no se ve. Sin alternativas, solo
+    // se sirve el original.
+    const { container } = render(
+      <OptimizedImage
+        src="/assets/xops-D73UKbcv.png"
+        alt="Sin alternativas"
+        priority={true}
+      />
+    );
+
+    const picture = container.querySelector('picture');
+    const sources = [...picture.querySelectorAll('source')];
+    expect(sources).toHaveLength(0);
+    expect(picture.querySelector('img')?.getAttribute('src')).toBe('/assets/xops-D73UKbcv.png');
   });
 
   it('applies custom className and style', () => {
@@ -157,6 +176,64 @@ describe('OptimizedImage', () => {
     
     await waitFor(() => {
       expect(handleError).toHaveBeenCalledTimes(1);
+    });
+  });
+});
+
+/**
+ * BUG (26-nov-2026, detectado por Antonio en la web): el componente derivaba
+ * las URLs de AVIF y WebP del nombre del fichero con un replace. Vite hashea
+ * cada asset por separado, asi que un `xops.png` importado llega como
+ * `/assets/xops-D73UKbcv.png` y el replace genera
+ * `/assets/xops-D73UKbcv.avif`, que NO existe (el real es
+ * `/assets/xops-BBQ8ixat.avif`).
+ *
+ * Con el <source> avif en 404, el navegador NO cae al <img> fallback y la
+ * imagen no se ve (naturalWidth 0). Era el logo que no cargaba.
+ *
+ * El arreglo: que el llamante pase las alternativas ya resueltas por el
+ * bundler (imports explicitos), en vez de derivarlas del nombre.
+ */
+describe('OptimizedImage — las fuentes alternativas no se derivan del nombre', () => {
+  it('usa avifSrc y webpSrc cuando se le pasan (resueltos por el bundler)', () => {
+    const { container } = render(
+      <OptimizedImage
+        src="/assets/xops-D73UKbcv.png"
+        avifSrc="/assets/xops-BBQ8ixat.avif"
+        webpSrc="/assets/xops-iEZUSOEB.webp"
+        alt="Logo"
+        width={56}
+        height={51}
+        priority
+      />,
+    );
+    const sources = [...container.querySelectorAll('source')];
+    const avif = sources.find((s) => s.getAttribute('type') === 'image/avif');
+    const webp = sources.find((s) => s.getAttribute('type') === 'image/webp');
+    expect(avif?.getAttribute('srcset')).toBe('/assets/xops-BBQ8ixat.avif');
+    expect(webp?.getAttribute('srcset')).toBe('/assets/xops-iEZUSOEB.webp');
+    // Y el <img> de reserva sigue siendo el original.
+    expect(container.querySelector('img')?.getAttribute('src')).toBe('/assets/xops-D73UKbcv.png');
+  });
+
+  it('sin fuentes explicitas NO deriva URLs de un nombre ya hasheado', () => {
+    // Si no se le pasan las alternativas, no se inventan: un nombre con hash no
+    // permite derivar los otros formatos. Se deja solo el original.
+    const { container } = render(
+      <OptimizedImage
+        src="/assets/xops-D73UKbcv.png"
+        alt="Logo"
+        width={56}
+        height={51}
+        priority
+      />,
+    );
+    const sources = [...container.querySelectorAll('source')];
+    // Ningun source debe apuntar a una URL derivada (xops-D73UKbcv.avif).
+    sources.forEach((s) => {
+      const srcset = s.getAttribute('srcset') || '';
+      expect(srcset).not.toMatch(/-[A-Za-z0-9_-]{8}\.avif$/);
+      expect(srcset).not.toMatch(/-[A-Za-z0-9_-]{8}\.webp$/);
     });
   });
 });
