@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
+import { triskelGateClient } from '../adapters/triskelgate/client';
 
 /**
  * Formulario de solicitud de entrada — X-Ops Dubai 2026.
@@ -39,6 +40,11 @@ export default function RegistrationForm() {
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ state: 'idle', message: '' });
+  // Un id por intento de envio: si la persona pulsa dos veces o el navegador
+  // reintenta, el backend lo trata como la misma solicitud (ON CONFLICT).
+  const requestKeyRef = useRef(
+    `web-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
+  );
 
   const set = (key) => (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -62,26 +68,30 @@ export default function RegistrationForm() {
     if (!validate()) return;
     setStatus({ state: 'sending', message: '' });
     try {
-      const res = await fetch('/api/registro', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          marketingConsent: form.marketingConsent === true,
-          privacyConsent: form.privacyConsent === true,
-          event: 'dubai-2026',
-          source: 'web-registration-form',
-        }),
+      const res = await triskelGateClient.createRegistration({
+        fullName: form.fullName,
+        email: form.email,
+        phone: form.phone || null,
+        company: form.company,
+        role: form.role || null,
+        country: form.country,
+        linkedin: form.linkedin || null,
+        motivation: form.motivation || null,
+        privacyConsent: form.privacyConsent === true,
+        marketingConsent: form.marketingConsent === true,
+        event: 'dubai-2026',
+        source: 'web-registration-form',
+        requestKey: requestKeyRef.current,
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || data.success === false) {
+      // El cliente devuelve el objeto ya parseado (no un Response).
+      if (!res || res.success === false) {
         setStatus({
           state: 'error',
-          message: data.message || t('registration.errors.submit'),
+          message: (res && res.message) || t('registration.errors.submit'),
         });
         return;
       }
-      setStatus({ state: 'ok', message: data.message || t('registration.success.body') });
+      setStatus({ state: 'ok', message: (res && res.message) || t('registration.success.body') });
       setForm({
         fullName: '', email: '', phone: '', company: '', role: '',
         country: '', linkedin: '', motivation: '',

@@ -79,6 +79,36 @@ export interface TGDiscountValidationResponse {
   error?: string;
 }
 
+/**
+ * Solicitud de entrada de un evento cerrado por invitación.
+ *
+ * La guarda en el backend es `events.registration_requests` y el aviso le
+ * llega a info@xopsconference.com. Los consents viajan como booleanos: el de
+ * privacidad es obligatorio y el de promociones es opcional.
+ */
+export interface TGRegistrationPayload {
+  fullName: string;
+  email: string;
+  phone?: string | null;
+  company: string;
+  role?: string | null;
+  country: string;
+  linkedin?: string | null;
+  motivation?: string | null;
+  privacyConsent: boolean;
+  marketingConsent: boolean;
+  event?: string;
+  source?: string;
+  requestKey?: string;
+}
+
+export interface TGRegistrationResponse {
+  success: boolean;
+  id?: number;
+  message?: string;
+  error?: string;
+}
+
 export interface TGCheckoutPayload {
   eventId: number | string;
   ticketTypeId: number | string;

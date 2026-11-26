@@ -11,6 +11,8 @@ import type {
   TGValidateResponse,
   TGCheckoutPayload,
   TGCheckoutResponse,
+  TGRegistrationPayload,
+  TGRegistrationResponse,
   TGDiscountValidationPayload,
   TGDiscountValidationResponse,
   TGCheckoutSessionStatus,
@@ -59,7 +61,26 @@ export class TriskelGateClient {
     });
   }
 
-  /** POST /api/validate – validate a ticket (QR scan) */
+  /**
+   * POST /api/registro — alta de una solicitud de entrada (evento cerrado
+   * por invitación).
+   *
+   * Importante: va contra la BASE DE LA API, no contra una ruta relativa.
+   * Un `fetch('/api/registro')` en el navegador se resuelve contra el
+   * dominio de la web, donde no hay backend: en dubai.xopsconference.com
+   * Vercel sirve ese path como la SPA y responde 405 Method Not Allowed
+   * (falló en produccion el 26-nov-2026). El endpoint vive en el host de la
+   * API.
+   */
+  async createRegistration(payload: TGRegistrationPayload): Promise<TGRegistrationResponse> {
+    return this.breaker.execute(async () => {
+      // El backend devuelve el objeto plano (no envuelto en {data}), a
+      // diferencia del resto de endpoints publicos.
+      return this.request<TGRegistrationResponse>('POST', '/api/registro', payload);
+    });
+  }
+
+  /** GET /api/validate – validate a ticket (QR scan) */
   async validateTicket(payload: TGValidatePayload): Promise<TGValidateResponse> {
     return this.breaker.execute(() =>
       this.request<TGValidateResponse>('POST', '/api/validate', payload),
