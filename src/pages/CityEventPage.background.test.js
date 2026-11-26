@@ -79,6 +79,19 @@ describe('el fondo de Dubái', () => {
     expect(PAGE).not.toMatch(/city-page--madrid[^{]*\{[^}]*dubaiSkyline/);
   });
 
+  it('en vertical (movil) el encuadre se ajusta para que se vea la torre', () => {
+    // Con el recorte 16:9 en vertical el Burj Khalifa queda fuera y la foto
+    // se ve como un cielo liso: la web sigue pareciendo "simple". Con un
+    // media query el encuadre se mueve a la derecha, donde esta la torre.
+    expect(CSS).toMatch(/@media \(max-width: 767px\)/);
+    const iMedia = CSS.indexOf('@media (max-width: 767px)');
+    expect(iMedia).toBeGreaterThan(-1);
+    const bloqueMovil = CSS.slice(iMedia, iMedia + 700);
+    expect(bloqueMovil).toMatch(/object-position/);
+    // Y el velo se refuerza en vertical, porque el texto ocupa casi todo el ancho.
+    expect(bloqueMovil).toMatch(/city-page--dubai \.city-hero::after/);
+  });
+
   it('el copy de la pagina sigue siendo el de un solo día', () => {
     // El fondo no puede resucitar el "Executive Summit" que se quito.
     for (const loc of [es, en]) {
