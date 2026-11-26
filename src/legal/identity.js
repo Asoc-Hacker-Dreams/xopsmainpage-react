@@ -1,9 +1,12 @@
 // Shared public identity and jurisdiction helpers. These are NOT payment processor credentials.
-// Versión de los términos de compra. Se envía como legalAcceptance.legalVersion en el checkout
-// (TicketModal) y se muestra en LegalDocument; queda registrada como evidencia de aceptación.
-// Bumpear (YYYY-MM-DD, fecha efectiva) cada vez que cambien materialmente los términos.
+// Versión de los términos de compra por edición. Se envía como legalAcceptance.legalVersion en el
+// checkout (TicketModal) y se muestra en LegalDocument; queda registrada como evidencia de aceptación.
+// Bumpear SOLO la versión de la edición afectada (YYYY-MM-DD, fecha efectiva) cuando cambien
+// materialmente sus términos: un cambio de Dubái no altera la versión de Madrid.
 // NO confundir con CONSENT_POLICY_VERSION (ConsentContext), que es independiente.
-export const LEGAL_VERSION = '2026-11-24';
+export const LEGAL_VERSIONS = Object.freeze({ madrid: '2026-10-27', dubai: '2026-11-24' });
+export const legalVersionForEdition = (edition = 'madrid') =>
+  LEGAL_VERSIONS[String(edition).toLowerCase() === 'dubai' ? 'dubai' : 'madrid'];
 export const ORGANIZER = Object.freeze({
   name: 'Asociación Hacker Dreams',
   taxId: 'G56643158',

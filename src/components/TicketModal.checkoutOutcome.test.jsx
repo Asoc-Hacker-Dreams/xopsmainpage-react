@@ -502,9 +502,11 @@ describe('Dubai: el CTA publico no abre el checkout', () => {
 
 /*
  * Cableado legal de extremo a extremo: con VITE_TRISKELL_LEGAL_METADATA_ENABLED=true el
- * checkout de Dubái envía legalAcceptance, y legalVersion es la versión de los términos
- * vigente (LEGAL_VERSION en src/legal/identity.js). El literal de abajo fija la versión
- * esperada: si alguien la cambia sin querer, este test falla.
+ * checkout de Dubái envía legalAcceptance, y legalVersion es la versión de los términos de LA
+ * EDICIÓN (legalVersionForEdition en src/legal/identity.js). El literal de abajo fija la versión
+ * de Dubái: si alguien la cambia sin querer, este test falla. Madrid no tiene checkout público
+ * (venta aplazada; isPublicXopsEvent solo admite Dubái), así que su versión se cubre en
+ * src/legal/legalContent.test.js.
  */
 describe('Legal: legalAcceptance llega a createCheckout en el checkout de Dubái', () => {
   it('con el flag activo envía legalAcceptance con accepted, edition, legalVersion, locale y acceptedAtClient', async () => {

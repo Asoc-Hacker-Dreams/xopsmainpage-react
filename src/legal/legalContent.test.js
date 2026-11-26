@@ -2,14 +2,29 @@ import { describe, expect, it } from 'vitest';
 import { privacyContent } from './privacyContent';
 import { termsContent } from './termsContent';
 import { noticesContent } from './noticesContent';
-import { LEGAL_VERSION, editionFromEvent, resolveLegalEdition } from './identity';
+import * as identity from './identity';
+import { LEGAL_VERSIONS, editionFromEvent, legalVersionForEdition, resolveLegalEdition } from './identity';
 
 describe('legal coverage and jurisdiction routing', () => {
-  // Versión de los términos usada en el checkout y en la evidencia de aceptación.
-  it('LEGAL_VERSION fija la fecha efectiva de los términos de jornada única', () => {
-    expect(LEGAL_VERSION).toBe('2026-11-24');
-    expect(LEGAL_VERSION).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-    expect(LEGAL_VERSION).not.toBe('2026-10-27');
+  // Versión de los términos por edición: se envía en el checkout y se muestra en LegalDocument.
+  it('LEGAL_VERSIONS fija la fecha efectiva de los términos de cada edición', () => {
+    expect(LEGAL_VERSIONS.madrid).toBe('2026-10-27');
+    expect(LEGAL_VERSIONS.dubai).toBe('2026-11-24');
+    for (const version of Object.values(LEGAL_VERSIONS)) {
+      expect(version).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
+  it('legalVersionForEdition devuelve la versión de cada edición y cae en Madrid si no es Dubái', () => {
+    expect(legalVersionForEdition('madrid')).toBe('2026-10-27');
+    expect(legalVersionForEdition('dubai')).toBe('2026-11-24');
+    expect(legalVersionForEdition('DUBAI')).toBe('2026-11-24');
+    expect(legalVersionForEdition('unknown')).toBe('2026-10-27');
+    expect(legalVersionForEdition()).toBe('2026-10-27');
+  });
+
+  it('no exporta un LEGAL_VERSION global: la versión depende de la edición', () => {
+    expect(identity.LEGAL_VERSION).toBeUndefined();
   });
 
   it('contains substantive bilingual EU and UAE privacy notices', () => {
