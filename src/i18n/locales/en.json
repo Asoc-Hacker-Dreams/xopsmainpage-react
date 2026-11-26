@@ -133,7 +133,7 @@
       "statement": "One city. Two experiences. One shared technology ecosystem.",
       "facts": "Event details",
       "navLabel": "X-Ops {{city}} navigation",
-      "navSummit": "Executive Summit",
+      "navSummit": "Programme",
       "navConference": "Technical Conference",
       "navAgenda": "Agenda",
       "navSpeakers": "Speakers",
@@ -478,7 +478,7 @@
     "entitlements": {
       "confDay1": "Conference day 1 · full access",
       "confDay2": "Conference day 2 · full access",
-      "summit": "X-Ops Executive Summit",
+      "summit": "X-Ops Conference",
       "dinner": "Speakers dinner",
       "workshops": "Premium workshops (sold separately)"
     },
@@ -552,7 +552,7 @@
       "eventMaterial": "Event materials",
       "earlyBirdPrice": "Exclusive early bird price",
       "earlyAdopterPrice": "Special early adopter price",
-      "summitAccess": "Access to X-Ops Executive Summit",
+      "summitAccess": "Access to X-Ops Dubai 2026",
       "executiveSessions": "Exclusive leadership sessions",
       "vipNetworking": "VIP networking",
       "mainStageAccess": "Priority main stage access",
