@@ -64,12 +64,14 @@ Current existing browser request:
   "legalAcceptance": {
     "accepted": true,
     "edition": "madrid",
-    "legalVersion": "2026-10-26",
-    "acceptedAtClient": "2026-10-26T17:00:00.000Z",
+    "legalVersion": "2026-10-27",
+    "acceptedAtClient": "2026-10-27T17:00:00.000Z",
     "locale": "es"
   }
 }
 ```
+
+`legalVersion` se resuelve por edición (`LEGAL_VERSIONS` / `legalVersionForEdition` en `src/legal/identity.js`): Madrid envía `2026-10-27` y Dubái envía `2026-11-24`. Cada edición tiene su propia versión; un cambio en una no altera la otra.
 
 **Required backend implementation** (not part of this branch):
 1. Validate event `edition` from trusted `eventId` rather than browser input.

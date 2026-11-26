@@ -99,7 +99,7 @@ export const termsContent = {
           'Odin Hermes & Danu Technology Solutions LLC (Delaware, United States) is the identified collection entity and Stripe facilitates card payments. Being a collector does not automatically establish the contractual seller, UAE establishment or tax treatment. The seller and invoice issuer must be clearly identified in the live checkout.'
         ]},
         { title: '2. Event dates, programme and entitlements', paragraphs: [
-          'X-Ops Dubai 2026 takes place on Monday 30 November 2026, in Dubai. The venue is still to be confirmed. It is a single day: there is no second day and no separate Conference day. Please check the latest venue details and any material changes before purchasing travel.',
+          'X-Ops Dubai 2026 takes place on Monday 30 November 2026, at the venue announced on the official event page. It is a single day: there is no second day and no separate Conference day. Please check the latest venue details and any material changes before purchasing travel.',
           'The General Admission pass is valid only on Monday 30 November 2026. It includes the technical programme, networking and materials. It does not include the leadership sessions, the speakers dinner or premium workshops unless explicitly stated. Tickets already issued for the earlier Summit and Conference products keep the rights registered on them, including the speakers dinner where it was included, and are valid on 30 November 2026. No ticket is valid on any other date.'
         ]},
         { title: '3. Prices, currency, taxes and checkout', paragraphs: [
@@ -137,7 +137,7 @@ export const termsContent = {
           'Odin Hermes & Danu Technology Solutions LLC (Delaware, Estados Unidos) es la entidad identificada para la gestión de cobros y Stripe facilita los pagos. Su condición de recaudadora no acredita por sí sola la identidad del vendedor, establecimiento en EAU o tratamiento fiscal. El vendedor y emisor de factura deben identificarse en el checkout efectivo.'
         ]},
         { title: '2. Programa y derechos de acceso', paragraphs: [
-          'X-Ops Dubai 2026 se celebra el lunes 30 de noviembre de 2026, en Dubái. La sede está todavía por confirmar. Es una única jornada: no hay segundo día ni una jornada de Conference separada. Comprueba la dirección exacta y cualquier cambio material antes de contratar viajes.',
+          'X-Ops Dubai 2026 se celebra el lunes 30 de noviembre de 2026, en la sede anunciada en la página oficial del evento. Es una única jornada: no hay segundo día ni una jornada de Conference separada. Comprueba la dirección exacta y cualquier cambio material antes de contratar viajes.',
           'La Entrada General es válida únicamente el lunes 30 de noviembre de 2026. Incluye el programa técnico, el networking y el material. No incluye las sesiones de liderazgo, la cena con ponentes ni los talleres premium salvo indicación expresa. Las entradas ya emitidas de los productos anteriores Summit y Conference conservan los derechos registrados en ellas, incluida la cena con ponentes donde estaba incluida, y son válidas el 30 de noviembre de 2026. Ninguna entrada es válida en otras fechas.'
         ]},
         { title: '3. Precio, moneda, impuestos y pago', paragraphs: [

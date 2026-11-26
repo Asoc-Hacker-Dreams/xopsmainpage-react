@@ -143,6 +143,7 @@ beforeEach(() => {
 
 afterEach(() => {
   window.location = originalLocation;
+  vi.unstubAllEnvs();
   vi.clearAllMocks();
 });
 
@@ -496,5 +497,36 @@ describe('Dubai: el CTA publico no abre el checkout', () => {
     // Se llega al formulario de checkout: no se redirige al formulario de solicitud.
     await screen.findByLabelText(/ticketModal\.checkout\.fullName/);
     expect(assignMock).not.toHaveBeenCalledWith('/registro');
+  });
+});
+
+/*
+ * Cableado legal de extremo a extremo: con VITE_TRISKELL_LEGAL_METADATA_ENABLED=true el
+ * checkout de Dubái envía legalAcceptance, y legalVersion es la versión de los términos de LA
+ * EDICIÓN (legalVersionForEdition en src/legal/identity.js). El literal de abajo fija la versión
+ * de Dubái: si alguien la cambia sin querer, este test falla. Madrid no tiene checkout público
+ * (venta aplazada; isPublicXopsEvent solo admite Dubái), así que su versión se cubre en
+ * src/legal/legalContent.test.js.
+ */
+describe('Legal: legalAcceptance llega a createCheckout en el checkout de Dubái', () => {
+  it('con el flag activo envía legalAcceptance con accepted, edition, legalVersion, locale y acceptedAtClient', async () => {
+    vi.stubEnv('VITE_TRISKELL_LEGAL_METADATA_ENABLED', 'true');
+    triskelGateClient.createCheckout.mockResolvedValue({ success: true, sessionUrl: STRIPE_URL });
+
+    await reachCheckoutForm();
+
+    await waitFor(() => expect(assignMock).toHaveBeenCalledWith(STRIPE_URL));
+    expect(triskelGateClient.createCheckout).toHaveBeenCalledTimes(1);
+    const payload = triskelGateClient.createCheckout.mock.calls[0][0];
+    expect(payload.legalAcceptance).toEqual({
+      accepted: true,
+      edition: 'dubai',
+      legalVersion: '2026-11-24',
+      locale: 'es',
+      acceptedAtClient: expect.any(String),
+    });
+    expect(payload.legalAcceptance.acceptedAtClient).toMatch(
+      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+    );
   });
 });
