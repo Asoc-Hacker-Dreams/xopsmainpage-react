@@ -27,6 +27,18 @@ const OptimizedImage = ({
   onLoad,
   onError,
   placeholder = null,
+  // Fuentes alternativas YA resueltas por el bundler (imports explicitos).
+  //
+  // Antes se derivaban del nombre del fichero con
+  // `src.replace(/\.(jpg|jpeg|png|gif)$/, '')`, lo que produce URLs rotas:
+  // Vite hashea cada asset por separado, asi que un `xops.png` importado
+  // llega como `/assets/xops-D73UKbcv.png` y el replace genera
+  // `/assets/xops-D73UKbcv.avif`, que NO existe (el real es
+  // `/assets/xops-BBQ8ixat.avif`). Con el <source> avif en 404, el
+  // navegador no cae al <img> fallback y el logo NO SE VE (naturalWidth 0).
+  // Era el bug que Antonio vio el 26-nov-2026.
+  avifSrc = null,
+  webpSrc = null,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority || loading === 'eager');
@@ -35,15 +47,22 @@ const OptimizedImage = ({
   // Get different image format URLs
   const getImageSources = () => {
     if (!src) return { avif: null, webp: null, fallback: null };
-    
-    const basePath = src.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-    const extension = src.match(/\.(jpg|jpeg|png|gif)$/i)?.[1] || 'png';
-    
+
+    // Si el llamante pasa las alternativas ya resueltas (imports explicitos),
+    // se usan tal cual: el bundler knows el hash correcto de cada asset.
+    if (avifSrc && webpSrc) {
+      return { avif: avifSrc, webp: webpSrc, fallback: src, extension: 'png' };
+    }
+
+    // Si NO se le pasan las alternativas, no se derivan: un nombre con hash de
+    // Vite no permite saber el hash del AVIF/WebP, y una URL derivada
+    // inexistente hace que el navegador NO caiga al <img> de reserva (la
+    // imagen no se ve). Sin alternativas, se sirve solo el original.
     return {
-      avif: `${basePath}.avif`,
-      webp: `${basePath}.webp`,
+      avif: null,
+      webp: null,
       fallback: src,
-      extension
+      extension: src.match(/\.(jpg|jpeg|png|gif)$/i)?.[1] || 'png'
     };
   };
 
@@ -124,19 +143,24 @@ const OptimizedImage = ({
       
       {isInView && (
         <picture>
-          {/* AVIF format - best compression */}
-          <source
-            type="image/avif"
-            srcSet={sources.avif}
-            sizes={sizes}
-          />
-          
+          {/* AVIF format - best compression. Solo si la URL existe: un <source>
+              en 404 hace que el navegador no cargue el <img> de reserva. */}
+          {sources.avif && (
+            <source
+              type="image/avif"
+              srcSet={sources.avif}
+              sizes={sizes}
+            />
+          )}
+
           {/* WebP format - good compression with wide support */}
-          <source
-            type="image/webp"
-            srcSet={sources.webp}
-            sizes={sizes}
-          />
+          {sources.webp && (
+            <source
+              type="image/webp"
+              srcSet={sources.webp}
+              sizes={sizes}
+            />
+          )}
           
           {/* Fallback to original format */}
           <img
@@ -171,6 +195,8 @@ OptimizedImage.propTypes = {
   onLoad: PropTypes.func,
   onError: PropTypes.func,
   placeholder: PropTypes.node,
+  avifSrc: PropTypes.string,
+  webpSrc: PropTypes.string,
 };
 
 export default OptimizedImage;
