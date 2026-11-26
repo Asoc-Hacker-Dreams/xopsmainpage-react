@@ -124,6 +124,42 @@ div[class*="-page"] {
   color: var(--text-muted);
 }
 
+/*
+ * Textos de ayuda de los formularios (.form-text) y mensajes de validacion.
+ *
+ * Bootstrap los deja en #212529 (su gris por defecto), que sobre el fondo
+ * oscuro de la pagina (#0a0f2e) da un ratio de contraste de 1.21: ilegible.
+ * Medido el 25-nov-2026 con getComputedStyle sobre /registro en produccion.
+ *
+ * --text-secondary (#b8c5d6) da 10.70 sobre ese fondo: pasa el AA de WCAG
+ * (4.5) con holgura y se lee como texto de ayuda, no como texto principal.
+ */
+[data-theme="dark"] .form-text {
+  color: var(--text-secondary);
+}
+
+/* Los labels de un formulario son texto principal, no texto de ayuda: van
+   en --text-primary para que se lean igual que el resto del formulario. */
+[data-theme="dark"] .form-label {
+  color: var(--text-primary);
+}
+
+/* El mensaje de error de Bootstrap (#dc3545) daba 4.14 sobre el fondo
+   oscuro: por debajo del AA. Se sube a un rojo mas claro que da 7.43. */
+[data-theme="dark"] .invalid-feedback {
+  color: #ff7b72;
+}
+
+[data-theme="dark"] .form-check-label {
+  color: var(--text-primary);
+}
+
+/* El enlace dentro de un texto de ayuda (p.ej. "Ver la politica de
+   privacidad") necesita ser distinguible del texto que lo rodea. */
+[data-theme="dark"] .form-text a {
+  color: var(--accent-color);
+}
+
 /* Dark mode for specific components */
 [data-theme="dark"] .home-main-section,
 [data-theme="dark"] .Hero-section {
