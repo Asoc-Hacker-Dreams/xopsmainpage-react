@@ -2,9 +2,31 @@ import { describe, expect, it } from 'vitest';
 import { privacyContent } from './privacyContent';
 import { termsContent } from './termsContent';
 import { noticesContent } from './noticesContent';
-import { editionFromEvent, resolveLegalEdition } from './identity';
+import * as identity from './identity';
+import { LEGAL_VERSIONS, editionFromEvent, legalVersionForEdition, resolveLegalEdition } from './identity';
 
 describe('legal coverage and jurisdiction routing', () => {
+  // Versión de los términos por edición: se envía en el checkout y se muestra en LegalDocument.
+  it('LEGAL_VERSIONS fija la fecha efectiva de los términos de cada edición', () => {
+    expect(LEGAL_VERSIONS.madrid).toBe('2026-10-27');
+    expect(LEGAL_VERSIONS.dubai).toBe('2026-11-24');
+    for (const version of Object.values(LEGAL_VERSIONS)) {
+      expect(version).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
+  it('legalVersionForEdition devuelve la versión de cada edición y cae en Madrid si no es Dubái', () => {
+    expect(legalVersionForEdition('madrid')).toBe('2026-10-27');
+    expect(legalVersionForEdition('dubai')).toBe('2026-11-24');
+    expect(legalVersionForEdition('DUBAI')).toBe('2026-11-24');
+    expect(legalVersionForEdition('unknown')).toBe('2026-10-27');
+    expect(legalVersionForEdition()).toBe('2026-10-27');
+  });
+
+  it('no exporta un LEGAL_VERSION global: la versión depende de la edición', () => {
+    expect(identity.LEGAL_VERSION).toBeUndefined();
+  });
+
   it('contains substantive bilingual EU and UAE privacy notices', () => {
     for (const city of ['madrid', 'dubai']) {
       for (const lang of ['es', 'en']) {
@@ -58,10 +80,10 @@ describe('legal coverage and jurisdiction routing', () => {
     // La jornada única y su sede.
     expect(es).toMatch(/lunes 30 de noviembre de 2026/);
     expect(en).toMatch(/Monday 30 November 2026/);
-    // La sede de Dubái está por confirmar (DKP está descartado): los
-    // términos no pueden dar una dirección que ya no existe.
-    expect(es).toMatch(/sede está todavía por confirmar/i);
-    expect(en).toMatch(/venue is still to be confirmed/i);
+    // La sede se describe de forma neutral y verificable, sin afirmar un recinto concreto.
+    expect(es).toContain('en la sede anunciada en la página oficial del evento');
+    expect(en).toContain('at the venue announced on the official event page');
+    // Y no puede aparecer la sede descartada (DKP).
     expect(es).not.toMatch(/Dubai Knowledge Park/i);
     expect(en).not.toMatch(/Dubai Knowledge Park/i);
     // El modelo anterior (dos días, dos productos) no puede volver.
@@ -78,9 +100,20 @@ describe('legal coverage and jurisdiction routing', () => {
     expect(es).toMatch(/conservan los derechos/);
     expect(en).toMatch(/keep the rights registered/);
     // Madrid conserva su propio texto histórico de dos días.
-    const esMad = JSON.stringify(termsContent.madrid.es);
-    const enMad = JSON.stringify(termsContent.madrid.en);
-    expect(esMad).toMatch(/19 de noviembre|20 y 21 de noviembre/);
-    expect(enMad).toMatch(/19 November|20 and 21 November/);
+    expect(JSON.stringify(termsContent.madrid.es)).toMatch(/19 de noviembre|20 y 21 de noviembre/);
+    expect(JSON.stringify(termsContent.madrid.en)).toMatch(/19 November|20 and 21 November/);
+  });
+
+  // VenueWise rechazó DKP para el 30-nov y la sede alternativa no está firmada: los términos
+  // no pueden afirmar ningún recinto concreto (registro operativo 26-nov).
+  it('Dubai terms: sede neutral, sin DKP, Conference Hall ni in5 como afirmación', () => {
+    const es = JSON.stringify(termsContent.dubai.es);
+    const en = JSON.stringify(termsContent.dubai.en);
+    for (const text of [es, en]) {
+      expect(text).not.toContain('Dubai Knowledge Park Conference Centre');
+      expect(text).not.toContain('DKP Conference Centre');
+      expect(text).not.toContain('Conference Hall 1');
+      expect(text).not.toMatch(/\bin5\b/i);
+    }
   });
 });

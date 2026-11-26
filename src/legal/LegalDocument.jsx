@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
-import { LEGAL_VERSION, ORGANIZER } from './identity';
+import { ORGANIZER, legalVersionForEdition, resolveLegalEdition } from './identity';
 import './legal.css';
 
 const destinations = [
@@ -26,6 +26,7 @@ export default function LegalDocument({ document, documentType = 'policy' }) {
   const lang = getLegalLang(i18n);
   const copy = document[lang] || document.es || document.en;
   const subtitle = copy.subtitle || '';
+  const edition = resolveLegalEdition(location.pathname, typeof window !== 'undefined' ? window.location.hostname : '');
   return (
     <main className="xops-legal" id="main-content">
       <SEO
@@ -42,7 +43,7 @@ export default function LegalDocument({ document, documentType = 'policy' }) {
             <h1 id="legal-title">{copy.title}</h1>
             <p className="xops-legal__lead">{subtitle}</p>
             <div className="xops-legal__metadata">
-              <span>{lang === 'es' ? 'Versión' : 'Version'}: {LEGAL_VERSION}</span>
+              <span>{lang === 'es' ? 'Versión' : 'Version'}: {legalVersionForEdition(edition)}</span>
               <span>{ORGANIZER.name} · {ORGANIZER.taxId}</span>
             </div>
             <nav aria-label={lang === 'es' ? 'Índice de esta política' : 'Document contents'} className="xops-legal__toc">

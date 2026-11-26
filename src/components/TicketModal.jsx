@@ -20,7 +20,7 @@ import {
 } from '../adapters/triskelgate/discountErrors';
 import CountdownTimer from './CountdownTimer';
 import { cityEvents, getCityFromHostname } from '../data/cityEvents';
-import { LEGAL_VERSION, editionFromEvent } from '../legal/identity';
+import { editionFromEvent, legalVersionForEdition } from '../legal/identity';
 import { useConsent, CONSENT_POLICY_VERSION } from '../contexts/ConsentContext';
 import { buildAttributionForCheckout, captureAttribution } from '../analytics/attribution';
 import { ticketGa4Item, trackGa4Event, trackBeginCheckout, trackCheckoutRedirect } from '../analytics/ga4';
@@ -582,7 +582,7 @@ const TicketModal = ({ show, onHide, allowIndividualCheckout = false }) => {
           legalAcceptance: {
             accepted: true,
             edition: checkoutEdition,
-            legalVersion: LEGAL_VERSION,
+            legalVersion: legalVersionForEdition(checkoutEdition),
             acceptedAtClient: new Date().toISOString(),
             locale: i18n.language,
           },
@@ -881,7 +881,7 @@ const TicketModal = ({ show, onHide, allowIndividualCheckout = false }) => {
                 : t('ticketModal.checkout.withdrawalMadrid')}</p>
               <p style={{marginBottom:8}}>{t('ticketModal.checkout.sponsorDisclosure')}</p>
               <p style={{marginBottom:8}}>{t('ticketModal.checkout.filmingDisclosure')}</p>
-              <p style={{marginBottom:8,color:'#c8d6e5'}}>{t('ticketModal.checkout.versionLabel')}: {LEGAL_VERSION}</p>
+              <p style={{marginBottom:8,color:'#c8d6e5'}}>{t('ticketModal.checkout.versionLabel')}: {legalVersionForEdition(checkoutEdition)}</p>
               <nav aria-label={t('ticketModal.checkout.preContractHeading')} style={{display:'flex',gap:12,flexWrap:'wrap'}}>
                 <a target="_blank" rel="noopener noreferrer" href="/aviso-legal">{t('ticketModal.checkout.legalNotice')}</a>
                 <a target="_blank" rel="noopener noreferrer" href={termsUrl}>{t('ticketModal.checkout.termsLink')}</a>
