@@ -15,7 +15,9 @@ describe('Dubai 2026 single-day programme', () => {
   test('one day on 30 November 2026 at the confirmed venue, capacity 90', () => {
     expect(dubaiProgramme2026.date).toBe('2026-11-30');
     expect(dubaiProgramme2026.timezone).toBe('Asia/Dubai');
-    expect(dubaiProgramme2026.venue).toBe('DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai');
+    // La sede está por confirmar: DKP está descartado y in5 no está cerrado.
+    expect(dubaiProgramme2026.venue).toBe('Sede por confirmar, Dubai');
+    expect(dubaiProgramme2026.venue).not.toMatch(/DKP|Dubai Knowledge Park/i);
     expect(dubaiVenue).toBe(dubaiProgramme2026.venue);
     expect(dubaiProgramme2026.capacity).toBe(90);
     expect(dubaiProgramme2026.summit).toBeUndefined();

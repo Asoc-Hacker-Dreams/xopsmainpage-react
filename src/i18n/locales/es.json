@@ -27,7 +27,7 @@
     "addressLine1": "Sede por confirmar, Madrid",
     "addressLine2": "Madrid, España",
     "dubaiAddressLine1": "Dubai, Emiratos Árabes Unidos",
-    "dubaiAddressLine2": "DKP Conference Centre, Dubai Knowledge Park (TECOM)",
+    "dubaiAddressLine2": "Sede por confirmar, Dubai",
     "contacts": "Contactos",
     "links": "Enlaces",
     "privacyPolicy": "Política de Privacidad",
@@ -60,7 +60,7 @@
       "conferenceDescription": "Parte de la misma jornada única: charlas técnicas en la misma sala.",
       "viewConference": "Ver agenda",
       "getTickets": "Solicita tu entrada",
-      "venuePending": "Sede: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái",
+      "venuePending": "Sede: por confirmar",
       "connectionsKicker": "MÁS ALLÁ DEL ESCENARIO",
       "connectionsTitle": "Conversaciones con propósito",
       "connectionsIntro": "La meta no es acumular ponencias: buscamos un entorno enfocado en decisiones tecnológicas, intercambio de experiencias reales y contactos entre personas que afrontan retos complementarios.",
@@ -467,7 +467,7 @@
       "summit": "La experiencia X-Ops completa: Summit ejecutivo, los 2 días completos de Conference y la speakers dinner. Incluye sesiones de liderazgo, networking C-level, todas las sesiones técnicas y material. No incluye workshops premium."
     },
     "tierDescriptionsDubai": {
-      "general": "Acceso a una sola jornada, el lunes 30 de noviembre de 2026, en DKP Conference Centre (TECOM). Todas las sesiones técnicas, networking y material incluidos. No incluye speakers dinner ni workshops premium."
+      "general": "Acceso a una sola jornada, el lunes 30 de noviembre de 2026. La sede se confirma en breve. Todas las sesiones técnicas, networking y material incluidos. No incluye speakers dinner ni workshops premium."
     },
     "entitlements": {
       "confDay1": "Conference día 1 · acceso completo",
@@ -654,13 +654,13 @@
       "summit": {
         "label": "X-Ops Summit",
         "dates": "30 de noviembre",
-        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái",
+        "venue": "Sede por confirmar, Dubái",
         "dubaiLabel": "X-Ops Dubai"
       },
       "conference": {
         "label": "X-Ops Conference",
         "dates": "30 de noviembre",
-        "venue": "DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái",
+        "venue": "Sede por confirmar, Dubái",
         "dubaiLabel": "X-Ops Dubai"
       },
       "narrative": "La primera edición en Oriente Medio. Dubai es el hub tecnológico y financiero del MENA. Llevamos el ADN de X-Ops a un nuevo continente: el contenido de Summit y Conference condensado en una jornada, en una sala, para un ecosistema donde la transformación digital avanza a velocidad de fórmula 1.",
@@ -698,9 +698,9 @@
     "dubai": {
       "city": "Dubai, EAU",
       "label": "X-Ops Dubái · 30 de noviembre de 2026",
-      "name": "DKP Conference Centre, Dubai Knowledge Park (TECOM)",
+      "name": "Sede por confirmar",
       "address": "Dubai, Emiratos Árabes Unidos",
-      "tbdNote": "Sede confirmada: DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubái. Aforo de hasta 90 personas."
+      "tbdNote": "Sede por confirmar. Aforo de hasta 90 personas."
     }
   },
   "xops": {
@@ -724,7 +724,7 @@
     },
     "card2": {
       "title": "¿Dónde y Cuándo?",
-      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 es una jornada única el 30 de noviembre de 2026 (DKP Conference Centre, TECOM): sesiones técnicas y de liderazgo, y networking, todo el mismo día. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
+      "text": "X-Ops Madrid 2026 está aplazado, con nuevas fechas pendientes de anuncio. X-Ops Dubai 2026 es una jornada única el 30 de noviembre de 2026 (sede por confirmar): sesiones técnicas y de liderazgo, y networking, todo el mismo día. La agenda cubre automatización, integración continua, entrega continua, monitoreo y arquitecturas seguras."
     },
     "card3": {
       "title": "El Futuro del Trabajo",

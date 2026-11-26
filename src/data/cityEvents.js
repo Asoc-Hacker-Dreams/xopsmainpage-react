@@ -35,13 +35,16 @@ export const cityEvents = {
     endDate: '2026-11-30',
     summit: {
       dates: '30 November 2026',
-      venue: 'DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai',
+      // La sede de Dubái esta por confirmar (DKP esta descartado; se cierra
+      // con in5). La portada ya decia "Sede por confirmar": aqui se iguala
+      // para que las dos paginas no se contradigan.
+      venue: 'Sede por confirmar, Dubai',
       attendees: 'Up to 90 attendees',
       agendaDate: '30 Nov',
     },
     conference: {
       dates: '30 November 2026',
-      venue: 'DKP Conference Centre, Dubai Knowledge Park (TECOM), Dubai',
+      venue: 'Sede por confirmar, Dubai',
       cfpUrl: 'https://sessionize.com/x-ops-conference-2026/',
     },
     speakers: null,
