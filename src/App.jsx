@@ -67,6 +67,10 @@ function App() {
   const routeCity = location.pathname === '/madrid' ? 'madrid' : location.pathname === '/dubai' ? 'dubai' : null;
   const activeCity = hostnameCity || routeCity;
   const isCityPage = Boolean(activeCity) && ['/', '/madrid', '/dubai'].includes(location.pathname);
+  // La pagina de registro es una pantalla de captacion: sin hero de campana y
+  // sin el aviso de cookies en medio, que empuja a irse justo cuando la
+  // persona va a dar sus datos. El aviso sigue en el resto de la web.
+  const isRegistrationPage = location.pathname === '/registro' || location.pathname === '/registration';
   const { canPrompt, promptInstall } = usePWA();
   const [showCookiePreferences, setShowCookiePreferences] = useState(false);
   const [showTicketModal, setShowTicketModal] = useState(false);
@@ -126,7 +130,7 @@ function App() {
       <a href="#main-content" className="skip-link">Saltar al contenido</a>
       <ScriptManager />
       <AttributionBridge />
-      <CookieConsentBanner />
+      {!isRegistrationPage && <CookieConsentBanner />}
 
 <ScrollHandler />
 <div className="root home-main-section">
@@ -224,7 +228,7 @@ function App() {
     </Navbar>
 
     {!hostnameCity && location.pathname === '/' && <MadridPostponementNotice />}
-    {!isCityPage && (
+    {!isCityPage && !isRegistrationPage && (
       <section
         id="main-content"
         className="site-hero"
