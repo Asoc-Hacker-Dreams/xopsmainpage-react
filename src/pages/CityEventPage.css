@@ -77,10 +77,33 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 58%;
+  object-position: 68% 58%;
   opacity: 0.9;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 46%, transparent 94%);
   mask-image: linear-gradient(to bottom, black 0%, black 46%, transparent 94%);
+}
+
+/*
+ * En vertical (movil) el recorte 16:9 deja fuera el Burj Khalifa y la
+ * imagen queda como un cielo liso: la web se ve igual de "simple" que
+ * antes. Se sube la foto y se desplaza el encuadre a la derecha, donde
+ * esta la torre.
+ */
+@media (max-width: 767px) {
+  .city-hero__photo img {
+    object-position: 74% 42%;
+    opacity: 0.95;
+  }
+
+  /* El velo, mas fuerte en vertical porque el texto ocupa casi todo el ancho. */
+  .city-page--dubai .city-hero::after {
+    background:
+      linear-gradient(to bottom,
+        oklch(18% 0.055 275 / 92%) 0%,
+        oklch(18% 0.055 275 / 72%) 38%,
+        oklch(18% 0.055 275 / 55%) 68%,
+        oklch(18% 0.055 275 / 88%) 100%);
+  }
 }
 
 /*
