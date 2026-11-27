@@ -104,7 +104,7 @@ export const dubaiAcceptedSessions2026 = {
   },
   "1317552": {
     "id": "1317552",
-    "title": "Open-Source PostgreSQL: Managing Cost, Flexibility, and Vendor Risk",
+    "title": "Open Source PostgreSQL",
     "description": "PostgreSQL is increasingly considered by organizations seeking to reduce database licensing costs, modernize legacy platforms, and gain greater control over their technology strategy. However, adopting an open-source database does not automatically eliminate cost, complexity, or vendor dependency.\n\nThe real business decision extends beyond choosing PostgreSQL. Organizations must determine how it will be deployed, operated, supported, secured, and governed. While PostgreSQL can reduce dependence on proprietary licensing, infrastructure costs, cloud consumption, migration effort, specialist skills, operational support, and business-continuity requirements must still be considered. Moving to a managed PostgreSQL service may simplify operations, but provider-specific features can introduce a different form of vendor lock-in.\n\nThis session presents a practical, decision-oriented framework for evaluating PostgreSQL across three strategic dimensions: cost, flexibility, and vendor risk. It compares self-managed, vendor-supported, and cloud-managed operating models and explains how each affects total cost of ownership, operational responsibility, portability, resilience, and long-term control.\n\nAttendees will leave with a balanced perspective on where PostgreSQL can create business value, which costs are commonly underestimated, and how organizations can benefit from open source without transferring dependency from one vendor to another.",
     "language": "English",
     "durationMinutes": 30,
