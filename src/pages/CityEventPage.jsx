@@ -200,6 +200,34 @@ const CityEventPage = ({ city }) => {
         </div>
       </section>
 
+      {!isMadrid && (
+      <section className="city-program city-practical" aria-labelledby="practical-title" id="practical-info">
+        <div className="container">
+          <div className="city-section-heading">
+            <p className="city-kicker">{t('cityEvent.practical.kicker')}</p>
+            <h2 id="practical-title">{t('cityEvent.practical.title')}</h2>
+          </div>
+          <dl className="city-practical__list">
+            {['when', 'registration', 'venue', 'parking', 'wifi', 'language', 'ticket', 'contact'].map((k) => (
+              <div className="city-practical__item" key={k}>
+                <dt>{t(`cityEvent.practical.items.${k}.label`)}</dt>
+                <dd>{t(`cityEvent.practical.items.${k}.text`)}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="city-practical__links">
+            <a href="https://www.google.com/maps?q=25.106703,55.166904" target="_blank" rel="noopener noreferrer">
+              {t('cityEvent.practical.map')} <span aria-hidden="true">↗</span>
+            </a>
+            {' · '}
+            <a href="https://wa.me/971585932495" target="_blank" rel="noopener noreferrer">
+              {t('cityEvent.practical.whatsapp')} <span aria-hidden="true">↗</span>
+            </a>
+          </p>
+        </div>
+      </section>
+      )}
+
       <section className="city-program" aria-labelledby="program-title">
         <div className="container">
           <div className="city-section-heading">

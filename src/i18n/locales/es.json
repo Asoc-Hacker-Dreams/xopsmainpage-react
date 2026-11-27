@@ -220,6 +220,46 @@
       "kicker": "Continúa explorando X-Ops",
       "title": "{{city}} es parte de un ecosistema internacional.",
       "back": "Volver a xopsconference.com"
+    },
+    "practical": {
+      "kicker": "ANTES DE IR",
+      "title": "Información práctica",
+      "map": "Abrir en Google Maps",
+      "whatsapp": "WhatsApp el día del evento",
+      "items": {
+        "when": {
+          "label": "Fecha",
+          "text": "Lunes, 30 de noviembre de 2026 · 09:00–17:45 (hora de Dubái)"
+        },
+        "registration": {
+          "label": "Acreditación",
+          "text": "08:30–09:15 en la entrada del Conference Hall"
+        },
+        "venue": {
+          "label": "Sede",
+          "text": "in5 Tech, Conference Hall · King Salman Bin Abdulaziz Al Saud Street, Al Sufouh 2, Dubai Internet City, Dubái"
+        },
+        "parking": {
+          "label": "Parking",
+          "text": "Zonas de parking gratuito alrededor del edificio, o plazas de pago RTA (mParking)"
+        },
+        "wifi": {
+          "label": "WiFi",
+          "text": "Disponible en la sede"
+        },
+        "language": {
+          "label": "Idioma",
+          "text": "Todas las sesiones son en inglés"
+        },
+        "ticket": {
+          "label": "Tu entrada",
+          "text": "Enseña en el móvil el código QR del correo de confirmación"
+        },
+        "contact": {
+          "label": "Contacto",
+          "text": "info@xopsconference.com · el día del evento: +971 58 593 2495"
+        }
+      }
     }
   },
   "archive": {
