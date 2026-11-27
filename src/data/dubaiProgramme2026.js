@@ -6,7 +6,7 @@
 // y pidio que apareciese en la agenda. Su slot es 16:45-17:15, el mismo que le confirmaramos
 // por email; el networking B2B se acorta a 17:15-17:30.
 // Títulos, descripciones, duraciones e idiomas originales: dubaiAcceptedSessions2026.js.
-export const dubaiVenue = 'Sede por confirmar, Dubai';
+export const dubaiVenue = 'in5 Tech, Dubai Internet City';
 
 export const dubaiProgramme2026 = {
   "edition": "dubai",
@@ -14,7 +14,7 @@ export const dubaiProgramme2026 = {
   "timezone": "Asia/Dubai",
   "date": "2026-11-30",
   "title": "X-Ops Dubai 2026",
-  "venue": "Sede por confirmar, Dubai",
+  "venue": "in5 Tech, Dubai Internet City",
   "capacity": 90,
   "items": [
     { "start": "09:00", "end": "09:15", "type": "opening", "topic": { "en": "Opening", "es": "Apertura" }, "details": { "en": "Welcome and X-Ops objectives.", "es": "Bienvenida y objetivos de X-Ops." } },

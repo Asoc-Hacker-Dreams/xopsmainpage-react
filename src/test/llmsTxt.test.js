@@ -17,13 +17,13 @@ describe.each([
     expect(text).toMatch(/Madrid, Spain,? and\s+Dubai, UAE/);
   });
 
-  it('states the single-day programme figures: 11 accepted talks on 30 November, venue to be confirmed', () => {
+  it('states the single-day programme figures: 11 accepted talks on 30 November, venue in5 Tech', () => {
     expect(text).toMatch(/11 accepted talks in one day/);
     expect(text).toMatch(/30 November 2026/);
-    // La sede de Dubái está por confirmar (DKP está descartado): el fichero
+    // La sede de Dubái está confirmada (in5 Tech, Dubai Internet City; 27-nov-2026): el fichero
     // llms.txt NO debe anunciar una sede que ya no existe.
     expect(text).not.toMatch(/DKP|Dubai Knowledge Park/i);
-    expect(text).toMatch(/por confirmar|to be confirmed/i);
+    expect(text).toMatch(/in5 Tech|Dubai Internet City/i);
     expect(text).not.toMatch(/1 December|1 de diciembre|Venue to be announced/i);
   });
 

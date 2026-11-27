@@ -104,9 +104,12 @@ describe('legal coverage and jurisdiction routing', () => {
     expect(JSON.stringify(termsContent.madrid.en)).toMatch(/19 November|20 and 21 November/);
   });
 
-  // VenueWise rechazó DKP para el 30-nov y la sede alternativa no está firmada: los términos
-  // no pueden afirmar ningún recinto concreto (registro operativo 26-nov).
-  it('Dubai terms: sede neutral, sin DKP, Conference Hall ni in5 como afirmación', () => {
+  // 27-nov-2026: la sede ya está confirmada (in5 Tech, Dubai Internet City), pero los
+  // términos siguen siendo NEUTRALES a propósito: dicen "at the venue announced on the
+  // official event page" / "en la sede anunciada en la página oficial del evento", que es
+  // la web donde se publica. Así, si la sede cambiara, no hay que reescribir los términos.
+  // Lo que no puede aparecer es la sede DESCARTADA (DKP).
+  it('Dubai terms: sede neutral, sin DKP ni Conference Hall, sin afirmar un recinto', () => {
     const es = JSON.stringify(termsContent.dubai.es);
     const en = JSON.stringify(termsContent.dubai.en);
     for (const text of [es, en]) {

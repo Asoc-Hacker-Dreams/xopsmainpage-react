@@ -27,7 +27,7 @@
     "addressLine1": "Venue to be confirmed, Madrid",
     "addressLine2": "Madrid, Spain",
     "dubaiAddressLine1": "Dubai, United Arab Emirates",
-    "dubaiAddressLine2": "Venue to be confirmed, Dubai",
+    "dubaiAddressLine2": "in5 Tech, Dubai Internet City",
     "contacts": "Contacts",
     "links": "Links",
     "privacyPolicy": "Privacy Policy",
@@ -60,7 +60,7 @@
       "conferenceDescription": "Part of the same single day: technical talks in the same room.",
       "viewConference": "View agenda",
       "getTickets": "Request a ticket",
-      "venuePending": "Venue: to be confirmed",
+      "venuePending": "Venue: in5 Tech, Dubai Internet City",
       "connectionsKicker": "BEYOND THE STAGE",
       "connectionsTitle": "Make the conversations count",
       "connectionsIntro": "The aim is more than stage time: a focused setting to discuss technology decisions, compare real delivery experience and meet people with complementary challenges.",
@@ -660,13 +660,13 @@
       "summit": {
         "label": "X-Ops Summit",
         "dates": "November 30",
-        "venue": "Venue to be confirmed, Dubai",
+        "venue": "in5 Tech, Dubai Internet City",
         "dubaiLabel": "X-Ops Dubai"
       },
       "conference": {
         "label": "X-Ops Conference",
         "dates": "30 November",
-        "venue": "Venue to be confirmed, Dubai",
+        "venue": "in5 Tech, Dubai Internet City",
         "dubaiLabel": "X-Ops Dubai"
       },
       "narrative": "The first edition in the Middle East. Dubai is the technology and financial hub of MENA. We bring the X-Ops DNA to a new continent: the Summit and Conference content condensed into one day, in one room, for an ecosystem where digital transformation moves at Formula 1 speed.",

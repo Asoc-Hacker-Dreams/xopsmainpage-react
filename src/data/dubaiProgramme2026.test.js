@@ -15,8 +15,9 @@ describe('Dubai 2026 single-day programme', () => {
   test('one day on 30 November 2026 at the confirmed venue, capacity 90', () => {
     expect(dubaiProgramme2026.date).toBe('2026-11-30');
     expect(dubaiProgramme2026.timezone).toBe('Asia/Dubai');
-    // La sede está por confirmar: DKP está descartado y in5 no está cerrado.
-    expect(dubaiProgramme2026.venue).toBe('Sede por confirmar, Dubai');
+    // La sede está confirmada (in5 Tech, Dubai Internet City, 27-nov-2026).
+    // 27-nov-2026: sede confirmada por Antonio -> in5 Tech, Dubai Internet City.
+    expect(dubaiProgramme2026.venue).toBe('in5 Tech, Dubai Internet City');
     expect(dubaiProgramme2026.venue).not.toMatch(/DKP|Dubai Knowledge Park/i);
     expect(dubaiVenue).toBe(dubaiProgramme2026.venue);
     expect(dubaiProgramme2026.capacity).toBe(90);
