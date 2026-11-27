@@ -72,6 +72,11 @@ function mapSpeaker(s: SessionizeSpeaker): Speaker {
   };
 }
 
+// Titulos corregidos a peticion del ponente cuando Sessionize aun no esta actualizado.
+const TITLE_OVERRIDES: Record<string, string> = {
+  'Open-Source PostgreSQL: Managing Cost, Flexibility, and Vendor Risk': 'Open Source PostgreSQL',
+};
+
 function mapSession(session: SessionizeSession): Talk | null {
   if (!session.startsAt || session.isServiceSession) return null;
 
@@ -95,7 +100,7 @@ function mapSession(session: SessionizeSession): Talk | null {
 
   return {
     id: String(session.id),
-    title: session.title,
+    title: TITLE_OVERRIDES[session.title.trim()] ?? session.title,
     description: session.description || undefined,
     day,
     startTime,
