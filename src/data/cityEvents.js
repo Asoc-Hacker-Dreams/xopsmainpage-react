@@ -35,16 +35,19 @@ export const cityEvents = {
     endDate: '2026-11-30',
     summit: {
       dates: '30 November 2026',
-      // La sede de Dubái esta por confirmar (DKP esta descartado; se cierra
-      // con in5). La portada ya decia "Sede por confirmar": aqui se iguala
-      // para que las dos paginas no se contradigan.
-      venue: 'Sede por confirmar, Dubai',
+      // Sede confirmada por Antonio (27-nov-2026): in5 Tech, Dubai Internet
+      // City, dentro del distrito de innovacion de TECOM. La Conference Hall
+      // es de 1.720 sq ft, aforo 100, con AV fijo (2 proyectores, 4 HDMI y
+      // microfonos de mano, solapa y atril) y parking gratuito. Catering en las
+      // cafeterias del propio edificio.
+      // DKP esta descartado: VenueWise lo rechazo para el 30-nov (25-nov).
+      venue: 'in5 Tech, Dubai Internet City',
       attendees: 'Up to 90 attendees',
       agendaDate: '30 Nov',
     },
     conference: {
       dates: '30 November 2026',
-      venue: 'Sede por confirmar, Dubai',
+      venue: 'in5 Tech, Dubai Internet City',
       cfpUrl: 'https://sessionize.com/x-ops-conference-2026/',
     },
     speakers: null,
